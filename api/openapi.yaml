@@ -1,0 +1,2035 @@
+openapi: 3.0.1
+info:
+  contact:
+    email: support@cockroachlabs.com
+    name: Cockroach Labs Support
+    url: https://support.cockroachlabs.com
+  title: CockroachDB Cloud API
+  version: 2021-12-28
+externalDocs:
+  description: Use the CockroachDB Cloud API
+  url: https://www.cockroachlabs.com/docs/cockroachcloud/cloud-api.html
+servers:
+- url: https://cockroachlabs.cloud/
+security:
+- Bearer: []
+tags:
+- description: This is an early access, experimental version of the Cloud API. The
+    interface and output is subject to change, and there may be bugs.
+  name: CockroachCloud
+paths:
+  /api/v1/clusters:
+    get:
+      operationId: CockroachCloud_ListClusters
+      parameters:
+      - description: If `true`, show clusters that have been deleted or failed to
+          initialize.
+        in: query
+        name: show_inactive
+        schema:
+          default: false
+          type: boolean
+      - description: Index of the first entry to return.
+        in: query
+        name: pagination.start
+        schema:
+          format: int32
+          type: integer
+      - description: Number of entries to return.
+        in: query
+        name: pagination.limit
+        schema:
+          format: int32
+          type: integer
+      - description: |-
+          Optional timestamp of the original request, for consistency.
+          In a future release, the server will use it in an `AS OF SYSTEM
+          TIME` clause. Currently non-functional.
+        in: query
+        name: pagination.time
+        schema:
+          format: date-time
+          type: string
+      - description: |-
+          ASC (ascending) or DESC (descending) sort order.
+
+           - DESC: Sort in descending order. The default order is ascending.
+        in: query
+        name: pagination.order
+        schema:
+          default: ASC
+          enum:
+          - ASC
+          - DESC
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListClustersResponse'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema:
+                format: string
+                type: string
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: List clusters owned by an organization.
+      tags:
+      - CockroachCloud
+    post:
+      operationId: CockroachCloud_CreateCluster
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateClusterRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cluster'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema:
+                format: string
+                type: string
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Create and initialize a new cluster.
+      tags:
+      - CockroachCloud
+      x-codegen-request-body-name: body
+  /api/v1/clusters/available-regions:
+    get:
+      operationId: CockroachCloud_ListAvailableRegions
+      parameters:
+      - description: |-
+          Optional CloudProvider for filtering.
+
+           - CLOUD_PROVIDER_GCP: The Google Cloud Platform cloud provider.
+           - CLOUD_PROVIDER_AWS: The Amazon Web Services cloud provider.
+        in: query
+        name: provider
+        schema:
+          default: CLOUD_PROVIDER_UNSPECIFIED
+          enum:
+          - CLOUD_PROVIDER_UNSPECIFIED
+          - CLOUD_PROVIDER_GCP
+          - CLOUD_PROVIDER_AWS
+          type: string
+      - description: Optional filter to only show regions available for serverless
+          clusters.
+        in: query
+        name: serverless
+        schema:
+          default: false
+          type: boolean
+      - description: Index of the first entry to return.
+        in: query
+        name: pagination.start
+        schema:
+          format: int32
+          type: integer
+      - description: Number of entries to return.
+        in: query
+        name: pagination.limit
+        schema:
+          format: int32
+          type: integer
+      - description: |-
+          Optional timestamp of the original request, for consistency.
+          In a future release, the server will use it in an `AS OF SYSTEM
+          TIME` clause. Currently non-functional.
+        in: query
+        name: pagination.time
+        schema:
+          format: date-time
+          type: string
+      - description: |-
+          ASC (ascending) or DESC (descending) sort order.
+
+           - DESC: Sort in descending order. The default order is ascending.
+        in: query
+        name: pagination.order
+        schema:
+          default: ASC
+          enum:
+          - ASC
+          - DESC
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListAvailableRegionsResponse'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema:
+                format: string
+                type: string
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: List the regions available for new clusters and nodes.
+      tags:
+      - CockroachCloud
+  /api/v1/clusters/{cluster_id}:
+    delete:
+      operationId: CockroachCloud_DeleteCluster
+      parameters:
+      - in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema:
+                format: string
+                type: string
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Delete a cluster and all of its data.
+      tags:
+      - CockroachCloud
+    get:
+      operationId: CockroachCloud_GetCluster
+      parameters:
+      - in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cluster'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema:
+                format: string
+                type: string
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Get extended information about a cluster.
+      tags:
+      - CockroachCloud
+    patch:
+      operationId: CockroachCloud_UpdateCluster
+      parameters:
+      - in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: field_mask
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateClusterSpecification'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema:
+                format: string
+                type: string
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Scale or edit a cluster.
+      tags:
+      - CockroachCloud
+      x-codegen-request-body-name: body
+  /api/v1/clusters/{cluster_id}/cmek:
+    get:
+      operationId: CockroachCloud_GetCMEKClusterInfo
+      parameters:
+      - in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CMEKClusterInfo'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema:
+                format: string
+                type: string
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Get CMEK-related information for a cluster.
+      tags:
+      - CockroachCloud
+    patch:
+      operationId: CockroachCloud_UpdateCMEKStatus
+      parameters:
+      - in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        $ref: '#/components/requestBodies/UpdateCMEKStatusRequest'
+        content:
+          application/json:
+            schema:
+              example:
+                action: REVOKE
+              properties:
+                action:
+                  $ref: '#/components/schemas/CMEKCustomerAction'
+              required:
+              - action
+              title: UpdateCMEKStatusRequest
+              type: object
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CMEKClusterInfo'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema:
+                format: string
+                type: string
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Update the CMEK-related status for a cluster.
+      tags:
+      - CockroachCloud
+      x-codegen-request-body-name: body
+    post:
+      operationId: CockroachCloud_EnableCMEK
+      parameters:
+      - in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        $ref: '#/components/requestBodies/CMEKClusterSpecification'
+        content:
+          application/json:
+            schema:
+              example:
+                region_specs:
+                - region: us-central1
+                  key_spec:
+                    type: AWS_KMS
+                    uri: arn:aws:kms:us-west-2:111122223333:key/id-of-kms-key
+                    auth_principal: arn:aws:iam::account:role/role-name-with-path
+              properties:
+                region_specs:
+                  items:
+                    $ref: '#/components/schemas/CMEKRegionSpecification'
+                  type: array
+              required:
+              - region_specs
+              title: CMEKClusterSpecification
+              type: object
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CMEKClusterInfo'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema:
+                format: string
+                type: string
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Enable CMEK for a cluster.
+      tags:
+      - CockroachCloud
+      x-codegen-request-body-name: body
+  /api/v1/clusters/{cluster_id}/nodes:
+    get:
+      operationId: CockroachCloud_ListClusterNodes
+      parameters:
+      - in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+      - description: Optional filter to limit response to a single region.
+        in: query
+        name: region_name
+        schema:
+          type: string
+      - description: Index of the first entry to return.
+        in: query
+        name: pagination.start
+        schema:
+          format: int32
+          type: integer
+      - description: Number of entries to return.
+        in: query
+        name: pagination.limit
+        schema:
+          format: int32
+          type: integer
+      - description: |-
+          Optional timestamp of the original request, for consistency.
+          In a future release, the server will use it in an `AS OF SYSTEM
+          TIME` clause. Currently non-functional.
+        in: query
+        name: pagination.time
+        schema:
+          format: date-time
+          type: string
+      - description: |-
+          ASC (ascending) or DESC (descending) sort order.
+
+           - DESC: Sort in descending order. The default order is ascending.
+        in: query
+        name: pagination.order
+        schema:
+          default: ASC
+          enum:
+          - ASC
+          - DESC
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListClusterNodesResponse'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema:
+                format: string
+                type: string
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: List nodes for a cluster.
+      tags:
+      - CockroachCloud
+    put:
+      operationId: CockroachCloud_SetNodeCount
+      parameters:
+      - in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        $ref: '#/components/requestBodies/SetNodeCountRequest'
+        content:
+          application/json:
+            schema:
+              example:
+                regions:
+                  us-central1: 3
+                  europe-west1: 5
+                  asia-southeast1: 3
+              properties:
+                regions:
+                  additionalProperties:
+                    format: int32
+                    type: integer
+                  type: object
+              required:
+              - regions
+              title: SetNodeCountRequest
+              type: object
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cluster'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema:
+                format: string
+                type: string
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Set the number of nodes in each region for a dedicated cluster.
+      tags:
+      - CockroachCloud
+      x-codegen-request-body-name: body
+  /api/v1/clusters/{cluster_id}/sql-users:
+    get:
+      operationId: CockroachCloud_ListSQLUsers
+      parameters:
+      - in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+      - description: Index of the first entry to return.
+        in: query
+        name: pagination.start
+        schema:
+          format: int32
+          type: integer
+      - description: Number of entries to return.
+        in: query
+        name: pagination.limit
+        schema:
+          format: int32
+          type: integer
+      - description: |-
+          Optional timestamp of the original request, for consistency.
+          In a future release, the server will use it in an `AS OF SYSTEM
+          TIME` clause. Currently non-functional.
+        in: query
+        name: pagination.time
+        schema:
+          format: date-time
+          type: string
+      - description: |-
+          ASC (ascending) or DESC (descending) sort order.
+
+           - DESC: Sort in descending order. The default order is ascending.
+        in: query
+        name: pagination.order
+        schema:
+          default: ASC
+          enum:
+          - ASC
+          - DESC
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListSQLUsersResponse'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema:
+                format: string
+                type: string
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: List SQL users for a cluster.
+      tags:
+      - CockroachCloud
+    post:
+      operationId: CockroachCloud_CreateSQLUser
+      parameters:
+      - in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        $ref: '#/components/requestBodies/CreateSQLUserRequest'
+        content:
+          application/json:
+            schema:
+              example:
+                user:
+                  name: example_username
+                password: example_password
+              properties:
+                user:
+                  $ref: '#/components/schemas/SQLUser'
+                password:
+                  type: string
+              required:
+              - password
+              - user
+              title: CreateSQLUserRequest
+              type: object
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema:
+                format: string
+                type: string
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Create a new SQL user.
+      tags:
+      - CockroachCloud
+      x-codegen-request-body-name: body
+  /api/v1/clusters/{cluster_id}/sql-users/{name}:
+    delete:
+      operationId: CockroachCloud_DeleteSQLUser
+      parameters:
+      - in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: name
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema:
+                format: string
+                type: string
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Delete a SQL user.
+      tags:
+      - CockroachCloud
+  /api/v1/clusters/{cluster_id}/sql-users/{name}/password:
+    put:
+      operationId: CockroachCloud_UpdateSQLUserPassword
+      parameters:
+      - in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: name
+        required: true
+        schema:
+          type: string
+      requestBody:
+        $ref: '#/components/requestBodies/UpdateSQLUserPasswordRequest'
+        content:
+          application/json:
+            schema:
+              example:
+                password: example_new_password
+              properties:
+                password:
+                  type: string
+              required:
+              - password
+              title: UpdateSQLUserPasswordRequest
+              type: object
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema:
+                format: string
+                type: string
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Updates a SQL user's password.
+      tags:
+      - CockroachCloud
+      x-codegen-request-body-name: body
+components:
+  requestBodies:
+    CMEKClusterSpecification:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CMEKClusterSpecification'
+      required: true
+    CreateSQLUserRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CreateSQLUserRequest'
+      required: true
+    SetNodeCountRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/SetNodeCountRequest'
+      required: true
+    UpdateCMEKStatusRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UpdateCMEKStatusRequest'
+      required: true
+    UpdateSQLUserPasswordRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UpdateSQLUserPasswordRequest'
+      required: true
+  schemas:
+    Any:
+      additionalProperties:
+        type: object
+      properties:
+        '@type':
+          type: string
+      type: object
+    CMEKClusterInfo:
+      description: |-
+        CMEKClusterInfo contains the status of CMEK across an entire cluster,
+        including within each one its regions.
+      example:
+        region_infos:
+        - region: region
+          key_infos:
+          - spec:
+              auth_principal: auth_principal
+              uri: uri
+          - spec:
+              auth_principal: auth_principal
+              uri: uri
+        - region: region
+          key_infos:
+          - spec:
+              auth_principal: auth_principal
+              uri: uri
+          - spec:
+              auth_principal: auth_principal
+              uri: uri
+      properties:
+        status:
+          $ref: '#/components/schemas/CMEKStatus'
+        region_infos:
+          items:
+            $ref: '#/components/schemas/CMEKRegionInfo'
+          type: array
+      type: object
+    CMEKCustomerAction:
+      default: UNKNOWN_ACTION
+      description: |-
+        CMEKCustomerAction enumerates the actions a customer can take on a cluster
+        that has been enabled for CMEK.
+      enum:
+      - UNKNOWN_ACTION
+      - REVOKE
+      type: string
+    CMEKKeyInfo:
+      description: |-
+        CMEKKeyInfo contains the status of a customer-provided key alongside the
+        specification.
+      example:
+        spec:
+          auth_principal: auth_principal
+          uri: uri
+      properties:
+        status:
+          $ref: '#/components/schemas/CMEKStatus'
+        spec:
+          $ref: '#/components/schemas/CMEKKeySpecification'
+      type: object
+    CMEKKeySpecification:
+      description: |-
+        CMEKKeySpecification contains all the details necessary to use a customer-provided
+        encryption key. This involves the type/location of the key and the principal
+        to authenticate as when accessing it.
+      example:
+        auth_principal: auth_principal
+        uri: uri
+      properties:
+        type:
+          $ref: '#/components/schemas/CMEKKeyType'
+        uri:
+          type: string
+        auth_principal:
+          type: string
+      type: object
+    CMEKKeyType:
+      default: UNKNOWN_KEY_TYPE
+      description: |-
+        CMEKKeyType enumerates types of customer-managed keys.
+
+         - UNKNOWN_KEY_TYPE: UNKNOWN should never be used; if it is used, it indicates a bug.
+      enum:
+      - UNKNOWN_KEY_TYPE
+      - AWS_KMS
+      - GCP_CLOUD_KMS
+      type: string
+    CMEKRegionInfo:
+      description: |-
+        CMEKRegionInfo contains the status of CMEK within a region. This includes
+        current and past key specifications used within the region, as well as the
+        status of those specifications.
+      example:
+        region: region
+        key_infos:
+        - spec:
+            auth_principal: auth_principal
+            uri: uri
+        - spec:
+            auth_principal: auth_principal
+            uri: uri
+      properties:
+        region:
+          type: string
+        key_infos:
+          items:
+            $ref: '#/components/schemas/CMEKKeyInfo'
+          type: array
+      type: object
+    CMEKRegionSpecification:
+      description: |-
+        CMEKRegionSpecification declares the customer-provided key specification that
+        should be used in a given region.
+      properties:
+        region:
+          type: string
+        key_spec:
+          $ref: '#/components/schemas/CMEKKeySpecification'
+      type: object
+    CMEKStatus:
+      default: UNKNOWN_STATUS
+      description: |-
+        CMEKStatus describes the current status of CMEK for an entire CRDB cluster
+        or a key within a region.
+
+         - UNKNOWN_STATUS: UNKNOWN should never be used; if it is used, it indicates a bug.
+         - DISABLED: DISABLED corresponds to the state of a cluster or region-level key
+        when CMEK has finished being disabled. By default, CMEK will be disabled
+        for new clusters.
+         - DISABLING: DISABLED corresponds to the state of a cluster or region-level key
+        when CMEK is in the process of being disabled.
+         - DISABLE_FAILED: DISABLE_FAILED corresponds to the state of a cluster or region-level key
+        when CMEK has failed to be disabled.
+         - ENABLED: ENABLED corresponds to the state of a cluster or region-level key
+        when CMEK is enabled.
+         - ENABLING: ENABLING corresponds to the state of a cluster or region-level key
+        when CMEK is in the process of being enabled.
+         - ENABLE_FAILED: ENABLE_FAILED corresponds to the state of a cluster or region-level key
+        when CMEK has failed to be enabled.
+         - REVOKED: REVOKED corresponds to the state of a cluster or region-level key
+        when the customer has revoked CockroachLab's permissions for their key.
+         - REVOKING: REVOKING corresponds to the state of a cluster or region-level key
+        when CMEK is in the process of being revoked.
+         - REVOKE_FAILED: REVOKE_FAILED corresponds to the state of a cluster or region-level key
+        when CMEK has failed to be revoked.
+      enum:
+      - UNKNOWN_STATUS
+      - DISABLED
+      - DISABLING
+      - DISABLE_FAILED
+      - ENABLED
+      - ENABLING
+      - ENABLE_FAILED
+      - REVOKED
+      - REVOKING
+      - REVOKE_FAILED
+      type: string
+    CloudProvider:
+      default: CLOUD_PROVIDER_UNSPECIFIED
+      description: |2-
+         - CLOUD_PROVIDER_GCP: The Google Cloud Platform cloud provider.
+         - CLOUD_PROVIDER_AWS: The Amazon Web Services cloud provider.
+      enum:
+      - CLOUD_PROVIDER_UNSPECIFIED
+      - CLOUD_PROVIDER_GCP
+      - CLOUD_PROVIDER_AWS
+      type: string
+    CloudProviderRegion:
+      example:
+        distance: 0.8008282
+        name: name
+        serverless: true
+        location: location
+      properties:
+        name:
+          type: string
+        location:
+          type: string
+        provider:
+          $ref: '#/components/schemas/CloudProvider'
+        serverless:
+          type: boolean
+        distance:
+          format: float
+          title: Distance in miles, based on client IP address
+          type: number
+      required:
+      - distance
+      - location
+      - name
+      - provider
+      - serverless
+      type: object
+    Cluster:
+      example:
+        cloud_provider: CLOUD_PROVIDER_GCP
+        created_at: 2019-08-24T14:15:22Z
+        creator_id: uuid
+        deleted_at: 2019-08-24T14:15:22Z
+        id: uuid
+        operation_status: CLUSTER_STATUS_UNSPECIFIED
+        name: cluster-name
+        plan: PLAN_SERVERLESS
+        regions:
+        - name: us-central1
+          sql_dns: serverless8.gcp-us-central1.crdb.io
+          ui_dns: ""
+        config:
+          serverless:
+            regions:
+            - us-central1
+            spend_limit: 0
+            routing_id: cluster-name-313
+        state: CLUSTER_STATE_CREATING
+        updated_at: 2019-08-24T14:15:22Z
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        cockroach_version:
+          type: string
+        plan:
+          $ref: '#/components/schemas/Plan'
+        cloud_provider:
+          $ref: '#/components/schemas/CloudProvider'
+        state:
+          $ref: '#/components/schemas/ClusterStateType'
+        creator_id:
+          type: string
+        operation_status:
+          $ref: '#/components/schemas/ClusterStatusType'
+        config:
+          $ref: '#/components/schemas/ClusterConfig'
+        regions:
+          items:
+            $ref: '#/components/schemas/Region'
+          type: array
+        created_at:
+          format: date-time
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+        deleted_at:
+          format: date-time
+          type: string
+      required:
+      - cloud_provider
+      - cockroach_version
+      - config
+      - creator_id
+      - id
+      - name
+      - operation_status
+      - plan
+      - regions
+      - state
+      type: object
+    ClusterConfig:
+      properties:
+        dedicated:
+          $ref: '#/components/schemas/DedicatedHardwareConfig'
+        serverless:
+          $ref: '#/components/schemas/ServerlessClusterConfig'
+      type: object
+    ClusterStateType:
+      default: CLUSTER_STATE_UNSPECIFIED
+      description: |2-
+         - CLUSTER_STATE_LOCKED: An exclusive operation is being performed on this cluster.
+        Other operations should not proceed if they did not set a cluster into the LOCKED state.
+      enum:
+      - CLUSTER_STATE_UNSPECIFIED
+      - CLUSTER_STATE_CREATING
+      - CLUSTER_STATE_CREATED
+      - CLUSTER_STATE_CREATION_FAILED
+      - CLUSTER_STATE_DELETED
+      - CLUSTER_STATE_LOCKED
+      type: string
+    ClusterStatusType:
+      default: CLUSTER_STATUS_UNSPECIFIED
+      enum:
+      - CLUSTER_STATUS_UNSPECIFIED
+      - CLUSTER_STATUS_CRDB_MAJOR_UPGRADE_RUNNING
+      - CLUSTER_STATUS_CRDB_MAJOR_UPGRADE_FAILED
+      - CLUSTER_STATUS_CRDB_MAJOR_ROLLBACK_RUNNING
+      - CLUSTER_STATUS_CRDB_MAJOR_ROLLBACK_FAILED
+      - CLUSTER_STATUS_CRDB_PATCH_RUNNING
+      - CLUSTER_STATUS_CRDB_PATCH_FAILED
+      - CLUSTER_STATUS_CRDB_SCALE_RUNNING
+      - CLUSTER_STATUS_CRDB_SCALE_FAILED
+      - CLUSTER_STATUS_MAINTENANCE_RUNNING
+      - CLUSTER_STATUS_CRDB_INSTANCE_UPDATE_RUNNING
+      - CLUSTER_STATUS_CRDB_INSTANCE_UPDATE_FAILED
+      - CLUSTER_STATUS_CRDB_EDIT_CLUSTER_RUNNING
+      - CLUSTER_STATUS_CRDB_EDIT_CLUSTER_FAILED
+      type: string
+    CreateClusterRequest:
+      example:
+        name: test-cluster
+        provider: CLOUD_PROVIDER_GCP
+        spec:
+          serverless:
+            regions:
+            - us-central1
+            spend_limit: 0
+      properties:
+        name:
+          type: string
+        provider:
+          $ref: '#/components/schemas/CloudProvider'
+        spec:
+          $ref: '#/components/schemas/CreateClusterSpecification'
+      required:
+      - name
+      - provider
+      - spec
+      title: CreateClusterRequest
+      type: object
+    CreateClusterSpecification:
+      properties:
+        dedicated:
+          $ref: '#/components/schemas/DedicatedClusterCreateSpecification'
+        serverless:
+          $ref: '#/components/schemas/ServerlessClusterSpecification'
+      type: object
+    DedicatedClusterCreateSpecification:
+      properties:
+        region_nodes:
+          additionalProperties:
+            format: int32
+            type: integer
+          description: |-
+            Region keys should match the cloud provider's zone code.
+            For example, for Oregon, set region_name to "us-west2" for
+            GCP and "us-west-2" for AWS. Values represent the node count.
+          type: object
+        hardware:
+          $ref: '#/components/schemas/DedicatedHardwareCreateSpecification'
+        cockroach_version:
+          description: |-
+            The CockroachDB version for the cluster. The current version
+            is used if omitted.
+          type: string
+      required:
+      - hardware
+      - region_nodes
+      type: object
+    DedicatedClusterUpdateSpecification:
+      example:
+        region_nodes:
+          key: 0
+        hardware:
+          machine_spec:
+            machine_type: machine_type
+            num_virtual_cpus: 6
+          storage_gib: 1
+          disk_iops: 5
+      properties:
+        region_nodes:
+          additionalProperties:
+            format: int32
+            type: integer
+          description: |-
+            Region keys should match the cloud provider's zone code.
+            For example, for Oregon, set region_name to "us-west2" for
+            GCP and "us-west-2" for AWS. Values represent the node count.
+          type: object
+        hardware:
+          $ref: '#/components/schemas/DedicatedHardwareUpdateSpecification'
+      type: object
+    DedicatedHardwareConfig:
+      properties:
+        machine_type:
+          description: |-
+            MachineType is the machine type identifier within the given cloud
+            provider, ex. m5.xlarge, n2-standard-4.
+          type: string
+        num_virtual_cpus:
+          description: NumVirtualCPUs is the number of virtual CPUs per node in the
+            cluster.
+          format: int32
+          type: integer
+        storage_gib:
+          description: StorageGiB is the number of storage GiB per node in the cluster.
+          format: int32
+          type: integer
+        memory_gib:
+          description: MemoryGiB is the memory GiB per node in the cluster.
+          format: float
+          type: number
+        disk_iops:
+          description: |-
+            DiskIOPs is the number of disk I/O operations per second that are
+            permitted on each node in the cluster. Zero indicates the cloud
+            provider-specific default.
+          format: int32
+          type: integer
+      required:
+      - disk_iops
+      - machine_type
+      - memory_gib
+      - num_virtual_cpus
+      - storage_gib
+      type: object
+    DedicatedHardwareCreateSpecification:
+      properties:
+        machine_spec:
+          $ref: '#/components/schemas/DedicatedMachineTypeSpecification'
+        storage_gib:
+          description: StorageGiB is the number of storage GiB per node in the cluster.
+          format: int32
+          type: integer
+        disk_iops:
+          description: |-
+            DiskIOPs is the number of disk I/O operations per second that are
+            permitted on each node in the cluster. Zero indicates the cloud
+            provider-specific default. Only available for AWS clusters.
+          format: int32
+          type: integer
+      required:
+      - machine_spec
+      - storage_gib
+      type: object
+    DedicatedHardwareUpdateSpecification:
+      example:
+        machine_spec:
+          machine_type: machine_type
+          num_virtual_cpus: 6
+        storage_gib: 1
+        disk_iops: 5
+      properties:
+        machine_spec:
+          $ref: '#/components/schemas/DedicatedMachineTypeSpecification'
+        storage_gib:
+          description: StorageGiB is the number of storage GiB per node in the cluster.
+          format: int32
+          type: integer
+        disk_iops:
+          description: |-
+            DiskIOPs is the number of disk I/O operations per second that are
+            permitted on each node in the cluster. Zero indicates the cloud
+            provider-specific default. Only available for AWS clusters.
+          format: int32
+          type: integer
+      type: object
+    DedicatedMachineTypeSpecification:
+      example:
+        machine_type: machine_type
+        num_virtual_cpus: 6
+      properties:
+        machine_type:
+          description: |-
+            MachineType is the machine type identifier within the given cloud
+            provider, ex. m5.xlarge, n2-standard-4.
+          type: string
+        num_virtual_cpus:
+          description: |-
+            NumVirtualCPUs may be used to automatically select a machine type
+            according to the desired number of vCPUs.
+          format: int32
+          type: integer
+      type: object
+    ListAvailableRegionsResponse:
+      example:
+        regions:
+        - distance: 0.8008282
+          name: name
+          serverless: true
+          location: location
+        - distance: 0.8008282
+          name: name
+          serverless: true
+          location: location
+        pagination:
+          next: 0
+          last: 6
+          limit: 1
+          time: 2000-01-23T04:56:07.000+00:00
+          total_results: 5
+      properties:
+        regions:
+          items:
+            $ref: '#/components/schemas/CloudProviderRegion'
+          type: array
+        pagination:
+          $ref: '#/components/schemas/PaginationResponse'
+      required:
+      - regions
+      type: object
+    ListClusterNodesResponse:
+      example:
+        nodes:
+        - name: name
+          region_name: region_name
+        - name: name
+          region_name: region_name
+        pagination:
+          next: 0
+          last: 6
+          limit: 1
+          time: 2000-01-23T04:56:07.000+00:00
+          total_results: 5
+      properties:
+        nodes:
+          items:
+            $ref: '#/components/schemas/Node'
+          type: array
+        pagination:
+          $ref: '#/components/schemas/PaginationResponse'
+      required:
+      - nodes
+      type: object
+    ListClustersResponse:
+      example:
+        pagination:
+          next: 0
+          last: 6
+          limit: 1
+          time: 2000-01-23T04:56:07.000+00:00
+          total_results: 5
+        clusters:
+        - cloud_provider: CLOUD_PROVIDER_GCP
+          created_at: 2019-08-24T14:15:22Z
+          creator_id: uuid
+          deleted_at: 2019-08-24T14:15:22Z
+          id: uuid
+          operation_status: CLUSTER_STATUS_UNSPECIFIED
+          name: cluster-name
+          plan: PLAN_SERVERLESS
+          regions:
+          - name: us-central1
+            sql_dns: serverless8.gcp-us-central1.crdb.io
+            ui_dns: ""
+          config:
+            serverless:
+              regions:
+              - us-central1
+              spend_limit: 0
+              routing_id: cluster-name-313
+          state: CLUSTER_STATE_CREATING
+          updated_at: 2019-08-24T14:15:22Z
+        - cloud_provider: CLOUD_PROVIDER_GCP
+          created_at: 2019-08-24T14:15:22Z
+          creator_id: uuid
+          deleted_at: 2019-08-24T14:15:22Z
+          id: uuid
+          operation_status: CLUSTER_STATUS_UNSPECIFIED
+          name: cluster-name
+          plan: PLAN_SERVERLESS
+          regions:
+          - name: us-central1
+            sql_dns: serverless8.gcp-us-central1.crdb.io
+            ui_dns: ""
+          config:
+            serverless:
+              regions:
+              - us-central1
+              spend_limit: 0
+              routing_id: cluster-name-313
+          state: CLUSTER_STATE_CREATING
+          updated_at: 2019-08-24T14:15:22Z
+      properties:
+        clusters:
+          items:
+            $ref: '#/components/schemas/Cluster'
+          type: array
+        pagination:
+          $ref: '#/components/schemas/PaginationResponse'
+      required:
+      - clusters
+      type: object
+    ListSQLUsersResponse:
+      example:
+        pagination:
+          next: 0
+          last: 6
+          limit: 1
+          time: 2000-01-23T04:56:07.000+00:00
+          total_results: 5
+        users:
+        - name: name
+        - name: name
+      properties:
+        users:
+          items:
+            $ref: '#/components/schemas/SQLUser'
+          type: array
+        pagination:
+          $ref: '#/components/schemas/PaginationResponse'
+      required:
+      - users
+      type: object
+    Node:
+      example:
+        name: name
+        region_name: region_name
+      properties:
+        name:
+          type: string
+        region_name:
+          type: string
+        status:
+          $ref: '#/components/schemas/NodeStatus'
+      required:
+      - name
+      - region_name
+      - status
+      type: object
+    NodeStatus:
+      default: NODE_STATUS_UNSPECIFIED
+      enum:
+      - NODE_STATUS_UNSPECIFIED
+      - NODE_STATUS_LIVE
+      - NODE_STATUS_NOT_READY
+      type: string
+    PaginationRequest:
+      properties:
+        start:
+          format: int32
+          title: Index of the first entry to return
+          type: integer
+        limit:
+          format: int32
+          title: Number of entries to return
+          type: integer
+        time:
+          description: |-
+            Optional timestamp of the original request, for consistency.
+            In a future release, the server will use it in an `AS OF SYSTEM
+            TIME` clause. Currently non-functional.
+          format: date-time
+          type: string
+        order:
+          $ref: '#/components/schemas/SortOrder'
+      type: object
+    PaginationResponse:
+      example:
+        next: 0
+        last: 6
+        limit: 1
+        time: 2000-01-23T04:56:07.000+00:00
+        total_results: 5
+      properties:
+        next:
+          format: int32
+          title: Index to use for the next page
+          type: integer
+        last:
+          format: int32
+          title: Index to use for the previous page
+          type: integer
+        limit:
+          format: int32
+          title: Result count limit specified in the request
+          type: integer
+        total_results:
+          format: int32
+          title: Total number of entries in the list
+          type: integer
+        time:
+          format: date-time
+          title: Server time when the query was executed
+          type: string
+        order:
+          $ref: '#/components/schemas/SortOrder'
+      type: object
+    Plan:
+      default: PLAN_UNSPECIFIED
+      description: " - PLAN_DEDICATED: A paid plan that offers dedicated hardware\
+        \ in any location.\n - PLAN_CUSTOM: A plan option that is used for clusters\
+        \ whose machine configs are not \nsupported in self-service. All INVOICE clusters\
+        \ are under this plan option.\n - PLAN_SERVERLESS: A paid plan that runs on\
+        \ shared hardware and caps the users'\nmaximum monthly spending to a user-specified\
+        \ (possibly 0) amount."
+      enum:
+      - PLAN_UNSPECIFIED
+      - PLAN_DEDICATED
+      - PLAN_CUSTOM
+      - PLAN_SERVERLESS
+      type: string
+    Region:
+      properties:
+        name:
+          type: string
+        sql_dns:
+          type: string
+        ui_dns:
+          type: string
+        node_count:
+          description: NodeCount will be 0 for serverless clusters.
+          format: int32
+          type: integer
+      required:
+      - name
+      - node_count
+      - sql_dns
+      - ui_dns
+      type: object
+    SQLUser:
+      example:
+        name: name
+      properties:
+        name:
+          type: string
+      required:
+      - name
+      type: object
+    ServerlessClusterConfig:
+      properties:
+        spend_limit:
+          description: Spend limit in US cents.
+          format: int32
+          type: integer
+        routing_id:
+          description: Used to build a connection string.
+          type: string
+      required:
+      - routing_id
+      - spend_limit
+      type: object
+    ServerlessClusterSpecification:
+      example:
+        regions:
+        - regions
+        - regions
+        spend_limit: 5
+      properties:
+        regions:
+          description: |-
+            Region values should match the cloud provider's zone code.
+            For example, for Oregon, set region_name to "us-west2" for
+            GCP and "us-west-2" for AWS.
+          items:
+            type: string
+          type: array
+        spend_limit:
+          format: int32
+          title: Spend limit in US cents
+          type: integer
+      required:
+      - regions
+      - spend_limit
+      type: object
+    SortOrder:
+      default: ASC
+      description: ' - DESC: Sort in descending order. The default order is ascending.'
+      enum:
+      - ASC
+      - DESC
+      type: string
+    Status:
+      properties:
+        code:
+          format: int32
+          type: integer
+        message:
+          type: string
+        details:
+          items:
+            $ref: '#/components/schemas/Any'
+          type: array
+      type: object
+    UpdateClusterSpecification:
+      example:
+        dedicated:
+          region_nodes:
+            key: 0
+          hardware:
+            machine_spec:
+              machine_type: machine_type
+              num_virtual_cpus: 6
+            storage_gib: 1
+            disk_iops: 5
+        serverless:
+          regions:
+          - regions
+          - regions
+          spend_limit: 5
+      properties:
+        dedicated:
+          $ref: '#/components/schemas/DedicatedClusterUpdateSpecification'
+        serverless:
+          $ref: '#/components/schemas/ServerlessClusterSpecification'
+      type: object
+    CMEKClusterSpecification:
+      example:
+        region_specs:
+        - region: us-central1
+          key_spec:
+            type: AWS_KMS
+            uri: arn:aws:kms:us-west-2:111122223333:key/id-of-kms-key
+            auth_principal: arn:aws:iam::account:role/role-name-with-path
+      properties:
+        region_specs:
+          items:
+            $ref: '#/components/schemas/CMEKRegionSpecification'
+          type: array
+      required:
+      - region_specs
+      title: CMEKClusterSpecification
+      type: object
+    UpdateCMEKStatusRequest:
+      example:
+        action: REVOKE
+      properties:
+        action:
+          $ref: '#/components/schemas/CMEKCustomerAction'
+      required:
+      - action
+      title: UpdateCMEKStatusRequest
+      type: object
+    SetNodeCountRequest:
+      example:
+        regions:
+          us-central1: 3
+          europe-west1: 5
+          asia-southeast1: 3
+      properties:
+        regions:
+          additionalProperties:
+            format: int32
+            type: integer
+          type: object
+      required:
+      - regions
+      title: SetNodeCountRequest
+      type: object
+    CreateSQLUserRequest:
+      example:
+        user:
+          name: example_username
+        password: example_password
+      properties:
+        user:
+          $ref: '#/components/schemas/SQLUser'
+        password:
+          type: string
+      required:
+      - password
+      - user
+      title: CreateSQLUserRequest
+      type: object
+    UpdateSQLUserPasswordRequest:
+      example:
+        password: example_new_password
+      properties:
+        password:
+          type: string
+      required:
+      - password
+      title: UpdateSQLUserPasswordRequest
+      type: object
+  securitySchemes:
+    Bearer:
+      in: header
+      name: Authorization
+      type: apiKey
+x-original-swagger-version: "2.0"
