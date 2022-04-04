@@ -1,7 +1,3 @@
-module github.com/GIT_USER_ID/GIT_REPO_ID
+module github.com/cockroachdb/cockroach-cloud-sdk-go
 
-go 1.13
-
-require (
-	golang.org/x/oauth2 v0.0.0-20210323180902-22b0adad7558
-)
+go 1.17

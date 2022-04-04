@@ -1,0 +1,13 @@
+# Go generator options
+# https://openapi-generator.tech/docs/generators/go
+packageName: "client"
+prependFormOrBodyParameters: false
+structPrefix: false
+# Generic generate options
+# https://openapi-generator.tech/docs/usage#generate
+removeOperationIdPrefix: true
+# The 'additionalProperties' implementation is compliant with the OAS and JSON schema specifications.
+disallowAdditionalPropertiesIfNotPresent: false
+
+# Prefix enum with class name
+enumClassPrefix: true
