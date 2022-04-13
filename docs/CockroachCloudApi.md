@@ -4,27 +4,177 @@ All URIs are relative to *https://cockroachlabs.cloud*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CockroachCloudCreateCluster**](CockroachCloudApi.md#CockroachCloudCreateCluster) | **Post** /api/v1/clusters | Create and initialize a new cluster.
-[**CockroachCloudCreateSQLUser**](CockroachCloudApi.md#CockroachCloudCreateSQLUser) | **Post** /api/v1/clusters/{cluster_id}/sql-users | Create a new SQL user.
-[**CockroachCloudDeleteCluster**](CockroachCloudApi.md#CockroachCloudDeleteCluster) | **Delete** /api/v1/clusters/{cluster_id} | Delete a cluster and all of its data.
-[**CockroachCloudDeleteSQLUser**](CockroachCloudApi.md#CockroachCloudDeleteSQLUser) | **Delete** /api/v1/clusters/{cluster_id}/sql-users/{name} | Delete a SQL user.
-[**CockroachCloudEnableCMEK**](CockroachCloudApi.md#CockroachCloudEnableCMEK) | **Post** /api/v1/clusters/{cluster_id}/cmek | Enable CMEK for a cluster.
-[**CockroachCloudGetCMEKClusterInfo**](CockroachCloudApi.md#CockroachCloudGetCMEKClusterInfo) | **Get** /api/v1/clusters/{cluster_id}/cmek | Get CMEK-related information for a cluster.
-[**CockroachCloudGetCluster**](CockroachCloudApi.md#CockroachCloudGetCluster) | **Get** /api/v1/clusters/{cluster_id} | Get extended information about a cluster.
-[**CockroachCloudListAvailableRegions**](CockroachCloudApi.md#CockroachCloudListAvailableRegions) | **Get** /api/v1/clusters/available-regions | List the regions available for new clusters and nodes.
-[**CockroachCloudListClusterNodes**](CockroachCloudApi.md#CockroachCloudListClusterNodes) | **Get** /api/v1/clusters/{cluster_id}/nodes | List nodes for a cluster.
-[**CockroachCloudListClusters**](CockroachCloudApi.md#CockroachCloudListClusters) | **Get** /api/v1/clusters | List clusters owned by an organization.
-[**CockroachCloudListSQLUsers**](CockroachCloudApi.md#CockroachCloudListSQLUsers) | **Get** /api/v1/clusters/{cluster_id}/sql-users | List SQL users for a cluster.
-[**CockroachCloudSetNodeCount**](CockroachCloudApi.md#CockroachCloudSetNodeCount) | **Put** /api/v1/clusters/{cluster_id}/nodes | Set the number of nodes in each region for a dedicated cluster.
-[**CockroachCloudUpdateCMEKStatus**](CockroachCloudApi.md#CockroachCloudUpdateCMEKStatus) | **Patch** /api/v1/clusters/{cluster_id}/cmek | Update the CMEK-related status for a cluster.
-[**CockroachCloudUpdateCluster**](CockroachCloudApi.md#CockroachCloudUpdateCluster) | **Patch** /api/v1/clusters/{cluster_id} | Scale or edit a cluster.
-[**CockroachCloudUpdateSQLUserPassword**](CockroachCloudApi.md#CockroachCloudUpdateSQLUserPassword) | **Put** /api/v1/clusters/{cluster_id}/sql-users/{name}/password | Updates a SQL user&#39;s password.
+[**AddAllowlistEntry**](CockroachCloudApi.md#AddAllowlistEntry) | **Post** /api/v1/clusters/{cluster_id}/networking/allowlist | Add a new CIDR address to the IP allowlist.
+[**AddAllowlistEntry2**](CockroachCloudApi.md#AddAllowlistEntry2) | **Put** /api/v1/clusters/{cluster_id}/networking/allowlist/{entry.cidr_ip}/{entry.cidr_mask} | Add a new CIDR address to the IP allowlist.
+[**CreateCluster**](CockroachCloudApi.md#CreateCluster) | **Post** /api/v1/clusters | Create and initialize a new cluster.
+[**CreateSQLUser**](CockroachCloudApi.md#CreateSQLUser) | **Post** /api/v1/clusters/{cluster_id}/sql-users | Create a new SQL user.
+[**DeleteAllowlistEntry**](CockroachCloudApi.md#DeleteAllowlistEntry) | **Delete** /api/v1/clusters/{cluster_id}/networking/allowlist/{cidr_ip}/{cidr_mask} | Delete an IP allowlist entry.
+[**DeleteCluster**](CockroachCloudApi.md#DeleteCluster) | **Delete** /api/v1/clusters/{cluster_id} | Delete a cluster and all of its data.
+[**DeleteSQLUser**](CockroachCloudApi.md#DeleteSQLUser) | **Delete** /api/v1/clusters/{cluster_id}/sql-users/{name} | Delete a SQL user.
+[**EnableCMEK**](CockroachCloudApi.md#EnableCMEK) | **Post** /api/v1/clusters/{cluster_id}/cmek | Enable CMEK for a cluster.
+[**GetCMEKClusterInfo**](CockroachCloudApi.md#GetCMEKClusterInfo) | **Get** /api/v1/clusters/{cluster_id}/cmek | Get CMEK-related information for a cluster.
+[**GetCluster**](CockroachCloudApi.md#GetCluster) | **Get** /api/v1/clusters/{cluster_id} | Get extended information about a cluster.
+[**ListAllowlistEntries**](CockroachCloudApi.md#ListAllowlistEntries) | **Get** /api/v1/clusters/{cluster_id}/networking/allowlist | Get the IP allowlist and propagation status for a cluster.
+[**ListAvailableRegions**](CockroachCloudApi.md#ListAvailableRegions) | **Get** /api/v1/clusters/available-regions | List the regions available for new clusters and nodes.
+[**ListClusterNodes**](CockroachCloudApi.md#ListClusterNodes) | **Get** /api/v1/clusters/{cluster_id}/nodes | List nodes for a cluster.
+[**ListClusters**](CockroachCloudApi.md#ListClusters) | **Get** /api/v1/clusters | List clusters owned by an organization.
+[**ListSQLUsers**](CockroachCloudApi.md#ListSQLUsers) | **Get** /api/v1/clusters/{cluster_id}/sql-users | List SQL users for a cluster.
+[**UpdateAllowlistEntry**](CockroachCloudApi.md#UpdateAllowlistEntry) | **Patch** /api/v1/clusters/{cluster_id}/networking/allowlist/{entry.cidr_ip}/{entry.cidr_mask} | Update an IP allowlist entry.
+[**UpdateCMEKStatus**](CockroachCloudApi.md#UpdateCMEKStatus) | **Patch** /api/v1/clusters/{cluster_id}/cmek | Update the CMEK-related status for a cluster.
+[**UpdateCluster**](CockroachCloudApi.md#UpdateCluster) | **Patch** /api/v1/clusters/{cluster_id} | Scale or edit a cluster.
+[**UpdateSQLUserPassword**](CockroachCloudApi.md#UpdateSQLUserPassword) | **Put** /api/v1/clusters/{cluster_id}/sql-users/{name}/password | Update a SQL user&#39;s password.
 
 
 
-## CockroachCloudCreateCluster
+## AddAllowlistEntry
 
-> Cluster CockroachCloudCreateCluster(ctx).Body(body).Execute()
+> interface{} AddAllowlistEntry(ctx, clusterId).AllowlistEntry(allowlistEntry).Execute()
+
+Add a new CIDR address to the IP allowlist.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    clusterId := "clusterId_example" // string | 
+    allowlistEntry := *openapiclient.NewAllowlistEntry("CidrIp_example", false, false) // AllowlistEntry | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.CockroachCloudApi.AddAllowlistEntry(context.Background(), clusterId).AllowlistEntry(allowlistEntry).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.AddAllowlistEntry``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `AddAllowlistEntry`: interface{}
+    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.AddAllowlistEntry`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**clusterId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAddAllowlistEntry struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **allowlistEntry** | [**AllowlistEntry**](AllowlistEntry.md) |  | 
+
+### Return type
+
+**interface{}**
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## AddAllowlistEntry2
+
+> interface{} AddAllowlistEntry2(ctx, clusterId, entryCidrIp, entryCidrMask).AllowlistEntry(allowlistEntry).Execute()
+
+Add a new CIDR address to the IP allowlist.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    clusterId := "clusterId_example" // string | 
+    entryCidrIp := "entryCidrIp_example" // string | 
+    entryCidrMask := int32(56) // int32 | 
+    allowlistEntry := *openapiclient.NewAllowlistEntry("CidrIp_example", false, false) // AllowlistEntry | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.CockroachCloudApi.AddAllowlistEntry2(context.Background(), clusterId, entryCidrIp, entryCidrMask).AllowlistEntry(allowlistEntry).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.AddAllowlistEntry2``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `AddAllowlistEntry2`: interface{}
+    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.AddAllowlistEntry2`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**clusterId** | **string** |  | 
+**entryCidrIp** | **string** |  | 
+**entryCidrMask** | **int32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAddAllowlistEntry2 struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+ **allowlistEntry** | [**AllowlistEntry**](AllowlistEntry.md) |  | 
+
+### Return type
+
+**interface{}**
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CreateCluster
+
+> Cluster CreateCluster(ctx).CreateClusterRequest(createClusterRequest).Execute()
 
 Create and initialize a new cluster.
 
@@ -41,17 +191,17 @@ import (
 )
 
 func main() {
-    body := *openapiclient.NewCreateClusterRequest("Name_example", openapiclient.CloudProvider("CLOUD_PROVIDER_UNSPECIFIED"), *openapiclient.NewCreateClusterSpecification()) // CreateClusterRequest | 
+    createClusterRequest := *openapiclient.NewCreateClusterRequest("Name_example", openapiclient.api.CloudProvider("CLOUD_PROVIDER_UNSPECIFIED"), *openapiclient.NewCreateClusterSpecification()) // CreateClusterRequest | 
 
     configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CockroachCloudApi.CockroachCloudCreateCluster(context.Background()).Body(body).Execute()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.CockroachCloudApi.CreateCluster(context.Background()).CreateClusterRequest(createClusterRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.CockroachCloudCreateCluster``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.CreateCluster``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CockroachCloudCreateCluster`: Cluster
-    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.CockroachCloudCreateCluster`: %v\n", resp)
+    // response from `CreateCluster`: Cluster
+    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.CreateCluster`: %v\n", resp)
 }
 ```
 
@@ -61,12 +211,12 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCockroachCloudCreateClusterRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiCreateCluster struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | [**CreateClusterRequest**](CreateClusterRequest.md) |  | 
+ **createClusterRequest** | [**CreateClusterRequest**](CreateClusterRequest.md) |  | 
 
 ### Return type
 
@@ -86,9 +236,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## CockroachCloudCreateSQLUser
+## CreateSQLUser
 
-> map[string]interface{} CockroachCloudCreateSQLUser(ctx, clusterId).Body(body).Execute()
+> interface{} CreateSQLUser(ctx, clusterId).CreateSQLUserRequest(createSQLUserRequest).Execute()
 
 Create a new SQL user.
 
@@ -106,17 +256,17 @@ import (
 
 func main() {
     clusterId := "clusterId_example" // string | 
-    body := *openapiclient.NewCreateSQLUserRequest(*openapiclient.NewSQLUser("Name_example"), "Password_example") // CreateSQLUserRequest | 
+    createSQLUserRequest := *openapiclient.NewCreateSQLUserRequest(*openapiclient.NewSQLUser("Name_example"), "Password_example") // CreateSQLUserRequest | 
 
     configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CockroachCloudApi.CockroachCloudCreateSQLUser(context.Background(), clusterId).Body(body).Execute()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.CockroachCloudApi.CreateSQLUser(context.Background(), clusterId).CreateSQLUserRequest(createSQLUserRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.CockroachCloudCreateSQLUser``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.CreateSQLUser``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CockroachCloudCreateSQLUser`: map[string]interface{}
-    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.CockroachCloudCreateSQLUser`: %v\n", resp)
+    // response from `CreateSQLUser`: interface{}
+    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.CreateSQLUser`: %v\n", resp)
 }
 ```
 
@@ -130,17 +280,17 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCockroachCloudCreateSQLUserRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiCreateSQLUser struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**CreateSQLUserRequest**](CreateSQLUserRequest.md) |  | 
+ **createSQLUserRequest** | [**CreateSQLUserRequest**](CreateSQLUserRequest.md) |  | 
 
 ### Return type
 
-**map[string]interface{}**
+**interface{}**
 
 ### Authorization
 
@@ -156,9 +306,83 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## CockroachCloudDeleteCluster
+## DeleteAllowlistEntry
 
-> map[string]interface{} CockroachCloudDeleteCluster(ctx, clusterId).Execute()
+> interface{} DeleteAllowlistEntry(ctx, clusterId, cidrIp, cidrMask).Execute()
+
+Delete an IP allowlist entry.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    clusterId := "clusterId_example" // string | 
+    cidrIp := "cidrIp_example" // string | 
+    cidrMask := int32(56) // int32 | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.CockroachCloudApi.DeleteAllowlistEntry(context.Background(), clusterId, cidrIp, cidrMask).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.DeleteAllowlistEntry``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DeleteAllowlistEntry`: interface{}
+    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.DeleteAllowlistEntry`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**clusterId** | **string** |  | 
+**cidrIp** | **string** |  | 
+**cidrMask** | **int32** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteAllowlistEntry struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+
+### Return type
+
+**interface{}**
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeleteCluster
+
+> interface{} DeleteCluster(ctx, clusterId).Execute()
 
 Delete a cluster and all of its data.
 
@@ -178,14 +402,14 @@ func main() {
     clusterId := "clusterId_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CockroachCloudApi.CockroachCloudDeleteCluster(context.Background(), clusterId).Execute()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.CockroachCloudApi.DeleteCluster(context.Background(), clusterId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.CockroachCloudDeleteCluster``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.DeleteCluster``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CockroachCloudDeleteCluster`: map[string]interface{}
-    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.CockroachCloudDeleteCluster`: %v\n", resp)
+    // response from `DeleteCluster`: interface{}
+    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.DeleteCluster`: %v\n", resp)
 }
 ```
 
@@ -199,7 +423,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCockroachCloudDeleteClusterRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiDeleteCluster struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -208,7 +432,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**map[string]interface{}**
+**interface{}**
 
 ### Authorization
 
@@ -224,9 +448,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## CockroachCloudDeleteSQLUser
+## DeleteSQLUser
 
-> map[string]interface{} CockroachCloudDeleteSQLUser(ctx, clusterId, name).Execute()
+> interface{} DeleteSQLUser(ctx, clusterId, name).Execute()
 
 Delete a SQL user.
 
@@ -247,14 +471,14 @@ func main() {
     name := "name_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CockroachCloudApi.CockroachCloudDeleteSQLUser(context.Background(), clusterId, name).Execute()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.CockroachCloudApi.DeleteSQLUser(context.Background(), clusterId, name).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.CockroachCloudDeleteSQLUser``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.DeleteSQLUser``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CockroachCloudDeleteSQLUser`: map[string]interface{}
-    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.CockroachCloudDeleteSQLUser`: %v\n", resp)
+    // response from `DeleteSQLUser`: interface{}
+    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.DeleteSQLUser`: %v\n", resp)
 }
 ```
 
@@ -269,7 +493,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCockroachCloudDeleteSQLUserRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiDeleteSQLUser struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -279,7 +503,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**map[string]interface{}**
+**interface{}**
 
 ### Authorization
 
@@ -295,9 +519,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## CockroachCloudEnableCMEK
+## EnableCMEK
 
-> CMEKClusterInfo CockroachCloudEnableCMEK(ctx, clusterId).Body(body).Execute()
+> CMEKClusterInfo EnableCMEK(ctx, clusterId).CMEKClusterSpecification(cMEKClusterSpecification).Execute()
 
 Enable CMEK for a cluster.
 
@@ -315,17 +539,17 @@ import (
 
 func main() {
     clusterId := "clusterId_example" // string | 
-    body := *openapiclient.NewCMEKClusterSpecification([]openapiclient.CMEKRegionSpecification{*openapiclient.NewCMEKRegionSpecification()}) // CMEKClusterSpecification | 
+    cMEKClusterSpecification := *openapiclient.NewCMEKClusterSpecification([]openapiclient.CMEKRegionSpecification{*openapiclient.NewCMEKRegionSpecification()}) // CMEKClusterSpecification | 
 
     configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CockroachCloudApi.CockroachCloudEnableCMEK(context.Background(), clusterId).Body(body).Execute()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.CockroachCloudApi.EnableCMEK(context.Background(), clusterId).CMEKClusterSpecification(cMEKClusterSpecification).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.CockroachCloudEnableCMEK``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.EnableCMEK``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CockroachCloudEnableCMEK`: CMEKClusterInfo
-    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.CockroachCloudEnableCMEK`: %v\n", resp)
+    // response from `EnableCMEK`: CMEKClusterInfo
+    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.EnableCMEK`: %v\n", resp)
 }
 ```
 
@@ -339,13 +563,13 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCockroachCloudEnableCMEKRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiEnableCMEK struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**CMEKClusterSpecification**](CMEKClusterSpecification.md) |  | 
+ **cMEKClusterSpecification** | [**CMEKClusterSpecification**](CMEKClusterSpecification.md) |  | 
 
 ### Return type
 
@@ -365,9 +589,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## CockroachCloudGetCMEKClusterInfo
+## GetCMEKClusterInfo
 
-> CMEKClusterInfo CockroachCloudGetCMEKClusterInfo(ctx, clusterId).Execute()
+> CMEKClusterInfo GetCMEKClusterInfo(ctx, clusterId).Execute()
 
 Get CMEK-related information for a cluster.
 
@@ -387,14 +611,14 @@ func main() {
     clusterId := "clusterId_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CockroachCloudApi.CockroachCloudGetCMEKClusterInfo(context.Background(), clusterId).Execute()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.CockroachCloudApi.GetCMEKClusterInfo(context.Background(), clusterId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.CockroachCloudGetCMEKClusterInfo``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.GetCMEKClusterInfo``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CockroachCloudGetCMEKClusterInfo`: CMEKClusterInfo
-    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.CockroachCloudGetCMEKClusterInfo`: %v\n", resp)
+    // response from `GetCMEKClusterInfo`: CMEKClusterInfo
+    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.GetCMEKClusterInfo`: %v\n", resp)
 }
 ```
 
@@ -408,7 +632,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCockroachCloudGetCMEKClusterInfoRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiGetCMEKClusterInfo struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -433,9 +657,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## CockroachCloudGetCluster
+## GetCluster
 
-> Cluster CockroachCloudGetCluster(ctx, clusterId).Execute()
+> Cluster GetCluster(ctx, clusterId).Execute()
 
 Get extended information about a cluster.
 
@@ -455,14 +679,14 @@ func main() {
     clusterId := "clusterId_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CockroachCloudApi.CockroachCloudGetCluster(context.Background(), clusterId).Execute()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.CockroachCloudApi.GetCluster(context.Background(), clusterId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.CockroachCloudGetCluster``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.GetCluster``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CockroachCloudGetCluster`: Cluster
-    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.CockroachCloudGetCluster`: %v\n", resp)
+    // response from `GetCluster`: Cluster
+    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.GetCluster`: %v\n", resp)
 }
 ```
 
@@ -476,7 +700,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCockroachCloudGetClusterRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiGetCluster struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -501,9 +725,88 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## CockroachCloudListAvailableRegions
+## ListAllowlistEntries
 
-> ListAvailableRegionsResponse CockroachCloudListAvailableRegions(ctx).Provider(provider).Serverless(serverless).PaginationStart(paginationStart).PaginationLimit(paginationLimit).PaginationTime(paginationTime).PaginationOrder(paginationOrder).Execute()
+> ListAllowlistEntriesResponse ListAllowlistEntries(ctx, clusterId).PaginationStartKey(paginationStartKey).PaginationDirection(paginationDirection).PaginationLimit(paginationLimit).PaginationTime(paginationTime).PaginationOrder(paginationOrder).Execute()
+
+Get the IP allowlist and propagation status for a cluster.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    "time"
+    openapiclient "./openapi"
+)
+
+func main() {
+    clusterId := "clusterId_example" // string | 
+    paginationStartKey := "paginationStartKey_example" // string |  (optional)
+    paginationDirection := "paginationDirection_example" // string |  (optional) (default to "PAGE_DIRECTION_NEXT")
+    paginationLimit := int32(56) // int32 |  (optional)
+    paginationTime := time.Now() // time.Time |  (optional)
+    paginationOrder := "paginationOrder_example" // string |  - DESC: Sort in descending order. The default order is ascending. (optional) (default to "ASC")
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.CockroachCloudApi.ListAllowlistEntries(context.Background(), clusterId).PaginationStartKey(paginationStartKey).PaginationDirection(paginationDirection).PaginationLimit(paginationLimit).PaginationTime(paginationTime).PaginationOrder(paginationOrder).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.ListAllowlistEntries``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListAllowlistEntries`: ListAllowlistEntriesResponse
+    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.ListAllowlistEntries`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**clusterId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListAllowlistEntries struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **paginationStartKey** | **string** |  | 
+ **paginationDirection** | **string** |  | [default to &quot;PAGE_DIRECTION_NEXT&quot;]
+ **paginationLimit** | **int32** |  | 
+ **paginationTime** | **time.Time** |  | 
+ **paginationOrder** | **string** |  - DESC: Sort in descending order. The default order is ascending. | [default to &quot;ASC&quot;]
+
+### Return type
+
+[**ListAllowlistEntriesResponse**](ListAllowlistEntriesResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ListAvailableRegions
+
+> ListAvailableRegionsResponse ListAvailableRegions(ctx).Provider(provider).Serverless(serverless).PaginationStartKey(paginationStartKey).PaginationDirection(paginationDirection).PaginationLimit(paginationLimit).PaginationTime(paginationTime).PaginationOrder(paginationOrder).Execute()
 
 List the regions available for new clusters and nodes.
 
@@ -523,20 +826,21 @@ import (
 func main() {
     provider := "provider_example" // string | Optional CloudProvider for filtering.   - CLOUD_PROVIDER_GCP: The Google Cloud Platform cloud provider.  - CLOUD_PROVIDER_AWS: The Amazon Web Services cloud provider. (optional) (default to "CLOUD_PROVIDER_UNSPECIFIED")
     serverless := true // bool | Optional filter to only show regions available for serverless clusters. (optional) (default to false)
-    paginationStart := int32(56) // int32 | Index of the first entry to return. (optional)
-    paginationLimit := int32(56) // int32 | Number of entries to return. (optional)
-    paginationTime := time.Now() // time.Time | Optional timestamp of the original request, for consistency. In a future release, the server will use it in an `AS OF SYSTEM TIME` clause. Currently non-functional. (optional)
-    paginationOrder := "paginationOrder_example" // string | ASC (ascending) or DESC (descending) sort order.   - DESC: Sort in descending order. The default order is ascending. (optional) (default to "ASC")
+    paginationStartKey := "paginationStartKey_example" // string |  (optional)
+    paginationDirection := "paginationDirection_example" // string |  (optional) (default to "PAGE_DIRECTION_NEXT")
+    paginationLimit := int32(56) // int32 |  (optional)
+    paginationTime := time.Now() // time.Time |  (optional)
+    paginationOrder := "paginationOrder_example" // string |  - DESC: Sort in descending order. The default order is ascending. (optional) (default to "ASC")
 
     configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CockroachCloudApi.CockroachCloudListAvailableRegions(context.Background()).Provider(provider).Serverless(serverless).PaginationStart(paginationStart).PaginationLimit(paginationLimit).PaginationTime(paginationTime).PaginationOrder(paginationOrder).Execute()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.CockroachCloudApi.ListAvailableRegions(context.Background()).Provider(provider).Serverless(serverless).PaginationStartKey(paginationStartKey).PaginationDirection(paginationDirection).PaginationLimit(paginationLimit).PaginationTime(paginationTime).PaginationOrder(paginationOrder).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.CockroachCloudListAvailableRegions``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.ListAvailableRegions``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CockroachCloudListAvailableRegions`: ListAvailableRegionsResponse
-    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.CockroachCloudListAvailableRegions`: %v\n", resp)
+    // response from `ListAvailableRegions`: ListAvailableRegionsResponse
+    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.ListAvailableRegions`: %v\n", resp)
 }
 ```
 
@@ -546,17 +850,18 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCockroachCloudListAvailableRegionsRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiListAvailableRegions struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **provider** | **string** | Optional CloudProvider for filtering.   - CLOUD_PROVIDER_GCP: The Google Cloud Platform cloud provider.  - CLOUD_PROVIDER_AWS: The Amazon Web Services cloud provider. | [default to &quot;CLOUD_PROVIDER_UNSPECIFIED&quot;]
  **serverless** | **bool** | Optional filter to only show regions available for serverless clusters. | [default to false]
- **paginationStart** | **int32** | Index of the first entry to return. | 
- **paginationLimit** | **int32** | Number of entries to return. | 
- **paginationTime** | **time.Time** | Optional timestamp of the original request, for consistency. In a future release, the server will use it in an &#x60;AS OF SYSTEM TIME&#x60; clause. Currently non-functional. | 
- **paginationOrder** | **string** | ASC (ascending) or DESC (descending) sort order.   - DESC: Sort in descending order. The default order is ascending. | [default to &quot;ASC&quot;]
+ **paginationStartKey** | **string** |  | 
+ **paginationDirection** | **string** |  | [default to &quot;PAGE_DIRECTION_NEXT&quot;]
+ **paginationLimit** | **int32** |  | 
+ **paginationTime** | **time.Time** |  | 
+ **paginationOrder** | **string** |  - DESC: Sort in descending order. The default order is ascending. | [default to &quot;ASC&quot;]
 
 ### Return type
 
@@ -576,9 +881,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## CockroachCloudListClusterNodes
+## ListClusterNodes
 
-> ListClusterNodesResponse CockroachCloudListClusterNodes(ctx, clusterId).RegionName(regionName).PaginationStart(paginationStart).PaginationLimit(paginationLimit).PaginationTime(paginationTime).PaginationOrder(paginationOrder).Execute()
+> ListClusterNodesResponse ListClusterNodes(ctx, clusterId).RegionName(regionName).PaginationStartKey(paginationStartKey).PaginationDirection(paginationDirection).PaginationLimit(paginationLimit).PaginationTime(paginationTime).PaginationOrder(paginationOrder).Execute()
 
 List nodes for a cluster.
 
@@ -598,20 +903,21 @@ import (
 func main() {
     clusterId := "clusterId_example" // string | 
     regionName := "regionName_example" // string | Optional filter to limit response to a single region. (optional)
-    paginationStart := int32(56) // int32 | Index of the first entry to return. (optional)
-    paginationLimit := int32(56) // int32 | Number of entries to return. (optional)
-    paginationTime := time.Now() // time.Time | Optional timestamp of the original request, for consistency. In a future release, the server will use it in an `AS OF SYSTEM TIME` clause. Currently non-functional. (optional)
-    paginationOrder := "paginationOrder_example" // string | ASC (ascending) or DESC (descending) sort order.   - DESC: Sort in descending order. The default order is ascending. (optional) (default to "ASC")
+    paginationStartKey := "paginationStartKey_example" // string |  (optional)
+    paginationDirection := "paginationDirection_example" // string |  (optional) (default to "PAGE_DIRECTION_NEXT")
+    paginationLimit := int32(56) // int32 |  (optional)
+    paginationTime := time.Now() // time.Time |  (optional)
+    paginationOrder := "paginationOrder_example" // string |  - DESC: Sort in descending order. The default order is ascending. (optional) (default to "ASC")
 
     configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CockroachCloudApi.CockroachCloudListClusterNodes(context.Background(), clusterId).RegionName(regionName).PaginationStart(paginationStart).PaginationLimit(paginationLimit).PaginationTime(paginationTime).PaginationOrder(paginationOrder).Execute()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.CockroachCloudApi.ListClusterNodes(context.Background(), clusterId).RegionName(regionName).PaginationStartKey(paginationStartKey).PaginationDirection(paginationDirection).PaginationLimit(paginationLimit).PaginationTime(paginationTime).PaginationOrder(paginationOrder).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.CockroachCloudListClusterNodes``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.ListClusterNodes``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CockroachCloudListClusterNodes`: ListClusterNodesResponse
-    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.CockroachCloudListClusterNodes`: %v\n", resp)
+    // response from `ListClusterNodes`: ListClusterNodesResponse
+    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.ListClusterNodes`: %v\n", resp)
 }
 ```
 
@@ -625,17 +931,18 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCockroachCloudListClusterNodesRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiListClusterNodes struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **regionName** | **string** | Optional filter to limit response to a single region. | 
- **paginationStart** | **int32** | Index of the first entry to return. | 
- **paginationLimit** | **int32** | Number of entries to return. | 
- **paginationTime** | **time.Time** | Optional timestamp of the original request, for consistency. In a future release, the server will use it in an &#x60;AS OF SYSTEM TIME&#x60; clause. Currently non-functional. | 
- **paginationOrder** | **string** | ASC (ascending) or DESC (descending) sort order.   - DESC: Sort in descending order. The default order is ascending. | [default to &quot;ASC&quot;]
+ **paginationStartKey** | **string** |  | 
+ **paginationDirection** | **string** |  | [default to &quot;PAGE_DIRECTION_NEXT&quot;]
+ **paginationLimit** | **int32** |  | 
+ **paginationTime** | **time.Time** |  | 
+ **paginationOrder** | **string** |  - DESC: Sort in descending order. The default order is ascending. | [default to &quot;ASC&quot;]
 
 ### Return type
 
@@ -655,9 +962,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## CockroachCloudListClusters
+## ListClusters
 
-> ListClustersResponse CockroachCloudListClusters(ctx).ShowInactive(showInactive).PaginationStart(paginationStart).PaginationLimit(paginationLimit).PaginationTime(paginationTime).PaginationOrder(paginationOrder).Execute()
+> ListClustersResponse ListClusters(ctx).ShowInactive(showInactive).PaginationStartKey(paginationStartKey).PaginationDirection(paginationDirection).PaginationLimit(paginationLimit).PaginationTime(paginationTime).PaginationOrder(paginationOrder).Execute()
 
 List clusters owned by an organization.
 
@@ -676,20 +983,21 @@ import (
 
 func main() {
     showInactive := true // bool | If `true`, show clusters that have been deleted or failed to initialize. (optional) (default to false)
-    paginationStart := int32(56) // int32 | Index of the first entry to return. (optional)
-    paginationLimit := int32(56) // int32 | Number of entries to return. (optional)
-    paginationTime := time.Now() // time.Time | Optional timestamp of the original request, for consistency. In a future release, the server will use it in an `AS OF SYSTEM TIME` clause. Currently non-functional. (optional)
-    paginationOrder := "paginationOrder_example" // string | ASC (ascending) or DESC (descending) sort order.   - DESC: Sort in descending order. The default order is ascending. (optional) (default to "ASC")
+    paginationStartKey := "paginationStartKey_example" // string |  (optional)
+    paginationDirection := "paginationDirection_example" // string |  (optional) (default to "PAGE_DIRECTION_NEXT")
+    paginationLimit := int32(56) // int32 |  (optional)
+    paginationTime := time.Now() // time.Time |  (optional)
+    paginationOrder := "paginationOrder_example" // string |  - DESC: Sort in descending order. The default order is ascending. (optional) (default to "ASC")
 
     configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CockroachCloudApi.CockroachCloudListClusters(context.Background()).ShowInactive(showInactive).PaginationStart(paginationStart).PaginationLimit(paginationLimit).PaginationTime(paginationTime).PaginationOrder(paginationOrder).Execute()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.CockroachCloudApi.ListClusters(context.Background()).ShowInactive(showInactive).PaginationStartKey(paginationStartKey).PaginationDirection(paginationDirection).PaginationLimit(paginationLimit).PaginationTime(paginationTime).PaginationOrder(paginationOrder).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.CockroachCloudListClusters``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.ListClusters``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CockroachCloudListClusters`: ListClustersResponse
-    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.CockroachCloudListClusters`: %v\n", resp)
+    // response from `ListClusters`: ListClustersResponse
+    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.ListClusters`: %v\n", resp)
 }
 ```
 
@@ -699,16 +1007,17 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCockroachCloudListClustersRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiListClusters struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **showInactive** | **bool** | If &#x60;true&#x60;, show clusters that have been deleted or failed to initialize. | [default to false]
- **paginationStart** | **int32** | Index of the first entry to return. | 
- **paginationLimit** | **int32** | Number of entries to return. | 
- **paginationTime** | **time.Time** | Optional timestamp of the original request, for consistency. In a future release, the server will use it in an &#x60;AS OF SYSTEM TIME&#x60; clause. Currently non-functional. | 
- **paginationOrder** | **string** | ASC (ascending) or DESC (descending) sort order.   - DESC: Sort in descending order. The default order is ascending. | [default to &quot;ASC&quot;]
+ **paginationStartKey** | **string** |  | 
+ **paginationDirection** | **string** |  | [default to &quot;PAGE_DIRECTION_NEXT&quot;]
+ **paginationLimit** | **int32** |  | 
+ **paginationTime** | **time.Time** |  | 
+ **paginationOrder** | **string** |  - DESC: Sort in descending order. The default order is ascending. | [default to &quot;ASC&quot;]
 
 ### Return type
 
@@ -728,9 +1037,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## CockroachCloudListSQLUsers
+## ListSQLUsers
 
-> ListSQLUsersResponse CockroachCloudListSQLUsers(ctx, clusterId).PaginationStart(paginationStart).PaginationLimit(paginationLimit).PaginationTime(paginationTime).PaginationOrder(paginationOrder).Execute()
+> ListSQLUsersResponse ListSQLUsers(ctx, clusterId).PaginationStartKey(paginationStartKey).PaginationDirection(paginationDirection).PaginationLimit(paginationLimit).PaginationTime(paginationTime).PaginationOrder(paginationOrder).Execute()
 
 List SQL users for a cluster.
 
@@ -749,20 +1058,21 @@ import (
 
 func main() {
     clusterId := "clusterId_example" // string | 
-    paginationStart := int32(56) // int32 | Index of the first entry to return. (optional)
-    paginationLimit := int32(56) // int32 | Number of entries to return. (optional)
-    paginationTime := time.Now() // time.Time | Optional timestamp of the original request, for consistency. In a future release, the server will use it in an `AS OF SYSTEM TIME` clause. Currently non-functional. (optional)
-    paginationOrder := "paginationOrder_example" // string | ASC (ascending) or DESC (descending) sort order.   - DESC: Sort in descending order. The default order is ascending. (optional) (default to "ASC")
+    paginationStartKey := "paginationStartKey_example" // string |  (optional)
+    paginationDirection := "paginationDirection_example" // string |  (optional) (default to "PAGE_DIRECTION_NEXT")
+    paginationLimit := int32(56) // int32 |  (optional)
+    paginationTime := time.Now() // time.Time |  (optional)
+    paginationOrder := "paginationOrder_example" // string |  - DESC: Sort in descending order. The default order is ascending. (optional) (default to "ASC")
 
     configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CockroachCloudApi.CockroachCloudListSQLUsers(context.Background(), clusterId).PaginationStart(paginationStart).PaginationLimit(paginationLimit).PaginationTime(paginationTime).PaginationOrder(paginationOrder).Execute()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.CockroachCloudApi.ListSQLUsers(context.Background(), clusterId).PaginationStartKey(paginationStartKey).PaginationDirection(paginationDirection).PaginationLimit(paginationLimit).PaginationTime(paginationTime).PaginationOrder(paginationOrder).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.CockroachCloudListSQLUsers``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.ListSQLUsers``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CockroachCloudListSQLUsers`: ListSQLUsersResponse
-    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.CockroachCloudListSQLUsers`: %v\n", resp)
+    // response from `ListSQLUsers`: ListSQLUsersResponse
+    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.ListSQLUsers`: %v\n", resp)
 }
 ```
 
@@ -776,16 +1086,17 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCockroachCloudListSQLUsersRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiListSQLUsers struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **paginationStart** | **int32** | Index of the first entry to return. | 
- **paginationLimit** | **int32** | Number of entries to return. | 
- **paginationTime** | **time.Time** | Optional timestamp of the original request, for consistency. In a future release, the server will use it in an &#x60;AS OF SYSTEM TIME&#x60; clause. Currently non-functional. | 
- **paginationOrder** | **string** | ASC (ascending) or DESC (descending) sort order.   - DESC: Sort in descending order. The default order is ascending. | [default to &quot;ASC&quot;]
+ **paginationStartKey** | **string** |  | 
+ **paginationDirection** | **string** |  | [default to &quot;PAGE_DIRECTION_NEXT&quot;]
+ **paginationLimit** | **int32** |  | 
+ **paginationTime** | **time.Time** |  | 
+ **paginationOrder** | **string** |  - DESC: Sort in descending order. The default order is ascending. | [default to &quot;ASC&quot;]
 
 ### Return type
 
@@ -805,11 +1116,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## CockroachCloudSetNodeCount
+## UpdateAllowlistEntry
 
-> Cluster CockroachCloudSetNodeCount(ctx, clusterId).Body(body).Execute()
+> UpdateAllowlistEntryResponse UpdateAllowlistEntry(ctx, clusterId, entryCidrIp, entryCidrMask).AllowlistEntry(allowlistEntry).FieldMask(fieldMask).Execute()
 
-Set the number of nodes in each region for a dedicated cluster.
+Update an IP allowlist entry.
 
 ### Example
 
@@ -825,17 +1136,20 @@ import (
 
 func main() {
     clusterId := "clusterId_example" // string | 
-    body := *openapiclient.NewSetNodeCountRequest(map[string]int32{"key": int32(123)}) // SetNodeCountRequest | 
+    entryCidrIp := "entryCidrIp_example" // string | 
+    entryCidrMask := int32(56) // int32 | 
+    allowlistEntry := *openapiclient.NewAllowlistEntry("CidrIp_example", false, false) // AllowlistEntry | 
+    fieldMask := "fieldMask_example" // string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CockroachCloudApi.CockroachCloudSetNodeCount(context.Background(), clusterId).Body(body).Execute()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.CockroachCloudApi.UpdateAllowlistEntry(context.Background(), clusterId, entryCidrIp, entryCidrMask).AllowlistEntry(allowlistEntry).FieldMask(fieldMask).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.CockroachCloudSetNodeCount``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.UpdateAllowlistEntry``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CockroachCloudSetNodeCount`: Cluster
-    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.CockroachCloudSetNodeCount`: %v\n", resp)
+    // response from `UpdateAllowlistEntry`: UpdateAllowlistEntryResponse
+    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.UpdateAllowlistEntry`: %v\n", resp)
 }
 ```
 
@@ -846,20 +1160,25 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **clusterId** | **string** |  | 
+**entryCidrIp** | **string** |  | 
+**entryCidrMask** | **int32** |  | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCockroachCloudSetNodeCountRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiUpdateAllowlistEntry struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**SetNodeCountRequest**](SetNodeCountRequest.md) |  | 
+
+
+ **allowlistEntry** | [**AllowlistEntry**](AllowlistEntry.md) |  | 
+ **fieldMask** | **string** |  | 
 
 ### Return type
 
-[**Cluster**](Cluster.md)
+[**UpdateAllowlistEntryResponse**](UpdateAllowlistEntryResponse.md)
 
 ### Authorization
 
@@ -875,9 +1194,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## CockroachCloudUpdateCMEKStatus
+## UpdateCMEKStatus
 
-> CMEKClusterInfo CockroachCloudUpdateCMEKStatus(ctx, clusterId).Body(body).Execute()
+> CMEKClusterInfo UpdateCMEKStatus(ctx, clusterId).UpdateCMEKStatusRequest(updateCMEKStatusRequest).Execute()
 
 Update the CMEK-related status for a cluster.
 
@@ -895,17 +1214,17 @@ import (
 
 func main() {
     clusterId := "clusterId_example" // string | 
-    body := *openapiclient.NewUpdateCMEKStatusRequest(openapiclient.CMEKCustomerAction("UNKNOWN_ACTION")) // UpdateCMEKStatusRequest | 
+    updateCMEKStatusRequest := *openapiclient.NewUpdateCMEKStatusRequest(openapiclient.CMEKCustomerAction("UNKNOWN_ACTION")) // UpdateCMEKStatusRequest | 
 
     configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CockroachCloudApi.CockroachCloudUpdateCMEKStatus(context.Background(), clusterId).Body(body).Execute()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.CockroachCloudApi.UpdateCMEKStatus(context.Background(), clusterId).UpdateCMEKStatusRequest(updateCMEKStatusRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.CockroachCloudUpdateCMEKStatus``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.UpdateCMEKStatus``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CockroachCloudUpdateCMEKStatus`: CMEKClusterInfo
-    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.CockroachCloudUpdateCMEKStatus`: %v\n", resp)
+    // response from `UpdateCMEKStatus`: CMEKClusterInfo
+    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.UpdateCMEKStatus`: %v\n", resp)
 }
 ```
 
@@ -919,13 +1238,13 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCockroachCloudUpdateCMEKStatusRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiUpdateCMEKStatus struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**UpdateCMEKStatusRequest**](UpdateCMEKStatusRequest.md) |  | 
+ **updateCMEKStatusRequest** | [**UpdateCMEKStatusRequest**](UpdateCMEKStatusRequest.md) |  | 
 
 ### Return type
 
@@ -945,9 +1264,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## CockroachCloudUpdateCluster
+## UpdateCluster
 
-> map[string]interface{} CockroachCloudUpdateCluster(ctx, clusterId).Body(body).FieldMask(fieldMask).Execute()
+> interface{} UpdateCluster(ctx, clusterId).UpdateClusterSpecification(updateClusterSpecification).FieldMask(fieldMask).Execute()
 
 Scale or edit a cluster.
 
@@ -965,18 +1284,18 @@ import (
 
 func main() {
     clusterId := "clusterId_example" // string | 
-    body := *openapiclient.NewUpdateClusterSpecification() // UpdateClusterSpecification | 
+    updateClusterSpecification := *openapiclient.NewUpdateClusterSpecification() // UpdateClusterSpecification | 
     fieldMask := "fieldMask_example" // string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CockroachCloudApi.CockroachCloudUpdateCluster(context.Background(), clusterId).Body(body).FieldMask(fieldMask).Execute()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.CockroachCloudApi.UpdateCluster(context.Background(), clusterId).UpdateClusterSpecification(updateClusterSpecification).FieldMask(fieldMask).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.CockroachCloudUpdateCluster``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.UpdateCluster``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CockroachCloudUpdateCluster`: map[string]interface{}
-    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.CockroachCloudUpdateCluster`: %v\n", resp)
+    // response from `UpdateCluster`: interface{}
+    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.UpdateCluster`: %v\n", resp)
 }
 ```
 
@@ -990,18 +1309,18 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCockroachCloudUpdateClusterRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiUpdateCluster struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | [**UpdateClusterSpecification**](UpdateClusterSpecification.md) |  | 
+ **updateClusterSpecification** | [**UpdateClusterSpecification**](UpdateClusterSpecification.md) |  | 
  **fieldMask** | **string** |  | 
 
 ### Return type
 
-**map[string]interface{}**
+**interface{}**
 
 ### Authorization
 
@@ -1017,11 +1336,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## CockroachCloudUpdateSQLUserPassword
+## UpdateSQLUserPassword
 
-> map[string]interface{} CockroachCloudUpdateSQLUserPassword(ctx, clusterId, name).Body(body).Execute()
+> interface{} UpdateSQLUserPassword(ctx, clusterId, name).UpdateSQLUserPasswordRequest(updateSQLUserPasswordRequest).Execute()
 
-Updates a SQL user's password.
+Update a SQL user's password.
 
 ### Example
 
@@ -1038,17 +1357,17 @@ import (
 func main() {
     clusterId := "clusterId_example" // string | 
     name := "name_example" // string | 
-    body := *openapiclient.NewUpdateSQLUserPasswordRequest("Password_example") // UpdateSQLUserPasswordRequest | 
+    updateSQLUserPasswordRequest := *openapiclient.NewUpdateSQLUserPasswordRequest("Password_example") // UpdateSQLUserPasswordRequest | 
 
     configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.CockroachCloudApi.CockroachCloudUpdateSQLUserPassword(context.Background(), clusterId, name).Body(body).Execute()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.CockroachCloudApi.UpdateSQLUserPassword(context.Background(), clusterId, name).UpdateSQLUserPasswordRequest(updateSQLUserPasswordRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.CockroachCloudUpdateSQLUserPassword``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.UpdateSQLUserPassword``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CockroachCloudUpdateSQLUserPassword`: map[string]interface{}
-    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.CockroachCloudUpdateSQLUserPassword`: %v\n", resp)
+    // response from `UpdateSQLUserPassword`: interface{}
+    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.UpdateSQLUserPassword`: %v\n", resp)
 }
 ```
 
@@ -1063,18 +1382,18 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCockroachCloudUpdateSQLUserPasswordRequest struct via the builder pattern
+Other parameters are passed through a pointer to a apiUpdateSQLUserPassword struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **body** | [**UpdateSQLUserPasswordRequest**](UpdateSQLUserPasswordRequest.md) |  | 
+ **updateSQLUserPasswordRequest** | [**UpdateSQLUserPasswordRequest**](UpdateSQLUserPasswordRequest.md) |  | 
 
 ### Return type
 
-**map[string]interface{}**
+**interface{}**
 
 ### Authorization
 

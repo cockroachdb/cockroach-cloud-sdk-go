@@ -16,18 +16,18 @@ Name | Type | Description | Notes
 
 `func NewDedicatedHardwareConfig(machineType string, numVirtualCpus int32, storageGib int32, memoryGib float32, diskIops int32, ) *DedicatedHardwareConfig`
 
-NewDedicatedHardwareConfig instantiates a new DedicatedHardwareConfig object
+NewDedicatedHardwareConfig instantiates a new DedicatedHardwareConfig object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
-will change when the set of required properties is changed
+will change when the set of required properties is changed.
 
 ### NewDedicatedHardwareConfigWithDefaults
 
 `func NewDedicatedHardwareConfigWithDefaults() *DedicatedHardwareConfig`
 
-NewDedicatedHardwareConfigWithDefaults instantiates a new DedicatedHardwareConfig object
+NewDedicatedHardwareConfigWithDefaults instantiates a new DedicatedHardwareConfig object.
 This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set
+but it doesn't guarantee that properties required by API are set.
 
 ### GetMachineType
 
@@ -35,19 +35,11 @@ but it doesn't guarantee that properties required by API are set
 
 GetMachineType returns the MachineType field if non-nil, zero value otherwise.
 
-### GetMachineTypeOk
-
-`func (o *DedicatedHardwareConfig) GetMachineTypeOk() (*string, bool)`
-
-GetMachineTypeOk returns a tuple with the MachineType field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
 ### SetMachineType
 
 `func (o *DedicatedHardwareConfig) SetMachineType(v string)`
 
 SetMachineType sets MachineType field to given value.
-
 
 ### GetNumVirtualCpus
 
@@ -55,19 +47,11 @@ SetMachineType sets MachineType field to given value.
 
 GetNumVirtualCpus returns the NumVirtualCpus field if non-nil, zero value otherwise.
 
-### GetNumVirtualCpusOk
-
-`func (o *DedicatedHardwareConfig) GetNumVirtualCpusOk() (*int32, bool)`
-
-GetNumVirtualCpusOk returns a tuple with the NumVirtualCpus field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
 ### SetNumVirtualCpus
 
 `func (o *DedicatedHardwareConfig) SetNumVirtualCpus(v int32)`
 
 SetNumVirtualCpus sets NumVirtualCpus field to given value.
-
 
 ### GetStorageGib
 
@@ -75,19 +59,11 @@ SetNumVirtualCpus sets NumVirtualCpus field to given value.
 
 GetStorageGib returns the StorageGib field if non-nil, zero value otherwise.
 
-### GetStorageGibOk
-
-`func (o *DedicatedHardwareConfig) GetStorageGibOk() (*int32, bool)`
-
-GetStorageGibOk returns a tuple with the StorageGib field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
 ### SetStorageGib
 
 `func (o *DedicatedHardwareConfig) SetStorageGib(v int32)`
 
 SetStorageGib sets StorageGib field to given value.
-
 
 ### GetMemoryGib
 
@@ -95,19 +71,11 @@ SetStorageGib sets StorageGib field to given value.
 
 GetMemoryGib returns the MemoryGib field if non-nil, zero value otherwise.
 
-### GetMemoryGibOk
-
-`func (o *DedicatedHardwareConfig) GetMemoryGibOk() (*float32, bool)`
-
-GetMemoryGibOk returns a tuple with the MemoryGib field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
 ### SetMemoryGib
 
 `func (o *DedicatedHardwareConfig) SetMemoryGib(v float32)`
 
 SetMemoryGib sets MemoryGib field to given value.
-
 
 ### GetDiskIops
 
@@ -115,19 +83,11 @@ SetMemoryGib sets MemoryGib field to given value.
 
 GetDiskIops returns the DiskIops field if non-nil, zero value otherwise.
 
-### GetDiskIopsOk
-
-`func (o *DedicatedHardwareConfig) GetDiskIopsOk() (*int32, bool)`
-
-GetDiskIopsOk returns a tuple with the DiskIops field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
 ### SetDiskIops
 
 `func (o *DedicatedHardwareConfig) SetDiskIops(v int32)`
 
 SetDiskIops sets DiskIops field to given value.
-
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

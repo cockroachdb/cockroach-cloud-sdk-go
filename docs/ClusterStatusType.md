@@ -31,6 +31,10 @@
 
 * `CRDB_EDIT_CLUSTER_FAILED` (value: `"CLUSTER_STATUS_CRDB_EDIT_CLUSTER_FAILED"`)
 
+* `CRDB_CMEK_OPERATION_RUNNING` (value: `"CLUSTER_STATUS_CRDB_CMEK_OPERATION_RUNNING"`)
+
+* `CRDB_CMEK_OPERATION_FAILED` (value: `"CLUSTER_STATUS_CRDB_CMEK_OPERATION_FAILED"`)
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

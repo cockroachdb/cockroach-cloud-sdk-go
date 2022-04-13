@@ -1,0 +1,54 @@
+{{>partial_header}}
+package {{packageName}}
+
+import (
+"net/http"
+)
+
+{{#servers}}
+{{! ccloud has only one server }}
+    {{#-first}}
+        const DefaultServerURL string = "{{{url}}}"
+    {{/-first}}
+{{/servers}}
+
+{{#withCustomMiddlewareFunction}}
+    // MiddlewareFunction provides way to implement custom middleware.
+    type MiddlewareFunction func(*http.Request)
+
+{{/withCustomMiddlewareFunction}}
+// Configuration stores the configuration of the API client.
+type Configuration struct {
+Host             string            `json:"host,omitempty"`
+Scheme           string            `json:"scheme,omitempty"`
+DefaultHeader    map[string]string `json:"defaultHeader,omitempty"`
+UserAgent        string            `json:"userAgent,omitempty"`
+Debug            bool              `json:"debug,omitempty"`
+ServerURL        string
+HTTPClient       *http.Client
+apiKey			 string
+{{#withCustomMiddlewareFunction}}
+    Middleware       MiddlewareFunction
+{{/withCustomMiddlewareFunction}}
+}
+
+// NewConfiguration returns a new Configuration object.
+func NewConfiguration(apiKey string) *Configuration {
+cfg := &Configuration{
+DefaultHeader:    make(map[string]string),
+UserAgent:        "{{{httpUserAgent}}}{{^httpUserAgent}}ccloud-cli/{{{packageVersion}}}{{/httpUserAgent}}",
+Debug:            false,
+ServerURL:        DefaultServerURL,
+apiKey:			  apiKey,
+}
+
+{{#version}}
+    cfg.AddDefaultHeader("Cc-Version", "{{.}}")
+{{/version}}
+return cfg
+}
+
+// AddDefaultHeader adds a new HTTP header to the default header in the request.
+func (c *Configuration) AddDefaultHeader(key string, value string) {
+c.DefaultHeader[key] = value
+}
