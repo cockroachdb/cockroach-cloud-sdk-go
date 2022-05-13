@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**User** | [**SQLUser**](SQLUser.md) |  | 
+**Name** | **string** |  | 
 **Password** | **string** |  | 
 
 ## Methods
 
 ### NewCreateSQLUserRequest
 
-`func NewCreateSQLUserRequest(user SQLUser, password string, ) *CreateSQLUserRequest`
+`func NewCreateSQLUserRequest(name string, password string, ) *CreateSQLUserRequest`
 
 NewCreateSQLUserRequest instantiates a new CreateSQLUserRequest object.
 This constructor will assign default values to properties that have it defined,
@@ -26,17 +26,17 @@ NewCreateSQLUserRequestWithDefaults instantiates a new CreateSQLUserRequest obje
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set.
 
-### GetUser
+### GetName
 
-`func (o *CreateSQLUserRequest) GetUser() SQLUser`
+`func (o *CreateSQLUserRequest) GetName() string`
 
-GetUser returns the User field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### SetUser
+### SetName
 
-`func (o *CreateSQLUserRequest) SetUser(v SQLUser)`
+`func (o *CreateSQLUserRequest) SetName(v string)`
 
-SetUser sets User field to given value.
+SetName sets Name field to given value.
 
 ### GetPassword
 

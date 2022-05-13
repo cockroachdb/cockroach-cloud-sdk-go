@@ -8,37 +8,37 @@ import (
 	"encoding/json"
 )
 
-// ServerlessClusterSpecification struct for ServerlessClusterSpecification.
-type ServerlessClusterSpecification struct {
+// ServerlessClusterCreateSpecification struct for ServerlessClusterCreateSpecification.
+type ServerlessClusterCreateSpecification struct {
 	// Region values should match the cloud provider's zone code. For example, for Oregon, set region_name to \"us-west2\" for GCP and \"us-west-2\" for AWS.
 	Regions              []string `json:"regions"`
 	SpendLimit           int32    `json:"spend_limit"`
 	AdditionalProperties map[string]interface{}
 }
 
-type serverlessClusterSpecification ServerlessClusterSpecification
+type serverlessClusterCreateSpecification ServerlessClusterCreateSpecification
 
-// NewServerlessClusterSpecification instantiates a new ServerlessClusterSpecification object.
+// NewServerlessClusterCreateSpecification instantiates a new ServerlessClusterCreateSpecification object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerlessClusterSpecification(regions []string, spendLimit int32) *ServerlessClusterSpecification {
-	p := ServerlessClusterSpecification{}
+func NewServerlessClusterCreateSpecification(regions []string, spendLimit int32) *ServerlessClusterCreateSpecification {
+	p := ServerlessClusterCreateSpecification{}
 	p.Regions = regions
 	p.SpendLimit = spendLimit
 	return &p
 }
 
-// NewServerlessClusterSpecificationWithDefaults instantiates a new ServerlessClusterSpecification object.
+// NewServerlessClusterCreateSpecificationWithDefaults instantiates a new ServerlessClusterCreateSpecification object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewServerlessClusterSpecificationWithDefaults() *ServerlessClusterSpecification {
-	p := ServerlessClusterSpecification{}
+func NewServerlessClusterCreateSpecificationWithDefaults() *ServerlessClusterCreateSpecification {
+	p := ServerlessClusterCreateSpecification{}
 	return &p
 }
 
 // GetRegions returns the Regions field value.
-func (o *ServerlessClusterSpecification) GetRegions() []string {
+func (o *ServerlessClusterCreateSpecification) GetRegions() []string {
 	if o == nil {
 		var ret []string
 		return ret
@@ -48,12 +48,12 @@ func (o *ServerlessClusterSpecification) GetRegions() []string {
 }
 
 // SetRegions sets field value.
-func (o *ServerlessClusterSpecification) SetRegions(v []string) {
+func (o *ServerlessClusterCreateSpecification) SetRegions(v []string) {
 	o.Regions = v
 }
 
 // GetSpendLimit returns the SpendLimit field value.
-func (o *ServerlessClusterSpecification) GetSpendLimit() int32 {
+func (o *ServerlessClusterCreateSpecification) GetSpendLimit() int32 {
 	if o == nil {
 		var ret int32
 		return ret
@@ -63,11 +63,11 @@ func (o *ServerlessClusterSpecification) GetSpendLimit() int32 {
 }
 
 // SetSpendLimit sets field value.
-func (o *ServerlessClusterSpecification) SetSpendLimit(v int32) {
+func (o *ServerlessClusterCreateSpecification) SetSpendLimit(v int32) {
 	o.SpendLimit = v
 }
 
-func (o ServerlessClusterSpecification) MarshalJSON() ([]byte, error) {
+func (o ServerlessClusterCreateSpecification) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["regions"] = o.Regions
@@ -83,11 +83,11 @@ func (o ServerlessClusterSpecification) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o *ServerlessClusterSpecification) UnmarshalJSON(bytes []byte) (err error) {
-	varServerlessClusterSpecification := serverlessClusterSpecification{}
+func (o *ServerlessClusterCreateSpecification) UnmarshalJSON(bytes []byte) (err error) {
+	varServerlessClusterCreateSpecification := serverlessClusterCreateSpecification{}
 
-	if err = json.Unmarshal(bytes, &varServerlessClusterSpecification); err == nil {
-		*o = ServerlessClusterSpecification(varServerlessClusterSpecification)
+	if err = json.Unmarshal(bytes, &varServerlessClusterCreateSpecification); err == nil {
+		*o = ServerlessClusterCreateSpecification(varServerlessClusterCreateSpecification)
 	}
 
 	additionalProperties := make(map[string]interface{})

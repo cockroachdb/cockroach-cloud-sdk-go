@@ -35,7 +35,7 @@ func NewNode(name string, regionName string, status NodeStatus) *Node {
 // but it doesn't guarantee that properties required by API are set
 func NewNodeWithDefaults() *Node {
 	p := Node{}
-	var status NodeStatus = NODESTATUS_UNSPECIFIED
+	var status NodeStatus = NODESTATUS_NODE_STATUS_UNSPECIFIED
 	p.Status = status
 	return &p
 }

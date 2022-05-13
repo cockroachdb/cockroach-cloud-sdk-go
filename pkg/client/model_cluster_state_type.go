@@ -9,27 +9,27 @@ import (
 	"fmt"
 )
 
-// ClusterStateType  - CLUSTER_STATE_LOCKED: An exclusive operation is being performed on this cluster. Other operations should not proceed if they did not set a cluster into the LOCKED state.
+// ClusterStateType  - LOCKED: An exclusive operation is being performed on this cluster. Other operations should not proceed if they did not set a cluster into the LOCKED state.
 type ClusterStateType string
 
 // List of ClusterStateType.
 const (
-	CLUSTERSTATETYPE_UNSPECIFIED     ClusterStateType = "CLUSTER_STATE_UNSPECIFIED"
-	CLUSTERSTATETYPE_CREATING        ClusterStateType = "CLUSTER_STATE_CREATING"
-	CLUSTERSTATETYPE_CREATED         ClusterStateType = "CLUSTER_STATE_CREATED"
-	CLUSTERSTATETYPE_CREATION_FAILED ClusterStateType = "CLUSTER_STATE_CREATION_FAILED"
-	CLUSTERSTATETYPE_DELETED         ClusterStateType = "CLUSTER_STATE_DELETED"
-	CLUSTERSTATETYPE_LOCKED          ClusterStateType = "CLUSTER_STATE_LOCKED"
+	CLUSTERSTATETYPE_CLUSTER_STATE_UNSPECIFIED ClusterStateType = "CLUSTER_STATE_UNSPECIFIED"
+	CLUSTERSTATETYPE_CREATING                  ClusterStateType = "CREATING"
+	CLUSTERSTATETYPE_CREATED                   ClusterStateType = "CREATED"
+	CLUSTERSTATETYPE_CREATION_FAILED           ClusterStateType = "CREATION_FAILED"
+	CLUSTERSTATETYPE_DELETED                   ClusterStateType = "DELETED"
+	CLUSTERSTATETYPE_LOCKED                    ClusterStateType = "LOCKED"
 )
 
 // All allowed values of ClusterStateType enum.
 var AllowedClusterStateTypeEnumValues = []ClusterStateType{
 	"CLUSTER_STATE_UNSPECIFIED",
-	"CLUSTER_STATE_CREATING",
-	"CLUSTER_STATE_CREATED",
-	"CLUSTER_STATE_CREATION_FAILED",
-	"CLUSTER_STATE_DELETED",
-	"CLUSTER_STATE_LOCKED",
+	"CREATING",
+	"CREATED",
+	"CREATION_FAILED",
+	"DELETED",
+	"LOCKED",
 }
 
 func (v *ClusterStateType) UnmarshalJSON(src []byte) error {

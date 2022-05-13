@@ -9,23 +9,23 @@ import (
 	"fmt"
 )
 
-// Plan  - PLAN_DEDICATED: A paid plan that offers dedicated hardware in any location.  - PLAN_CUSTOM: A plan option that is used for clusters whose machine configs are not  supported in self-service. All INVOICE clusters are under this plan option.  - PLAN_SERVERLESS: A paid plan that runs on shared hardware and caps the users' maximum monthly spending to a user-specified (possibly 0) amount.
+// Plan  - DEDICATED: A paid plan that offers dedicated hardware in any location.  - CUSTOM: A plan option that is used for clusters whose machine configs are not  supported in self-service. All INVOICE clusters are under this plan option.  - SERVERLESS: A paid plan that runs on shared hardware and caps the users' maximum monthly spending to a user-specified (possibly 0) amount.
 type Plan string
 
 // List of Plan.
 const (
-	PLAN_UNSPECIFIED Plan = "PLAN_UNSPECIFIED"
-	PLAN_DEDICATED   Plan = "PLAN_DEDICATED"
-	PLAN_CUSTOM      Plan = "PLAN_CUSTOM"
-	PLAN_SERVERLESS  Plan = "PLAN_SERVERLESS"
+	PLAN_PLAN_UNSPECIFIED Plan = "PLAN_UNSPECIFIED"
+	PLAN_DEDICATED        Plan = "DEDICATED"
+	PLAN_CUSTOM           Plan = "CUSTOM"
+	PLAN_SERVERLESS       Plan = "SERVERLESS"
 )
 
 // All allowed values of Plan enum.
 var AllowedPlanEnumValues = []Plan{
 	"PLAN_UNSPECIFIED",
-	"PLAN_DEDICATED",
-	"PLAN_CUSTOM",
-	"PLAN_SERVERLESS",
+	"DEDICATED",
+	"CUSTOM",
+	"SERVERLESS",
 }
 
 func (v *Plan) UnmarshalJSON(src []byte) error {

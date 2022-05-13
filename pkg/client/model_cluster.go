@@ -54,13 +54,13 @@ func NewCluster(id string, name string, cockroachVersion string, plan Plan, clou
 // but it doesn't guarantee that properties required by API are set
 func NewClusterWithDefaults() *Cluster {
 	p := Cluster{}
-	var plan Plan = PLAN_UNSPECIFIED
+	var plan Plan = PLAN_PLAN_UNSPECIFIED
 	p.Plan = plan
-	var cloudProvider ApiCloudProvider = APICLOUDPROVIDER_UNSPECIFIED
+	var cloudProvider ApiCloudProvider = APICLOUDPROVIDER_CLOUD_PROVIDER_UNSPECIFIED
 	p.CloudProvider = cloudProvider
-	var state ClusterStateType = CLUSTERSTATETYPE_UNSPECIFIED
+	var state ClusterStateType = CLUSTERSTATETYPE_CLUSTER_STATE_UNSPECIFIED
 	p.State = state
-	var operationStatus ClusterStatusType = CLUSTERSTATUSTYPE_UNSPECIFIED
+	var operationStatus ClusterStatusType = CLUSTERSTATUSTYPE_CLUSTER_STATUS_UNSPECIFIED
 	p.OperationStatus = operationStatus
 	return &p
 }

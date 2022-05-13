@@ -3,11 +3,11 @@
 ## Enum
 
 
-* `UNSPECIFIED` (value: `"CLOUD_PROVIDER_UNSPECIFIED"`)
+* `CLOUD_PROVIDER_UNSPECIFIED` (value: `"CLOUD_PROVIDER_UNSPECIFIED"`)
 
-* `GCP` (value: `"CLOUD_PROVIDER_GCP"`)
+* `GCP` (value: `"GCP"`)
 
-* `AWS` (value: `"CLOUD_PROVIDER_AWS"`)
+* `AWS` (value: `"AWS"`)
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

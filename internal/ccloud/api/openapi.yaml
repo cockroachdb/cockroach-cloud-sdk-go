@@ -24,6 +24,7 @@ tags:
 paths:
   /api/v1/clusters:
     get:
+      description: 'Sort order: Cluster name'
       operationId: CockroachCloud_ListClusters
       parameters:
       - description: If `true`, show clusters that have been deleted or failed to
@@ -187,16 +188,17 @@ paths:
             --url https://cockroachlabs.cloud/api/v1/clusters \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
             --header 'content-type: application/json' \
-            --data '{"name":"test-cluster","provider":"CLOUD_PROVIDER_GCP","spec":{"serverless":{"regions":["us-central1"],"spend_limit":0}}}'
+            --data '{"name":"test-cluster","provider":"GCP","spec":{"serverless":{"regions":["us-central1"],"spend_limit":0}}}'
   /api/v1/clusters/available-regions:
     get:
+      description: 'Sort order: Distance (based on client IP address)'
       operationId: CockroachCloud_ListAvailableRegions
       parameters:
       - description: |-
           Optional CloudProvider for filtering.
 
-           - CLOUD_PROVIDER_GCP: The Google Cloud Platform cloud provider.
-           - CLOUD_PROVIDER_AWS: The Amazon Web Services cloud provider.
+           - GCP: The Google Cloud Platform cloud provider.
+           - AWS: The Amazon Web Services cloud provider.
         explode: true
         in: query
         name: provider
@@ -205,8 +207,8 @@ paths:
           default: CLOUD_PROVIDER_UNSPECIFIED
           enum:
           - CLOUD_PROVIDER_UNSPECIFIED
-          - CLOUD_PROVIDER_GCP
-          - CLOUD_PROVIDER_AWS
+          - GCP
+          - AWS
           type: string
         style: form
       - description: Optional filter to only show regions available for serverless
@@ -329,7 +331,7 @@ paths:
           content:
             application/json:
               schema:
-                properties: {}
+                $ref: '#/components/schemas/Cluster'
           description: A successful response.
         "400":
           content:
@@ -458,7 +460,7 @@ paths:
           content:
             application/json:
               schema:
-                properties: {}
+                $ref: '#/components/schemas/Cluster'
           description: A successful response.
         "400":
           content:
@@ -721,6 +723,7 @@ paths:
             --data '{"region_specs":[{"region":"us-central1","key_spec":{"type":"AWS_KMS","uri":"arn:aws:kms:us-west-2:111122223333:key/id-of-kms-key","auth_principal":"arn:aws:iam::account:role/role-name-with-path"}}]}'
   /api/v1/clusters/{cluster_id}/networking/allowlist:
     get:
+      description: 'Sort order: CIDR address'
       operationId: CockroachCloud_ListAllowlistEntries
       parameters:
       - explode: false
@@ -845,7 +848,7 @@ paths:
           content:
             application/json:
               schema:
-                properties: {}
+                $ref: '#/components/schemas/AllowlistEntry'
           description: A successful response.
         "400":
           content:
@@ -920,7 +923,7 @@ paths:
           content:
             application/json:
               schema:
-                properties: {}
+                $ref: '#/components/schemas/AllowlistEntry'
           description: A successful response.
         "400":
           content:
@@ -1007,7 +1010,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UpdateAllowlistEntryResponse'
+                $ref: '#/components/schemas/AllowlistEntry'
           description: A successful response.
         "400":
           content:
@@ -1087,7 +1090,7 @@ paths:
           content:
             application/json:
               schema:
-                properties: {}
+                $ref: '#/components/schemas/AllowlistEntry'
           description: A successful response.
         "400":
           content:
@@ -1133,6 +1136,7 @@ paths:
             --data '{"cidr_ip":"192.168.1.1","cidr_mask":32,"ui":true,"sql":true,"name":"Example"}'
   /api/v1/clusters/{cluster_id}/nodes:
     get:
+      description: 'Sort order: Region name, node name'
       operationId: CockroachCloud_ListClusterNodes
       parameters:
       - explode: false
@@ -1246,6 +1250,7 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
   /api/v1/clusters/{cluster_id}/sql-users:
     get:
+      description: 'Sort order: Username'
       operationId: CockroachCloud_ListSQLUsers
       parameters:
       - explode: false
@@ -1365,17 +1370,16 @@ paths:
           application/json:
             schema:
               example:
-                user:
-                  name: example_username
+                name: example_username
                 password: example_password
               properties:
-                user:
-                  $ref: '#/components/schemas/SQLUser'
+                name:
+                  type: string
                 password:
                   type: string
               required:
+              - name
               - password
-              - user
               title: CreateSQLUserRequest
               type: object
         required: true
@@ -1384,7 +1388,7 @@ paths:
           content:
             application/json:
               schema:
-                properties: {}
+                $ref: '#/components/schemas/SQLUser'
           description: A successful response.
         "400":
           content:
@@ -1428,7 +1432,7 @@ paths:
             --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/sql-users \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
             --header 'content-type: application/json' \
-            --data '{"user":{"name":"example_username"},"password":"example_password"}'
+            --data '{"name":"example_username","password":"example_password"}'
   /api/v1/clusters/{cluster_id}/sql-users/{name}:
     delete:
       operationId: CockroachCloud_DeleteSQLUser
@@ -1452,7 +1456,7 @@ paths:
           content:
             application/json:
               schema:
-                properties: {}
+                $ref: '#/components/schemas/SQLUser'
           description: A successful response.
         "400":
           content:
@@ -1533,7 +1537,7 @@ paths:
           content:
             application/json:
               schema:
-                properties: {}
+                $ref: '#/components/schemas/SQLUser'
           description: A successful response.
         "400":
           content:
@@ -1632,6 +1636,7 @@ components:
           type: string
       required:
       - cidr_ip
+      - cidr_mask
       - sql
       - ui
       title: AllowlistEntry
@@ -1852,10 +1857,10 @@ components:
         id: 35c4abb2-bb66-46d7-afed-25ebef5ed2aa
         name: example-cluster
         cockroach_version: v21.2.4
-        plan: PLAN_SERVERLESS
-        cloud_provider: CLOUD_PROVIDER_GCP
+        plan: SERVERLESS
+        cloud_provider: GCP
         account_id: ""
-        state: CLUSTER_STATE_CREATED
+        state: CREATED
         creator_id: 7cde0cd9-0d8a-4008-8f90-45092ce8afc1
         operation_status: CLUSTER_STATUS_UNSPECIFIED
         config:
@@ -1926,40 +1931,42 @@ components:
     ClusterStateType:
       default: CLUSTER_STATE_UNSPECIFIED
       description: |2-
-         - CLUSTER_STATE_LOCKED: An exclusive operation is being performed on this cluster.
+         - LOCKED: An exclusive operation is being performed on this cluster.
         Other operations should not proceed if they did not set a cluster into the LOCKED state.
       enum:
       - CLUSTER_STATE_UNSPECIFIED
-      - CLUSTER_STATE_CREATING
-      - CLUSTER_STATE_CREATED
-      - CLUSTER_STATE_CREATION_FAILED
-      - CLUSTER_STATE_DELETED
-      - CLUSTER_STATE_LOCKED
+      - CREATING
+      - CREATED
+      - CREATION_FAILED
+      - DELETED
+      - LOCKED
       type: string
     ClusterStatusType:
       default: CLUSTER_STATUS_UNSPECIFIED
       enum:
       - CLUSTER_STATUS_UNSPECIFIED
-      - CLUSTER_STATUS_CRDB_MAJOR_UPGRADE_RUNNING
-      - CLUSTER_STATUS_CRDB_MAJOR_UPGRADE_FAILED
-      - CLUSTER_STATUS_CRDB_MAJOR_ROLLBACK_RUNNING
-      - CLUSTER_STATUS_CRDB_MAJOR_ROLLBACK_FAILED
-      - CLUSTER_STATUS_CRDB_PATCH_RUNNING
-      - CLUSTER_STATUS_CRDB_PATCH_FAILED
-      - CLUSTER_STATUS_CRDB_SCALE_RUNNING
-      - CLUSTER_STATUS_CRDB_SCALE_FAILED
-      - CLUSTER_STATUS_MAINTENANCE_RUNNING
-      - CLUSTER_STATUS_CRDB_INSTANCE_UPDATE_RUNNING
-      - CLUSTER_STATUS_CRDB_INSTANCE_UPDATE_FAILED
-      - CLUSTER_STATUS_CRDB_EDIT_CLUSTER_RUNNING
-      - CLUSTER_STATUS_CRDB_EDIT_CLUSTER_FAILED
-      - CLUSTER_STATUS_CRDB_CMEK_OPERATION_RUNNING
-      - CLUSTER_STATUS_CRDB_CMEK_OPERATION_FAILED
+      - CRDB_MAJOR_UPGRADE_RUNNING
+      - CRDB_MAJOR_UPGRADE_FAILED
+      - CRDB_MAJOR_ROLLBACK_RUNNING
+      - CRDB_MAJOR_ROLLBACK_FAILED
+      - CRDB_PATCH_RUNNING
+      - CRDB_PATCH_FAILED
+      - CRDB_SCALE_RUNNING
+      - CRDB_SCALE_FAILED
+      - MAINTENANCE_RUNNING
+      - CRDB_INSTANCE_UPDATE_RUNNING
+      - CRDB_INSTANCE_UPDATE_FAILED
+      - CRDB_EDIT_CLUSTER_RUNNING
+      - CRDB_EDIT_CLUSTER_FAILED
+      - CRDB_CMEK_OPERATION_RUNNING
+      - CRDB_CMEK_OPERATION_FAILED
+      - TENANT_RESTORE_RUNNING
+      - TENANT_RESTORE_FAILED
       type: string
     CreateClusterRequest:
       example:
         name: test-cluster
-        provider: CLOUD_PROVIDER_GCP
+        provider: GCP
         spec:
           serverless:
             regions:
@@ -1983,7 +1990,7 @@ components:
         dedicated:
           $ref: '#/components/schemas/DedicatedClusterCreateSpecification'
         serverless:
-          $ref: '#/components/schemas/ServerlessClusterSpecification'
+          $ref: '#/components/schemas/ServerlessClusterCreateSpecification'
       type: object
     DedicatedClusterCreateSpecification:
       properties:
@@ -2060,7 +2067,9 @@ components:
         machine_spec:
           $ref: '#/components/schemas/DedicatedMachineTypeSpecification'
         storage_gib:
-          description: StorageGiB is the number of storage GiB per node in the cluster.
+          description: |-
+            StorageGiB is the number of storage GiB per node in the cluster.
+            Zero indicates default to the lowest storage GiB available given machine specs.
           format: int32
           type: integer
         disk_iops:
@@ -2231,10 +2240,10 @@ components:
         - id: 35c4abb2-bb66-46d7-afed-25ebef5ed2aa
           name: example-cluster
           cockroach_version: v21.2.4
-          plan: PLAN_SERVERLESS
-          cloud_provider: CLOUD_PROVIDER_GCP
+          plan: SERVERLESS
+          cloud_provider: GCP
           account_id: ""
-          state: CLUSTER_STATE_CREATED
+          state: CREATED
           creator_id: 7cde0cd9-0d8a-4008-8f90-45092ce8afc1
           operation_status: CLUSTER_STATUS_UNSPECIFIED
           config:
@@ -2252,10 +2261,10 @@ components:
         - id: 35c4abb2-bb66-46d7-afed-25ebef5ed2aa
           name: example-cluster
           cockroach_version: v21.2.4
-          plan: PLAN_SERVERLESS
-          cloud_provider: CLOUD_PROVIDER_GCP
+          plan: SERVERLESS
+          cloud_provider: GCP
           account_id: ""
-          state: CLUSTER_STATE_CREATED
+          state: CREATED
           creator_id: 7cde0cd9-0d8a-4008-8f90-45092ce8afc1
           operation_status: CLUSTER_STATUS_UNSPECIFIED
           config:
@@ -2320,8 +2329,8 @@ components:
       default: NODE_STATUS_UNSPECIFIED
       enum:
       - NODE_STATUS_UNSPECIFIED
-      - NODE_STATUS_LIVE
-      - NODE_STATUS_NOT_READY
+      - LIVE
+      - NOT_READY
       type: string
     PageDirection:
       default: PAGE_DIRECTION_NEXT
@@ -2331,17 +2340,17 @@ components:
       type: string
     Plan:
       default: PLAN_UNSPECIFIED
-      description: " - PLAN_DEDICATED: A paid plan that offers dedicated hardware\
-        \ in any location.\n - PLAN_CUSTOM: A plan option that is used for clusters\
-        \ whose machine configs are not \nsupported in self-service. All INVOICE clusters\
-        \ are under this plan option.\n - PLAN_SERVERLESS: A paid plan that runs on\
-        \ shared hardware and caps the users'\nmaximum monthly spending to a user-specified\
-        \ (possibly 0) amount."
+      description: " - DEDICATED: A paid plan that offers dedicated hardware in any\
+        \ location.\n - CUSTOM: A plan option that is used for clusters whose machine\
+        \ configs are not \nsupported in self-service. All INVOICE clusters are under\
+        \ this plan option.\n - SERVERLESS: A paid plan that runs on shared hardware\
+        \ and caps the users'\nmaximum monthly spending to a user-specified (possibly\
+        \ 0) amount."
       enum:
       - PLAN_UNSPECIFIED
-      - PLAN_DEDICATED
-      - PLAN_CUSTOM
-      - PLAN_SERVERLESS
+      - DEDICATED
+      - CUSTOM
+      - SERVERLESS
       type: string
     Region:
       properties:
@@ -2383,7 +2392,7 @@ components:
       - routing_id
       - spend_limit
       type: object
-    ServerlessClusterSpecification:
+    ServerlessClusterCreateSpecification:
       properties:
         regions:
           description: |-
@@ -2399,6 +2408,15 @@ components:
           type: integer
       required:
       - regions
+      - spend_limit
+      type: object
+    ServerlessClusterUpdateSpecification:
+      properties:
+        spend_limit:
+          format: int32
+          title: Spend limit in US cents
+          type: integer
+      required:
       - spend_limit
       type: object
     SortOrder:
@@ -2420,21 +2438,6 @@ components:
             $ref: '#/components/schemas/Any'
           type: array
       type: object
-    UpdateAllowlistEntryResponse:
-      example:
-        entry:
-          cidr_ip: 192.168.1.1
-          cidr_mask: 32
-          ui: true
-          sql: true
-          name: Example
-      properties:
-        entry:
-          $ref: '#/components/schemas/AllowlistEntry'
-      required:
-      - entry
-      title: UpdateAllowlistEntryResponse
-      type: object
     UpdateClusterSpecification:
       example:
         dedicated:
@@ -2447,17 +2450,17 @@ components:
         dedicated:
           $ref: '#/components/schemas/DedicatedClusterUpdateSpecification'
         serverless:
-          $ref: '#/components/schemas/ServerlessClusterSpecification'
+          $ref: '#/components/schemas/ServerlessClusterUpdateSpecification'
       type: object
     api.CloudProvider:
       default: CLOUD_PROVIDER_UNSPECIFIED
       description: |2-
-         - CLOUD_PROVIDER_GCP: The Google Cloud Platform cloud provider.
-         - CLOUD_PROVIDER_AWS: The Amazon Web Services cloud provider.
+         - GCP: The Google Cloud Platform cloud provider.
+         - AWS: The Amazon Web Services cloud provider.
       enum:
       - CLOUD_PROVIDER_UNSPECIFIED
-      - CLOUD_PROVIDER_GCP
-      - CLOUD_PROVIDER_AWS
+      - GCP
+      - AWS
       type: string
     CMEKClusterSpecification:
       example:
@@ -2488,17 +2491,16 @@ components:
       type: object
     CreateSQLUserRequest:
       example:
-        user:
-          name: example_username
+        name: example_username
         password: example_password
       properties:
-        user:
-          $ref: '#/components/schemas/SQLUser'
+        name:
+          type: string
         password:
           type: string
       required:
+      - name
       - password
-      - user
       title: CreateSQLUserRequest
       type: object
     UpdateSQLUserPasswordRequest:

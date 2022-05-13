@@ -35,7 +35,7 @@ func NewCreateClusterRequest(name string, provider ApiCloudProvider, spec Create
 // but it doesn't guarantee that properties required by API are set
 func NewCreateClusterRequestWithDefaults() *CreateClusterRequest {
 	p := CreateClusterRequest{}
-	var provider ApiCloudProvider = APICLOUDPROVIDER_UNSPECIFIED
+	var provider ApiCloudProvider = APICLOUDPROVIDER_CLOUD_PROVIDER_UNSPECIFIED
 	p.Provider = provider
 	return &p
 }

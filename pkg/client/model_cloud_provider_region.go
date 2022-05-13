@@ -39,7 +39,7 @@ func NewCloudProviderRegion(name string, location string, provider ApiCloudProvi
 // but it doesn't guarantee that properties required by API are set
 func NewCloudProviderRegionWithDefaults() *CloudProviderRegion {
 	p := CloudProviderRegion{}
-	var provider ApiCloudProvider = APICLOUDPROVIDER_UNSPECIFIED
+	var provider ApiCloudProvider = APICLOUDPROVIDER_CLOUD_PROVIDER_UNSPECIFIED
 	p.Provider = provider
 	return &p
 }

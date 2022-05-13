@@ -19,6 +19,7 @@
     "/api/v1/clusters": {
       "get": {
         "summary": "List clusters owned by an organization.",
+        "description": "Sort order: Cluster name",
         "operationId": "CockroachCloud_ListClusters",
         "responses": {
           "200": {
@@ -238,7 +239,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"name\":\"test-cluster\",\"provider\":\"CLOUD_PROVIDER_GCP\",\"spec\":{\"serverless\":{\"regions\":[\"us-central1\"],\"spend_limit\":0}}}'"
+            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"name\":\"test-cluster\",\"provider\":\"GCP\",\"spec\":{\"serverless\":{\"regions\":[\"us-central1\"],\"spend_limit\":0}}}'"
           }
         ]
       }
@@ -246,6 +247,7 @@
     "/api/v1/clusters/available-regions": {
       "get": {
         "summary": "List the regions available for new clusters and nodes.",
+        "description": "Sort order: Distance (based on client IP address)",
         "operationId": "CockroachCloud_ListAvailableRegions",
         "responses": {
           "200": {
@@ -312,15 +314,15 @@
         "parameters": [
           {
             "name": "provider",
-            "description": "Optional CloudProvider for filtering.\n\n - CLOUD_PROVIDER_GCP: The Google Cloud Platform cloud provider.\n - CLOUD_PROVIDER_AWS: The Amazon Web Services cloud provider.",
+            "description": "Optional CloudProvider for filtering.\n\n - GCP: The Google Cloud Platform cloud provider.\n - AWS: The Amazon Web Services cloud provider.",
             "in": "query",
             "required": false,
             "schema": {
               "type": "string",
               "enum": [
                 "CLOUD_PROVIDER_UNSPECIFIED",
-                "CLOUD_PROVIDER_GCP",
-                "CLOUD_PROVIDER_AWS"
+                "GCP",
+                "AWS"
               ],
               "default": "CLOUD_PROVIDER_UNSPECIFIED"
             }
@@ -495,7 +497,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "properties": {}
+                  "$ref": "#/components/schemas/Cluster"
                 }
               }
             }
@@ -580,7 +582,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "properties": {}
+                  "$ref": "#/components/schemas/Cluster"
                 }
               }
             }
@@ -991,6 +993,7 @@
     "/api/v1/clusters/{cluster_id}/networking/allowlist": {
       "get": {
         "summary": "Get the IP allowlist and propagation status for a cluster.",
+        "description": "Sort order: CIDR address",
         "operationId": "CockroachCloud_ListAllowlistEntries",
         "responses": {
           "200": {
@@ -1136,7 +1139,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "properties": {}
+                  "$ref": "#/components/schemas/AllowlistEntry"
                 }
               }
             }
@@ -1233,7 +1236,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "properties": {}
+                  "$ref": "#/components/schemas/AllowlistEntry"
                 }
               }
             }
@@ -1337,7 +1340,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "properties": {}
+                  "$ref": "#/components/schemas/AllowlistEntry"
                 }
               }
             }
@@ -1449,7 +1452,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/UpdateAllowlistEntryResponse"
+                  "$ref": "#/components/schemas/AllowlistEntry"
                 }
               }
             }
@@ -1564,6 +1567,7 @@
     "/api/v1/clusters/{cluster_id}/nodes": {
       "get": {
         "summary": "List nodes for a cluster.",
+        "description": "Sort order: Region name, node name",
         "operationId": "CockroachCloud_ListClusterNodes",
         "responses": {
           "200": {
@@ -1713,6 +1717,7 @@
     "/api/v1/clusters/{cluster_id}/sql-users": {
       "get": {
         "summary": "List SQL users for a cluster.",
+        "description": "Sort order: Username",
         "operationId": "CockroachCloud_ListSQLUsers",
         "responses": {
           "200": {
@@ -1858,7 +1863,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "properties": {}
+                  "$ref": "#/components/schemas/SQLUser"
                 }
               }
             }
@@ -1930,14 +1935,12 @@
               "schema": {
                 "type": "object",
                 "example": {
-                  "user": {
-                    "name": "example_username"
-                  },
+                  "name": "example_username",
                   "password": "example_password"
                 },
                 "properties": {
-                  "user": {
-                    "$ref": "#/components/schemas/SQLUser"
+                  "name": {
+                    "type": "string"
                   },
                   "password": {
                     "type": "string"
@@ -1945,7 +1948,7 @@
                 },
                 "title": "CreateSQLUserRequest",
                 "required": [
-                  "user",
+                  "name",
                   "password"
                 ]
               }
@@ -1959,7 +1962,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/sql-users \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"user\":{\"name\":\"example_username\"},\"password\":\"example_password\"}'"
+            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/sql-users \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"name\":\"example_username\",\"password\":\"example_password\"}'"
           }
         ]
       }
@@ -1974,7 +1977,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "properties": {}
+                  "$ref": "#/components/schemas/SQLUser"
                 }
               }
             }
@@ -2069,7 +2072,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "properties": {}
+                  "$ref": "#/components/schemas/SQLUser"
                 }
               }
             }
@@ -2241,6 +2244,7 @@
         "title": "AllowlistEntry",
         "required": [
           "cidr_ip",
+          "cidr_mask",
           "ui",
           "sql"
         ]
@@ -2405,10 +2409,10 @@
           "id": "35c4abb2-bb66-46d7-afed-25ebef5ed2aa",
           "name": "example-cluster",
           "cockroach_version": "v21.2.4",
-          "plan": "PLAN_SERVERLESS",
-          "cloud_provider": "CLOUD_PROVIDER_GCP",
+          "plan": "SERVERLESS",
+          "cloud_provider": "GCP",
           "account_id": "",
-          "state": "CLUSTER_STATE_CREATED",
+          "state": "CREATED",
           "creator_id": "7cde0cd9-0d8a-4008-8f90-45092ce8afc1",
           "operation_status": "CLUSTER_STATUS_UNSPECIFIED",
           "config": {
@@ -2507,34 +2511,36 @@
         "type": "string",
         "enum": [
           "CLUSTER_STATE_UNSPECIFIED",
-          "CLUSTER_STATE_CREATING",
-          "CLUSTER_STATE_CREATED",
-          "CLUSTER_STATE_CREATION_FAILED",
-          "CLUSTER_STATE_DELETED",
-          "CLUSTER_STATE_LOCKED"
+          "CREATING",
+          "CREATED",
+          "CREATION_FAILED",
+          "DELETED",
+          "LOCKED"
         ],
         "default": "CLUSTER_STATE_UNSPECIFIED",
-        "description": " - CLUSTER_STATE_LOCKED: An exclusive operation is being performed on this cluster.\nOther operations should not proceed if they did not set a cluster into the LOCKED state."
+        "description": " - LOCKED: An exclusive operation is being performed on this cluster.\nOther operations should not proceed if they did not set a cluster into the LOCKED state."
       },
       "ClusterStatusType": {
         "type": "string",
         "enum": [
           "CLUSTER_STATUS_UNSPECIFIED",
-          "CLUSTER_STATUS_CRDB_MAJOR_UPGRADE_RUNNING",
-          "CLUSTER_STATUS_CRDB_MAJOR_UPGRADE_FAILED",
-          "CLUSTER_STATUS_CRDB_MAJOR_ROLLBACK_RUNNING",
-          "CLUSTER_STATUS_CRDB_MAJOR_ROLLBACK_FAILED",
-          "CLUSTER_STATUS_CRDB_PATCH_RUNNING",
-          "CLUSTER_STATUS_CRDB_PATCH_FAILED",
-          "CLUSTER_STATUS_CRDB_SCALE_RUNNING",
-          "CLUSTER_STATUS_CRDB_SCALE_FAILED",
-          "CLUSTER_STATUS_MAINTENANCE_RUNNING",
-          "CLUSTER_STATUS_CRDB_INSTANCE_UPDATE_RUNNING",
-          "CLUSTER_STATUS_CRDB_INSTANCE_UPDATE_FAILED",
-          "CLUSTER_STATUS_CRDB_EDIT_CLUSTER_RUNNING",
-          "CLUSTER_STATUS_CRDB_EDIT_CLUSTER_FAILED",
-          "CLUSTER_STATUS_CRDB_CMEK_OPERATION_RUNNING",
-          "CLUSTER_STATUS_CRDB_CMEK_OPERATION_FAILED"
+          "CRDB_MAJOR_UPGRADE_RUNNING",
+          "CRDB_MAJOR_UPGRADE_FAILED",
+          "CRDB_MAJOR_ROLLBACK_RUNNING",
+          "CRDB_MAJOR_ROLLBACK_FAILED",
+          "CRDB_PATCH_RUNNING",
+          "CRDB_PATCH_FAILED",
+          "CRDB_SCALE_RUNNING",
+          "CRDB_SCALE_FAILED",
+          "MAINTENANCE_RUNNING",
+          "CRDB_INSTANCE_UPDATE_RUNNING",
+          "CRDB_INSTANCE_UPDATE_FAILED",
+          "CRDB_EDIT_CLUSTER_RUNNING",
+          "CRDB_EDIT_CLUSTER_FAILED",
+          "CRDB_CMEK_OPERATION_RUNNING",
+          "CRDB_CMEK_OPERATION_FAILED",
+          "TENANT_RESTORE_RUNNING",
+          "TENANT_RESTORE_FAILED"
         ],
         "default": "CLUSTER_STATUS_UNSPECIFIED"
       },
@@ -2542,7 +2548,7 @@
         "type": "object",
         "example": {
           "name": "test-cluster",
-          "provider": "CLOUD_PROVIDER_GCP",
+          "provider": "GCP",
           "spec": {
             "serverless": {
               "regions": [
@@ -2577,7 +2583,7 @@
             "$ref": "#/components/schemas/DedicatedClusterCreateSpecification"
           },
           "serverless": {
-            "$ref": "#/components/schemas/ServerlessClusterSpecification"
+            "$ref": "#/components/schemas/ServerlessClusterCreateSpecification"
           }
         }
       },
@@ -2666,7 +2672,7 @@
           "storage_gib": {
             "type": "integer",
             "format": "int32",
-            "description": "StorageGiB is the number of storage GiB per node in the cluster."
+            "description": "StorageGiB is the number of storage GiB per node in the cluster.\nZero indicates default to the lowest storage GiB available given machine specs."
           },
           "disk_iops": {
             "type": "integer",
@@ -2868,8 +2874,8 @@
         "type": "string",
         "enum": [
           "NODE_STATUS_UNSPECIFIED",
-          "NODE_STATUS_LIVE",
-          "NODE_STATUS_NOT_READY"
+          "LIVE",
+          "NOT_READY"
         ],
         "default": "NODE_STATUS_UNSPECIFIED"
       },
@@ -2885,12 +2891,12 @@
         "type": "string",
         "enum": [
           "PLAN_UNSPECIFIED",
-          "PLAN_DEDICATED",
-          "PLAN_CUSTOM",
-          "PLAN_SERVERLESS"
+          "DEDICATED",
+          "CUSTOM",
+          "SERVERLESS"
         ],
         "default": "PLAN_UNSPECIFIED",
-        "description": " - PLAN_DEDICATED: A paid plan that offers dedicated hardware in any location.\n - PLAN_CUSTOM: A plan option that is used for clusters whose machine configs are not \nsupported in self-service. All INVOICE clusters are under this plan option.\n - PLAN_SERVERLESS: A paid plan that runs on shared hardware and caps the users'\nmaximum monthly spending to a user-specified (possibly 0) amount."
+        "description": " - DEDICATED: A paid plan that offers dedicated hardware in any location.\n - CUSTOM: A plan option that is used for clusters whose machine configs are not \nsupported in self-service. All INVOICE clusters are under this plan option.\n - SERVERLESS: A paid plan that runs on shared hardware and caps the users'\nmaximum monthly spending to a user-specified (possibly 0) amount."
       },
       "Region": {
         "type": "object",
@@ -2946,7 +2952,7 @@
           "routing_id"
         ]
       },
-      "ServerlessClusterSpecification": {
+      "ServerlessClusterCreateSpecification": {
         "type": "object",
         "properties": {
           "regions": {
@@ -2964,6 +2970,19 @@
         },
         "required": [
           "regions",
+          "spend_limit"
+        ]
+      },
+      "ServerlessClusterUpdateSpecification": {
+        "type": "object",
+        "properties": {
+          "spend_limit": {
+            "type": "integer",
+            "format": "int32",
+            "title": "Spend limit in US cents"
+          }
+        },
+        "required": [
           "spend_limit"
         ]
       },
@@ -2994,18 +3013,6 @@
           }
         }
       },
-      "UpdateAllowlistEntryResponse": {
-        "type": "object",
-        "properties": {
-          "entry": {
-            "$ref": "#/components/schemas/AllowlistEntry"
-          }
-        },
-        "title": "UpdateAllowlistEntryResponse",
-        "required": [
-          "entry"
-        ]
-      },
       "UpdateClusterSpecification": {
         "type": "object",
         "example": {
@@ -3024,7 +3031,7 @@
             "$ref": "#/components/schemas/DedicatedClusterUpdateSpecification"
           },
           "serverless": {
-            "$ref": "#/components/schemas/ServerlessClusterSpecification"
+            "$ref": "#/components/schemas/ServerlessClusterUpdateSpecification"
           }
         }
       },
@@ -3032,11 +3039,11 @@
         "type": "string",
         "enum": [
           "CLOUD_PROVIDER_UNSPECIFIED",
-          "CLOUD_PROVIDER_GCP",
-          "CLOUD_PROVIDER_AWS"
+          "GCP",
+          "AWS"
         ],
         "default": "CLOUD_PROVIDER_UNSPECIFIED",
-        "description": " - CLOUD_PROVIDER_GCP: The Google Cloud Platform cloud provider.\n - CLOUD_PROVIDER_AWS: The Amazon Web Services cloud provider."
+        "description": " - GCP: The Google Cloud Platform cloud provider.\n - AWS: The Amazon Web Services cloud provider."
       }
     }
   }
