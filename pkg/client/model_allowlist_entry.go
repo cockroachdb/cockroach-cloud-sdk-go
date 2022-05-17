@@ -11,7 +11,7 @@ import (
 // AllowlistEntry struct for AllowlistEntry.
 type AllowlistEntry struct {
 	CidrIp               string  `json:"cidr_ip"`
-	CidrMask             *int32  `json:"cidr_mask,omitempty"`
+	CidrMask             int32   `json:"cidr_mask"`
 	Ui                   bool    `json:"ui"`
 	Sql                  bool    `json:"sql"`
 	Name                 *string `json:"name,omitempty"`
@@ -24,9 +24,10 @@ type allowlistEntry AllowlistEntry
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAllowlistEntry(cidrIp string, ui bool, sql bool) *AllowlistEntry {
+func NewAllowlistEntry(cidrIp string, cidrMask int32, ui bool, sql bool) *AllowlistEntry {
 	p := AllowlistEntry{}
 	p.CidrIp = cidrIp
+	p.CidrMask = cidrMask
 	p.Ui = ui
 	p.Sql = sql
 	return &p
@@ -55,18 +56,19 @@ func (o *AllowlistEntry) SetCidrIp(v string) {
 	o.CidrIp = v
 }
 
-// GetCidrMask returns the CidrMask field value if set, zero value otherwise.
+// GetCidrMask returns the CidrMask field value.
 func (o *AllowlistEntry) GetCidrMask() int32 {
-	if o == nil || o.CidrMask == nil {
+	if o == nil {
 		var ret int32
 		return ret
 	}
-	return *o.CidrMask
+
+	return o.CidrMask
 }
 
-// SetCidrMask gets a reference to the given int32 and assigns it to the CidrMask field.
+// SetCidrMask sets field value.
 func (o *AllowlistEntry) SetCidrMask(v int32) {
-	o.CidrMask = &v
+	o.CidrMask = v
 }
 
 // GetUi returns the Ui field value.
@@ -118,7 +120,7 @@ func (o AllowlistEntry) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["cidr_ip"] = o.CidrIp
 	}
-	if o.CidrMask != nil {
+	if true {
 		toSerialize["cidr_mask"] = o.CidrMask
 	}
 	if true {

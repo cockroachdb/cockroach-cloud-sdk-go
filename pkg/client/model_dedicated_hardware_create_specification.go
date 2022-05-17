@@ -11,7 +11,7 @@ import (
 // DedicatedHardwareCreateSpecification struct for DedicatedHardwareCreateSpecification.
 type DedicatedHardwareCreateSpecification struct {
 	MachineSpec DedicatedMachineTypeSpecification `json:"machine_spec"`
-	// StorageGiB is the number of storage GiB per node in the cluster.
+	// StorageGiB is the number of storage GiB per node in the cluster. Zero indicates default to the lowest storage GiB available given machine specs.
 	StorageGib int32 `json:"storage_gib"`
 	// DiskIOPs is the number of disk I/O operations per second that are permitted on each node in the cluster. Zero indicates the cloud provider-specific default. Only available for AWS clusters.
 	DiskIops             *int32 `json:"disk_iops,omitempty"`

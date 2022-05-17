@@ -3,13 +3,13 @@
 ## Enum
 
 
-* `UNSPECIFIED` (value: `"PLAN_UNSPECIFIED"`)
+* `PLAN_UNSPECIFIED` (value: `"PLAN_UNSPECIFIED"`)
 
-* `DEDICATED` (value: `"PLAN_DEDICATED"`)
+* `DEDICATED` (value: `"DEDICATED"`)
 
-* `CUSTOM` (value: `"PLAN_CUSTOM"`)
+* `CUSTOM` (value: `"CUSTOM"`)
 
-* `SERVERLESS` (value: `"PLAN_SERVERLESS"`)
+* `SERVERLESS` (value: `"SERVERLESS"`)
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

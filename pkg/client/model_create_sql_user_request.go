@@ -10,8 +10,8 @@ import (
 
 // CreateSQLUserRequest struct for CreateSQLUserRequest.
 type CreateSQLUserRequest struct {
-	User                 SQLUser `json:"user"`
-	Password             string  `json:"password"`
+	Name                 string `json:"name"`
+	Password             string `json:"password"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -21,9 +21,9 @@ type createSQLUserRequest CreateSQLUserRequest
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateSQLUserRequest(user SQLUser, password string) *CreateSQLUserRequest {
+func NewCreateSQLUserRequest(name string, password string) *CreateSQLUserRequest {
 	p := CreateSQLUserRequest{}
-	p.User = user
+	p.Name = name
 	p.Password = password
 	return &p
 }
@@ -36,19 +36,19 @@ func NewCreateSQLUserRequestWithDefaults() *CreateSQLUserRequest {
 	return &p
 }
 
-// GetUser returns the User field value.
-func (o *CreateSQLUserRequest) GetUser() SQLUser {
+// GetName returns the Name field value.
+func (o *CreateSQLUserRequest) GetName() string {
 	if o == nil {
-		var ret SQLUser
+		var ret string
 		return ret
 	}
 
-	return o.User
+	return o.Name
 }
 
-// SetUser sets field value.
-func (o *CreateSQLUserRequest) SetUser(v SQLUser) {
-	o.User = v
+// SetName sets field value.
+func (o *CreateSQLUserRequest) SetName(v string) {
+	o.Name = v
 }
 
 // GetPassword returns the Password field value.
@@ -69,7 +69,7 @@ func (o *CreateSQLUserRequest) SetPassword(v string) {
 func (o CreateSQLUserRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["user"] = o.User
+		toSerialize["name"] = o.Name
 	}
 	if true {
 		toSerialize["password"] = o.Password
@@ -92,7 +92,7 @@ func (o *CreateSQLUserRequest) UnmarshalJSON(bytes []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "user")
+		delete(additionalProperties, "name")
 		delete(additionalProperties, "password")
 		o.AdditionalProperties = additionalProperties
 	}

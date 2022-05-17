@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CidrIp** | **string** |  | 
-**CidrMask** | Pointer to **int32** |  | [optional] 
+**CidrMask** | **int32** |  | 
 **Ui** | **bool** |  | 
 **Sql** | **bool** |  | 
 **Name** | Pointer to **string** |  | [optional] 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 
 ### NewAllowlistEntry
 
-`func NewAllowlistEntry(cidrIp string, ui bool, sql bool, ) *AllowlistEntry`
+`func NewAllowlistEntry(cidrIp string, cidrMask int32, ui bool, sql bool, ) *AllowlistEntry`
 
 NewAllowlistEntry instantiates a new AllowlistEntry object.
 This constructor will assign default values to properties that have it defined,

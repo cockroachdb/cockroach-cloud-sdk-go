@@ -28,7 +28,7 @@ Method | HTTP request | Description
 
 ## AddAllowlistEntry
 
-> interface{} AddAllowlistEntry(ctx, clusterId).AllowlistEntry(allowlistEntry).Execute()
+> AllowlistEntry AddAllowlistEntry(ctx, clusterId).AllowlistEntry(allowlistEntry).Execute()
 
 Add a new CIDR address to the IP allowlist.
 
@@ -46,7 +46,7 @@ import (
 
 func main() {
     clusterId := "clusterId_example" // string | 
-    allowlistEntry := *openapiclient.NewAllowlistEntry("CidrIp_example", false, false) // AllowlistEntry | 
+    allowlistEntry := *openapiclient.NewAllowlistEntry("CidrIp_example", int32(123), false, false) // AllowlistEntry | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
@@ -55,7 +55,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.AddAllowlistEntry``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `AddAllowlistEntry`: interface{}
+    // response from `AddAllowlistEntry`: AllowlistEntry
     fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.AddAllowlistEntry`: %v\n", resp)
 }
 ```
@@ -80,7 +80,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**interface{}**
+[**AllowlistEntry**](AllowlistEntry.md)
 
 ### Authorization
 
@@ -98,7 +98,7 @@ Name | Type | Description  | Notes
 
 ## AddAllowlistEntry2
 
-> interface{} AddAllowlistEntry2(ctx, clusterId, entryCidrIp, entryCidrMask).AllowlistEntry(allowlistEntry).Execute()
+> AllowlistEntry AddAllowlistEntry2(ctx, clusterId, entryCidrIp, entryCidrMask).AllowlistEntry(allowlistEntry).Execute()
 
 Add a new CIDR address to the IP allowlist.
 
@@ -118,7 +118,7 @@ func main() {
     clusterId := "clusterId_example" // string | 
     entryCidrIp := "entryCidrIp_example" // string | 
     entryCidrMask := int32(56) // int32 | 
-    allowlistEntry := *openapiclient.NewAllowlistEntry("CidrIp_example", false, false) // AllowlistEntry | 
+    allowlistEntry := *openapiclient.NewAllowlistEntry("CidrIp_example", int32(123), false, false) // AllowlistEntry | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
@@ -127,7 +127,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.AddAllowlistEntry2``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `AddAllowlistEntry2`: interface{}
+    // response from `AddAllowlistEntry2`: AllowlistEntry
     fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.AddAllowlistEntry2`: %v\n", resp)
 }
 ```
@@ -156,7 +156,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**interface{}**
+[**AllowlistEntry**](AllowlistEntry.md)
 
 ### Authorization
 
@@ -238,7 +238,7 @@ Name | Type | Description  | Notes
 
 ## CreateSQLUser
 
-> interface{} CreateSQLUser(ctx, clusterId).CreateSQLUserRequest(createSQLUserRequest).Execute()
+> SQLUser CreateSQLUser(ctx, clusterId).CreateSQLUserRequest(createSQLUserRequest).Execute()
 
 Create a new SQL user.
 
@@ -256,7 +256,7 @@ import (
 
 func main() {
     clusterId := "clusterId_example" // string | 
-    createSQLUserRequest := *openapiclient.NewCreateSQLUserRequest(*openapiclient.NewSQLUser("Name_example"), "Password_example") // CreateSQLUserRequest | 
+    createSQLUserRequest := *openapiclient.NewCreateSQLUserRequest("Name_example", "Password_example") // CreateSQLUserRequest | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
@@ -265,7 +265,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.CreateSQLUser``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateSQLUser`: interface{}
+    // response from `CreateSQLUser`: SQLUser
     fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.CreateSQLUser`: %v\n", resp)
 }
 ```
@@ -290,7 +290,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**interface{}**
+[**SQLUser**](SQLUser.md)
 
 ### Authorization
 
@@ -308,7 +308,7 @@ Name | Type | Description  | Notes
 
 ## DeleteAllowlistEntry
 
-> interface{} DeleteAllowlistEntry(ctx, clusterId, cidrIp, cidrMask).Execute()
+> AllowlistEntry DeleteAllowlistEntry(ctx, clusterId, cidrIp, cidrMask).Execute()
 
 Delete an IP allowlist entry.
 
@@ -336,7 +336,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.DeleteAllowlistEntry``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `DeleteAllowlistEntry`: interface{}
+    // response from `DeleteAllowlistEntry`: AllowlistEntry
     fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.DeleteAllowlistEntry`: %v\n", resp)
 }
 ```
@@ -364,7 +364,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**interface{}**
+[**AllowlistEntry**](AllowlistEntry.md)
 
 ### Authorization
 
@@ -382,7 +382,7 @@ Name | Type | Description  | Notes
 
 ## DeleteCluster
 
-> interface{} DeleteCluster(ctx, clusterId).Execute()
+> Cluster DeleteCluster(ctx, clusterId).Execute()
 
 Delete a cluster and all of its data.
 
@@ -408,7 +408,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.DeleteCluster``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `DeleteCluster`: interface{}
+    // response from `DeleteCluster`: Cluster
     fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.DeleteCluster`: %v\n", resp)
 }
 ```
@@ -432,7 +432,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**interface{}**
+[**Cluster**](Cluster.md)
 
 ### Authorization
 
@@ -450,7 +450,7 @@ Name | Type | Description  | Notes
 
 ## DeleteSQLUser
 
-> interface{} DeleteSQLUser(ctx, clusterId, name).Execute()
+> SQLUser DeleteSQLUser(ctx, clusterId, name).Execute()
 
 Delete a SQL user.
 
@@ -477,7 +477,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.DeleteSQLUser``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `DeleteSQLUser`: interface{}
+    // response from `DeleteSQLUser`: SQLUser
     fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.DeleteSQLUser`: %v\n", resp)
 }
 ```
@@ -503,7 +503,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**interface{}**
+[**SQLUser**](SQLUser.md)
 
 ### Authorization
 
@@ -731,6 +731,8 @@ Name | Type | Description  | Notes
 
 Get the IP allowlist and propagation status for a cluster.
 
+
+
 ### Example
 
 ```go
@@ -810,6 +812,8 @@ Name | Type | Description  | Notes
 
 List the regions available for new clusters and nodes.
 
+
+
 ### Example
 
 ```go
@@ -824,7 +828,7 @@ import (
 )
 
 func main() {
-    provider := "provider_example" // string | Optional CloudProvider for filtering.   - CLOUD_PROVIDER_GCP: The Google Cloud Platform cloud provider.  - CLOUD_PROVIDER_AWS: The Amazon Web Services cloud provider. (optional) (default to "CLOUD_PROVIDER_UNSPECIFIED")
+    provider := "provider_example" // string | Optional CloudProvider for filtering.   - GCP: The Google Cloud Platform cloud provider.  - AWS: The Amazon Web Services cloud provider. (optional) (default to "CLOUD_PROVIDER_UNSPECIFIED")
     serverless := true // bool | Optional filter to only show regions available for serverless clusters. (optional) (default to false)
     paginationStartKey := "paginationStartKey_example" // string |  (optional)
     paginationDirection := "paginationDirection_example" // string |  (optional) (default to "PAGE_DIRECTION_NEXT")
@@ -855,7 +859,7 @@ Other parameters are passed through a pointer to a apiListAvailableRegions struc
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **provider** | **string** | Optional CloudProvider for filtering.   - CLOUD_PROVIDER_GCP: The Google Cloud Platform cloud provider.  - CLOUD_PROVIDER_AWS: The Amazon Web Services cloud provider. | [default to &quot;CLOUD_PROVIDER_UNSPECIFIED&quot;]
+ **provider** | **string** | Optional CloudProvider for filtering.   - GCP: The Google Cloud Platform cloud provider.  - AWS: The Amazon Web Services cloud provider. | [default to &quot;CLOUD_PROVIDER_UNSPECIFIED&quot;]
  **serverless** | **bool** | Optional filter to only show regions available for serverless clusters. | [default to false]
  **paginationStartKey** | **string** |  | 
  **paginationDirection** | **string** |  | [default to &quot;PAGE_DIRECTION_NEXT&quot;]
@@ -886,6 +890,8 @@ Name | Type | Description  | Notes
 > ListClusterNodesResponse ListClusterNodes(ctx, clusterId).RegionName(regionName).PaginationStartKey(paginationStartKey).PaginationDirection(paginationDirection).PaginationLimit(paginationLimit).PaginationTime(paginationTime).PaginationOrder(paginationOrder).Execute()
 
 List nodes for a cluster.
+
+
 
 ### Example
 
@@ -968,6 +974,8 @@ Name | Type | Description  | Notes
 
 List clusters owned by an organization.
 
+
+
 ### Example
 
 ```go
@@ -1042,6 +1050,8 @@ Name | Type | Description  | Notes
 > ListSQLUsersResponse ListSQLUsers(ctx, clusterId).PaginationStartKey(paginationStartKey).PaginationDirection(paginationDirection).PaginationLimit(paginationLimit).PaginationTime(paginationTime).PaginationOrder(paginationOrder).Execute()
 
 List SQL users for a cluster.
+
+
 
 ### Example
 
@@ -1118,7 +1128,7 @@ Name | Type | Description  | Notes
 
 ## UpdateAllowlistEntry
 
-> UpdateAllowlistEntryResponse UpdateAllowlistEntry(ctx, clusterId, entryCidrIp, entryCidrMask).AllowlistEntry(allowlistEntry).FieldMask(fieldMask).Execute()
+> AllowlistEntry UpdateAllowlistEntry(ctx, clusterId, entryCidrIp, entryCidrMask).AllowlistEntry(allowlistEntry).FieldMask(fieldMask).Execute()
 
 Update an IP allowlist entry.
 
@@ -1138,7 +1148,7 @@ func main() {
     clusterId := "clusterId_example" // string | 
     entryCidrIp := "entryCidrIp_example" // string | 
     entryCidrMask := int32(56) // int32 | 
-    allowlistEntry := *openapiclient.NewAllowlistEntry("CidrIp_example", false, false) // AllowlistEntry | 
+    allowlistEntry := *openapiclient.NewAllowlistEntry("CidrIp_example", int32(123), false, false) // AllowlistEntry | 
     fieldMask := "fieldMask_example" // string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
@@ -1148,7 +1158,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.UpdateAllowlistEntry``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateAllowlistEntry`: UpdateAllowlistEntryResponse
+    // response from `UpdateAllowlistEntry`: AllowlistEntry
     fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.UpdateAllowlistEntry`: %v\n", resp)
 }
 ```
@@ -1178,7 +1188,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**UpdateAllowlistEntryResponse**](UpdateAllowlistEntryResponse.md)
+[**AllowlistEntry**](AllowlistEntry.md)
 
 ### Authorization
 
@@ -1266,7 +1276,7 @@ Name | Type | Description  | Notes
 
 ## UpdateCluster
 
-> interface{} UpdateCluster(ctx, clusterId).UpdateClusterSpecification(updateClusterSpecification).FieldMask(fieldMask).Execute()
+> Cluster UpdateCluster(ctx, clusterId).UpdateClusterSpecification(updateClusterSpecification).FieldMask(fieldMask).Execute()
 
 Scale or edit a cluster.
 
@@ -1294,7 +1304,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.UpdateCluster``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateCluster`: interface{}
+    // response from `UpdateCluster`: Cluster
     fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.UpdateCluster`: %v\n", resp)
 }
 ```
@@ -1320,7 +1330,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**interface{}**
+[**Cluster**](Cluster.md)
 
 ### Authorization
 
@@ -1338,7 +1348,7 @@ Name | Type | Description  | Notes
 
 ## UpdateSQLUserPassword
 
-> interface{} UpdateSQLUserPassword(ctx, clusterId, name).UpdateSQLUserPasswordRequest(updateSQLUserPasswordRequest).Execute()
+> SQLUser UpdateSQLUserPassword(ctx, clusterId, name).UpdateSQLUserPasswordRequest(updateSQLUserPasswordRequest).Execute()
 
 Update a SQL user's password.
 
@@ -1366,7 +1376,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.UpdateSQLUserPassword``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateSQLUserPassword`: interface{}
+    // response from `UpdateSQLUserPassword`: SQLUser
     fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.UpdateSQLUserPassword`: %v\n", resp)
 }
 ```
@@ -1393,7 +1403,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**interface{}**
+[**SQLUser**](SQLUser.md)
 
 ### Authorization
 

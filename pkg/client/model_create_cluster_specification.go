@@ -10,8 +10,8 @@ import (
 
 // CreateClusterSpecification struct for CreateClusterSpecification.
 type CreateClusterSpecification struct {
-	Dedicated            *DedicatedClusterCreateSpecification `json:"dedicated,omitempty"`
-	Serverless           *ServerlessClusterSpecification      `json:"serverless,omitempty"`
+	Dedicated            *DedicatedClusterCreateSpecification  `json:"dedicated,omitempty"`
+	Serverless           *ServerlessClusterCreateSpecification `json:"serverless,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -41,16 +41,16 @@ func (o *CreateClusterSpecification) SetDedicated(v DedicatedClusterCreateSpecif
 }
 
 // GetServerless returns the Serverless field value if set, zero value otherwise.
-func (o *CreateClusterSpecification) GetServerless() ServerlessClusterSpecification {
+func (o *CreateClusterSpecification) GetServerless() ServerlessClusterCreateSpecification {
 	if o == nil || o.Serverless == nil {
-		var ret ServerlessClusterSpecification
+		var ret ServerlessClusterCreateSpecification
 		return ret
 	}
 	return *o.Serverless
 }
 
-// SetServerless gets a reference to the given ServerlessClusterSpecification and assigns it to the Serverless field.
-func (o *CreateClusterSpecification) SetServerless(v ServerlessClusterSpecification) {
+// SetServerless gets a reference to the given ServerlessClusterCreateSpecification and assigns it to the Serverless field.
+func (o *CreateClusterSpecification) SetServerless(v ServerlessClusterCreateSpecification) {
 	o.Serverless = &v
 }
 

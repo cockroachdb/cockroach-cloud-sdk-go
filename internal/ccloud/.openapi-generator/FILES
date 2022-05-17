@@ -44,10 +44,10 @@ docs/Plan.md
 docs/Region.md
 docs/SQLUser.md
 docs/ServerlessClusterConfig.md
-docs/ServerlessClusterSpecification.md
+docs/ServerlessClusterCreateSpecification.md
+docs/ServerlessClusterUpdateSpecification.md
 docs/SortOrder.md
 docs/Status.md
-docs/UpdateAllowlistEntryResponse.md
 docs/UpdateCMEKStatusRequest.md
 docs/UpdateClusterSpecification.md
 docs/UpdateSQLUserPasswordRequest.md
@@ -90,11 +90,11 @@ model_page_direction.go
 model_plan.go
 model_region.go
 model_serverless_cluster_config.go
-model_serverless_cluster_specification.go
+model_serverless_cluster_create_specification.go
+model_serverless_cluster_update_specification.go
 model_sort_order.go
 model_sql_user.go
 model_status.go
-model_update_allowlist_entry_response.go
 model_update_cluster_specification.go
 model_update_cmek_status_request.go
 model_update_sql_user_password_request.go

@@ -9,21 +9,21 @@ import (
 	"fmt"
 )
 
-// ApiCloudProvider  - CLOUD_PROVIDER_GCP: The Google Cloud Platform cloud provider.  - CLOUD_PROVIDER_AWS: The Amazon Web Services cloud provider.
+// ApiCloudProvider  - GCP: The Google Cloud Platform cloud provider.  - AWS: The Amazon Web Services cloud provider.
 type ApiCloudProvider string
 
 // List of api.CloudProvider.
 const (
-	APICLOUDPROVIDER_UNSPECIFIED ApiCloudProvider = "CLOUD_PROVIDER_UNSPECIFIED"
-	APICLOUDPROVIDER_GCP         ApiCloudProvider = "CLOUD_PROVIDER_GCP"
-	APICLOUDPROVIDER_AWS         ApiCloudProvider = "CLOUD_PROVIDER_AWS"
+	APICLOUDPROVIDER_CLOUD_PROVIDER_UNSPECIFIED ApiCloudProvider = "CLOUD_PROVIDER_UNSPECIFIED"
+	APICLOUDPROVIDER_GCP                        ApiCloudProvider = "GCP"
+	APICLOUDPROVIDER_AWS                        ApiCloudProvider = "AWS"
 )
 
 // All allowed values of ApiCloudProvider enum.
 var AllowedApiCloudProviderEnumValues = []ApiCloudProvider{
 	"CLOUD_PROVIDER_UNSPECIFIED",
-	"CLOUD_PROVIDER_GCP",
-	"CLOUD_PROVIDER_AWS",
+	"GCP",
+	"AWS",
 }
 
 func (v *ApiCloudProvider) UnmarshalJSON(src []byte) error {

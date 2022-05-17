@@ -1,4 +1,4 @@
-# ServerlessClusterSpecification
+# ServerlessClusterCreateSpecification
 
 ## Properties
 
@@ -9,44 +9,44 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewServerlessClusterSpecification
+### NewServerlessClusterCreateSpecification
 
-`func NewServerlessClusterSpecification(regions []string, spendLimit int32, ) *ServerlessClusterSpecification`
+`func NewServerlessClusterCreateSpecification(regions []string, spendLimit int32, ) *ServerlessClusterCreateSpecification`
 
-NewServerlessClusterSpecification instantiates a new ServerlessClusterSpecification object.
+NewServerlessClusterCreateSpecification instantiates a new ServerlessClusterCreateSpecification object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed.
 
-### NewServerlessClusterSpecificationWithDefaults
+### NewServerlessClusterCreateSpecificationWithDefaults
 
-`func NewServerlessClusterSpecificationWithDefaults() *ServerlessClusterSpecification`
+`func NewServerlessClusterCreateSpecificationWithDefaults() *ServerlessClusterCreateSpecification`
 
-NewServerlessClusterSpecificationWithDefaults instantiates a new ServerlessClusterSpecification object.
+NewServerlessClusterCreateSpecificationWithDefaults instantiates a new ServerlessClusterCreateSpecification object.
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set.
 
 ### GetRegions
 
-`func (o *ServerlessClusterSpecification) GetRegions() []string`
+`func (o *ServerlessClusterCreateSpecification) GetRegions() []string`
 
 GetRegions returns the Regions field if non-nil, zero value otherwise.
 
 ### SetRegions
 
-`func (o *ServerlessClusterSpecification) SetRegions(v []string)`
+`func (o *ServerlessClusterCreateSpecification) SetRegions(v []string)`
 
 SetRegions sets Regions field to given value.
 
 ### GetSpendLimit
 
-`func (o *ServerlessClusterSpecification) GetSpendLimit() int32`
+`func (o *ServerlessClusterCreateSpecification) GetSpendLimit() int32`
 
 GetSpendLimit returns the SpendLimit field if non-nil, zero value otherwise.
 
 ### SetSpendLimit
 
-`func (o *ServerlessClusterSpecification) SetSpendLimit(v int32)`
+`func (o *ServerlessClusterCreateSpecification) SetSpendLimit(v int32)`
 
 SetSpendLimit sets SpendLimit field to given value.
 

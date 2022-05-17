@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Dedicated** | Pointer to [**DedicatedClusterUpdateSpecification**](DedicatedClusterUpdateSpecification.md) |  | [optional] 
-**Serverless** | Pointer to [**ServerlessClusterSpecification**](ServerlessClusterSpecification.md) |  | [optional] 
+**Serverless** | Pointer to [**ServerlessClusterUpdateSpecification**](ServerlessClusterUpdateSpecification.md) |  | [optional] 
 
 ## Methods
 
@@ -32,13 +32,13 @@ SetDedicated sets Dedicated field to given value.
 
 ### GetServerless
 
-`func (o *UpdateClusterSpecification) GetServerless() ServerlessClusterSpecification`
+`func (o *UpdateClusterSpecification) GetServerless() ServerlessClusterUpdateSpecification`
 
 GetServerless returns the Serverless field if non-nil, zero value otherwise.
 
 ### SetServerless
 
-`func (o *UpdateClusterSpecification) SetServerless(v ServerlessClusterSpecification)`
+`func (o *UpdateClusterSpecification) SetServerless(v ServerlessClusterUpdateSpecification)`
 
 SetServerless sets Serverless field to given value.
 

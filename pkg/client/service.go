@@ -15,13 +15,13 @@ import (
 )
 
 type Service interface {
-	AddAllowlistEntry(ctx _context.Context, clusterId string, allowlistEntry *AllowlistEntry) (*_nethttp.Response, error)
-	AddAllowlistEntry2(ctx _context.Context, clusterId string, entryCidrIp string, entryCidrMask int32, allowlistEntry *AllowlistEntry) (*_nethttp.Response, error)
+	AddAllowlistEntry(ctx _context.Context, clusterId string, allowlistEntry *AllowlistEntry) (*AllowlistEntry, *_nethttp.Response, error)
+	AddAllowlistEntry2(ctx _context.Context, clusterId string, entryCidrIp string, entryCidrMask int32, allowlistEntry *AllowlistEntry) (*AllowlistEntry, *_nethttp.Response, error)
 	CreateCluster(ctx _context.Context, createClusterRequest *CreateClusterRequest) (*Cluster, *_nethttp.Response, error)
-	CreateSQLUser(ctx _context.Context, clusterId string, createSQLUserRequest *CreateSQLUserRequest) (*_nethttp.Response, error)
-	DeleteAllowlistEntry(ctx _context.Context, clusterId string, cidrIp string, cidrMask int32) (*_nethttp.Response, error)
-	DeleteCluster(ctx _context.Context, clusterId string) (*_nethttp.Response, error)
-	DeleteSQLUser(ctx _context.Context, clusterId string, name string) (*_nethttp.Response, error)
+	CreateSQLUser(ctx _context.Context, clusterId string, createSQLUserRequest *CreateSQLUserRequest) (*SQLUser, *_nethttp.Response, error)
+	DeleteAllowlistEntry(ctx _context.Context, clusterId string, cidrIp string, cidrMask int32) (*AllowlistEntry, *_nethttp.Response, error)
+	DeleteCluster(ctx _context.Context, clusterId string) (*Cluster, *_nethttp.Response, error)
+	DeleteSQLUser(ctx _context.Context, clusterId string, name string) (*SQLUser, *_nethttp.Response, error)
 	EnableCMEK(ctx _context.Context, clusterId string, cMEKClusterSpecification *CMEKClusterSpecification) (*CMEKClusterInfo, *_nethttp.Response, error)
 	GetCMEKClusterInfo(ctx _context.Context, clusterId string) (*CMEKClusterInfo, *_nethttp.Response, error)
 	GetCluster(ctx _context.Context, clusterId string) (*Cluster, *_nethttp.Response, error)
@@ -30,10 +30,10 @@ type Service interface {
 	ListClusterNodes(ctx _context.Context, clusterId string, options *ListClusterNodesOptions) (*ListClusterNodesResponse, *_nethttp.Response, error)
 	ListClusters(ctx _context.Context, options *ListClustersOptions) (*ListClustersResponse, *_nethttp.Response, error)
 	ListSQLUsers(ctx _context.Context, clusterId string, options *ListSQLUsersOptions) (*ListSQLUsersResponse, *_nethttp.Response, error)
-	UpdateAllowlistEntry(ctx _context.Context, clusterId string, entryCidrIp string, entryCidrMask int32, allowlistEntry *AllowlistEntry, options *UpdateAllowlistEntryOptions) (*UpdateAllowlistEntryResponse, *_nethttp.Response, error)
+	UpdateAllowlistEntry(ctx _context.Context, clusterId string, entryCidrIp string, entryCidrMask int32, allowlistEntry *AllowlistEntry, options *UpdateAllowlistEntryOptions) (*AllowlistEntry, *_nethttp.Response, error)
 	UpdateCMEKStatus(ctx _context.Context, clusterId string, updateCMEKStatusRequest *UpdateCMEKStatusRequest) (*CMEKClusterInfo, *_nethttp.Response, error)
-	UpdateCluster(ctx _context.Context, clusterId string, updateClusterSpecification *UpdateClusterSpecification, options *UpdateClusterOptions) (*_nethttp.Response, error)
-	UpdateSQLUserPassword(ctx _context.Context, clusterId string, name string, updateSQLUserPasswordRequest *UpdateSQLUserPasswordRequest) (*_nethttp.Response, error)
+	UpdateCluster(ctx _context.Context, clusterId string, updateClusterSpecification *UpdateClusterSpecification, options *UpdateClusterOptions) (*Cluster, *_nethttp.Response, error)
+	UpdateSQLUserPassword(ctx _context.Context, clusterId string, name string, updateSQLUserPasswordRequest *UpdateSQLUserPasswordRequest) (*SQLUser, *_nethttp.Response, error)
 }
 
 // Service for the Cockroach DB Cloud API v2021-12-28.
@@ -49,7 +49,7 @@ func NewService(c *Client) Service {
 // AddAllowlistEntry executes the request.
 func (a *ServiceImpl) AddAllowlistEntry(
 	ctx _context.Context, clusterId string, allowlistEntry *AllowlistEntry,
-) (*_nethttp.Response, error) {
+) (*AllowlistEntry, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -67,7 +67,7 @@ func (a *ServiceImpl) AddAllowlistEntry(
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if allowlistEntry == nil {
-		return nil, reportError("allowlistEntry is required and must be specified")
+		return nil, nil, reportError("allowlistEntry is required and must be specified")
 	}
 
 	// Determine the Content-Type header.
@@ -91,19 +91,19 @@ func (a *ServiceImpl) AddAllowlistEntry(
 	localVarPostBody = allowlistEntry
 	req, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return nil, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarHTTPResponse, err
+		return nil, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -116,68 +116,78 @@ func (a *ServiceImpl) AddAllowlistEntry(
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return nil, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return nil, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v interface{}
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return nil, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return nil, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v interface{}
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return nil, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return nil, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v interface{}
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return nil, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return nil, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode >= 500 {
 			var v interface{}
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return nil, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return nil, localVarHTTPResponse, newErr
 		}
 		var v Status
 		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 		if err != nil {
 			newErr.error = err.Error()
-			return localVarHTTPResponse, newErr
+			return nil, localVarHTTPResponse, newErr
 		}
 		newErr.model = v
-		return localVarHTTPResponse, newErr
+		return nil, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	var localVarReturnValue AllowlistEntry
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := Error{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return &localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return &localVarReturnValue, localVarHTTPResponse, nil
 }
 
 // AddAllowlistEntry2 executes the request.
 func (a *ServiceImpl) AddAllowlistEntry2(
 	ctx _context.Context, clusterId string, entryCidrIp string, entryCidrMask int32, allowlistEntry *AllowlistEntry,
-) (*_nethttp.Response, error) {
+) (*AllowlistEntry, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
@@ -197,7 +207,7 @@ func (a *ServiceImpl) AddAllowlistEntry2(
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if allowlistEntry == nil {
-		return nil, reportError("allowlistEntry is required and must be specified")
+		return nil, nil, reportError("allowlistEntry is required and must be specified")
 	}
 
 	// Determine the Content-Type header.
@@ -221,19 +231,19 @@ func (a *ServiceImpl) AddAllowlistEntry2(
 	localVarPostBody = allowlistEntry
 	req, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return nil, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarHTTPResponse, err
+		return nil, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -246,62 +256,72 @@ func (a *ServiceImpl) AddAllowlistEntry2(
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return nil, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return nil, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v interface{}
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return nil, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return nil, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v interface{}
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return nil, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return nil, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v interface{}
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return nil, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return nil, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode >= 500 {
 			var v interface{}
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return nil, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return nil, localVarHTTPResponse, newErr
 		}
 		var v Status
 		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 		if err != nil {
 			newErr.error = err.Error()
-			return localVarHTTPResponse, newErr
+			return nil, localVarHTTPResponse, newErr
 		}
 		newErr.model = v
-		return localVarHTTPResponse, newErr
+		return nil, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	var localVarReturnValue AllowlistEntry
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := Error{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return &localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return &localVarReturnValue, localVarHTTPResponse, nil
 }
 
 // CreateCluster executes the request.
@@ -444,7 +464,7 @@ func (a *ServiceImpl) CreateCluster(
 // CreateSQLUser executes the request.
 func (a *ServiceImpl) CreateSQLUser(
 	ctx _context.Context, clusterId string, createSQLUserRequest *CreateSQLUserRequest,
-) (*_nethttp.Response, error) {
+) (*SQLUser, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -462,7 +482,7 @@ func (a *ServiceImpl) CreateSQLUser(
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if createSQLUserRequest == nil {
-		return nil, reportError("createSQLUserRequest is required and must be specified")
+		return nil, nil, reportError("createSQLUserRequest is required and must be specified")
 	}
 
 	// Determine the Content-Type header.
@@ -486,19 +506,19 @@ func (a *ServiceImpl) CreateSQLUser(
 	localVarPostBody = createSQLUserRequest
 	req, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return nil, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarHTTPResponse, err
+		return nil, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -511,68 +531,78 @@ func (a *ServiceImpl) CreateSQLUser(
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return nil, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return nil, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v interface{}
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return nil, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return nil, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v interface{}
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return nil, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return nil, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v interface{}
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return nil, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return nil, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode >= 500 {
 			var v interface{}
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return nil, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return nil, localVarHTTPResponse, newErr
 		}
 		var v Status
 		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 		if err != nil {
 			newErr.error = err.Error()
-			return localVarHTTPResponse, newErr
+			return nil, localVarHTTPResponse, newErr
 		}
 		newErr.model = v
-		return localVarHTTPResponse, newErr
+		return nil, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	var localVarReturnValue SQLUser
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := Error{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return &localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return &localVarReturnValue, localVarHTTPResponse, nil
 }
 
 // DeleteAllowlistEntry executes the request.
 func (a *ServiceImpl) DeleteAllowlistEntry(
 	ctx _context.Context, clusterId string, cidrIp string, cidrMask int32,
-) (*_nethttp.Response, error) {
+) (*AllowlistEntry, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodDelete
 		localVarPostBody     interface{}
@@ -611,19 +641,19 @@ func (a *ServiceImpl) DeleteAllowlistEntry(
 	}
 	req, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return nil, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarHTTPResponse, err
+		return nil, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -636,68 +666,78 @@ func (a *ServiceImpl) DeleteAllowlistEntry(
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return nil, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return nil, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v interface{}
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return nil, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return nil, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v interface{}
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return nil, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return nil, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v interface{}
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return nil, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return nil, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode >= 500 {
 			var v interface{}
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return nil, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return nil, localVarHTTPResponse, newErr
 		}
 		var v Status
 		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 		if err != nil {
 			newErr.error = err.Error()
-			return localVarHTTPResponse, newErr
+			return nil, localVarHTTPResponse, newErr
 		}
 		newErr.model = v
-		return localVarHTTPResponse, newErr
+		return nil, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	var localVarReturnValue AllowlistEntry
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := Error{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return &localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return &localVarReturnValue, localVarHTTPResponse, nil
 }
 
 // DeleteCluster executes the request.
 func (a *ServiceImpl) DeleteCluster(
 	ctx _context.Context, clusterId string,
-) (*_nethttp.Response, error) {
+) (*Cluster, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodDelete
 		localVarPostBody     interface{}
@@ -734,19 +774,19 @@ func (a *ServiceImpl) DeleteCluster(
 	}
 	req, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return nil, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarHTTPResponse, err
+		return nil, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -759,68 +799,78 @@ func (a *ServiceImpl) DeleteCluster(
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return nil, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return nil, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v interface{}
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return nil, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return nil, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v interface{}
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return nil, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return nil, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v interface{}
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return nil, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return nil, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode >= 500 {
 			var v interface{}
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return nil, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return nil, localVarHTTPResponse, newErr
 		}
 		var v Status
 		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 		if err != nil {
 			newErr.error = err.Error()
-			return localVarHTTPResponse, newErr
+			return nil, localVarHTTPResponse, newErr
 		}
 		newErr.model = v
-		return localVarHTTPResponse, newErr
+		return nil, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	var localVarReturnValue Cluster
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := Error{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return &localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return &localVarReturnValue, localVarHTTPResponse, nil
 }
 
 // DeleteSQLUser executes the request.
 func (a *ServiceImpl) DeleteSQLUser(
 	ctx _context.Context, clusterId string, name string,
-) (*_nethttp.Response, error) {
+) (*SQLUser, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodDelete
 		localVarPostBody     interface{}
@@ -858,19 +908,19 @@ func (a *ServiceImpl) DeleteSQLUser(
 	}
 	req, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return nil, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarHTTPResponse, err
+		return nil, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -883,62 +933,72 @@ func (a *ServiceImpl) DeleteSQLUser(
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return nil, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return nil, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v interface{}
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return nil, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return nil, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v interface{}
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return nil, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return nil, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v interface{}
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return nil, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return nil, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode >= 500 {
 			var v interface{}
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return nil, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return nil, localVarHTTPResponse, newErr
 		}
 		var v Status
 		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 		if err != nil {
 			newErr.error = err.Error()
-			return localVarHTTPResponse, newErr
+			return nil, localVarHTTPResponse, newErr
 		}
 		newErr.model = v
-		return localVarHTTPResponse, newErr
+		return nil, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	var localVarReturnValue SQLUser
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := Error{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return &localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return &localVarReturnValue, localVarHTTPResponse, nil
 }
 
 // EnableCMEK executes the request.
@@ -1509,7 +1569,7 @@ func (a *ServiceImpl) ListAllowlistEntries(
 
 // ListAvailableRegionsOptions contains optional parameters for ListAvailableRegions.
 type ListAvailableRegionsOptions struct {
-	// Optional CloudProvider for filtering.   - CLOUD_PROVIDER_GCP: The Google Cloud Platform cloud provider.  - CLOUD_PROVIDER_AWS: The Amazon Web Services cloud provider.
+	// Optional CloudProvider for filtering.   - GCP: The Google Cloud Platform cloud provider.  - AWS: The Amazon Web Services cloud provider.
 	Provider *string
 
 	// Optional filter to only show regions available for serverless clusters.
@@ -2185,7 +2245,7 @@ type UpdateAllowlistEntryOptions struct {
 // UpdateAllowlistEntry executes the request.
 func (a *ServiceImpl) UpdateAllowlistEntry(
 	ctx _context.Context, clusterId string, entryCidrIp string, entryCidrMask int32, allowlistEntry *AllowlistEntry, options *UpdateAllowlistEntryOptions,
-) (*UpdateAllowlistEntryResponse, *_nethttp.Response, error) {
+) (*AllowlistEntry, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPatch
 		localVarPostBody     interface{}
@@ -2312,7 +2372,7 @@ func (a *ServiceImpl) UpdateAllowlistEntry(
 		return nil, localVarHTTPResponse, newErr
 	}
 
-	var localVarReturnValue UpdateAllowlistEntryResponse
+	var localVarReturnValue AllowlistEntry
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := Error{
@@ -2471,7 +2531,7 @@ type UpdateClusterOptions struct {
 // UpdateCluster executes the request.
 func (a *ServiceImpl) UpdateCluster(
 	ctx _context.Context, clusterId string, updateClusterSpecification *UpdateClusterSpecification, options *UpdateClusterOptions,
-) (*_nethttp.Response, error) {
+) (*Cluster, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPatch
 		localVarPostBody     interface{}
@@ -2489,7 +2549,7 @@ func (a *ServiceImpl) UpdateCluster(
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if updateClusterSpecification == nil {
-		return nil, reportError("updateClusterSpecification is required and must be specified")
+		return nil, nil, reportError("updateClusterSpecification is required and must be specified")
 	}
 
 	if options.FieldMask != nil {
@@ -2516,19 +2576,19 @@ func (a *ServiceImpl) UpdateCluster(
 	localVarPostBody = updateClusterSpecification
 	req, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return nil, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarHTTPResponse, err
+		return nil, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -2541,68 +2601,78 @@ func (a *ServiceImpl) UpdateCluster(
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return nil, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return nil, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v interface{}
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return nil, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return nil, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v interface{}
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return nil, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return nil, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v interface{}
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return nil, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return nil, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode >= 500 {
 			var v interface{}
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return nil, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return nil, localVarHTTPResponse, newErr
 		}
 		var v Status
 		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 		if err != nil {
 			newErr.error = err.Error()
-			return localVarHTTPResponse, newErr
+			return nil, localVarHTTPResponse, newErr
 		}
 		newErr.model = v
-		return localVarHTTPResponse, newErr
+		return nil, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	var localVarReturnValue Cluster
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := Error{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return &localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return &localVarReturnValue, localVarHTTPResponse, nil
 }
 
 // UpdateSQLUserPassword executes the request.
 func (a *ServiceImpl) UpdateSQLUserPassword(
 	ctx _context.Context, clusterId string, name string, updateSQLUserPasswordRequest *UpdateSQLUserPasswordRequest,
-) (*_nethttp.Response, error) {
+) (*SQLUser, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
@@ -2621,7 +2691,7 @@ func (a *ServiceImpl) UpdateSQLUserPassword(
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if updateSQLUserPasswordRequest == nil {
-		return nil, reportError("updateSQLUserPasswordRequest is required and must be specified")
+		return nil, nil, reportError("updateSQLUserPasswordRequest is required and must be specified")
 	}
 
 	// Determine the Content-Type header.
@@ -2645,19 +2715,19 @@ func (a *ServiceImpl) UpdateSQLUserPassword(
 	localVarPostBody = updateSQLUserPasswordRequest
 	req, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return nil, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarHTTPResponse, err
+		return nil, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -2670,60 +2740,70 @@ func (a *ServiceImpl) UpdateSQLUserPassword(
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return nil, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return nil, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v interface{}
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return nil, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return nil, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v interface{}
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return nil, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return nil, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v interface{}
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return nil, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return nil, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode >= 500 {
 			var v interface{}
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return nil, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return nil, localVarHTTPResponse, newErr
 		}
 		var v Status
 		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 		if err != nil {
 			newErr.error = err.Error()
-			return localVarHTTPResponse, newErr
+			return nil, localVarHTTPResponse, newErr
 		}
 		newErr.model = v
-		return localVarHTTPResponse, newErr
+		return nil, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	var localVarReturnValue SQLUser
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := Error{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return &localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return &localVarReturnValue, localVarHTTPResponse, nil
 }

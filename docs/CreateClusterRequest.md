@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** |  | 
-**Provider** | [**ApiCloudProvider**](ApiCloudProvider.md) |  | [default to APICLOUDPROVIDER_UNSPECIFIED]
+**Provider** | [**ApiCloudProvider**](ApiCloudProvider.md) |  | [default to APICLOUDPROVIDER_CLOUD_PROVIDER_UNSPECIFIED]
 **Spec** | [**CreateClusterSpecification**](CreateClusterSpecification.md) |  | 
 
 ## Methods

@@ -3,17 +3,17 @@
 ## Enum
 
 
-* `UNSPECIFIED` (value: `"CLUSTER_STATE_UNSPECIFIED"`)
+* `CLUSTER_STATE_UNSPECIFIED` (value: `"CLUSTER_STATE_UNSPECIFIED"`)
 
-* `CREATING` (value: `"CLUSTER_STATE_CREATING"`)
+* `CREATING` (value: `"CREATING"`)
 
-* `CREATED` (value: `"CLUSTER_STATE_CREATED"`)
+* `CREATED` (value: `"CREATED"`)
 
-* `CREATION_FAILED` (value: `"CLUSTER_STATE_CREATION_FAILED"`)
+* `CREATION_FAILED` (value: `"CREATION_FAILED"`)
 
-* `DELETED` (value: `"CLUSTER_STATE_DELETED"`)
+* `DELETED` (value: `"DELETED"`)
 
-* `LOCKED` (value: `"CLUSTER_STATE_LOCKED"`)
+* `LOCKED` (value: `"LOCKED"`)
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

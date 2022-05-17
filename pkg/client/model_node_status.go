@@ -14,16 +14,16 @@ type NodeStatus string
 
 // List of NodeStatus.
 const (
-	NODESTATUS_UNSPECIFIED NodeStatus = "NODE_STATUS_UNSPECIFIED"
-	NODESTATUS_LIVE        NodeStatus = "NODE_STATUS_LIVE"
-	NODESTATUS_NOT_READY   NodeStatus = "NODE_STATUS_NOT_READY"
+	NODESTATUS_NODE_STATUS_UNSPECIFIED NodeStatus = "NODE_STATUS_UNSPECIFIED"
+	NODESTATUS_LIVE                    NodeStatus = "LIVE"
+	NODESTATUS_NOT_READY               NodeStatus = "NOT_READY"
 )
 
 // All allowed values of NodeStatus enum.
 var AllowedNodeStatusEnumValues = []NodeStatus{
 	"NODE_STATUS_UNSPECIFIED",
-	"NODE_STATUS_LIVE",
-	"NODE_STATUS_NOT_READY",
+	"LIVE",
+	"NOT_READY",
 }
 
 func (v *NodeStatus) UnmarshalJSON(src []byte) error {

@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **MachineSpec** | [**DedicatedMachineTypeSpecification**](DedicatedMachineTypeSpecification.md) |  | 
-**StorageGib** | **int32** | StorageGiB is the number of storage GiB per node in the cluster. | 
+**StorageGib** | **int32** | StorageGiB is the number of storage GiB per node in the cluster. Zero indicates default to the lowest storage GiB available given machine specs. | 
 **DiskIops** | Pointer to **int32** | DiskIOPs is the number of disk I/O operations per second that are permitted on each node in the cluster. Zero indicates the cloud provider-specific default. Only available for AWS clusters. | [optional] 
 
 ## Methods
