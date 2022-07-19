@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** |  | 
 **RegionName** | **string** |  | 
-**Status** | [**NodeStatus**](NodeStatus.md) |  | [default to NODESTATUS_NODE_STATUS_UNSPECIFIED]
+**Status** | [**NodeStatus**](NodeStatus.md) |  | 
 
 ## Methods
 

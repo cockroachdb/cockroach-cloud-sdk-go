@@ -3,8 +3,6 @@
 ## Enum
 
 
-* `CLUSTER_STATE_UNSPECIFIED` (value: `"CLUSTER_STATE_UNSPECIFIED"`)
-
 * `CREATING` (value: `"CREATING"`)
 
 * `CREATED` (value: `"CREATED"`)

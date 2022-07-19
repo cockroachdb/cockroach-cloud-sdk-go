@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Status** | Pointer to [**CMEKStatus**](CMEKStatus.md) |  | [optional] [default to CMEKSTATUS_UNKNOWN_STATUS]
+**Status** | Pointer to [**CMEKStatus**](CMEKStatus.md) |  | [optional] 
 **UserMessage** | Pointer to **string** |  | [optional] 
 **Spec** | Pointer to [**CMEKKeySpecification**](CMEKKeySpecification.md) |  | [optional] 
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 

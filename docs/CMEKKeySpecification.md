@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | Pointer to [**CMEKKeyType**](CMEKKeyType.md) |  | [optional] [default to CMEKKEYTYPE_UNKNOWN_KEY_TYPE]
+**Type** | Pointer to [**CMEKKeyType**](CMEKKeyType.md) |  | [optional] 
 **Uri** | Pointer to **string** |  | [optional] 
 **AuthPrincipal** | Pointer to **string** |  | [optional] 
 

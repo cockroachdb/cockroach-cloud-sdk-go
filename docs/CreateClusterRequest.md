@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **string** |  | 
-**Provider** | [**ApiCloudProvider**](ApiCloudProvider.md) |  | [default to APICLOUDPROVIDER_CLOUD_PROVIDER_UNSPECIFIED]
+**Name** | **string** | Name must be 6-20 characters in length and can include numbers, lowercase letters, and dashes (but no leading or trailing dashes). | 
+**Provider** | [**ApiCloudProvider**](ApiCloudProvider.md) |  | 
 **Spec** | [**CreateClusterSpecification**](CreateClusterSpecification.md) |  | 
 
 ## Methods

@@ -3,8 +3,6 @@
 ## Enum
 
 
-* `UNKNOWN_KEY_TYPE` (value: `"UNKNOWN_KEY_TYPE"`)
-
 * `AWS_KMS` (value: `"AWS_KMS"`)
 
 * `GCP_CLOUD_KMS` (value: `"GCP_CLOUD_KMS"`)
