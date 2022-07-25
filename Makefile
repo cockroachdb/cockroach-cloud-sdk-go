@@ -11,3 +11,8 @@ generate-openapi-client:
 	go fmt ./internal/ccloud/...
 	mv ./internal/ccloud/*.go pkg/client/
 
+# Add boilerplate header to all pkg golang files.
+.PHONY: add-boilerplate
+add-boilerplate:
+	./internal/boilerplaterize.sh ./internal/boilerplate.txt \
+		`find . -name '*.go' -path './pkg/*' -exec echo '{}' \;`
