@@ -10,6 +10,7 @@ generate-openapi-client:
 	mv ./internal/ccloud/api_cockroach_cloud.go ./internal/ccloud/service.go
 	go fmt ./internal/ccloud/...
 	mv ./internal/ccloud/*.go pkg/client/
+	@$(MAKE) add-boilerplate
 
 # Add boilerplate header to all pkg golang files.
 .PHONY: add-boilerplate
