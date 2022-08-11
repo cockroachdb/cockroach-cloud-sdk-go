@@ -12,6 +12,10 @@ import (
     {{/-first}}
 {{/servers}}
 
+{{#version}}
+const ApiVersion = "{{.}}"
+{{/version}}
+
 {{#withCustomMiddlewareFunction}}
     // MiddlewareFunction provides way to implement custom middleware.
     type MiddlewareFunction func(*http.Request)
@@ -36,14 +40,14 @@ apiKey			 string
 func NewConfiguration(apiKey string) *Configuration {
 cfg := &Configuration{
 DefaultHeader:    make(map[string]string),
-UserAgent:        "{{{httpUserAgent}}}{{^httpUserAgent}}ccloud-cli/{{{packageVersion}}}{{/httpUserAgent}}",
+UserAgent:        "{{{httpUserAgent}}}{{^httpUserAgent}}ccloud-sdk-go/{{{packageVersion}}}{{/httpUserAgent}}",
 Debug:            false,
 ServerURL:        DefaultServerURL,
 apiKey:			  apiKey,
 }
 
 {{#version}}
-    cfg.AddDefaultHeader("Cc-Version", "{{.}}")
+    cfg.AddDefaultHeader("Cc-Version", ApiVersion)
 {{/version}}
 return cfg
 }
