@@ -24,6 +24,8 @@ import (
 
 const DefaultServerURL string = "https://cockroachlabs.cloud"
 
+const ApiVersion = "2022-03-31"
+
 // Configuration stores the configuration of the API client.
 type Configuration struct {
 	Host          string            `json:"host,omitempty"`
@@ -40,13 +42,13 @@ type Configuration struct {
 func NewConfiguration(apiKey string) *Configuration {
 	cfg := &Configuration{
 		DefaultHeader: make(map[string]string),
-		UserAgent:     "ccloud-cli/1.0.0",
+		UserAgent:     "ccloud-sdk-go/1.0.0",
 		Debug:         false,
 		ServerURL:     DefaultServerURL,
 		apiKey:        apiKey,
 	}
 
-	cfg.AddDefaultHeader("Cc-Version", "2022-03-31")
+	cfg.AddDefaultHeader("Cc-Version", ApiVersion)
 	return cfg
 }
 
