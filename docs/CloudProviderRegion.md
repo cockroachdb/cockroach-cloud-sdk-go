@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** |  | 
 **Location** | **string** |  | 
-**Provider** | [**ApiCloudProvider**](ApiCloudProvider.md) |  | [default to APICLOUDPROVIDER_CLOUD_PROVIDER_UNSPECIFIED]
+**Provider** | [**ApiCloudProvider**](ApiCloudProvider.md) |  | 
 **Serverless** | **bool** |  | 
 **Distance** | **float32** |  | 
 

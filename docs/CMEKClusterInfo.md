@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Status** | Pointer to [**CMEKStatus**](CMEKStatus.md) |  | [optional] [default to CMEKSTATUS_UNKNOWN_STATUS]
+**Status** | Pointer to [**CMEKStatus**](CMEKStatus.md) |  | [optional] 
 **RegionInfos** | Pointer to [**[]CMEKRegionInfo**](CMEKRegionInfo.md) |  | [optional] 
 
 ## Methods

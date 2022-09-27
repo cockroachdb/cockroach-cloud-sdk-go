@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Region** | Pointer to **string** |  | [optional] 
+**Status** | Pointer to [**CMEKStatus**](CMEKStatus.md) |  | [optional] 
 **KeyInfos** | Pointer to [**[]CMEKKeyInfo**](CMEKKeyInfo.md) |  | [optional] 
 
 ## Methods
@@ -29,6 +30,18 @@ GetRegion returns the Region field if non-nil, zero value otherwise.
 `func (o *CMEKRegionInfo) SetRegion(v string)`
 
 SetRegion sets Region field to given value.
+
+### GetStatus
+
+`func (o *CMEKRegionInfo) GetStatus() CMEKStatus`
+
+GetStatus returns the Status field if non-nil, zero value otherwise.
+
+### SetStatus
+
+`func (o *CMEKRegionInfo) SetStatus(v CMEKStatus)`
+
+SetStatus sets Status field to given value.
 
 ### GetKeyInfos
 

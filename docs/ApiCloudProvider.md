@@ -3,8 +3,6 @@
 ## Enum
 
 
-* `CLOUD_PROVIDER_UNSPECIFIED` (value: `"CLOUD_PROVIDER_UNSPECIFIED"`)
-
 * `GCP` (value: `"GCP"`)
 
 * `AWS` (value: `"AWS"`)

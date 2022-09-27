@@ -3,8 +3,6 @@
 ## Enum
 
 
-* `PLAN_UNSPECIFIED` (value: `"PLAN_UNSPECIFIED"`)
-
 * `DEDICATED` (value: `"DEDICATED"`)
 
 * `CUSTOM` (value: `"CUSTOM"`)

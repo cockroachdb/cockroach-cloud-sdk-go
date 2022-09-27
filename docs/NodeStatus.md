@@ -3,8 +3,6 @@
 ## Enum
 
 
-* `NODE_STATUS_UNSPECIFIED` (value: `"NODE_STATUS_UNSPECIFIED"`)
-
 * `LIVE` (value: `"LIVE"`)
 
 * `NOT_READY` (value: `"NOT_READY"`)

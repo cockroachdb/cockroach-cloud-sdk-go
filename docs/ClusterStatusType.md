@@ -39,6 +39,10 @@
 
 * `TENANT_RESTORE_FAILED` (value: `"TENANT_RESTORE_FAILED"`)
 
+* `CRDB_LOG_EXPORT_OPERATION_RUNNING` (value: `"CRDB_LOG_EXPORT_OPERATION_RUNNING"`)
+
+* `CRDB_LOG_EXPORT_OPERATION_FAILED` (value: `"CRDB_LOG_EXPORT_OPERATION_FAILED"`)
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
