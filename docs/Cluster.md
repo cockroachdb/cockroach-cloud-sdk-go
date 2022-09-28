@@ -7,12 +7,12 @@ Name | Type | Description | Notes
 **Id** | **string** |  | 
 **Name** | **string** |  | 
 **CockroachVersion** | **string** |  | 
-**Plan** | [**Plan**](Plan.md) |  | [default to PLAN_PLAN_UNSPECIFIED]
-**CloudProvider** | [**ApiCloudProvider**](ApiCloudProvider.md) |  | [default to APICLOUDPROVIDER_CLOUD_PROVIDER_UNSPECIFIED]
+**Plan** | [**Plan**](Plan.md) |  | 
+**CloudProvider** | [**ApiCloudProvider**](ApiCloudProvider.md) |  | 
 **AccountId** | Pointer to **string** |  | [optional] 
-**State** | [**ClusterStateType**](ClusterStateType.md) |  | [default to CLUSTERSTATETYPE_CLUSTER_STATE_UNSPECIFIED]
+**State** | [**ClusterStateType**](ClusterStateType.md) |  | 
 **CreatorId** | **string** |  | 
-**OperationStatus** | [**ClusterStatusType**](ClusterStatusType.md) |  | [default to CLUSTERSTATUSTYPE_CLUSTER_STATUS_UNSPECIFIED]
+**OperationStatus** | [**ClusterStatusType**](ClusterStatusType.md) |  | 
 **Config** | [**ClusterConfig**](ClusterConfig.md) |  | 
 **Regions** | [**[]Region**](Region.md) |  | 
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 

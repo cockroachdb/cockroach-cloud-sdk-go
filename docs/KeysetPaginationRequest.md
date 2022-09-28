@@ -4,11 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**StartKey** | Pointer to **string** |  | [optional] 
-**Direction** | Pointer to [**PageDirection**](PageDirection.md) |  | [optional] [default to PAGEDIRECTION_NEXT]
+**Page** | Pointer to **string** |  | [optional] 
 **Limit** | Pointer to **int32** |  | [optional] 
-**Time** | Pointer to **time.Time** |  | [optional] 
-**Order** | Pointer to [**SortOrder**](SortOrder.md) |  | [optional] [default to SORTORDER_ASC]
+**AsOfTime** | Pointer to **time.Time** |  | [optional] 
+**SortOrder** | Pointer to [**SortOrder**](SortOrder.md) |  | [optional] 
 
 ## Methods
 
@@ -21,29 +20,17 @@ This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed.
 
-### GetStartKey
+### GetPage
 
-`func (o *KeysetPaginationRequest) GetStartKey() string`
+`func (o *KeysetPaginationRequest) GetPage() string`
 
-GetStartKey returns the StartKey field if non-nil, zero value otherwise.
+GetPage returns the Page field if non-nil, zero value otherwise.
 
-### SetStartKey
+### SetPage
 
-`func (o *KeysetPaginationRequest) SetStartKey(v string)`
+`func (o *KeysetPaginationRequest) SetPage(v string)`
 
-SetStartKey sets StartKey field to given value.
-
-### GetDirection
-
-`func (o *KeysetPaginationRequest) GetDirection() PageDirection`
-
-GetDirection returns the Direction field if non-nil, zero value otherwise.
-
-### SetDirection
-
-`func (o *KeysetPaginationRequest) SetDirection(v PageDirection)`
-
-SetDirection sets Direction field to given value.
+SetPage sets Page field to given value.
 
 ### GetLimit
 
@@ -57,29 +44,29 @@ GetLimit returns the Limit field if non-nil, zero value otherwise.
 
 SetLimit sets Limit field to given value.
 
-### GetTime
+### GetAsOfTime
 
-`func (o *KeysetPaginationRequest) GetTime() time.Time`
+`func (o *KeysetPaginationRequest) GetAsOfTime() time.Time`
 
-GetTime returns the Time field if non-nil, zero value otherwise.
+GetAsOfTime returns the AsOfTime field if non-nil, zero value otherwise.
 
-### SetTime
+### SetAsOfTime
 
-`func (o *KeysetPaginationRequest) SetTime(v time.Time)`
+`func (o *KeysetPaginationRequest) SetAsOfTime(v time.Time)`
 
-SetTime sets Time field to given value.
+SetAsOfTime sets AsOfTime field to given value.
 
-### GetOrder
+### GetSortOrder
 
-`func (o *KeysetPaginationRequest) GetOrder() SortOrder`
+`func (o *KeysetPaginationRequest) GetSortOrder() SortOrder`
 
-GetOrder returns the Order field if non-nil, zero value otherwise.
+GetSortOrder returns the SortOrder field if non-nil, zero value otherwise.
 
-### SetOrder
+### SetSortOrder
 
-`func (o *KeysetPaginationRequest) SetOrder(v SortOrder)`
+`func (o *KeysetPaginationRequest) SetSortOrder(v SortOrder)`
 
-SetOrder sets Order field to given value.
+SetSortOrder sets SortOrder field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

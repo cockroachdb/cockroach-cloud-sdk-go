@@ -3,8 +3,6 @@
 ## Enum
 
 
-* `UNKNOWN_STATUS` (value: `"UNKNOWN_STATUS"`)
-
 * `DISABLED` (value: `"DISABLED"`)
 
 * `DISABLING` (value: `"DISABLING"`)
@@ -16,6 +14,10 @@
 * `ENABLING` (value: `"ENABLING"`)
 
 * `ENABLE_FAILED` (value: `"ENABLE_FAILED"`)
+
+* `ROTATING` (value: `"ROTATING"`)
+
+* `ROTATE_FAILED` (value: `"ROTATE_FAILED"`)
 
 * `REVOKED` (value: `"REVOKED"`)
 

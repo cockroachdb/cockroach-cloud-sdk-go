@@ -4,14 +4,10 @@ info:
     email: support@cockroachlabs.com
     name: Cockroach Labs Support
     url: https://support.cockroachlabs.com
-  description: |-
-    This is an early access, experimental version of the Cloud API. The interface and output is subject to change, and there may be bugs.
-
-    # Authentication
-
-    <!-- ReDoc-Inject: <security-definitions> -->
+  description: "This is an early access, experimental version of the Cloud API. The\
+    \ interface and output is subject to change, and there may be bugs."
   title: CockroachDB Cloud API
-  version: 2022-03-31
+  version: 2022-09-20
 externalDocs:
   description: Use the CockroachDB Cloud API
   url: https://www.cockroachlabs.com/docs/cockroachcloud/cloud-api.html
@@ -24,11 +20,11 @@ tags:
 paths:
   /api/v1/clusters:
     get:
-      description: 'Sort order: Cluster name'
+      description: "Sort order: Cluster name"
       operationId: CockroachCloud_ListClusters
       parameters:
-      - description: If `true`, show clusters that have been deleted or failed to
-          initialize.
+      - description: "If `true`, show clusters that have been deleted or failed to\
+          \ initialize."
         explode: true
         in: query
         name: show_inactive
@@ -39,20 +35,9 @@ paths:
         style: form
       - explode: true
         in: query
-        name: pagination.start_key
+        name: pagination.page
         required: false
         schema:
-          type: string
-        style: form
-      - explode: true
-        in: query
-        name: pagination.direction
-        required: false
-        schema:
-          default: PAGE_DIRECTION_NEXT
-          enum:
-          - PAGE_DIRECTION_NEXT
-          - PAGE_DIRECTION_LAST
           type: string
         style: form
       - explode: true
@@ -65,19 +50,18 @@ paths:
         style: form
       - explode: true
         in: query
-        name: pagination.time
+        name: pagination.as_of_time
         required: false
         schema:
           format: date-time
           type: string
         style: form
-      - description: ' - DESC: Sort in descending order. The default order is ascending.'
+      - description: " - DESC: Sort in descending order. The default order is ascending."
         explode: true
         in: query
-        name: pagination.order
+        name: pagination.sort_order
         required: false
         schema:
-          default: ASC
           enum:
           - ASC
           - DESC
@@ -111,7 +95,7 @@ paths:
             application/json:
               schema: {}
           description: Returned when the resource does not exist.
-        "5XX":
+        "500":
           content:
             application/json:
               schema: {}
@@ -127,10 +111,8 @@ paths:
       - CockroachCloud
       x-codeSamples:
       - lang: Shell + Curl
-        source: |-
-          curl --request GET \
-            --url 'https://cockroachlabs.cloud/api/v1/clusters?show_inactive=SOME_BOOLEAN_VALUE&pagination.start_key=SOME_STRING_VALUE&pagination.direction=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.time=SOME_STRING_VALUE&pagination.order=SOME_STRING_VALUE' \
-            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+        source: "curl --request GET \\\n  --url 'https://cockroachlabs.cloud/api/v1/clusters?show_inactive=SOME_BOOLEAN_VALUE&pagination.page=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.as_of_time=SOME_STRING_VALUE&pagination.sort_order=SOME_STRING_VALUE'\
+          \ \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
     post:
       operationId: CockroachCloud_CreateCluster
       requestBody:
@@ -167,7 +149,7 @@ paths:
             application/json:
               schema: {}
           description: Returned when the resource does not exist.
-        "5XX":
+        "500":
           content:
             application/json:
               schema: {}
@@ -183,30 +165,25 @@ paths:
       - CockroachCloud
       x-codeSamples:
       - lang: Shell + Curl
-        source: |-
-          curl --request POST \
-            --url https://cockroachlabs.cloud/api/v1/clusters \
-            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
-            --header 'content-type: application/json' \
-            --data '{"name":"test-cluster","provider":"GCP","spec":{"serverless":{"regions":["us-central1"],"spend_limit":0}}}'
+        source: "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters\
+          \ \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header\
+          \ 'content-type: application/json' \\\n  --data '{\"name\":\"test-cluster\"\
+          ,\"provider\":\"GCP\",\"spec\":{\"serverless\":{\"regions\":[\"us-central1\"\
+          ],\"spend_limit\":0}}}'"
   /api/v1/clusters/available-regions:
     get:
-      description: 'Sort order: Distance (based on client IP address)'
+      description: "Sort order: Distance (based on client IP address)"
       operationId: CockroachCloud_ListAvailableRegions
       parameters:
-      - description: |-
-          Optional CloudProvider for filtering.
-
-           - GCP: The Google Cloud Platform cloud provider.
-           - AWS: The Amazon Web Services cloud provider.
+      - description: "Optional CloudProvider for filtering.\n\n - GCP: The Google\
+          \ Cloud Platform cloud provider.\n - AWS: The Amazon Web Services cloud\
+          \ provider."
         explode: true
         in: query
         name: provider
         required: false
         schema:
-          default: CLOUD_PROVIDER_UNSPECIFIED
           enum:
-          - CLOUD_PROVIDER_UNSPECIFIED
           - GCP
           - AWS
           type: string
@@ -223,20 +200,9 @@ paths:
         style: form
       - explode: true
         in: query
-        name: pagination.start_key
+        name: pagination.page
         required: false
         schema:
-          type: string
-        style: form
-      - explode: true
-        in: query
-        name: pagination.direction
-        required: false
-        schema:
-          default: PAGE_DIRECTION_NEXT
-          enum:
-          - PAGE_DIRECTION_NEXT
-          - PAGE_DIRECTION_LAST
           type: string
         style: form
       - explode: true
@@ -249,19 +215,18 @@ paths:
         style: form
       - explode: true
         in: query
-        name: pagination.time
+        name: pagination.as_of_time
         required: false
         schema:
           format: date-time
           type: string
         style: form
-      - description: ' - DESC: Sort in descending order. The default order is ascending.'
+      - description: " - DESC: Sort in descending order. The default order is ascending."
         explode: true
         in: query
-        name: pagination.order
+        name: pagination.sort_order
         required: false
         schema:
-          default: ASC
           enum:
           - ASC
           - DESC
@@ -295,7 +260,7 @@ paths:
             application/json:
               schema: {}
           description: Returned when the resource does not exist.
-        "5XX":
+        "500":
           content:
             application/json:
               schema: {}
@@ -311,10 +276,8 @@ paths:
       - CockroachCloud
       x-codeSamples:
       - lang: Shell + Curl
-        source: |-
-          curl --request GET \
-            --url 'https://cockroachlabs.cloud/api/v1/clusters/available-regions?provider=SOME_STRING_VALUE&serverless=SOME_BOOLEAN_VALUE&pagination.start_key=SOME_STRING_VALUE&pagination.direction=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.time=SOME_STRING_VALUE&pagination.order=SOME_STRING_VALUE' \
-            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+        source: "curl --request GET \\\n  --url 'https://cockroachlabs.cloud/api/v1/clusters/available-regions?provider=SOME_STRING_VALUE&serverless=SOME_BOOLEAN_VALUE&pagination.page=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.as_of_time=SOME_STRING_VALUE&pagination.sort_order=SOME_STRING_VALUE'\
+          \ \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
   /api/v1/clusters/{cluster_id}:
     delete:
       operationId: CockroachCloud_DeleteCluster
@@ -354,7 +317,7 @@ paths:
             application/json:
               schema: {}
           description: Returned when the resource does not exist.
-        "5XX":
+        "500":
           content:
             application/json:
               schema: {}
@@ -370,10 +333,8 @@ paths:
       - CockroachCloud
       x-codeSamples:
       - lang: Shell + Curl
-        source: |-
-          curl --request DELETE \
-            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id} \
-            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+        source: "curl --request DELETE \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}\
+          \ \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
     get:
       operationId: CockroachCloud_GetCluster
       parameters:
@@ -412,7 +373,7 @@ paths:
             application/json:
               schema: {}
           description: Returned when the resource does not exist.
-        "5XX":
+        "500":
           content:
             application/json:
               schema: {}
@@ -428,10 +389,8 @@ paths:
       - CockroachCloud
       x-codeSamples:
       - lang: Shell + Curl
-        source: |-
-          curl --request GET \
-            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id} \
-            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+        source: "curl --request GET \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}\
+          \ \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
     patch:
       operationId: CockroachCloud_UpdateCluster
       parameters:
@@ -483,7 +442,7 @@ paths:
             application/json:
               schema: {}
           description: Returned when the resource does not exist.
-        "5XX":
+        "500":
           content:
             application/json:
               schema: {}
@@ -499,12 +458,11 @@ paths:
       - CockroachCloud
       x-codeSamples:
       - lang: Shell + Curl
-        source: |-
-          curl --request PATCH \
-            --url 'https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}?field_mask=SOME_STRING_VALUE' \
-            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
-            --header 'content-type: application/json' \
-            --data '{"dedicated":{"region_nodes":{"us-west1":3,"us-central1":5},"hardware":{"machine_type":"n2-standard-8"}}}'
+        source: "curl --request PATCH \\\n  --url 'https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}?field_mask=SOME_STRING_VALUE'\
+          \ \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header\
+          \ 'content-type: application/json' \\\n  --data '{\"dedicated\":{\"region_nodes\"\
+          :{\"us-west1\":3,\"us-central1\":5},\"hardware\":{\"machine_type\":\"n2-standard-8\"\
+          }}}'"
   /api/v1/clusters/{cluster_id}/cmek:
     get:
       operationId: CockroachCloud_GetCMEKClusterInfo
@@ -544,7 +502,7 @@ paths:
             application/json:
               schema: {}
           description: Returned when the resource does not exist.
-        "5XX":
+        "500":
           content:
             application/json:
               schema: {}
@@ -560,10 +518,8 @@ paths:
       - CockroachCloud
       x-codeSamples:
       - lang: Shell + Curl
-        source: |-
-          curl --request GET \
-            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/cmek \
-            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+        source: "curl --request GET \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/cmek\
+          \ \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
     patch:
       operationId: CockroachCloud_UpdateCMEKStatus
       parameters:
@@ -575,19 +531,10 @@ paths:
           type: string
         style: simple
       requestBody:
-        $ref: '#/components/requestBodies/UpdateCMEKStatusRequest'
         content:
           application/json:
             schema:
-              example:
-                action: REVOKE
-              properties:
-                action:
-                  $ref: '#/components/schemas/CMEKCustomerAction'
-              required:
-              - action
-              title: UpdateCMEKStatusRequest
-              type: object
+              $ref: '#/components/schemas/UpdateCMEKStatusRequest'
         required: true
       responses:
         "200":
@@ -617,7 +564,7 @@ paths:
             application/json:
               schema: {}
           description: Returned when the resource does not exist.
-        "5XX":
+        "500":
           content:
             application/json:
               schema: {}
@@ -633,14 +580,12 @@ paths:
       - CockroachCloud
       x-codeSamples:
       - lang: Shell + Curl
-        source: |-
-          curl --request PATCH \
-            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/cmek \
-            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
-            --header 'content-type: application/json' \
-            --data '{"action":"REVOKE"}'
+        source: "curl --request PATCH \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/cmek\
+          \ \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header\
+          \ 'content-type: application/json' \\\n  --data '{\"action\":\"REVOKE\"\
+          }'"
     post:
-      operationId: CockroachCloud_EnableCMEK
+      operationId: CockroachCloud_EnableCMEKSpec
       parameters:
       - explode: false
         in: path
@@ -650,26 +595,10 @@ paths:
           type: string
         style: simple
       requestBody:
-        $ref: '#/components/requestBodies/CMEKClusterSpecification'
         content:
           application/json:
             schema:
-              example:
-                region_specs:
-                - region: us-central1
-                  key_spec:
-                    type: AWS_KMS
-                    uri: arn:aws:kms:us-west-2:111122223333:key/id-of-kms-key
-                    auth_principal: arn:aws:iam::account:role/role-name-with-path
-              properties:
-                region_specs:
-                  items:
-                    $ref: '#/components/schemas/CMEKRegionSpecification'
-                  type: array
-              required:
-              - region_specs
-              title: CMEKClusterSpecification
-              type: object
+              $ref: '#/components/schemas/CMEKClusterSpecification'
         required: true
       responses:
         "200":
@@ -699,7 +628,7 @@ paths:
             application/json:
               schema: {}
           description: Returned when the resource does not exist.
-        "5XX":
+        "500":
           content:
             application/json:
               schema: {}
@@ -715,16 +644,80 @@ paths:
       - CockroachCloud
       x-codeSamples:
       - lang: Shell + Curl
-        source: |-
-          curl --request POST \
-            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/cmek \
-            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
-            --header 'content-type: application/json' \
-            --data '{"region_specs":[{"region":"us-central1","key_spec":{"type":"AWS_KMS","uri":"arn:aws:kms:us-west-2:111122223333:key/id-of-kms-key","auth_principal":"arn:aws:iam::account:role/role-name-with-path"}}]}'
-  /api/v1/clusters/{cluster_id}/networking/allowlist:
+        source: "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/cmek\
+          \ \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --data\
+          \ '{\"region_specs\":[{\"region\":\"us-central1\",\"key_spec\":{\"type\"\
+          :\"AWS_KMS\",\"uri\":\"arn:aws:kms:us-west-2:111122223333:key/id-of-kms-key\"\
+          ,\"auth_principal\":\"arn:aws:iam::account:role/role-name-with-path\"}}]}'"
+    put:
+      operationId: CockroachCloud_UpdateCMEKSpec
+      parameters:
+      - explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CMEKClusterSpecification'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CMEKClusterInfo'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Enable or update the CMEK spec for a cluster.
+      tags:
+      - CockroachCloud
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/cmek\
+          \ \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --data\
+          \ '{\"region_specs\":[{\"region\":\"us-central1\",\"key_spec\":{\"type\"\
+          :\"AWS_KMS\",\"uri\":\"arn:aws:kms:us-west-2:111122223333:key/id-of-kms-key\"\
+          ,\"auth_principal\":\"arn:aws:iam::account:role/role-name-with-path\"}}]}'"
+  /api/v1/clusters/{cluster_id}/databases:
     get:
-      description: 'Sort order: CIDR address'
-      operationId: CockroachCloud_ListAllowlistEntries
+      description: "Sort order: Database name ascending"
+      operationId: CockroachCloud_ListDatabases
       parameters:
       - explode: false
         in: path
@@ -735,20 +728,9 @@ paths:
         style: simple
       - explode: true
         in: query
-        name: pagination.start_key
+        name: pagination.page
         required: false
         schema:
-          type: string
-        style: form
-      - explode: true
-        in: query
-        name: pagination.direction
-        required: false
-        schema:
-          default: PAGE_DIRECTION_NEXT
-          enum:
-          - PAGE_DIRECTION_NEXT
-          - PAGE_DIRECTION_LAST
           type: string
         style: form
       - explode: true
@@ -761,19 +743,476 @@ paths:
         style: form
       - explode: true
         in: query
-        name: pagination.time
+        name: pagination.as_of_time
         required: false
         schema:
           format: date-time
           type: string
         style: form
-      - description: ' - DESC: Sort in descending order. The default order is ascending.'
+      - description: " - DESC: Sort in descending order. The default order is ascending."
         explode: true
         in: query
-        name: pagination.order
+        name: pagination.sort_order
         required: false
         schema:
-          default: ASC
+          enum:
+          - ASC
+          - DESC
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/api.ListDatabasesResponse'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: List databases for a cluster.
+      tags:
+      - CockroachCloud
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: "curl --request GET \\\n  --url 'https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/databases?pagination.page=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.as_of_time=SOME_STRING_VALUE&pagination.sort_order=SOME_STRING_VALUE'\
+          \ \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+    patch:
+      operationId: CockroachCloud_EditDatabase
+      parameters:
+      - explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateDatabaseRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/api.Database'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Update a database.
+      tags:
+      - CockroachCloud
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: "curl --request PATCH \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/databases\
+          \ \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header\
+          \ 'content-type: application/json' \\\n  --data '{\"new_name\":\"example_new_database_name\"\
+          }'"
+    post:
+      operationId: CockroachCloud_CreateDatabase
+      parameters:
+      - explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateDatabaseRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/api.Database'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Create a new database.
+      tags:
+      - CockroachCloud
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/databases\
+          \ \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header\
+          \ 'content-type: application/json' \\\n  --data '{\"name\":\"example_database_name\"\
+          }'"
+  /api/v1/clusters/{cluster_id}/databases/{name}:
+    delete:
+      operationId: CockroachCloud_DeleteDatabase
+      parameters:
+      - explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: name
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/api.Database'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Delete a database.
+      tags:
+      - CockroachCloud
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: "curl --request DELETE \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/databases/{name}\
+          \ \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+  /api/v1/clusters/{cluster_id}/logexport:
+    delete:
+      operationId: CockroachCloud_DeleteLogExport
+      parameters:
+      - explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LogExportClusterInfo'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      tags:
+      - CockroachCloud
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: "curl --request DELETE \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/logexport\
+          \ \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+    get:
+      operationId: CockroachCloud_GetLogExportInfo
+      parameters:
+      - explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LogExportClusterInfo'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      tags:
+      - CockroachCloud
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: "curl --request GET \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/logexport\
+          \ \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+    post:
+      operationId: CockroachCloud_EnableLogExport
+      parameters:
+      - explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnableLogExportRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LogExportClusterInfo'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      tags:
+      - CockroachCloud
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/logexport\
+          \ \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header\
+          \ 'content-type: application/json' \\\n  --data '{\"type\":\"AWS_CLOUDWATCH\"\
+          ,\"log_name\":\"string\",\"auth_principal\":\"string\"}'"
+  /api/v1/clusters/{cluster_id}/networking/allowlist:
+    get:
+      description: "Sort order: CIDR address"
+      operationId: CockroachCloud_ListAllowlistEntries
+      parameters:
+      - explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: pagination.page
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: pagination.limit
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: pagination.as_of_time
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: " - DESC: Sort in descending order. The default order is ascending."
+        explode: true
+        in: query
+        name: pagination.sort_order
+        required: false
+        schema:
           enum:
           - ASC
           - DESC
@@ -807,7 +1246,7 @@ paths:
             application/json:
               schema: {}
           description: Returned when the resource does not exist.
-        "5XX":
+        "500":
           content:
             application/json:
               schema: {}
@@ -823,10 +1262,8 @@ paths:
       - CockroachCloud
       x-codeSamples:
       - lang: Shell + Curl
-        source: |-
-          curl --request GET \
-            --url 'https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/allowlist?pagination.start_key=SOME_STRING_VALUE&pagination.direction=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.time=SOME_STRING_VALUE&pagination.order=SOME_STRING_VALUE' \
-            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+        source: "curl --request GET \\\n  --url 'https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/allowlist?pagination.page=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.as_of_time=SOME_STRING_VALUE&pagination.sort_order=SOME_STRING_VALUE'\
+          \ \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
     post:
       operationId: CockroachCloud_AddAllowlistEntry
       parameters:
@@ -871,7 +1308,7 @@ paths:
             application/json:
               schema: {}
           description: Returned when the resource does not exist.
-        "5XX":
+        "500":
           content:
             application/json:
               schema: {}
@@ -887,11 +1324,10 @@ paths:
       - CockroachCloud
       x-codeSamples:
       - lang: Shell + Curl
-        source: |-
-          curl --request POST \
-            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/allowlist \
-            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
-            --data '{"cidr_ip":"192.168.1.1","cidr_mask":32,"ui":true,"sql":true,"name":"Example"}'
+        source: "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/allowlist\
+          \ \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header\
+          \ 'content-type: application/json' \\\n  --data '{\"cidr_ip\":\"192.168.1.1\"\
+          ,\"cidr_mask\":32,\"ui\":true,\"sql\":true,\"name\":\"Example\"}'"
   /api/v1/clusters/{cluster_id}/networking/allowlist/{cidr_ip}/{cidr_mask}:
     delete:
       operationId: CockroachCloud_DeleteAllowlistEntry
@@ -946,7 +1382,7 @@ paths:
             application/json:
               schema: {}
           description: Returned when the resource does not exist.
-        "5XX":
+        "500":
           content:
             application/json:
               schema: {}
@@ -962,10 +1398,8 @@ paths:
       - CockroachCloud
       x-codeSamples:
       - lang: Shell + Curl
-        source: |-
-          curl --request DELETE \
-            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/allowlist/{cidr_ip}/{cidr_mask} \
-            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+        source: "curl --request DELETE \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/allowlist/{cidr_ip}/{cidr_mask}\
+          \ \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
   /api/v1/clusters/{cluster_id}/networking/allowlist/{entry.cidr_ip}/{entry.cidr_mask}:
     patch:
       operationId: CockroachCloud_UpdateAllowlistEntry
@@ -1003,7 +1437,8 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AllowlistEntry'
+              $ref: '#/components/schemas/AllowlistEntry_1'
+        description: AllowlistEntry
         required: true
       responses:
         "200":
@@ -1033,7 +1468,7 @@ paths:
             application/json:
               schema: {}
           description: Returned when the resource does not exist.
-        "5XX":
+        "500":
           content:
             application/json:
               schema: {}
@@ -1049,11 +1484,10 @@ paths:
       - CockroachCloud
       x-codeSamples:
       - lang: Shell + Curl
-        source: |-
-          curl --request PATCH \
-            --url 'https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/allowlist/{entry.cidr_ip}/{entry.cidr_mask}?field_mask=SOME_STRING_VALUE' \
-            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
-            --data '{"cidr_ip":"192.168.1.1","cidr_mask":32,"ui":true,"sql":true,"name":"Example"}'
+        source: "curl --request PATCH \\\n  --url 'https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/allowlist/{entry.cidr_ip}/{entry.cidr_mask}?field_mask=SOME_STRING_VALUE'\
+          \ \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --data\
+          \ '{\"cidr_ip\":\"192.168.1.1\",\"cidr_mask\":32,\"ui\":true,\"sql\":true,\"\
+          name\":\"Example\"}'"
     put:
       operationId: CockroachCloud_AddAllowlistEntry2
       parameters:
@@ -1083,7 +1517,8 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AllowlistEntry'
+              $ref: '#/components/schemas/AllowlistEntry_1'
+        description: AllowlistEntry
         required: true
       responses:
         "200":
@@ -1113,7 +1548,7 @@ paths:
             application/json:
               schema: {}
           description: Returned when the resource does not exist.
-        "5XX":
+        "500":
           content:
             application/json:
               schema: {}
@@ -1129,14 +1564,270 @@ paths:
       - CockroachCloud
       x-codeSamples:
       - lang: Shell + Curl
-        source: |-
-          curl --request PUT \
-            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/allowlist/{entry.cidr_ip}/{entry.cidr_mask} \
-            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
-            --data '{"cidr_ip":"192.168.1.1","cidr_mask":32,"ui":true,"sql":true,"name":"Example"}'
+        source: "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/allowlist/{entry.cidr_ip}/{entry.cidr_mask}\
+          \ \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --data\
+          \ '{\"cidr_ip\":\"192.168.1.1\",\"cidr_mask\":32,\"ui\":true,\"sql\":true,\"\
+          name\":\"Example\"}'"
+  /api/v1/clusters/{cluster_id}/networking/aws-endpoint-connections:
+    get:
+      operationId: CockroachCloud_ListAwsEndpointConnections
+      parameters:
+      - description: ClusterID is the ID for the cluster.
+        explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AwsEndpointConnections'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Lists all AwsEndpointConnections for a given cluster.
+      tags:
+      - CockroachCloud
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: "curl --request GET \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/aws-endpoint-connections\
+          \ \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+  /api/v1/clusters/{cluster_id}/networking/aws-endpoint-connections/{endpoint_id}:
+    patch:
+      operationId: CockroachCloud_SetAwsEndpointConnectionState
+      parameters:
+      - description: ClusterID is the ID for the cluster.
+        explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: EndpointID is the ID for the VPC endpoint on the customer's side.
+        explode: false
+        in: path
+        name: endpoint_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CockroachCloud_SetAwsEndpointConnectionState_request'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AwsEndpointConnection'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: "Sets the AWS Endpoint Connection state based on what is passed in\
+        \ the body: accepted or rejected.\nThe \"status\" in the returned proto does\
+        \ not reflect the latest post-update status, but rather\nthe status before\
+        \ the state is transitioned."
+      tags:
+      - CockroachCloud
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: "curl --request PATCH \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/aws-endpoint-connections/{endpoint_id}\
+          \ \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header\
+          \ 'content-type: application/json' \\\n  --data '{\"status\":\"ENDPOINT_PENDING\"\
+          }'"
+  /api/v1/clusters/{cluster_id}/networking/private-endpoint-services:
+    get:
+      operationId: CockroachCloud_ListPrivateEndpointServices
+      parameters:
+      - description: ClusterID is the ID for the cluster.
+        explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PrivateEndpointServices'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Lists all PrivateEndpointServices for a given cluster.
+      tags:
+      - CockroachCloud
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: "curl --request GET \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/private-endpoint-services\
+          \ \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+    post:
+      operationId: CockroachCloud_CreatePrivateEndpointServices
+      parameters:
+      - description: ClusterID is the ID for the cluster.
+        explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PrivateEndpointServices'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Creates all PrivateEndpointServices for a given cluster.
+      tags:
+      - CockroachCloud
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/private-endpoint-services\
+          \ \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header\
+          \ 'content-type: application/json' \\\n  --data '{}'"
   /api/v1/clusters/{cluster_id}/nodes:
     get:
-      description: 'Sort order: Region name, node name'
+      description: "Sort order: Region name, node name"
       operationId: CockroachCloud_ListClusterNodes
       parameters:
       - explode: false
@@ -1156,20 +1847,9 @@ paths:
         style: form
       - explode: true
         in: query
-        name: pagination.start_key
+        name: pagination.page
         required: false
         schema:
-          type: string
-        style: form
-      - explode: true
-        in: query
-        name: pagination.direction
-        required: false
-        schema:
-          default: PAGE_DIRECTION_NEXT
-          enum:
-          - PAGE_DIRECTION_NEXT
-          - PAGE_DIRECTION_LAST
           type: string
         style: form
       - explode: true
@@ -1182,19 +1862,18 @@ paths:
         style: form
       - explode: true
         in: query
-        name: pagination.time
+        name: pagination.as_of_time
         required: false
         schema:
           format: date-time
           type: string
         style: form
-      - description: ' - DESC: Sort in descending order. The default order is ascending.'
+      - description: " - DESC: Sort in descending order. The default order is ascending."
         explode: true
         in: query
-        name: pagination.order
+        name: pagination.sort_order
         required: false
         schema:
-          default: ASC
           enum:
           - ASC
           - DESC
@@ -1228,7 +1907,7 @@ paths:
             application/json:
               schema: {}
           description: Returned when the resource does not exist.
-        "5XX":
+        "500":
           content:
             application/json:
               schema: {}
@@ -1244,13 +1923,11 @@ paths:
       - CockroachCloud
       x-codeSamples:
       - lang: Shell + Curl
-        source: |-
-          curl --request GET \
-            --url 'https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/nodes?region_name=SOME_STRING_VALUE&pagination.start_key=SOME_STRING_VALUE&pagination.direction=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.time=SOME_STRING_VALUE&pagination.order=SOME_STRING_VALUE' \
-            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+        source: "curl --request GET \\\n  --url 'https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/nodes?region_name=SOME_STRING_VALUE&pagination.page=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.as_of_time=SOME_STRING_VALUE&pagination.sort_order=SOME_STRING_VALUE'\
+          \ \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
   /api/v1/clusters/{cluster_id}/sql-users:
     get:
-      description: 'Sort order: Username'
+      description: "Sort order: Username"
       operationId: CockroachCloud_ListSQLUsers
       parameters:
       - explode: false
@@ -1262,20 +1939,9 @@ paths:
         style: simple
       - explode: true
         in: query
-        name: pagination.start_key
+        name: pagination.page
         required: false
         schema:
-          type: string
-        style: form
-      - explode: true
-        in: query
-        name: pagination.direction
-        required: false
-        schema:
-          default: PAGE_DIRECTION_NEXT
-          enum:
-          - PAGE_DIRECTION_NEXT
-          - PAGE_DIRECTION_LAST
           type: string
         style: form
       - explode: true
@@ -1288,19 +1954,18 @@ paths:
         style: form
       - explode: true
         in: query
-        name: pagination.time
+        name: pagination.as_of_time
         required: false
         schema:
           format: date-time
           type: string
         style: form
-      - description: ' - DESC: Sort in descending order. The default order is ascending.'
+      - description: " - DESC: Sort in descending order. The default order is ascending."
         explode: true
         in: query
-        name: pagination.order
+        name: pagination.sort_order
         required: false
         schema:
-          default: ASC
           enum:
           - ASC
           - DESC
@@ -1334,7 +1999,7 @@ paths:
             application/json:
               schema: {}
           description: Returned when the resource does not exist.
-        "5XX":
+        "500":
           content:
             application/json:
               schema: {}
@@ -1350,10 +2015,8 @@ paths:
       - CockroachCloud
       x-codeSamples:
       - lang: Shell + Curl
-        source: |-
-          curl --request GET \
-            --url 'https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/sql-users?pagination.start_key=SOME_STRING_VALUE&pagination.direction=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.time=SOME_STRING_VALUE&pagination.order=SOME_STRING_VALUE' \
-            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+        source: "curl --request GET \\\n  --url 'https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/sql-users?pagination.page=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.as_of_time=SOME_STRING_VALUE&pagination.sort_order=SOME_STRING_VALUE'\
+          \ \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
     post:
       operationId: CockroachCloud_CreateSQLUser
       parameters:
@@ -1365,23 +2028,10 @@ paths:
           type: string
         style: simple
       requestBody:
-        $ref: '#/components/requestBodies/CreateSQLUserRequest'
         content:
           application/json:
             schema:
-              example:
-                name: example_username
-                password: example_password
-              properties:
-                name:
-                  type: string
-                password:
-                  type: string
-              required:
-              - name
-              - password
-              title: CreateSQLUserRequest
-              type: object
+              $ref: '#/components/schemas/CreateSQLUserRequest'
         required: true
       responses:
         "200":
@@ -1411,7 +2061,7 @@ paths:
             application/json:
               schema: {}
           description: Returned when the resource does not exist.
-        "5XX":
+        "500":
           content:
             application/json:
               schema: {}
@@ -1427,12 +2077,10 @@ paths:
       - CockroachCloud
       x-codeSamples:
       - lang: Shell + Curl
-        source: |-
-          curl --request POST \
-            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/sql-users \
-            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
-            --header 'content-type: application/json' \
-            --data '{"name":"example_username","password":"example_password"}'
+        source: "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/sql-users\
+          \ \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header\
+          \ 'content-type: application/json' \\\n  --data '{\"name\":\"example_username\"\
+          ,\"password\":\"example_password\"}'"
   /api/v1/clusters/{cluster_id}/sql-users/{name}:
     delete:
       operationId: CockroachCloud_DeleteSQLUser
@@ -1479,7 +2127,7 @@ paths:
             application/json:
               schema: {}
           description: Returned when the resource does not exist.
-        "5XX":
+        "500":
           content:
             application/json:
               schema: {}
@@ -1495,10 +2143,8 @@ paths:
       - CockroachCloud
       x-codeSamples:
       - lang: Shell + Curl
-        source: |-
-          curl --request DELETE \
-            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/sql-users/{name} \
-            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+        source: "curl --request DELETE \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/sql-users/{name}\
+          \ \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
   /api/v1/clusters/{cluster_id}/sql-users/{name}/password:
     put:
       operationId: CockroachCloud_UpdateSQLUserPassword
@@ -1518,19 +2164,10 @@ paths:
           type: string
         style: simple
       requestBody:
-        $ref: '#/components/requestBodies/UpdateSQLUserPasswordRequest'
         content:
           application/json:
             schema:
-              example:
-                password: example_new_password
-              properties:
-                password:
-                  type: string
-              required:
-              - password
-              title: UpdateSQLUserPasswordRequest
-              type: object
+              $ref: '#/components/schemas/UpdateSQLUserPasswordRequest'
         required: true
       responses:
         "200":
@@ -1560,7 +2197,7 @@ paths:
             application/json:
               schema: {}
           description: Returned when the resource does not exist.
-        "5XX":
+        "500":
           content:
             application/json:
               schema: {}
@@ -1576,45 +2213,212 @@ paths:
       - CockroachCloud
       x-codeSamples:
       - lang: Shell + Curl
-        source: |-
-          curl --request PUT \
-            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/sql-users/{name}/password \
-            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
-            --header 'content-type: application/json' \
-            --data '{"password":"example_new_password"}'
+        source: "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/sql-users/{name}/password\
+          \ \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header\
+          \ 'content-type: application/json' \\\n  --data '{\"password\":\"example_new_password\"\
+          }'"
+  /api/v1/invoices:
+    get:
+      description: "Sort order: invoice start date ascending"
+      operationId: CockroachCloud_ListInvoices
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListInvoicesResponse'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: |-
+        Billing
+        List invoices for a given organization.
+      tags:
+      - CockroachCloud
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: "curl --request GET \\\n  --url https://cockroachlabs.cloud/api/v1/invoices\
+          \ \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+  /api/v1/invoices/{invoice_id}:
+    get:
+      operationId: CockroachCloud_GetInvoice
+      parameters:
+      - description: |-
+          InvoiceID is the unique ID representing the invoice.
+          InvoiceID is used to retrieve a specific
+          billing period's invoice.
+        explode: false
+        in: path
+        name: invoice_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Invoice'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Gets a specific invoice for an organization.
+      tags:
+      - CockroachCloud
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: "curl --request GET \\\n  --url https://cockroachlabs.cloud/api/v1/invoices/{invoice_id}\
+          \ \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
 components:
   requestBodies:
-    AllowlistEntry:
+    CockroachCloud_EnableCMEKSpecBody:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/AllowlistEntry'
+            example:
+              region_specs:
+              - region: us-central1
+                key_spec:
+                  type: AWS_KMS
+                  uri: arn:aws:kms:us-west-2:111122223333:key/id-of-kms-key
+                  auth_principal: arn:aws:iam::account:role/role-name-with-path
+            properties:
+              region_specs:
+                items:
+                  $ref: '#/components/schemas/CMEKRegionSpecification'
+                type: array
+            required:
+            - region_specs
+            title: CMEKClusterSpecification
+            type: object
       required: true
-    CMEKClusterSpecification:
+    CockroachCloud_AddAllowlistEntry2Entry:
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/CMEKClusterSpecification'
-      required: true
-    UpdateCMEKStatusRequest:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UpdateCMEKStatusRequest'
-      required: true
-    CreateSQLUserRequest:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/CreateSQLUserRequest'
-      required: true
-    UpdateSQLUserPasswordRequest:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UpdateSQLUserPasswordRequest'
+            example:
+              cidr_ip: 192.168.1.1
+              cidr_mask: 32
+              ui: true
+              sql: true
+              name: Example
+            properties:
+              ui:
+                type: boolean
+              sql:
+                type: boolean
+              name:
+                type: string
+            required:
+            - sql
+            - ui
+            title: AllowlistEntry
+            type: object
+      description: AllowlistEntry
       required: true
   schemas:
+    AWSEndpointConnectionStatus:
+      description: The statuses map to the statuses returned by the AWS API.
+      enum:
+      - ENDPOINT_PENDING
+      - ENDPOINT_PENDING_ACCEPTANCE
+      - ENDPOINT_AVAILABLE
+      - ENDPOINT_DELETING
+      - ENDPOINT_DELETED
+      - ENDPOINT_REJECTED
+      - ENDPOINT_FAILED
+      - ENDPOINT_EXPIRED
+      type: string
+    AWSPrivateLinkServiceDetail:
+      example:
+        availability_zone_ids:
+        - availability_zone_ids
+        - availability_zone_ids
+        service_name: service_name
+        service_id: service_id
+      properties:
+        service_name:
+          description: ServiceName is the AWS service name customers use to create
+            endpoints on their end.
+          type: string
+        service_id:
+          description: |-
+            ServiceID is the server side of the PrivateLink
+            connection. This is the same as AWSPrivateLinkEndpoint.service_id.
+          type: string
+        availability_zone_ids:
+          description: |-
+            AvailabilityZoneIDs are the identifiers for the availability zones that the service
+            is available in.
+          items:
+            type: string
+          type: array
+      required:
+      - availability_zone_ids
+      - service_id
+      - service_name
+      type: object
     AllowlistEntry:
       example:
         cidr_ip: 192.168.1.1
@@ -1643,44 +2447,155 @@ components:
       type: object
     Any:
       additionalProperties: {}
+      description: "`Any` contains an arbitrary serialized protocol buffer message\
+        \ along with a\nURL that describes the type of the serialized message.\n\n\
+        Protobuf library provides support to pack/unpack Any values in the form\n\
+        of utility functions or additional generated methods of the Any type.\n\n\
+        Example 1: Pack and unpack a message in C++.\n\n    Foo foo = ...;\n    Any\
+        \ any;\n    any.PackFrom(foo);\n    ...\n    if (any.UnpackTo(&foo)) {\n \
+        \     ...\n    }\n\nExample 2: Pack and unpack a message in Java.\n\n    Foo\
+        \ foo = ...;\n    Any any = Any.pack(foo);\n    ...\n    if (any.is(Foo.class))\
+        \ {\n      foo = any.unpack(Foo.class);\n    }\n\n Example 3: Pack and unpack\
+        \ a message in Python.\n\n    foo = Foo(...)\n    any = Any()\n    any.Pack(foo)\n\
+        \    ...\n    if any.Is(Foo.DESCRIPTOR):\n      any.Unpack(foo)\n      ...\n\
+        \n Example 4: Pack and unpack a message in Go\n\n     foo := &pb.Foo{...}\n\
+        \     any, err := ptypes.MarshalAny(foo)\n     ...\n     foo := &pb.Foo{}\n\
+        \     if err := ptypes.UnmarshalAny(any, foo); err != nil {\n       ...\n\
+        \     }\n\nThe pack methods provided by protobuf library will by default use\n\
+        'type.googleapis.com/full.type.name' as the type URL and the unpack\nmethods\
+        \ only use the fully qualified type name after the last '/'\nin the type URL,\
+        \ for example \"foo.bar.com/x/y.z\" will yield type\nname \"y.z\".\n\n\nJSON\n\
+        ====\nThe JSON representation of an `Any` value uses the regular\nrepresentation\
+        \ of the deserialized, embedded message, with an\nadditional field `@type`\
+        \ which contains the type URL. Example:\n\n    package google.profile;\n \
+        \   message Person {\n      string first_name = 1;\n      string last_name\
+        \ = 2;\n    }\n\n    {\n      \"@type\": \"type.googleapis.com/google.profile.Person\"\
+        ,\n      \"firstName\": <string>,\n      \"lastName\": <string>\n    }\n\n\
+        If the embedded message type is well-known and has a custom JSON\nrepresentation,\
+        \ that representation will be embedded adding a field\n`value` which holds\
+        \ the custom JSON in addition to the `@type`\nfield. Example (for message\
+        \ [google.protobuf.Duration][]):\n\n    {\n      \"@type\": \"type.googleapis.com/google.protobuf.Duration\"\
+        ,\n      \"value\": \"1.212s\"\n    }"
       properties:
         '@type':
+          description: "A URL/resource name that uniquely identifies the type of the\
+            \ serialized\nprotocol buffer message. This string must contain at least\n\
+            one \"/\" character. The last segment of the URL's path must represent\n\
+            the fully qualified name of the type (as in\n`path/google.protobuf.Duration`).\
+            \ The name should be in a canonical form\n(e.g., leading \".\" is not\
+            \ accepted).\n\nIn practice, teams usually precompile into the binary\
+            \ all types that they\nexpect it to use in the context of Any. However,\
+            \ for URLs which use the\nscheme `http`, `https`, or no scheme, one can\
+            \ optionally set up a type\nserver that maps type URLs to message definitions\
+            \ as follows:\n\n* If no scheme is provided, `https` is assumed.\n* An\
+            \ HTTP GET on the URL must yield a [google.protobuf.Type][]\n  value in\
+            \ binary format, or produce an error.\n* Applications are allowed to cache\
+            \ lookup results based on the\n  URL, or have them precompiled into a\
+            \ binary to avoid any\n  lookup. Therefore, binary compatibility needs\
+            \ to be preserved\n  on changes to types. (Use versioned type names to\
+            \ manage\n  breaking changes.)\n\nNote: this functionality is not currently\
+            \ available in the official\nprotobuf release, and it is not used for\
+            \ type URLs beginning with\ntype.googleapis.com.\n\nSchemes other than\
+            \ `http`, `https` (or the empty scheme) might be\nused with implementation\
+            \ specific semantics."
           type: string
       type: object
+    AwsEndpointConnection:
+      example:
+        service_id: service_id
+        endpoint_id: endpoint_id
+        region_name: region_name
+        cloud_provider: null
+        status: null
+      properties:
+        region_name:
+          description: RegionName is the cloud provider region name (i.e. us-east-1).
+          type: string
+        cloud_provider:
+          $ref: '#/components/schemas/api.CloudProvider'
+        status:
+          $ref: '#/components/schemas/AWSEndpointConnectionStatus'
+        endpoint_id:
+          description: EndpointID is the client side of the PrivateLink connection.
+          type: string
+        service_id:
+          description: |-
+            ServiceID is the server side of the PrivateLink
+            connection. This is the same as AWSPrivateLinkEndpoint.service_id.
+          type: string
+      required:
+      - cloud_provider
+      - endpoint_id
+      - region_name
+      - service_id
+      - status
+      type: object
+    AwsEndpointConnections:
+      example:
+        connections:
+        - service_id: service_id
+          endpoint_id: endpoint_id
+          region_name: region_name
+          cloud_provider: null
+          status: null
+        - service_id: service_id
+          endpoint_id: endpoint_id
+          region_name: region_name
+          cloud_provider: null
+          status: null
+      properties:
+        connections:
+          description: Connections is a list of private endpoints.
+          items:
+            $ref: '#/components/schemas/AwsEndpointConnection'
+          type: array
+      required:
+      - connections
+      type: object
     CMEKClusterInfo:
-      description: |-
-        CMEKClusterInfo contains the status of CMEK across an entire cluster,
-        including within each one its regions.
+      description: "CMEKClusterInfo contains the status of CMEK across an entire cluster,\n\
+        including within each one its regions."
       example:
         region_infos:
         - region: region
+          status: null
           key_infos:
           - updated_at: 2000-01-23T04:56:07.000+00:00
             user_message: user_message
             created_at: 2000-01-23T04:56:07.000+00:00
             spec:
               auth_principal: auth_principal
+              type: null
               uri: uri
+            status: null
           - updated_at: 2000-01-23T04:56:07.000+00:00
             user_message: user_message
             created_at: 2000-01-23T04:56:07.000+00:00
             spec:
               auth_principal: auth_principal
+              type: null
               uri: uri
+            status: null
         - region: region
+          status: null
           key_infos:
           - updated_at: 2000-01-23T04:56:07.000+00:00
             user_message: user_message
             created_at: 2000-01-23T04:56:07.000+00:00
             spec:
               auth_principal: auth_principal
+              type: null
               uri: uri
+            status: null
           - updated_at: 2000-01-23T04:56:07.000+00:00
             user_message: user_message
             created_at: 2000-01-23T04:56:07.000+00:00
             spec:
               auth_principal: auth_principal
+              type: null
               uri: uri
+            status: null
+        status: null
       properties:
         status:
           $ref: '#/components/schemas/CMEKStatus'
@@ -1690,12 +2605,10 @@ components:
           type: array
       type: object
     CMEKCustomerAction:
-      default: UNKNOWN_ACTION
       description: |-
         CMEKCustomerAction enumerates the actions a customer can take on a cluster
         that has been enabled for CMEK.
       enum:
-      - UNKNOWN_ACTION
       - REVOKE
       type: string
     CMEKKeyInfo:
@@ -1708,7 +2621,9 @@ components:
         created_at: 2000-01-23T04:56:07.000+00:00
         spec:
           auth_principal: auth_principal
+          type: null
           uri: uri
+        status: null
       properties:
         status:
           $ref: '#/components/schemas/CMEKStatus'
@@ -1730,6 +2645,7 @@ components:
         to authenticate as when accessing it.
       example:
         auth_principal: auth_principal
+        type: null
         uri: uri
       properties:
         type:
@@ -1740,39 +2656,41 @@ components:
           type: string
       type: object
     CMEKKeyType:
-      default: UNKNOWN_KEY_TYPE
-      description: |-
-        CMEKKeyType enumerates types of customer-managed keys.
-
-         - UNKNOWN_KEY_TYPE: UNKNOWN should never be used; if it is used, it indicates a bug.
+      description: "CMEKKeyType enumerates types of customer-managed keys.\n\n - UNKNOWN_KEY_TYPE:\
+        \ UNKNOWN should never be used; if it is used, it indicates a bug."
       enum:
-      - UNKNOWN_KEY_TYPE
       - AWS_KMS
       - GCP_CLOUD_KMS
       type: string
     CMEKRegionInfo:
-      description: |-
-        CMEKRegionInfo contains the status of CMEK within a region. This includes
-        current and past key specifications used within the region, as well as the
-        status of those specifications.
+      description: "CMEKRegionInfo contains the status of CMEK within a region. This\
+        \ includes\ncurrent and past key specifications used within the region, as\
+        \ well as the\nstatus of those specifications."
       example:
         region: region
+        status: null
         key_infos:
         - updated_at: 2000-01-23T04:56:07.000+00:00
           user_message: user_message
           created_at: 2000-01-23T04:56:07.000+00:00
           spec:
             auth_principal: auth_principal
+            type: null
             uri: uri
+          status: null
         - updated_at: 2000-01-23T04:56:07.000+00:00
           user_message: user_message
           created_at: 2000-01-23T04:56:07.000+00:00
           spec:
             auth_principal: auth_principal
+            type: null
             uri: uri
+          status: null
       properties:
         region:
           type: string
+        status:
+          $ref: '#/components/schemas/CMEKStatus'
         key_infos:
           items:
             $ref: '#/components/schemas/CMEKKeyInfo'
@@ -1789,39 +2707,38 @@ components:
           $ref: '#/components/schemas/CMEKKeySpecification'
       type: object
     CMEKStatus:
-      default: UNKNOWN_STATUS
-      description: |-
-        CMEKStatus describes the current status of CMEK for an entire CRDB cluster
-        or a key within a region.
-
-         - UNKNOWN_STATUS: UNKNOWN should never be used; if it is used, it indicates a bug.
-         - DISABLED: DISABLED corresponds to the state of a cluster or region-level key
-        when CMEK has finished being disabled. By default, CMEK will be disabled
-        for new clusters.
-         - DISABLING: DISABLED corresponds to the state of a cluster or region-level key
-        when CMEK is in the process of being disabled.
-         - DISABLE_FAILED: DISABLE_FAILED corresponds to the state of a cluster or region-level key
-        when CMEK has failed to be disabled.
-         - ENABLED: ENABLED corresponds to the state of a cluster or region-level key
-        when CMEK is enabled.
-         - ENABLING: ENABLING corresponds to the state of a cluster or region-level key
-        when CMEK is in the process of being enabled.
-         - ENABLE_FAILED: ENABLE_FAILED corresponds to the state of a cluster or region-level key
-        when CMEK has failed to be enabled.
-         - REVOKED: REVOKED corresponds to the state of a cluster or region-level key
-        when the customer has revoked CockroachLab's permissions for their key.
-         - REVOKING: REVOKING corresponds to the state of a cluster or region-level key
-        when CMEK is in the process of being revoked.
-         - REVOKE_FAILED: REVOKE_FAILED corresponds to the state of a cluster or region-level key
-        when CMEK has failed to be revoked.
+      description: "CMEKStatus describes the current status of CMEK for an entire\
+        \ CRDB cluster\nor a CMEK key within a region.\n\n - UNKNOWN_STATUS: UNKNOWN\
+        \ should never be used; if it is used, it indicates a bug.\n - DISABLED: DISABLED\
+        \ corresponds to the state of a cluster or region-level key when\nCMEK has\
+        \ finished being disabled. By default, CMEK will be disabled for\nnew clusters.\n\
+        \ - DISABLING: DISABLING corresponds to the state of a cluster or region-level\
+        \ key when\nCMEK is in the process of being disabled.\n - DISABLE_FAILED:\
+        \ DISABLE_FAILED corresponds to the state of a cluster or region-level key\n\
+        when CMEK has failed to be disabled.\n - ENABLED: ENABLED corresponds to the\
+        \ state of a cluster or region-level key when\nCMEK is enabled.\n - ENABLING:\
+        \ ENABLING corresponds to the state of a cluster or region-level key when\n\
+        CMEK is in the process of being enabled.\n - ENABLE_FAILED: ENABLE_FAILED\
+        \ corresponds to the state of a cluster or region-level key\nwhen CMEK has\
+        \ failed to be enabled.\n - ROTATING: ROTATING corresponds to the state of\
+        \ a cluster or region when the a new\nspec is in the process of being enabled\
+        \ while an existing spec is being\ndisabled.\n - ROTATE_FAILED: ROTATE_FAILED\
+        \ corresponds to the state of a cluster or region if there was\na failure\
+        \ to update from one CMEK spec to another.\n - REVOKED: REVOKED corresponds\
+        \ to the state of a cluster or region-level key when the\ncustomer has revoked\
+        \ CockroachLab's permissions for their key.\n - REVOKING: REVOKING corresponds\
+        \ to the state of a cluster or region-level key when\nCMEK is in the process\
+        \ of being revoked.\n - REVOKE_FAILED: REVOKE_FAILED corresponds to the state\
+        \ of a cluster or region-level key\nwhen CMEK has failed to be revoked."
       enum:
-      - UNKNOWN_STATUS
       - DISABLED
       - DISABLING
       - DISABLE_FAILED
       - ENABLED
       - ENABLING
       - ENABLE_FAILED
+      - ROTATING
+      - ROTATE_FAILED
       - REVOKED
       - REVOKING
       - REVOKE_FAILED
@@ -1829,6 +2746,7 @@ components:
     CloudProviderRegion:
       example:
         distance: 0.8008282
+        provider: null
         name: name
         serverless: true
         location: location
@@ -1843,7 +2761,7 @@ components:
           type: boolean
         distance:
           format: float
-          title: Distance in miles, based on client IP address
+          title: "Distance in miles, based on client IP address"
           type: number
       required:
       - distance
@@ -1929,12 +2847,10 @@ components:
           $ref: '#/components/schemas/ServerlessClusterConfig'
       type: object
     ClusterStateType:
-      default: CLUSTER_STATE_UNSPECIFIED
-      description: |2-
-         - LOCKED: An exclusive operation is being performed on this cluster.
-        Other operations should not proceed if they did not set a cluster into the LOCKED state.
+      description: " - LOCKED: An exclusive operation is being performed on this cluster.\n\
+        Other operations should not proceed if they did not set a cluster into the\
+        \ LOCKED state."
       enum:
-      - CLUSTER_STATE_UNSPECIFIED
       - CREATING
       - CREATED
       - CREATION_FAILED
@@ -1942,7 +2858,6 @@ components:
       - LOCKED
       type: string
     ClusterStatusType:
-      default: CLUSTER_STATUS_UNSPECIFIED
       enum:
       - CLUSTER_STATUS_UNSPECIFIED
       - CRDB_MAJOR_UPGRADE_RUNNING
@@ -1962,6 +2877,8 @@ components:
       - CRDB_CMEK_OPERATION_FAILED
       - TENANT_RESTORE_RUNNING
       - TENANT_RESTORE_FAILED
+      - CRDB_LOG_EXPORT_OPERATION_RUNNING
+      - CRDB_LOG_EXPORT_OPERATION_FAILED
       type: string
     CreateClusterRequest:
       example:
@@ -1974,6 +2891,8 @@ components:
             spend_limit: 0
       properties:
         name:
+          description: "Name must be 6-20 characters in length and can include numbers,\n\
+            lowercase letters, and dashes (but no leading or trailing dashes)."
           type: string
         provider:
           $ref: '#/components/schemas/api.CloudProvider'
@@ -1992,16 +2911,33 @@ components:
         serverless:
           $ref: '#/components/schemas/ServerlessClusterCreateSpecification'
       type: object
+    Currency:
+      description: Currency is the set of currencies supported in CockroachCloud.
+      enum:
+      - USD
+      - CRDB_CLOUD_CREDITS
+      type: string
+    CurrencyAmount:
+      example:
+        amount: 0.8008281904610115
+        currency: null
+      properties:
+        amount:
+          description: Amount is the quantity of currency.
+          format: double
+          type: number
+        currency:
+          $ref: '#/components/schemas/Currency'
+      type: object
     DedicatedClusterCreateSpecification:
       properties:
         region_nodes:
           additionalProperties:
             format: int32
             type: integer
-          description: |-
-            Region keys should match the cloud provider's zone code.
-            For example, for Oregon, set region_name to "us-west2" for
-            GCP and "us-west-2" for AWS. Values represent the node count.
+          description: "Region keys should match the cloud provider's zone code.\n\
+            For example, for Oregon, set region_name to \"us-west2\" for\nGCP and\
+            \ \"us-west-2\" for AWS. Values represent the node count."
           type: object
         hardware:
           $ref: '#/components/schemas/DedicatedHardwareCreateSpecification'
@@ -2020,20 +2956,25 @@ components:
           additionalProperties:
             format: int32
             type: integer
-          description: |-
-            Region keys should match the cloud provider's zone code.
-            For example, for Oregon, set region_name to "us-west2" for
-            GCP and "us-west-2" for AWS. Values represent the node count.
+          description: "Region keys should match the cloud provider's zone code.\n\
+            For example, for Oregon, set region_name to \"us-west2\" for\nGCP and\
+            \ \"us-west-2\" for AWS. Values represent the node count."
           type: object
         hardware:
           $ref: '#/components/schemas/DedicatedHardwareUpdateSpecification'
+        cmek_region_specs:
+          description: "This field should contain the CMEK specs for newly added regions.\
+            \ If a\nCMEK spec is provided for an existing region, the request is invalid\
+            \ and\nwill fail."
+          items:
+            $ref: '#/components/schemas/CMEKRegionSpecification'
+          type: array
       type: object
     DedicatedHardwareConfig:
       properties:
         machine_type:
-          description: |-
-            MachineType is the machine type identifier within the given cloud
-            provider, ex. m5.xlarge, n2-standard-4.
+          description: "MachineType is the machine type identifier within the given\
+            \ cloud\nprovider, ex. m5.xlarge, n2-standard-4."
           type: string
         num_virtual_cpus:
           description: NumVirtualCPUs is the number of virtual CPUs per node in the
@@ -2102,9 +3043,8 @@ components:
     DedicatedMachineTypeSpecification:
       properties:
         machine_type:
-          description: |-
-            MachineType is the machine type identifier within the given cloud
-            provider, ex. m5.xlarge, n2-standard-4.
+          description: "MachineType is the machine type identifier within the given\
+            \ cloud\nprovider, ex. m5.xlarge, n2-standard-4."
           type: string
         num_virtual_cpus:
           description: |-
@@ -2113,40 +3053,263 @@ components:
           format: int32
           type: integer
       type: object
+    Invoice:
+      description: "Invoice message represents the details and the total charges associated\
+        \ with\none billing period, which starts at the beginning of the month and\
+        \ ends at\nthe beginning of the next month. The message also includes details\
+        \ about each\ninvoice item."
+      example:
+        period_end: 2000-01-23T04:56:07.000+00:00
+        balances:
+        - amount: 0.8008281904610115
+          currency: null
+        - amount: 0.8008281904610115
+          currency: null
+        invoice_items:
+        - cluster:
+            id: 35c4abb2-bb66-46d7-afed-25ebef5ed2aa
+            name: example-cluster
+            cockroach_version: v21.2.4
+            plan: SERVERLESS
+            cloud_provider: GCP
+            account_id: ""
+            state: CREATED
+            creator_id: 7cde0cd9-0d8a-4008-8f90-45092ce8afc1
+            operation_status: CLUSTER_STATUS_UNSPECIFIED
+            config:
+              serverless:
+                spend_limit: 0
+                routing_id: example-cluster-1533
+            regions:
+            - name: us-central1
+              sql_dns: free-tier7.gcp-us-central1.crdb.io
+              ui_dns: ""
+              node_count: 0
+            created_at: 2022-03-22T20:23:11.285067Z
+            updated_at: 2022-03-22T20:23:11.879593Z
+            deleted_at: null
+          totals:
+          - amount: 0.8008281904610115
+            currency: null
+          - amount: 0.8008281904610115
+            currency: null
+          line_items:
+          - quantity_unit: null
+            total:
+              amount: 0.8008281904610115
+              currency: null
+            quantity: 6.027456183070403
+            description: description
+            unit_cost: 1.4658129805029452
+          - quantity_unit: null
+            total:
+              amount: 0.8008281904610115
+              currency: null
+            quantity: 6.027456183070403
+            description: description
+            unit_cost: 1.4658129805029452
+        - cluster:
+            id: 35c4abb2-bb66-46d7-afed-25ebef5ed2aa
+            name: example-cluster
+            cockroach_version: v21.2.4
+            plan: SERVERLESS
+            cloud_provider: GCP
+            account_id: ""
+            state: CREATED
+            creator_id: 7cde0cd9-0d8a-4008-8f90-45092ce8afc1
+            operation_status: CLUSTER_STATUS_UNSPECIFIED
+            config:
+              serverless:
+                spend_limit: 0
+                routing_id: example-cluster-1533
+            regions:
+            - name: us-central1
+              sql_dns: free-tier7.gcp-us-central1.crdb.io
+              ui_dns: ""
+              node_count: 0
+            created_at: 2022-03-22T20:23:11.285067Z
+            updated_at: 2022-03-22T20:23:11.879593Z
+            deleted_at: null
+          totals:
+          - amount: 0.8008281904610115
+            currency: null
+          - amount: 0.8008281904610115
+            currency: null
+          line_items:
+          - quantity_unit: null
+            total:
+              amount: 0.8008281904610115
+              currency: null
+            quantity: 6.027456183070403
+            description: description
+            unit_cost: 1.4658129805029452
+          - quantity_unit: null
+            total:
+              amount: 0.8008281904610115
+              currency: null
+            quantity: 6.027456183070403
+            description: description
+            unit_cost: 1.4658129805029452
+        period_start: 2000-01-23T04:56:07.000+00:00
+        invoice_id: invoice_id
+        totals:
+        - amount: 0.8008281904610115
+          currency: null
+        - amount: 0.8008281904610115
+          currency: null
+      properties:
+        invoice_id:
+          description: InvoiceID is the unique ID representing the invoice.
+          type: string
+        totals:
+          description: Totals is a list of the total amounts per currency.
+          items:
+            $ref: '#/components/schemas/CurrencyAmount'
+          type: array
+        period_start:
+          description: PeriodStart is the start of the billing period (inclusive).
+          format: date-time
+          type: string
+        period_end:
+          description: PeriodEnd is the end of the billing period (exclusive).
+          format: date-time
+          type: string
+        invoice_items:
+          description: InvoiceItems are sorted by the cluster name.
+          items:
+            $ref: '#/components/schemas/InvoiceItem'
+          type: array
+        balances:
+          description: Balances are the amounts of currency left at the time of the
+            invoice.
+          items:
+            $ref: '#/components/schemas/CurrencyAmount'
+          type: array
+      required:
+      - balances
+      - invoice_id
+      - invoice_items
+      - period_end
+      - period_start
+      - totals
+      type: object
+    InvoiceItem:
+      example:
+        cluster:
+          id: 35c4abb2-bb66-46d7-afed-25ebef5ed2aa
+          name: example-cluster
+          cockroach_version: v21.2.4
+          plan: SERVERLESS
+          cloud_provider: GCP
+          account_id: ""
+          state: CREATED
+          creator_id: 7cde0cd9-0d8a-4008-8f90-45092ce8afc1
+          operation_status: CLUSTER_STATUS_UNSPECIFIED
+          config:
+            serverless:
+              spend_limit: 0
+              routing_id: example-cluster-1533
+          regions:
+          - name: us-central1
+            sql_dns: free-tier7.gcp-us-central1.crdb.io
+            ui_dns: ""
+            node_count: 0
+          created_at: 2022-03-22T20:23:11.285067Z
+          updated_at: 2022-03-22T20:23:11.879593Z
+          deleted_at: null
+        totals:
+        - amount: 0.8008281904610115
+          currency: null
+        - amount: 0.8008281904610115
+          currency: null
+        line_items:
+        - quantity_unit: null
+          total:
+            amount: 0.8008281904610115
+            currency: null
+          quantity: 6.027456183070403
+          description: description
+          unit_cost: 1.4658129805029452
+        - quantity_unit: null
+          total:
+            amount: 0.8008281904610115
+            currency: null
+          quantity: 6.027456183070403
+          description: description
+          unit_cost: 1.4658129805029452
+      properties:
+        cluster:
+          $ref: '#/components/schemas/Cluster'
+        totals:
+          description: Totals is a list of the total amounts of line items per currency.
+          items:
+            $ref: '#/components/schemas/CurrencyAmount'
+          type: array
+        line_items:
+          description: LineItems contain all the relevant line items from the Metronome
+            invoice.
+          items:
+            $ref: '#/components/schemas/LineItem'
+          type: array
+      required:
+      - cluster
+      - line_items
+      - totals
+      type: object
     KeysetPaginationRequest:
       properties:
-        start_key:
+        page:
           type: string
-        direction:
-          $ref: '#/components/schemas/PageDirection'
         limit:
           format: int32
           type: integer
-        time:
+        as_of_time:
           format: date-time
           type: string
-        order:
+        sort_order:
           $ref: '#/components/schemas/SortOrder'
       type: object
     KeysetPaginationResponse:
       example:
-        next: next
-        last: last
-        limit: 0
-        time: 2000-01-23T04:56:07.000+00:00
+        next_page: next_page
+        previous_page: previous_page
       properties:
-        next:
+        next_page:
           type: string
-        last:
+        previous_page:
           type: string
-        limit:
-          format: int32
-          type: integer
-        time:
-          format: date-time
+      type: object
+    LineItem:
+      example:
+        quantity_unit: null
+        total:
+          amount: 0.8008281904610115
+          currency: null
+        quantity: 6.027456183070403
+        description: description
+        unit_cost: 1.4658129805029452
+      properties:
+        description:
+          description: Description contains the details of the line item (i.e t3 micro).
           type: string
-        order:
-          $ref: '#/components/schemas/SortOrder'
+        quantity:
+          description: Quantity is the number of the specific line items used.
+          format: double
+          type: number
+        unit_cost:
+          description: UnitCost is the cost per unit of line item.
+          format: double
+          type: number
+        total:
+          $ref: '#/components/schemas/CurrencyAmount'
+        quantity_unit:
+          $ref: '#/components/schemas/QuantityUnitType'
+      required:
+      - description
+      - quantity
+      - quantity_unit
+      - total
+      - unit_cost
       type: object
     ListAllowlistEntriesResponse:
       example:
@@ -2162,10 +3325,8 @@ components:
           sql: true
           name: Example
         pagination:
-          next: next
-          last: last
-          limit: 0
-          time: 2000-01-23T04:56:07.000+00:00
+          next_page: next_page
+          previous_page: previous_page
         propagating: true
       properties:
         allowlist:
@@ -2185,18 +3346,18 @@ components:
       example:
         regions:
         - distance: 0.8008282
+          provider: null
           name: name
           serverless: true
           location: location
         - distance: 0.8008282
+          provider: null
           name: name
           serverless: true
           location: location
         pagination:
-          next: next
-          last: last
-          limit: 0
-          time: 2000-01-23T04:56:07.000+00:00
+          next_page: next_page
+          previous_page: previous_page
       properties:
         regions:
           items:
@@ -2212,13 +3373,13 @@ components:
         nodes:
         - name: name
           region_name: region_name
+          status: null
         - name: name
           region_name: region_name
+          status: null
         pagination:
-          next: next
-          last: last
-          limit: 0
-          time: 2000-01-23T04:56:07.000+00:00
+          next_page: next_page
+          previous_page: previous_page
       properties:
         nodes:
           items:
@@ -2232,10 +3393,8 @@ components:
     ListClustersResponse:
       example:
         pagination:
-          next: next
-          last: last
-          limit: 0
-          time: 2000-01-23T04:56:07.000+00:00
+          next_page: next_page
+          previous_page: previous_page
         clusters:
         - id: 35c4abb2-bb66-46d7-afed-25ebef5ed2aa
           name: example-cluster
@@ -2289,13 +3448,219 @@ components:
       required:
       - clusters
       type: object
+    ListInvoicesResponse:
+      example:
+        invoices:
+        - period_end: 2000-01-23T04:56:07.000+00:00
+          balances:
+          - amount: 0.8008281904610115
+            currency: null
+          - amount: 0.8008281904610115
+            currency: null
+          invoice_items:
+          - cluster:
+              id: 35c4abb2-bb66-46d7-afed-25ebef5ed2aa
+              name: example-cluster
+              cockroach_version: v21.2.4
+              plan: SERVERLESS
+              cloud_provider: GCP
+              account_id: ""
+              state: CREATED
+              creator_id: 7cde0cd9-0d8a-4008-8f90-45092ce8afc1
+              operation_status: CLUSTER_STATUS_UNSPECIFIED
+              config:
+                serverless:
+                  spend_limit: 0
+                  routing_id: example-cluster-1533
+              regions:
+              - name: us-central1
+                sql_dns: free-tier7.gcp-us-central1.crdb.io
+                ui_dns: ""
+                node_count: 0
+              created_at: 2022-03-22T20:23:11.285067Z
+              updated_at: 2022-03-22T20:23:11.879593Z
+              deleted_at: null
+            totals:
+            - amount: 0.8008281904610115
+              currency: null
+            - amount: 0.8008281904610115
+              currency: null
+            line_items:
+            - quantity_unit: null
+              total:
+                amount: 0.8008281904610115
+                currency: null
+              quantity: 6.027456183070403
+              description: description
+              unit_cost: 1.4658129805029452
+            - quantity_unit: null
+              total:
+                amount: 0.8008281904610115
+                currency: null
+              quantity: 6.027456183070403
+              description: description
+              unit_cost: 1.4658129805029452
+          - cluster:
+              id: 35c4abb2-bb66-46d7-afed-25ebef5ed2aa
+              name: example-cluster
+              cockroach_version: v21.2.4
+              plan: SERVERLESS
+              cloud_provider: GCP
+              account_id: ""
+              state: CREATED
+              creator_id: 7cde0cd9-0d8a-4008-8f90-45092ce8afc1
+              operation_status: CLUSTER_STATUS_UNSPECIFIED
+              config:
+                serverless:
+                  spend_limit: 0
+                  routing_id: example-cluster-1533
+              regions:
+              - name: us-central1
+                sql_dns: free-tier7.gcp-us-central1.crdb.io
+                ui_dns: ""
+                node_count: 0
+              created_at: 2022-03-22T20:23:11.285067Z
+              updated_at: 2022-03-22T20:23:11.879593Z
+              deleted_at: null
+            totals:
+            - amount: 0.8008281904610115
+              currency: null
+            - amount: 0.8008281904610115
+              currency: null
+            line_items:
+            - quantity_unit: null
+              total:
+                amount: 0.8008281904610115
+                currency: null
+              quantity: 6.027456183070403
+              description: description
+              unit_cost: 1.4658129805029452
+            - quantity_unit: null
+              total:
+                amount: 0.8008281904610115
+                currency: null
+              quantity: 6.027456183070403
+              description: description
+              unit_cost: 1.4658129805029452
+          period_start: 2000-01-23T04:56:07.000+00:00
+          invoice_id: invoice_id
+          totals:
+          - amount: 0.8008281904610115
+            currency: null
+          - amount: 0.8008281904610115
+            currency: null
+        - period_end: 2000-01-23T04:56:07.000+00:00
+          balances:
+          - amount: 0.8008281904610115
+            currency: null
+          - amount: 0.8008281904610115
+            currency: null
+          invoice_items:
+          - cluster:
+              id: 35c4abb2-bb66-46d7-afed-25ebef5ed2aa
+              name: example-cluster
+              cockroach_version: v21.2.4
+              plan: SERVERLESS
+              cloud_provider: GCP
+              account_id: ""
+              state: CREATED
+              creator_id: 7cde0cd9-0d8a-4008-8f90-45092ce8afc1
+              operation_status: CLUSTER_STATUS_UNSPECIFIED
+              config:
+                serverless:
+                  spend_limit: 0
+                  routing_id: example-cluster-1533
+              regions:
+              - name: us-central1
+                sql_dns: free-tier7.gcp-us-central1.crdb.io
+                ui_dns: ""
+                node_count: 0
+              created_at: 2022-03-22T20:23:11.285067Z
+              updated_at: 2022-03-22T20:23:11.879593Z
+              deleted_at: null
+            totals:
+            - amount: 0.8008281904610115
+              currency: null
+            - amount: 0.8008281904610115
+              currency: null
+            line_items:
+            - quantity_unit: null
+              total:
+                amount: 0.8008281904610115
+                currency: null
+              quantity: 6.027456183070403
+              description: description
+              unit_cost: 1.4658129805029452
+            - quantity_unit: null
+              total:
+                amount: 0.8008281904610115
+                currency: null
+              quantity: 6.027456183070403
+              description: description
+              unit_cost: 1.4658129805029452
+          - cluster:
+              id: 35c4abb2-bb66-46d7-afed-25ebef5ed2aa
+              name: example-cluster
+              cockroach_version: v21.2.4
+              plan: SERVERLESS
+              cloud_provider: GCP
+              account_id: ""
+              state: CREATED
+              creator_id: 7cde0cd9-0d8a-4008-8f90-45092ce8afc1
+              operation_status: CLUSTER_STATUS_UNSPECIFIED
+              config:
+                serverless:
+                  spend_limit: 0
+                  routing_id: example-cluster-1533
+              regions:
+              - name: us-central1
+                sql_dns: free-tier7.gcp-us-central1.crdb.io
+                ui_dns: ""
+                node_count: 0
+              created_at: 2022-03-22T20:23:11.285067Z
+              updated_at: 2022-03-22T20:23:11.879593Z
+              deleted_at: null
+            totals:
+            - amount: 0.8008281904610115
+              currency: null
+            - amount: 0.8008281904610115
+              currency: null
+            line_items:
+            - quantity_unit: null
+              total:
+                amount: 0.8008281904610115
+                currency: null
+              quantity: 6.027456183070403
+              description: description
+              unit_cost: 1.4658129805029452
+            - quantity_unit: null
+              total:
+                amount: 0.8008281904610115
+                currency: null
+              quantity: 6.027456183070403
+              description: description
+              unit_cost: 1.4658129805029452
+          period_start: 2000-01-23T04:56:07.000+00:00
+          invoice_id: invoice_id
+          totals:
+          - amount: 0.8008281904610115
+            currency: null
+          - amount: 0.8008281904610115
+            currency: null
+      properties:
+        invoices:
+          description: Invoices are sorted by PeriodStart time.
+          items:
+            $ref: '#/components/schemas/Invoice'
+          type: array
+      required:
+      - invoices
+      type: object
     ListSQLUsersResponse:
       example:
         pagination:
-          next: next
-          last: last
-          limit: 0
-          time: 2000-01-23T04:56:07.000+00:00
+          next_page: next_page
+          previous_page: previous_page
         users:
         - name: name
         - name: name
@@ -2309,10 +3674,86 @@ components:
       required:
       - users
       type: object
+    LogExportClusterInfo:
+      description: "LogExportClusterInfo contains a package of information that fully\n\
+        describes both the intended state of the log export configuration for\na specific\
+        \ cluster but also some metadata around its deployment\nstatus, any error\
+        \ messages, and some timestamps."
+      example:
+        cluster_id: cluster_id
+        updated_at: 2000-01-23T04:56:07.000+00:00
+        user_message: user_message
+        created_at: 2000-01-23T04:56:07.000+00:00
+        spec:
+          log_name: log_name
+          auth_principal: auth_principal
+          type: null
+        status: null
+      properties:
+        cluster_id:
+          type: string
+        status:
+          $ref: '#/components/schemas/LogExportStatus'
+        user_message:
+          type: string
+        spec:
+          $ref: '#/components/schemas/LogExportClusterSpecification'
+        created_at:
+          format: date-time
+          type: string
+        updated_at:
+          format: date-time
+          type: string
+      type: object
+    LogExportClusterSpecification:
+      description: |-
+        LogExportClusterSpecification contains all the data necessary to
+        configure log export for an individual cluster. Users would supply
+        this data via the API and also receive it back when inspecting the
+        state of their log export configuration.
+      example:
+        log_name: log_name
+        auth_principal: auth_principal
+        type: null
+      properties:
+        type:
+          $ref: '#/components/schemas/LogExportType'
+        log_name:
+          description: log_name is an identifier for the logs in the customer's log
+            sink.
+          type: string
+        auth_principal:
+          description: |-
+            auth_principal is either the AWS Role ARN that identifies a role
+            that the cluster account can assume to write to CloudWatch or the
+            GCP Project ID that the cluster service account has permissions to
+            write to for cloud logging.
+          type: string
+      type: object
+    LogExportStatus:
+      description: "LogExportStatus encodes the possible states that a configuration\
+        \ can\nbe in as it is created, deployed, and disabled."
+      enum:
+      - DISABLED
+      - DISABLING
+      - DISABLE_FAILED
+      - ENABLED
+      - ENABLING
+      - ENABLE_FAILED
+      type: string
+    LogExportType:
+      description: "LogExportType encodes the cloud selection that we're exporting\
+        \ to\nalong with the cloud logging platform. Currently, each cloud has a\n\
+        single logging platform."
+      enum:
+      - AWS_CLOUDWATCH
+      - GCP_CLOUD_LOGGING
+      type: string
     Node:
       example:
         name: name
         region_name: region_name
+        status: null
       properties:
         name:
           type: string
@@ -2326,20 +3767,11 @@ components:
       - status
       type: object
     NodeStatus:
-      default: NODE_STATUS_UNSPECIFIED
       enum:
-      - NODE_STATUS_UNSPECIFIED
       - LIVE
       - NOT_READY
       type: string
-    PageDirection:
-      default: PAGE_DIRECTION_NEXT
-      enum:
-      - PAGE_DIRECTION_NEXT
-      - PAGE_DIRECTION_LAST
-      type: string
     Plan:
-      default: PLAN_UNSPECIFIED
       description: " - DEDICATED: A paid plan that offers dedicated hardware in any\
         \ location.\n - CUSTOM: A plan option that is used for clusters whose machine\
         \ configs are not \nsupported in self-service. All INVOICE clusters are under\
@@ -2347,10 +3779,86 @@ components:
         \ and caps the users'\nmaximum monthly spending to a user-specified (possibly\
         \ 0) amount."
       enum:
-      - PLAN_UNSPECIFIED
       - DEDICATED
       - CUSTOM
       - SERVERLESS
+      type: string
+    PrivateEndpointService:
+      example:
+        region_name: region_name
+        cloud_provider: null
+        aws:
+          availability_zone_ids:
+          - availability_zone_ids
+          - availability_zone_ids
+          service_name: service_name
+          service_id: service_id
+        status: null
+      properties:
+        region_name:
+          description: RegionName is the cloud provider region name (i.e. us-east-1).
+          type: string
+        cloud_provider:
+          $ref: '#/components/schemas/api.CloudProvider'
+        status:
+          $ref: '#/components/schemas/PrivateEndpointServiceStatus'
+        aws:
+          $ref: '#/components/schemas/AWSPrivateLinkServiceDetail'
+      required:
+      - aws
+      - cloud_provider
+      - region_name
+      - status
+      type: object
+    PrivateEndpointServiceStatus:
+      description: "- ENDPOINT_SERVICE_STATUS_DELETE_FAILED: One note is that if the\
+        \ service is deleted, there is no longer\na record, hence there is no \"DELETED\"\
+        \ status."
+      enum:
+      - ENDPOINT_SERVICE_STATUS_CREATING
+      - ENDPOINT_SERVICE_STATUS_AVAILABLE
+      - ENDPOINT_SERVICE_STATUS_CREATE_FAILED
+      - ENDPOINT_SERVICE_STATUS_DELETING
+      - ENDPOINT_SERVICE_STATUS_DELETE_FAILED
+      title: Private Endpoints
+      type: string
+    PrivateEndpointServices:
+      example:
+        services:
+        - region_name: region_name
+          cloud_provider: null
+          aws:
+            availability_zone_ids:
+            - availability_zone_ids
+            - availability_zone_ids
+            service_name: service_name
+            service_id: service_id
+          status: null
+        - region_name: region_name
+          cloud_provider: null
+          aws:
+            availability_zone_ids:
+            - availability_zone_ids
+            - availability_zone_ids
+            service_name: service_name
+            service_id: service_id
+          status: null
+      properties:
+        services:
+          description: Services contains a list of all cluster related services.
+          items:
+            $ref: '#/components/schemas/PrivateEndpointService'
+          type: array
+      required:
+      - services
+      type: object
+    QuantityUnitType:
+      description: |-
+        Billing
+        QuantityUnitType is the unit type for a quantity of billing line item.
+      enum:
+      - HOURS
+      - REQUEST_UNITS
       type: string
     Region:
       properties:
@@ -2395,10 +3903,9 @@ components:
     ServerlessClusterCreateSpecification:
       properties:
         regions:
-          description: |-
-            Region values should match the cloud provider's zone code.
-            For example, for Oregon, set region_name to "us-west2" for
-            GCP and "us-west-2" for AWS.
+          description: "Region values should match the cloud provider's zone code.\n\
+            For example, for Oregon, set region_name to \"us-west2\" for\nGCP and\
+            \ \"us-west-2\" for AWS."
           items:
             type: string
           type: array
@@ -2420,8 +3927,7 @@ components:
       - spend_limit
       type: object
     SortOrder:
-      default: ASC
-      description: ' - DESC: Sort in descending order. The default order is ascending.'
+      description: " - DESC: Sort in descending order. The default order is ascending."
       enum:
       - ASC
       - DESC
@@ -2453,15 +3959,47 @@ components:
           $ref: '#/components/schemas/ServerlessClusterUpdateSpecification'
       type: object
     api.CloudProvider:
-      default: CLOUD_PROVIDER_UNSPECIFIED
-      description: |2-
-         - GCP: The Google Cloud Platform cloud provider.
-         - AWS: The Amazon Web Services cloud provider.
+      description: " - GCP: The Google Cloud Platform cloud provider.\n - AWS: The\
+        \ Amazon Web Services cloud provider."
       enum:
-      - CLOUD_PROVIDER_UNSPECIFIED
       - GCP
       - AWS
       type: string
+    api.Database:
+      example:
+        table_count: table_count
+        name: name
+      properties:
+        name:
+          type: string
+        table_count:
+          format: int64
+          type: string
+      required:
+      - name
+      title: Database
+      type: object
+    api.ListDatabasesResponse:
+      example:
+        databases:
+        - table_count: table_count
+          name: name
+        - table_count: table_count
+          name: name
+        pagination:
+          next_page: next_page
+          previous_page: previous_page
+      properties:
+        databases:
+          items:
+            $ref: '#/components/schemas/api.Database'
+          type: array
+        pagination:
+          $ref: '#/components/schemas/KeysetPaginationResponse'
+      required:
+      - databases
+      title: ListDatabasesResponse
+      type: object
     CMEKClusterSpecification:
       example:
         region_specs:
@@ -2488,6 +4026,74 @@ components:
       required:
       - action
       title: UpdateCMEKStatusRequest
+      type: object
+    CreateDatabaseRequest:
+      example:
+        name: example_database_name
+      properties:
+        name:
+          type: string
+      required:
+      - name
+      title: CreateDatabaseRequest
+      type: object
+    UpdateDatabaseRequest:
+      example:
+        new_name: example_new_database_name
+      properties:
+        name:
+          type: string
+        new_name:
+          type: string
+      required:
+      - name
+      - new_name
+      title: UpdateDatabaseRequest
+      type: object
+    EnableLogExportRequest:
+      example:
+        log_name: log_name
+        auth_principal: auth_principal
+        type: null
+      properties:
+        type:
+          $ref: '#/components/schemas/LogExportType'
+        log_name:
+          description: log_name is an identifier for the logs in the customer's log
+            sink.
+          type: string
+        auth_principal:
+          description: |-
+            auth_principal is either the AWS Role ARN that identifies a role
+            that the cluster account can assume to write to CloudWatch or the
+            GCP Project ID that the cluster service account has permissions to
+            write to for cloud logging.
+          type: string
+      title: EnableLogExportRequest
+      type: object
+    AllowlistEntry_1:
+      example:
+        cidr_ip: 192.168.1.1
+        cidr_mask: 32
+        ui: true
+        sql: true
+        name: Example
+      properties:
+        ui:
+          type: boolean
+        sql:
+          type: boolean
+        name:
+          type: string
+      required:
+      - sql
+      - ui
+      title: AllowlistEntry
+      type: object
+    CockroachCloud_SetAwsEndpointConnectionState_request:
+      properties:
+        status:
+          $ref: '#/components/schemas/AWSEndpointConnectionStatus'
       type: object
     CreateSQLUserRequest:
       example:

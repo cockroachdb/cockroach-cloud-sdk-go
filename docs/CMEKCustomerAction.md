@@ -3,8 +3,6 @@
 ## Enum
 
 
-* `UNKNOWN_ACTION` (value: `"UNKNOWN_ACTION"`)
-
 * `REVOKE` (value: `"REVOKE"`)
 
 

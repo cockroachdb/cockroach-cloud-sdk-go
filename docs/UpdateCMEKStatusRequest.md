@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Action** | [**CMEKCustomerAction**](CMEKCustomerAction.md) |  | [default to CMEKCUSTOMERACTION_UNKNOWN_ACTION]
+**Action** | [**CMEKCustomerAction**](CMEKCustomerAction.md) |  | 
 
 ## Methods
 
