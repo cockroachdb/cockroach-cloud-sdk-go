@@ -111,8 +111,10 @@ paths:
       - CockroachCloud
       x-codeSamples:
       - lang: Shell + Curl
-        source: "curl --request GET \\\n  --url 'https://cockroachlabs.cloud/api/v1/clusters?show_inactive=SOME_BOOLEAN_VALUE&pagination.page=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.as_of_time=SOME_STRING_VALUE&pagination.sort_order=SOME_STRING_VALUE'\
-          \ \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+        source: |-
+          curl --request GET \
+            --url 'https://cockroachlabs.cloud/api/v1/clusters?show_inactive=SOME_BOOLEAN_VALUE&pagination.page=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.as_of_time=SOME_STRING_VALUE&pagination.sort_order=SOME_STRING_VALUE' \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     post:
       operationId: CockroachCloud_CreateCluster
       requestBody:
@@ -165,19 +167,22 @@ paths:
       - CockroachCloud
       x-codeSamples:
       - lang: Shell + Curl
-        source: "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters\
-          \ \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header\
-          \ 'content-type: application/json' \\\n  --data '{\"name\":\"test-cluster\"\
-          ,\"provider\":\"GCP\",\"spec\":{\"serverless\":{\"regions\":[\"us-central1\"\
-          ],\"spend_limit\":0}}}'"
+        source: |-
+          curl --request POST \
+            --url https://cockroachlabs.cloud/api/v1/clusters \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
+            --header 'content-type: application/json' \
+            --data '{"name":"test-cluster","provider":"GCP","spec":{"serverless":{"regions":["us-central1"],"spend_limit":0}}}'
   /api/v1/clusters/available-regions:
     get:
       description: "Sort order: Distance (based on client IP address)"
       operationId: CockroachCloud_ListAvailableRegions
       parameters:
-      - description: "Optional CloudProvider for filtering.\n\n - GCP: The Google\
-          \ Cloud Platform cloud provider.\n - AWS: The Amazon Web Services cloud\
-          \ provider."
+      - description: |-
+          Optional CloudProvider for filtering.
+
+           - GCP: The Google Cloud Platform cloud provider.
+           - AWS: The Amazon Web Services cloud provider.
         explode: true
         in: query
         name: provider
@@ -276,8 +281,10 @@ paths:
       - CockroachCloud
       x-codeSamples:
       - lang: Shell + Curl
-        source: "curl --request GET \\\n  --url 'https://cockroachlabs.cloud/api/v1/clusters/available-regions?provider=SOME_STRING_VALUE&serverless=SOME_BOOLEAN_VALUE&pagination.page=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.as_of_time=SOME_STRING_VALUE&pagination.sort_order=SOME_STRING_VALUE'\
-          \ \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+        source: |-
+          curl --request GET \
+            --url 'https://cockroachlabs.cloud/api/v1/clusters/available-regions?provider=SOME_STRING_VALUE&serverless=SOME_BOOLEAN_VALUE&pagination.page=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.as_of_time=SOME_STRING_VALUE&pagination.sort_order=SOME_STRING_VALUE' \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
   /api/v1/clusters/{cluster_id}:
     delete:
       operationId: CockroachCloud_DeleteCluster
@@ -333,8 +340,10 @@ paths:
       - CockroachCloud
       x-codeSamples:
       - lang: Shell + Curl
-        source: "curl --request DELETE \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}\
-          \ \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+        source: |-
+          curl --request DELETE \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id} \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     get:
       operationId: CockroachCloud_GetCluster
       parameters:
@@ -389,8 +398,10 @@ paths:
       - CockroachCloud
       x-codeSamples:
       - lang: Shell + Curl
-        source: "curl --request GET \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}\
-          \ \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+        source: |-
+          curl --request GET \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id} \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     patch:
       operationId: CockroachCloud_UpdateCluster
       parameters:
@@ -458,11 +469,12 @@ paths:
       - CockroachCloud
       x-codeSamples:
       - lang: Shell + Curl
-        source: "curl --request PATCH \\\n  --url 'https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}?field_mask=SOME_STRING_VALUE'\
-          \ \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header\
-          \ 'content-type: application/json' \\\n  --data '{\"dedicated\":{\"region_nodes\"\
-          :{\"us-west1\":3,\"us-central1\":5},\"hardware\":{\"machine_type\":\"n2-standard-8\"\
-          }}}'"
+        source: |-
+          curl --request PATCH \
+            --url 'https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}?field_mask=SOME_STRING_VALUE' \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
+            --header 'content-type: application/json' \
+            --data '{"dedicated":{"region_nodes":{"us-west1":3,"us-central1":5},"hardware":{"machine_type":"n2-standard-8"}}}'
   /api/v1/clusters/{cluster_id}/cmek:
     get:
       operationId: CockroachCloud_GetCMEKClusterInfo
@@ -518,8 +530,10 @@ paths:
       - CockroachCloud
       x-codeSamples:
       - lang: Shell + Curl
-        source: "curl --request GET \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/cmek\
-          \ \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+        source: |-
+          curl --request GET \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/cmek \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     patch:
       operationId: CockroachCloud_UpdateCMEKStatus
       parameters:
@@ -580,10 +594,12 @@ paths:
       - CockroachCloud
       x-codeSamples:
       - lang: Shell + Curl
-        source: "curl --request PATCH \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/cmek\
-          \ \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header\
-          \ 'content-type: application/json' \\\n  --data '{\"action\":\"REVOKE\"\
-          }'"
+        source: |-
+          curl --request PATCH \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/cmek \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
+            --header 'content-type: application/json' \
+            --data '{"action":"REVOKE"}'
     post:
       operationId: CockroachCloud_EnableCMEKSpec
       parameters:
@@ -644,11 +660,11 @@ paths:
       - CockroachCloud
       x-codeSamples:
       - lang: Shell + Curl
-        source: "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/cmek\
-          \ \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --data\
-          \ '{\"region_specs\":[{\"region\":\"us-central1\",\"key_spec\":{\"type\"\
-          :\"AWS_KMS\",\"uri\":\"arn:aws:kms:us-west-2:111122223333:key/id-of-kms-key\"\
-          ,\"auth_principal\":\"arn:aws:iam::account:role/role-name-with-path\"}}]}'"
+        source: |-
+          curl --request POST \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/cmek \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
+            --data '{"region_specs":[{"region":"us-central1","key_spec":{"type":"AWS_KMS","uri":"arn:aws:kms:us-west-2:111122223333:key/id-of-kms-key","auth_principal":"arn:aws:iam::account:role/role-name-with-path"}}]}'
     put:
       operationId: CockroachCloud_UpdateCMEKSpec
       parameters:
@@ -709,11 +725,11 @@ paths:
       - CockroachCloud
       x-codeSamples:
       - lang: Shell + Curl
-        source: "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/cmek\
-          \ \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --data\
-          \ '{\"region_specs\":[{\"region\":\"us-central1\",\"key_spec\":{\"type\"\
-          :\"AWS_KMS\",\"uri\":\"arn:aws:kms:us-west-2:111122223333:key/id-of-kms-key\"\
-          ,\"auth_principal\":\"arn:aws:iam::account:role/role-name-with-path\"}}]}'"
+        source: |-
+          curl --request PUT \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/cmek \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
+            --data '{"region_specs":[{"region":"us-central1","key_spec":{"type":"AWS_KMS","uri":"arn:aws:kms:us-west-2:111122223333:key/id-of-kms-key","auth_principal":"arn:aws:iam::account:role/role-name-with-path"}}]}'
   /api/v1/clusters/{cluster_id}/databases:
     get:
       description: "Sort order: Database name ascending"
@@ -804,8 +820,10 @@ paths:
       - CockroachCloud
       x-codeSamples:
       - lang: Shell + Curl
-        source: "curl --request GET \\\n  --url 'https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/databases?pagination.page=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.as_of_time=SOME_STRING_VALUE&pagination.sort_order=SOME_STRING_VALUE'\
-          \ \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+        source: |-
+          curl --request GET \
+            --url 'https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/databases?pagination.page=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.as_of_time=SOME_STRING_VALUE&pagination.sort_order=SOME_STRING_VALUE' \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     patch:
       operationId: CockroachCloud_EditDatabase
       parameters:
@@ -866,10 +884,12 @@ paths:
       - CockroachCloud
       x-codeSamples:
       - lang: Shell + Curl
-        source: "curl --request PATCH \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/databases\
-          \ \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header\
-          \ 'content-type: application/json' \\\n  --data '{\"new_name\":\"example_new_database_name\"\
-          }'"
+        source: |-
+          curl --request PATCH \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/databases \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
+            --header 'content-type: application/json' \
+            --data '{"new_name":"example_new_database_name"}'
     post:
       operationId: CockroachCloud_CreateDatabase
       parameters:
@@ -930,10 +950,12 @@ paths:
       - CockroachCloud
       x-codeSamples:
       - lang: Shell + Curl
-        source: "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/databases\
-          \ \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header\
-          \ 'content-type: application/json' \\\n  --data '{\"name\":\"example_database_name\"\
-          }'"
+        source: |-
+          curl --request POST \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/databases \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
+            --header 'content-type: application/json' \
+            --data '{"name":"example_database_name"}'
   /api/v1/clusters/{cluster_id}/databases/{name}:
     delete:
       operationId: CockroachCloud_DeleteDatabase
@@ -996,8 +1018,10 @@ paths:
       - CockroachCloud
       x-codeSamples:
       - lang: Shell + Curl
-        source: "curl --request DELETE \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/databases/{name}\
-          \ \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+        source: |-
+          curl --request DELETE \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/databases/{name} \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
   /api/v1/clusters/{cluster_id}/logexport:
     delete:
       operationId: CockroachCloud_DeleteLogExport
@@ -1052,8 +1076,10 @@ paths:
       - CockroachCloud
       x-codeSamples:
       - lang: Shell + Curl
-        source: "curl --request DELETE \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/logexport\
-          \ \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+        source: |-
+          curl --request DELETE \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/logexport \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     get:
       operationId: CockroachCloud_GetLogExportInfo
       parameters:
@@ -1107,8 +1133,10 @@ paths:
       - CockroachCloud
       x-codeSamples:
       - lang: Shell + Curl
-        source: "curl --request GET \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/logexport\
-          \ \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+        source: |-
+          curl --request GET \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/logexport \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     post:
       operationId: CockroachCloud_EnableLogExport
       parameters:
@@ -1168,10 +1196,12 @@ paths:
       - CockroachCloud
       x-codeSamples:
       - lang: Shell + Curl
-        source: "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/logexport\
-          \ \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header\
-          \ 'content-type: application/json' \\\n  --data '{\"type\":\"AWS_CLOUDWATCH\"\
-          ,\"log_name\":\"string\",\"auth_principal\":\"string\"}'"
+        source: |-
+          curl --request POST \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/logexport \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
+            --header 'content-type: application/json' \
+            --data '{"type":"AWS_CLOUDWATCH","log_name":"string","auth_principal":"string"}'
   /api/v1/clusters/{cluster_id}/networking/allowlist:
     get:
       description: "Sort order: CIDR address"
@@ -1262,8 +1292,10 @@ paths:
       - CockroachCloud
       x-codeSamples:
       - lang: Shell + Curl
-        source: "curl --request GET \\\n  --url 'https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/allowlist?pagination.page=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.as_of_time=SOME_STRING_VALUE&pagination.sort_order=SOME_STRING_VALUE'\
-          \ \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+        source: |-
+          curl --request GET \
+            --url 'https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/allowlist?pagination.page=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.as_of_time=SOME_STRING_VALUE&pagination.sort_order=SOME_STRING_VALUE' \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     post:
       operationId: CockroachCloud_AddAllowlistEntry
       parameters:
@@ -1324,10 +1356,12 @@ paths:
       - CockroachCloud
       x-codeSamples:
       - lang: Shell + Curl
-        source: "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/allowlist\
-          \ \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header\
-          \ 'content-type: application/json' \\\n  --data '{\"cidr_ip\":\"192.168.1.1\"\
-          ,\"cidr_mask\":32,\"ui\":true,\"sql\":true,\"name\":\"Example\"}'"
+        source: |-
+          curl --request POST \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/allowlist \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
+            --header 'content-type: application/json' \
+            --data '{"cidr_ip":"192.168.1.1","cidr_mask":32,"ui":true,"sql":true,"name":"Example"}'
   /api/v1/clusters/{cluster_id}/networking/allowlist/{cidr_ip}/{cidr_mask}:
     delete:
       operationId: CockroachCloud_DeleteAllowlistEntry
@@ -1398,8 +1432,10 @@ paths:
       - CockroachCloud
       x-codeSamples:
       - lang: Shell + Curl
-        source: "curl --request DELETE \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/allowlist/{cidr_ip}/{cidr_mask}\
-          \ \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+        source: |-
+          curl --request DELETE \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/allowlist/{cidr_ip}/{cidr_mask} \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
   /api/v1/clusters/{cluster_id}/networking/allowlist/{entry.cidr_ip}/{entry.cidr_mask}:
     patch:
       operationId: CockroachCloud_UpdateAllowlistEntry
@@ -1484,10 +1520,11 @@ paths:
       - CockroachCloud
       x-codeSamples:
       - lang: Shell + Curl
-        source: "curl --request PATCH \\\n  --url 'https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/allowlist/{entry.cidr_ip}/{entry.cidr_mask}?field_mask=SOME_STRING_VALUE'\
-          \ \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --data\
-          \ '{\"cidr_ip\":\"192.168.1.1\",\"cidr_mask\":32,\"ui\":true,\"sql\":true,\"\
-          name\":\"Example\"}'"
+        source: |-
+          curl --request PATCH \
+            --url 'https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/allowlist/{entry.cidr_ip}/{entry.cidr_mask}?field_mask=SOME_STRING_VALUE' \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
+            --data '{"cidr_ip":"192.168.1.1","cidr_mask":32,"ui":true,"sql":true,"name":"Example"}'
     put:
       operationId: CockroachCloud_AddAllowlistEntry2
       parameters:
@@ -1564,10 +1601,11 @@ paths:
       - CockroachCloud
       x-codeSamples:
       - lang: Shell + Curl
-        source: "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/allowlist/{entry.cidr_ip}/{entry.cidr_mask}\
-          \ \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --data\
-          \ '{\"cidr_ip\":\"192.168.1.1\",\"cidr_mask\":32,\"ui\":true,\"sql\":true,\"\
-          name\":\"Example\"}'"
+        source: |-
+          curl --request PUT \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/allowlist/{entry.cidr_ip}/{entry.cidr_mask} \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
+            --data '{"cidr_ip":"192.168.1.1","cidr_mask":32,"ui":true,"sql":true,"name":"Example"}'
   /api/v1/clusters/{cluster_id}/networking/aws-endpoint-connections:
     get:
       operationId: CockroachCloud_ListAwsEndpointConnections
@@ -1624,8 +1662,10 @@ paths:
       - CockroachCloud
       x-codeSamples:
       - lang: Shell + Curl
-        source: "curl --request GET \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/aws-endpoint-connections\
-          \ \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+        source: |-
+          curl --request GET \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/aws-endpoint-connections \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
   /api/v1/clusters/{cluster_id}/networking/aws-endpoint-connections/{endpoint_id}:
     patch:
       operationId: CockroachCloud_SetAwsEndpointConnectionState
@@ -1691,18 +1731,20 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
-      summary: "Sets the AWS Endpoint Connection state based on what is passed in\
-        \ the body: accepted or rejected.\nThe \"status\" in the returned proto does\
-        \ not reflect the latest post-update status, but rather\nthe status before\
-        \ the state is transitioned."
+      summary: |-
+        Sets the AWS Endpoint Connection state based on what is passed in the body: accepted or rejected.
+        The "status" in the returned proto does not reflect the latest post-update status, but rather
+        the status before the state is transitioned.
       tags:
       - CockroachCloud
       x-codeSamples:
       - lang: Shell + Curl
-        source: "curl --request PATCH \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/aws-endpoint-connections/{endpoint_id}\
-          \ \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header\
-          \ 'content-type: application/json' \\\n  --data '{\"status\":\"ENDPOINT_PENDING\"\
-          }'"
+        source: |-
+          curl --request PATCH \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/aws-endpoint-connections/{endpoint_id} \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
+            --header 'content-type: application/json' \
+            --data '{"status":"ENDPOINT_PENDING"}'
   /api/v1/clusters/{cluster_id}/networking/private-endpoint-services:
     get:
       operationId: CockroachCloud_ListPrivateEndpointServices
@@ -1759,8 +1801,10 @@ paths:
       - CockroachCloud
       x-codeSamples:
       - lang: Shell + Curl
-        source: "curl --request GET \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/private-endpoint-services\
-          \ \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+        source: |-
+          curl --request GET \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/private-endpoint-services \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     post:
       operationId: CockroachCloud_CreatePrivateEndpointServices
       parameters:
@@ -1822,9 +1866,12 @@ paths:
       - CockroachCloud
       x-codeSamples:
       - lang: Shell + Curl
-        source: "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/private-endpoint-services\
-          \ \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header\
-          \ 'content-type: application/json' \\\n  --data '{}'"
+        source: |-
+          curl --request POST \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/private-endpoint-services \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
+            --header 'content-type: application/json' \
+            --data '{}'
   /api/v1/clusters/{cluster_id}/nodes:
     get:
       description: "Sort order: Region name, node name"
@@ -1923,8 +1970,10 @@ paths:
       - CockroachCloud
       x-codeSamples:
       - lang: Shell + Curl
-        source: "curl --request GET \\\n  --url 'https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/nodes?region_name=SOME_STRING_VALUE&pagination.page=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.as_of_time=SOME_STRING_VALUE&pagination.sort_order=SOME_STRING_VALUE'\
-          \ \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+        source: |-
+          curl --request GET \
+            --url 'https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/nodes?region_name=SOME_STRING_VALUE&pagination.page=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.as_of_time=SOME_STRING_VALUE&pagination.sort_order=SOME_STRING_VALUE' \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
   /api/v1/clusters/{cluster_id}/sql-users:
     get:
       description: "Sort order: Username"
@@ -2015,8 +2064,10 @@ paths:
       - CockroachCloud
       x-codeSamples:
       - lang: Shell + Curl
-        source: "curl --request GET \\\n  --url 'https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/sql-users?pagination.page=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.as_of_time=SOME_STRING_VALUE&pagination.sort_order=SOME_STRING_VALUE'\
-          \ \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+        source: |-
+          curl --request GET \
+            --url 'https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/sql-users?pagination.page=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.as_of_time=SOME_STRING_VALUE&pagination.sort_order=SOME_STRING_VALUE' \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     post:
       operationId: CockroachCloud_CreateSQLUser
       parameters:
@@ -2077,10 +2128,12 @@ paths:
       - CockroachCloud
       x-codeSamples:
       - lang: Shell + Curl
-        source: "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/sql-users\
-          \ \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header\
-          \ 'content-type: application/json' \\\n  --data '{\"name\":\"example_username\"\
-          ,\"password\":\"example_password\"}'"
+        source: |-
+          curl --request POST \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/sql-users \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
+            --header 'content-type: application/json' \
+            --data '{"name":"example_username","password":"example_password"}'
   /api/v1/clusters/{cluster_id}/sql-users/{name}:
     delete:
       operationId: CockroachCloud_DeleteSQLUser
@@ -2143,8 +2196,10 @@ paths:
       - CockroachCloud
       x-codeSamples:
       - lang: Shell + Curl
-        source: "curl --request DELETE \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/sql-users/{name}\
-          \ \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+        source: |-
+          curl --request DELETE \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/sql-users/{name} \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
   /api/v1/clusters/{cluster_id}/sql-users/{name}/password:
     put:
       operationId: CockroachCloud_UpdateSQLUserPassword
@@ -2213,10 +2268,12 @@ paths:
       - CockroachCloud
       x-codeSamples:
       - lang: Shell + Curl
-        source: "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/sql-users/{name}/password\
-          \ \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header\
-          \ 'content-type: application/json' \\\n  --data '{\"password\":\"example_new_password\"\
-          }'"
+        source: |-
+          curl --request PUT \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/sql-users/{name}/password \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
+            --header 'content-type: application/json' \
+            --data '{"password":"example_new_password"}'
   /api/v1/invoices:
     get:
       description: "Sort order: invoice start date ascending"
@@ -2267,8 +2324,10 @@ paths:
       - CockroachCloud
       x-codeSamples:
       - lang: Shell + Curl
-        source: "curl --request GET \\\n  --url https://cockroachlabs.cloud/api/v1/invoices\
-          \ \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+        source: |-
+          curl --request GET \
+            --url https://cockroachlabs.cloud/api/v1/invoices \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
   /api/v1/invoices/{invoice_id}:
     get:
       operationId: CockroachCloud_GetInvoice
@@ -2328,8 +2387,10 @@ paths:
       - CockroachCloud
       x-codeSamples:
       - lang: Shell + Curl
-        source: "curl --request GET \\\n  --url https://cockroachlabs.cloud/api/v1/invoices/{invoice_id}\
-          \ \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+        source: |-
+          curl --request GET \
+            --url https://cockroachlabs.cloud/api/v1/invoices/{invoice_id} \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
 components:
   requestBodies:
     CockroachCloud_EnableCMEKSpecBody:
@@ -2447,57 +2508,116 @@ components:
       type: object
     Any:
       additionalProperties: {}
-      description: "`Any` contains an arbitrary serialized protocol buffer message\
-        \ along with a\nURL that describes the type of the serialized message.\n\n\
-        Protobuf library provides support to pack/unpack Any values in the form\n\
-        of utility functions or additional generated methods of the Any type.\n\n\
-        Example 1: Pack and unpack a message in C++.\n\n    Foo foo = ...;\n    Any\
-        \ any;\n    any.PackFrom(foo);\n    ...\n    if (any.UnpackTo(&foo)) {\n \
-        \     ...\n    }\n\nExample 2: Pack and unpack a message in Java.\n\n    Foo\
-        \ foo = ...;\n    Any any = Any.pack(foo);\n    ...\n    if (any.is(Foo.class))\
-        \ {\n      foo = any.unpack(Foo.class);\n    }\n\n Example 3: Pack and unpack\
-        \ a message in Python.\n\n    foo = Foo(...)\n    any = Any()\n    any.Pack(foo)\n\
-        \    ...\n    if any.Is(Foo.DESCRIPTOR):\n      any.Unpack(foo)\n      ...\n\
-        \n Example 4: Pack and unpack a message in Go\n\n     foo := &pb.Foo{...}\n\
-        \     any, err := ptypes.MarshalAny(foo)\n     ...\n     foo := &pb.Foo{}\n\
-        \     if err := ptypes.UnmarshalAny(any, foo); err != nil {\n       ...\n\
-        \     }\n\nThe pack methods provided by protobuf library will by default use\n\
-        'type.googleapis.com/full.type.name' as the type URL and the unpack\nmethods\
-        \ only use the fully qualified type name after the last '/'\nin the type URL,\
-        \ for example \"foo.bar.com/x/y.z\" will yield type\nname \"y.z\".\n\n\nJSON\n\
-        ====\nThe JSON representation of an `Any` value uses the regular\nrepresentation\
-        \ of the deserialized, embedded message, with an\nadditional field `@type`\
-        \ which contains the type URL. Example:\n\n    package google.profile;\n \
-        \   message Person {\n      string first_name = 1;\n      string last_name\
-        \ = 2;\n    }\n\n    {\n      \"@type\": \"type.googleapis.com/google.profile.Person\"\
-        ,\n      \"firstName\": <string>,\n      \"lastName\": <string>\n    }\n\n\
-        If the embedded message type is well-known and has a custom JSON\nrepresentation,\
-        \ that representation will be embedded adding a field\n`value` which holds\
-        \ the custom JSON in addition to the `@type`\nfield. Example (for message\
-        \ [google.protobuf.Duration][]):\n\n    {\n      \"@type\": \"type.googleapis.com/google.protobuf.Duration\"\
-        ,\n      \"value\": \"1.212s\"\n    }"
+      description: |-
+        `Any` contains an arbitrary serialized protocol buffer message along with a
+        URL that describes the type of the serialized message.
+
+        Protobuf library provides support to pack/unpack Any values in the form
+        of utility functions or additional generated methods of the Any type.
+
+        Example 1: Pack and unpack a message in C++.
+
+            Foo foo = ...;
+            Any any;
+            any.PackFrom(foo);
+            ...
+            if (any.UnpackTo(&foo)) {
+              ...
+            }
+
+        Example 2: Pack and unpack a message in Java.
+
+            Foo foo = ...;
+            Any any = Any.pack(foo);
+            ...
+            if (any.is(Foo.class)) {
+              foo = any.unpack(Foo.class);
+            }
+
+         Example 3: Pack and unpack a message in Python.
+
+            foo = Foo(...)
+            any = Any()
+            any.Pack(foo)
+            ...
+            if any.Is(Foo.DESCRIPTOR):
+              any.Unpack(foo)
+              ...
+
+         Example 4: Pack and unpack a message in Go
+
+             foo := &pb.Foo{...}
+             any, err := ptypes.MarshalAny(foo)
+             ...
+             foo := &pb.Foo{}
+             if err := ptypes.UnmarshalAny(any, foo); err != nil {
+               ...
+             }
+
+        The pack methods provided by protobuf library will by default use
+        'type.googleapis.com/full.type.name' as the type URL and the unpack
+        methods only use the fully qualified type name after the last '/'
+        in the type URL, for example "foo.bar.com/x/y.z" will yield type
+        name "y.z".
+
+
+        JSON
+        ====
+        The JSON representation of an `Any` value uses the regular
+        representation of the deserialized, embedded message, with an
+        additional field `@type` which contains the type URL. Example:
+
+            package google.profile;
+            message Person {
+              string first_name = 1;
+              string last_name = 2;
+            }
+
+            {
+              "@type": "type.googleapis.com/google.profile.Person",
+              "firstName": <string>,
+              "lastName": <string>
+            }
+
+        If the embedded message type is well-known and has a custom JSON
+        representation, that representation will be embedded adding a field
+        `value` which holds the custom JSON in addition to the `@type`
+        field. Example (for message [google.protobuf.Duration][]):
+
+            {
+              "@type": "type.googleapis.com/google.protobuf.Duration",
+              "value": "1.212s"
+            }
       properties:
         '@type':
-          description: "A URL/resource name that uniquely identifies the type of the\
-            \ serialized\nprotocol buffer message. This string must contain at least\n\
-            one \"/\" character. The last segment of the URL's path must represent\n\
-            the fully qualified name of the type (as in\n`path/google.protobuf.Duration`).\
-            \ The name should be in a canonical form\n(e.g., leading \".\" is not\
-            \ accepted).\n\nIn practice, teams usually precompile into the binary\
-            \ all types that they\nexpect it to use in the context of Any. However,\
-            \ for URLs which use the\nscheme `http`, `https`, or no scheme, one can\
-            \ optionally set up a type\nserver that maps type URLs to message definitions\
-            \ as follows:\n\n* If no scheme is provided, `https` is assumed.\n* An\
-            \ HTTP GET on the URL must yield a [google.protobuf.Type][]\n  value in\
-            \ binary format, or produce an error.\n* Applications are allowed to cache\
-            \ lookup results based on the\n  URL, or have them precompiled into a\
-            \ binary to avoid any\n  lookup. Therefore, binary compatibility needs\
-            \ to be preserved\n  on changes to types. (Use versioned type names to\
-            \ manage\n  breaking changes.)\n\nNote: this functionality is not currently\
-            \ available in the official\nprotobuf release, and it is not used for\
-            \ type URLs beginning with\ntype.googleapis.com.\n\nSchemes other than\
-            \ `http`, `https` (or the empty scheme) might be\nused with implementation\
-            \ specific semantics."
+          description: |-
+            A URL/resource name that uniquely identifies the type of the serialized
+            protocol buffer message. This string must contain at least
+            one "/" character. The last segment of the URL's path must represent
+            the fully qualified name of the type (as in
+            `path/google.protobuf.Duration`). The name should be in a canonical form
+            (e.g., leading "." is not accepted).
+
+            In practice, teams usually precompile into the binary all types that they
+            expect it to use in the context of Any. However, for URLs which use the
+            scheme `http`, `https`, or no scheme, one can optionally set up a type
+            server that maps type URLs to message definitions as follows:
+
+            * If no scheme is provided, `https` is assumed.
+            * An HTTP GET on the URL must yield a [google.protobuf.Type][]
+              value in binary format, or produce an error.
+            * Applications are allowed to cache lookup results based on the
+              URL, or have them precompiled into a binary to avoid any
+              lookup. Therefore, binary compatibility needs to be preserved
+              on changes to types. (Use versioned type names to manage
+              breaking changes.)
+
+            Note: this functionality is not currently available in the official
+            protobuf release, and it is not used for type URLs beginning with
+            type.googleapis.com.
+
+            Schemes other than `http`, `https` (or the empty scheme) might be
+            used with implementation specific semantics.
           type: string
       type: object
     AwsEndpointConnection:
@@ -2553,8 +2673,9 @@ components:
       - connections
       type: object
     CMEKClusterInfo:
-      description: "CMEKClusterInfo contains the status of CMEK across an entire cluster,\n\
-        including within each one its regions."
+      description: |-
+        CMEKClusterInfo contains the status of CMEK across an entire cluster,
+        including within each one its regions.
       example:
         region_infos:
         - region: region
@@ -2656,16 +2777,19 @@ components:
           type: string
       type: object
     CMEKKeyType:
-      description: "CMEKKeyType enumerates types of customer-managed keys.\n\n - UNKNOWN_KEY_TYPE:\
-        \ UNKNOWN should never be used; if it is used, it indicates a bug."
+      description: |-
+        CMEKKeyType enumerates types of customer-managed keys.
+
+         - UNKNOWN_KEY_TYPE: UNKNOWN should never be used; if it is used, it indicates a bug.
       enum:
       - AWS_KMS
       - GCP_CLOUD_KMS
       type: string
     CMEKRegionInfo:
-      description: "CMEKRegionInfo contains the status of CMEK within a region. This\
-        \ includes\ncurrent and past key specifications used within the region, as\
-        \ well as the\nstatus of those specifications."
+      description: |-
+        CMEKRegionInfo contains the status of CMEK within a region. This includes
+        current and past key specifications used within the region, as well as the
+        status of those specifications.
       example:
         region: region
         status: null
@@ -2707,29 +2831,35 @@ components:
           $ref: '#/components/schemas/CMEKKeySpecification'
       type: object
     CMEKStatus:
-      description: "CMEKStatus describes the current status of CMEK for an entire\
-        \ CRDB cluster\nor a CMEK key within a region.\n\n - UNKNOWN_STATUS: UNKNOWN\
-        \ should never be used; if it is used, it indicates a bug.\n - DISABLED: DISABLED\
-        \ corresponds to the state of a cluster or region-level key when\nCMEK has\
-        \ finished being disabled. By default, CMEK will be disabled for\nnew clusters.\n\
-        \ - DISABLING: DISABLING corresponds to the state of a cluster or region-level\
-        \ key when\nCMEK is in the process of being disabled.\n - DISABLE_FAILED:\
-        \ DISABLE_FAILED corresponds to the state of a cluster or region-level key\n\
-        when CMEK has failed to be disabled.\n - ENABLED: ENABLED corresponds to the\
-        \ state of a cluster or region-level key when\nCMEK is enabled.\n - ENABLING:\
-        \ ENABLING corresponds to the state of a cluster or region-level key when\n\
-        CMEK is in the process of being enabled.\n - ENABLE_FAILED: ENABLE_FAILED\
-        \ corresponds to the state of a cluster or region-level key\nwhen CMEK has\
-        \ failed to be enabled.\n - ROTATING: ROTATING corresponds to the state of\
-        \ a cluster or region when the a new\nspec is in the process of being enabled\
-        \ while an existing spec is being\ndisabled.\n - ROTATE_FAILED: ROTATE_FAILED\
-        \ corresponds to the state of a cluster or region if there was\na failure\
-        \ to update from one CMEK spec to another.\n - REVOKED: REVOKED corresponds\
-        \ to the state of a cluster or region-level key when the\ncustomer has revoked\
-        \ CockroachLab's permissions for their key.\n - REVOKING: REVOKING corresponds\
-        \ to the state of a cluster or region-level key when\nCMEK is in the process\
-        \ of being revoked.\n - REVOKE_FAILED: REVOKE_FAILED corresponds to the state\
-        \ of a cluster or region-level key\nwhen CMEK has failed to be revoked."
+      description: |-
+        CMEKStatus describes the current status of CMEK for an entire CRDB cluster
+        or a CMEK key within a region.
+
+         - UNKNOWN_STATUS: UNKNOWN should never be used; if it is used, it indicates a bug.
+         - DISABLED: DISABLED corresponds to the state of a cluster or region-level key when
+        CMEK has finished being disabled. By default, CMEK will be disabled for
+        new clusters.
+         - DISABLING: DISABLING corresponds to the state of a cluster or region-level key when
+        CMEK is in the process of being disabled.
+         - DISABLE_FAILED: DISABLE_FAILED corresponds to the state of a cluster or region-level key
+        when CMEK has failed to be disabled.
+         - ENABLED: ENABLED corresponds to the state of a cluster or region-level key when
+        CMEK is enabled.
+         - ENABLING: ENABLING corresponds to the state of a cluster or region-level key when
+        CMEK is in the process of being enabled.
+         - ENABLE_FAILED: ENABLE_FAILED corresponds to the state of a cluster or region-level key
+        when CMEK has failed to be enabled.
+         - ROTATING: ROTATING corresponds to the state of a cluster or region when the a new
+        spec is in the process of being enabled while an existing spec is being
+        disabled.
+         - ROTATE_FAILED: ROTATE_FAILED corresponds to the state of a cluster or region if there was
+        a failure to update from one CMEK spec to another.
+         - REVOKED: REVOKED corresponds to the state of a cluster or region-level key when the
+        customer has revoked CockroachLab's permissions for their key.
+         - REVOKING: REVOKING corresponds to the state of a cluster or region-level key when
+        CMEK is in the process of being revoked.
+         - REVOKE_FAILED: REVOKE_FAILED corresponds to the state of a cluster or region-level key
+        when CMEK has failed to be revoked.
       enum:
       - DISABLED
       - DISABLING
@@ -2847,9 +2977,9 @@ components:
           $ref: '#/components/schemas/ServerlessClusterConfig'
       type: object
     ClusterStateType:
-      description: " - LOCKED: An exclusive operation is being performed on this cluster.\n\
-        Other operations should not proceed if they did not set a cluster into the\
-        \ LOCKED state."
+      description: |2-
+         - LOCKED: An exclusive operation is being performed on this cluster.
+        Other operations should not proceed if they did not set a cluster into the LOCKED state.
       enum:
       - CREATING
       - CREATED
@@ -2891,8 +3021,9 @@ components:
             spend_limit: 0
       properties:
         name:
-          description: "Name must be 6-20 characters in length and can include numbers,\n\
-            lowercase letters, and dashes (but no leading or trailing dashes)."
+          description: |-
+            Name must be 6-20 characters in length and can include numbers,
+            lowercase letters, and dashes (but no leading or trailing dashes).
           type: string
         provider:
           $ref: '#/components/schemas/api.CloudProvider'
@@ -2935,9 +3066,10 @@ components:
           additionalProperties:
             format: int32
             type: integer
-          description: "Region keys should match the cloud provider's zone code.\n\
-            For example, for Oregon, set region_name to \"us-west2\" for\nGCP and\
-            \ \"us-west-2\" for AWS. Values represent the node count."
+          description: |-
+            Region keys should match the cloud provider's zone code.
+            For example, for Oregon, set region_name to "us-west2" for
+            GCP and "us-west-2" for AWS. Values represent the node count.
           type: object
         hardware:
           $ref: '#/components/schemas/DedicatedHardwareCreateSpecification'
@@ -2956,16 +3088,18 @@ components:
           additionalProperties:
             format: int32
             type: integer
-          description: "Region keys should match the cloud provider's zone code.\n\
-            For example, for Oregon, set region_name to \"us-west2\" for\nGCP and\
-            \ \"us-west-2\" for AWS. Values represent the node count."
+          description: |-
+            Region keys should match the cloud provider's zone code.
+            For example, for Oregon, set region_name to "us-west2" for
+            GCP and "us-west-2" for AWS. Values represent the node count.
           type: object
         hardware:
           $ref: '#/components/schemas/DedicatedHardwareUpdateSpecification'
         cmek_region_specs:
-          description: "This field should contain the CMEK specs for newly added regions.\
-            \ If a\nCMEK spec is provided for an existing region, the request is invalid\
-            \ and\nwill fail."
+          description: |-
+            This field should contain the CMEK specs for newly added regions. If a
+            CMEK spec is provided for an existing region, the request is invalid and
+            will fail.
           items:
             $ref: '#/components/schemas/CMEKRegionSpecification'
           type: array
@@ -2973,8 +3107,9 @@ components:
     DedicatedHardwareConfig:
       properties:
         machine_type:
-          description: "MachineType is the machine type identifier within the given\
-            \ cloud\nprovider, ex. m5.xlarge, n2-standard-4."
+          description: |-
+            MachineType is the machine type identifier within the given cloud
+            provider, ex. m5.xlarge, n2-standard-4.
           type: string
         num_virtual_cpus:
           description: NumVirtualCPUs is the number of virtual CPUs per node in the
@@ -3043,8 +3178,9 @@ components:
     DedicatedMachineTypeSpecification:
       properties:
         machine_type:
-          description: "MachineType is the machine type identifier within the given\
-            \ cloud\nprovider, ex. m5.xlarge, n2-standard-4."
+          description: |-
+            MachineType is the machine type identifier within the given cloud
+            provider, ex. m5.xlarge, n2-standard-4.
           type: string
         num_virtual_cpus:
           description: |-
@@ -3054,10 +3190,11 @@ components:
           type: integer
       type: object
     Invoice:
-      description: "Invoice message represents the details and the total charges associated\
-        \ with\none billing period, which starts at the beginning of the month and\
-        \ ends at\nthe beginning of the next month. The message also includes details\
-        \ about each\ninvoice item."
+      description: |-
+        Invoice message represents the details and the total charges associated with
+        one billing period, which starts at the beginning of the month and ends at
+        the beginning of the next month. The message also includes details about each
+        invoice item.
       example:
         period_end: 2000-01-23T04:56:07.000+00:00
         balances:
@@ -3675,10 +3812,11 @@ components:
       - users
       type: object
     LogExportClusterInfo:
-      description: "LogExportClusterInfo contains a package of information that fully\n\
-        describes both the intended state of the log export configuration for\na specific\
-        \ cluster but also some metadata around its deployment\nstatus, any error\
-        \ messages, and some timestamps."
+      description: |-
+        LogExportClusterInfo contains a package of information that fully
+        describes both the intended state of the log export configuration for
+        a specific cluster but also some metadata around its deployment
+        status, any error messages, and some timestamps.
       example:
         cluster_id: cluster_id
         updated_at: 2000-01-23T04:56:07.000+00:00
@@ -3731,8 +3869,9 @@ components:
           type: string
       type: object
     LogExportStatus:
-      description: "LogExportStatus encodes the possible states that a configuration\
-        \ can\nbe in as it is created, deployed, and disabled."
+      description: |-
+        LogExportStatus encodes the possible states that a configuration can
+        be in as it is created, deployed, and disabled.
       enum:
       - DISABLED
       - DISABLING
@@ -3742,9 +3881,10 @@ components:
       - ENABLE_FAILED
       type: string
     LogExportType:
-      description: "LogExportType encodes the cloud selection that we're exporting\
-        \ to\nalong with the cloud logging platform. Currently, each cloud has a\n\
-        single logging platform."
+      description: |-
+        LogExportType encodes the cloud selection that we're exporting to
+        along with the cloud logging platform. Currently, each cloud has a
+        single logging platform.
       enum:
       - AWS_CLOUDWATCH
       - GCP_CLOUD_LOGGING
@@ -3811,9 +3951,9 @@ components:
       - status
       type: object
     PrivateEndpointServiceStatus:
-      description: "- ENDPOINT_SERVICE_STATUS_DELETE_FAILED: One note is that if the\
-        \ service is deleted, there is no longer\na record, hence there is no \"DELETED\"\
-        \ status."
+      description: |-
+        - ENDPOINT_SERVICE_STATUS_DELETE_FAILED: One note is that if the service is deleted, there is no longer
+        a record, hence there is no "DELETED" status.
       enum:
       - ENDPOINT_SERVICE_STATUS_CREATING
       - ENDPOINT_SERVICE_STATUS_AVAILABLE
@@ -3903,9 +4043,10 @@ components:
     ServerlessClusterCreateSpecification:
       properties:
         regions:
-          description: "Region values should match the cloud provider's zone code.\n\
-            For example, for Oregon, set region_name to \"us-west2\" for\nGCP and\
-            \ \"us-west-2\" for AWS."
+          description: |-
+            Region values should match the cloud provider's zone code.
+            For example, for Oregon, set region_name to "us-west2" for
+            GCP and "us-west-2" for AWS.
           items:
             type: string
           type: array
@@ -3959,8 +4100,9 @@ components:
           $ref: '#/components/schemas/ServerlessClusterUpdateSpecification'
       type: object
     api.CloudProvider:
-      description: " - GCP: The Google Cloud Platform cloud provider.\n - AWS: The\
-        \ Amazon Web Services cloud provider."
+      description: |2-
+         - GCP: The Google Cloud Platform cloud provider.
+         - AWS: The Amazon Web Services cloud provider.
       enum:
       - GCP
       - AWS

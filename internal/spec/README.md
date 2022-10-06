@@ -29,7 +29,7 @@ Install `openapi-generator`.
 - `brew install openapi-generator`
 - [OpenAPI Generator doc: Installation](https://openapi-generator.tech/docs/installation/)
 
-Do not delete [.openapi-generator-ignore](../ccloud/.openapi-generator-ignore)! It prevents certain files from being generated. 
+Do not delete [.openapi-generator-ignore](../openapi-generator/.openapi-generator-ignore)! It prevents certain files from being generated. 
 
 To regenerate the ccloud Go API Client code using the files in this directory, use `make generate-openapi-client`. 
 The `openapi-generator` cli can also be used like:
