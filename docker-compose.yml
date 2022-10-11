@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  openapi-generator:
+    image: openapitools/openapi-generator-cli:v6.2.0
+    volumes:
+      - ./:/go/src/github.com/cockroachdb/cockroach-cloud-sdk-go
+    working_dir: /go/src/github.com/cockroachdb/cockroach-cloud-sdk-go
