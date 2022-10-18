@@ -1,3 +1,12 @@
+templateDir: internal/spec/templates
+# Include new templates and filenames.
+files:
+    service.mustache:
+      templateType: SupportingFiles
+      destinationFilename: service.go
+    api.mustache:
+      templateType: API
+      destinationFilename: _ignore.txt
 # Go generator options
 # https://openapi-generator.tech/docs/generators/go
 packageName: "client"

@@ -64,7 +64,7 @@ type Service interface {
 	UpdateSQLUserPassword(ctx _context.Context, clusterId string, name string, updateSQLUserPasswordRequest *UpdateSQLUserPasswordRequest) (*SQLUser, *_nethttp.Response, error)
 }
 
-// Service for the Cockroach DB Cloud API v2021-12-28.
+// Service for the Cockroach DB Cloud API
 type ServiceImpl struct {
 	client *Client
 }

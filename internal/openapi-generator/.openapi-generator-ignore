@@ -28,3 +28,4 @@ go.mod
 go.sum
 response.go
 utils.go
+*_ignore.txt

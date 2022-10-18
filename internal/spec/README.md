@@ -12,7 +12,7 @@ Our modified [mustache](http://mustache.github.io/mustache.5.html) template file
 The customized templates __do not support__ the following:
 - Generating interfaces.
 - [nullable](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.1.md#schemaNullable) fields.
-- More than one grouping of operations (represented as "tags" in [swagger.json](./swagger.json)). The only "tag" should be "CockroachCloud". This will result in one generated "api_tag_name" file "ccloud/api_cockroach_cloud.go", which we rename to [ccloud/service.go](../../pkg/client/service.go).
+- Operation grouping with tags. All API operation code is included in [pkg/client/service.go](../../pkg/client/service.go).
 - More than one [server object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.1.md#server-object).
 - [Server variables](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.1.md#server-variable-object).
 

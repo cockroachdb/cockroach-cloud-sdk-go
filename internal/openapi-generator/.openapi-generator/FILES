@@ -1,6 +1,5 @@
 README.md
 api/openapi.yaml
-api_cockroach_cloud.go
 client.go
 configuration.go
 docs/AWSEndpointConnectionStatus.md
@@ -146,3 +145,4 @@ model_update_cluster_specification.go
 model_update_cmek_status_request.go
 model_update_database_request.go
 model_update_sql_user_password_request.go
+service.go
