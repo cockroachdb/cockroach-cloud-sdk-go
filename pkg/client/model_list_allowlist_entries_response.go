@@ -24,13 +24,10 @@ import (
 
 // ListAllowlistEntriesResponse struct for ListAllowlistEntriesResponse.
 type ListAllowlistEntriesResponse struct {
-	Allowlist            []AllowlistEntry          `json:"allowlist"`
-	Propagating          bool                      `json:"propagating"`
-	Pagination           *KeysetPaginationResponse `json:"pagination,omitempty"`
-	AdditionalProperties map[string]interface{}
+	Allowlist   []AllowlistEntry          `json:"allowlist"`
+	Propagating bool                      `json:"propagating"`
+	Pagination  *KeysetPaginationResponse `json:"pagination,omitempty"`
 }
-
-type listAllowlistEntriesResponse ListAllowlistEntriesResponse
 
 // NewListAllowlistEntriesResponse instantiates a new ListAllowlistEntriesResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -106,29 +103,5 @@ func (o ListAllowlistEntriesResponse) MarshalJSON() ([]byte, error) {
 	if o.Pagination != nil {
 		toSerialize["pagination"] = o.Pagination
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *ListAllowlistEntriesResponse) UnmarshalJSON(bytes []byte) (err error) {
-	varListAllowlistEntriesResponse := listAllowlistEntriesResponse{}
-
-	if err = json.Unmarshal(bytes, &varListAllowlistEntriesResponse); err == nil {
-		*o = ListAllowlistEntriesResponse(varListAllowlistEntriesResponse)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "allowlist")
-		delete(additionalProperties, "propagating")
-		delete(additionalProperties, "pagination")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }

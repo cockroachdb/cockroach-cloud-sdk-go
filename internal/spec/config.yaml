@@ -16,7 +16,7 @@ structPrefix: false
 # https://openapi-generator.tech/docs/usage#generate
 removeOperationIdPrefix: true
 # The 'additionalProperties' implementation is compliant with the OAS and JSON schema specifications.
-disallowAdditionalPropertiesIfNotPresent: false
+disallowAdditionalPropertiesIfNotPresent: true 
 
 # Prefix enum with class name
 enumClassPrefix: true

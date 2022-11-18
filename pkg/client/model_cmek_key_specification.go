@@ -24,13 +24,10 @@ import (
 
 // CMEKKeySpecification CMEKKeySpecification contains all the details necessary to use a customer-provided encryption key. This involves the type/location of the key and the principal to authenticate as when accessing it..
 type CMEKKeySpecification struct {
-	Type                 *CMEKKeyType `json:"type,omitempty"`
-	Uri                  *string      `json:"uri,omitempty"`
-	AuthPrincipal        *string      `json:"auth_principal,omitempty"`
-	AdditionalProperties map[string]interface{}
+	Type          *CMEKKeyType `json:"type,omitempty"`
+	Uri           *string      `json:"uri,omitempty"`
+	AuthPrincipal *string      `json:"auth_principal,omitempty"`
 }
-
-type cMEKKeySpecification CMEKKeySpecification
 
 // NewCMEKKeySpecification instantiates a new CMEKKeySpecification object.
 // This constructor will assign default values to properties that have it defined,
@@ -94,29 +91,5 @@ func (o CMEKKeySpecification) MarshalJSON() ([]byte, error) {
 	if o.AuthPrincipal != nil {
 		toSerialize["auth_principal"] = o.AuthPrincipal
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *CMEKKeySpecification) UnmarshalJSON(bytes []byte) (err error) {
-	varCMEKKeySpecification := cMEKKeySpecification{}
-
-	if err = json.Unmarshal(bytes, &varCMEKKeySpecification); err == nil {
-		*o = CMEKKeySpecification(varCMEKKeySpecification)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "type")
-		delete(additionalProperties, "uri")
-		delete(additionalProperties, "auth_principal")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }

@@ -28,11 +28,8 @@ type DedicatedClusterCreateSpecification struct {
 	RegionNodes map[string]int32                     `json:"region_nodes"`
 	Hardware    DedicatedHardwareCreateSpecification `json:"hardware"`
 	// The CockroachDB version for the cluster. The current version is used if omitted.
-	CockroachVersion     *string `json:"cockroach_version,omitempty"`
-	AdditionalProperties map[string]interface{}
+	CockroachVersion *string `json:"cockroach_version,omitempty"`
 }
-
-type dedicatedClusterCreateSpecification DedicatedClusterCreateSpecification
 
 // NewDedicatedClusterCreateSpecification instantiates a new DedicatedClusterCreateSpecification object.
 // This constructor will assign default values to properties that have it defined,
@@ -108,29 +105,5 @@ func (o DedicatedClusterCreateSpecification) MarshalJSON() ([]byte, error) {
 	if o.CockroachVersion != nil {
 		toSerialize["cockroach_version"] = o.CockroachVersion
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *DedicatedClusterCreateSpecification) UnmarshalJSON(bytes []byte) (err error) {
-	varDedicatedClusterCreateSpecification := dedicatedClusterCreateSpecification{}
-
-	if err = json.Unmarshal(bytes, &varDedicatedClusterCreateSpecification); err == nil {
-		*o = DedicatedClusterCreateSpecification(varDedicatedClusterCreateSpecification)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "region_nodes")
-		delete(additionalProperties, "hardware")
-		delete(additionalProperties, "cockroach_version")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }

@@ -29,11 +29,8 @@ type AWSPrivateLinkServiceDetail struct {
 	// ServiceID is the server side of the PrivateLink connection. This is the same as AWSPrivateLinkEndpoint.service_id.
 	ServiceId string `json:"service_id"`
 	// AvailabilityZoneIDs are the identifiers for the availability zones that the service is available in.
-	AvailabilityZoneIds  []string `json:"availability_zone_ids"`
-	AdditionalProperties map[string]interface{}
+	AvailabilityZoneIds []string `json:"availability_zone_ids"`
 }
-
-type aWSPrivateLinkServiceDetail AWSPrivateLinkServiceDetail
 
 // NewAWSPrivateLinkServiceDetail instantiates a new AWSPrivateLinkServiceDetail object.
 // This constructor will assign default values to properties that have it defined,
@@ -111,29 +108,5 @@ func (o AWSPrivateLinkServiceDetail) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["availability_zone_ids"] = o.AvailabilityZoneIds
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *AWSPrivateLinkServiceDetail) UnmarshalJSON(bytes []byte) (err error) {
-	varAWSPrivateLinkServiceDetail := aWSPrivateLinkServiceDetail{}
-
-	if err = json.Unmarshal(bytes, &varAWSPrivateLinkServiceDetail); err == nil {
-		*o = AWSPrivateLinkServiceDetail(varAWSPrivateLinkServiceDetail)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "service_name")
-		delete(additionalProperties, "service_id")
-		delete(additionalProperties, "availability_zone_ids")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }

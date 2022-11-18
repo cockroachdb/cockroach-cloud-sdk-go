@@ -29,13 +29,10 @@ type LineItem struct {
 	// Quantity is the number of the specific line items used.
 	Quantity float64 `json:"quantity"`
 	// UnitCost is the cost per unit of line item.
-	UnitCost             float64          `json:"unit_cost"`
-	Total                CurrencyAmount   `json:"total"`
-	QuantityUnit         QuantityUnitType `json:"quantity_unit"`
-	AdditionalProperties map[string]interface{}
+	UnitCost     float64          `json:"unit_cost"`
+	Total        CurrencyAmount   `json:"total"`
+	QuantityUnit QuantityUnitType `json:"quantity_unit"`
 }
-
-type lineItem LineItem
 
 // NewLineItem instantiates a new LineItem object.
 // This constructor will assign default values to properties that have it defined,
@@ -151,31 +148,5 @@ func (o LineItem) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["quantity_unit"] = o.QuantityUnit
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *LineItem) UnmarshalJSON(bytes []byte) (err error) {
-	varLineItem := lineItem{}
-
-	if err = json.Unmarshal(bytes, &varLineItem); err == nil {
-		*o = LineItem(varLineItem)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "description")
-		delete(additionalProperties, "quantity")
-		delete(additionalProperties, "unit_cost")
-		delete(additionalProperties, "total")
-		delete(additionalProperties, "quantity_unit")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }

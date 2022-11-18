@@ -25,12 +25,9 @@ import (
 // CurrencyAmount struct for CurrencyAmount.
 type CurrencyAmount struct {
 	// Amount is the quantity of currency.
-	Amount               *float64  `json:"amount,omitempty"`
-	Currency             *Currency `json:"currency,omitempty"`
-	AdditionalProperties map[string]interface{}
+	Amount   *float64  `json:"amount,omitempty"`
+	Currency *Currency `json:"currency,omitempty"`
 }
-
-type currencyAmount CurrencyAmount
 
 // NewCurrencyAmount instantiates a new CurrencyAmount object.
 // This constructor will assign default values to properties that have it defined,
@@ -77,28 +74,5 @@ func (o CurrencyAmount) MarshalJSON() ([]byte, error) {
 	if o.Currency != nil {
 		toSerialize["currency"] = o.Currency
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *CurrencyAmount) UnmarshalJSON(bytes []byte) (err error) {
-	varCurrencyAmount := currencyAmount{}
-
-	if err = json.Unmarshal(bytes, &varCurrencyAmount); err == nil {
-		*o = CurrencyAmount(varCurrencyAmount)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "amount")
-		delete(additionalProperties, "currency")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }

@@ -24,15 +24,12 @@ import (
 
 // AllowlistEntry struct for AllowlistEntry.
 type AllowlistEntry struct {
-	CidrIp               string  `json:"cidr_ip"`
-	CidrMask             int32   `json:"cidr_mask"`
-	Ui                   bool    `json:"ui"`
-	Sql                  bool    `json:"sql"`
-	Name                 *string `json:"name,omitempty"`
-	AdditionalProperties map[string]interface{}
+	CidrIp   string  `json:"cidr_ip"`
+	CidrMask int32   `json:"cidr_mask"`
+	Ui       bool    `json:"ui"`
+	Sql      bool    `json:"sql"`
+	Name     *string `json:"name,omitempty"`
 }
-
-type allowlistEntry AllowlistEntry
 
 // NewAllowlistEntry instantiates a new AllowlistEntry object.
 // This constructor will assign default values to properties that have it defined,
@@ -146,31 +143,5 @@ func (o AllowlistEntry) MarshalJSON() ([]byte, error) {
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *AllowlistEntry) UnmarshalJSON(bytes []byte) (err error) {
-	varAllowlistEntry := allowlistEntry{}
-
-	if err = json.Unmarshal(bytes, &varAllowlistEntry); err == nil {
-		*o = AllowlistEntry(varAllowlistEntry)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "cidr_ip")
-		delete(additionalProperties, "cidr_mask")
-		delete(additionalProperties, "ui")
-		delete(additionalProperties, "sql")
-		delete(additionalProperties, "name")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }

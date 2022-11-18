@@ -25,14 +25,11 @@ import (
 
 // KeysetPaginationRequest struct for KeysetPaginationRequest.
 type KeysetPaginationRequest struct {
-	Page                 *string    `json:"page,omitempty"`
-	Limit                *int32     `json:"limit,omitempty"`
-	AsOfTime             *time.Time `json:"as_of_time,omitempty"`
-	SortOrder            *SortOrder `json:"sort_order,omitempty"`
-	AdditionalProperties map[string]interface{}
+	Page      *string    `json:"page,omitempty"`
+	Limit     *int32     `json:"limit,omitempty"`
+	AsOfTime  *time.Time `json:"as_of_time,omitempty"`
+	SortOrder *SortOrder `json:"sort_order,omitempty"`
 }
-
-type keysetPaginationRequest KeysetPaginationRequest
 
 // NewKeysetPaginationRequest instantiates a new KeysetPaginationRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -113,30 +110,5 @@ func (o KeysetPaginationRequest) MarshalJSON() ([]byte, error) {
 	if o.SortOrder != nil {
 		toSerialize["sort_order"] = o.SortOrder
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *KeysetPaginationRequest) UnmarshalJSON(bytes []byte) (err error) {
-	varKeysetPaginationRequest := keysetPaginationRequest{}
-
-	if err = json.Unmarshal(bytes, &varKeysetPaginationRequest); err == nil {
-		*o = KeysetPaginationRequest(varKeysetPaginationRequest)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "page")
-		delete(additionalProperties, "limit")
-		delete(additionalProperties, "as_of_time")
-		delete(additionalProperties, "sort_order")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }

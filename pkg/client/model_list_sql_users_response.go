@@ -24,12 +24,9 @@ import (
 
 // ListSQLUsersResponse struct for ListSQLUsersResponse.
 type ListSQLUsersResponse struct {
-	Users                []SQLUser                 `json:"users"`
-	Pagination           *KeysetPaginationResponse `json:"pagination,omitempty"`
-	AdditionalProperties map[string]interface{}
+	Users      []SQLUser                 `json:"users"`
+	Pagination *KeysetPaginationResponse `json:"pagination,omitempty"`
 }
-
-type listSQLUsersResponse ListSQLUsersResponse
 
 // NewListSQLUsersResponse instantiates a new ListSQLUsersResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -86,28 +83,5 @@ func (o ListSQLUsersResponse) MarshalJSON() ([]byte, error) {
 	if o.Pagination != nil {
 		toSerialize["pagination"] = o.Pagination
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *ListSQLUsersResponse) UnmarshalJSON(bytes []byte) (err error) {
-	varListSQLUsersResponse := listSQLUsersResponse{}
-
-	if err = json.Unmarshal(bytes, &varListSQLUsersResponse); err == nil {
-		*o = ListSQLUsersResponse(varListSQLUsersResponse)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "users")
-		delete(additionalProperties, "pagination")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }

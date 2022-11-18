@@ -25,11 +25,8 @@ import (
 // AwsEndpointConnections struct for AwsEndpointConnections.
 type AwsEndpointConnections struct {
 	// Connections is a list of private endpoints.
-	Connections          []AwsEndpointConnection `json:"connections"`
-	AdditionalProperties map[string]interface{}
+	Connections []AwsEndpointConnection `json:"connections"`
 }
-
-type awsEndpointConnections AwsEndpointConnections
 
 // NewAwsEndpointConnections instantiates a new AwsEndpointConnections object.
 // This constructor will assign default values to properties that have it defined,
@@ -69,27 +66,5 @@ func (o AwsEndpointConnections) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["connections"] = o.Connections
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *AwsEndpointConnections) UnmarshalJSON(bytes []byte) (err error) {
-	varAwsEndpointConnections := awsEndpointConnections{}
-
-	if err = json.Unmarshal(bytes, &varAwsEndpointConnections); err == nil {
-		*o = AwsEndpointConnections(varAwsEndpointConnections)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "connections")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }

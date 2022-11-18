@@ -24,11 +24,8 @@ import (
 
 // CMEKClusterSpecification struct for CMEKClusterSpecification.
 type CMEKClusterSpecification struct {
-	RegionSpecs          []CMEKRegionSpecification `json:"region_specs"`
-	AdditionalProperties map[string]interface{}
+	RegionSpecs []CMEKRegionSpecification `json:"region_specs"`
 }
-
-type cMEKClusterSpecification CMEKClusterSpecification
 
 // NewCMEKClusterSpecification instantiates a new CMEKClusterSpecification object.
 // This constructor will assign default values to properties that have it defined,
@@ -68,27 +65,5 @@ func (o CMEKClusterSpecification) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["region_specs"] = o.RegionSpecs
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *CMEKClusterSpecification) UnmarshalJSON(bytes []byte) (err error) {
-	varCMEKClusterSpecification := cMEKClusterSpecification{}
-
-	if err = json.Unmarshal(bytes, &varCMEKClusterSpecification); err == nil {
-		*o = CMEKClusterSpecification(varCMEKClusterSpecification)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "region_specs")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }

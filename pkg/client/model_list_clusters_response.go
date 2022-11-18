@@ -24,12 +24,9 @@ import (
 
 // ListClustersResponse struct for ListClustersResponse.
 type ListClustersResponse struct {
-	Clusters             []Cluster                 `json:"clusters"`
-	Pagination           *KeysetPaginationResponse `json:"pagination,omitempty"`
-	AdditionalProperties map[string]interface{}
+	Clusters   []Cluster                 `json:"clusters"`
+	Pagination *KeysetPaginationResponse `json:"pagination,omitempty"`
 }
-
-type listClustersResponse ListClustersResponse
 
 // NewListClustersResponse instantiates a new ListClustersResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -86,28 +83,5 @@ func (o ListClustersResponse) MarshalJSON() ([]byte, error) {
 	if o.Pagination != nil {
 		toSerialize["pagination"] = o.Pagination
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *ListClustersResponse) UnmarshalJSON(bytes []byte) (err error) {
-	varListClustersResponse := listClustersResponse{}
-
-	if err = json.Unmarshal(bytes, &varListClustersResponse); err == nil {
-		*o = ListClustersResponse(varListClustersResponse)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "clusters")
-		delete(additionalProperties, "pagination")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }

@@ -24,11 +24,8 @@ import (
 
 // ServerlessClusterUpdateSpecification struct for ServerlessClusterUpdateSpecification.
 type ServerlessClusterUpdateSpecification struct {
-	SpendLimit           int32 `json:"spend_limit"`
-	AdditionalProperties map[string]interface{}
+	SpendLimit int32 `json:"spend_limit"`
 }
-
-type serverlessClusterUpdateSpecification ServerlessClusterUpdateSpecification
 
 // NewServerlessClusterUpdateSpecification instantiates a new ServerlessClusterUpdateSpecification object.
 // This constructor will assign default values to properties that have it defined,
@@ -68,27 +65,5 @@ func (o ServerlessClusterUpdateSpecification) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["spend_limit"] = o.SpendLimit
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *ServerlessClusterUpdateSpecification) UnmarshalJSON(bytes []byte) (err error) {
-	varServerlessClusterUpdateSpecification := serverlessClusterUpdateSpecification{}
-
-	if err = json.Unmarshal(bytes, &varServerlessClusterUpdateSpecification); err == nil {
-		*o = ServerlessClusterUpdateSpecification(varServerlessClusterUpdateSpecification)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "spend_limit")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }

@@ -24,13 +24,10 @@ import (
 
 // Node struct for Node.
 type Node struct {
-	Name                 string     `json:"name"`
-	RegionName           string     `json:"region_name"`
-	Status               NodeStatus `json:"status"`
-	AdditionalProperties map[string]interface{}
+	Name       string     `json:"name"`
+	RegionName string     `json:"region_name"`
+	Status     NodeStatus `json:"status"`
 }
-
-type node Node
 
 // NewNode instantiates a new Node object.
 // This constructor will assign default values to properties that have it defined,
@@ -108,29 +105,5 @@ func (o Node) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["status"] = o.Status
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *Node) UnmarshalJSON(bytes []byte) (err error) {
-	varNode := node{}
-
-	if err = json.Unmarshal(bytes, &varNode); err == nil {
-		*o = Node(varNode)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "name")
-		delete(additionalProperties, "region_name")
-		delete(additionalProperties, "status")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }

@@ -25,13 +25,10 @@ import (
 // CreateClusterRequest struct for CreateClusterRequest.
 type CreateClusterRequest struct {
 	// Name must be 6-20 characters in length and can include numbers, lowercase letters, and dashes (but no leading or trailing dashes).
-	Name                 string                     `json:"name"`
-	Provider             ApiCloudProvider           `json:"provider"`
-	Spec                 CreateClusterSpecification `json:"spec"`
-	AdditionalProperties map[string]interface{}
+	Name     string                     `json:"name"`
+	Provider ApiCloudProvider           `json:"provider"`
+	Spec     CreateClusterSpecification `json:"spec"`
 }
-
-type createClusterRequest CreateClusterRequest
 
 // NewCreateClusterRequest instantiates a new CreateClusterRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -109,29 +106,5 @@ func (o CreateClusterRequest) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["spec"] = o.Spec
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *CreateClusterRequest) UnmarshalJSON(bytes []byte) (err error) {
-	varCreateClusterRequest := createClusterRequest{}
-
-	if err = json.Unmarshal(bytes, &varCreateClusterRequest); err == nil {
-		*o = CreateClusterRequest(varCreateClusterRequest)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "name")
-		delete(additionalProperties, "provider")
-		delete(additionalProperties, "spec")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }

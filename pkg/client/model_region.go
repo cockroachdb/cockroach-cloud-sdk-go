@@ -28,11 +28,8 @@ type Region struct {
 	SqlDns string `json:"sql_dns"`
 	UiDns  string `json:"ui_dns"`
 	// NodeCount will be 0 for serverless clusters.
-	NodeCount            int32 `json:"node_count"`
-	AdditionalProperties map[string]interface{}
+	NodeCount int32 `json:"node_count"`
 }
-
-type region Region
 
 // NewRegion instantiates a new Region object.
 // This constructor will assign default values to properties that have it defined,
@@ -129,30 +126,5 @@ func (o Region) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["node_count"] = o.NodeCount
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *Region) UnmarshalJSON(bytes []byte) (err error) {
-	varRegion := region{}
-
-	if err = json.Unmarshal(bytes, &varRegion); err == nil {
-		*o = Region(varRegion)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "name")
-		delete(additionalProperties, "sql_dns")
-		delete(additionalProperties, "ui_dns")
-		delete(additionalProperties, "node_count")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }

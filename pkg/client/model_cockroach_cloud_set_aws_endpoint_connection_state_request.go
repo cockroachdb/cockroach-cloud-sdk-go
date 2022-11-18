@@ -24,11 +24,8 @@ import (
 
 // CockroachCloudSetAwsEndpointConnectionStateRequest struct for CockroachCloudSetAwsEndpointConnectionStateRequest.
 type CockroachCloudSetAwsEndpointConnectionStateRequest struct {
-	Status               *AWSEndpointConnectionStatus `json:"status,omitempty"`
-	AdditionalProperties map[string]interface{}
+	Status *AWSEndpointConnectionStatus `json:"status,omitempty"`
 }
-
-type cockroachCloudSetAwsEndpointConnectionStateRequest CockroachCloudSetAwsEndpointConnectionStateRequest
 
 // NewCockroachCloudSetAwsEndpointConnectionStateRequest instantiates a new CockroachCloudSetAwsEndpointConnectionStateRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -58,27 +55,5 @@ func (o CockroachCloudSetAwsEndpointConnectionStateRequest) MarshalJSON() ([]byt
 	if o.Status != nil {
 		toSerialize["status"] = o.Status
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *CockroachCloudSetAwsEndpointConnectionStateRequest) UnmarshalJSON(bytes []byte) (err error) {
-	varCockroachCloudSetAwsEndpointConnectionStateRequest := cockroachCloudSetAwsEndpointConnectionStateRequest{}
-
-	if err = json.Unmarshal(bytes, &varCockroachCloudSetAwsEndpointConnectionStateRequest); err == nil {
-		*o = CockroachCloudSetAwsEndpointConnectionStateRequest(varCockroachCloudSetAwsEndpointConnectionStateRequest)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "status")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }

@@ -25,15 +25,12 @@ import (
 
 // CMEKKeyInfo CMEKKeyInfo contains the status of a customer-provided key alongside the specification..
 type CMEKKeyInfo struct {
-	Status               *CMEKStatus           `json:"status,omitempty"`
-	UserMessage          *string               `json:"user_message,omitempty"`
-	Spec                 *CMEKKeySpecification `json:"spec,omitempty"`
-	CreatedAt            *time.Time            `json:"created_at,omitempty"`
-	UpdatedAt            *time.Time            `json:"updated_at,omitempty"`
-	AdditionalProperties map[string]interface{}
+	Status      *CMEKStatus           `json:"status,omitempty"`
+	UserMessage *string               `json:"user_message,omitempty"`
+	Spec        *CMEKKeySpecification `json:"spec,omitempty"`
+	CreatedAt   *time.Time            `json:"created_at,omitempty"`
+	UpdatedAt   *time.Time            `json:"updated_at,omitempty"`
 }
-
-type cMEKKeyInfo CMEKKeyInfo
 
 // NewCMEKKeyInfo instantiates a new CMEKKeyInfo object.
 // This constructor will assign default values to properties that have it defined,
@@ -131,31 +128,5 @@ func (o CMEKKeyInfo) MarshalJSON() ([]byte, error) {
 	if o.UpdatedAt != nil {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *CMEKKeyInfo) UnmarshalJSON(bytes []byte) (err error) {
-	varCMEKKeyInfo := cMEKKeyInfo{}
-
-	if err = json.Unmarshal(bytes, &varCMEKKeyInfo); err == nil {
-		*o = CMEKKeyInfo(varCMEKKeyInfo)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "status")
-		delete(additionalProperties, "user_message")
-		delete(additionalProperties, "spec")
-		delete(additionalProperties, "created_at")
-		delete(additionalProperties, "updated_at")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }

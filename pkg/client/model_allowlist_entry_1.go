@@ -24,13 +24,10 @@ import (
 
 // AllowlistEntry1 struct for AllowlistEntry1.
 type AllowlistEntry1 struct {
-	Ui                   bool    `json:"ui"`
-	Sql                  bool    `json:"sql"`
-	Name                 *string `json:"name,omitempty"`
-	AdditionalProperties map[string]interface{}
+	Ui   bool    `json:"ui"`
+	Sql  bool    `json:"sql"`
+	Name *string `json:"name,omitempty"`
 }
-
-type allowlistEntry1 AllowlistEntry1
 
 // NewAllowlistEntry1 instantiates a new AllowlistEntry1 object.
 // This constructor will assign default values to properties that have it defined,
@@ -106,29 +103,5 @@ func (o AllowlistEntry1) MarshalJSON() ([]byte, error) {
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *AllowlistEntry1) UnmarshalJSON(bytes []byte) (err error) {
-	varAllowlistEntry1 := allowlistEntry1{}
-
-	if err = json.Unmarshal(bytes, &varAllowlistEntry1); err == nil {
-		*o = AllowlistEntry1(varAllowlistEntry1)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "ui")
-		delete(additionalProperties, "sql")
-		delete(additionalProperties, "name")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }

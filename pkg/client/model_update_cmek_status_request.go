@@ -24,11 +24,8 @@ import (
 
 // UpdateCMEKStatusRequest struct for UpdateCMEKStatusRequest.
 type UpdateCMEKStatusRequest struct {
-	Action               CMEKCustomerAction `json:"action"`
-	AdditionalProperties map[string]interface{}
+	Action CMEKCustomerAction `json:"action"`
 }
-
-type updateCMEKStatusRequest UpdateCMEKStatusRequest
 
 // NewUpdateCMEKStatusRequest instantiates a new UpdateCMEKStatusRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -68,27 +65,5 @@ func (o UpdateCMEKStatusRequest) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["action"] = o.Action
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *UpdateCMEKStatusRequest) UnmarshalJSON(bytes []byte) (err error) {
-	varUpdateCMEKStatusRequest := updateCMEKStatusRequest{}
-
-	if err = json.Unmarshal(bytes, &varUpdateCMEKStatusRequest); err == nil {
-		*o = UpdateCMEKStatusRequest(varUpdateCMEKStatusRequest)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "action")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }

@@ -28,11 +28,8 @@ type DedicatedClusterUpdateSpecification struct {
 	RegionNodes *map[string]int32                     `json:"region_nodes,omitempty"`
 	Hardware    *DedicatedHardwareUpdateSpecification `json:"hardware,omitempty"`
 	// This field should contain the CMEK specs for newly added regions. If a CMEK spec is provided for an existing region, the request is invalid and will fail.
-	CmekRegionSpecs      *[]CMEKRegionSpecification `json:"cmek_region_specs,omitempty"`
-	AdditionalProperties map[string]interface{}
+	CmekRegionSpecs *[]CMEKRegionSpecification `json:"cmek_region_specs,omitempty"`
 }
-
-type dedicatedClusterUpdateSpecification DedicatedClusterUpdateSpecification
 
 // NewDedicatedClusterUpdateSpecification instantiates a new DedicatedClusterUpdateSpecification object.
 // This constructor will assign default values to properties that have it defined,
@@ -96,29 +93,5 @@ func (o DedicatedClusterUpdateSpecification) MarshalJSON() ([]byte, error) {
 	if o.CmekRegionSpecs != nil {
 		toSerialize["cmek_region_specs"] = o.CmekRegionSpecs
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *DedicatedClusterUpdateSpecification) UnmarshalJSON(bytes []byte) (err error) {
-	varDedicatedClusterUpdateSpecification := dedicatedClusterUpdateSpecification{}
-
-	if err = json.Unmarshal(bytes, &varDedicatedClusterUpdateSpecification); err == nil {
-		*o = DedicatedClusterUpdateSpecification(varDedicatedClusterUpdateSpecification)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "region_nodes")
-		delete(additionalProperties, "hardware")
-		delete(additionalProperties, "cmek_region_specs")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }

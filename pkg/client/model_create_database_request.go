@@ -24,11 +24,8 @@ import (
 
 // CreateDatabaseRequest struct for CreateDatabaseRequest.
 type CreateDatabaseRequest struct {
-	Name                 string `json:"name"`
-	AdditionalProperties map[string]interface{}
+	Name string `json:"name"`
 }
-
-type createDatabaseRequest CreateDatabaseRequest
 
 // NewCreateDatabaseRequest instantiates a new CreateDatabaseRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -68,27 +65,5 @@ func (o CreateDatabaseRequest) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["name"] = o.Name
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *CreateDatabaseRequest) UnmarshalJSON(bytes []byte) (err error) {
-	varCreateDatabaseRequest := createDatabaseRequest{}
-
-	if err = json.Unmarshal(bytes, &varCreateDatabaseRequest); err == nil {
-		*o = CreateDatabaseRequest(varCreateDatabaseRequest)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "name")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }

@@ -33,11 +33,8 @@ type DedicatedHardwareConfig struct {
 	// MemoryGiB is the memory GiB per node in the cluster.
 	MemoryGib float32 `json:"memory_gib"`
 	// DiskIOPs is the number of disk I/O operations per second that are permitted on each node in the cluster. Zero indicates the cloud provider-specific default.
-	DiskIops             int32 `json:"disk_iops"`
-	AdditionalProperties map[string]interface{}
+	DiskIops int32 `json:"disk_iops"`
 }
-
-type dedicatedHardwareConfig DedicatedHardwareConfig
 
 // NewDedicatedHardwareConfig instantiates a new DedicatedHardwareConfig object.
 // This constructor will assign default values to properties that have it defined,
@@ -153,31 +150,5 @@ func (o DedicatedHardwareConfig) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["disk_iops"] = o.DiskIops
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *DedicatedHardwareConfig) UnmarshalJSON(bytes []byte) (err error) {
-	varDedicatedHardwareConfig := dedicatedHardwareConfig{}
-
-	if err = json.Unmarshal(bytes, &varDedicatedHardwareConfig); err == nil {
-		*o = DedicatedHardwareConfig(varDedicatedHardwareConfig)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "machine_type")
-		delete(additionalProperties, "num_virtual_cpus")
-		delete(additionalProperties, "storage_gib")
-		delete(additionalProperties, "memory_gib")
-		delete(additionalProperties, "disk_iops")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }

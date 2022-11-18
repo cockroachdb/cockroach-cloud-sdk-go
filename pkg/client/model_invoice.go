@@ -36,11 +36,8 @@ type Invoice struct {
 	// InvoiceItems are sorted by the cluster name.
 	InvoiceItems []InvoiceItem `json:"invoice_items"`
 	// Balances are the amounts of currency left at the time of the invoice.
-	Balances             []CurrencyAmount `json:"balances"`
-	AdditionalProperties map[string]interface{}
+	Balances []CurrencyAmount `json:"balances"`
 }
-
-type invoice Invoice
 
 // NewInvoice instantiates a new Invoice object.
 // This constructor will assign default values to properties that have it defined,
@@ -175,32 +172,5 @@ func (o Invoice) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["balances"] = o.Balances
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *Invoice) UnmarshalJSON(bytes []byte) (err error) {
-	varInvoice := invoice{}
-
-	if err = json.Unmarshal(bytes, &varInvoice); err == nil {
-		*o = Invoice(varInvoice)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "invoice_id")
-		delete(additionalProperties, "totals")
-		delete(additionalProperties, "period_start")
-		delete(additionalProperties, "period_end")
-		delete(additionalProperties, "invoice_items")
-		delete(additionalProperties, "balances")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }

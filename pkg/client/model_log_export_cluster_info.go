@@ -25,16 +25,13 @@ import (
 
 // LogExportClusterInfo LogExportClusterInfo contains a package of information that fully describes both the intended state of the log export configuration for a specific cluster but also some metadata around its deployment status, any error messages, and some timestamps..
 type LogExportClusterInfo struct {
-	ClusterId            *string                        `json:"cluster_id,omitempty"`
-	Status               *LogExportStatus               `json:"status,omitempty"`
-	UserMessage          *string                        `json:"user_message,omitempty"`
-	Spec                 *LogExportClusterSpecification `json:"spec,omitempty"`
-	CreatedAt            *time.Time                     `json:"created_at,omitempty"`
-	UpdatedAt            *time.Time                     `json:"updated_at,omitempty"`
-	AdditionalProperties map[string]interface{}
+	ClusterId   *string                        `json:"cluster_id,omitempty"`
+	Status      *LogExportStatus               `json:"status,omitempty"`
+	UserMessage *string                        `json:"user_message,omitempty"`
+	Spec        *LogExportClusterSpecification `json:"spec,omitempty"`
+	CreatedAt   *time.Time                     `json:"created_at,omitempty"`
+	UpdatedAt   *time.Time                     `json:"updated_at,omitempty"`
 }
-
-type logExportClusterInfo LogExportClusterInfo
 
 // NewLogExportClusterInfo instantiates a new LogExportClusterInfo object.
 // This constructor will assign default values to properties that have it defined,
@@ -149,32 +146,5 @@ func (o LogExportClusterInfo) MarshalJSON() ([]byte, error) {
 	if o.UpdatedAt != nil {
 		toSerialize["updated_at"] = o.UpdatedAt
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *LogExportClusterInfo) UnmarshalJSON(bytes []byte) (err error) {
-	varLogExportClusterInfo := logExportClusterInfo{}
-
-	if err = json.Unmarshal(bytes, &varLogExportClusterInfo); err == nil {
-		*o = LogExportClusterInfo(varLogExportClusterInfo)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "cluster_id")
-		delete(additionalProperties, "status")
-		delete(additionalProperties, "user_message")
-		delete(additionalProperties, "spec")
-		delete(additionalProperties, "created_at")
-		delete(additionalProperties, "updated_at")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }

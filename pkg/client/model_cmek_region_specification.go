@@ -24,12 +24,9 @@ import (
 
 // CMEKRegionSpecification CMEKRegionSpecification declares the customer-provided key specification that should be used in a given region..
 type CMEKRegionSpecification struct {
-	Region               *string               `json:"region,omitempty"`
-	KeySpec              *CMEKKeySpecification `json:"key_spec,omitempty"`
-	AdditionalProperties map[string]interface{}
+	Region  *string               `json:"region,omitempty"`
+	KeySpec *CMEKKeySpecification `json:"key_spec,omitempty"`
 }
-
-type cMEKRegionSpecification CMEKRegionSpecification
 
 // NewCMEKRegionSpecification instantiates a new CMEKRegionSpecification object.
 // This constructor will assign default values to properties that have it defined,
@@ -76,28 +73,5 @@ func (o CMEKRegionSpecification) MarshalJSON() ([]byte, error) {
 	if o.KeySpec != nil {
 		toSerialize["key_spec"] = o.KeySpec
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *CMEKRegionSpecification) UnmarshalJSON(bytes []byte) (err error) {
-	varCMEKRegionSpecification := cMEKRegionSpecification{}
-
-	if err = json.Unmarshal(bytes, &varCMEKRegionSpecification); err == nil {
-		*o = CMEKRegionSpecification(varCMEKRegionSpecification)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "region")
-		delete(additionalProperties, "key_spec")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }

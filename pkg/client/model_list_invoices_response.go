@@ -25,11 +25,8 @@ import (
 // ListInvoicesResponse struct for ListInvoicesResponse.
 type ListInvoicesResponse struct {
 	// Invoices are sorted by PeriodStart time.
-	Invoices             []Invoice `json:"invoices"`
-	AdditionalProperties map[string]interface{}
+	Invoices []Invoice `json:"invoices"`
 }
-
-type listInvoicesResponse ListInvoicesResponse
 
 // NewListInvoicesResponse instantiates a new ListInvoicesResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -69,27 +66,5 @@ func (o ListInvoicesResponse) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["invoices"] = o.Invoices
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *ListInvoicesResponse) UnmarshalJSON(bytes []byte) (err error) {
-	varListInvoicesResponse := listInvoicesResponse{}
-
-	if err = json.Unmarshal(bytes, &varListInvoicesResponse); err == nil {
-		*o = ListInvoicesResponse(varListInvoicesResponse)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "invoices")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }

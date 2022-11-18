@@ -24,12 +24,9 @@ import (
 
 // KeysetPaginationResponse struct for KeysetPaginationResponse.
 type KeysetPaginationResponse struct {
-	NextPage             *string `json:"next_page,omitempty"`
-	PreviousPage         *string `json:"previous_page,omitempty"`
-	AdditionalProperties map[string]interface{}
+	NextPage     *string `json:"next_page,omitempty"`
+	PreviousPage *string `json:"previous_page,omitempty"`
 }
-
-type keysetPaginationResponse KeysetPaginationResponse
 
 // NewKeysetPaginationResponse instantiates a new KeysetPaginationResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -76,28 +73,5 @@ func (o KeysetPaginationResponse) MarshalJSON() ([]byte, error) {
 	if o.PreviousPage != nil {
 		toSerialize["previous_page"] = o.PreviousPage
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *KeysetPaginationResponse) UnmarshalJSON(bytes []byte) (err error) {
-	varKeysetPaginationResponse := keysetPaginationResponse{}
-
-	if err = json.Unmarshal(bytes, &varKeysetPaginationResponse); err == nil {
-		*o = KeysetPaginationResponse(varKeysetPaginationResponse)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "next_page")
-		delete(additionalProperties, "previous_page")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
