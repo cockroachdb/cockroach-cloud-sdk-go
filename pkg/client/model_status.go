@@ -24,13 +24,10 @@ import (
 
 // Status struct for Status.
 type Status struct {
-	Code                 *int32  `json:"code,omitempty"`
-	Message              *string `json:"message,omitempty"`
-	Details              *[]Any  `json:"details,omitempty"`
-	AdditionalProperties map[string]interface{}
+	Code    *int32  `json:"code,omitempty"`
+	Message *string `json:"message,omitempty"`
+	Details *[]Any  `json:"details,omitempty"`
 }
-
-type status Status
 
 // NewStatus instantiates a new Status object.
 // This constructor will assign default values to properties that have it defined,
@@ -94,29 +91,5 @@ func (o Status) MarshalJSON() ([]byte, error) {
 	if o.Details != nil {
 		toSerialize["details"] = o.Details
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *Status) UnmarshalJSON(bytes []byte) (err error) {
-	varStatus := status{}
-
-	if err = json.Unmarshal(bytes, &varStatus); err == nil {
-		*o = Status(varStatus)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "code")
-		delete(additionalProperties, "message")
-		delete(additionalProperties, "details")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }

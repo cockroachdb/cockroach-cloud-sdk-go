@@ -31,11 +31,8 @@ type AwsEndpointConnection struct {
 	// EndpointID is the client side of the PrivateLink connection.
 	EndpointId string `json:"endpoint_id"`
 	// ServiceID is the server side of the PrivateLink connection. This is the same as AWSPrivateLinkEndpoint.service_id.
-	ServiceId            string `json:"service_id"`
-	AdditionalProperties map[string]interface{}
+	ServiceId string `json:"service_id"`
 }
-
-type awsEndpointConnection AwsEndpointConnection
 
 // NewAwsEndpointConnection instantiates a new AwsEndpointConnection object.
 // This constructor will assign default values to properties that have it defined,
@@ -151,31 +148,5 @@ func (o AwsEndpointConnection) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["service_id"] = o.ServiceId
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *AwsEndpointConnection) UnmarshalJSON(bytes []byte) (err error) {
-	varAwsEndpointConnection := awsEndpointConnection{}
-
-	if err = json.Unmarshal(bytes, &varAwsEndpointConnection); err == nil {
-		*o = AwsEndpointConnection(varAwsEndpointConnection)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "region_name")
-		delete(additionalProperties, "cloud_provider")
-		delete(additionalProperties, "status")
-		delete(additionalProperties, "endpoint_id")
-		delete(additionalProperties, "service_id")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }

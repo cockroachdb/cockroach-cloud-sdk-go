@@ -24,12 +24,9 @@ import (
 
 // CreateClusterSpecification struct for CreateClusterSpecification.
 type CreateClusterSpecification struct {
-	Dedicated            *DedicatedClusterCreateSpecification  `json:"dedicated,omitempty"`
-	Serverless           *ServerlessClusterCreateSpecification `json:"serverless,omitempty"`
-	AdditionalProperties map[string]interface{}
+	Dedicated  *DedicatedClusterCreateSpecification  `json:"dedicated,omitempty"`
+	Serverless *ServerlessClusterCreateSpecification `json:"serverless,omitempty"`
 }
-
-type createClusterSpecification CreateClusterSpecification
 
 // NewCreateClusterSpecification instantiates a new CreateClusterSpecification object.
 // This constructor will assign default values to properties that have it defined,
@@ -76,28 +73,5 @@ func (o CreateClusterSpecification) MarshalJSON() ([]byte, error) {
 	if o.Serverless != nil {
 		toSerialize["serverless"] = o.Serverless
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *CreateClusterSpecification) UnmarshalJSON(bytes []byte) (err error) {
-	varCreateClusterSpecification := createClusterSpecification{}
-
-	if err = json.Unmarshal(bytes, &varCreateClusterSpecification); err == nil {
-		*o = CreateClusterSpecification(varCreateClusterSpecification)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "dedicated")
-		delete(additionalProperties, "serverless")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }

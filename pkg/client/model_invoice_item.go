@@ -28,11 +28,8 @@ type InvoiceItem struct {
 	// Totals is a list of the total amounts of line items per currency.
 	Totals []CurrencyAmount `json:"totals"`
 	// LineItems contain all the relevant line items from the Metronome invoice.
-	LineItems            []LineItem `json:"line_items"`
-	AdditionalProperties map[string]interface{}
+	LineItems []LineItem `json:"line_items"`
 }
-
-type invoiceItem InvoiceItem
 
 // NewInvoiceItem instantiates a new InvoiceItem object.
 // This constructor will assign default values to properties that have it defined,
@@ -110,29 +107,5 @@ func (o InvoiceItem) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["line_items"] = o.LineItems
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *InvoiceItem) UnmarshalJSON(bytes []byte) (err error) {
-	varInvoiceItem := invoiceItem{}
-
-	if err = json.Unmarshal(bytes, &varInvoiceItem); err == nil {
-		*o = InvoiceItem(varInvoiceItem)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "cluster")
-		delete(additionalProperties, "totals")
-		delete(additionalProperties, "line_items")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }

@@ -24,12 +24,9 @@ import (
 
 // ClusterConfig struct for ClusterConfig.
 type ClusterConfig struct {
-	Dedicated            *DedicatedHardwareConfig `json:"dedicated,omitempty"`
-	Serverless           *ServerlessClusterConfig `json:"serverless,omitempty"`
-	AdditionalProperties map[string]interface{}
+	Dedicated  *DedicatedHardwareConfig `json:"dedicated,omitempty"`
+	Serverless *ServerlessClusterConfig `json:"serverless,omitempty"`
 }
-
-type clusterConfig ClusterConfig
 
 // NewClusterConfig instantiates a new ClusterConfig object.
 // This constructor will assign default values to properties that have it defined,
@@ -76,28 +73,5 @@ func (o ClusterConfig) MarshalJSON() ([]byte, error) {
 	if o.Serverless != nil {
 		toSerialize["serverless"] = o.Serverless
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *ClusterConfig) UnmarshalJSON(bytes []byte) (err error) {
-	varClusterConfig := clusterConfig{}
-
-	if err = json.Unmarshal(bytes, &varClusterConfig); err == nil {
-		*o = ClusterConfig(varClusterConfig)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "dedicated")
-		delete(additionalProperties, "serverless")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }

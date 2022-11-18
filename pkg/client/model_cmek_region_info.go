@@ -24,13 +24,10 @@ import (
 
 // CMEKRegionInfo CMEKRegionInfo contains the status of CMEK within a region. This includes current and past key specifications used within the region, as well as the status of those specifications..
 type CMEKRegionInfo struct {
-	Region               *string        `json:"region,omitempty"`
-	Status               *CMEKStatus    `json:"status,omitempty"`
-	KeyInfos             *[]CMEKKeyInfo `json:"key_infos,omitempty"`
-	AdditionalProperties map[string]interface{}
+	Region   *string        `json:"region,omitempty"`
+	Status   *CMEKStatus    `json:"status,omitempty"`
+	KeyInfos *[]CMEKKeyInfo `json:"key_infos,omitempty"`
 }
-
-type cMEKRegionInfo CMEKRegionInfo
 
 // NewCMEKRegionInfo instantiates a new CMEKRegionInfo object.
 // This constructor will assign default values to properties that have it defined,
@@ -94,29 +91,5 @@ func (o CMEKRegionInfo) MarshalJSON() ([]byte, error) {
 	if o.KeyInfos != nil {
 		toSerialize["key_infos"] = o.KeyInfos
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *CMEKRegionInfo) UnmarshalJSON(bytes []byte) (err error) {
-	varCMEKRegionInfo := cMEKRegionInfo{}
-
-	if err = json.Unmarshal(bytes, &varCMEKRegionInfo); err == nil {
-		*o = CMEKRegionInfo(varCMEKRegionInfo)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "region")
-		delete(additionalProperties, "status")
-		delete(additionalProperties, "key_infos")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }

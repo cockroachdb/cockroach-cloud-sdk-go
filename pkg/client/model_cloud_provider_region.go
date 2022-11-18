@@ -24,15 +24,12 @@ import (
 
 // CloudProviderRegion struct for CloudProviderRegion.
 type CloudProviderRegion struct {
-	Name                 string           `json:"name"`
-	Location             string           `json:"location"`
-	Provider             ApiCloudProvider `json:"provider"`
-	Serverless           bool             `json:"serverless"`
-	Distance             float32          `json:"distance"`
-	AdditionalProperties map[string]interface{}
+	Name       string           `json:"name"`
+	Location   string           `json:"location"`
+	Provider   ApiCloudProvider `json:"provider"`
+	Serverless bool             `json:"serverless"`
+	Distance   float32          `json:"distance"`
 }
-
-type cloudProviderRegion CloudProviderRegion
 
 // NewCloudProviderRegion instantiates a new CloudProviderRegion object.
 // This constructor will assign default values to properties that have it defined,
@@ -148,31 +145,5 @@ func (o CloudProviderRegion) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["distance"] = o.Distance
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *CloudProviderRegion) UnmarshalJSON(bytes []byte) (err error) {
-	varCloudProviderRegion := cloudProviderRegion{}
-
-	if err = json.Unmarshal(bytes, &varCloudProviderRegion); err == nil {
-		*o = CloudProviderRegion(varCloudProviderRegion)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "name")
-		delete(additionalProperties, "location")
-		delete(additionalProperties, "provider")
-		delete(additionalProperties, "serverless")
-		delete(additionalProperties, "distance")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }

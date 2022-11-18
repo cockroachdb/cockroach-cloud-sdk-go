@@ -24,12 +24,9 @@ import (
 
 // CMEKClusterInfo CMEKClusterInfo contains the status of CMEK across an entire cluster, including within each one its regions..
 type CMEKClusterInfo struct {
-	Status               *CMEKStatus       `json:"status,omitempty"`
-	RegionInfos          *[]CMEKRegionInfo `json:"region_infos,omitempty"`
-	AdditionalProperties map[string]interface{}
+	Status      *CMEKStatus       `json:"status,omitempty"`
+	RegionInfos *[]CMEKRegionInfo `json:"region_infos,omitempty"`
 }
-
-type cMEKClusterInfo CMEKClusterInfo
 
 // NewCMEKClusterInfo instantiates a new CMEKClusterInfo object.
 // This constructor will assign default values to properties that have it defined,
@@ -76,28 +73,5 @@ func (o CMEKClusterInfo) MarshalJSON() ([]byte, error) {
 	if o.RegionInfos != nil {
 		toSerialize["region_infos"] = o.RegionInfos
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *CMEKClusterInfo) UnmarshalJSON(bytes []byte) (err error) {
-	varCMEKClusterInfo := cMEKClusterInfo{}
-
-	if err = json.Unmarshal(bytes, &varCMEKClusterInfo); err == nil {
-		*o = CMEKClusterInfo(varCMEKClusterInfo)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "status")
-		delete(additionalProperties, "region_infos")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }

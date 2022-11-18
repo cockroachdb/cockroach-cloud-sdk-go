@@ -24,12 +24,9 @@ import (
 
 // CreateSQLUserRequest struct for CreateSQLUserRequest.
 type CreateSQLUserRequest struct {
-	Name                 string `json:"name"`
-	Password             string `json:"password"`
-	AdditionalProperties map[string]interface{}
+	Name     string `json:"name"`
+	Password string `json:"password"`
 }
-
-type createSQLUserRequest CreateSQLUserRequest
 
 // NewCreateSQLUserRequest instantiates a new CreateSQLUserRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -88,28 +85,5 @@ func (o CreateSQLUserRequest) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["password"] = o.Password
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *CreateSQLUserRequest) UnmarshalJSON(bytes []byte) (err error) {
-	varCreateSQLUserRequest := createSQLUserRequest{}
-
-	if err = json.Unmarshal(bytes, &varCreateSQLUserRequest); err == nil {
-		*o = CreateSQLUserRequest(varCreateSQLUserRequest)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "name")
-		delete(additionalProperties, "password")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }

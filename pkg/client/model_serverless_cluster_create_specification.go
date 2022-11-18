@@ -25,12 +25,9 @@ import (
 // ServerlessClusterCreateSpecification struct for ServerlessClusterCreateSpecification.
 type ServerlessClusterCreateSpecification struct {
 	// Region values should match the cloud provider's zone code. For example, for Oregon, set region_name to \"us-west2\" for GCP and \"us-west-2\" for AWS.
-	Regions              []string `json:"regions"`
-	SpendLimit           int32    `json:"spend_limit"`
-	AdditionalProperties map[string]interface{}
+	Regions    []string `json:"regions"`
+	SpendLimit int32    `json:"spend_limit"`
 }
-
-type serverlessClusterCreateSpecification ServerlessClusterCreateSpecification
 
 // NewServerlessClusterCreateSpecification instantiates a new ServerlessClusterCreateSpecification object.
 // This constructor will assign default values to properties that have it defined,
@@ -89,28 +86,5 @@ func (o ServerlessClusterCreateSpecification) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["spend_limit"] = o.SpendLimit
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *ServerlessClusterCreateSpecification) UnmarshalJSON(bytes []byte) (err error) {
-	varServerlessClusterCreateSpecification := serverlessClusterCreateSpecification{}
-
-	if err = json.Unmarshal(bytes, &varServerlessClusterCreateSpecification); err == nil {
-		*o = ServerlessClusterCreateSpecification(varServerlessClusterCreateSpecification)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "regions")
-		delete(additionalProperties, "spend_limit")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }

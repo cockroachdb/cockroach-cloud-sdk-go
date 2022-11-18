@@ -28,11 +28,8 @@ type DedicatedHardwareUpdateSpecification struct {
 	// StorageGiB is the number of storage GiB per node in the cluster.
 	StorageGib *int32 `json:"storage_gib,omitempty"`
 	// DiskIOPs is the number of disk I/O operations per second that are permitted on each node in the cluster. Zero indicates the cloud provider-specific default. Only available for AWS clusters.
-	DiskIops             *int32 `json:"disk_iops,omitempty"`
-	AdditionalProperties map[string]interface{}
+	DiskIops *int32 `json:"disk_iops,omitempty"`
 }
-
-type dedicatedHardwareUpdateSpecification DedicatedHardwareUpdateSpecification
 
 // NewDedicatedHardwareUpdateSpecification instantiates a new DedicatedHardwareUpdateSpecification object.
 // This constructor will assign default values to properties that have it defined,
@@ -96,29 +93,5 @@ func (o DedicatedHardwareUpdateSpecification) MarshalJSON() ([]byte, error) {
 	if o.DiskIops != nil {
 		toSerialize["disk_iops"] = o.DiskIops
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *DedicatedHardwareUpdateSpecification) UnmarshalJSON(bytes []byte) (err error) {
-	varDedicatedHardwareUpdateSpecification := dedicatedHardwareUpdateSpecification{}
-
-	if err = json.Unmarshal(bytes, &varDedicatedHardwareUpdateSpecification); err == nil {
-		*o = DedicatedHardwareUpdateSpecification(varDedicatedHardwareUpdateSpecification)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "machine_spec")
-		delete(additionalProperties, "storage_gib")
-		delete(additionalProperties, "disk_iops")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }

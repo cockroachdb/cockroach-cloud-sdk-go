@@ -27,11 +27,8 @@ type DedicatedMachineTypeSpecification struct {
 	// MachineType is the machine type identifier within the given cloud provider, ex. m5.xlarge, n2-standard-4.
 	MachineType *string `json:"machine_type,omitempty"`
 	// NumVirtualCPUs may be used to automatically select a machine type according to the desired number of vCPUs.
-	NumVirtualCpus       *int32 `json:"num_virtual_cpus,omitempty"`
-	AdditionalProperties map[string]interface{}
+	NumVirtualCpus *int32 `json:"num_virtual_cpus,omitempty"`
 }
-
-type dedicatedMachineTypeSpecification DedicatedMachineTypeSpecification
 
 // NewDedicatedMachineTypeSpecification instantiates a new DedicatedMachineTypeSpecification object.
 // This constructor will assign default values to properties that have it defined,
@@ -78,28 +75,5 @@ func (o DedicatedMachineTypeSpecification) MarshalJSON() ([]byte, error) {
 	if o.NumVirtualCpus != nil {
 		toSerialize["num_virtual_cpus"] = o.NumVirtualCpus
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *DedicatedMachineTypeSpecification) UnmarshalJSON(bytes []byte) (err error) {
-	varDedicatedMachineTypeSpecification := dedicatedMachineTypeSpecification{}
-
-	if err = json.Unmarshal(bytes, &varDedicatedMachineTypeSpecification); err == nil {
-		*o = DedicatedMachineTypeSpecification(varDedicatedMachineTypeSpecification)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "machine_type")
-		delete(additionalProperties, "num_virtual_cpus")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }

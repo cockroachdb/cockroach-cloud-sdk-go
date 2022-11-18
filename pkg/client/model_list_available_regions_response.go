@@ -24,12 +24,9 @@ import (
 
 // ListAvailableRegionsResponse struct for ListAvailableRegionsResponse.
 type ListAvailableRegionsResponse struct {
-	Regions              []CloudProviderRegion     `json:"regions"`
-	Pagination           *KeysetPaginationResponse `json:"pagination,omitempty"`
-	AdditionalProperties map[string]interface{}
+	Regions    []CloudProviderRegion     `json:"regions"`
+	Pagination *KeysetPaginationResponse `json:"pagination,omitempty"`
 }
-
-type listAvailableRegionsResponse ListAvailableRegionsResponse
 
 // NewListAvailableRegionsResponse instantiates a new ListAvailableRegionsResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -86,28 +83,5 @@ func (o ListAvailableRegionsResponse) MarshalJSON() ([]byte, error) {
 	if o.Pagination != nil {
 		toSerialize["pagination"] = o.Pagination
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *ListAvailableRegionsResponse) UnmarshalJSON(bytes []byte) (err error) {
-	varListAvailableRegionsResponse := listAvailableRegionsResponse{}
-
-	if err = json.Unmarshal(bytes, &varListAvailableRegionsResponse); err == nil {
-		*o = ListAvailableRegionsResponse(varListAvailableRegionsResponse)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "regions")
-		delete(additionalProperties, "pagination")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }

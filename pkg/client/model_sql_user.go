@@ -24,11 +24,8 @@ import (
 
 // SQLUser struct for SQLUser.
 type SQLUser struct {
-	Name                 string `json:"name"`
-	AdditionalProperties map[string]interface{}
+	Name string `json:"name"`
 }
-
-type sQLUser SQLUser
 
 // NewSQLUser instantiates a new SQLUser object.
 // This constructor will assign default values to properties that have it defined,
@@ -68,27 +65,5 @@ func (o SQLUser) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["name"] = o.Name
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *SQLUser) UnmarshalJSON(bytes []byte) (err error) {
-	varSQLUser := sQLUser{}
-
-	if err = json.Unmarshal(bytes, &varSQLUser); err == nil {
-		*o = SQLUser(varSQLUser)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "name")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }

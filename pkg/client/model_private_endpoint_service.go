@@ -25,14 +25,11 @@ import (
 // PrivateEndpointService struct for PrivateEndpointService.
 type PrivateEndpointService struct {
 	// RegionName is the cloud provider region name (i.e. us-east-1).
-	RegionName           string                       `json:"region_name"`
-	CloudProvider        ApiCloudProvider             `json:"cloud_provider"`
-	Status               PrivateEndpointServiceStatus `json:"status"`
-	Aws                  AWSPrivateLinkServiceDetail  `json:"aws"`
-	AdditionalProperties map[string]interface{}
+	RegionName    string                       `json:"region_name"`
+	CloudProvider ApiCloudProvider             `json:"cloud_provider"`
+	Status        PrivateEndpointServiceStatus `json:"status"`
+	Aws           AWSPrivateLinkServiceDetail  `json:"aws"`
 }
-
-type privateEndpointService PrivateEndpointService
 
 // NewPrivateEndpointService instantiates a new PrivateEndpointService object.
 // This constructor will assign default values to properties that have it defined,
@@ -129,30 +126,5 @@ func (o PrivateEndpointService) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["aws"] = o.Aws
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *PrivateEndpointService) UnmarshalJSON(bytes []byte) (err error) {
-	varPrivateEndpointService := privateEndpointService{}
-
-	if err = json.Unmarshal(bytes, &varPrivateEndpointService); err == nil {
-		*o = PrivateEndpointService(varPrivateEndpointService)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "region_name")
-		delete(additionalProperties, "cloud_provider")
-		delete(additionalProperties, "status")
-		delete(additionalProperties, "aws")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }

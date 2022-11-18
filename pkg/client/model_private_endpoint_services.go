@@ -25,11 +25,8 @@ import (
 // PrivateEndpointServices struct for PrivateEndpointServices.
 type PrivateEndpointServices struct {
 	// Services contains a list of all cluster related services.
-	Services             []PrivateEndpointService `json:"services"`
-	AdditionalProperties map[string]interface{}
+	Services []PrivateEndpointService `json:"services"`
 }
-
-type privateEndpointServices PrivateEndpointServices
 
 // NewPrivateEndpointServices instantiates a new PrivateEndpointServices object.
 // This constructor will assign default values to properties that have it defined,
@@ -69,27 +66,5 @@ func (o PrivateEndpointServices) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["services"] = o.Services
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *PrivateEndpointServices) UnmarshalJSON(bytes []byte) (err error) {
-	varPrivateEndpointServices := privateEndpointServices{}
-
-	if err = json.Unmarshal(bytes, &varPrivateEndpointServices); err == nil {
-		*o = PrivateEndpointServices(varPrivateEndpointServices)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "services")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }

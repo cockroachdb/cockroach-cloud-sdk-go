@@ -27,11 +27,8 @@ type ServerlessClusterConfig struct {
 	// Spend limit in US cents.
 	SpendLimit int32 `json:"spend_limit"`
 	// Used to build a connection string.
-	RoutingId            string `json:"routing_id"`
-	AdditionalProperties map[string]interface{}
+	RoutingId string `json:"routing_id"`
 }
-
-type serverlessClusterConfig ServerlessClusterConfig
 
 // NewServerlessClusterConfig instantiates a new ServerlessClusterConfig object.
 // This constructor will assign default values to properties that have it defined,
@@ -90,28 +87,5 @@ func (o ServerlessClusterConfig) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["routing_id"] = o.RoutingId
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *ServerlessClusterConfig) UnmarshalJSON(bytes []byte) (err error) {
-	varServerlessClusterConfig := serverlessClusterConfig{}
-
-	if err = json.Unmarshal(bytes, &varServerlessClusterConfig); err == nil {
-		*o = ServerlessClusterConfig(varServerlessClusterConfig)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "spend_limit")
-		delete(additionalProperties, "routing_id")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }

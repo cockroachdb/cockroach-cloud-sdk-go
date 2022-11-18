@@ -25,24 +25,21 @@ import (
 
 // Cluster struct for Cluster.
 type Cluster struct {
-	Id                   string            `json:"id"`
-	Name                 string            `json:"name"`
-	CockroachVersion     string            `json:"cockroach_version"`
-	Plan                 Plan              `json:"plan"`
-	CloudProvider        ApiCloudProvider  `json:"cloud_provider"`
-	AccountId            *string           `json:"account_id,omitempty"`
-	State                ClusterStateType  `json:"state"`
-	CreatorId            string            `json:"creator_id"`
-	OperationStatus      ClusterStatusType `json:"operation_status"`
-	Config               ClusterConfig     `json:"config"`
-	Regions              []Region          `json:"regions"`
-	CreatedAt            *time.Time        `json:"created_at,omitempty"`
-	UpdatedAt            *time.Time        `json:"updated_at,omitempty"`
-	DeletedAt            *time.Time        `json:"deleted_at,omitempty"`
-	AdditionalProperties map[string]interface{}
+	Id               string            `json:"id"`
+	Name             string            `json:"name"`
+	CockroachVersion string            `json:"cockroach_version"`
+	Plan             Plan              `json:"plan"`
+	CloudProvider    ApiCloudProvider  `json:"cloud_provider"`
+	AccountId        *string           `json:"account_id,omitempty"`
+	State            ClusterStateType  `json:"state"`
+	CreatorId        string            `json:"creator_id"`
+	OperationStatus  ClusterStatusType `json:"operation_status"`
+	Config           ClusterConfig     `json:"config"`
+	Regions          []Region          `json:"regions"`
+	CreatedAt        *time.Time        `json:"created_at,omitempty"`
+	UpdatedAt        *time.Time        `json:"updated_at,omitempty"`
+	DeletedAt        *time.Time        `json:"deleted_at,omitempty"`
 }
-
-type cluster Cluster
 
 // NewCluster instantiates a new Cluster object.
 // This constructor will assign default values to properties that have it defined,
@@ -321,40 +318,5 @@ func (o Cluster) MarshalJSON() ([]byte, error) {
 	if o.DeletedAt != nil {
 		toSerialize["deleted_at"] = o.DeletedAt
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *Cluster) UnmarshalJSON(bytes []byte) (err error) {
-	varCluster := cluster{}
-
-	if err = json.Unmarshal(bytes, &varCluster); err == nil {
-		*o = Cluster(varCluster)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "id")
-		delete(additionalProperties, "name")
-		delete(additionalProperties, "cockroach_version")
-		delete(additionalProperties, "plan")
-		delete(additionalProperties, "cloud_provider")
-		delete(additionalProperties, "account_id")
-		delete(additionalProperties, "state")
-		delete(additionalProperties, "creator_id")
-		delete(additionalProperties, "operation_status")
-		delete(additionalProperties, "config")
-		delete(additionalProperties, "regions")
-		delete(additionalProperties, "created_at")
-		delete(additionalProperties, "updated_at")
-		delete(additionalProperties, "deleted_at")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }

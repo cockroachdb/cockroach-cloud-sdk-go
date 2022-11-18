@@ -24,12 +24,9 @@ import (
 
 // ApiListDatabasesResponse struct for ApiListDatabasesResponse.
 type ApiListDatabasesResponse struct {
-	Databases            []ApiDatabase             `json:"databases"`
-	Pagination           *KeysetPaginationResponse `json:"pagination,omitempty"`
-	AdditionalProperties map[string]interface{}
+	Databases  []ApiDatabase             `json:"databases"`
+	Pagination *KeysetPaginationResponse `json:"pagination,omitempty"`
 }
-
-type apiListDatabasesResponse ApiListDatabasesResponse
 
 // NewApiListDatabasesResponse instantiates a new ApiListDatabasesResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -86,28 +83,5 @@ func (o ApiListDatabasesResponse) MarshalJSON() ([]byte, error) {
 	if o.Pagination != nil {
 		toSerialize["pagination"] = o.Pagination
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *ApiListDatabasesResponse) UnmarshalJSON(bytes []byte) (err error) {
-	varApiListDatabasesResponse := apiListDatabasesResponse{}
-
-	if err = json.Unmarshal(bytes, &varApiListDatabasesResponse); err == nil {
-		*o = ApiListDatabasesResponse(varApiListDatabasesResponse)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "databases")
-		delete(additionalProperties, "pagination")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }

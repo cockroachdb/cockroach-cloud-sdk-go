@@ -28,11 +28,8 @@ type EnableLogExportRequest struct {
 	// log_name is an identifier for the logs in the customer's log sink.
 	LogName *string `json:"log_name,omitempty"`
 	// auth_principal is either the AWS Role ARN that identifies a role that the cluster account can assume to write to CloudWatch or the GCP Project ID that the cluster service account has permissions to write to for cloud logging.
-	AuthPrincipal        *string `json:"auth_principal,omitempty"`
-	AdditionalProperties map[string]interface{}
+	AuthPrincipal *string `json:"auth_principal,omitempty"`
 }
-
-type enableLogExportRequest EnableLogExportRequest
 
 // NewEnableLogExportRequest instantiates a new EnableLogExportRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -96,29 +93,5 @@ func (o EnableLogExportRequest) MarshalJSON() ([]byte, error) {
 	if o.AuthPrincipal != nil {
 		toSerialize["auth_principal"] = o.AuthPrincipal
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *EnableLogExportRequest) UnmarshalJSON(bytes []byte) (err error) {
-	varEnableLogExportRequest := enableLogExportRequest{}
-
-	if err = json.Unmarshal(bytes, &varEnableLogExportRequest); err == nil {
-		*o = EnableLogExportRequest(varEnableLogExportRequest)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "type")
-		delete(additionalProperties, "log_name")
-		delete(additionalProperties, "auth_principal")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }

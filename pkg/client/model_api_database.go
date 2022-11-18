@@ -24,12 +24,9 @@ import (
 
 // ApiDatabase struct for ApiDatabase.
 type ApiDatabase struct {
-	Name                 string  `json:"name"`
-	TableCount           *string `json:"table_count,omitempty"`
-	AdditionalProperties map[string]interface{}
+	Name       string  `json:"name"`
+	TableCount *string `json:"table_count,omitempty"`
 }
-
-type apiDatabase ApiDatabase
 
 // NewApiDatabase instantiates a new ApiDatabase object.
 // This constructor will assign default values to properties that have it defined,
@@ -86,28 +83,5 @@ func (o ApiDatabase) MarshalJSON() ([]byte, error) {
 	if o.TableCount != nil {
 		toSerialize["table_count"] = o.TableCount
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *ApiDatabase) UnmarshalJSON(bytes []byte) (err error) {
-	varApiDatabase := apiDatabase{}
-
-	if err = json.Unmarshal(bytes, &varApiDatabase); err == nil {
-		*o = ApiDatabase(varApiDatabase)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "name")
-		delete(additionalProperties, "table_count")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }

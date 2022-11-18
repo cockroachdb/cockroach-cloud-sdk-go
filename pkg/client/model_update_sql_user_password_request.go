@@ -24,11 +24,8 @@ import (
 
 // UpdateSQLUserPasswordRequest struct for UpdateSQLUserPasswordRequest.
 type UpdateSQLUserPasswordRequest struct {
-	Password             string `json:"password"`
-	AdditionalProperties map[string]interface{}
+	Password string `json:"password"`
 }
-
-type updateSQLUserPasswordRequest UpdateSQLUserPasswordRequest
 
 // NewUpdateSQLUserPasswordRequest instantiates a new UpdateSQLUserPasswordRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -68,27 +65,5 @@ func (o UpdateSQLUserPasswordRequest) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["password"] = o.Password
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *UpdateSQLUserPasswordRequest) UnmarshalJSON(bytes []byte) (err error) {
-	varUpdateSQLUserPasswordRequest := updateSQLUserPasswordRequest{}
-
-	if err = json.Unmarshal(bytes, &varUpdateSQLUserPasswordRequest); err == nil {
-		*o = UpdateSQLUserPasswordRequest(varUpdateSQLUserPasswordRequest)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "password")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }

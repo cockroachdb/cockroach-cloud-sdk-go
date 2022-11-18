@@ -24,12 +24,9 @@ import (
 
 // UpdateDatabaseRequest struct for UpdateDatabaseRequest.
 type UpdateDatabaseRequest struct {
-	Name                 string `json:"name"`
-	NewName              string `json:"new_name"`
-	AdditionalProperties map[string]interface{}
+	Name    string `json:"name"`
+	NewName string `json:"new_name"`
 }
-
-type updateDatabaseRequest UpdateDatabaseRequest
 
 // NewUpdateDatabaseRequest instantiates a new UpdateDatabaseRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -88,28 +85,5 @@ func (o UpdateDatabaseRequest) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["new_name"] = o.NewName
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *UpdateDatabaseRequest) UnmarshalJSON(bytes []byte) (err error) {
-	varUpdateDatabaseRequest := updateDatabaseRequest{}
-
-	if err = json.Unmarshal(bytes, &varUpdateDatabaseRequest); err == nil {
-		*o = UpdateDatabaseRequest(varUpdateDatabaseRequest)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "name")
-		delete(additionalProperties, "new_name")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
