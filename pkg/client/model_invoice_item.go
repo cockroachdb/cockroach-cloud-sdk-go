@@ -25,21 +25,21 @@ import (
 // InvoiceItem struct for InvoiceItem.
 type InvoiceItem struct {
 	Cluster Cluster `json:"cluster"`
-	// Totals is a list of the total amounts of line items per currency.
-	Totals []CurrencyAmount `json:"totals"`
-	// LineItems contain all the relevant line items from the Metronome invoice.
+	// line_items contain all the relevant line items from the Metronome invoice.
 	LineItems []LineItem `json:"line_items"`
+	// totals is a list of the total amounts of line items per currency.
+	Totals []CurrencyAmount `json:"totals"`
 }
 
 // NewInvoiceItem instantiates a new InvoiceItem object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInvoiceItem(cluster Cluster, totals []CurrencyAmount, lineItems []LineItem) *InvoiceItem {
+func NewInvoiceItem(cluster Cluster, lineItems []LineItem, totals []CurrencyAmount) *InvoiceItem {
 	p := InvoiceItem{}
 	p.Cluster = cluster
-	p.Totals = totals
 	p.LineItems = lineItems
+	p.Totals = totals
 	return &p
 }
 
@@ -66,21 +66,6 @@ func (o *InvoiceItem) SetCluster(v Cluster) {
 	o.Cluster = v
 }
 
-// GetTotals returns the Totals field value.
-func (o *InvoiceItem) GetTotals() []CurrencyAmount {
-	if o == nil {
-		var ret []CurrencyAmount
-		return ret
-	}
-
-	return o.Totals
-}
-
-// SetTotals sets field value.
-func (o *InvoiceItem) SetTotals(v []CurrencyAmount) {
-	o.Totals = v
-}
-
 // GetLineItems returns the LineItems field value.
 func (o *InvoiceItem) GetLineItems() []LineItem {
 	if o == nil {
@@ -96,16 +81,31 @@ func (o *InvoiceItem) SetLineItems(v []LineItem) {
 	o.LineItems = v
 }
 
+// GetTotals returns the Totals field value.
+func (o *InvoiceItem) GetTotals() []CurrencyAmount {
+	if o == nil {
+		var ret []CurrencyAmount
+		return ret
+	}
+
+	return o.Totals
+}
+
+// SetTotals sets field value.
+func (o *InvoiceItem) SetTotals(v []CurrencyAmount) {
+	o.Totals = v
+}
+
 func (o InvoiceItem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["cluster"] = o.Cluster
 	}
 	if true {
-		toSerialize["totals"] = o.Totals
+		toSerialize["line_items"] = o.LineItems
 	}
 	if true {
-		toSerialize["line_items"] = o.LineItems
+		toSerialize["totals"] = o.Totals
 	}
 	return json.Marshal(toSerialize)
 }

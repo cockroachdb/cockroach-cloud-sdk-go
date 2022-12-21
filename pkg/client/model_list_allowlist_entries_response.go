@@ -25,8 +25,8 @@ import (
 // ListAllowlistEntriesResponse struct for ListAllowlistEntriesResponse.
 type ListAllowlistEntriesResponse struct {
 	Allowlist   []AllowlistEntry          `json:"allowlist"`
-	Propagating bool                      `json:"propagating"`
 	Pagination  *KeysetPaginationResponse `json:"pagination,omitempty"`
+	Propagating bool                      `json:"propagating"`
 }
 
 // NewListAllowlistEntriesResponse instantiates a new ListAllowlistEntriesResponse object.
@@ -63,6 +63,20 @@ func (o *ListAllowlistEntriesResponse) SetAllowlist(v []AllowlistEntry) {
 	o.Allowlist = v
 }
 
+// GetPagination returns the Pagination field value if set, zero value otherwise.
+func (o *ListAllowlistEntriesResponse) GetPagination() KeysetPaginationResponse {
+	if o == nil || o.Pagination == nil {
+		var ret KeysetPaginationResponse
+		return ret
+	}
+	return *o.Pagination
+}
+
+// SetPagination gets a reference to the given KeysetPaginationResponse and assigns it to the Pagination field.
+func (o *ListAllowlistEntriesResponse) SetPagination(v KeysetPaginationResponse) {
+	o.Pagination = &v
+}
+
 // GetPropagating returns the Propagating field value.
 func (o *ListAllowlistEntriesResponse) GetPropagating() bool {
 	if o == nil {
@@ -78,30 +92,16 @@ func (o *ListAllowlistEntriesResponse) SetPropagating(v bool) {
 	o.Propagating = v
 }
 
-// GetPagination returns the Pagination field value if set, zero value otherwise.
-func (o *ListAllowlistEntriesResponse) GetPagination() KeysetPaginationResponse {
-	if o == nil || o.Pagination == nil {
-		var ret KeysetPaginationResponse
-		return ret
-	}
-	return *o.Pagination
-}
-
-// SetPagination gets a reference to the given KeysetPaginationResponse and assigns it to the Pagination field.
-func (o *ListAllowlistEntriesResponse) SetPagination(v KeysetPaginationResponse) {
-	o.Pagination = &v
-}
-
 func (o ListAllowlistEntriesResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["allowlist"] = o.Allowlist
 	}
-	if true {
-		toSerialize["propagating"] = o.Propagating
-	}
 	if o.Pagination != nil {
 		toSerialize["pagination"] = o.Pagination
+	}
+	if true {
+		toSerialize["propagating"] = o.Propagating
 	}
 	return json.Marshal(toSerialize)
 }

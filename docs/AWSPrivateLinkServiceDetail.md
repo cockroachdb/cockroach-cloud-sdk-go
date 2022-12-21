@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ServiceName** | **string** | ServiceName is the AWS service name customers use to create endpoints on their end. | 
-**ServiceId** | **string** | ServiceID is the server side of the PrivateLink connection. This is the same as AWSPrivateLinkEndpoint.service_id. | 
-**AvailabilityZoneIds** | **[]string** | AvailabilityZoneIDs are the identifiers for the availability zones that the service is available in. | 
+**AvailabilityZoneIds** | **[]string** | availability_zone_ids are the identifiers for the availability zones that the service is available in. | 
+**ServiceId** | **string** | service_id is the server side of the PrivateLink connection. This is the same as AWSPrivateLinkEndpoint.service_id. | 
+**ServiceName** | **string** | service_name is the AWS service name customers use to create endpoints on their end. | 
 
 ## Methods
 
 ### NewAWSPrivateLinkServiceDetail
 
-`func NewAWSPrivateLinkServiceDetail(serviceName string, serviceId string, availabilityZoneIds []string, ) *AWSPrivateLinkServiceDetail`
+`func NewAWSPrivateLinkServiceDetail(availabilityZoneIds []string, serviceId string, serviceName string, ) *AWSPrivateLinkServiceDetail`
 
 NewAWSPrivateLinkServiceDetail instantiates a new AWSPrivateLinkServiceDetail object.
 This constructor will assign default values to properties that have it defined,
@@ -27,17 +27,17 @@ NewAWSPrivateLinkServiceDetailWithDefaults instantiates a new AWSPrivateLinkServ
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set.
 
-### GetServiceName
+### GetAvailabilityZoneIds
 
-`func (o *AWSPrivateLinkServiceDetail) GetServiceName() string`
+`func (o *AWSPrivateLinkServiceDetail) GetAvailabilityZoneIds() []string`
 
-GetServiceName returns the ServiceName field if non-nil, zero value otherwise.
+GetAvailabilityZoneIds returns the AvailabilityZoneIds field if non-nil, zero value otherwise.
 
-### SetServiceName
+### SetAvailabilityZoneIds
 
-`func (o *AWSPrivateLinkServiceDetail) SetServiceName(v string)`
+`func (o *AWSPrivateLinkServiceDetail) SetAvailabilityZoneIds(v []string)`
 
-SetServiceName sets ServiceName field to given value.
+SetAvailabilityZoneIds sets AvailabilityZoneIds field to given value.
 
 ### GetServiceId
 
@@ -51,17 +51,17 @@ GetServiceId returns the ServiceId field if non-nil, zero value otherwise.
 
 SetServiceId sets ServiceId field to given value.
 
-### GetAvailabilityZoneIds
+### GetServiceName
 
-`func (o *AWSPrivateLinkServiceDetail) GetAvailabilityZoneIds() []string`
+`func (o *AWSPrivateLinkServiceDetail) GetServiceName() string`
 
-GetAvailabilityZoneIds returns the AvailabilityZoneIds field if non-nil, zero value otherwise.
+GetServiceName returns the ServiceName field if non-nil, zero value otherwise.
 
-### SetAvailabilityZoneIds
+### SetServiceName
 
-`func (o *AWSPrivateLinkServiceDetail) SetAvailabilityZoneIds(v []string)`
+`func (o *AWSPrivateLinkServiceDetail) SetServiceName(v string)`
 
-SetAvailabilityZoneIds sets AvailabilityZoneIds field to given value.
+SetServiceName sets ServiceName field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

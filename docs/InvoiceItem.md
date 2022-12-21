@@ -5,14 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Cluster** | [**Cluster**](Cluster.md) |  | 
-**Totals** | [**[]CurrencyAmount**](CurrencyAmount.md) | Totals is a list of the total amounts of line items per currency. | 
-**LineItems** | [**[]LineItem**](LineItem.md) | LineItems contain all the relevant line items from the Metronome invoice. | 
+**LineItems** | [**[]LineItem**](LineItem.md) | line_items contain all the relevant line items from the Metronome invoice. | 
+**Totals** | [**[]CurrencyAmount**](CurrencyAmount.md) | totals is a list of the total amounts of line items per currency. | 
 
 ## Methods
 
 ### NewInvoiceItem
 
-`func NewInvoiceItem(cluster Cluster, totals []CurrencyAmount, lineItems []LineItem, ) *InvoiceItem`
+`func NewInvoiceItem(cluster Cluster, lineItems []LineItem, totals []CurrencyAmount, ) *InvoiceItem`
 
 NewInvoiceItem instantiates a new InvoiceItem object.
 This constructor will assign default values to properties that have it defined,
@@ -39,18 +39,6 @@ GetCluster returns the Cluster field if non-nil, zero value otherwise.
 
 SetCluster sets Cluster field to given value.
 
-### GetTotals
-
-`func (o *InvoiceItem) GetTotals() []CurrencyAmount`
-
-GetTotals returns the Totals field if non-nil, zero value otherwise.
-
-### SetTotals
-
-`func (o *InvoiceItem) SetTotals(v []CurrencyAmount)`
-
-SetTotals sets Totals field to given value.
-
 ### GetLineItems
 
 `func (o *InvoiceItem) GetLineItems() []LineItem`
@@ -62,6 +50,18 @@ GetLineItems returns the LineItems field if non-nil, zero value otherwise.
 `func (o *InvoiceItem) SetLineItems(v []LineItem)`
 
 SetLineItems sets LineItems field to given value.
+
+### GetTotals
+
+`func (o *InvoiceItem) GetTotals() []CurrencyAmount`
+
+GetTotals returns the Totals field if non-nil, zero value otherwise.
+
+### SetTotals
+
+`func (o *InvoiceItem) SetTotals(v []CurrencyAmount)`
+
+SetTotals sets Totals field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

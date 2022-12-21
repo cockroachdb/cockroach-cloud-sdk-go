@@ -22,11 +22,11 @@ import (
 	"encoding/json"
 )
 
-// CMEKRegionInfo CMEKRegionInfo contains the status of CMEK within a region. This includes current and past key specifications used within the region, as well as the status of those specifications..
+// CMEKRegionInfo CMEKRegionInfo contains the status of CMEK within a region.  This includes current and past key specifications used within the region,  as well as the status of those specifications.
 type CMEKRegionInfo struct {
+	KeyInfos *[]CMEKKeyInfo `json:"key_infos,omitempty"`
 	Region   *string        `json:"region,omitempty"`
 	Status   *CMEKStatus    `json:"status,omitempty"`
-	KeyInfos *[]CMEKKeyInfo `json:"key_infos,omitempty"`
 }
 
 // NewCMEKRegionInfo instantiates a new CMEKRegionInfo object.
@@ -36,6 +36,20 @@ type CMEKRegionInfo struct {
 func NewCMEKRegionInfo() *CMEKRegionInfo {
 	p := CMEKRegionInfo{}
 	return &p
+}
+
+// GetKeyInfos returns the KeyInfos field value if set, zero value otherwise.
+func (o *CMEKRegionInfo) GetKeyInfos() []CMEKKeyInfo {
+	if o == nil || o.KeyInfos == nil {
+		var ret []CMEKKeyInfo
+		return ret
+	}
+	return *o.KeyInfos
+}
+
+// SetKeyInfos gets a reference to the given []CMEKKeyInfo and assigns it to the KeyInfos field.
+func (o *CMEKRegionInfo) SetKeyInfos(v []CMEKKeyInfo) {
+	o.KeyInfos = &v
 }
 
 // GetRegion returns the Region field value if set, zero value otherwise.
@@ -66,30 +80,16 @@ func (o *CMEKRegionInfo) SetStatus(v CMEKStatus) {
 	o.Status = &v
 }
 
-// GetKeyInfos returns the KeyInfos field value if set, zero value otherwise.
-func (o *CMEKRegionInfo) GetKeyInfos() []CMEKKeyInfo {
-	if o == nil || o.KeyInfos == nil {
-		var ret []CMEKKeyInfo
-		return ret
-	}
-	return *o.KeyInfos
-}
-
-// SetKeyInfos gets a reference to the given []CMEKKeyInfo and assigns it to the KeyInfos field.
-func (o *CMEKRegionInfo) SetKeyInfos(v []CMEKKeyInfo) {
-	o.KeyInfos = &v
-}
-
 func (o CMEKRegionInfo) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.KeyInfos != nil {
+		toSerialize["key_infos"] = o.KeyInfos
+	}
 	if o.Region != nil {
 		toSerialize["region"] = o.Region
 	}
 	if o.Status != nil {
 		toSerialize["status"] = o.Status
-	}
-	if o.KeyInfos != nil {
-		toSerialize["key_infos"] = o.KeyInfos
 	}
 	return json.Marshal(toSerialize)
 }

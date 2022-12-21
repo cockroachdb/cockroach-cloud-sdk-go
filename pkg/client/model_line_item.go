@@ -24,27 +24,27 @@ import (
 
 // LineItem struct for LineItem.
 type LineItem struct {
-	// Description contains the details of the line item (i.e t3 micro).
+	// description contains the details of the line item (i.e t3 micro).
 	Description string `json:"description"`
-	// Quantity is the number of the specific line items used.
-	Quantity float64 `json:"quantity"`
-	// UnitCost is the cost per unit of line item.
-	UnitCost     float64          `json:"unit_cost"`
-	Total        CurrencyAmount   `json:"total"`
+	// quantity is the number of the specific line items used.
+	Quantity     float64          `json:"quantity"`
 	QuantityUnit QuantityUnitType `json:"quantity_unit"`
+	Total        CurrencyAmount   `json:"total"`
+	// unit_cost is the cost per unit of line item.
+	UnitCost float64 `json:"unit_cost"`
 }
 
 // NewLineItem instantiates a new LineItem object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewLineItem(description string, quantity float64, unitCost float64, total CurrencyAmount, quantityUnit QuantityUnitType) *LineItem {
+func NewLineItem(description string, quantity float64, quantityUnit QuantityUnitType, total CurrencyAmount, unitCost float64) *LineItem {
 	p := LineItem{}
 	p.Description = description
 	p.Quantity = quantity
-	p.UnitCost = unitCost
-	p.Total = total
 	p.QuantityUnit = quantityUnit
+	p.Total = total
+	p.UnitCost = unitCost
 	return &p
 }
 
@@ -86,19 +86,19 @@ func (o *LineItem) SetQuantity(v float64) {
 	o.Quantity = v
 }
 
-// GetUnitCost returns the UnitCost field value.
-func (o *LineItem) GetUnitCost() float64 {
+// GetQuantityUnit returns the QuantityUnit field value.
+func (o *LineItem) GetQuantityUnit() QuantityUnitType {
 	if o == nil {
-		var ret float64
+		var ret QuantityUnitType
 		return ret
 	}
 
-	return o.UnitCost
+	return o.QuantityUnit
 }
 
-// SetUnitCost sets field value.
-func (o *LineItem) SetUnitCost(v float64) {
-	o.UnitCost = v
+// SetQuantityUnit sets field value.
+func (o *LineItem) SetQuantityUnit(v QuantityUnitType) {
+	o.QuantityUnit = v
 }
 
 // GetTotal returns the Total field value.
@@ -116,19 +116,19 @@ func (o *LineItem) SetTotal(v CurrencyAmount) {
 	o.Total = v
 }
 
-// GetQuantityUnit returns the QuantityUnit field value.
-func (o *LineItem) GetQuantityUnit() QuantityUnitType {
+// GetUnitCost returns the UnitCost field value.
+func (o *LineItem) GetUnitCost() float64 {
 	if o == nil {
-		var ret QuantityUnitType
+		var ret float64
 		return ret
 	}
 
-	return o.QuantityUnit
+	return o.UnitCost
 }
 
-// SetQuantityUnit sets field value.
-func (o *LineItem) SetQuantityUnit(v QuantityUnitType) {
-	o.QuantityUnit = v
+// SetUnitCost sets field value.
+func (o *LineItem) SetUnitCost(v float64) {
+	o.UnitCost = v
 }
 
 func (o LineItem) MarshalJSON() ([]byte, error) {
@@ -140,13 +140,13 @@ func (o LineItem) MarshalJSON() ([]byte, error) {
 		toSerialize["quantity"] = o.Quantity
 	}
 	if true {
-		toSerialize["unit_cost"] = o.UnitCost
+		toSerialize["quantity_unit"] = o.QuantityUnit
 	}
 	if true {
 		toSerialize["total"] = o.Total
 	}
 	if true {
-		toSerialize["quantity_unit"] = o.QuantityUnit
+		toSerialize["unit_cost"] = o.UnitCost
 	}
 	return json.Marshal(toSerialize)
 }

@@ -23,34 +23,34 @@ import (
 	"time"
 )
 
-// Invoice Invoice message represents the details and the total charges associated with one billing period, which starts at the beginning of the month and ends at the beginning of the next month. The message also includes details about each invoice item..
+// Invoice Invoice message represents the details and the total charges associated with one billing period, which starts at the beginning of the month and ends at the beginning of the next month.  The message also includes details about each invoice item..
 type Invoice struct {
-	// InvoiceID is the unique ID representing the invoice.
-	InvoiceId string `json:"invoice_id"`
-	// Totals is a list of the total amounts per currency.
-	Totals []CurrencyAmount `json:"totals"`
-	// PeriodStart is the start of the billing period (inclusive).
-	PeriodStart time.Time `json:"period_start"`
-	// PeriodEnd is the end of the billing period (exclusive).
-	PeriodEnd time.Time `json:"period_end"`
-	// InvoiceItems are sorted by the cluster name.
-	InvoiceItems []InvoiceItem `json:"invoice_items"`
-	// Balances are the amounts of currency left at the time of the invoice.
+	// balances are the amounts of currency left at the time of the invoice.
 	Balances []CurrencyAmount `json:"balances"`
+	// invoice_id is the unique ID representing the invoice.
+	InvoiceId string `json:"invoice_id"`
+	// invoice_items are sorted by the cluster name.
+	InvoiceItems []InvoiceItem `json:"invoice_items"`
+	// period_end is the end of the billing period (exclusive).
+	PeriodEnd time.Time `json:"period_end"`
+	// period_start is the start of the billing period (inclusive).
+	PeriodStart time.Time `json:"period_start"`
+	// totals is a list of the total amounts per currency.
+	Totals []CurrencyAmount `json:"totals"`
 }
 
 // NewInvoice instantiates a new Invoice object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInvoice(invoiceId string, totals []CurrencyAmount, periodStart time.Time, periodEnd time.Time, invoiceItems []InvoiceItem, balances []CurrencyAmount) *Invoice {
+func NewInvoice(balances []CurrencyAmount, invoiceId string, invoiceItems []InvoiceItem, periodEnd time.Time, periodStart time.Time, totals []CurrencyAmount) *Invoice {
 	p := Invoice{}
-	p.InvoiceId = invoiceId
-	p.Totals = totals
-	p.PeriodStart = periodStart
-	p.PeriodEnd = periodEnd
-	p.InvoiceItems = invoiceItems
 	p.Balances = balances
+	p.InvoiceId = invoiceId
+	p.InvoiceItems = invoiceItems
+	p.PeriodEnd = periodEnd
+	p.PeriodStart = periodStart
+	p.Totals = totals
 	return &p
 }
 
@@ -60,81 +60,6 @@ func NewInvoice(invoiceId string, totals []CurrencyAmount, periodStart time.Time
 func NewInvoiceWithDefaults() *Invoice {
 	p := Invoice{}
 	return &p
-}
-
-// GetInvoiceId returns the InvoiceId field value.
-func (o *Invoice) GetInvoiceId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.InvoiceId
-}
-
-// SetInvoiceId sets field value.
-func (o *Invoice) SetInvoiceId(v string) {
-	o.InvoiceId = v
-}
-
-// GetTotals returns the Totals field value.
-func (o *Invoice) GetTotals() []CurrencyAmount {
-	if o == nil {
-		var ret []CurrencyAmount
-		return ret
-	}
-
-	return o.Totals
-}
-
-// SetTotals sets field value.
-func (o *Invoice) SetTotals(v []CurrencyAmount) {
-	o.Totals = v
-}
-
-// GetPeriodStart returns the PeriodStart field value.
-func (o *Invoice) GetPeriodStart() time.Time {
-	if o == nil {
-		var ret time.Time
-		return ret
-	}
-
-	return o.PeriodStart
-}
-
-// SetPeriodStart sets field value.
-func (o *Invoice) SetPeriodStart(v time.Time) {
-	o.PeriodStart = v
-}
-
-// GetPeriodEnd returns the PeriodEnd field value.
-func (o *Invoice) GetPeriodEnd() time.Time {
-	if o == nil {
-		var ret time.Time
-		return ret
-	}
-
-	return o.PeriodEnd
-}
-
-// SetPeriodEnd sets field value.
-func (o *Invoice) SetPeriodEnd(v time.Time) {
-	o.PeriodEnd = v
-}
-
-// GetInvoiceItems returns the InvoiceItems field value.
-func (o *Invoice) GetInvoiceItems() []InvoiceItem {
-	if o == nil {
-		var ret []InvoiceItem
-		return ret
-	}
-
-	return o.InvoiceItems
-}
-
-// SetInvoiceItems sets field value.
-func (o *Invoice) SetInvoiceItems(v []InvoiceItem) {
-	o.InvoiceItems = v
 }
 
 // GetBalances returns the Balances field value.
@@ -152,25 +77,100 @@ func (o *Invoice) SetBalances(v []CurrencyAmount) {
 	o.Balances = v
 }
 
+// GetInvoiceId returns the InvoiceId field value.
+func (o *Invoice) GetInvoiceId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.InvoiceId
+}
+
+// SetInvoiceId sets field value.
+func (o *Invoice) SetInvoiceId(v string) {
+	o.InvoiceId = v
+}
+
+// GetInvoiceItems returns the InvoiceItems field value.
+func (o *Invoice) GetInvoiceItems() []InvoiceItem {
+	if o == nil {
+		var ret []InvoiceItem
+		return ret
+	}
+
+	return o.InvoiceItems
+}
+
+// SetInvoiceItems sets field value.
+func (o *Invoice) SetInvoiceItems(v []InvoiceItem) {
+	o.InvoiceItems = v
+}
+
+// GetPeriodEnd returns the PeriodEnd field value.
+func (o *Invoice) GetPeriodEnd() time.Time {
+	if o == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return o.PeriodEnd
+}
+
+// SetPeriodEnd sets field value.
+func (o *Invoice) SetPeriodEnd(v time.Time) {
+	o.PeriodEnd = v
+}
+
+// GetPeriodStart returns the PeriodStart field value.
+func (o *Invoice) GetPeriodStart() time.Time {
+	if o == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return o.PeriodStart
+}
+
+// SetPeriodStart sets field value.
+func (o *Invoice) SetPeriodStart(v time.Time) {
+	o.PeriodStart = v
+}
+
+// GetTotals returns the Totals field value.
+func (o *Invoice) GetTotals() []CurrencyAmount {
+	if o == nil {
+		var ret []CurrencyAmount
+		return ret
+	}
+
+	return o.Totals
+}
+
+// SetTotals sets field value.
+func (o *Invoice) SetTotals(v []CurrencyAmount) {
+	o.Totals = v
+}
+
 func (o Invoice) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
+		toSerialize["balances"] = o.Balances
+	}
+	if true {
 		toSerialize["invoice_id"] = o.InvoiceId
-	}
-	if true {
-		toSerialize["totals"] = o.Totals
-	}
-	if true {
-		toSerialize["period_start"] = o.PeriodStart
-	}
-	if true {
-		toSerialize["period_end"] = o.PeriodEnd
 	}
 	if true {
 		toSerialize["invoice_items"] = o.InvoiceItems
 	}
 	if true {
-		toSerialize["balances"] = o.Balances
+		toSerialize["period_end"] = o.PeriodEnd
+	}
+	if true {
+		toSerialize["period_start"] = o.PeriodStart
+	}
+	if true {
+		toSerialize["totals"] = o.Totals
 	}
 	return json.Marshal(toSerialize)
 }

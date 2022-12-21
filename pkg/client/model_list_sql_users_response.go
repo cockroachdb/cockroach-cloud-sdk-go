@@ -24,8 +24,8 @@ import (
 
 // ListSQLUsersResponse struct for ListSQLUsersResponse.
 type ListSQLUsersResponse struct {
-	Users      []SQLUser                 `json:"users"`
 	Pagination *KeysetPaginationResponse `json:"pagination,omitempty"`
+	Users      []SQLUser                 `json:"users"`
 }
 
 // NewListSQLUsersResponse instantiates a new ListSQLUsersResponse object.
@@ -46,6 +46,20 @@ func NewListSQLUsersResponseWithDefaults() *ListSQLUsersResponse {
 	return &p
 }
 
+// GetPagination returns the Pagination field value if set, zero value otherwise.
+func (o *ListSQLUsersResponse) GetPagination() KeysetPaginationResponse {
+	if o == nil || o.Pagination == nil {
+		var ret KeysetPaginationResponse
+		return ret
+	}
+	return *o.Pagination
+}
+
+// SetPagination gets a reference to the given KeysetPaginationResponse and assigns it to the Pagination field.
+func (o *ListSQLUsersResponse) SetPagination(v KeysetPaginationResponse) {
+	o.Pagination = &v
+}
+
 // GetUsers returns the Users field value.
 func (o *ListSQLUsersResponse) GetUsers() []SQLUser {
 	if o == nil {
@@ -61,27 +75,13 @@ func (o *ListSQLUsersResponse) SetUsers(v []SQLUser) {
 	o.Users = v
 }
 
-// GetPagination returns the Pagination field value if set, zero value otherwise.
-func (o *ListSQLUsersResponse) GetPagination() KeysetPaginationResponse {
-	if o == nil || o.Pagination == nil {
-		var ret KeysetPaginationResponse
-		return ret
-	}
-	return *o.Pagination
-}
-
-// SetPagination gets a reference to the given KeysetPaginationResponse and assigns it to the Pagination field.
-func (o *ListSQLUsersResponse) SetPagination(v KeysetPaginationResponse) {
-	o.Pagination = &v
-}
-
 func (o ListSQLUsersResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["users"] = o.Users
-	}
 	if o.Pagination != nil {
 		toSerialize["pagination"] = o.Pagination
+	}
+	if true {
+		toSerialize["users"] = o.Users
 	}
 	return json.Marshal(toSerialize)
 }

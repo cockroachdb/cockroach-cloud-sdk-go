@@ -5,11 +5,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ClusterId** | Pointer to **string** |  | [optional] 
-**Status** | Pointer to [**LogExportStatus**](LogExportStatus.md) |  | [optional] 
-**UserMessage** | Pointer to **string** |  | [optional] 
-**Spec** | Pointer to [**LogExportClusterSpecification**](LogExportClusterSpecification.md) |  | [optional] 
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
+**Spec** | Pointer to [**LogExportClusterSpecification**](LogExportClusterSpecification.md) |  | [optional] 
+**Status** | Pointer to [**LogExportStatus**](LogExportStatus.md) |  | [optional] 
 **UpdatedAt** | Pointer to **time.Time** |  | [optional] 
+**UserMessage** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -34,29 +34,17 @@ GetClusterId returns the ClusterId field if non-nil, zero value otherwise.
 
 SetClusterId sets ClusterId field to given value.
 
-### GetStatus
+### GetCreatedAt
 
-`func (o *LogExportClusterInfo) GetStatus() LogExportStatus`
+`func (o *LogExportClusterInfo) GetCreatedAt() time.Time`
 
-GetStatus returns the Status field if non-nil, zero value otherwise.
+GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
 
-### SetStatus
+### SetCreatedAt
 
-`func (o *LogExportClusterInfo) SetStatus(v LogExportStatus)`
+`func (o *LogExportClusterInfo) SetCreatedAt(v time.Time)`
 
-SetStatus sets Status field to given value.
-
-### GetUserMessage
-
-`func (o *LogExportClusterInfo) GetUserMessage() string`
-
-GetUserMessage returns the UserMessage field if non-nil, zero value otherwise.
-
-### SetUserMessage
-
-`func (o *LogExportClusterInfo) SetUserMessage(v string)`
-
-SetUserMessage sets UserMessage field to given value.
+SetCreatedAt sets CreatedAt field to given value.
 
 ### GetSpec
 
@@ -70,17 +58,17 @@ GetSpec returns the Spec field if non-nil, zero value otherwise.
 
 SetSpec sets Spec field to given value.
 
-### GetCreatedAt
+### GetStatus
 
-`func (o *LogExportClusterInfo) GetCreatedAt() time.Time`
+`func (o *LogExportClusterInfo) GetStatus() LogExportStatus`
 
-GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
+GetStatus returns the Status field if non-nil, zero value otherwise.
 
-### SetCreatedAt
+### SetStatus
 
-`func (o *LogExportClusterInfo) SetCreatedAt(v time.Time)`
+`func (o *LogExportClusterInfo) SetStatus(v LogExportStatus)`
 
-SetCreatedAt sets CreatedAt field to given value.
+SetStatus sets Status field to given value.
 
 ### GetUpdatedAt
 
@@ -93,6 +81,18 @@ GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
 `func (o *LogExportClusterInfo) SetUpdatedAt(v time.Time)`
 
 SetUpdatedAt sets UpdatedAt field to given value.
+
+### GetUserMessage
+
+`func (o *LogExportClusterInfo) GetUserMessage() string`
+
+GetUserMessage returns the UserMessage field if non-nil, zero value otherwise.
+
+### SetUserMessage
+
+`func (o *LogExportClusterInfo) SetUserMessage(v string)`
+
+SetUserMessage sets UserMessage field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

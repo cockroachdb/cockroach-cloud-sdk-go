@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Invoices** | [**[]Invoice**](Invoice.md) | Invoices are sorted by PeriodStart time. | 
+**Invoices** | [**[]Invoice**](Invoice.md) | invoices are sorted by period_start time. | 
 
 ## Methods
 

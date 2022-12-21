@@ -24,11 +24,11 @@ import (
 
 // DedicatedClusterUpdateSpecification struct for DedicatedClusterUpdateSpecification.
 type DedicatedClusterUpdateSpecification struct {
-	// Region keys should match the cloud provider's zone code. For example, for Oregon, set region_name to \"us-west2\" for GCP and \"us-west-2\" for AWS. Values represent the node count.
-	RegionNodes *map[string]int32                     `json:"region_nodes,omitempty"`
-	Hardware    *DedicatedHardwareUpdateSpecification `json:"hardware,omitempty"`
 	// This field should contain the CMEK specs for newly added regions. If a CMEK spec is provided for an existing region, the request is invalid and will fail.
-	CmekRegionSpecs *[]CMEKRegionSpecification `json:"cmek_region_specs,omitempty"`
+	CmekRegionSpecs *[]CMEKRegionSpecification            `json:"cmek_region_specs,omitempty"`
+	Hardware        *DedicatedHardwareUpdateSpecification `json:"hardware,omitempty"`
+	// Region keys should match the cloud provider's zone code. For example, for Oregon, set region_name to \"us-west2\" for GCP and \"us-west-2\" for AWS. Values represent the node count.
+	RegionNodes *map[string]int32 `json:"region_nodes,omitempty"`
 }
 
 // NewDedicatedClusterUpdateSpecification instantiates a new DedicatedClusterUpdateSpecification object.
@@ -38,34 +38,6 @@ type DedicatedClusterUpdateSpecification struct {
 func NewDedicatedClusterUpdateSpecification() *DedicatedClusterUpdateSpecification {
 	p := DedicatedClusterUpdateSpecification{}
 	return &p
-}
-
-// GetRegionNodes returns the RegionNodes field value if set, zero value otherwise.
-func (o *DedicatedClusterUpdateSpecification) GetRegionNodes() map[string]int32 {
-	if o == nil || o.RegionNodes == nil {
-		var ret map[string]int32
-		return ret
-	}
-	return *o.RegionNodes
-}
-
-// SetRegionNodes gets a reference to the given map[string]int32 and assigns it to the RegionNodes field.
-func (o *DedicatedClusterUpdateSpecification) SetRegionNodes(v map[string]int32) {
-	o.RegionNodes = &v
-}
-
-// GetHardware returns the Hardware field value if set, zero value otherwise.
-func (o *DedicatedClusterUpdateSpecification) GetHardware() DedicatedHardwareUpdateSpecification {
-	if o == nil || o.Hardware == nil {
-		var ret DedicatedHardwareUpdateSpecification
-		return ret
-	}
-	return *o.Hardware
-}
-
-// SetHardware gets a reference to the given DedicatedHardwareUpdateSpecification and assigns it to the Hardware field.
-func (o *DedicatedClusterUpdateSpecification) SetHardware(v DedicatedHardwareUpdateSpecification) {
-	o.Hardware = &v
 }
 
 // GetCmekRegionSpecs returns the CmekRegionSpecs field value if set, zero value otherwise.
@@ -82,16 +54,44 @@ func (o *DedicatedClusterUpdateSpecification) SetCmekRegionSpecs(v []CMEKRegionS
 	o.CmekRegionSpecs = &v
 }
 
+// GetHardware returns the Hardware field value if set, zero value otherwise.
+func (o *DedicatedClusterUpdateSpecification) GetHardware() DedicatedHardwareUpdateSpecification {
+	if o == nil || o.Hardware == nil {
+		var ret DedicatedHardwareUpdateSpecification
+		return ret
+	}
+	return *o.Hardware
+}
+
+// SetHardware gets a reference to the given DedicatedHardwareUpdateSpecification and assigns it to the Hardware field.
+func (o *DedicatedClusterUpdateSpecification) SetHardware(v DedicatedHardwareUpdateSpecification) {
+	o.Hardware = &v
+}
+
+// GetRegionNodes returns the RegionNodes field value if set, zero value otherwise.
+func (o *DedicatedClusterUpdateSpecification) GetRegionNodes() map[string]int32 {
+	if o == nil || o.RegionNodes == nil {
+		var ret map[string]int32
+		return ret
+	}
+	return *o.RegionNodes
+}
+
+// SetRegionNodes gets a reference to the given map[string]int32 and assigns it to the RegionNodes field.
+func (o *DedicatedClusterUpdateSpecification) SetRegionNodes(v map[string]int32) {
+	o.RegionNodes = &v
+}
+
 func (o DedicatedClusterUpdateSpecification) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.RegionNodes != nil {
-		toSerialize["region_nodes"] = o.RegionNodes
+	if o.CmekRegionSpecs != nil {
+		toSerialize["cmek_region_specs"] = o.CmekRegionSpecs
 	}
 	if o.Hardware != nil {
 		toSerialize["hardware"] = o.Hardware
 	}
-	if o.CmekRegionSpecs != nil {
-		toSerialize["cmek_region_specs"] = o.CmekRegionSpecs
+	if o.RegionNodes != nil {
+		toSerialize["region_nodes"] = o.RegionNodes
 	}
 	return json.Marshal(toSerialize)
 }

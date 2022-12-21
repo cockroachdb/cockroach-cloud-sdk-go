@@ -26,21 +26,21 @@ import (
 type AllowlistEntry struct {
 	CidrIp   string  `json:"cidr_ip"`
 	CidrMask int32   `json:"cidr_mask"`
-	Ui       bool    `json:"ui"`
-	Sql      bool    `json:"sql"`
 	Name     *string `json:"name,omitempty"`
+	Sql      bool    `json:"sql"`
+	Ui       bool    `json:"ui"`
 }
 
 // NewAllowlistEntry instantiates a new AllowlistEntry object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAllowlistEntry(cidrIp string, cidrMask int32, ui bool, sql bool) *AllowlistEntry {
+func NewAllowlistEntry(cidrIp string, cidrMask int32, sql bool, ui bool) *AllowlistEntry {
 	p := AllowlistEntry{}
 	p.CidrIp = cidrIp
 	p.CidrMask = cidrMask
-	p.Ui = ui
 	p.Sql = sql
+	p.Ui = ui
 	return &p
 }
 
@@ -82,19 +82,18 @@ func (o *AllowlistEntry) SetCidrMask(v int32) {
 	o.CidrMask = v
 }
 
-// GetUi returns the Ui field value.
-func (o *AllowlistEntry) GetUi() bool {
-	if o == nil {
-		var ret bool
+// GetName returns the Name field value if set, zero value otherwise.
+func (o *AllowlistEntry) GetName() string {
+	if o == nil || o.Name == nil {
+		var ret string
 		return ret
 	}
-
-	return o.Ui
+	return *o.Name
 }
 
-// SetUi sets field value.
-func (o *AllowlistEntry) SetUi(v bool) {
-	o.Ui = v
+// SetName gets a reference to the given string and assigns it to the Name field.
+func (o *AllowlistEntry) SetName(v string) {
+	o.Name = &v
 }
 
 // GetSql returns the Sql field value.
@@ -112,18 +111,19 @@ func (o *AllowlistEntry) SetSql(v bool) {
 	o.Sql = v
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
-func (o *AllowlistEntry) GetName() string {
-	if o == nil || o.Name == nil {
-		var ret string
+// GetUi returns the Ui field value.
+func (o *AllowlistEntry) GetUi() bool {
+	if o == nil {
+		var ret bool
 		return ret
 	}
-	return *o.Name
+
+	return o.Ui
 }
 
-// SetName gets a reference to the given string and assigns it to the Name field.
-func (o *AllowlistEntry) SetName(v string) {
-	o.Name = &v
+// SetUi sets field value.
+func (o *AllowlistEntry) SetUi(v bool) {
+	o.Ui = v
 }
 
 func (o AllowlistEntry) MarshalJSON() ([]byte, error) {
@@ -134,14 +134,14 @@ func (o AllowlistEntry) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["cidr_mask"] = o.CidrMask
 	}
-	if true {
-		toSerialize["ui"] = o.Ui
+	if o.Name != nil {
+		toSerialize["name"] = o.Name
 	}
 	if true {
 		toSerialize["sql"] = o.Sql
 	}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
+	if true {
+		toSerialize["ui"] = o.Ui
 	}
 	return json.Marshal(toSerialize)
 }

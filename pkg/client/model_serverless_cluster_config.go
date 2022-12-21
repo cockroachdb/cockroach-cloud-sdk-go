@@ -24,20 +24,20 @@ import (
 
 // ServerlessClusterConfig struct for ServerlessClusterConfig.
 type ServerlessClusterConfig struct {
-	// Spend limit in US cents.
-	SpendLimit int32 `json:"spend_limit"`
 	// Used to build a connection string.
 	RoutingId string `json:"routing_id"`
+	// Spend limit in US cents.
+	SpendLimit int32 `json:"spend_limit"`
 }
 
 // NewServerlessClusterConfig instantiates a new ServerlessClusterConfig object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServerlessClusterConfig(spendLimit int32, routingId string) *ServerlessClusterConfig {
+func NewServerlessClusterConfig(routingId string, spendLimit int32) *ServerlessClusterConfig {
 	p := ServerlessClusterConfig{}
-	p.SpendLimit = spendLimit
 	p.RoutingId = routingId
+	p.SpendLimit = spendLimit
 	return &p
 }
 
@@ -47,21 +47,6 @@ func NewServerlessClusterConfig(spendLimit int32, routingId string) *ServerlessC
 func NewServerlessClusterConfigWithDefaults() *ServerlessClusterConfig {
 	p := ServerlessClusterConfig{}
 	return &p
-}
-
-// GetSpendLimit returns the SpendLimit field value.
-func (o *ServerlessClusterConfig) GetSpendLimit() int32 {
-	if o == nil {
-		var ret int32
-		return ret
-	}
-
-	return o.SpendLimit
-}
-
-// SetSpendLimit sets field value.
-func (o *ServerlessClusterConfig) SetSpendLimit(v int32) {
-	o.SpendLimit = v
 }
 
 // GetRoutingId returns the RoutingId field value.
@@ -79,13 +64,28 @@ func (o *ServerlessClusterConfig) SetRoutingId(v string) {
 	o.RoutingId = v
 }
 
+// GetSpendLimit returns the SpendLimit field value.
+func (o *ServerlessClusterConfig) GetSpendLimit() int32 {
+	if o == nil {
+		var ret int32
+		return ret
+	}
+
+	return o.SpendLimit
+}
+
+// SetSpendLimit sets field value.
+func (o *ServerlessClusterConfig) SetSpendLimit(v int32) {
+	o.SpendLimit = v
+}
+
 func (o ServerlessClusterConfig) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["spend_limit"] = o.SpendLimit
+		toSerialize["routing_id"] = o.RoutingId
 	}
 	if true {
-		toSerialize["routing_id"] = o.RoutingId
+		toSerialize["spend_limit"] = o.SpendLimit
 	}
 	return json.Marshal(toSerialize)
 }

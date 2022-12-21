@@ -24,23 +24,23 @@ import (
 
 // AWSPrivateLinkServiceDetail struct for AWSPrivateLinkServiceDetail.
 type AWSPrivateLinkServiceDetail struct {
-	// ServiceName is the AWS service name customers use to create endpoints on their end.
-	ServiceName string `json:"service_name"`
-	// ServiceID is the server side of the PrivateLink connection. This is the same as AWSPrivateLinkEndpoint.service_id.
-	ServiceId string `json:"service_id"`
-	// AvailabilityZoneIDs are the identifiers for the availability zones that the service is available in.
+	// availability_zone_ids are the identifiers for the availability zones that the service is available in.
 	AvailabilityZoneIds []string `json:"availability_zone_ids"`
+	// service_id is the server side of the PrivateLink connection. This is the same as AWSPrivateLinkEndpoint.service_id.
+	ServiceId string `json:"service_id"`
+	// service_name is the AWS service name customers use to create endpoints on their end.
+	ServiceName string `json:"service_name"`
 }
 
 // NewAWSPrivateLinkServiceDetail instantiates a new AWSPrivateLinkServiceDetail object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAWSPrivateLinkServiceDetail(serviceName string, serviceId string, availabilityZoneIds []string) *AWSPrivateLinkServiceDetail {
+func NewAWSPrivateLinkServiceDetail(availabilityZoneIds []string, serviceId string, serviceName string) *AWSPrivateLinkServiceDetail {
 	p := AWSPrivateLinkServiceDetail{}
-	p.ServiceName = serviceName
-	p.ServiceId = serviceId
 	p.AvailabilityZoneIds = availabilityZoneIds
+	p.ServiceId = serviceId
+	p.ServiceName = serviceName
 	return &p
 }
 
@@ -50,36 +50,6 @@ func NewAWSPrivateLinkServiceDetail(serviceName string, serviceId string, availa
 func NewAWSPrivateLinkServiceDetailWithDefaults() *AWSPrivateLinkServiceDetail {
 	p := AWSPrivateLinkServiceDetail{}
 	return &p
-}
-
-// GetServiceName returns the ServiceName field value.
-func (o *AWSPrivateLinkServiceDetail) GetServiceName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.ServiceName
-}
-
-// SetServiceName sets field value.
-func (o *AWSPrivateLinkServiceDetail) SetServiceName(v string) {
-	o.ServiceName = v
-}
-
-// GetServiceId returns the ServiceId field value.
-func (o *AWSPrivateLinkServiceDetail) GetServiceId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.ServiceId
-}
-
-// SetServiceId sets field value.
-func (o *AWSPrivateLinkServiceDetail) SetServiceId(v string) {
-	o.ServiceId = v
 }
 
 // GetAvailabilityZoneIds returns the AvailabilityZoneIds field value.
@@ -97,16 +67,46 @@ func (o *AWSPrivateLinkServiceDetail) SetAvailabilityZoneIds(v []string) {
 	o.AvailabilityZoneIds = v
 }
 
+// GetServiceId returns the ServiceId field value.
+func (o *AWSPrivateLinkServiceDetail) GetServiceId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.ServiceId
+}
+
+// SetServiceId sets field value.
+func (o *AWSPrivateLinkServiceDetail) SetServiceId(v string) {
+	o.ServiceId = v
+}
+
+// GetServiceName returns the ServiceName field value.
+func (o *AWSPrivateLinkServiceDetail) GetServiceName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.ServiceName
+}
+
+// SetServiceName sets field value.
+func (o *AWSPrivateLinkServiceDetail) SetServiceName(v string) {
+	o.ServiceName = v
+}
+
 func (o AWSPrivateLinkServiceDetail) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["service_name"] = o.ServiceName
+		toSerialize["availability_zone_ids"] = o.AvailabilityZoneIds
 	}
 	if true {
 		toSerialize["service_id"] = o.ServiceId
 	}
 	if true {
-		toSerialize["availability_zone_ids"] = o.AvailabilityZoneIds
+		toSerialize["service_name"] = o.ServiceName
 	}
 	return json.Marshal(toSerialize)
 }

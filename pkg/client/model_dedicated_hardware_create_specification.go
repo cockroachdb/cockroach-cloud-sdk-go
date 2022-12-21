@@ -24,11 +24,11 @@ import (
 
 // DedicatedHardwareCreateSpecification struct for DedicatedHardwareCreateSpecification.
 type DedicatedHardwareCreateSpecification struct {
+	// disk_iops is the number of disk I/O operations per second that are permitted on each node in the cluster. Zero indicates the cloud provider-specific default. Only available for AWS clusters.
+	DiskIops    *int32                            `json:"disk_iops,omitempty"`
 	MachineSpec DedicatedMachineTypeSpecification `json:"machine_spec"`
-	// StorageGiB is the number of storage GiB per node in the cluster. Zero indicates default to the lowest storage GiB available given machine specs.
+	// storage_gib is the number of storage GiB per node in the cluster. Zero indicates default to the lowest storage GiB available given machine specs.
 	StorageGib int32 `json:"storage_gib"`
-	// DiskIOPs is the number of disk I/O operations per second that are permitted on each node in the cluster. Zero indicates the cloud provider-specific default. Only available for AWS clusters.
-	DiskIops *int32 `json:"disk_iops,omitempty"`
 }
 
 // NewDedicatedHardwareCreateSpecification instantiates a new DedicatedHardwareCreateSpecification object.
@@ -48,6 +48,20 @@ func NewDedicatedHardwareCreateSpecification(machineSpec DedicatedMachineTypeSpe
 func NewDedicatedHardwareCreateSpecificationWithDefaults() *DedicatedHardwareCreateSpecification {
 	p := DedicatedHardwareCreateSpecification{}
 	return &p
+}
+
+// GetDiskIops returns the DiskIops field value if set, zero value otherwise.
+func (o *DedicatedHardwareCreateSpecification) GetDiskIops() int32 {
+	if o == nil || o.DiskIops == nil {
+		var ret int32
+		return ret
+	}
+	return *o.DiskIops
+}
+
+// SetDiskIops gets a reference to the given int32 and assigns it to the DiskIops field.
+func (o *DedicatedHardwareCreateSpecification) SetDiskIops(v int32) {
+	o.DiskIops = &v
 }
 
 // GetMachineSpec returns the MachineSpec field value.
@@ -80,30 +94,16 @@ func (o *DedicatedHardwareCreateSpecification) SetStorageGib(v int32) {
 	o.StorageGib = v
 }
 
-// GetDiskIops returns the DiskIops field value if set, zero value otherwise.
-func (o *DedicatedHardwareCreateSpecification) GetDiskIops() int32 {
-	if o == nil || o.DiskIops == nil {
-		var ret int32
-		return ret
-	}
-	return *o.DiskIops
-}
-
-// SetDiskIops gets a reference to the given int32 and assigns it to the DiskIops field.
-func (o *DedicatedHardwareCreateSpecification) SetDiskIops(v int32) {
-	o.DiskIops = &v
-}
-
 func (o DedicatedHardwareCreateSpecification) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.DiskIops != nil {
+		toSerialize["disk_iops"] = o.DiskIops
+	}
 	if true {
 		toSerialize["machine_spec"] = o.MachineSpec
 	}
 	if true {
 		toSerialize["storage_gib"] = o.StorageGib
-	}
-	if o.DiskIops != nil {
-		toSerialize["disk_iops"] = o.DiskIops
 	}
 	return json.Marshal(toSerialize)
 }

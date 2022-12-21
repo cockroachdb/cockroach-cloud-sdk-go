@@ -25,8 +25,8 @@ import (
 // Status struct for Status.
 type Status struct {
 	Code    *int32  `json:"code,omitempty"`
-	Message *string `json:"message,omitempty"`
 	Details *[]Any  `json:"details,omitempty"`
+	Message *string `json:"message,omitempty"`
 }
 
 // NewStatus instantiates a new Status object.
@@ -52,20 +52,6 @@ func (o *Status) SetCode(v int32) {
 	o.Code = &v
 }
 
-// GetMessage returns the Message field value if set, zero value otherwise.
-func (o *Status) GetMessage() string {
-	if o == nil || o.Message == nil {
-		var ret string
-		return ret
-	}
-	return *o.Message
-}
-
-// SetMessage gets a reference to the given string and assigns it to the Message field.
-func (o *Status) SetMessage(v string) {
-	o.Message = &v
-}
-
 // GetDetails returns the Details field value if set, zero value otherwise.
 func (o *Status) GetDetails() []Any {
 	if o == nil || o.Details == nil {
@@ -80,16 +66,30 @@ func (o *Status) SetDetails(v []Any) {
 	o.Details = &v
 }
 
+// GetMessage returns the Message field value if set, zero value otherwise.
+func (o *Status) GetMessage() string {
+	if o == nil || o.Message == nil {
+		var ret string
+		return ret
+	}
+	return *o.Message
+}
+
+// SetMessage gets a reference to the given string and assigns it to the Message field.
+func (o *Status) SetMessage(v string) {
+	o.Message = &v
+}
+
 func (o Status) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Code != nil {
 		toSerialize["code"] = o.Code
 	}
-	if o.Message != nil {
-		toSerialize["message"] = o.Message
-	}
 	if o.Details != nil {
 		toSerialize["details"] = o.Details
+	}
+	if o.Message != nil {
+		toSerialize["message"] = o.Message
 	}
 	return json.Marshal(toSerialize)
 }

@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Allowlist** | [**[]AllowlistEntry**](AllowlistEntry.md) |  | 
-**Propagating** | **bool** |  | 
 **Pagination** | Pointer to [**KeysetPaginationResponse**](KeysetPaginationResponse.md) |  | [optional] 
+**Propagating** | **bool** |  | 
 
 ## Methods
 
@@ -39,18 +39,6 @@ GetAllowlist returns the Allowlist field if non-nil, zero value otherwise.
 
 SetAllowlist sets Allowlist field to given value.
 
-### GetPropagating
-
-`func (o *ListAllowlistEntriesResponse) GetPropagating() bool`
-
-GetPropagating returns the Propagating field if non-nil, zero value otherwise.
-
-### SetPropagating
-
-`func (o *ListAllowlistEntriesResponse) SetPropagating(v bool)`
-
-SetPropagating sets Propagating field to given value.
-
 ### GetPagination
 
 `func (o *ListAllowlistEntriesResponse) GetPagination() KeysetPaginationResponse`
@@ -62,6 +50,18 @@ GetPagination returns the Pagination field if non-nil, zero value otherwise.
 `func (o *ListAllowlistEntriesResponse) SetPagination(v KeysetPaginationResponse)`
 
 SetPagination sets Pagination field to given value.
+
+### GetPropagating
+
+`func (o *ListAllowlistEntriesResponse) GetPropagating() bool`
+
+GetPropagating returns the Propagating field if non-nil, zero value otherwise.
+
+### SetPropagating
+
+`func (o *ListAllowlistEntriesResponse) SetPropagating(v bool)`
+
+SetPropagating sets Propagating field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -6,15 +6,15 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CidrIp** | **string** |  | 
 **CidrMask** | **int32** |  | 
-**Ui** | **bool** |  | 
-**Sql** | **bool** |  | 
 **Name** | Pointer to **string** |  | [optional] 
+**Sql** | **bool** |  | 
+**Ui** | **bool** |  | 
 
 ## Methods
 
 ### NewAllowlistEntry
 
-`func NewAllowlistEntry(cidrIp string, cidrMask int32, ui bool, sql bool, ) *AllowlistEntry`
+`func NewAllowlistEntry(cidrIp string, cidrMask int32, sql bool, ui bool, ) *AllowlistEntry`
 
 NewAllowlistEntry instantiates a new AllowlistEntry object.
 This constructor will assign default values to properties that have it defined,
@@ -53,17 +53,17 @@ GetCidrMask returns the CidrMask field if non-nil, zero value otherwise.
 
 SetCidrMask sets CidrMask field to given value.
 
-### GetUi
+### GetName
 
-`func (o *AllowlistEntry) GetUi() bool`
+`func (o *AllowlistEntry) GetName() string`
 
-GetUi returns the Ui field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### SetUi
+### SetName
 
-`func (o *AllowlistEntry) SetUi(v bool)`
+`func (o *AllowlistEntry) SetName(v string)`
 
-SetUi sets Ui field to given value.
+SetName sets Name field to given value.
 
 ### GetSql
 
@@ -77,17 +77,17 @@ GetSql returns the Sql field if non-nil, zero value otherwise.
 
 SetSql sets Sql field to given value.
 
-### GetName
+### GetUi
 
-`func (o *AllowlistEntry) GetName() string`
+`func (o *AllowlistEntry) GetUi() bool`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetUi returns the Ui field if non-nil, zero value otherwise.
 
-### SetName
+### SetUi
 
-`func (o *AllowlistEntry) SetName(v string)`
+`func (o *AllowlistEntry) SetUi(v bool)`
 
-SetName sets Name field to given value.
+SetUi sets Ui field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

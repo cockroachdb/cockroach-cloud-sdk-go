@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Services** | [**[]PrivateEndpointService**](PrivateEndpointService.md) | Services contains a list of all cluster related services. | 
+**Services** | [**[]PrivateEndpointService**](PrivateEndpointService.md) | services contains a list of all cluster related services. | 
 
 ## Methods
 

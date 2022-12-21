@@ -24,7 +24,7 @@ import (
 
 // ListInvoicesResponse struct for ListInvoicesResponse.
 type ListInvoicesResponse struct {
-	// Invoices are sorted by PeriodStart time.
+	// invoices are sorted by period_start time.
 	Invoices []Invoice `json:"invoices"`
 }
 
