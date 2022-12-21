@@ -23,7 +23,7 @@ import (
 	"fmt"
 )
 
-// LogExportType LogExportType encodes the cloud selection that we're exporting to along with the cloud logging platform. Currently, each cloud has a single logging platform.
+// LogExportType LogExportType encodes the cloud selection that we're exporting to along with the cloud logging platform.  Currently, each cloud has a single logging platform.
 type LogExportType string
 
 // List of LogExportType.

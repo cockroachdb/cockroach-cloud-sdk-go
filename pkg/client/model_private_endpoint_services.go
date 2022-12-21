@@ -24,7 +24,7 @@ import (
 
 // PrivateEndpointServices struct for PrivateEndpointServices.
 type PrivateEndpointServices struct {
-	// Services contains a list of all cluster related services.
+	// services contains a list of all cluster related services.
 	Services []PrivateEndpointService `json:"services"`
 }
 

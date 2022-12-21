@@ -4,7 +4,7 @@ This directory contains files used to generate the [ccloud Go API Client](../../
 
 ## Overview
 ### OpenAPI specification
-[swagger.json](./swagger.json) is the OAS 3.0 description for the Cockroach DB Cloud API. The most recent description can be downloaded from https://www.cockroachlabs.com/docs/api/cloud/v1.html.
+[openapi.json](./openapi.json) is the OAS 3.0 description for the Cockroach DB Cloud API. The most recent description can be downloaded by running `make fetch-latest-spec`.
 
 ### Templates
 Our modified [mustache](http://mustache.github.io/mustache.5.html) template files customize the generated code for the [ccloud Go API Client](../../docs/README.md). 

@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Region** | Pointer to **string** |  | [optional] 
 **KeySpec** | Pointer to [**CMEKKeySpecification**](CMEKKeySpecification.md) |  | [optional] 
+**Region** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -18,18 +18,6 @@ This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed.
 
-### GetRegion
-
-`func (o *CMEKRegionSpecification) GetRegion() string`
-
-GetRegion returns the Region field if non-nil, zero value otherwise.
-
-### SetRegion
-
-`func (o *CMEKRegionSpecification) SetRegion(v string)`
-
-SetRegion sets Region field to given value.
-
 ### GetKeySpec
 
 `func (o *CMEKRegionSpecification) GetKeySpec() CMEKKeySpecification`
@@ -41,6 +29,18 @@ GetKeySpec returns the KeySpec field if non-nil, zero value otherwise.
 `func (o *CMEKRegionSpecification) SetKeySpec(v CMEKKeySpecification)`
 
 SetKeySpec sets KeySpec field to given value.
+
+### GetRegion
+
+`func (o *CMEKRegionSpecification) GetRegion() string`
+
+GetRegion returns the Region field if non-nil, zero value otherwise.
+
+### SetRegion
+
+`func (o *CMEKRegionSpecification) SetRegion(v string)`
+
+SetRegion sets Region field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

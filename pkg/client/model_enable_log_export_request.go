@@ -24,11 +24,17 @@ import (
 
 // EnableLogExportRequest struct for EnableLogExportRequest.
 type EnableLogExportRequest struct {
-	Type *LogExportType `json:"type,omitempty"`
-	// log_name is an identifier for the logs in the customer's log sink.
-	LogName *string `json:"log_name,omitempty"`
 	// auth_principal is either the AWS Role ARN that identifies a role that the cluster account can assume to write to CloudWatch or the GCP Project ID that the cluster service account has permissions to write to for cloud logging.
 	AuthPrincipal *string `json:"auth_principal,omitempty"`
+	// groups is a collection of log group configurations that allows the customer to define collections of CRDB log channels that are aggregated separately at the target sink.
+	Groups *[]LogExportGroup `json:"groups,omitempty"`
+	// log_name is an identifier for the logs in the customer's log sink.
+	LogName *string `json:"log_name,omitempty"`
+	// redact allows the customer to set a default redaction policy for logs before they are exported to the target sink. If a group config omits a redact flag and this one is set to `true`, then that group will receive redacted logs.
+	Redact *bool `json:"redact,omitempty"`
+	// region allows the customer to override the destination region for all logs for a cluster.
+	Region *string        `json:"region,omitempty"`
+	Type   *LogExportType `json:"type,omitempty"`
 }
 
 // NewEnableLogExportRequest instantiates a new EnableLogExportRequest object.
@@ -38,34 +44,6 @@ type EnableLogExportRequest struct {
 func NewEnableLogExportRequest() *EnableLogExportRequest {
 	p := EnableLogExportRequest{}
 	return &p
-}
-
-// GetType returns the Type field value if set, zero value otherwise.
-func (o *EnableLogExportRequest) GetType() LogExportType {
-	if o == nil || o.Type == nil {
-		var ret LogExportType
-		return ret
-	}
-	return *o.Type
-}
-
-// SetType gets a reference to the given LogExportType and assigns it to the Type field.
-func (o *EnableLogExportRequest) SetType(v LogExportType) {
-	o.Type = &v
-}
-
-// GetLogName returns the LogName field value if set, zero value otherwise.
-func (o *EnableLogExportRequest) GetLogName() string {
-	if o == nil || o.LogName == nil {
-		var ret string
-		return ret
-	}
-	return *o.LogName
-}
-
-// SetLogName gets a reference to the given string and assigns it to the LogName field.
-func (o *EnableLogExportRequest) SetLogName(v string) {
-	o.LogName = &v
 }
 
 // GetAuthPrincipal returns the AuthPrincipal field value if set, zero value otherwise.
@@ -82,16 +60,95 @@ func (o *EnableLogExportRequest) SetAuthPrincipal(v string) {
 	o.AuthPrincipal = &v
 }
 
+// GetGroups returns the Groups field value if set, zero value otherwise.
+func (o *EnableLogExportRequest) GetGroups() []LogExportGroup {
+	if o == nil || o.Groups == nil {
+		var ret []LogExportGroup
+		return ret
+	}
+	return *o.Groups
+}
+
+// SetGroups gets a reference to the given []LogExportGroup and assigns it to the Groups field.
+func (o *EnableLogExportRequest) SetGroups(v []LogExportGroup) {
+	o.Groups = &v
+}
+
+// GetLogName returns the LogName field value if set, zero value otherwise.
+func (o *EnableLogExportRequest) GetLogName() string {
+	if o == nil || o.LogName == nil {
+		var ret string
+		return ret
+	}
+	return *o.LogName
+}
+
+// SetLogName gets a reference to the given string and assigns it to the LogName field.
+func (o *EnableLogExportRequest) SetLogName(v string) {
+	o.LogName = &v
+}
+
+// GetRedact returns the Redact field value if set, zero value otherwise.
+func (o *EnableLogExportRequest) GetRedact() bool {
+	if o == nil || o.Redact == nil {
+		var ret bool
+		return ret
+	}
+	return *o.Redact
+}
+
+// SetRedact gets a reference to the given bool and assigns it to the Redact field.
+func (o *EnableLogExportRequest) SetRedact(v bool) {
+	o.Redact = &v
+}
+
+// GetRegion returns the Region field value if set, zero value otherwise.
+func (o *EnableLogExportRequest) GetRegion() string {
+	if o == nil || o.Region == nil {
+		var ret string
+		return ret
+	}
+	return *o.Region
+}
+
+// SetRegion gets a reference to the given string and assigns it to the Region field.
+func (o *EnableLogExportRequest) SetRegion(v string) {
+	o.Region = &v
+}
+
+// GetType returns the Type field value if set, zero value otherwise.
+func (o *EnableLogExportRequest) GetType() LogExportType {
+	if o == nil || o.Type == nil {
+		var ret LogExportType
+		return ret
+	}
+	return *o.Type
+}
+
+// SetType gets a reference to the given LogExportType and assigns it to the Type field.
+func (o *EnableLogExportRequest) SetType(v LogExportType) {
+	o.Type = &v
+}
+
 func (o EnableLogExportRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Type != nil {
-		toSerialize["type"] = o.Type
+	if o.AuthPrincipal != nil {
+		toSerialize["auth_principal"] = o.AuthPrincipal
+	}
+	if o.Groups != nil {
+		toSerialize["groups"] = o.Groups
 	}
 	if o.LogName != nil {
 		toSerialize["log_name"] = o.LogName
 	}
-	if o.AuthPrincipal != nil {
-		toSerialize["auth_principal"] = o.AuthPrincipal
+	if o.Redact != nil {
+		toSerialize["redact"] = o.Redact
+	}
+	if o.Region != nil {
+		toSerialize["region"] = o.Region
+	}
+	if o.Type != nil {
+		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
 }

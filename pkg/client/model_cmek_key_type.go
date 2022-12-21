@@ -23,19 +23,21 @@ import (
 	"fmt"
 )
 
-// CMEKKeyType CMEKKeyType enumerates types of customer-managed keys.   - UNKNOWN_KEY_TYPE: UNKNOWN should never be used; if it is used, it indicates a bug.
+// CMEKKeyType - UNKNOWN_KEY_TYPE: UNKNOWN should never be used; if it is used, it indicates a bug.
 type CMEKKeyType string
 
 // List of CMEKKeyType.
 const (
 	CMEKKEYTYPE_AWS_KMS       CMEKKeyType = "AWS_KMS"
 	CMEKKEYTYPE_GCP_CLOUD_KMS CMEKKeyType = "GCP_CLOUD_KMS"
+	CMEKKEYTYPE_NULL_KMS      CMEKKeyType = "NULL_KMS"
 )
 
 // All allowed values of CMEKKeyType enum.
 var AllowedCMEKKeyTypeEnumValues = []CMEKKeyType{
 	"AWS_KMS",
 	"GCP_CLOUD_KMS",
+	"NULL_KMS",
 }
 
 func (v *CMEKKeyType) UnmarshalJSON(src []byte) error {

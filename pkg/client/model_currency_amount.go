@@ -24,7 +24,7 @@ import (
 
 // CurrencyAmount struct for CurrencyAmount.
 type CurrencyAmount struct {
-	// Amount is the quantity of currency.
+	// amount is the quantity of currency.
 	Amount   *float64  `json:"amount,omitempty"`
 	Currency *Currency `json:"currency,omitempty"`
 }

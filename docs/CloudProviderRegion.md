@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **string** |  | 
+**Distance** | **float32** |  | 
 **Location** | **string** |  | 
+**Name** | **string** |  | 
 **Provider** | [**ApiCloudProvider**](ApiCloudProvider.md) |  | 
 **Serverless** | **bool** |  | 
-**Distance** | **float32** |  | 
 
 ## Methods
 
 ### NewCloudProviderRegion
 
-`func NewCloudProviderRegion(name string, location string, provider ApiCloudProvider, serverless bool, distance float32, ) *CloudProviderRegion`
+`func NewCloudProviderRegion(distance float32, location string, name string, provider ApiCloudProvider, serverless bool, ) *CloudProviderRegion`
 
 NewCloudProviderRegion instantiates a new CloudProviderRegion object.
 This constructor will assign default values to properties that have it defined,
@@ -29,17 +29,17 @@ NewCloudProviderRegionWithDefaults instantiates a new CloudProviderRegion object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set.
 
-### GetName
+### GetDistance
 
-`func (o *CloudProviderRegion) GetName() string`
+`func (o *CloudProviderRegion) GetDistance() float32`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetDistance returns the Distance field if non-nil, zero value otherwise.
 
-### SetName
+### SetDistance
 
-`func (o *CloudProviderRegion) SetName(v string)`
+`func (o *CloudProviderRegion) SetDistance(v float32)`
 
-SetName sets Name field to given value.
+SetDistance sets Distance field to given value.
 
 ### GetLocation
 
@@ -52,6 +52,18 @@ GetLocation returns the Location field if non-nil, zero value otherwise.
 `func (o *CloudProviderRegion) SetLocation(v string)`
 
 SetLocation sets Location field to given value.
+
+### GetName
+
+`func (o *CloudProviderRegion) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### SetName
+
+`func (o *CloudProviderRegion) SetName(v string)`
+
+SetName sets Name field to given value.
 
 ### GetProvider
 
@@ -76,18 +88,6 @@ GetServerless returns the Serverless field if non-nil, zero value otherwise.
 `func (o *CloudProviderRegion) SetServerless(v bool)`
 
 SetServerless sets Serverless field to given value.
-
-### GetDistance
-
-`func (o *CloudProviderRegion) GetDistance() float32`
-
-GetDistance returns the Distance field if non-nil, zero value otherwise.
-
-### SetDistance
-
-`func (o *CloudProviderRegion) SetDistance(v float32)`
-
-SetDistance sets Distance field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

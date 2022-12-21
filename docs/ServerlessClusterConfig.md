@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**SpendLimit** | **int32** | Spend limit in US cents. | 
 **RoutingId** | **string** | Used to build a connection string. | 
+**SpendLimit** | **int32** | Spend limit in US cents. | 
 
 ## Methods
 
 ### NewServerlessClusterConfig
 
-`func NewServerlessClusterConfig(spendLimit int32, routingId string, ) *ServerlessClusterConfig`
+`func NewServerlessClusterConfig(routingId string, spendLimit int32, ) *ServerlessClusterConfig`
 
 NewServerlessClusterConfig instantiates a new ServerlessClusterConfig object.
 This constructor will assign default values to properties that have it defined,
@@ -26,18 +26,6 @@ NewServerlessClusterConfigWithDefaults instantiates a new ServerlessClusterConfi
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set.
 
-### GetSpendLimit
-
-`func (o *ServerlessClusterConfig) GetSpendLimit() int32`
-
-GetSpendLimit returns the SpendLimit field if non-nil, zero value otherwise.
-
-### SetSpendLimit
-
-`func (o *ServerlessClusterConfig) SetSpendLimit(v int32)`
-
-SetSpendLimit sets SpendLimit field to given value.
-
 ### GetRoutingId
 
 `func (o *ServerlessClusterConfig) GetRoutingId() string`
@@ -49,6 +37,18 @@ GetRoutingId returns the RoutingId field if non-nil, zero value otherwise.
 `func (o *ServerlessClusterConfig) SetRoutingId(v string)`
 
 SetRoutingId sets RoutingId field to given value.
+
+### GetSpendLimit
+
+`func (o *ServerlessClusterConfig) GetSpendLimit() int32`
+
+GetSpendLimit returns the SpendLimit field if non-nil, zero value otherwise.
+
+### SetSpendLimit
+
+`func (o *ServerlessClusterConfig) SetSpendLimit(v int32)`
+
+SetSpendLimit sets SpendLimit field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

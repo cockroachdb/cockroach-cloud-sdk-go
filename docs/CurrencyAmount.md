@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Amount** | Pointer to **float64** | Amount is the quantity of currency. | [optional] 
+**Amount** | Pointer to **float64** | amount is the quantity of currency. | [optional] 
 **Currency** | Pointer to [**Currency**](Currency.md) |  | [optional] 
 
 ## Methods

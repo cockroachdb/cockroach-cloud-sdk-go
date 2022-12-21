@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Description** | **string** | Description contains the details of the line item (i.e t3 micro). | 
-**Quantity** | **float64** | Quantity is the number of the specific line items used. | 
-**UnitCost** | **float64** | UnitCost is the cost per unit of line item. | 
-**Total** | [**CurrencyAmount**](CurrencyAmount.md) |  | 
+**Description** | **string** | description contains the details of the line item (i.e t3 micro). | 
+**Quantity** | **float64** | quantity is the number of the specific line items used. | 
 **QuantityUnit** | [**QuantityUnitType**](QuantityUnitType.md) |  | 
+**Total** | [**CurrencyAmount**](CurrencyAmount.md) |  | 
+**UnitCost** | **float64** | unit_cost is the cost per unit of line item. | 
 
 ## Methods
 
 ### NewLineItem
 
-`func NewLineItem(description string, quantity float64, unitCost float64, total CurrencyAmount, quantityUnit QuantityUnitType, ) *LineItem`
+`func NewLineItem(description string, quantity float64, quantityUnit QuantityUnitType, total CurrencyAmount, unitCost float64, ) *LineItem`
 
 NewLineItem instantiates a new LineItem object.
 This constructor will assign default values to properties that have it defined,
@@ -53,17 +53,17 @@ GetQuantity returns the Quantity field if non-nil, zero value otherwise.
 
 SetQuantity sets Quantity field to given value.
 
-### GetUnitCost
+### GetQuantityUnit
 
-`func (o *LineItem) GetUnitCost() float64`
+`func (o *LineItem) GetQuantityUnit() QuantityUnitType`
 
-GetUnitCost returns the UnitCost field if non-nil, zero value otherwise.
+GetQuantityUnit returns the QuantityUnit field if non-nil, zero value otherwise.
 
-### SetUnitCost
+### SetQuantityUnit
 
-`func (o *LineItem) SetUnitCost(v float64)`
+`func (o *LineItem) SetQuantityUnit(v QuantityUnitType)`
 
-SetUnitCost sets UnitCost field to given value.
+SetQuantityUnit sets QuantityUnit field to given value.
 
 ### GetTotal
 
@@ -77,17 +77,17 @@ GetTotal returns the Total field if non-nil, zero value otherwise.
 
 SetTotal sets Total field to given value.
 
-### GetQuantityUnit
+### GetUnitCost
 
-`func (o *LineItem) GetQuantityUnit() QuantityUnitType`
+`func (o *LineItem) GetUnitCost() float64`
 
-GetQuantityUnit returns the QuantityUnit field if non-nil, zero value otherwise.
+GetUnitCost returns the UnitCost field if non-nil, zero value otherwise.
 
-### SetQuantityUnit
+### SetUnitCost
 
-`func (o *LineItem) SetQuantityUnit(v QuantityUnitType)`
+`func (o *LineItem) SetUnitCost(v float64)`
 
-SetQuantityUnit sets QuantityUnit field to given value.
+SetUnitCost sets UnitCost field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

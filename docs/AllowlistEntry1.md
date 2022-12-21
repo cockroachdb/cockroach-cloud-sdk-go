@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Ui** | **bool** |  | 
-**Sql** | **bool** |  | 
 **Name** | Pointer to **string** |  | [optional] 
+**Sql** | **bool** |  | 
+**Ui** | **bool** |  | 
 
 ## Methods
 
 ### NewAllowlistEntry1
 
-`func NewAllowlistEntry1(ui bool, sql bool, ) *AllowlistEntry1`
+`func NewAllowlistEntry1(sql bool, ui bool, ) *AllowlistEntry1`
 
 NewAllowlistEntry1 instantiates a new AllowlistEntry1 object.
 This constructor will assign default values to properties that have it defined,
@@ -27,17 +27,17 @@ NewAllowlistEntry1WithDefaults instantiates a new AllowlistEntry1 object.
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set.
 
-### GetUi
+### GetName
 
-`func (o *AllowlistEntry1) GetUi() bool`
+`func (o *AllowlistEntry1) GetName() string`
 
-GetUi returns the Ui field if non-nil, zero value otherwise.
+GetName returns the Name field if non-nil, zero value otherwise.
 
-### SetUi
+### SetName
 
-`func (o *AllowlistEntry1) SetUi(v bool)`
+`func (o *AllowlistEntry1) SetName(v string)`
 
-SetUi sets Ui field to given value.
+SetName sets Name field to given value.
 
 ### GetSql
 
@@ -51,17 +51,17 @@ GetSql returns the Sql field if non-nil, zero value otherwise.
 
 SetSql sets Sql field to given value.
 
-### GetName
+### GetUi
 
-`func (o *AllowlistEntry1) GetName() string`
+`func (o *AllowlistEntry1) GetUi() bool`
 
-GetName returns the Name field if non-nil, zero value otherwise.
+GetUi returns the Ui field if non-nil, zero value otherwise.
 
-### SetName
+### SetUi
 
-`func (o *AllowlistEntry1) SetName(v string)`
+`func (o *AllowlistEntry1) SetUi(v bool)`
 
-SetName sets Name field to given value.
+SetUi sets Ui field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

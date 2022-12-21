@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**MachineType** | Pointer to **string** | MachineType is the machine type identifier within the given cloud provider, ex. m5.xlarge, n2-standard-4. | [optional] 
-**NumVirtualCpus** | Pointer to **int32** | NumVirtualCPUs may be used to automatically select a machine type according to the desired number of vCPUs. | [optional] 
+**MachineType** | Pointer to **string** | machine_type is the machine type identifier within the given cloud provider, ex. m5.xlarge, n2-standard-4. | [optional] 
+**NumVirtualCpus** | Pointer to **int32** | num_virtual_cpus may be used to automatically select a machine type according to the desired number of vCPUs. | [optional] 
 
 ## Methods
 

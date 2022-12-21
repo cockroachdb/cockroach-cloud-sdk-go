@@ -24,8 +24,8 @@ import (
 
 // CMEKRegionSpecification CMEKRegionSpecification declares the customer-provided key specification that should be used in a given region..
 type CMEKRegionSpecification struct {
-	Region  *string               `json:"region,omitempty"`
 	KeySpec *CMEKKeySpecification `json:"key_spec,omitempty"`
+	Region  *string               `json:"region,omitempty"`
 }
 
 // NewCMEKRegionSpecification instantiates a new CMEKRegionSpecification object.
@@ -35,20 +35,6 @@ type CMEKRegionSpecification struct {
 func NewCMEKRegionSpecification() *CMEKRegionSpecification {
 	p := CMEKRegionSpecification{}
 	return &p
-}
-
-// GetRegion returns the Region field value if set, zero value otherwise.
-func (o *CMEKRegionSpecification) GetRegion() string {
-	if o == nil || o.Region == nil {
-		var ret string
-		return ret
-	}
-	return *o.Region
-}
-
-// SetRegion gets a reference to the given string and assigns it to the Region field.
-func (o *CMEKRegionSpecification) SetRegion(v string) {
-	o.Region = &v
 }
 
 // GetKeySpec returns the KeySpec field value if set, zero value otherwise.
@@ -65,13 +51,27 @@ func (o *CMEKRegionSpecification) SetKeySpec(v CMEKKeySpecification) {
 	o.KeySpec = &v
 }
 
+// GetRegion returns the Region field value if set, zero value otherwise.
+func (o *CMEKRegionSpecification) GetRegion() string {
+	if o == nil || o.Region == nil {
+		var ret string
+		return ret
+	}
+	return *o.Region
+}
+
+// SetRegion gets a reference to the given string and assigns it to the Region field.
+func (o *CMEKRegionSpecification) SetRegion(v string) {
+	o.Region = &v
+}
+
 func (o CMEKRegionSpecification) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Region != nil {
-		toSerialize["region"] = o.Region
-	}
 	if o.KeySpec != nil {
 		toSerialize["key_spec"] = o.KeySpec
+	}
+	if o.Region != nil {
+		toSerialize["region"] = o.Region
 	}
 	return json.Marshal(toSerialize)
 }

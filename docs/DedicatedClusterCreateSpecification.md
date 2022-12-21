@@ -4,15 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**RegionNodes** | **map[string]int32** | Region keys should match the cloud provider&#39;s zone code. For example, for Oregon, set region_name to \&quot;us-west2\&quot; for GCP and \&quot;us-west-2\&quot; for AWS. Values represent the node count. | 
-**Hardware** | [**DedicatedHardwareCreateSpecification**](DedicatedHardwareCreateSpecification.md) |  | 
 **CockroachVersion** | Pointer to **string** | The CockroachDB version for the cluster. The current version is used if omitted. | [optional] 
+**Hardware** | [**DedicatedHardwareCreateSpecification**](DedicatedHardwareCreateSpecification.md) |  | 
+**NetworkVisibility** | Pointer to [**NetworkVisiblity**](NetworkVisiblity.md) |  | [optional] 
+**RegionNodes** | **map[string]int32** | Region keys should match the cloud provider&#39;s zone code. For example, for Oregon, set region_name to \&quot;us-west2\&quot; for GCP and \&quot;us-west-2\&quot; for AWS. Values represent the node count. | 
 
 ## Methods
 
 ### NewDedicatedClusterCreateSpecification
 
-`func NewDedicatedClusterCreateSpecification(regionNodes map[string]int32, hardware DedicatedHardwareCreateSpecification, ) *DedicatedClusterCreateSpecification`
+`func NewDedicatedClusterCreateSpecification(hardware DedicatedHardwareCreateSpecification, regionNodes map[string]int32, ) *DedicatedClusterCreateSpecification`
 
 NewDedicatedClusterCreateSpecification instantiates a new DedicatedClusterCreateSpecification object.
 This constructor will assign default values to properties that have it defined,
@@ -27,17 +28,17 @@ NewDedicatedClusterCreateSpecificationWithDefaults instantiates a new DedicatedC
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set.
 
-### GetRegionNodes
+### GetCockroachVersion
 
-`func (o *DedicatedClusterCreateSpecification) GetRegionNodes() map[string]int32`
+`func (o *DedicatedClusterCreateSpecification) GetCockroachVersion() string`
 
-GetRegionNodes returns the RegionNodes field if non-nil, zero value otherwise.
+GetCockroachVersion returns the CockroachVersion field if non-nil, zero value otherwise.
 
-### SetRegionNodes
+### SetCockroachVersion
 
-`func (o *DedicatedClusterCreateSpecification) SetRegionNodes(v map[string]int32)`
+`func (o *DedicatedClusterCreateSpecification) SetCockroachVersion(v string)`
 
-SetRegionNodes sets RegionNodes field to given value.
+SetCockroachVersion sets CockroachVersion field to given value.
 
 ### GetHardware
 
@@ -51,17 +52,29 @@ GetHardware returns the Hardware field if non-nil, zero value otherwise.
 
 SetHardware sets Hardware field to given value.
 
-### GetCockroachVersion
+### GetNetworkVisibility
 
-`func (o *DedicatedClusterCreateSpecification) GetCockroachVersion() string`
+`func (o *DedicatedClusterCreateSpecification) GetNetworkVisibility() NetworkVisiblity`
 
-GetCockroachVersion returns the CockroachVersion field if non-nil, zero value otherwise.
+GetNetworkVisibility returns the NetworkVisibility field if non-nil, zero value otherwise.
 
-### SetCockroachVersion
+### SetNetworkVisibility
 
-`func (o *DedicatedClusterCreateSpecification) SetCockroachVersion(v string)`
+`func (o *DedicatedClusterCreateSpecification) SetNetworkVisibility(v NetworkVisiblity)`
 
-SetCockroachVersion sets CockroachVersion field to given value.
+SetNetworkVisibility sets NetworkVisibility field to given value.
+
+### GetRegionNodes
+
+`func (o *DedicatedClusterCreateSpecification) GetRegionNodes() map[string]int32`
+
+GetRegionNodes returns the RegionNodes field if non-nil, zero value otherwise.
+
+### SetRegionNodes
+
+`func (o *DedicatedClusterCreateSpecification) SetRegionNodes(v map[string]int32)`
+
+SetRegionNodes sets RegionNodes field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

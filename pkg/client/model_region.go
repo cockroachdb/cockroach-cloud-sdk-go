@@ -24,23 +24,28 @@ import (
 
 // Region struct for Region.
 type Region struct {
-	Name   string `json:"name"`
-	SqlDns string `json:"sql_dns"`
-	UiDns  string `json:"ui_dns"`
-	// NodeCount will be 0 for serverless clusters.
+	// internal_dns is the internal DNS name of the cluster within the cloud provider's network. It is used to connect to the cluster with PrivateLink or VPC peering.
+	InternalDns string `json:"internal_dns"`
+	Name        string `json:"name"`
+	// node_count will be 0 for serverless clusters.
 	NodeCount int32 `json:"node_count"`
+	// sql_dns is the DNS name of SQL interface of the cluster. It is used to connect to the cluster with IP allowlisting.
+	SqlDns string `json:"sql_dns"`
+	// ui_dns is the DNS name used when connecting to the DB Console for the cluster.
+	UiDns string `json:"ui_dns"`
 }
 
 // NewRegion instantiates a new Region object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRegion(name string, sqlDns string, uiDns string, nodeCount int32) *Region {
+func NewRegion(internalDns string, name string, nodeCount int32, sqlDns string, uiDns string) *Region {
 	p := Region{}
+	p.InternalDns = internalDns
 	p.Name = name
+	p.NodeCount = nodeCount
 	p.SqlDns = sqlDns
 	p.UiDns = uiDns
-	p.NodeCount = nodeCount
 	return &p
 }
 
@@ -50,6 +55,21 @@ func NewRegion(name string, sqlDns string, uiDns string, nodeCount int32) *Regio
 func NewRegionWithDefaults() *Region {
 	p := Region{}
 	return &p
+}
+
+// GetInternalDns returns the InternalDns field value.
+func (o *Region) GetInternalDns() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.InternalDns
+}
+
+// SetInternalDns sets field value.
+func (o *Region) SetInternalDns(v string) {
+	o.InternalDns = v
 }
 
 // GetName returns the Name field value.
@@ -65,6 +85,21 @@ func (o *Region) GetName() string {
 // SetName sets field value.
 func (o *Region) SetName(v string) {
 	o.Name = v
+}
+
+// GetNodeCount returns the NodeCount field value.
+func (o *Region) GetNodeCount() int32 {
+	if o == nil {
+		var ret int32
+		return ret
+	}
+
+	return o.NodeCount
+}
+
+// SetNodeCount sets field value.
+func (o *Region) SetNodeCount(v int32) {
+	o.NodeCount = v
 }
 
 // GetSqlDns returns the SqlDns field value.
@@ -97,34 +132,22 @@ func (o *Region) SetUiDns(v string) {
 	o.UiDns = v
 }
 
-// GetNodeCount returns the NodeCount field value.
-func (o *Region) GetNodeCount() int32 {
-	if o == nil {
-		var ret int32
-		return ret
-	}
-
-	return o.NodeCount
-}
-
-// SetNodeCount sets field value.
-func (o *Region) SetNodeCount(v int32) {
-	o.NodeCount = v
-}
-
 func (o Region) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
+		toSerialize["internal_dns"] = o.InternalDns
+	}
+	if true {
 		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["node_count"] = o.NodeCount
 	}
 	if true {
 		toSerialize["sql_dns"] = o.SqlDns
 	}
 	if true {
 		toSerialize["ui_dns"] = o.UiDns
-	}
-	if true {
-		toSerialize["node_count"] = o.NodeCount
 	}
 	return json.Marshal(toSerialize)
 }

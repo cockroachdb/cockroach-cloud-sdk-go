@@ -22,11 +22,11 @@ import (
 	"encoding/json"
 )
 
-// CMEKKeySpecification CMEKKeySpecification contains all the details necessary to use a customer-provided encryption key. This involves the type/location of the key and the principal to authenticate as when accessing it..
+// CMEKKeySpecification CMEKKeySpecification contains all the details necessary to use a customer-provided encryption key.  This involves the type/location of the key and the principal to authenticate as  when accessing it..
 type CMEKKeySpecification struct {
+	AuthPrincipal *string      `json:"auth_principal,omitempty"`
 	Type          *CMEKKeyType `json:"type,omitempty"`
 	Uri           *string      `json:"uri,omitempty"`
-	AuthPrincipal *string      `json:"auth_principal,omitempty"`
 }
 
 // NewCMEKKeySpecification instantiates a new CMEKKeySpecification object.
@@ -36,6 +36,20 @@ type CMEKKeySpecification struct {
 func NewCMEKKeySpecification() *CMEKKeySpecification {
 	p := CMEKKeySpecification{}
 	return &p
+}
+
+// GetAuthPrincipal returns the AuthPrincipal field value if set, zero value otherwise.
+func (o *CMEKKeySpecification) GetAuthPrincipal() string {
+	if o == nil || o.AuthPrincipal == nil {
+		var ret string
+		return ret
+	}
+	return *o.AuthPrincipal
+}
+
+// SetAuthPrincipal gets a reference to the given string and assigns it to the AuthPrincipal field.
+func (o *CMEKKeySpecification) SetAuthPrincipal(v string) {
+	o.AuthPrincipal = &v
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
@@ -66,30 +80,16 @@ func (o *CMEKKeySpecification) SetUri(v string) {
 	o.Uri = &v
 }
 
-// GetAuthPrincipal returns the AuthPrincipal field value if set, zero value otherwise.
-func (o *CMEKKeySpecification) GetAuthPrincipal() string {
-	if o == nil || o.AuthPrincipal == nil {
-		var ret string
-		return ret
-	}
-	return *o.AuthPrincipal
-}
-
-// SetAuthPrincipal gets a reference to the given string and assigns it to the AuthPrincipal field.
-func (o *CMEKKeySpecification) SetAuthPrincipal(v string) {
-	o.AuthPrincipal = &v
-}
-
 func (o CMEKKeySpecification) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.AuthPrincipal != nil {
+		toSerialize["auth_principal"] = o.AuthPrincipal
+	}
 	if o.Type != nil {
 		toSerialize["type"] = o.Type
 	}
 	if o.Uri != nil {
 		toSerialize["uri"] = o.Uri
-	}
-	if o.AuthPrincipal != nil {
-		toSerialize["auth_principal"] = o.AuthPrincipal
 	}
 	return json.Marshal(toSerialize)
 }

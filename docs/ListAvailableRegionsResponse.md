@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Regions** | [**[]CloudProviderRegion**](CloudProviderRegion.md) |  | 
 **Pagination** | Pointer to [**KeysetPaginationResponse**](KeysetPaginationResponse.md) |  | [optional] 
+**Regions** | [**[]CloudProviderRegion**](CloudProviderRegion.md) |  | 
 
 ## Methods
 
@@ -26,18 +26,6 @@ NewListAvailableRegionsResponseWithDefaults instantiates a new ListAvailableRegi
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set.
 
-### GetRegions
-
-`func (o *ListAvailableRegionsResponse) GetRegions() []CloudProviderRegion`
-
-GetRegions returns the Regions field if non-nil, zero value otherwise.
-
-### SetRegions
-
-`func (o *ListAvailableRegionsResponse) SetRegions(v []CloudProviderRegion)`
-
-SetRegions sets Regions field to given value.
-
 ### GetPagination
 
 `func (o *ListAvailableRegionsResponse) GetPagination() KeysetPaginationResponse`
@@ -49,6 +37,18 @@ GetPagination returns the Pagination field if non-nil, zero value otherwise.
 `func (o *ListAvailableRegionsResponse) SetPagination(v KeysetPaginationResponse)`
 
 SetPagination sets Pagination field to given value.
+
+### GetRegions
+
+`func (o *ListAvailableRegionsResponse) GetRegions() []CloudProviderRegion`
+
+GetRegions returns the Regions field if non-nil, zero value otherwise.
+
+### SetRegions
+
+`func (o *ListAvailableRegionsResponse) SetRegions(v []CloudProviderRegion)`
+
+SetRegions sets Regions field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

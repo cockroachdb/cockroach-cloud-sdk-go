@@ -24,23 +24,23 @@ import (
 
 // PrivateEndpointService struct for PrivateEndpointService.
 type PrivateEndpointService struct {
-	// RegionName is the cloud provider region name (i.e. us-east-1).
-	RegionName    string                       `json:"region_name"`
-	CloudProvider ApiCloudProvider             `json:"cloud_provider"`
-	Status        PrivateEndpointServiceStatus `json:"status"`
-	Aws           AWSPrivateLinkServiceDetail  `json:"aws"`
+	Aws           AWSPrivateLinkServiceDetail `json:"aws"`
+	CloudProvider ApiCloudProvider            `json:"cloud_provider"`
+	// region_name is the cloud provider region name (i.e. us-east-1).
+	RegionName string                       `json:"region_name"`
+	Status     PrivateEndpointServiceStatus `json:"status"`
 }
 
 // NewPrivateEndpointService instantiates a new PrivateEndpointService object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPrivateEndpointService(regionName string, cloudProvider ApiCloudProvider, status PrivateEndpointServiceStatus, aws AWSPrivateLinkServiceDetail) *PrivateEndpointService {
+func NewPrivateEndpointService(aws AWSPrivateLinkServiceDetail, cloudProvider ApiCloudProvider, regionName string, status PrivateEndpointServiceStatus) *PrivateEndpointService {
 	p := PrivateEndpointService{}
-	p.RegionName = regionName
-	p.CloudProvider = cloudProvider
-	p.Status = status
 	p.Aws = aws
+	p.CloudProvider = cloudProvider
+	p.RegionName = regionName
+	p.Status = status
 	return &p
 }
 
@@ -50,51 +50,6 @@ func NewPrivateEndpointService(regionName string, cloudProvider ApiCloudProvider
 func NewPrivateEndpointServiceWithDefaults() *PrivateEndpointService {
 	p := PrivateEndpointService{}
 	return &p
-}
-
-// GetRegionName returns the RegionName field value.
-func (o *PrivateEndpointService) GetRegionName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.RegionName
-}
-
-// SetRegionName sets field value.
-func (o *PrivateEndpointService) SetRegionName(v string) {
-	o.RegionName = v
-}
-
-// GetCloudProvider returns the CloudProvider field value.
-func (o *PrivateEndpointService) GetCloudProvider() ApiCloudProvider {
-	if o == nil {
-		var ret ApiCloudProvider
-		return ret
-	}
-
-	return o.CloudProvider
-}
-
-// SetCloudProvider sets field value.
-func (o *PrivateEndpointService) SetCloudProvider(v ApiCloudProvider) {
-	o.CloudProvider = v
-}
-
-// GetStatus returns the Status field value.
-func (o *PrivateEndpointService) GetStatus() PrivateEndpointServiceStatus {
-	if o == nil {
-		var ret PrivateEndpointServiceStatus
-		return ret
-	}
-
-	return o.Status
-}
-
-// SetStatus sets field value.
-func (o *PrivateEndpointService) SetStatus(v PrivateEndpointServiceStatus) {
-	o.Status = v
 }
 
 // GetAws returns the Aws field value.
@@ -112,19 +67,64 @@ func (o *PrivateEndpointService) SetAws(v AWSPrivateLinkServiceDetail) {
 	o.Aws = v
 }
 
+// GetCloudProvider returns the CloudProvider field value.
+func (o *PrivateEndpointService) GetCloudProvider() ApiCloudProvider {
+	if o == nil {
+		var ret ApiCloudProvider
+		return ret
+	}
+
+	return o.CloudProvider
+}
+
+// SetCloudProvider sets field value.
+func (o *PrivateEndpointService) SetCloudProvider(v ApiCloudProvider) {
+	o.CloudProvider = v
+}
+
+// GetRegionName returns the RegionName field value.
+func (o *PrivateEndpointService) GetRegionName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.RegionName
+}
+
+// SetRegionName sets field value.
+func (o *PrivateEndpointService) SetRegionName(v string) {
+	o.RegionName = v
+}
+
+// GetStatus returns the Status field value.
+func (o *PrivateEndpointService) GetStatus() PrivateEndpointServiceStatus {
+	if o == nil {
+		var ret PrivateEndpointServiceStatus
+		return ret
+	}
+
+	return o.Status
+}
+
+// SetStatus sets field value.
+func (o *PrivateEndpointService) SetStatus(v PrivateEndpointServiceStatus) {
+	o.Status = v
+}
+
 func (o PrivateEndpointService) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["region_name"] = o.RegionName
+		toSerialize["aws"] = o.Aws
 	}
 	if true {
 		toSerialize["cloud_provider"] = o.CloudProvider
 	}
 	if true {
-		toSerialize["status"] = o.Status
+		toSerialize["region_name"] = o.RegionName
 	}
 	if true {
-		toSerialize["aws"] = o.Aws
+		toSerialize["status"] = o.Status
 	}
 	return json.Marshal(toSerialize)
 }

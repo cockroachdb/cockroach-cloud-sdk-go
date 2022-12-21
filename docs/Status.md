@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Code** | Pointer to **int32** |  | [optional] 
-**Message** | Pointer to **string** |  | [optional] 
 **Details** | Pointer to [**[]Any**](Any.md) |  | [optional] 
+**Message** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -31,18 +31,6 @@ GetCode returns the Code field if non-nil, zero value otherwise.
 
 SetCode sets Code field to given value.
 
-### GetMessage
-
-`func (o *Status) GetMessage() string`
-
-GetMessage returns the Message field if non-nil, zero value otherwise.
-
-### SetMessage
-
-`func (o *Status) SetMessage(v string)`
-
-SetMessage sets Message field to given value.
-
 ### GetDetails
 
 `func (o *Status) GetDetails() []Any`
@@ -54,6 +42,18 @@ GetDetails returns the Details field if non-nil, zero value otherwise.
 `func (o *Status) SetDetails(v []Any)`
 
 SetDetails sets Details field to given value.
+
+### GetMessage
+
+`func (o *Status) GetMessage() string`
+
+GetMessage returns the Message field if non-nil, zero value otherwise.
+
+### SetMessage
+
+`func (o *Status) SetMessage(v string)`
+
+SetMessage sets Message field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

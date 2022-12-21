@@ -43,6 +43,14 @@
 
 * `CRDB_LOG_EXPORT_OPERATION_FAILED` (value: `"CRDB_LOG_EXPORT_OPERATION_FAILED"`)
 
+* `CRDB_CLUSTER_DISRUPTION_RUNNING` (value: `"CRDB_CLUSTER_DISRUPTION_RUNNING"`)
+
+* `CRDB_CLUSTER_DISRUPTION_FAILED` (value: `"CRDB_CLUSTER_DISRUPTION_FAILED"`)
+
+* `CRDB_REPAVE_RUNNING` (value: `"CRDB_REPAVE_RUNNING"`)
+
+* `CRDB_REPAVE_FAILED` (value: `"CRDB_REPAVE_FAILED"`)
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
