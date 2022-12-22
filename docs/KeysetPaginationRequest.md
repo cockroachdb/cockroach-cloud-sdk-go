@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Page** | Pointer to **string** |  | [optional] 
-**Limit** | Pointer to **int32** |  | [optional] 
 **AsOfTime** | Pointer to **time.Time** |  | [optional] 
+**Limit** | Pointer to **int32** |  | [optional] 
+**Page** | Pointer to **string** |  | [optional] 
 **SortOrder** | Pointer to [**SortOrder**](SortOrder.md) |  | [optional] 
 
 ## Methods
@@ -20,17 +20,17 @@ This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed.
 
-### GetPage
+### GetAsOfTime
 
-`func (o *KeysetPaginationRequest) GetPage() string`
+`func (o *KeysetPaginationRequest) GetAsOfTime() time.Time`
 
-GetPage returns the Page field if non-nil, zero value otherwise.
+GetAsOfTime returns the AsOfTime field if non-nil, zero value otherwise.
 
-### SetPage
+### SetAsOfTime
 
-`func (o *KeysetPaginationRequest) SetPage(v string)`
+`func (o *KeysetPaginationRequest) SetAsOfTime(v time.Time)`
 
-SetPage sets Page field to given value.
+SetAsOfTime sets AsOfTime field to given value.
 
 ### GetLimit
 
@@ -44,17 +44,17 @@ GetLimit returns the Limit field if non-nil, zero value otherwise.
 
 SetLimit sets Limit field to given value.
 
-### GetAsOfTime
+### GetPage
 
-`func (o *KeysetPaginationRequest) GetAsOfTime() time.Time`
+`func (o *KeysetPaginationRequest) GetPage() string`
 
-GetAsOfTime returns the AsOfTime field if non-nil, zero value otherwise.
+GetPage returns the Page field if non-nil, zero value otherwise.
 
-### SetAsOfTime
+### SetPage
 
-`func (o *KeysetPaginationRequest) SetAsOfTime(v time.Time)`
+`func (o *KeysetPaginationRequest) SetPage(v string)`
 
-SetAsOfTime sets AsOfTime field to given value.
+SetPage sets Page field to given value.
 
 ### GetSortOrder
 

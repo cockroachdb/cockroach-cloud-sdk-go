@@ -4,39 +4,48 @@ All URIs are relative to *https://cockroachlabs.cloud*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**AddAllowlistEntry**](CockroachCloudApi.md#AddAllowlistEntry) | **Post** /api/v1/clusters/{cluster_id}/networking/allowlist | Add a new CIDR address to the IP allowlist.
-[**AddAllowlistEntry2**](CockroachCloudApi.md#AddAllowlistEntry2) | **Put** /api/v1/clusters/{cluster_id}/networking/allowlist/{entry.cidr_ip}/{entry.cidr_mask} | Add a new CIDR address to the IP allowlist.
-[**CreateCluster**](CockroachCloudApi.md#CreateCluster) | **Post** /api/v1/clusters | Create and initialize a new cluster.
-[**CreateDatabase**](CockroachCloudApi.md#CreateDatabase) | **Post** /api/v1/clusters/{cluster_id}/databases | Create a new database.
-[**CreatePrivateEndpointServices**](CockroachCloudApi.md#CreatePrivateEndpointServices) | **Post** /api/v1/clusters/{cluster_id}/networking/private-endpoint-services | Creates all PrivateEndpointServices for a given cluster.
-[**CreateSQLUser**](CockroachCloudApi.md#CreateSQLUser) | **Post** /api/v1/clusters/{cluster_id}/sql-users | Create a new SQL user.
-[**DeleteAllowlistEntry**](CockroachCloudApi.md#DeleteAllowlistEntry) | **Delete** /api/v1/clusters/{cluster_id}/networking/allowlist/{cidr_ip}/{cidr_mask} | Delete an IP allowlist entry.
-[**DeleteCluster**](CockroachCloudApi.md#DeleteCluster) | **Delete** /api/v1/clusters/{cluster_id} | Delete a cluster and all of its data.
-[**DeleteDatabase**](CockroachCloudApi.md#DeleteDatabase) | **Delete** /api/v1/clusters/{cluster_id}/databases/{name} | Delete a database.
-[**DeleteLogExport**](CockroachCloudApi.md#DeleteLogExport) | **Delete** /api/v1/clusters/{cluster_id}/logexport | 
-[**DeleteSQLUser**](CockroachCloudApi.md#DeleteSQLUser) | **Delete** /api/v1/clusters/{cluster_id}/sql-users/{name} | Delete a SQL user.
-[**EditDatabase**](CockroachCloudApi.md#EditDatabase) | **Patch** /api/v1/clusters/{cluster_id}/databases | Update a database.
-[**EnableCMEKSpec**](CockroachCloudApi.md#EnableCMEKSpec) | **Post** /api/v1/clusters/{cluster_id}/cmek | Enable CMEK for a cluster.
-[**EnableLogExport**](CockroachCloudApi.md#EnableLogExport) | **Post** /api/v1/clusters/{cluster_id}/logexport | 
-[**GetCMEKClusterInfo**](CockroachCloudApi.md#GetCMEKClusterInfo) | **Get** /api/v1/clusters/{cluster_id}/cmek | Get CMEK-related information for a cluster.
-[**GetCluster**](CockroachCloudApi.md#GetCluster) | **Get** /api/v1/clusters/{cluster_id} | Get extended information about a cluster.
-[**GetInvoice**](CockroachCloudApi.md#GetInvoice) | **Get** /api/v1/invoices/{invoice_id} | Gets a specific invoice for an organization.
-[**GetLogExportInfo**](CockroachCloudApi.md#GetLogExportInfo) | **Get** /api/v1/clusters/{cluster_id}/logexport | 
-[**ListAllowlistEntries**](CockroachCloudApi.md#ListAllowlistEntries) | **Get** /api/v1/clusters/{cluster_id}/networking/allowlist | Get the IP allowlist and propagation status for a cluster.
-[**ListAvailableRegions**](CockroachCloudApi.md#ListAvailableRegions) | **Get** /api/v1/clusters/available-regions | List the regions available for new clusters and nodes.
-[**ListAwsEndpointConnections**](CockroachCloudApi.md#ListAwsEndpointConnections) | **Get** /api/v1/clusters/{cluster_id}/networking/aws-endpoint-connections | Lists all AwsEndpointConnections for a given cluster.
-[**ListClusterNodes**](CockroachCloudApi.md#ListClusterNodes) | **Get** /api/v1/clusters/{cluster_id}/nodes | List nodes for a cluster.
-[**ListClusters**](CockroachCloudApi.md#ListClusters) | **Get** /api/v1/clusters | List clusters owned by an organization.
-[**ListDatabases**](CockroachCloudApi.md#ListDatabases) | **Get** /api/v1/clusters/{cluster_id}/databases | List databases for a cluster.
-[**ListInvoices**](CockroachCloudApi.md#ListInvoices) | **Get** /api/v1/invoices | Billing List invoices for a given organization.
-[**ListPrivateEndpointServices**](CockroachCloudApi.md#ListPrivateEndpointServices) | **Get** /api/v1/clusters/{cluster_id}/networking/private-endpoint-services | Lists all PrivateEndpointServices for a given cluster.
-[**ListSQLUsers**](CockroachCloudApi.md#ListSQLUsers) | **Get** /api/v1/clusters/{cluster_id}/sql-users | List SQL users for a cluster.
-[**SetAwsEndpointConnectionState**](CockroachCloudApi.md#SetAwsEndpointConnectionState) | **Patch** /api/v1/clusters/{cluster_id}/networking/aws-endpoint-connections/{endpoint_id} | Sets the AWS Endpoint Connection state based on what is passed in the body: accepted or rejected. The \&quot;status\&quot; in the returned proto does not reflect the latest post-update status, but rather the status before the state is transitioned.
-[**UpdateAllowlistEntry**](CockroachCloudApi.md#UpdateAllowlistEntry) | **Patch** /api/v1/clusters/{cluster_id}/networking/allowlist/{entry.cidr_ip}/{entry.cidr_mask} | Update an IP allowlist entry.
-[**UpdateCMEKSpec**](CockroachCloudApi.md#UpdateCMEKSpec) | **Put** /api/v1/clusters/{cluster_id}/cmek | Enable or update the CMEK spec for a cluster.
-[**UpdateCMEKStatus**](CockroachCloudApi.md#UpdateCMEKStatus) | **Patch** /api/v1/clusters/{cluster_id}/cmek | Update the CMEK-related status for a cluster.
-[**UpdateCluster**](CockroachCloudApi.md#UpdateCluster) | **Patch** /api/v1/clusters/{cluster_id} | Scale or edit a cluster.
-[**UpdateSQLUserPassword**](CockroachCloudApi.md#UpdateSQLUserPassword) | **Put** /api/v1/clusters/{cluster_id}/sql-users/{name}/password | Update a SQL user&#39;s password.
+[**AddAllowlistEntry**](CockroachCloudApi.md#AddAllowlistEntry) | **Post** /api/v1/clusters/{cluster_id}/networking/allowlist | Add a new CIDR address to the IP allowlist
+[**AddAllowlistEntry2**](CockroachCloudApi.md#AddAllowlistEntry2) | **Put** /api/v1/clusters/{cluster_id}/networking/allowlist/{entry.cidr_ip}/{entry.cidr_mask} | Add a new CIDR address to the IP allowlist
+[**AddEgressRule**](CockroachCloudApi.md#AddEgressRule) | **Post** /api/v1/clusters/{cluster_id}/networking/egress-rules | Add an egress rule
+[**CreateCluster**](CockroachCloudApi.md#CreateCluster) | **Post** /api/v1/clusters | Create and initialize a new cluster
+[**CreateDatabase**](CockroachCloudApi.md#CreateDatabase) | **Post** /api/v1/clusters/{cluster_id}/databases | Create a new database
+[**CreatePrivateEndpointServices**](CockroachCloudApi.md#CreatePrivateEndpointServices) | **Post** /api/v1/clusters/{cluster_id}/networking/private-endpoint-services | Creates all PrivateEndpointServices for a given cluster
+[**CreateSQLUser**](CockroachCloudApi.md#CreateSQLUser) | **Post** /api/v1/clusters/{cluster_id}/sql-users | Create a new SQL user
+[**DeleteAllowlistEntry**](CockroachCloudApi.md#DeleteAllowlistEntry) | **Delete** /api/v1/clusters/{cluster_id}/networking/allowlist/{cidr_ip}/{cidr_mask} | Delete an IP allowlist entry
+[**DeleteCluster**](CockroachCloudApi.md#DeleteCluster) | **Delete** /api/v1/clusters/{cluster_id} | Delete a cluster and all of its data
+[**DeleteDatabase**](CockroachCloudApi.md#DeleteDatabase) | **Delete** /api/v1/clusters/{cluster_id}/databases/{name} | Delete a database
+[**DeleteEgressRule**](CockroachCloudApi.md#DeleteEgressRule) | **Delete** /api/v1/clusters/{cluster_id}/networking/egress-rules/{rule_id} | Delete an existing egress rule
+[**DeleteLogExport**](CockroachCloudApi.md#DeleteLogExport) | **Delete** /api/v1/clusters/{cluster_id}/logexport | Delete the Log Export configuration for a cluster
+[**DeleteMetricExport**](CockroachCloudApi.md#DeleteMetricExport) | **Delete** /api/v1/clusters/{cluster_id}/metricexport | Delete the Metric Export configuration for a cluster
+[**DeleteSQLUser**](CockroachCloudApi.md#DeleteSQLUser) | **Delete** /api/v1/clusters/{cluster_id}/sql-users/{name} | Delete a SQL user
+[**EditDatabase**](CockroachCloudApi.md#EditDatabase) | **Patch** /api/v1/clusters/{cluster_id}/databases | Update a database
+[**EditEgressRule**](CockroachCloudApi.md#EditEgressRule) | **Patch** /api/v1/clusters/{cluster_id}/networking/egress-rules/{rule_id} | Edit an existing egress rule
+[**EnableCMEKSpec**](CockroachCloudApi.md#EnableCMEKSpec) | **Post** /api/v1/clusters/{cluster_id}/cmek | Enable CMEK for a cluster
+[**EnableLogExport**](CockroachCloudApi.md#EnableLogExport) | **Post** /api/v1/clusters/{cluster_id}/logexport | Create a Log Export configuration for a cluster
+[**EnableMetricExport**](CockroachCloudApi.md#EnableMetricExport) | **Post** /api/v1/clusters/{cluster_id}/metricexport | Create a Metric Export configuration for a cluster
+[**GetCMEKClusterInfo**](CockroachCloudApi.md#GetCMEKClusterInfo) | **Get** /api/v1/clusters/{cluster_id}/cmek | Get CMEK-related information for a cluster
+[**GetCluster**](CockroachCloudApi.md#GetCluster) | **Get** /api/v1/clusters/{cluster_id} | Get extended information about a cluster
+[**GetEgressRule**](CockroachCloudApi.md#GetEgressRule) | **Get** /api/v1/clusters/{cluster_id}/networking/egress-rules/{rule_id} | Get an existing egress rule
+[**GetInvoice**](CockroachCloudApi.md#GetInvoice) | **Get** /api/v1/invoices/{invoice_id} | Gets a specific invoice for an organization
+[**GetLogExportInfo**](CockroachCloudApi.md#GetLogExportInfo) | **Get** /api/v1/clusters/{cluster_id}/logexport | Get the Log Export configuration for a cluster
+[**GetMetricExportInfo**](CockroachCloudApi.md#GetMetricExportInfo) | **Get** /api/v1/clusters/{cluster_id}/metricexport | Metric export Get the Metric Export configuration for a cluster
+[**ListAllowlistEntries**](CockroachCloudApi.md#ListAllowlistEntries) | **Get** /api/v1/clusters/{cluster_id}/networking/allowlist | Get the IP allowlist and propagation status for a cluster
+[**ListAvailableRegions**](CockroachCloudApi.md#ListAvailableRegions) | **Get** /api/v1/clusters/available-regions | List the regions available for new clusters and nodes
+[**ListAwsEndpointConnections**](CockroachCloudApi.md#ListAwsEndpointConnections) | **Get** /api/v1/clusters/{cluster_id}/networking/aws-endpoint-connections | Lists all AwsEndpointConnections for a given cluster
+[**ListClusterNodes**](CockroachCloudApi.md#ListClusterNodes) | **Get** /api/v1/clusters/{cluster_id}/nodes | List nodes for a cluster
+[**ListClusters**](CockroachCloudApi.md#ListClusters) | **Get** /api/v1/clusters | List clusters owned by an organization
+[**ListDatabases**](CockroachCloudApi.md#ListDatabases) | **Get** /api/v1/clusters/{cluster_id}/databases | List databases for a cluster
+[**ListEgressRules**](CockroachCloudApi.md#ListEgressRules) | **Get** /api/v1/clusters/{cluster_id}/networking/egress-rules | List all egress rules associates with a cluster
+[**ListInvoices**](CockroachCloudApi.md#ListInvoices) | **Get** /api/v1/invoices | List invoices for a given organization
+[**ListPrivateEndpointServices**](CockroachCloudApi.md#ListPrivateEndpointServices) | **Get** /api/v1/clusters/{cluster_id}/networking/private-endpoint-services | Lists all PrivateEndpointServices for a given cluster
+[**ListSQLUsers**](CockroachCloudApi.md#ListSQLUsers) | **Get** /api/v1/clusters/{cluster_id}/sql-users | List SQL users for a cluster
+[**SetAwsEndpointConnectionState**](CockroachCloudApi.md#SetAwsEndpointConnectionState) | **Patch** /api/v1/clusters/{cluster_id}/networking/aws-endpoint-connections/{endpoint_id} | Sets the AWS Endpoint Connection state based on what is passed in the body
+[**SetEgressTrafficPolicy**](CockroachCloudApi.md#SetEgressTrafficPolicy) | **Post** /api/v1/clusters/{cluster_id}/networking/egress-rules/egress-traffic-policy | Outbound traffic management
+[**UpdateAllowlistEntry**](CockroachCloudApi.md#UpdateAllowlistEntry) | **Patch** /api/v1/clusters/{cluster_id}/networking/allowlist/{entry.cidr_ip}/{entry.cidr_mask} | Update an IP allowlist entry
+[**UpdateCMEKSpec**](CockroachCloudApi.md#UpdateCMEKSpec) | **Put** /api/v1/clusters/{cluster_id}/cmek | Enable or update the CMEK spec for a cluster
+[**UpdateCMEKStatus**](CockroachCloudApi.md#UpdateCMEKStatus) | **Patch** /api/v1/clusters/{cluster_id}/cmek | Update the CMEK-related status for a cluster
+[**UpdateCluster**](CockroachCloudApi.md#UpdateCluster) | **Patch** /api/v1/clusters/{cluster_id} | Scale or edit a cluster
+[**UpdateSQLUserPassword**](CockroachCloudApi.md#UpdateSQLUserPassword) | **Put** /api/v1/clusters/{cluster_id}/sql-users/{name}/password | Update a SQL user&#39;s password
 
 
 
@@ -44,7 +53,7 @@ Method | HTTP request | Description
 
 > AllowlistEntry AddAllowlistEntry(ctx, clusterId).AllowlistEntry(allowlistEntry).Execute()
 
-Add a new CIDR address to the IP allowlist.
+Add a new CIDR address to the IP allowlist
 
 ### Example
 
@@ -114,7 +123,7 @@ Name | Type | Description  | Notes
 
 > AllowlistEntry AddAllowlistEntry2(ctx, clusterId, entryCidrIp, entryCidrMask).AllowlistEntry1(allowlistEntry1).Execute()
 
-Add a new CIDR address to the IP allowlist.
+Add a new CIDR address to the IP allowlist
 
 ### Example
 
@@ -186,11 +195,81 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## AddEgressRule
+
+> AddEgressRuleResponse AddEgressRule(ctx, clusterId).AddEgressRuleRequest(addEgressRuleRequest).Execute()
+
+Add an egress rule
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    clusterId := "clusterId_example" // string | cluster_id identifies the cluster to which this egress rule applies.
+    addEgressRuleRequest := *openapiclient.NewAddEgressRuleRequest("Description_example", "Destination_example", "Name_example", "Type_example") // AddEgressRuleRequest | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.CockroachCloudApi.AddEgressRule(context.Background(), clusterId).AddEgressRuleRequest(addEgressRuleRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.AddEgressRule``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `AddEgressRule`: AddEgressRuleResponse
+    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.AddEgressRule`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**clusterId** | **string** | cluster_id identifies the cluster to which this egress rule applies. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAddEgressRule struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **addEgressRuleRequest** | [**AddEgressRuleRequest**](AddEgressRuleRequest.md) |  | 
+
+### Return type
+
+[**AddEgressRuleResponse**](AddEgressRuleResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## CreateCluster
 
 > Cluster CreateCluster(ctx).CreateClusterRequest(createClusterRequest).Execute()
 
-Create and initialize a new cluster.
+Create and initialize a new cluster
 
 ### Example
 
@@ -254,7 +333,7 @@ Name | Type | Description  | Notes
 
 > ApiDatabase CreateDatabase(ctx, clusterId).CreateDatabaseRequest(createDatabaseRequest).Execute()
 
-Create a new database.
+Create a new database
 
 ### Example
 
@@ -324,7 +403,7 @@ Name | Type | Description  | Notes
 
 > PrivateEndpointServices CreatePrivateEndpointServices(ctx, clusterId).Body(body).Execute()
 
-Creates all PrivateEndpointServices for a given cluster.
+Creates all PrivateEndpointServices for a given cluster
 
 ### Example
 
@@ -339,7 +418,7 @@ import (
 )
 
 func main() {
-    clusterId := "clusterId_example" // string | ClusterID is the ID for the cluster.
+    clusterId := "clusterId_example" // string | cluster_id is the ID for the cluster.
     body := map[string]interface{}{ ... } // map[string]interface{} | 
 
     configuration := openapiclient.NewConfiguration()
@@ -360,7 +439,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**clusterId** | **string** | ClusterID is the ID for the cluster. | 
+**clusterId** | **string** | cluster_id is the ID for the cluster. | 
 
 ### Other Parameters
 
@@ -394,7 +473,7 @@ Name | Type | Description  | Notes
 
 > SQLUser CreateSQLUser(ctx, clusterId).CreateSQLUserRequest(createSQLUserRequest).Execute()
 
-Create a new SQL user.
+Create a new SQL user
 
 ### Example
 
@@ -464,7 +543,7 @@ Name | Type | Description  | Notes
 
 > AllowlistEntry DeleteAllowlistEntry(ctx, clusterId, cidrIp, cidrMask).Execute()
 
-Delete an IP allowlist entry.
+Delete an IP allowlist entry
 
 ### Example
 
@@ -538,7 +617,7 @@ Name | Type | Description  | Notes
 
 > Cluster DeleteCluster(ctx, clusterId).Execute()
 
-Delete a cluster and all of its data.
+Delete a cluster and all of its data
 
 ### Example
 
@@ -606,7 +685,7 @@ Name | Type | Description  | Notes
 
 > ApiDatabase DeleteDatabase(ctx, clusterId, name).Execute()
 
-Delete a database.
+Delete a database
 
 ### Example
 
@@ -673,11 +752,84 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## DeleteEgressRule
+
+> DeleteEgressRuleResponse DeleteEgressRule(ctx, clusterId, ruleId).IdempotencyKey(idempotencyKey).Execute()
+
+Delete an existing egress rule
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    clusterId := "clusterId_example" // string | cluster_id uniquely identifies the cluster owning the egress rule.
+    ruleId := "ruleId_example" // string | rule_id is the UUID of an existing egress rule. This field is required.
+    idempotencyKey := "idempotencyKey_example" // string | idempotency_key uniquely identifies this request. If not set, it will be set by the server. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.CockroachCloudApi.DeleteEgressRule(context.Background(), clusterId, ruleId).IdempotencyKey(idempotencyKey).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.DeleteEgressRule``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DeleteEgressRule`: DeleteEgressRuleResponse
+    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.DeleteEgressRule`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**clusterId** | **string** | cluster_id uniquely identifies the cluster owning the egress rule. | 
+**ruleId** | **string** | rule_id is the UUID of an existing egress rule. This field is required. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteEgressRule struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **idempotencyKey** | **string** | idempotency_key uniquely identifies this request. If not set, it will be set by the server. | 
+
+### Return type
+
+[**DeleteEgressRuleResponse**](DeleteEgressRuleResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## DeleteLogExport
 
 > LogExportClusterInfo DeleteLogExport(ctx, clusterId).Execute()
 
-
+Delete the Log Export configuration for a cluster
 
 ### Example
 
@@ -741,11 +893,81 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## DeleteMetricExport
+
+> DeleteMetricExportResponse DeleteMetricExport(ctx, clusterId).Type_(type_).Execute()
+
+Delete the Metric Export configuration for a cluster
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    clusterId := "clusterId_example" // string | 
+    type_ := "type__example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.CockroachCloudApi.DeleteMetricExport(context.Background(), clusterId).Type_(type_).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.DeleteMetricExport``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DeleteMetricExport`: DeleteMetricExportResponse
+    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.DeleteMetricExport`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**clusterId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteMetricExport struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **type_** | **string** |  | 
+
+### Return type
+
+[**DeleteMetricExportResponse**](DeleteMetricExportResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## DeleteSQLUser
 
 > SQLUser DeleteSQLUser(ctx, clusterId, name).Execute()
 
-Delete a SQL user.
+Delete a SQL user
 
 ### Example
 
@@ -816,7 +1038,7 @@ Name | Type | Description  | Notes
 
 > ApiDatabase EditDatabase(ctx, clusterId).UpdateDatabaseRequest(updateDatabaseRequest).Execute()
 
-Update a database.
+Update a database
 
 ### Example
 
@@ -882,11 +1104,84 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## EditEgressRule
+
+> EditEgressRuleResponse EditEgressRule(ctx, clusterId, ruleId).EditEgressRuleRequest(editEgressRuleRequest).Execute()
+
+Edit an existing egress rule
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    clusterId := "clusterId_example" // string | cluster_id uniquely identifies the cluster owning the egress rule.
+    ruleId := "ruleId_example" // string | rule_id is the UUID of an existing egress rule. This field is required.
+    editEgressRuleRequest := *openapiclient.NewEditEgressRuleRequest() // EditEgressRuleRequest | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.CockroachCloudApi.EditEgressRule(context.Background(), clusterId, ruleId).EditEgressRuleRequest(editEgressRuleRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.EditEgressRule``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `EditEgressRule`: EditEgressRuleResponse
+    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.EditEgressRule`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**clusterId** | **string** | cluster_id uniquely identifies the cluster owning the egress rule. | 
+**ruleId** | **string** | rule_id is the UUID of an existing egress rule. This field is required. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiEditEgressRule struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **editEgressRuleRequest** | [**EditEgressRuleRequest**](EditEgressRuleRequest.md) |  | 
+
+### Return type
+
+[**EditEgressRuleResponse**](EditEgressRuleResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## EnableCMEKSpec
 
 > CMEKClusterInfo EnableCMEKSpec(ctx, clusterId).CMEKClusterSpecification(cMEKClusterSpecification).Execute()
 
-Enable CMEK for a cluster.
+Enable CMEK for a cluster
 
 ### Example
 
@@ -956,7 +1251,7 @@ Name | Type | Description  | Notes
 
 > LogExportClusterInfo EnableLogExport(ctx, clusterId).EnableLogExportRequest(enableLogExportRequest).Execute()
 
-
+Create a Log Export configuration for a cluster
 
 ### Example
 
@@ -1022,11 +1317,81 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## EnableMetricExport
+
+> MetricExportInfo EnableMetricExport(ctx, clusterId).EnableMetricExportRequest(enableMetricExportRequest).Execute()
+
+Create a Metric Export configuration for a cluster
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    clusterId := "clusterId_example" // string | 
+    enableMetricExportRequest := *openapiclient.NewEnableMetricExportRequest() // EnableMetricExportRequest | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.CockroachCloudApi.EnableMetricExport(context.Background(), clusterId).EnableMetricExportRequest(enableMetricExportRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.EnableMetricExport``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `EnableMetricExport`: MetricExportInfo
+    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.EnableMetricExport`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**clusterId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiEnableMetricExport struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **enableMetricExportRequest** | [**EnableMetricExportRequest**](EnableMetricExportRequest.md) |  | 
+
+### Return type
+
+[**MetricExportInfo**](MetricExportInfo.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetCMEKClusterInfo
 
 > CMEKClusterInfo GetCMEKClusterInfo(ctx, clusterId).Execute()
 
-Get CMEK-related information for a cluster.
+Get CMEK-related information for a cluster
 
 ### Example
 
@@ -1094,7 +1459,7 @@ Name | Type | Description  | Notes
 
 > Cluster GetCluster(ctx, clusterId).Execute()
 
-Get extended information about a cluster.
+Get extended information about a cluster
 
 ### Example
 
@@ -1158,11 +1523,11 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## GetInvoice
+## GetEgressRule
 
-> Invoice GetInvoice(ctx, invoiceId).Execute()
+> GetEgressRuleResponse GetEgressRule(ctx, clusterId, ruleId).Execute()
 
-Gets a specific invoice for an organization.
+Get an existing egress rule
 
 ### Example
 
@@ -1177,7 +1542,78 @@ import (
 )
 
 func main() {
-    invoiceId := "invoiceId_example" // string | InvoiceID is the unique ID representing the invoice. InvoiceID is used to retrieve a specific billing period's invoice.
+    clusterId := "clusterId_example" // string | cluster_id uniquely identifies the cluster owning the egress rule.
+    ruleId := "ruleId_example" // string | rule_id is the UUID of an existing egress rule.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.CockroachCloudApi.GetEgressRule(context.Background(), clusterId, ruleId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.GetEgressRule``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetEgressRule`: GetEgressRuleResponse
+    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.GetEgressRule`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**clusterId** | **string** | cluster_id uniquely identifies the cluster owning the egress rule. | 
+**ruleId** | **string** | rule_id is the UUID of an existing egress rule. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetEgressRule struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+[**GetEgressRuleResponse**](GetEgressRuleResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetInvoice
+
+> Invoice GetInvoice(ctx, invoiceId).Execute()
+
+Gets a specific invoice for an organization
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    invoiceId := "invoiceId_example" // string | invoice_id is the unique ID representing the invoice. invoice_id is used to retrieve a specific billing period's invoice.
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
@@ -1197,7 +1633,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**invoiceId** | **string** | InvoiceID is the unique ID representing the invoice. InvoiceID is used to retrieve a specific billing period&#39;s invoice. | 
+**invoiceId** | **string** | invoice_id is the unique ID representing the invoice. invoice_id is used to retrieve a specific billing period&#39;s invoice. | 
 
 ### Other Parameters
 
@@ -1230,7 +1666,7 @@ Name | Type | Description  | Notes
 
 > LogExportClusterInfo GetLogExportInfo(ctx, clusterId).Execute()
 
-
+Get the Log Export configuration for a cluster
 
 ### Example
 
@@ -1294,11 +1730,79 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetMetricExportInfo
+
+> MetricExportInfo GetMetricExportInfo(ctx, clusterId).Execute()
+
+Metric export Get the Metric Export configuration for a cluster
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    clusterId := "clusterId_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.CockroachCloudApi.GetMetricExportInfo(context.Background(), clusterId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.GetMetricExportInfo``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetMetricExportInfo`: MetricExportInfo
+    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.GetMetricExportInfo`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**clusterId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetMetricExportInfo struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**MetricExportInfo**](MetricExportInfo.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## ListAllowlistEntries
 
 > ListAllowlistEntriesResponse ListAllowlistEntries(ctx, clusterId).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).Execute()
 
-Get the IP allowlist and propagation status for a cluster.
+Get the IP allowlist and propagation status for a cluster
 
 
 
@@ -1377,7 +1881,7 @@ Name | Type | Description  | Notes
 
 > ListAvailableRegionsResponse ListAvailableRegions(ctx).Provider(provider).Serverless(serverless).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).Execute()
 
-List the regions available for new clusters and nodes.
+List the regions available for new clusters and nodes
 
 
 
@@ -1454,7 +1958,7 @@ Name | Type | Description  | Notes
 
 > AwsEndpointConnections ListAwsEndpointConnections(ctx, clusterId).Execute()
 
-Lists all AwsEndpointConnections for a given cluster.
+Lists all AwsEndpointConnections for a given cluster
 
 ### Example
 
@@ -1469,7 +1973,7 @@ import (
 )
 
 func main() {
-    clusterId := "clusterId_example" // string | ClusterID is the ID for the cluster.
+    clusterId := "clusterId_example" // string | cluster_id is the ID for the cluster.
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
@@ -1489,7 +1993,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**clusterId** | **string** | ClusterID is the ID for the cluster. | 
+**clusterId** | **string** | cluster_id is the ID for the cluster. | 
 
 ### Other Parameters
 
@@ -1522,7 +2026,7 @@ Name | Type | Description  | Notes
 
 > ListClusterNodesResponse ListClusterNodes(ctx, clusterId).RegionName(regionName).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).Execute()
 
-List nodes for a cluster.
+List nodes for a cluster
 
 
 
@@ -1603,7 +2107,7 @@ Name | Type | Description  | Notes
 
 > ListClustersResponse ListClusters(ctx).ShowInactive(showInactive).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).Execute()
 
-List clusters owned by an organization.
+List clusters owned by an organization
 
 
 
@@ -1678,7 +2182,7 @@ Name | Type | Description  | Notes
 
 > ApiListDatabasesResponse ListDatabases(ctx, clusterId).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).Execute()
 
-List databases for a cluster.
+List databases for a cluster
 
 
 
@@ -1753,11 +2257,90 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## ListEgressRules
+
+> ListEgressRulesResponse ListEgressRules(ctx, clusterId).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).Execute()
+
+List all egress rules associates with a cluster
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    "time"
+    openapiclient "./openapi"
+)
+
+func main() {
+    clusterId := "clusterId_example" // string | cluster_id identifies the CockroachDB cluster owning the set of returned egress rules.
+    paginationPage := "paginationPage_example" // string |  (optional)
+    paginationLimit := int32(56) // int32 |  (optional)
+    paginationAsOfTime := time.Now() // time.Time |  (optional)
+    paginationSortOrder := "paginationSortOrder_example" // string |  - DESC: Sort in descending order. The default order is ascending. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.CockroachCloudApi.ListEgressRules(context.Background(), clusterId).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.ListEgressRules``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListEgressRules`: ListEgressRulesResponse
+    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.ListEgressRules`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**clusterId** | **string** | cluster_id identifies the CockroachDB cluster owning the set of returned egress rules. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListEgressRules struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **paginationPage** | **string** |  | 
+ **paginationLimit** | **int32** |  | 
+ **paginationAsOfTime** | **time.Time** |  | 
+ **paginationSortOrder** | **string** |  - DESC: Sort in descending order. The default order is ascending. | 
+
+### Return type
+
+[**ListEgressRulesResponse**](ListEgressRulesResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## ListInvoices
 
 > ListInvoicesResponse ListInvoices(ctx).Execute()
 
-Billing List invoices for a given organization.
+List invoices for a given organization
 
 
 
@@ -1818,7 +2401,9 @@ Other parameters are passed through a pointer to a apiListInvoices struct via th
 
 > PrivateEndpointServices ListPrivateEndpointServices(ctx, clusterId).Execute()
 
-Lists all PrivateEndpointServices for a given cluster.
+Lists all PrivateEndpointServices for a given cluster
+
+
 
 ### Example
 
@@ -1833,7 +2418,7 @@ import (
 )
 
 func main() {
-    clusterId := "clusterId_example" // string | ClusterID is the ID for the cluster.
+    clusterId := "clusterId_example" // string | cluster_id is the ID for the cluster.
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
@@ -1853,7 +2438,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**clusterId** | **string** | ClusterID is the ID for the cluster. | 
+**clusterId** | **string** | cluster_id is the ID for the cluster. | 
 
 ### Other Parameters
 
@@ -1886,7 +2471,7 @@ Name | Type | Description  | Notes
 
 > ListSQLUsersResponse ListSQLUsers(ctx, clusterId).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).Execute()
 
-List SQL users for a cluster.
+List SQL users for a cluster
 
 
 
@@ -1965,7 +2550,9 @@ Name | Type | Description  | Notes
 
 > AwsEndpointConnection SetAwsEndpointConnectionState(ctx, clusterId, endpointId).CockroachCloudSetAwsEndpointConnectionStateRequest(cockroachCloudSetAwsEndpointConnectionStateRequest).Execute()
 
-Sets the AWS Endpoint Connection state based on what is passed in the body: accepted or rejected. The \"status\" in the returned proto does not reflect the latest post-update status, but rather the status before the state is transitioned.
+Sets the AWS Endpoint Connection state based on what is passed in the body
+
+
 
 ### Example
 
@@ -1980,8 +2567,8 @@ import (
 )
 
 func main() {
-    clusterId := "clusterId_example" // string | ClusterID is the ID for the cluster.
-    endpointId := "endpointId_example" // string | EndpointID is the ID for the VPC endpoint on the customer's side.
+    clusterId := "clusterId_example" // string | cluster_id is the ID for the cluster.
+    endpointId := "endpointId_example" // string | endpoint_id is the ID for the VPC endpoint on the customer's side.
     cockroachCloudSetAwsEndpointConnectionStateRequest := *openapiclient.NewCockroachCloudSetAwsEndpointConnectionStateRequest() // CockroachCloudSetAwsEndpointConnectionStateRequest | 
 
     configuration := openapiclient.NewConfiguration()
@@ -2002,8 +2589,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**clusterId** | **string** | ClusterID is the ID for the cluster. | 
-**endpointId** | **string** | EndpointID is the ID for the VPC endpoint on the customer&#39;s side. | 
+**clusterId** | **string** | cluster_id is the ID for the cluster. | 
+**endpointId** | **string** | endpoint_id is the ID for the VPC endpoint on the customer&#39;s side. | 
 
 ### Other Parameters
 
@@ -2034,11 +2621,81 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## SetEgressTrafficPolicy
+
+> map[string]interface{} SetEgressTrafficPolicy(ctx, clusterId).SetEgressTrafficPolicyRequest(setEgressTrafficPolicyRequest).Execute()
+
+Outbound traffic management
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    clusterId := "clusterId_example" // string | cluster_id identifies the cluster whose egress policy will be updated.
+    setEgressTrafficPolicyRequest := *openapiclient.NewSetEgressTrafficPolicyRequest(false) // SetEgressTrafficPolicyRequest | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.CockroachCloudApi.SetEgressTrafficPolicy(context.Background(), clusterId).SetEgressTrafficPolicyRequest(setEgressTrafficPolicyRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.SetEgressTrafficPolicy``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `SetEgressTrafficPolicy`: map[string]interface{}
+    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.SetEgressTrafficPolicy`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**clusterId** | **string** | cluster_id identifies the cluster whose egress policy will be updated. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiSetEgressTrafficPolicy struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **setEgressTrafficPolicyRequest** | [**SetEgressTrafficPolicyRequest**](SetEgressTrafficPolicyRequest.md) |  | 
+
+### Return type
+
+**map[string]interface{}**
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## UpdateAllowlistEntry
 
 > AllowlistEntry UpdateAllowlistEntry(ctx, clusterId, entryCidrIp, entryCidrMask).AllowlistEntry1(allowlistEntry1).FieldMask(fieldMask).Execute()
 
-Update an IP allowlist entry.
+Update an IP allowlist entry
 
 ### Example
 
@@ -2116,7 +2773,7 @@ Name | Type | Description  | Notes
 
 > CMEKClusterInfo UpdateCMEKSpec(ctx, clusterId).CMEKClusterSpecification(cMEKClusterSpecification).Execute()
 
-Enable or update the CMEK spec for a cluster.
+Enable or update the CMEK spec for a cluster
 
 ### Example
 
@@ -2186,7 +2843,7 @@ Name | Type | Description  | Notes
 
 > CMEKClusterInfo UpdateCMEKStatus(ctx, clusterId).UpdateCMEKStatusRequest(updateCMEKStatusRequest).Execute()
 
-Update the CMEK-related status for a cluster.
+Update the CMEK-related status for a cluster
 
 ### Example
 
@@ -2256,7 +2913,7 @@ Name | Type | Description  | Notes
 
 > Cluster UpdateCluster(ctx, clusterId).UpdateClusterSpecification(updateClusterSpecification).FieldMask(fieldMask).Execute()
 
-Scale or edit a cluster.
+Scale or edit a cluster
 
 ### Example
 
@@ -2328,7 +2985,7 @@ Name | Type | Description  | Notes
 
 > SQLUser UpdateSQLUserPassword(ctx, clusterId, name).UpdateSQLUserPasswordRequest(updateSQLUserPasswordRequest).Execute()
 
-Update a SQL user's password.
+Update a SQL user's password
 
 ### Example
 

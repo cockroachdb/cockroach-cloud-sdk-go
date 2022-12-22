@@ -26,11 +26,11 @@ import (
 // LogExportClusterInfo LogExportClusterInfo contains a package of information that fully describes both the intended state of the log export configuration for a specific cluster but also some metadata around its deployment status, any error messages, and some timestamps..
 type LogExportClusterInfo struct {
 	ClusterId   *string                        `json:"cluster_id,omitempty"`
-	Status      *LogExportStatus               `json:"status,omitempty"`
-	UserMessage *string                        `json:"user_message,omitempty"`
-	Spec        *LogExportClusterSpecification `json:"spec,omitempty"`
 	CreatedAt   *time.Time                     `json:"created_at,omitempty"`
+	Spec        *LogExportClusterSpecification `json:"spec,omitempty"`
+	Status      *LogExportStatus               `json:"status,omitempty"`
 	UpdatedAt   *time.Time                     `json:"updated_at,omitempty"`
+	UserMessage *string                        `json:"user_message,omitempty"`
 }
 
 // NewLogExportClusterInfo instantiates a new LogExportClusterInfo object.
@@ -56,32 +56,18 @@ func (o *LogExportClusterInfo) SetClusterId(v string) {
 	o.ClusterId = &v
 }
 
-// GetStatus returns the Status field value if set, zero value otherwise.
-func (o *LogExportClusterInfo) GetStatus() LogExportStatus {
-	if o == nil || o.Status == nil {
-		var ret LogExportStatus
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
+func (o *LogExportClusterInfo) GetCreatedAt() time.Time {
+	if o == nil || o.CreatedAt == nil {
+		var ret time.Time
 		return ret
 	}
-	return *o.Status
+	return *o.CreatedAt
 }
 
-// SetStatus gets a reference to the given LogExportStatus and assigns it to the Status field.
-func (o *LogExportClusterInfo) SetStatus(v LogExportStatus) {
-	o.Status = &v
-}
-
-// GetUserMessage returns the UserMessage field value if set, zero value otherwise.
-func (o *LogExportClusterInfo) GetUserMessage() string {
-	if o == nil || o.UserMessage == nil {
-		var ret string
-		return ret
-	}
-	return *o.UserMessage
-}
-
-// SetUserMessage gets a reference to the given string and assigns it to the UserMessage field.
-func (o *LogExportClusterInfo) SetUserMessage(v string) {
-	o.UserMessage = &v
+// SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
+func (o *LogExportClusterInfo) SetCreatedAt(v time.Time) {
+	o.CreatedAt = &v
 }
 
 // GetSpec returns the Spec field value if set, zero value otherwise.
@@ -98,18 +84,18 @@ func (o *LogExportClusterInfo) SetSpec(v LogExportClusterSpecification) {
 	o.Spec = &v
 }
 
-// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
-func (o *LogExportClusterInfo) GetCreatedAt() time.Time {
-	if o == nil || o.CreatedAt == nil {
-		var ret time.Time
+// GetStatus returns the Status field value if set, zero value otherwise.
+func (o *LogExportClusterInfo) GetStatus() LogExportStatus {
+	if o == nil || o.Status == nil {
+		var ret LogExportStatus
 		return ret
 	}
-	return *o.CreatedAt
+	return *o.Status
 }
 
-// SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
-func (o *LogExportClusterInfo) SetCreatedAt(v time.Time) {
-	o.CreatedAt = &v
+// SetStatus gets a reference to the given LogExportStatus and assigns it to the Status field.
+func (o *LogExportClusterInfo) SetStatus(v LogExportStatus) {
+	o.Status = &v
 }
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
@@ -126,25 +112,39 @@ func (o *LogExportClusterInfo) SetUpdatedAt(v time.Time) {
 	o.UpdatedAt = &v
 }
 
+// GetUserMessage returns the UserMessage field value if set, zero value otherwise.
+func (o *LogExportClusterInfo) GetUserMessage() string {
+	if o == nil || o.UserMessage == nil {
+		var ret string
+		return ret
+	}
+	return *o.UserMessage
+}
+
+// SetUserMessage gets a reference to the given string and assigns it to the UserMessage field.
+func (o *LogExportClusterInfo) SetUserMessage(v string) {
+	o.UserMessage = &v
+}
+
 func (o LogExportClusterInfo) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.ClusterId != nil {
 		toSerialize["cluster_id"] = o.ClusterId
 	}
-	if o.Status != nil {
-		toSerialize["status"] = o.Status
-	}
-	if o.UserMessage != nil {
-		toSerialize["user_message"] = o.UserMessage
+	if o.CreatedAt != nil {
+		toSerialize["created_at"] = o.CreatedAt
 	}
 	if o.Spec != nil {
 		toSerialize["spec"] = o.Spec
 	}
-	if o.CreatedAt != nil {
-		toSerialize["created_at"] = o.CreatedAt
+	if o.Status != nil {
+		toSerialize["status"] = o.Status
 	}
 	if o.UpdatedAt != nil {
 		toSerialize["updated_at"] = o.UpdatedAt
+	}
+	if o.UserMessage != nil {
+		toSerialize["user_message"] = o.UserMessage
 	}
 	return json.Marshal(toSerialize)
 }

@@ -25,9 +25,9 @@ import (
 
 // KeysetPaginationRequest struct for KeysetPaginationRequest.
 type KeysetPaginationRequest struct {
-	Page      *string    `json:"page,omitempty"`
-	Limit     *int32     `json:"limit,omitempty"`
 	AsOfTime  *time.Time `json:"as_of_time,omitempty"`
+	Limit     *int32     `json:"limit,omitempty"`
+	Page      *string    `json:"page,omitempty"`
 	SortOrder *SortOrder `json:"sort_order,omitempty"`
 }
 
@@ -40,18 +40,18 @@ func NewKeysetPaginationRequest() *KeysetPaginationRequest {
 	return &p
 }
 
-// GetPage returns the Page field value if set, zero value otherwise.
-func (o *KeysetPaginationRequest) GetPage() string {
-	if o == nil || o.Page == nil {
-		var ret string
+// GetAsOfTime returns the AsOfTime field value if set, zero value otherwise.
+func (o *KeysetPaginationRequest) GetAsOfTime() time.Time {
+	if o == nil || o.AsOfTime == nil {
+		var ret time.Time
 		return ret
 	}
-	return *o.Page
+	return *o.AsOfTime
 }
 
-// SetPage gets a reference to the given string and assigns it to the Page field.
-func (o *KeysetPaginationRequest) SetPage(v string) {
-	o.Page = &v
+// SetAsOfTime gets a reference to the given time.Time and assigns it to the AsOfTime field.
+func (o *KeysetPaginationRequest) SetAsOfTime(v time.Time) {
+	o.AsOfTime = &v
 }
 
 // GetLimit returns the Limit field value if set, zero value otherwise.
@@ -68,18 +68,18 @@ func (o *KeysetPaginationRequest) SetLimit(v int32) {
 	o.Limit = &v
 }
 
-// GetAsOfTime returns the AsOfTime field value if set, zero value otherwise.
-func (o *KeysetPaginationRequest) GetAsOfTime() time.Time {
-	if o == nil || o.AsOfTime == nil {
-		var ret time.Time
+// GetPage returns the Page field value if set, zero value otherwise.
+func (o *KeysetPaginationRequest) GetPage() string {
+	if o == nil || o.Page == nil {
+		var ret string
 		return ret
 	}
-	return *o.AsOfTime
+	return *o.Page
 }
 
-// SetAsOfTime gets a reference to the given time.Time and assigns it to the AsOfTime field.
-func (o *KeysetPaginationRequest) SetAsOfTime(v time.Time) {
-	o.AsOfTime = &v
+// SetPage gets a reference to the given string and assigns it to the Page field.
+func (o *KeysetPaginationRequest) SetPage(v string) {
+	o.Page = &v
 }
 
 // GetSortOrder returns the SortOrder field value if set, zero value otherwise.
@@ -98,14 +98,14 @@ func (o *KeysetPaginationRequest) SetSortOrder(v SortOrder) {
 
 func (o KeysetPaginationRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Page != nil {
-		toSerialize["page"] = o.Page
+	if o.AsOfTime != nil {
+		toSerialize["as_of_time"] = o.AsOfTime
 	}
 	if o.Limit != nil {
 		toSerialize["limit"] = o.Limit
 	}
-	if o.AsOfTime != nil {
-		toSerialize["as_of_time"] = o.AsOfTime
+	if o.Page != nil {
+		toSerialize["page"] = o.Page
 	}
 	if o.SortOrder != nil {
 		toSerialize["sort_order"] = o.SortOrder

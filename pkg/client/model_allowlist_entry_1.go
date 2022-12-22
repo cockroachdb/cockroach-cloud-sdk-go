@@ -24,19 +24,19 @@ import (
 
 // AllowlistEntry1 struct for AllowlistEntry1.
 type AllowlistEntry1 struct {
-	Ui   bool    `json:"ui"`
-	Sql  bool    `json:"sql"`
 	Name *string `json:"name,omitempty"`
+	Sql  bool    `json:"sql"`
+	Ui   bool    `json:"ui"`
 }
 
 // NewAllowlistEntry1 instantiates a new AllowlistEntry1 object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAllowlistEntry1(ui bool, sql bool) *AllowlistEntry1 {
+func NewAllowlistEntry1(sql bool, ui bool) *AllowlistEntry1 {
 	p := AllowlistEntry1{}
-	p.Ui = ui
 	p.Sql = sql
+	p.Ui = ui
 	return &p
 }
 
@@ -48,19 +48,18 @@ func NewAllowlistEntry1WithDefaults() *AllowlistEntry1 {
 	return &p
 }
 
-// GetUi returns the Ui field value.
-func (o *AllowlistEntry1) GetUi() bool {
-	if o == nil {
-		var ret bool
+// GetName returns the Name field value if set, zero value otherwise.
+func (o *AllowlistEntry1) GetName() string {
+	if o == nil || o.Name == nil {
+		var ret string
 		return ret
 	}
-
-	return o.Ui
+	return *o.Name
 }
 
-// SetUi sets field value.
-func (o *AllowlistEntry1) SetUi(v bool) {
-	o.Ui = v
+// SetName gets a reference to the given string and assigns it to the Name field.
+func (o *AllowlistEntry1) SetName(v string) {
+	o.Name = &v
 }
 
 // GetSql returns the Sql field value.
@@ -78,30 +77,31 @@ func (o *AllowlistEntry1) SetSql(v bool) {
 	o.Sql = v
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
-func (o *AllowlistEntry1) GetName() string {
-	if o == nil || o.Name == nil {
-		var ret string
+// GetUi returns the Ui field value.
+func (o *AllowlistEntry1) GetUi() bool {
+	if o == nil {
+		var ret bool
 		return ret
 	}
-	return *o.Name
+
+	return o.Ui
 }
 
-// SetName gets a reference to the given string and assigns it to the Name field.
-func (o *AllowlistEntry1) SetName(v string) {
-	o.Name = &v
+// SetUi sets field value.
+func (o *AllowlistEntry1) SetUi(v bool) {
+	o.Ui = v
 }
 
 func (o AllowlistEntry1) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["ui"] = o.Ui
+	if o.Name != nil {
+		toSerialize["name"] = o.Name
 	}
 	if true {
 		toSerialize["sql"] = o.Sql
 	}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
+	if true {
+		toSerialize["ui"] = o.Ui
 	}
 	return json.Marshal(toSerialize)
 }

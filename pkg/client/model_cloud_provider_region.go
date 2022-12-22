@@ -24,24 +24,24 @@ import (
 
 // CloudProviderRegion struct for CloudProviderRegion.
 type CloudProviderRegion struct {
-	Name       string           `json:"name"`
+	Distance   float32          `json:"distance"`
 	Location   string           `json:"location"`
+	Name       string           `json:"name"`
 	Provider   ApiCloudProvider `json:"provider"`
 	Serverless bool             `json:"serverless"`
-	Distance   float32          `json:"distance"`
 }
 
 // NewCloudProviderRegion instantiates a new CloudProviderRegion object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCloudProviderRegion(name string, location string, provider ApiCloudProvider, serverless bool, distance float32) *CloudProviderRegion {
+func NewCloudProviderRegion(distance float32, location string, name string, provider ApiCloudProvider, serverless bool) *CloudProviderRegion {
 	p := CloudProviderRegion{}
-	p.Name = name
+	p.Distance = distance
 	p.Location = location
+	p.Name = name
 	p.Provider = provider
 	p.Serverless = serverless
-	p.Distance = distance
 	return &p
 }
 
@@ -53,19 +53,19 @@ func NewCloudProviderRegionWithDefaults() *CloudProviderRegion {
 	return &p
 }
 
-// GetName returns the Name field value.
-func (o *CloudProviderRegion) GetName() string {
+// GetDistance returns the Distance field value.
+func (o *CloudProviderRegion) GetDistance() float32 {
 	if o == nil {
-		var ret string
+		var ret float32
 		return ret
 	}
 
-	return o.Name
+	return o.Distance
 }
 
-// SetName sets field value.
-func (o *CloudProviderRegion) SetName(v string) {
-	o.Name = v
+// SetDistance sets field value.
+func (o *CloudProviderRegion) SetDistance(v float32) {
+	o.Distance = v
 }
 
 // GetLocation returns the Location field value.
@@ -81,6 +81,21 @@ func (o *CloudProviderRegion) GetLocation() string {
 // SetLocation sets field value.
 func (o *CloudProviderRegion) SetLocation(v string) {
 	o.Location = v
+}
+
+// GetName returns the Name field value.
+func (o *CloudProviderRegion) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Name
+}
+
+// SetName sets field value.
+func (o *CloudProviderRegion) SetName(v string) {
+	o.Name = v
 }
 
 // GetProvider returns the Provider field value.
@@ -113,37 +128,22 @@ func (o *CloudProviderRegion) SetServerless(v bool) {
 	o.Serverless = v
 }
 
-// GetDistance returns the Distance field value.
-func (o *CloudProviderRegion) GetDistance() float32 {
-	if o == nil {
-		var ret float32
-		return ret
-	}
-
-	return o.Distance
-}
-
-// SetDistance sets field value.
-func (o *CloudProviderRegion) SetDistance(v float32) {
-	o.Distance = v
-}
-
 func (o CloudProviderRegion) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["name"] = o.Name
+		toSerialize["distance"] = o.Distance
 	}
 	if true {
 		toSerialize["location"] = o.Location
+	}
+	if true {
+		toSerialize["name"] = o.Name
 	}
 	if true {
 		toSerialize["provider"] = o.Provider
 	}
 	if true {
 		toSerialize["serverless"] = o.Serverless
-	}
-	if true {
-		toSerialize["distance"] = o.Distance
 	}
 	return json.Marshal(toSerialize)
 }

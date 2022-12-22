@@ -23,7 +23,7 @@ import (
 	"fmt"
 )
 
-// Currency Currency is the set of currencies supported in CockroachCloud.
+// Currency Currency is the set of currencies supported in CockroachDB Cloud.
 type Currency string
 
 // List of Currency.

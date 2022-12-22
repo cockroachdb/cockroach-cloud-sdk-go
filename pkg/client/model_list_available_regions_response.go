@@ -24,8 +24,8 @@ import (
 
 // ListAvailableRegionsResponse struct for ListAvailableRegionsResponse.
 type ListAvailableRegionsResponse struct {
-	Regions    []CloudProviderRegion     `json:"regions"`
 	Pagination *KeysetPaginationResponse `json:"pagination,omitempty"`
+	Regions    []CloudProviderRegion     `json:"regions"`
 }
 
 // NewListAvailableRegionsResponse instantiates a new ListAvailableRegionsResponse object.
@@ -46,6 +46,20 @@ func NewListAvailableRegionsResponseWithDefaults() *ListAvailableRegionsResponse
 	return &p
 }
 
+// GetPagination returns the Pagination field value if set, zero value otherwise.
+func (o *ListAvailableRegionsResponse) GetPagination() KeysetPaginationResponse {
+	if o == nil || o.Pagination == nil {
+		var ret KeysetPaginationResponse
+		return ret
+	}
+	return *o.Pagination
+}
+
+// SetPagination gets a reference to the given KeysetPaginationResponse and assigns it to the Pagination field.
+func (o *ListAvailableRegionsResponse) SetPagination(v KeysetPaginationResponse) {
+	o.Pagination = &v
+}
+
 // GetRegions returns the Regions field value.
 func (o *ListAvailableRegionsResponse) GetRegions() []CloudProviderRegion {
 	if o == nil {
@@ -61,27 +75,13 @@ func (o *ListAvailableRegionsResponse) SetRegions(v []CloudProviderRegion) {
 	o.Regions = v
 }
 
-// GetPagination returns the Pagination field value if set, zero value otherwise.
-func (o *ListAvailableRegionsResponse) GetPagination() KeysetPaginationResponse {
-	if o == nil || o.Pagination == nil {
-		var ret KeysetPaginationResponse
-		return ret
-	}
-	return *o.Pagination
-}
-
-// SetPagination gets a reference to the given KeysetPaginationResponse and assigns it to the Pagination field.
-func (o *ListAvailableRegionsResponse) SetPagination(v KeysetPaginationResponse) {
-	o.Pagination = &v
-}
-
 func (o ListAvailableRegionsResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["regions"] = o.Regions
-	}
 	if o.Pagination != nil {
 		toSerialize["pagination"] = o.Pagination
+	}
+	if true {
+		toSerialize["regions"] = o.Regions
 	}
 	return json.Marshal(toSerialize)
 }

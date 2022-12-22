@@ -24,27 +24,27 @@ import (
 
 // AwsEndpointConnection struct for AwsEndpointConnection.
 type AwsEndpointConnection struct {
-	// RegionName is the cloud provider region name (i.e. us-east-1).
-	RegionName    string                      `json:"region_name"`
-	CloudProvider ApiCloudProvider            `json:"cloud_provider"`
-	Status        AWSEndpointConnectionStatus `json:"status"`
-	// EndpointID is the client side of the PrivateLink connection.
+	CloudProvider ApiCloudProvider `json:"cloud_provider"`
+	// endpoint_id is the client side of the PrivateLink connection.
 	EndpointId string `json:"endpoint_id"`
-	// ServiceID is the server side of the PrivateLink connection. This is the same as AWSPrivateLinkEndpoint.service_id.
-	ServiceId string `json:"service_id"`
+	// region_name is the cloud provider region name (i.e. us-east-1).
+	RegionName string `json:"region_name"`
+	// service_id is the server side of the PrivateLink connection. This is the same as AWSPrivateLinkEndpoint.service_id.
+	ServiceId string                      `json:"service_id"`
+	Status    AWSEndpointConnectionStatus `json:"status"`
 }
 
 // NewAwsEndpointConnection instantiates a new AwsEndpointConnection object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAwsEndpointConnection(regionName string, cloudProvider ApiCloudProvider, status AWSEndpointConnectionStatus, endpointId string, serviceId string) *AwsEndpointConnection {
+func NewAwsEndpointConnection(cloudProvider ApiCloudProvider, endpointId string, regionName string, serviceId string, status AWSEndpointConnectionStatus) *AwsEndpointConnection {
 	p := AwsEndpointConnection{}
-	p.RegionName = regionName
 	p.CloudProvider = cloudProvider
-	p.Status = status
 	p.EndpointId = endpointId
+	p.RegionName = regionName
 	p.ServiceId = serviceId
+	p.Status = status
 	return &p
 }
 
@@ -54,21 +54,6 @@ func NewAwsEndpointConnection(regionName string, cloudProvider ApiCloudProvider,
 func NewAwsEndpointConnectionWithDefaults() *AwsEndpointConnection {
 	p := AwsEndpointConnection{}
 	return &p
-}
-
-// GetRegionName returns the RegionName field value.
-func (o *AwsEndpointConnection) GetRegionName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.RegionName
-}
-
-// SetRegionName sets field value.
-func (o *AwsEndpointConnection) SetRegionName(v string) {
-	o.RegionName = v
 }
 
 // GetCloudProvider returns the CloudProvider field value.
@@ -86,21 +71,6 @@ func (o *AwsEndpointConnection) SetCloudProvider(v ApiCloudProvider) {
 	o.CloudProvider = v
 }
 
-// GetStatus returns the Status field value.
-func (o *AwsEndpointConnection) GetStatus() AWSEndpointConnectionStatus {
-	if o == nil {
-		var ret AWSEndpointConnectionStatus
-		return ret
-	}
-
-	return o.Status
-}
-
-// SetStatus sets field value.
-func (o *AwsEndpointConnection) SetStatus(v AWSEndpointConnectionStatus) {
-	o.Status = v
-}
-
 // GetEndpointId returns the EndpointId field value.
 func (o *AwsEndpointConnection) GetEndpointId() string {
 	if o == nil {
@@ -114,6 +84,21 @@ func (o *AwsEndpointConnection) GetEndpointId() string {
 // SetEndpointId sets field value.
 func (o *AwsEndpointConnection) SetEndpointId(v string) {
 	o.EndpointId = v
+}
+
+// GetRegionName returns the RegionName field value.
+func (o *AwsEndpointConnection) GetRegionName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.RegionName
+}
+
+// SetRegionName sets field value.
+func (o *AwsEndpointConnection) SetRegionName(v string) {
+	o.RegionName = v
 }
 
 // GetServiceId returns the ServiceId field value.
@@ -131,22 +116,37 @@ func (o *AwsEndpointConnection) SetServiceId(v string) {
 	o.ServiceId = v
 }
 
+// GetStatus returns the Status field value.
+func (o *AwsEndpointConnection) GetStatus() AWSEndpointConnectionStatus {
+	if o == nil {
+		var ret AWSEndpointConnectionStatus
+		return ret
+	}
+
+	return o.Status
+}
+
+// SetStatus sets field value.
+func (o *AwsEndpointConnection) SetStatus(v AWSEndpointConnectionStatus) {
+	o.Status = v
+}
+
 func (o AwsEndpointConnection) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
-		toSerialize["region_name"] = o.RegionName
-	}
-	if true {
 		toSerialize["cloud_provider"] = o.CloudProvider
-	}
-	if true {
-		toSerialize["status"] = o.Status
 	}
 	if true {
 		toSerialize["endpoint_id"] = o.EndpointId
 	}
 	if true {
+		toSerialize["region_name"] = o.RegionName
+	}
+	if true {
 		toSerialize["service_id"] = o.ServiceId
+	}
+	if true {
+		toSerialize["status"] = o.Status
 	}
 	return json.Marshal(toSerialize)
 }

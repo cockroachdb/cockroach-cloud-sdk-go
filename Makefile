@@ -6,7 +6,7 @@ generate-openapi-client:
 	docker-compose -f ./docker-compose.yml run --rm \
 		openapi-generator generate \
 			-g go \
-			-i internal/spec/swagger.json \
+			-i internal/spec/openapi.json \
 			-o internal/openapi-generator \
 			-c internal/spec/config.yaml
 	mv internal/openapi-generator/docs ./
@@ -14,6 +14,10 @@ generate-openapi-client:
 	go fmt ./internal/openapi-generator/...
 	mv ./internal/openapi-generator/*.go pkg/client/
 	@$(MAKE) add-boilerplate
+
+.PHONY: fetch-latest-spec
+fetch-latest-spec:
+	curl https://cockroachlabs.cloud/assets/docs/api/latest/openapi.json > internal/spec/openapi.json
 
 # Add boilerplate header to all pkg golang files.
 .PHONY: add-boilerplate

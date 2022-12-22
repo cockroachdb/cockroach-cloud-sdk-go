@@ -24,8 +24,8 @@ import (
 
 // CMEKClusterInfo CMEKClusterInfo contains the status of CMEK across an entire cluster, including within each one its regions..
 type CMEKClusterInfo struct {
-	Status      *CMEKStatus       `json:"status,omitempty"`
 	RegionInfos *[]CMEKRegionInfo `json:"region_infos,omitempty"`
+	Status      *CMEKStatus       `json:"status,omitempty"`
 }
 
 // NewCMEKClusterInfo instantiates a new CMEKClusterInfo object.
@@ -35,20 +35,6 @@ type CMEKClusterInfo struct {
 func NewCMEKClusterInfo() *CMEKClusterInfo {
 	p := CMEKClusterInfo{}
 	return &p
-}
-
-// GetStatus returns the Status field value if set, zero value otherwise.
-func (o *CMEKClusterInfo) GetStatus() CMEKStatus {
-	if o == nil || o.Status == nil {
-		var ret CMEKStatus
-		return ret
-	}
-	return *o.Status
-}
-
-// SetStatus gets a reference to the given CMEKStatus and assigns it to the Status field.
-func (o *CMEKClusterInfo) SetStatus(v CMEKStatus) {
-	o.Status = &v
 }
 
 // GetRegionInfos returns the RegionInfos field value if set, zero value otherwise.
@@ -65,13 +51,27 @@ func (o *CMEKClusterInfo) SetRegionInfos(v []CMEKRegionInfo) {
 	o.RegionInfos = &v
 }
 
+// GetStatus returns the Status field value if set, zero value otherwise.
+func (o *CMEKClusterInfo) GetStatus() CMEKStatus {
+	if o == nil || o.Status == nil {
+		var ret CMEKStatus
+		return ret
+	}
+	return *o.Status
+}
+
+// SetStatus gets a reference to the given CMEKStatus and assigns it to the Status field.
+func (o *CMEKClusterInfo) SetStatus(v CMEKStatus) {
+	o.Status = &v
+}
+
 func (o CMEKClusterInfo) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Status != nil {
-		toSerialize["status"] = o.Status
-	}
 	if o.RegionInfos != nil {
 		toSerialize["region_infos"] = o.RegionInfos
+	}
+	if o.Status != nil {
+		toSerialize["status"] = o.Status
 	}
 	return json.Marshal(toSerialize)
 }

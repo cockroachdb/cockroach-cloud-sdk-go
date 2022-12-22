@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**AuthPrincipal** | Pointer to **string** |  | [optional] 
 **Type** | Pointer to [**CMEKKeyType**](CMEKKeyType.md) |  | [optional] 
 **Uri** | Pointer to **string** |  | [optional] 
-**AuthPrincipal** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -18,6 +18,18 @@ NewCMEKKeySpecification instantiates a new CMEKKeySpecification object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed.
+
+### GetAuthPrincipal
+
+`func (o *CMEKKeySpecification) GetAuthPrincipal() string`
+
+GetAuthPrincipal returns the AuthPrincipal field if non-nil, zero value otherwise.
+
+### SetAuthPrincipal
+
+`func (o *CMEKKeySpecification) SetAuthPrincipal(v string)`
+
+SetAuthPrincipal sets AuthPrincipal field to given value.
 
 ### GetType
 
@@ -42,18 +54,6 @@ GetUri returns the Uri field if non-nil, zero value otherwise.
 `func (o *CMEKKeySpecification) SetUri(v string)`
 
 SetUri sets Uri field to given value.
-
-### GetAuthPrincipal
-
-`func (o *CMEKKeySpecification) GetAuthPrincipal() string`
-
-GetAuthPrincipal returns the AuthPrincipal field if non-nil, zero value otherwise.
-
-### SetAuthPrincipal
-
-`func (o *CMEKKeySpecification) SetAuthPrincipal(v string)`
-
-SetAuthPrincipal sets AuthPrincipal field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
