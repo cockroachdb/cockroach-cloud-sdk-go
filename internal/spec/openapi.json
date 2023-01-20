@@ -1067,6 +1067,127 @@
         ]
       }
     },
+    "/api/v1/clusters/{cluster_id}/connection-string": {
+      "get": {
+        "operationId": "CockroachCloud_GetConnectionString",
+        "summary": "Get a formatted generic connection string for a cluster",
+        "parameters": [
+          {
+            "name": "cluster_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "database",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": "defaultdb"
+            }
+          },
+          {
+            "name": "sql_user",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "os",
+            "in": "query",
+            "description": "os indicates the target operating system, used with formatting the default SSL certificate path.\nRequired only for dedicated clusters.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "OS_MAC",
+                "OS_LINUX",
+                "OS_WINDOWS"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetConnectionStringResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "CockroachCloud"
+        ],
+        "x-badges": [
+          {
+            "color": "blue",
+            "label": "PREVIEW"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request GET \\\n  --url 'https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/connection-string?database=SOME_STRING_VALUE&sql_user=SOME_STRING_VALUE&os=SOME_STRING_VALUE' \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+          }
+        ]
+      }
+    },
     "/api/v1/clusters/{cluster_id}/databases": {
       "get": {
         "operationId": "CockroachCloud_ListDatabases",
@@ -5029,6 +5150,9 @@
             "type": "string",
             "format": "date-time"
           },
+          "egress_traffic_policy": {
+            "$ref": "#/components/schemas/EgressTrafficPolicy"
+          },
           "id": {
             "type": "string"
           },
@@ -5260,6 +5384,10 @@
               "format": "int32",
               "type": "integer"
             }
+          },
+          "restrict_egress_traffic": {
+            "description": "RestrictEgressTraffic if set, results in an egress traffic policy of\ndefault-deny at creation time.",
+            "type": "boolean"
           }
         },
         "required": [
@@ -5488,6 +5616,32 @@
           "description"
         ],
         "title": "EgressRule"
+      },
+      "EgressTrafficPolicy": {
+        "description": " - POLICY_UNSPECIFIED: POLICY_UNSPECIFIED signifies the egress traffic policy is unspecified.\n - POLICY_ERROR: POLICY_ERROR signifies there has been an internal server error during\nan update to the egress traffic policy.\n - ALLOW_ALL: ALLOW_ALL signifies all outbound connections from CockroachDB are allowed.\n - DEFAULT_DENY: DEFAULT_DENY signifies that CockroachDB can only initiate network\nconnections to destinations explicitly allowed by the user or CockroachDB\nCloud operators.\n - POLICY_UPDATING: POLICY_UPDATING signifies the egress traffic policy is updating.",
+        "type": "string",
+        "enum": [
+          "POLICY_ERROR",
+          "ALLOW_ALL",
+          "DEFAULT_DENY",
+          "POLICY_UPDATING"
+        ]
+      },
+      "GetConnectionStringResponse": {
+        "type": "object",
+        "properties": {
+          "connection_string": {
+            "description": "connection_string contains the full connection string, with parameters formatted inline.",
+            "type": "string"
+          },
+          "params": {
+            "description": "params contains a list of individual key parameters, for generating nonstandard connection strings.",
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        }
       },
       "GetEgressRuleResponse": {
         "description": "GetEgressRuleResponse is the response message to the GetEgressRule RPC.",
@@ -5944,6 +6098,14 @@
         "enum": [
           "LIVE",
           "NOT_READY"
+        ]
+      },
+      "OperatingSystem": {
+        "type": "string",
+        "enum": [
+          "OS_MAC",
+          "OS_LINUX",
+          "OS_WINDOWS"
         ]
       },
       "Plan": {

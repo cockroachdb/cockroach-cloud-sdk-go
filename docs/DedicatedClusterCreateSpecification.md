@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Hardware** | [**DedicatedHardwareCreateSpecification**](DedicatedHardwareCreateSpecification.md) |  | 
 **NetworkVisibility** | Pointer to [**NetworkVisiblity**](NetworkVisiblity.md) |  | [optional] 
 **RegionNodes** | **map[string]int32** | Region keys should match the cloud provider&#39;s zone code. For example, for Oregon, set region_name to \&quot;us-west2\&quot; for GCP and \&quot;us-west-2\&quot; for AWS. Values represent the node count. | 
+**RestrictEgressTraffic** | Pointer to **bool** | RestrictEgressTraffic if set, results in an egress traffic policy of default-deny at creation time. | [optional] 
 
 ## Methods
 
@@ -75,6 +76,18 @@ GetRegionNodes returns the RegionNodes field if non-nil, zero value otherwise.
 `func (o *DedicatedClusterCreateSpecification) SetRegionNodes(v map[string]int32)`
 
 SetRegionNodes sets RegionNodes field to given value.
+
+### GetRestrictEgressTraffic
+
+`func (o *DedicatedClusterCreateSpecification) GetRestrictEgressTraffic() bool`
+
+GetRestrictEgressTraffic returns the RestrictEgressTraffic field if non-nil, zero value otherwise.
+
+### SetRestrictEgressTraffic
+
+`func (o *DedicatedClusterCreateSpecification) SetRestrictEgressTraffic(v bool)`
+
+SetRestrictEgressTraffic sets RestrictEgressTraffic field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

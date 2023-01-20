@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
 **CreatorId** | **string** |  | 
 **DeletedAt** | Pointer to **time.Time** |  | [optional] 
+**EgressTrafficPolicy** | Pointer to [**EgressTrafficPolicy**](EgressTrafficPolicy.md) |  | [optional] 
 **Id** | **string** |  | 
 **Name** | **string** |  | 
 **NetworkVisibility** | Pointer to [**NetworkVisiblity**](NetworkVisiblity.md) |  | [optional] 
@@ -123,6 +124,18 @@ GetDeletedAt returns the DeletedAt field if non-nil, zero value otherwise.
 `func (o *Cluster) SetDeletedAt(v time.Time)`
 
 SetDeletedAt sets DeletedAt field to given value.
+
+### GetEgressTrafficPolicy
+
+`func (o *Cluster) GetEgressTrafficPolicy() EgressTrafficPolicy`
+
+GetEgressTrafficPolicy returns the EgressTrafficPolicy field if non-nil, zero value otherwise.
+
+### SetEgressTrafficPolicy
+
+`func (o *Cluster) SetEgressTrafficPolicy(v EgressTrafficPolicy)`
+
+SetEgressTrafficPolicy sets EgressTrafficPolicy field to given value.
 
 ### GetId
 
