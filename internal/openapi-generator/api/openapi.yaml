@@ -730,6 +730,97 @@ paths:
             --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/cmek \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
             --data '{"region_specs":[{"key_spec":{"auth_principal":"arn:aws:iam::account:role/role-name-with-path","type":"AWS_KMS","uri":"arn:aws:kms:us-west-2:111122223333:key/id-of-kms-key"},"region":"us-central1"}]}'
+  /api/v1/clusters/{cluster_id}/connection-string:
+    get:
+      operationId: CockroachCloud_GetConnectionString
+      parameters:
+      - explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: database
+        required: false
+        schema:
+          default: defaultdb
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: sql_user
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: |-
+          os indicates the target operating system, used with formatting the default SSL certificate path.
+          Required only for dedicated clusters.
+        explode: true
+        in: query
+        name: os
+        required: false
+        schema:
+          enum:
+          - OS_MAC
+          - OS_LINUX
+          - OS_WINDOWS
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetConnectionStringResponse'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Get a formatted generic connection string for a cluster
+      tags:
+      - CockroachCloud
+      x-badges:
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request GET \
+            --url 'https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/connection-string?database=SOME_STRING_VALUE&sql_user=SOME_STRING_VALUE&os=SOME_STRING_VALUE' \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
   /api/v1/clusters/{cluster_id}/databases:
     get:
       description: "Sort order: Database name ascending"
@@ -3710,6 +3801,8 @@ components:
         deleted_at:
           format: date-time
           type: string
+        egress_traffic_policy:
+          $ref: '#/components/schemas/EgressTrafficPolicy'
         id:
           type: string
         name:
@@ -3877,6 +3970,11 @@ components:
             For example, for Oregon, set region_name to "us-west2" for
             GCP and "us-west-2" for AWS. Values represent the node count.
           type: object
+        restrict_egress_traffic:
+          description: |-
+            RestrictEgressTraffic if set, results in an egress traffic policy of
+            default-deny at creation time.
+          type: boolean
       required:
       - hardware
       - region_nodes
@@ -4134,6 +4232,39 @@ components:
       - state
       - type
       title: EgressRule
+      type: object
+    EgressTrafficPolicy:
+      description: |2-
+         - POLICY_UNSPECIFIED: POLICY_UNSPECIFIED signifies the egress traffic policy is unspecified.
+         - POLICY_ERROR: POLICY_ERROR signifies there has been an internal server error during
+        an update to the egress traffic policy.
+         - ALLOW_ALL: ALLOW_ALL signifies all outbound connections from CockroachDB are allowed.
+         - DEFAULT_DENY: DEFAULT_DENY signifies that CockroachDB can only initiate network
+        connections to destinations explicitly allowed by the user or CockroachDB
+        Cloud operators.
+         - POLICY_UPDATING: POLICY_UPDATING signifies the egress traffic policy is updating.
+      enum:
+      - POLICY_ERROR
+      - ALLOW_ALL
+      - DEFAULT_DENY
+      - POLICY_UPDATING
+      type: string
+    GetConnectionStringResponse:
+      example:
+        params:
+          key: params
+        connection_string: connection_string
+      properties:
+        connection_string:
+          description: "connection_string contains the full connection string, with\
+            \ parameters formatted inline."
+          type: string
+        params:
+          additionalProperties:
+            type: string
+          description: "params contains a list of individual key parameters, for generating\
+            \ nonstandard connection strings."
+          type: object
       type: object
     GetEgressRuleResponse:
       description: GetEgressRuleResponse is the response message to the GetEgressRule
@@ -5086,6 +5217,12 @@ components:
       enum:
       - LIVE
       - NOT_READY
+      type: string
+    OperatingSystem:
+      enum:
+      - OS_MAC
+      - OS_LINUX
+      - OS_WINDOWS
       type: string
     Plan:
       description: " - DEDICATED: A paid plan that offers dedicated hardware in any\

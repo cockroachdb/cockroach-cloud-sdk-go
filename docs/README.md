@@ -86,6 +86,7 @@ Class | Method | HTTP request | Description
 *CockroachCloudApi* | **EnableMetricExport** | **Post** /api/v1/clusters/{cluster_id}/metricexport | Create a Metric Export configuration for a cluster
 *CockroachCloudApi* | **GetCMEKClusterInfo** | **Get** /api/v1/clusters/{cluster_id}/cmek | Get CMEK-related information for a cluster
 *CockroachCloudApi* | **GetCluster** | **Get** /api/v1/clusters/{cluster_id} | Get extended information about a cluster
+*CockroachCloudApi* | **GetConnectionString** | **Get** /api/v1/clusters/{cluster_id}/connection-string | Get a formatted generic connection string for a cluster
 *CockroachCloudApi* | **GetEgressRule** | **Get** /api/v1/clusters/{cluster_id}/networking/egress-rules/{rule_id} | Get an existing egress rule
 *CockroachCloudApi* | **GetInvoice** | **Get** /api/v1/invoices/{invoice_id} | Gets a specific invoice for an organization
 *CockroachCloudApi* | **GetLogExportInfo** | **Get** /api/v1/clusters/{cluster_id}/logexport | Get the Log Export configuration for a cluster

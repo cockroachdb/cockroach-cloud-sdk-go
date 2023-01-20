@@ -50,8 +50,10 @@ docs/DeleteMetricExportResponse.md
 docs/EditEgressRuleRequest.md
 docs/EditEgressRuleResponse.md
 docs/EgressRule.md
+docs/EgressTrafficPolicy.md
 docs/EnableLogExportRequest.md
 docs/EnableMetricExportRequest.md
+docs/GetConnectionStringResponse.md
 docs/GetEgressRuleResponse.md
 docs/Invoice.md
 docs/InvoiceItem.md
@@ -77,6 +79,7 @@ docs/MetricExportStatus.md
 docs/NetworkVisiblity.md
 docs/Node.md
 docs/NodeStatus.md
+docs/OperatingSystem.md
 docs/Plan.md
 docs/PrivateEndpointService.md
 docs/PrivateEndpointServiceStatus.md
@@ -141,8 +144,10 @@ model_delete_metric_export_response.go
 model_edit_egress_rule_request.go
 model_edit_egress_rule_response.go
 model_egress_rule.go
+model_egress_traffic_policy.go
 model_enable_log_export_request.go
 model_enable_metric_export_request.go
+model_get_connection_string_response.go
 model_get_egress_rule_response.go
 model_invoice.go
 model_invoice_item.go
@@ -168,6 +173,7 @@ model_metric_export_status.go
 model_network_visiblity.go
 model_node.go
 model_node_status.go
+model_operating_system.go
 model_plan.go
 model_private_endpoint_service.go
 model_private_endpoint_service_status.go

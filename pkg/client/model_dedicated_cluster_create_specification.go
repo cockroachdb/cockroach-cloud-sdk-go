@@ -30,6 +30,8 @@ type DedicatedClusterCreateSpecification struct {
 	NetworkVisibility *NetworkVisiblity                    `json:"network_visibility,omitempty"`
 	// Region keys should match the cloud provider's zone code. For example, for Oregon, set region_name to \"us-west2\" for GCP and \"us-west-2\" for AWS. Values represent the node count.
 	RegionNodes map[string]int32 `json:"region_nodes"`
+	// RestrictEgressTraffic if set, results in an egress traffic policy of default-deny at creation time.
+	RestrictEgressTraffic *bool `json:"restrict_egress_traffic,omitempty"`
 }
 
 // NewDedicatedClusterCreateSpecification instantiates a new DedicatedClusterCreateSpecification object.
@@ -109,6 +111,20 @@ func (o *DedicatedClusterCreateSpecification) SetRegionNodes(v map[string]int32)
 	o.RegionNodes = v
 }
 
+// GetRestrictEgressTraffic returns the RestrictEgressTraffic field value if set, zero value otherwise.
+func (o *DedicatedClusterCreateSpecification) GetRestrictEgressTraffic() bool {
+	if o == nil || o.RestrictEgressTraffic == nil {
+		var ret bool
+		return ret
+	}
+	return *o.RestrictEgressTraffic
+}
+
+// SetRestrictEgressTraffic gets a reference to the given bool and assigns it to the RestrictEgressTraffic field.
+func (o *DedicatedClusterCreateSpecification) SetRestrictEgressTraffic(v bool) {
+	o.RestrictEgressTraffic = &v
+}
+
 func (o DedicatedClusterCreateSpecification) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.CockroachVersion != nil {
@@ -122,6 +138,9 @@ func (o DedicatedClusterCreateSpecification) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["region_nodes"] = o.RegionNodes
+	}
+	if o.RestrictEgressTraffic != nil {
+		toSerialize["restrict_egress_traffic"] = o.RestrictEgressTraffic
 	}
 	return json.Marshal(toSerialize)
 }

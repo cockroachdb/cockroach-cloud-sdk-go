@@ -25,19 +25,20 @@ import (
 
 // Cluster struct for Cluster.
 type Cluster struct {
-	AccountId         *string           `json:"account_id,omitempty"`
-	CloudProvider     ApiCloudProvider  `json:"cloud_provider"`
-	CockroachVersion  string            `json:"cockroach_version"`
-	Config            ClusterConfig     `json:"config"`
-	CreatedAt         *time.Time        `json:"created_at,omitempty"`
-	CreatorId         string            `json:"creator_id"`
-	DeletedAt         *time.Time        `json:"deleted_at,omitempty"`
-	Id                string            `json:"id"`
-	Name              string            `json:"name"`
-	NetworkVisibility *NetworkVisiblity `json:"network_visibility,omitempty"`
-	OperationStatus   ClusterStatusType `json:"operation_status"`
-	Plan              Plan              `json:"plan"`
-	Regions           []Region          `json:"regions"`
+	AccountId           *string              `json:"account_id,omitempty"`
+	CloudProvider       ApiCloudProvider     `json:"cloud_provider"`
+	CockroachVersion    string               `json:"cockroach_version"`
+	Config              ClusterConfig        `json:"config"`
+	CreatedAt           *time.Time           `json:"created_at,omitempty"`
+	CreatorId           string               `json:"creator_id"`
+	DeletedAt           *time.Time           `json:"deleted_at,omitempty"`
+	EgressTrafficPolicy *EgressTrafficPolicy `json:"egress_traffic_policy,omitempty"`
+	Id                  string               `json:"id"`
+	Name                string               `json:"name"`
+	NetworkVisibility   *NetworkVisiblity    `json:"network_visibility,omitempty"`
+	OperationStatus     ClusterStatusType    `json:"operation_status"`
+	Plan                Plan                 `json:"plan"`
+	Regions             []Region             `json:"regions"`
 	// sql_dns is the DNS name of SQL interface of the cluster.
 	SqlDns    *string          `json:"sql_dns,omitempty"`
 	State     ClusterStateType `json:"state"`
@@ -171,6 +172,20 @@ func (o *Cluster) GetDeletedAt() time.Time {
 // SetDeletedAt gets a reference to the given time.Time and assigns it to the DeletedAt field.
 func (o *Cluster) SetDeletedAt(v time.Time) {
 	o.DeletedAt = &v
+}
+
+// GetEgressTrafficPolicy returns the EgressTrafficPolicy field value if set, zero value otherwise.
+func (o *Cluster) GetEgressTrafficPolicy() EgressTrafficPolicy {
+	if o == nil || o.EgressTrafficPolicy == nil {
+		var ret EgressTrafficPolicy
+		return ret
+	}
+	return *o.EgressTrafficPolicy
+}
+
+// SetEgressTrafficPolicy gets a reference to the given EgressTrafficPolicy and assigns it to the EgressTrafficPolicy field.
+func (o *Cluster) SetEgressTrafficPolicy(v EgressTrafficPolicy) {
+	o.EgressTrafficPolicy = &v
 }
 
 // GetId returns the Id field value.
@@ -327,6 +342,9 @@ func (o Cluster) MarshalJSON() ([]byte, error) {
 	}
 	if o.DeletedAt != nil {
 		toSerialize["deleted_at"] = o.DeletedAt
+	}
+	if o.EgressTrafficPolicy != nil {
+		toSerialize["egress_traffic_policy"] = o.EgressTrafficPolicy
 	}
 	if true {
 		toSerialize["id"] = o.Id
