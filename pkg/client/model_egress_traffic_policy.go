@@ -28,14 +28,16 @@ type EgressTrafficPolicy string
 
 // List of EgressTrafficPolicy.
 const (
-	EGRESSTRAFFICPOLICY_POLICY_ERROR    EgressTrafficPolicy = "POLICY_ERROR"
-	EGRESSTRAFFICPOLICY_ALLOW_ALL       EgressTrafficPolicy = "ALLOW_ALL"
-	EGRESSTRAFFICPOLICY_DEFAULT_DENY    EgressTrafficPolicy = "DEFAULT_DENY"
-	EGRESSTRAFFICPOLICY_POLICY_UPDATING EgressTrafficPolicy = "POLICY_UPDATING"
+	EGRESSTRAFFICPOLICY_POLICY_UNSPECIFIED EgressTrafficPolicy = "POLICY_UNSPECIFIED"
+	EGRESSTRAFFICPOLICY_POLICY_ERROR       EgressTrafficPolicy = "POLICY_ERROR"
+	EGRESSTRAFFICPOLICY_ALLOW_ALL          EgressTrafficPolicy = "ALLOW_ALL"
+	EGRESSTRAFFICPOLICY_DEFAULT_DENY       EgressTrafficPolicy = "DEFAULT_DENY"
+	EGRESSTRAFFICPOLICY_POLICY_UPDATING    EgressTrafficPolicy = "POLICY_UPDATING"
 )
 
 // All allowed values of EgressTrafficPolicy enum.
 var AllowedEgressTrafficPolicyEnumValues = []EgressTrafficPolicy{
+	"POLICY_UNSPECIFIED",
 	"POLICY_ERROR",
 	"ALLOW_ALL",
 	"DEFAULT_DENY",

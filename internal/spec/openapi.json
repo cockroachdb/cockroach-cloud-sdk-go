@@ -5621,6 +5621,7 @@
         "description": " - POLICY_UNSPECIFIED: POLICY_UNSPECIFIED signifies the egress traffic policy is unspecified.\n - POLICY_ERROR: POLICY_ERROR signifies there has been an internal server error during\nan update to the egress traffic policy.\n - ALLOW_ALL: ALLOW_ALL signifies all outbound connections from CockroachDB are allowed.\n - DEFAULT_DENY: DEFAULT_DENY signifies that CockroachDB can only initiate network\nconnections to destinations explicitly allowed by the user or CockroachDB\nCloud operators.\n - POLICY_UPDATING: POLICY_UPDATING signifies the egress traffic policy is updating.",
         "type": "string",
         "enum": [
+          "POLICY_UNSPECIFIED",
           "POLICY_ERROR",
           "ALLOW_ALL",
           "DEFAULT_DENY",

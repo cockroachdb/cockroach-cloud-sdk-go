@@ -4244,6 +4244,7 @@ components:
         Cloud operators.
          - POLICY_UPDATING: POLICY_UPDATING signifies the egress traffic policy is updating.
       enum:
+      - POLICY_UNSPECIFIED
       - POLICY_ERROR
       - ALLOW_ALL
       - DEFAULT_DENY
