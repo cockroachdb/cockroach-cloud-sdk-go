@@ -29,6 +29,7 @@ docs/Cluster.md
 docs/ClusterConfig.md
 docs/ClusterStateType.md
 docs/ClusterStatusType.md
+docs/ClusterUpgradeStatus.md
 docs/CockroachCloudApi.md
 docs/CockroachCloudSetAwsEndpointConnectionStateRequest.md
 docs/CreateClusterRequest.md
@@ -72,6 +73,7 @@ docs/LogExportClusterSpecification.md
 docs/LogExportGroup.md
 docs/LogExportStatus.md
 docs/LogExportType.md
+docs/LogLevel.md
 docs/MetricExportInfo.md
 docs/MetricExportIntegrationInfo.md
 docs/MetricExportIntegrationType.md
@@ -80,6 +82,7 @@ docs/NetworkVisiblity.md
 docs/Node.md
 docs/NodeStatus.md
 docs/OperatingSystem.md
+docs/Organization.md
 docs/Plan.md
 docs/PrivateEndpointService.md
 docs/PrivateEndpointServiceStatus.md
@@ -115,6 +118,7 @@ model_cluster.go
 model_cluster_config.go
 model_cluster_state_type.go
 model_cluster_status_type.go
+model_cluster_upgrade_status.go
 model_cmek_cluster_info.go
 model_cmek_cluster_specification.go
 model_cmek_customer_action.go
@@ -166,6 +170,7 @@ model_log_export_cluster_specification.go
 model_log_export_group.go
 model_log_export_status.go
 model_log_export_type.go
+model_log_level.go
 model_metric_export_info.go
 model_metric_export_integration_info.go
 model_metric_export_integration_type.go
@@ -174,6 +179,7 @@ model_network_visiblity.go
 model_node.go
 model_node_status.go
 model_operating_system.go
+model_organization.go
 model_plan.go
 model_private_endpoint_service.go
 model_private_endpoint_service_status.go

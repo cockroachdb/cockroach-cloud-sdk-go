@@ -25,10 +25,9 @@ import (
 // LogExportGroup LogExportGroup contains an export configuration for a single log group which can route logs for a subset of CRDB channels..
 type LogExportGroup struct {
 	// channels is a list of CRDB log channels to include in this group.
-	Channels *[]string `json:"channels,omitempty"`
-	LogName  *string   `json:"log_name,omitempty"`
-	// min_level is the minimum log level to filter to this log group. Should be one of INFO, WARNING, ERROR, FATAL.
-	MinLevel *string `json:"min_level,omitempty"`
+	Channels []string  `json:"channels"`
+	LogName  string    `json:"log_name"`
+	MinLevel *LogLevel `json:"min_level,omitempty"`
 	// redact is a boolean that governs whether this log group should aggregate redacted logs. Redaction settings will inherit from the cluster log export defaults if unset.
 	Redact *bool `json:"redact,omitempty"`
 }
@@ -37,50 +36,62 @@ type LogExportGroup struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewLogExportGroup() *LogExportGroup {
+func NewLogExportGroup(channels []string, logName string) *LogExportGroup {
+	p := LogExportGroup{}
+	p.Channels = channels
+	p.LogName = logName
+	return &p
+}
+
+// NewLogExportGroupWithDefaults instantiates a new LogExportGroup object.
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewLogExportGroupWithDefaults() *LogExportGroup {
 	p := LogExportGroup{}
 	return &p
 }
 
-// GetChannels returns the Channels field value if set, zero value otherwise.
+// GetChannels returns the Channels field value.
 func (o *LogExportGroup) GetChannels() []string {
-	if o == nil || o.Channels == nil {
+	if o == nil {
 		var ret []string
 		return ret
 	}
-	return *o.Channels
+
+	return o.Channels
 }
 
-// SetChannels gets a reference to the given []string and assigns it to the Channels field.
+// SetChannels sets field value.
 func (o *LogExportGroup) SetChannels(v []string) {
-	o.Channels = &v
+	o.Channels = v
 }
 
-// GetLogName returns the LogName field value if set, zero value otherwise.
+// GetLogName returns the LogName field value.
 func (o *LogExportGroup) GetLogName() string {
-	if o == nil || o.LogName == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.LogName
+
+	return o.LogName
 }
 
-// SetLogName gets a reference to the given string and assigns it to the LogName field.
+// SetLogName sets field value.
 func (o *LogExportGroup) SetLogName(v string) {
-	o.LogName = &v
+	o.LogName = v
 }
 
 // GetMinLevel returns the MinLevel field value if set, zero value otherwise.
-func (o *LogExportGroup) GetMinLevel() string {
+func (o *LogExportGroup) GetMinLevel() LogLevel {
 	if o == nil || o.MinLevel == nil {
-		var ret string
+		var ret LogLevel
 		return ret
 	}
 	return *o.MinLevel
 }
 
-// SetMinLevel gets a reference to the given string and assigns it to the MinLevel field.
-func (o *LogExportGroup) SetMinLevel(v string) {
+// SetMinLevel gets a reference to the given LogLevel and assigns it to the MinLevel field.
+func (o *LogExportGroup) SetMinLevel(v LogLevel) {
 	o.MinLevel = &v
 }
 
@@ -100,10 +111,10 @@ func (o *LogExportGroup) SetRedact(v bool) {
 
 func (o LogExportGroup) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Channels != nil {
+	if true {
 		toSerialize["channels"] = o.Channels
 	}
-	if o.LogName != nil {
+	if true {
 		toSerialize["log_name"] = o.LogName
 	}
 	if o.MinLevel != nil {

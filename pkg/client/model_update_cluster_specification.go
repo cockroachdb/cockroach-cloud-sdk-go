@@ -22,10 +22,11 @@ import (
 	"encoding/json"
 )
 
-// UpdateClusterSpecification struct for UpdateClusterSpecification.
+// UpdateClusterSpecification Set `upgrade_status` to 'UPGRADE_RUNNING' to start an upgrade. Multi-node clusters will undergo a rolling upgrade and will remain available, but single-node clusters will be briefly unavailable while the upgrade takes place. Upgrades will be finalized automatically after 72 hours, or can be manually finalized by setting the value to 'FINALIZED'. Before the cluster is finalized, it can be rolled back by setting the value to 'ROLLBACK_RUNNING'. Version upgrade operations cannot be performed simultaneously with other update operations..
 type UpdateClusterSpecification struct {
-	Dedicated  *DedicatedClusterUpdateSpecification  `json:"dedicated,omitempty"`
-	Serverless *ServerlessClusterUpdateSpecification `json:"serverless,omitempty"`
+	Dedicated     *DedicatedClusterUpdateSpecification  `json:"dedicated,omitempty"`
+	Serverless    *ServerlessClusterUpdateSpecification `json:"serverless,omitempty"`
+	UpgradeStatus *ClusterUpgradeStatus                 `json:"upgrade_status,omitempty"`
 }
 
 // NewUpdateClusterSpecification instantiates a new UpdateClusterSpecification object.
@@ -65,6 +66,20 @@ func (o *UpdateClusterSpecification) SetServerless(v ServerlessClusterUpdateSpec
 	o.Serverless = &v
 }
 
+// GetUpgradeStatus returns the UpgradeStatus field value if set, zero value otherwise.
+func (o *UpdateClusterSpecification) GetUpgradeStatus() ClusterUpgradeStatus {
+	if o == nil || o.UpgradeStatus == nil {
+		var ret ClusterUpgradeStatus
+		return ret
+	}
+	return *o.UpgradeStatus
+}
+
+// SetUpgradeStatus gets a reference to the given ClusterUpgradeStatus and assigns it to the UpgradeStatus field.
+func (o *UpdateClusterSpecification) SetUpgradeStatus(v ClusterUpgradeStatus) {
+	o.UpgradeStatus = &v
+}
+
 func (o UpdateClusterSpecification) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Dedicated != nil {
@@ -72,6 +87,9 @@ func (o UpdateClusterSpecification) MarshalJSON() ([]byte, error) {
 	}
 	if o.Serverless != nil {
 		toSerialize["serverless"] = o.Serverless
+	}
+	if o.UpgradeStatus != nil {
+		toSerialize["upgrade_status"] = o.UpgradeStatus
 	}
 	return json.Marshal(toSerialize)
 }

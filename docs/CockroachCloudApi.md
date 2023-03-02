@@ -21,8 +21,8 @@ Method | HTTP request | Description
 [**EditDatabase**](CockroachCloudApi.md#EditDatabase) | **Patch** /api/v1/clusters/{cluster_id}/databases | Update a database
 [**EditEgressRule**](CockroachCloudApi.md#EditEgressRule) | **Patch** /api/v1/clusters/{cluster_id}/networking/egress-rules/{rule_id} | Edit an existing egress rule
 [**EnableCMEKSpec**](CockroachCloudApi.md#EnableCMEKSpec) | **Post** /api/v1/clusters/{cluster_id}/cmek | Enable CMEK for a cluster
-[**EnableLogExport**](CockroachCloudApi.md#EnableLogExport) | **Post** /api/v1/clusters/{cluster_id}/logexport | Create a Log Export configuration for a cluster
-[**EnableMetricExport**](CockroachCloudApi.md#EnableMetricExport) | **Post** /api/v1/clusters/{cluster_id}/metricexport | Create a Metric Export configuration for a cluster
+[**EnableLogExport**](CockroachCloudApi.md#EnableLogExport) | **Post** /api/v1/clusters/{cluster_id}/logexport | Create or update the Log Export configuration for a cluster
+[**EnableMetricExport**](CockroachCloudApi.md#EnableMetricExport) | **Post** /api/v1/clusters/{cluster_id}/metricexport | Create or update the Metric Export configuration for a cluster
 [**GetCMEKClusterInfo**](CockroachCloudApi.md#GetCMEKClusterInfo) | **Get** /api/v1/clusters/{cluster_id}/cmek | Get CMEK-related information for a cluster
 [**GetCluster**](CockroachCloudApi.md#GetCluster) | **Get** /api/v1/clusters/{cluster_id} | Get extended information about a cluster
 [**GetConnectionString**](CockroachCloudApi.md#GetConnectionString) | **Get** /api/v1/clusters/{cluster_id}/connection-string | Get a formatted generic connection string for a cluster
@@ -30,6 +30,7 @@ Method | HTTP request | Description
 [**GetInvoice**](CockroachCloudApi.md#GetInvoice) | **Get** /api/v1/invoices/{invoice_id} | Gets a specific invoice for an organization
 [**GetLogExportInfo**](CockroachCloudApi.md#GetLogExportInfo) | **Get** /api/v1/clusters/{cluster_id}/logexport | Get the Log Export configuration for a cluster
 [**GetMetricExportInfo**](CockroachCloudApi.md#GetMetricExportInfo) | **Get** /api/v1/clusters/{cluster_id}/metricexport | Metric export Get the Metric Export configuration for a cluster
+[**GetOrganizationInfo**](CockroachCloudApi.md#GetOrganizationInfo) | **Get** /api/v1/organization | Get information about the caller&#39;s organization
 [**ListAllowlistEntries**](CockroachCloudApi.md#ListAllowlistEntries) | **Get** /api/v1/clusters/{cluster_id}/networking/allowlist | Get the IP allowlist and propagation status for a cluster
 [**ListAvailableRegions**](CockroachCloudApi.md#ListAvailableRegions) | **Get** /api/v1/clusters/available-regions | List the regions available for new clusters and nodes
 [**ListAwsEndpointConnections**](CockroachCloudApi.md#ListAwsEndpointConnections) | **Get** /api/v1/clusters/{cluster_id}/networking/aws-endpoint-connections | Lists all AwsEndpointConnections for a given cluster
@@ -1252,7 +1253,7 @@ Name | Type | Description  | Notes
 
 > LogExportClusterInfo EnableLogExport(ctx, clusterId).EnableLogExportRequest(enableLogExportRequest).Execute()
 
-Create a Log Export configuration for a cluster
+Create or update the Log Export configuration for a cluster
 
 ### Example
 
@@ -1268,7 +1269,7 @@ import (
 
 func main() {
     clusterId := "clusterId_example" // string | 
-    enableLogExportRequest := *openapiclient.NewEnableLogExportRequest() // EnableLogExportRequest | 
+    enableLogExportRequest := *openapiclient.NewEnableLogExportRequest("AuthPrincipal_example", "LogName_example", openapiclient.LogExportType("AWS_CLOUDWATCH")) // EnableLogExportRequest | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
@@ -1322,7 +1323,7 @@ Name | Type | Description  | Notes
 
 > MetricExportInfo EnableMetricExport(ctx, clusterId).EnableMetricExportRequest(enableMetricExportRequest).Execute()
 
-Create a Metric Export configuration for a cluster
+Create or update the Metric Export configuration for a cluster
 
 ### Example
 
@@ -1858,6 +1859,65 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**MetricExportInfo**](MetricExportInfo.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetOrganizationInfo
+
+> Organization GetOrganizationInfo(ctx).Execute()
+
+Get information about the caller's organization
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.CockroachCloudApi.GetOrganizationInfo(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.GetOrganizationInfo``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetOrganizationInfo`: Organization
+    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.GetOrganizationInfo`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetOrganizationInfo struct via the builder pattern
+
+
+### Return type
+
+[**Organization**](Organization.md)
 
 ### Authorization
 
@@ -2768,7 +2828,7 @@ Name | Type | Description  | Notes
 
 ## UpdateAllowlistEntry
 
-> AllowlistEntry UpdateAllowlistEntry(ctx, clusterId, entryCidrIp, entryCidrMask).AllowlistEntry1(allowlistEntry1).FieldMask(fieldMask).Execute()
+> AllowlistEntry UpdateAllowlistEntry(ctx, clusterId, entryCidrIp, entryCidrMask).AllowlistEntry1(allowlistEntry1).Execute()
 
 Update an IP allowlist entry
 
@@ -2789,11 +2849,10 @@ func main() {
     entryCidrIp := "entryCidrIp_example" // string | 
     entryCidrMask := int32(56) // int32 | 
     allowlistEntry1 := *openapiclient.NewAllowlistEntry1(false, false) // AllowlistEntry1 | AllowlistEntry
-    fieldMask := "fieldMask_example" // string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
-    resp, r, err := api_client.CockroachCloudApi.UpdateAllowlistEntry(context.Background(), clusterId, entryCidrIp, entryCidrMask).AllowlistEntry1(allowlistEntry1).FieldMask(fieldMask).Execute()
+    resp, r, err := api_client.CockroachCloudApi.UpdateAllowlistEntry(context.Background(), clusterId, entryCidrIp, entryCidrMask).AllowlistEntry1(allowlistEntry1).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.UpdateAllowlistEntry``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -2824,7 +2883,6 @@ Name | Type | Description  | Notes
 
 
  **allowlistEntry1** | [**AllowlistEntry1**](AllowlistEntry1.md) | AllowlistEntry | 
- **fieldMask** | **string** |  | 
 
 ### Return type
 
@@ -2986,7 +3044,7 @@ Name | Type | Description  | Notes
 
 ## UpdateCluster
 
-> Cluster UpdateCluster(ctx, clusterId).UpdateClusterSpecification(updateClusterSpecification).FieldMask(fieldMask).Execute()
+> Cluster UpdateCluster(ctx, clusterId).UpdateClusterSpecification(updateClusterSpecification).Execute()
 
 Scale or edit a cluster
 
@@ -3005,11 +3063,10 @@ import (
 func main() {
     clusterId := "clusterId_example" // string | 
     updateClusterSpecification := *openapiclient.NewUpdateClusterSpecification() // UpdateClusterSpecification | 
-    fieldMask := "fieldMask_example" // string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
-    resp, r, err := api_client.CockroachCloudApi.UpdateCluster(context.Background(), clusterId).UpdateClusterSpecification(updateClusterSpecification).FieldMask(fieldMask).Execute()
+    resp, r, err := api_client.CockroachCloudApi.UpdateCluster(context.Background(), clusterId).UpdateClusterSpecification(updateClusterSpecification).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.UpdateCluster``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -3036,7 +3093,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **updateClusterSpecification** | [**UpdateClusterSpecification**](UpdateClusterSpecification.md) |  | 
- **fieldMask** | **string** |  | 
 
 ### Return type
 

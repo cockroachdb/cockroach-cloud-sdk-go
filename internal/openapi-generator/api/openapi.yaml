@@ -412,13 +412,6 @@ paths:
         schema:
           type: string
         style: simple
-      - explode: true
-        in: query
-        name: field_mask
-        required: false
-        schema:
-          type: string
-        style: form
       requestBody:
         content:
           application/json:
@@ -471,10 +464,10 @@ paths:
       - lang: Shell + Curl
         source: |-
           curl --request PATCH \
-            --url 'https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}?field_mask=SOME_STRING_VALUE' \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id} \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
             --header 'content-type: application/json' \
-            --data '{"dedicated":{"hardware":{"machine_type":"n2-standard-8"},"region_nodes":{"us-central1":5,"us-west1":3}}}'
+            --data '{"dedicated":{"hardware":{"machine_spec":{"machine_type":"n2-standard-8"}},"region_nodes":{"us-central1":5,"us-west1":3}},"upgrade_status":"UPGRADE_RUNNING"}'
   /api/v1/clusters/{cluster_id}/cmek:
     get:
       operationId: CockroachCloud_GetCMEKClusterInfo
@@ -1303,7 +1296,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
-      summary: Create a Log Export configuration for a cluster
+      summary: Create or update the Log Export configuration for a cluster
       tags:
       - CockroachCloud
       x-badges:
@@ -1316,7 +1309,7 @@ paths:
             --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/logexport \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
             --header 'content-type: application/json' \
-            --data '{"auth_principal":"string","groups":[{"channels":["string"],"log_name":"string","min_level":"string","redact":true}],"log_name":"string","redact":true,"region":"string","type":"AWS_CLOUDWATCH"}'
+            --data '{"auth_principal":"my-gcp-project-id","groups":[{"channels":["OPS","HEALTH"],"log_name":"devops","min_level":"WARNING"}],"log_name":"default","redact":true,"type":"GCP_CLOUD_LOGGING"}'
   /api/v1/clusters/{cluster_id}/metricexport:
     delete:
       operationId: CockroachCloud_DeleteMetricExport
@@ -1507,7 +1500,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
-      summary: Create a Metric Export configuration for a cluster
+      summary: Create or update the Metric Export configuration for a cluster
       tags:
       - CockroachCloud
       x-badges:
@@ -1520,7 +1513,7 @@ paths:
             --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/metricexport \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
             --header 'content-type: application/json' \
-            --data '{"cloudwatch":{"log_group_name":"string","role_arn":"string","target_region":"string"},"datadog":{"api_key":"string","site":"US1"}}'
+            --data '{"datadog":{"api_key":"datadog_api_key","site":"US1"}}'
   /api/v1/clusters/{cluster_id}/networking/allowlist:
     get:
       description: "Sort order: CIDR address"
@@ -1781,13 +1774,6 @@ paths:
           format: int32
           type: integer
         style: simple
-      - explode: true
-        in: query
-        name: field_mask
-        required: false
-        schema:
-          type: string
-        style: form
       requestBody:
         content:
           application/json:
@@ -1841,7 +1827,7 @@ paths:
       - lang: Shell + Curl
         source: |-
           curl --request PATCH \
-            --url 'https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/allowlist/{entry.cidr_ip}/{entry.cidr_mask}?field_mask=SOME_STRING_VALUE' \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/allowlist/{entry.cidr_ip}/{entry.cidr_mask} \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
             --data '{"cidr_ip":"192.168.1.1","cidr_mask":32,"name":"Example","sql":true,"ui":true}'
     put:
@@ -2241,7 +2227,7 @@ paths:
             --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/egress-rules \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
             --header 'content-type: application/json' \
-            --data '{"cluster_id":"35c4abb2-bb66-46d7-afed-25ebef5ed100","description":"some very descriptive stuff","destination":"www.google.com","name":"example-1","paths":["/hello"],"ports":[443,80],"type":"FQDN"}'
+            --data '{"cluster_id":"35c4abb2-bb66-46d7-afed-25ebef5ed100","description":"egress for GCP storage buckets","destination":"storage.googleapis.com","name":"roach-buckets","paths":["/customer-managed-bucket-1/*","/customer-managed-bucket-2/*"],"ports":[443,80],"type":"FQDN"}'
   /api/v1/clusters/{cluster_id}/networking/egress-rules/egress-traffic-policy:
     post:
       operationId: CockroachCloud_SetEgressTrafficPolicy
@@ -3206,6 +3192,60 @@ paths:
           curl --request GET \
             --url https://cockroachlabs.cloud/api/v1/invoices/{invoice_id} \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+  /api/v1/organization:
+    get:
+      operationId: CockroachCloud_GetOrganizationInfo
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Organization'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Get information about the caller's organization
+      tags:
+      - CockroachCloud
+      x-badges:
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request GET \
+            --url https://cockroachlabs.cloud/api/v1/organization \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
 components:
   requestBodies:
     CockroachCloud_AddAllowlistEntry2Entry:
@@ -3760,6 +3800,8 @@ components:
             target_region specifies the specific AWS region that the metrics will
             be exported to.
           type: string
+      required:
+      - role_arn
       type: object
     Cluster:
       example:
@@ -3784,6 +3826,7 @@ components:
           ui_dns: ""
         state: CREATED
         updated_at: 2022-03-22T20:23:11.879593Z
+        upgrade_status: USING_LATEST
       properties:
         account_id:
           type: string
@@ -3825,6 +3868,8 @@ components:
         updated_at:
           format: date-time
           type: string
+        upgrade_status:
+          $ref: '#/components/schemas/ClusterUpgradeStatus'
       required:
       - cloud_provider
       - cockroach_version
@@ -3836,6 +3881,7 @@ components:
       - plan
       - regions
       - state
+      - upgrade_status
       type: object
     ClusterConfig:
       properties:
@@ -3881,6 +3927,20 @@ components:
       - CRDB_CLUSTER_DISRUPTION_FAILED
       - CRDB_REPAVE_RUNNING
       - CRDB_REPAVE_FAILED
+      type: string
+    ClusterUpgradeStatus:
+      description: |2-
+         - FINALIZED: The cluster is running the latest available CockroachDB version, and all upgrades have been finalized.
+         - MAJOR_UPGRADE_RUNNING: An major version upgrade is currently in progress.
+         - UPGRADE_AVAILABLE: An upgrade is available. If preview builds are enabled for the parent organization, this could indicate that a preview upgrade is available.
+         - PENDING_FINALIZATION: An upgrade is complete, but pending finalization. Upgrades are automatically finalized after 72 hours. For more information, see https://www.cockroachlabs.com/docs/stable/upgrade-cockroach-version.html
+         - ROLLBACK_RUNNING: A rollback operation is currently in progress.
+      enum:
+      - FINALIZED
+      - MAJOR_UPGRADE_RUNNING
+      - UPGRADE_AVAILABLE
+      - PENDING_FINALIZATION
+      - ROLLBACK_RUNNING
       type: string
     CreateClusterRequest:
       example:
@@ -3941,6 +4001,9 @@ components:
           type: string
         site:
           $ref: '#/components/schemas/DatadogConfig.DatadogSite'
+      required:
+      - api_key
+      - site
       type: object
     DatadogConfig.DatadogSite:
       enum:
@@ -4257,14 +4320,14 @@ components:
         connection_string: connection_string
       properties:
         connection_string:
-          description: "connection_string contains the full connection string, with\
-            \ parameters formatted inline."
+          description: connection_string contains the full connection string with
+            parameters formatted inline.
           type: string
         params:
           additionalProperties:
             type: string
-          description: "params contains a list of individual key parameters, for generating\
-            \ nonstandard connection strings."
+          description: params contains a list of individual key parameters for generating
+            nonstandard connection strings.
           type: object
       type: object
     GetEgressRuleResponse:
@@ -4331,6 +4394,7 @@ components:
               ui_dns: ""
             state: CREATED
             updated_at: 2022-03-22T20:23:11.879593Z
+            upgrade_status: USING_LATEST
           line_items:
           - quantity_unit: null
             total:
@@ -4373,6 +4437,7 @@ components:
               ui_dns: ""
             state: CREATED
             updated_at: 2022-03-22T20:23:11.879593Z
+            upgrade_status: USING_LATEST
           line_items:
           - quantity_unit: null
             total:
@@ -4460,6 +4525,7 @@ components:
             ui_dns: ""
           state: CREATED
           updated_at: 2022-03-22T20:23:11.879593Z
+          upgrade_status: USING_LATEST
         line_items:
         - quantity_unit: null
           total:
@@ -4660,6 +4726,7 @@ components:
             ui_dns: ""
           state: CREATED
           updated_at: 2022-03-22T20:23:11.879593Z
+          upgrade_status: USING_LATEST
         - account_id: ""
           cloud_provider: GCP
           cockroach_version: v21.2.4
@@ -4681,6 +4748,7 @@ components:
             ui_dns: ""
           state: CREATED
           updated_at: 2022-03-22T20:23:11.879593Z
+          upgrade_status: USING_LATEST
       properties:
         clusters:
           items:
@@ -4771,6 +4839,7 @@ components:
                 ui_dns: ""
               state: CREATED
               updated_at: 2022-03-22T20:23:11.879593Z
+              upgrade_status: USING_LATEST
             line_items:
             - quantity_unit: null
               total:
@@ -4813,6 +4882,7 @@ components:
                 ui_dns: ""
               state: CREATED
               updated_at: 2022-03-22T20:23:11.879593Z
+              upgrade_status: USING_LATEST
             line_items:
             - quantity_unit: null
               total:
@@ -4869,6 +4939,7 @@ components:
                 ui_dns: ""
               state: CREATED
               updated_at: 2022-03-22T20:23:11.879593Z
+              upgrade_status: USING_LATEST
             line_items:
             - quantity_unit: null
               total:
@@ -4911,6 +4982,7 @@ components:
                 ui_dns: ""
               state: CREATED
               updated_at: 2022-03-22T20:23:11.879593Z
+              upgrade_status: USING_LATEST
             line_items:
             - quantity_unit: null
               total:
@@ -4986,13 +5058,13 @@ components:
             - channels
             log_name: log_name
             redact: true
-            min_level: min_level
+            min_level: null
           - channels:
             - channels
             - channels
             log_name: log_name
             redact: true
-            min_level: min_level
+            min_level: null
           region: region
           type: null
         status: null
@@ -5028,13 +5100,13 @@ components:
           - channels
           log_name: log_name
           redact: true
-          min_level: min_level
+          min_level: null
         - channels:
           - channels
           - channels
           log_name: log_name
           redact: true
-          min_level: min_level
+          min_level: null
         region: region
         type: null
       properties:
@@ -5082,7 +5154,7 @@ components:
         - channels
         log_name: log_name
         redact: true
-        min_level: min_level
+        min_level: null
       properties:
         channels:
           description: |-
@@ -5095,16 +5167,16 @@ components:
           title: "log_name is the name of the group, reflected in the log sink"
           type: string
         min_level:
-          description: |-
-            min_level is the minimum log level to filter to this log
-            group. Should be one of INFO, WARNING, ERROR, FATAL.
-          type: string
+          $ref: '#/components/schemas/LogLevel'
         redact:
           description: |-
             redact is a boolean that governs whether this log group
             should aggregate redacted logs. Redaction settings will
             inherit from the cluster log export defaults if unset.
           type: boolean
+      required:
+      - channels
+      - log_name
       type: object
     LogExportStatus:
       description: |-
@@ -5127,6 +5199,19 @@ components:
       enum:
       - AWS_CLOUDWATCH
       - GCP_CLOUD_LOGGING
+      type: string
+    LogLevel:
+      description: " - WARNING: The WARNING severity is used for situations which\
+        \ may require\nspecial handling, where normal operation is expected to resume\
+        \ \nautomatically.\n - ERROR: The ERROR severity is used for situations that\
+        \ require special \nhandling, where normal operation could not proceed as\
+        \ expected. \nOther operations can continue mostly unaffected.\n - FATAL:\
+        \ The FATAL severity is used for situations that require an \nimmediate, hard\
+        \ server shutdown. A report is also sent to \ntelemetry if telemetry is enabled."
+      enum:
+      - WARNING
+      - ERROR
+      - FATAL
       type: string
     MetricExportInfo:
       example:
@@ -5225,6 +5310,28 @@ components:
       - OS_LINUX
       - OS_WINDOWS
       type: string
+    Organization:
+      example:
+        name: name
+        created_at: 2000-01-23T04:56:07.000+00:00
+        id: id
+        label: label
+      properties:
+        created_at:
+          format: date-time
+          type: string
+        id:
+          type: string
+        label:
+          type: string
+        name:
+          type: string
+      required:
+      - created_at
+      - id
+      - label
+      - name
+      type: object
     Plan:
       description: " - DEDICATED: A paid plan that offers dedicated hardware in any\
         \ location.\n - CUSTOM: A plan option that is used for clusters whose machine\
@@ -5410,18 +5517,30 @@ components:
           type: string
       type: object
     UpdateClusterSpecification:
+      description: "Set `upgrade_status` to 'UPGRADE_RUNNING' to start an upgrade.\
+        \ Multi-node clusters will undergo a rolling upgrade and will remain available,\
+        \ but single-node clusters will be briefly unavailable while the upgrade takes\
+        \ place. Upgrades will be finalized automatically after 72 hours, or can be\
+        \ manually finalized by setting the value to 'FINALIZED'. Before the cluster\
+        \ is finalized, it can be rolled back by setting the value to 'ROLLBACK_RUNNING'.\
+        \ Version upgrade operations cannot be performed simultaneously with other\
+        \ update operations."
       example:
         dedicated:
           hardware:
-            machine_type: n2-standard-8
+            machine_spec:
+              machine_type: n2-standard-8
           region_nodes:
             us-central1: 5
             us-west1: 3
+        upgrade_status: UPGRADE_RUNNING
       properties:
         dedicated:
           $ref: '#/components/schemas/DedicatedClusterUpdateSpecification'
         serverless:
           $ref: '#/components/schemas/ServerlessClusterUpdateSpecification'
+        upgrade_status:
+          $ref: '#/components/schemas/ClusterUpgradeStatus'
       type: object
     api.CloudProvider:
       description: |2-
@@ -5518,24 +5637,16 @@ components:
       type: object
     EnableLogExportRequest:
       example:
-        auth_principal: auth_principal
-        log_name: log_name
-        redact: true
+        auth_principal: my-gcp-project-id
         groups:
         - channels:
-          - channels
-          - channels
-          log_name: log_name
-          redact: true
-          min_level: min_level
-        - channels:
-          - channels
-          - channels
-          log_name: log_name
-          redact: true
-          min_level: min_level
-        region: region
-        type: null
+          - OPS
+          - HEALTH
+          log_name: devops
+          min_level: WARNING
+        log_name: default
+        redact: true
+        type: GCP_CLOUD_LOGGING
       properties:
         auth_principal:
           description: |-
@@ -5570,17 +5681,17 @@ components:
           type: string
         type:
           $ref: '#/components/schemas/LogExportType'
+      required:
+      - auth_principal
+      - log_name
+      - type
       title: EnableLogExportRequest
       type: object
     EnableMetricExportRequest:
       example:
         datadog:
-          site: null
-          api_key: api_key
-        cloudwatch:
-          target_region: target_region
-          log_group_name: log_group_name
-          role_arn: role_arn
+          api_key: datadog_api_key
+          site: US1
       properties:
         cloudwatch:
           $ref: '#/components/schemas/CloudWatchConfig'
@@ -5618,11 +5729,12 @@ components:
       description: AddEgressRuleRequest is the input for the rpc AddEgressRule().
       example:
         cluster_id: 35c4abb2-bb66-46d7-afed-25ebef5ed100
-        description: some very descriptive stuff
-        destination: www.google.com
-        name: example-1
+        description: egress for GCP storage buckets
+        destination: storage.googleapis.com
+        name: roach-buckets
         paths:
-        - /hello
+        - /customer-managed-bucket-1/*
+        - /customer-managed-bucket-2/*
         ports:
         - 443
         - 80

@@ -40,16 +40,17 @@ type Cluster struct {
 	Plan                Plan                 `json:"plan"`
 	Regions             []Region             `json:"regions"`
 	// sql_dns is the DNS name of SQL interface of the cluster.
-	SqlDns    *string          `json:"sql_dns,omitempty"`
-	State     ClusterStateType `json:"state"`
-	UpdatedAt *time.Time       `json:"updated_at,omitempty"`
+	SqlDns        *string              `json:"sql_dns,omitempty"`
+	State         ClusterStateType     `json:"state"`
+	UpdatedAt     *time.Time           `json:"updated_at,omitempty"`
+	UpgradeStatus ClusterUpgradeStatus `json:"upgrade_status"`
 }
 
 // NewCluster instantiates a new Cluster object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCluster(cloudProvider ApiCloudProvider, cockroachVersion string, config ClusterConfig, creatorId string, id string, name string, operationStatus ClusterStatusType, plan Plan, regions []Region, state ClusterStateType) *Cluster {
+func NewCluster(cloudProvider ApiCloudProvider, cockroachVersion string, config ClusterConfig, creatorId string, id string, name string, operationStatus ClusterStatusType, plan Plan, regions []Region, state ClusterStateType, upgradeStatus ClusterUpgradeStatus) *Cluster {
 	p := Cluster{}
 	p.CloudProvider = cloudProvider
 	p.CockroachVersion = cockroachVersion
@@ -61,6 +62,7 @@ func NewCluster(cloudProvider ApiCloudProvider, cockroachVersion string, config 
 	p.Plan = plan
 	p.Regions = regions
 	p.State = state
+	p.UpgradeStatus = upgradeStatus
 	return &p
 }
 
@@ -320,6 +322,21 @@ func (o *Cluster) SetUpdatedAt(v time.Time) {
 	o.UpdatedAt = &v
 }
 
+// GetUpgradeStatus returns the UpgradeStatus field value.
+func (o *Cluster) GetUpgradeStatus() ClusterUpgradeStatus {
+	if o == nil {
+		var ret ClusterUpgradeStatus
+		return ret
+	}
+
+	return o.UpgradeStatus
+}
+
+// SetUpgradeStatus sets field value.
+func (o *Cluster) SetUpgradeStatus(v ClusterUpgradeStatus) {
+	o.UpgradeStatus = v
+}
+
 func (o Cluster) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.AccountId != nil {
@@ -372,6 +389,9 @@ func (o Cluster) MarshalJSON() ([]byte, error) {
 	}
 	if o.UpdatedAt != nil {
 		toSerialize["updated_at"] = o.UpdatedAt
+	}
+	if true {
+		toSerialize["upgrade_status"] = o.UpgradeStatus
 	}
 	return json.Marshal(toSerialize)
 }

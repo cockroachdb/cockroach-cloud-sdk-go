@@ -17,10 +17,17 @@ generate-openapi-client:
 
 .PHONY: fetch-latest-spec
 fetch-latest-spec:
-	curl https://cockroachlabs.cloud/assets/docs/api/latest/openapi.json > internal/spec/openapi.json
+	curl -L https://management-staging.crdb.io/assets/docs/api/latest/openapi.json > internal/spec/openapi.json
 
 # Add boilerplate header to all pkg golang files.
 .PHONY: add-boilerplate
 add-boilerplate:
 	./internal/boilerplaterize.sh ./internal/boilerplate.txt \
 		`find . -name '*.go' -path './pkg/*' -exec echo '{}' \;`
+
+# Validate that the generated package is valid and free of syntax errors.
+.PHONY: validate
+validate:
+	go run main.go
+
+default: generate-openapi-client validate

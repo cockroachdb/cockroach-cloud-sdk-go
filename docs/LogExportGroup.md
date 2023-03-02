@@ -4,21 +4,29 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Channels** | Pointer to **[]string** | channels is a list of CRDB log channels to include in this group. | [optional] 
-**LogName** | Pointer to **string** |  | [optional] 
-**MinLevel** | Pointer to **string** | min_level is the minimum log level to filter to this log group. Should be one of INFO, WARNING, ERROR, FATAL. | [optional] 
+**Channels** | **[]string** | channels is a list of CRDB log channels to include in this group. | 
+**LogName** | **string** |  | 
+**MinLevel** | Pointer to [**LogLevel**](LogLevel.md) |  | [optional] 
 **Redact** | Pointer to **bool** | redact is a boolean that governs whether this log group should aggregate redacted logs. Redaction settings will inherit from the cluster log export defaults if unset. | [optional] 
 
 ## Methods
 
 ### NewLogExportGroup
 
-`func NewLogExportGroup() *LogExportGroup`
+`func NewLogExportGroup(channels []string, logName string, ) *LogExportGroup`
 
 NewLogExportGroup instantiates a new LogExportGroup object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed.
+
+### NewLogExportGroupWithDefaults
+
+`func NewLogExportGroupWithDefaults() *LogExportGroup`
+
+NewLogExportGroupWithDefaults instantiates a new LogExportGroup object.
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set.
 
 ### GetChannels
 
@@ -46,13 +54,13 @@ SetLogName sets LogName field to given value.
 
 ### GetMinLevel
 
-`func (o *LogExportGroup) GetMinLevel() string`
+`func (o *LogExportGroup) GetMinLevel() LogLevel`
 
 GetMinLevel returns the MinLevel field if non-nil, zero value otherwise.
 
 ### SetMinLevel
 
-`func (o *LogExportGroup) SetMinLevel(v string)`
+`func (o *LogExportGroup) SetMinLevel(v LogLevel)`
 
 SetMinLevel sets MinLevel field to given value.
 

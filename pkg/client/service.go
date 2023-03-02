@@ -55,6 +55,7 @@ type Service interface {
 	GetInvoice(ctx _context.Context, invoiceId string) (*Invoice, *_nethttp.Response, error)
 	GetLogExportInfo(ctx _context.Context, clusterId string) (*LogExportClusterInfo, *_nethttp.Response, error)
 	GetMetricExportInfo(ctx _context.Context, clusterId string) (*MetricExportInfo, *_nethttp.Response, error)
+	GetOrganizationInfo(ctx _context.Context) (*Organization, *_nethttp.Response, error)
 	ListAllowlistEntries(ctx _context.Context, clusterId string, options *ListAllowlistEntriesOptions) (*ListAllowlistEntriesResponse, *_nethttp.Response, error)
 	ListAvailableRegions(ctx _context.Context, options *ListAvailableRegionsOptions) (*ListAvailableRegionsResponse, *_nethttp.Response, error)
 	ListAwsEndpointConnections(ctx _context.Context, clusterId string) (*AwsEndpointConnections, *_nethttp.Response, error)
@@ -67,10 +68,10 @@ type Service interface {
 	ListSQLUsers(ctx _context.Context, clusterId string, options *ListSQLUsersOptions) (*ListSQLUsersResponse, *_nethttp.Response, error)
 	SetAwsEndpointConnectionState(ctx _context.Context, clusterId string, endpointId string, cockroachCloudSetAwsEndpointConnectionStateRequest *CockroachCloudSetAwsEndpointConnectionStateRequest) (*AwsEndpointConnection, *_nethttp.Response, error)
 	SetEgressTrafficPolicy(ctx _context.Context, clusterId string, setEgressTrafficPolicyRequest *SetEgressTrafficPolicyRequest) (*_nethttp.Response, error)
-	UpdateAllowlistEntry(ctx _context.Context, clusterId string, entryCidrIp string, entryCidrMask int32, allowlistEntry1 *AllowlistEntry1, options *UpdateAllowlistEntryOptions) (*AllowlistEntry, *_nethttp.Response, error)
+	UpdateAllowlistEntry(ctx _context.Context, clusterId string, entryCidrIp string, entryCidrMask int32, allowlistEntry1 *AllowlistEntry1) (*AllowlistEntry, *_nethttp.Response, error)
 	UpdateCMEKSpec(ctx _context.Context, clusterId string, cMEKClusterSpecification *CMEKClusterSpecification) (*CMEKClusterInfo, *_nethttp.Response, error)
 	UpdateCMEKStatus(ctx _context.Context, clusterId string, updateCMEKStatusRequest *UpdateCMEKStatusRequest) (*CMEKClusterInfo, *_nethttp.Response, error)
-	UpdateCluster(ctx _context.Context, clusterId string, updateClusterSpecification *UpdateClusterSpecification, options *UpdateClusterOptions) (*Cluster, *_nethttp.Response, error)
+	UpdateCluster(ctx _context.Context, clusterId string, updateClusterSpecification *UpdateClusterSpecification) (*Cluster, *_nethttp.Response, error)
 	UpdateSQLUserPassword(ctx _context.Context, clusterId string, name string, updateSQLUserPasswordRequest *UpdateSQLUserPasswordRequest) (*SQLUser, *_nethttp.Response, error)
 }
 
@@ -3646,6 +3647,138 @@ func (a *ServiceImpl) GetMetricExportInfo(
 	return &localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// GetOrganizationInfo executes the request.
+func (a *ServiceImpl) GetOrganizationInfo(
+	ctx _context.Context,
+) (*Organization, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+	)
+
+	localBasePath := a.client.cfg.ServerURL
+
+	localVarPath := localBasePath + "/api/v1/organization"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	// Determine the Content-Type header.
+	localVarHTTPContentTypes := []string{}
+
+	// Set Content-Type header.
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// Determine the Accept header.
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// Set Accept header.
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return nil, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return nil, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := Error{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v interface{}
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return nil, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return nil, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v interface{}
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return nil, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return nil, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v interface{}
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return nil, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return nil, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v interface{}
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return nil, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return nil, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v interface{}
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return nil, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return nil, localVarHTTPResponse, newErr
+		}
+		var v Status
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return nil, localVarHTTPResponse, newErr
+		}
+		newErr.model = v
+		return nil, localVarHTTPResponse, newErr
+	}
+
+	var localVarReturnValue Organization
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := Error{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return &localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return &localVarReturnValue, localVarHTTPResponse, nil
+}
+
 // ListAllowlistEntriesOptions contains optional parameters for ListAllowlistEntries.
 type ListAllowlistEntriesOptions struct {
 	PaginationPage *string
@@ -5432,14 +5565,9 @@ func (a *ServiceImpl) SetEgressTrafficPolicy(
 	return localVarHTTPResponse, nil
 }
 
-// UpdateAllowlistEntryOptions contains optional parameters for UpdateAllowlistEntry.
-type UpdateAllowlistEntryOptions struct {
-	FieldMask *string
-}
-
 // UpdateAllowlistEntry executes the request.
 func (a *ServiceImpl) UpdateAllowlistEntry(
-	ctx _context.Context, clusterId string, entryCidrIp string, entryCidrMask int32, allowlistEntry1 *AllowlistEntry1, options *UpdateAllowlistEntryOptions,
+	ctx _context.Context, clusterId string, entryCidrIp string, entryCidrMask int32, allowlistEntry1 *AllowlistEntry1,
 ) (*AllowlistEntry, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPatch
@@ -5463,9 +5591,6 @@ func (a *ServiceImpl) UpdateAllowlistEntry(
 		return nil, nil, reportError("allowlistEntry1 is required and must be specified")
 	}
 
-	if options.FieldMask != nil {
-		localVarQueryParams.Add("field_mask", parameterToString(*options.FieldMask, ""))
-	}
 	// Determine the Content-Type header.
 	localVarHTTPContentTypes := []string{"application/json"}
 
@@ -5856,14 +5981,9 @@ func (a *ServiceImpl) UpdateCMEKStatus(
 	return &localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// UpdateClusterOptions contains optional parameters for UpdateCluster.
-type UpdateClusterOptions struct {
-	FieldMask *string
-}
-
 // UpdateCluster executes the request.
 func (a *ServiceImpl) UpdateCluster(
-	ctx _context.Context, clusterId string, updateClusterSpecification *UpdateClusterSpecification, options *UpdateClusterOptions,
+	ctx _context.Context, clusterId string, updateClusterSpecification *UpdateClusterSpecification,
 ) (*Cluster, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPatch
@@ -5885,9 +6005,6 @@ func (a *ServiceImpl) UpdateCluster(
 		return nil, nil, reportError("updateClusterSpecification is required and must be specified")
 	}
 
-	if options.FieldMask != nil {
-		localVarQueryParams.Add("field_mask", parameterToString(*options.FieldMask, ""))
-	}
 	// Determine the Content-Type header.
 	localVarHTTPContentTypes := []string{"application/json"}
 

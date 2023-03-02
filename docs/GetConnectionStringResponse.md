@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ConnectionString** | Pointer to **string** | connection_string contains the full connection string, with parameters formatted inline. | [optional] 
-**Params** | Pointer to **map[string]string** | params contains a list of individual key parameters, for generating nonstandard connection strings. | [optional] 
+**ConnectionString** | Pointer to **string** | connection_string contains the full connection string with parameters formatted inline. | [optional] 
+**Params** | Pointer to **map[string]string** | params contains a list of individual key parameters for generating nonstandard connection strings. | [optional] 
 
 ## Methods
 

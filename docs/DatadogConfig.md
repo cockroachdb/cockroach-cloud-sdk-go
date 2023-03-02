@@ -4,19 +4,27 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ApiKey** | Pointer to **string** |  | [optional] 
-**Site** | Pointer to [**DatadogConfigDatadogSite**](DatadogConfigDatadogSite.md) |  | [optional] 
+**ApiKey** | **string** |  | 
+**Site** | [**DatadogConfigDatadogSite**](DatadogConfigDatadogSite.md) |  | 
 
 ## Methods
 
 ### NewDatadogConfig
 
-`func NewDatadogConfig() *DatadogConfig`
+`func NewDatadogConfig(apiKey string, site DatadogConfigDatadogSite, ) *DatadogConfig`
 
 NewDatadogConfig instantiates a new DatadogConfig object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed.
+
+### NewDatadogConfigWithDefaults
+
+`func NewDatadogConfigWithDefaults() *DatadogConfig`
+
+NewDatadogConfigWithDefaults instantiates a new DatadogConfig object.
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set.
 
 ### GetApiKey
 

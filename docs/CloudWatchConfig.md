@@ -5,19 +5,27 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **LogGroupName** | Pointer to **string** | log_group_name is the customized log group name. | [optional] 
-**RoleArn** | Pointer to **string** | role_arn is the IAM role used to upload metric segments to the target AWS account. | [optional] 
+**RoleArn** | **string** | role_arn is the IAM role used to upload metric segments to the target AWS account. | 
 **TargetRegion** | Pointer to **string** | target_region specifies the specific AWS region that the metrics will be exported to. | [optional] 
 
 ## Methods
 
 ### NewCloudWatchConfig
 
-`func NewCloudWatchConfig() *CloudWatchConfig`
+`func NewCloudWatchConfig(roleArn string, ) *CloudWatchConfig`
 
 NewCloudWatchConfig instantiates a new CloudWatchConfig object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed.
+
+### NewCloudWatchConfigWithDefaults
+
+`func NewCloudWatchConfigWithDefaults() *CloudWatchConfig`
+
+NewCloudWatchConfigWithDefaults instantiates a new CloudWatchConfig object.
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set.
 
 ### GetLogGroupName
 

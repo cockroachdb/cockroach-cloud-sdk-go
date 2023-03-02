@@ -543,13 +543,6 @@
             "schema": {
               "type": "string"
             }
-          },
-          {
-            "name": "field_mask",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
           }
         ],
         "requestBody": {
@@ -630,7 +623,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PATCH \\\n  --url 'https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}?field_mask=SOME_STRING_VALUE' \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"dedicated\":{\"hardware\":{\"machine_type\":\"n2-standard-8\"},\"region_nodes\":{\"us-central1\":5,\"us-west1\":3}}}'"
+            "source": "curl --request PATCH \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"dedicated\":{\"hardware\":{\"machine_spec\":{\"machine_type\":\"n2-standard-8\"}},\"region_nodes\":{\"us-central1\":5,\"us-west1\":3}},\"upgrade_status\":\"UPGRADE_RUNNING\"}'"
           }
         ]
       }
@@ -1833,7 +1826,7 @@
       },
       "post": {
         "operationId": "CockroachCloud_EnableLogExport",
-        "summary": "Create a Log Export configuration for a cluster",
+        "summary": "Create or update the Log Export configuration for a cluster",
         "parameters": [
           {
             "name": "cluster_id",
@@ -1877,6 +1870,27 @@
                     "$ref": "#/components/schemas/LogExportType"
                   }
                 },
+                "example": {
+                  "auth_principal": "my-gcp-project-id",
+                  "groups": [
+                    {
+                      "channels": [
+                        "OPS",
+                        "HEALTH"
+                      ],
+                      "log_name": "devops",
+                      "min_level": "WARNING"
+                    }
+                  ],
+                  "log_name": "default",
+                  "redact": true,
+                  "type": "GCP_CLOUD_LOGGING"
+                },
+                "required": [
+                  "type",
+                  "log_name",
+                  "auth_principal"
+                ],
                 "title": "EnableLogExportRequest"
               }
             }
@@ -1957,7 +1971,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/logexport \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"auth_principal\":\"string\",\"groups\":[{\"channels\":[\"string\"],\"log_name\":\"string\",\"min_level\":\"string\",\"redact\":true}],\"log_name\":\"string\",\"redact\":true,\"region\":\"string\",\"type\":\"AWS_CLOUDWATCH\"}'"
+            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/logexport \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"auth_principal\":\"my-gcp-project-id\",\"groups\":[{\"channels\":[\"OPS\",\"HEALTH\"],\"log_name\":\"devops\",\"min_level\":\"WARNING\"}],\"log_name\":\"default\",\"redact\":true,\"type\":\"GCP_CLOUD_LOGGING\"}'"
           }
         ]
       }
@@ -2158,7 +2172,7 @@
       },
       "post": {
         "operationId": "CockroachCloud_EnableMetricExport",
-        "summary": "Create a Metric Export configuration for a cluster",
+        "summary": "Create or update the Metric Export configuration for a cluster",
         "parameters": [
           {
             "name": "cluster_id",
@@ -2180,6 +2194,12 @@
                   },
                   "datadog": {
                     "$ref": "#/components/schemas/DatadogConfig"
+                  }
+                },
+                "example": {
+                  "datadog": {
+                    "api_key": "datadog_api_key",
+                    "site": "US1"
                   }
                 },
                 "title": "EnableMetricExportRequest"
@@ -2262,7 +2282,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/metricexport \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"cloudwatch\":{\"log_group_name\":\"string\",\"role_arn\":\"string\",\"target_region\":\"string\"},\"datadog\":{\"api_key\":\"string\",\"site\":\"US1\"}}'"
+            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/metricexport \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"datadog\":{\"api_key\":\"datadog_api_key\",\"site\":\"US1\"}}'"
           }
         ]
       }
@@ -2618,13 +2638,6 @@
               "type": "integer",
               "format": "int32"
             }
-          },
-          {
-            "name": "field_mask",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
           }
         ],
         "requestBody": {
@@ -2729,7 +2742,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PATCH \\\n  --url 'https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/allowlist/{entry.cidr_ip}/{entry.cidr_mask}?field_mask=SOME_STRING_VALUE' \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --data '{\"cidr_ip\":\"192.168.1.1\",\"cidr_mask\":32,\"name\":\"Example\",\"sql\":true,\"ui\":true}'"
+            "source": "curl --request PATCH \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/allowlist/{entry.cidr_ip}/{entry.cidr_mask} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --data '{\"cidr_ip\":\"192.168.1.1\",\"cidr_mask\":32,\"name\":\"Example\",\"sql\":true,\"ui\":true}'"
           }
         ]
       },
@@ -3274,11 +3287,12 @@
                 },
                 "example": {
                   "cluster_id": "35c4abb2-bb66-46d7-afed-25ebef5ed100",
-                  "description": "some very descriptive stuff",
-                  "destination": "www.google.com",
-                  "name": "example-1",
+                  "description": "egress for GCP storage buckets",
+                  "destination": "storage.googleapis.com",
+                  "name": "roach-buckets",
                   "paths": [
-                    "/hello"
+                    "/customer-managed-bucket-1/*",
+                    "/customer-managed-bucket-2/*"
                   ],
                   "ports": [
                     443,
@@ -3372,7 +3386,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/egress-rules \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"cluster_id\":\"35c4abb2-bb66-46d7-afed-25ebef5ed100\",\"description\":\"some very descriptive stuff\",\"destination\":\"www.google.com\",\"name\":\"example-1\",\"paths\":[\"/hello\"],\"ports\":[443,80],\"type\":\"FQDN\"}'"
+            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/egress-rules \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"cluster_id\":\"35c4abb2-bb66-46d7-afed-25ebef5ed100\",\"description\":\"egress for GCP storage buckets\",\"destination\":\"storage.googleapis.com\",\"name\":\"roach-buckets\",\"paths\":[\"/customer-managed-bucket-1/*\",\"/customer-managed-bucket-2/*\"],\"ports\":[443,80],\"type\":\"FQDN\"}'"
           }
         ]
       }
@@ -4814,6 +4828,89 @@
           }
         ]
       }
+    },
+    "/api/v1/organization": {
+      "get": {
+        "operationId": "CockroachCloud_GetOrganizationInfo",
+        "summary": "Get information about the caller's organization",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Organization"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "CockroachCloud"
+        ],
+        "x-badges": [
+          {
+            "color": "blue",
+            "label": "PREVIEW"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request GET \\\n  --url https://cockroachlabs.cloud/api/v1/organization \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+          }
+        ]
+      }
     }
   },
   "components": {
@@ -5122,7 +5219,10 @@
             "description": "target_region specifies the specific AWS region that the metrics will\nbe exported to.",
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "role_arn"
+        ]
       },
       "Cluster": {
         "type": "object",
@@ -5184,6 +5284,9 @@
           "updated_at": {
             "type": "string",
             "format": "date-time"
+          },
+          "upgrade_status": {
+            "$ref": "#/components/schemas/ClusterUpgradeStatus"
           }
         },
         "example": {
@@ -5212,12 +5315,14 @@
             }
           ],
           "state": "CREATED",
-          "updated_at": "2022-03-22T20:23:11.879593Z"
+          "updated_at": "2022-03-22T20:23:11.879593Z",
+          "upgrade_status": "USING_LATEST"
         },
         "required": [
           "id",
           "name",
           "cockroach_version",
+          "upgrade_status",
           "plan",
           "cloud_provider",
           "state",
@@ -5276,6 +5381,17 @@
           "CRDB_CLUSTER_DISRUPTION_FAILED",
           "CRDB_REPAVE_RUNNING",
           "CRDB_REPAVE_FAILED"
+        ]
+      },
+      "ClusterUpgradeStatus": {
+        "description": " - FINALIZED: The cluster is running the latest available CockroachDB version, and all upgrades have been finalized.\n - MAJOR_UPGRADE_RUNNING: An major version upgrade is currently in progress.\n - UPGRADE_AVAILABLE: An upgrade is available. If preview builds are enabled for the parent organization, this could indicate that a preview upgrade is available.\n - PENDING_FINALIZATION: An upgrade is complete, but pending finalization. Upgrades are automatically finalized after 72 hours. For more information, see https://www.cockroachlabs.com/docs/stable/upgrade-cockroach-version.html\n - ROLLBACK_RUNNING: A rollback operation is currently in progress.",
+        "type": "string",
+        "enum": [
+          "FINALIZED",
+          "MAJOR_UPGRADE_RUNNING",
+          "UPGRADE_AVAILABLE",
+          "PENDING_FINALIZATION",
+          "ROLLBACK_RUNNING"
         ]
       },
       "CreateClusterRequest": {
@@ -5352,7 +5468,11 @@
           "site": {
             "$ref": "#/components/schemas/DatadogConfig.DatadogSite"
           }
-        }
+        },
+        "required": [
+          "site",
+          "api_key"
+        ]
       },
       "DatadogConfig.DatadogSite": {
         "type": "string",
@@ -5632,11 +5752,11 @@
         "type": "object",
         "properties": {
           "connection_string": {
-            "description": "connection_string contains the full connection string, with parameters formatted inline.",
+            "description": "connection_string contains the full connection string with parameters formatted inline.",
             "type": "string"
           },
           "params": {
-            "description": "params contains a list of individual key parameters, for generating nonstandard connection strings.",
+            "description": "params contains a list of individual key parameters for generating nonstandard connection strings.",
             "type": "object",
             "additionalProperties": {
               "type": "string"
@@ -5991,14 +6111,17 @@
             "title": "log_name is the name of the group, reflected in the log sink"
           },
           "min_level": {
-            "description": "min_level is the minimum log level to filter to this log\ngroup. Should be one of INFO, WARNING, ERROR, FATAL.",
-            "type": "string"
+            "$ref": "#/components/schemas/LogLevel"
           },
           "redact": {
             "description": "redact is a boolean that governs whether this log group\nshould aggregate redacted logs. Redaction settings will\ninherit from the cluster log export defaults if unset.",
             "type": "boolean"
           }
-        }
+        },
+        "required": [
+          "log_name",
+          "channels"
+        ]
       },
       "LogExportStatus": {
         "description": "LogExportStatus encodes the possible states that a configuration can\nbe in as it is created, deployed, and disabled.",
@@ -6018,6 +6141,15 @@
         "enum": [
           "AWS_CLOUDWATCH",
           "GCP_CLOUD_LOGGING"
+        ]
+      },
+      "LogLevel": {
+        "description": " - WARNING: The WARNING severity is used for situations which may require\nspecial handling, where normal operation is expected to resume \nautomatically.\n - ERROR: The ERROR severity is used for situations that require special \nhandling, where normal operation could not proceed as expected. \nOther operations can continue mostly unaffected.\n - FATAL: The FATAL severity is used for situations that require an \nimmediate, hard server shutdown. A report is also sent to \ntelemetry if telemetry is enabled.",
+        "type": "string",
+        "enum": [
+          "WARNING",
+          "ERROR",
+          "FATAL"
         ]
       },
       "MetricExportInfo": {
@@ -6107,6 +6239,30 @@
           "OS_MAC",
           "OS_LINUX",
           "OS_WINDOWS"
+        ]
+      },
+      "Organization": {
+        "type": "object",
+        "properties": {
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "id": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "label",
+          "name",
+          "created_at"
         ]
       },
       "Plan": {
@@ -6299,6 +6455,7 @@
         }
       },
       "UpdateClusterSpecification": {
+        "description": "Set `upgrade_status` to 'UPGRADE_RUNNING' to start an upgrade. Multi-node clusters will undergo a rolling upgrade and will remain available, but single-node clusters will be briefly unavailable while the upgrade takes place. Upgrades will be finalized automatically after 72 hours, or can be manually finalized by setting the value to 'FINALIZED'. Before the cluster is finalized, it can be rolled back by setting the value to 'ROLLBACK_RUNNING'. Version upgrade operations cannot be performed simultaneously with other update operations.",
         "type": "object",
         "properties": {
           "dedicated": {
@@ -6306,18 +6463,24 @@
           },
           "serverless": {
             "$ref": "#/components/schemas/ServerlessClusterUpdateSpecification"
+          },
+          "upgrade_status": {
+            "$ref": "#/components/schemas/ClusterUpgradeStatus"
           }
         },
         "example": {
           "dedicated": {
             "hardware": {
-              "machine_type": "n2-standard-8"
+              "machine_spec": {
+                "machine_type": "n2-standard-8"
+              }
             },
             "region_nodes": {
               "us-central1": 5,
               "us-west1": 3
             }
-          }
+          },
+          "upgrade_status": "UPGRADE_RUNNING"
         }
       },
       "api.CloudProvider": {

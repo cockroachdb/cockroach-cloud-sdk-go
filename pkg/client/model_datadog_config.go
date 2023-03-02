@@ -24,53 +24,65 @@ import (
 
 // DatadogConfig struct for DatadogConfig.
 type DatadogConfig struct {
-	ApiKey *string                   `json:"api_key,omitempty"`
-	Site   *DatadogConfigDatadogSite `json:"site,omitempty"`
+	ApiKey string                   `json:"api_key"`
+	Site   DatadogConfigDatadogSite `json:"site"`
 }
 
 // NewDatadogConfig instantiates a new DatadogConfig object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDatadogConfig() *DatadogConfig {
+func NewDatadogConfig(apiKey string, site DatadogConfigDatadogSite) *DatadogConfig {
+	p := DatadogConfig{}
+	p.ApiKey = apiKey
+	p.Site = site
+	return &p
+}
+
+// NewDatadogConfigWithDefaults instantiates a new DatadogConfig object.
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewDatadogConfigWithDefaults() *DatadogConfig {
 	p := DatadogConfig{}
 	return &p
 }
 
-// GetApiKey returns the ApiKey field value if set, zero value otherwise.
+// GetApiKey returns the ApiKey field value.
 func (o *DatadogConfig) GetApiKey() string {
-	if o == nil || o.ApiKey == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.ApiKey
+
+	return o.ApiKey
 }
 
-// SetApiKey gets a reference to the given string and assigns it to the ApiKey field.
+// SetApiKey sets field value.
 func (o *DatadogConfig) SetApiKey(v string) {
-	o.ApiKey = &v
+	o.ApiKey = v
 }
 
-// GetSite returns the Site field value if set, zero value otherwise.
+// GetSite returns the Site field value.
 func (o *DatadogConfig) GetSite() DatadogConfigDatadogSite {
-	if o == nil || o.Site == nil {
+	if o == nil {
 		var ret DatadogConfigDatadogSite
 		return ret
 	}
-	return *o.Site
+
+	return o.Site
 }
 
-// SetSite gets a reference to the given DatadogConfigDatadogSite and assigns it to the Site field.
+// SetSite sets field value.
 func (o *DatadogConfig) SetSite(v DatadogConfigDatadogSite) {
-	o.Site = &v
+	o.Site = v
 }
 
 func (o DatadogConfig) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.ApiKey != nil {
+	if true {
 		toSerialize["api_key"] = o.ApiKey
 	}
-	if o.Site != nil {
+	if true {
 		toSerialize["site"] = o.Site
 	}
 	return json.Marshal(toSerialize)

@@ -21,12 +21,13 @@ Name | Type | Description | Notes
 **SqlDns** | Pointer to **string** | sql_dns is the DNS name of SQL interface of the cluster. | [optional] 
 **State** | [**ClusterStateType**](ClusterStateType.md) |  | 
 **UpdatedAt** | Pointer to **time.Time** |  | [optional] 
+**UpgradeStatus** | [**ClusterUpgradeStatus**](ClusterUpgradeStatus.md) |  | 
 
 ## Methods
 
 ### NewCluster
 
-`func NewCluster(cloudProvider ApiCloudProvider, cockroachVersion string, config ClusterConfig, creatorId string, id string, name string, operationStatus ClusterStatusType, plan Plan, regions []Region, state ClusterStateType, ) *Cluster`
+`func NewCluster(cloudProvider ApiCloudProvider, cockroachVersion string, config ClusterConfig, creatorId string, id string, name string, operationStatus ClusterStatusType, plan Plan, regions []Region, state ClusterStateType, upgradeStatus ClusterUpgradeStatus, ) *Cluster`
 
 NewCluster instantiates a new Cluster object.
 This constructor will assign default values to properties that have it defined,
@@ -244,6 +245,18 @@ GetUpdatedAt returns the UpdatedAt field if non-nil, zero value otherwise.
 `func (o *Cluster) SetUpdatedAt(v time.Time)`
 
 SetUpdatedAt sets UpdatedAt field to given value.
+
+### GetUpgradeStatus
+
+`func (o *Cluster) GetUpgradeStatus() ClusterUpgradeStatus`
+
+GetUpgradeStatus returns the UpgradeStatus field if non-nil, zero value otherwise.
+
+### SetUpgradeStatus
+
+`func (o *Cluster) SetUpgradeStatus(v ClusterUpgradeStatus)`
+
+SetUpgradeStatus sets UpgradeStatus field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

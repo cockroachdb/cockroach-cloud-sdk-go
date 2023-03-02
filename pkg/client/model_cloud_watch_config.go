@@ -27,7 +27,7 @@ type CloudWatchConfig struct {
 	// log_group_name is the customized log group name.
 	LogGroupName *string `json:"log_group_name,omitempty"`
 	// role_arn is the IAM role used to upload metric segments to the target AWS account.
-	RoleArn *string `json:"role_arn,omitempty"`
+	RoleArn string `json:"role_arn"`
 	// target_region specifies the specific AWS region that the metrics will be exported to.
 	TargetRegion *string `json:"target_region,omitempty"`
 }
@@ -36,7 +36,16 @@ type CloudWatchConfig struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCloudWatchConfig() *CloudWatchConfig {
+func NewCloudWatchConfig(roleArn string) *CloudWatchConfig {
+	p := CloudWatchConfig{}
+	p.RoleArn = roleArn
+	return &p
+}
+
+// NewCloudWatchConfigWithDefaults instantiates a new CloudWatchConfig object.
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewCloudWatchConfigWithDefaults() *CloudWatchConfig {
 	p := CloudWatchConfig{}
 	return &p
 }
@@ -55,18 +64,19 @@ func (o *CloudWatchConfig) SetLogGroupName(v string) {
 	o.LogGroupName = &v
 }
 
-// GetRoleArn returns the RoleArn field value if set, zero value otherwise.
+// GetRoleArn returns the RoleArn field value.
 func (o *CloudWatchConfig) GetRoleArn() string {
-	if o == nil || o.RoleArn == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.RoleArn
+
+	return o.RoleArn
 }
 
-// SetRoleArn gets a reference to the given string and assigns it to the RoleArn field.
+// SetRoleArn sets field value.
 func (o *CloudWatchConfig) SetRoleArn(v string) {
-	o.RoleArn = &v
+	o.RoleArn = v
 }
 
 // GetTargetRegion returns the TargetRegion field value if set, zero value otherwise.
@@ -88,7 +98,7 @@ func (o CloudWatchConfig) MarshalJSON() ([]byte, error) {
 	if o.LogGroupName != nil {
 		toSerialize["log_group_name"] = o.LogGroupName
 	}
-	if o.RoleArn != nil {
+	if true {
 		toSerialize["role_arn"] = o.RoleArn
 	}
 	if o.TargetRegion != nil {
