@@ -39,6 +39,7 @@ Method | HTTP request | Description
 [**ListDatabases**](CockroachCloudApi.md#ListDatabases) | **Get** /api/v1/clusters/{cluster_id}/databases | List databases for a cluster
 [**ListEgressRules**](CockroachCloudApi.md#ListEgressRules) | **Get** /api/v1/clusters/{cluster_id}/networking/egress-rules | List all egress rules associates with a cluster
 [**ListInvoices**](CockroachCloudApi.md#ListInvoices) | **Get** /api/v1/invoices | List invoices for a given organization
+[**ListMajorClusterVersions**](CockroachCloudApi.md#ListMajorClusterVersions) | **Get** /api/v1/cluster-versions | List available major cluster versions
 [**ListPrivateEndpointServices**](CockroachCloudApi.md#ListPrivateEndpointServices) | **Get** /api/v1/clusters/{cluster_id}/networking/private-endpoint-services | Lists all PrivateEndpointServices for a given cluster
 [**ListSQLUsers**](CockroachCloudApi.md#ListSQLUsers) | **Get** /api/v1/clusters/{cluster_id}/sql-users | List SQL users for a cluster
 [**SetAwsEndpointConnectionState**](CockroachCloudApi.md#SetAwsEndpointConnectionState) | **Patch** /api/v1/clusters/{cluster_id}/networking/aws-endpoint-connections/{endpoint_id} | Sets the AWS Endpoint Connection state based on what is passed in the body
@@ -1959,7 +1960,7 @@ func main() {
     paginationPage := "paginationPage_example" // string |  (optional)
     paginationLimit := int32(56) // int32 |  (optional)
     paginationAsOfTime := time.Now() // time.Time |  (optional)
-    paginationSortOrder := "paginationSortOrder_example" // string |  - DESC: Sort in descending order. The default order is ascending. (optional)
+    paginationSortOrder := "paginationSortOrder_example" // string |  - ASC: Sort in ascending order. This is the default unless otherwise specified.  - DESC: Sort in descending order. (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
@@ -1992,7 +1993,7 @@ Name | Type | Description  | Notes
  **paginationPage** | **string** |  | 
  **paginationLimit** | **int32** |  | 
  **paginationAsOfTime** | **time.Time** |  | 
- **paginationSortOrder** | **string** |  - DESC: Sort in descending order. The default order is ascending. | 
+ **paginationSortOrder** | **string** |  - ASC: Sort in ascending order. This is the default unless otherwise specified.  - DESC: Sort in descending order. | 
 
 ### Return type
 
@@ -2039,7 +2040,7 @@ func main() {
     paginationPage := "paginationPage_example" // string |  (optional)
     paginationLimit := int32(56) // int32 |  (optional)
     paginationAsOfTime := time.Now() // time.Time |  (optional)
-    paginationSortOrder := "paginationSortOrder_example" // string |  - DESC: Sort in descending order. The default order is ascending. (optional)
+    paginationSortOrder := "paginationSortOrder_example" // string |  - ASC: Sort in ascending order. This is the default unless otherwise specified.  - DESC: Sort in descending order. (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
@@ -2069,7 +2070,7 @@ Name | Type | Description  | Notes
  **paginationPage** | **string** |  | 
  **paginationLimit** | **int32** |  | 
  **paginationAsOfTime** | **time.Time** |  | 
- **paginationSortOrder** | **string** |  - DESC: Sort in descending order. The default order is ascending. | 
+ **paginationSortOrder** | **string** |  - ASC: Sort in ascending order. This is the default unless otherwise specified.  - DESC: Sort in descending order. | 
 
 ### Return type
 
@@ -2184,7 +2185,7 @@ func main() {
     paginationPage := "paginationPage_example" // string |  (optional)
     paginationLimit := int32(56) // int32 |  (optional)
     paginationAsOfTime := time.Now() // time.Time |  (optional)
-    paginationSortOrder := "paginationSortOrder_example" // string |  - DESC: Sort in descending order. The default order is ascending. (optional)
+    paginationSortOrder := "paginationSortOrder_example" // string |  - ASC: Sort in ascending order. This is the default unless otherwise specified.  - DESC: Sort in descending order. (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
@@ -2218,7 +2219,7 @@ Name | Type | Description  | Notes
  **paginationPage** | **string** |  | 
  **paginationLimit** | **int32** |  | 
  **paginationAsOfTime** | **time.Time** |  | 
- **paginationSortOrder** | **string** |  - DESC: Sort in descending order. The default order is ascending. | 
+ **paginationSortOrder** | **string** |  - ASC: Sort in ascending order. This is the default unless otherwise specified.  - DESC: Sort in descending order. | 
 
 ### Return type
 
@@ -2264,7 +2265,7 @@ func main() {
     paginationPage := "paginationPage_example" // string |  (optional)
     paginationLimit := int32(56) // int32 |  (optional)
     paginationAsOfTime := time.Now() // time.Time |  (optional)
-    paginationSortOrder := "paginationSortOrder_example" // string |  - DESC: Sort in descending order. The default order is ascending. (optional)
+    paginationSortOrder := "paginationSortOrder_example" // string |  - ASC: Sort in ascending order. This is the default unless otherwise specified.  - DESC: Sort in descending order. (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
@@ -2293,7 +2294,7 @@ Name | Type | Description  | Notes
  **paginationPage** | **string** |  | 
  **paginationLimit** | **int32** |  | 
  **paginationAsOfTime** | **time.Time** |  | 
- **paginationSortOrder** | **string** |  - DESC: Sort in descending order. The default order is ascending. | 
+ **paginationSortOrder** | **string** |  - ASC: Sort in ascending order. This is the default unless otherwise specified.  - DESC: Sort in descending order. | 
 
 ### Return type
 
@@ -2339,7 +2340,7 @@ func main() {
     paginationPage := "paginationPage_example" // string |  (optional)
     paginationLimit := int32(56) // int32 |  (optional)
     paginationAsOfTime := time.Now() // time.Time |  (optional)
-    paginationSortOrder := "paginationSortOrder_example" // string |  - DESC: Sort in descending order. The default order is ascending. (optional)
+    paginationSortOrder := "paginationSortOrder_example" // string |  - ASC: Sort in ascending order. This is the default unless otherwise specified.  - DESC: Sort in descending order. (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
@@ -2372,7 +2373,7 @@ Name | Type | Description  | Notes
  **paginationPage** | **string** |  | 
  **paginationLimit** | **int32** |  | 
  **paginationAsOfTime** | **time.Time** |  | 
- **paginationSortOrder** | **string** |  - DESC: Sort in descending order. The default order is ascending. | 
+ **paginationSortOrder** | **string** |  - ASC: Sort in ascending order. This is the default unless otherwise specified.  - DESC: Sort in descending order. | 
 
 ### Return type
 
@@ -2418,7 +2419,7 @@ func main() {
     paginationPage := "paginationPage_example" // string |  (optional)
     paginationLimit := int32(56) // int32 |  (optional)
     paginationAsOfTime := time.Now() // time.Time |  (optional)
-    paginationSortOrder := "paginationSortOrder_example" // string |  - DESC: Sort in descending order. The default order is ascending. (optional)
+    paginationSortOrder := "paginationSortOrder_example" // string |  - ASC: Sort in ascending order. This is the default unless otherwise specified.  - DESC: Sort in descending order. (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
@@ -2451,7 +2452,7 @@ Name | Type | Description  | Notes
  **paginationPage** | **string** |  | 
  **paginationLimit** | **int32** |  | 
  **paginationAsOfTime** | **time.Time** |  | 
- **paginationSortOrder** | **string** |  - DESC: Sort in descending order. The default order is ascending. | 
+ **paginationSortOrder** | **string** |  - ASC: Sort in ascending order. This is the default unless otherwise specified.  - DESC: Sort in descending order. | 
 
 ### Return type
 
@@ -2517,6 +2518,79 @@ Other parameters are passed through a pointer to a apiListInvoices struct via th
 ### Return type
 
 [**ListInvoicesResponse**](ListInvoicesResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ListMajorClusterVersions
+
+> ListMajorClusterVersionsResponse ListMajorClusterVersions(ctx).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).Execute()
+
+List available major cluster versions
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    "time"
+    openapiclient "./openapi"
+)
+
+func main() {
+    paginationPage := "paginationPage_example" // string |  (optional)
+    paginationLimit := int32(56) // int32 |  (optional)
+    paginationAsOfTime := time.Now() // time.Time |  (optional)
+    paginationSortOrder := "paginationSortOrder_example" // string |  - ASC: Sort in ascending order. This is the default unless otherwise specified.  - DESC: Sort in descending order. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.CockroachCloudApi.ListMajorClusterVersions(context.Background()).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.ListMajorClusterVersions``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListMajorClusterVersions`: ListMajorClusterVersionsResponse
+    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.ListMajorClusterVersions`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListMajorClusterVersions struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **paginationPage** | **string** |  | 
+ **paginationLimit** | **int32** |  | 
+ **paginationAsOfTime** | **time.Time** |  | 
+ **paginationSortOrder** | **string** |  - ASC: Sort in ascending order. This is the default unless otherwise specified.  - DESC: Sort in descending order. | 
+
+### Return type
+
+[**ListMajorClusterVersionsResponse**](ListMajorClusterVersionsResponse.md)
 
 ### Authorization
 
@@ -2628,7 +2702,7 @@ func main() {
     paginationPage := "paginationPage_example" // string |  (optional)
     paginationLimit := int32(56) // int32 |  (optional)
     paginationAsOfTime := time.Now() // time.Time |  (optional)
-    paginationSortOrder := "paginationSortOrder_example" // string |  - DESC: Sort in descending order. The default order is ascending. (optional)
+    paginationSortOrder := "paginationSortOrder_example" // string |  - ASC: Sort in ascending order. This is the default unless otherwise specified.  - DESC: Sort in descending order. (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
@@ -2661,7 +2735,7 @@ Name | Type | Description  | Notes
  **paginationPage** | **string** |  | 
  **paginationLimit** | **int32** |  | 
  **paginationAsOfTime** | **time.Time** |  | 
- **paginationSortOrder** | **string** |  - DESC: Sort in descending order. The default order is ascending. | 
+ **paginationSortOrder** | **string** |  - ASC: Sort in ascending order. This is the default unless otherwise specified.  - DESC: Sort in descending order. | 
 
 ### Return type
 

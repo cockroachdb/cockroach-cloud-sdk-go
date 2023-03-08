@@ -24,6 +24,8 @@ import (
 
 // ServerlessClusterCreateSpecification struct for ServerlessClusterCreateSpecification.
 type ServerlessClusterCreateSpecification struct {
+	// Specify which region should be made the primary region. This is only applicable to multi-region Serverless clusters. This field is required if you create the cluster in more than one region.
+	PrimaryRegion *string `json:"primary_region,omitempty"`
 	// Region values should match the cloud provider's zone code. For example, for Oregon, set region_name to \"us-west2\" for GCP and \"us-west-2\" for AWS.
 	Regions    []string `json:"regions"`
 	SpendLimit int32    `json:"spend_limit"`
@@ -46,6 +48,20 @@ func NewServerlessClusterCreateSpecification(regions []string, spendLimit int32)
 func NewServerlessClusterCreateSpecificationWithDefaults() *ServerlessClusterCreateSpecification {
 	p := ServerlessClusterCreateSpecification{}
 	return &p
+}
+
+// GetPrimaryRegion returns the PrimaryRegion field value if set, zero value otherwise.
+func (o *ServerlessClusterCreateSpecification) GetPrimaryRegion() string {
+	if o == nil || o.PrimaryRegion == nil {
+		var ret string
+		return ret
+	}
+	return *o.PrimaryRegion
+}
+
+// SetPrimaryRegion gets a reference to the given string and assigns it to the PrimaryRegion field.
+func (o *ServerlessClusterCreateSpecification) SetPrimaryRegion(v string) {
+	o.PrimaryRegion = &v
 }
 
 // GetRegions returns the Regions field value.
@@ -80,6 +96,9 @@ func (o *ServerlessClusterCreateSpecification) SetSpendLimit(v int32) {
 
 func (o ServerlessClusterCreateSpecification) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.PrimaryRegion != nil {
+		toSerialize["primary_region"] = o.PrimaryRegion
+	}
 	if true {
 		toSerialize["regions"] = o.Regions
 	}

@@ -16,6 +16,127 @@
     }
   ],
   "paths": {
+    "/api/v1/cluster-versions": {
+      "get": {
+        "operationId": "CockroachCloud_ListMajorClusterVersions",
+        "summary": "List available major cluster versions",
+        "description": "Sort order: Version number descending",
+        "parameters": [
+          {
+            "name": "pagination.page",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pagination.limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pagination.as_of_time",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "pagination.sort_order",
+            "in": "query",
+            "description": " - ASC: Sort in ascending order. This is the default unless otherwise specified.\n - DESC: Sort in descending order.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "ASC",
+                "DESC"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListMajorClusterVersionsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "CockroachCloud"
+        ],
+        "x-badges": [
+          {
+            "color": "blue",
+            "label": "PREVIEW"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request GET \\\n  --url 'https://cockroachlabs.cloud/api/v1/cluster-versions?pagination.page=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.as_of_time=SOME_STRING_VALUE&pagination.sort_order=SOME_STRING_VALUE' \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+          }
+        ]
+      }
+    },
     "/api/v1/clusters": {
       "get": {
         "operationId": "CockroachCloud_ListClusters",
@@ -57,7 +178,7 @@
           {
             "name": "pagination.sort_order",
             "in": "query",
-            "description": " - DESC: Sort in descending order. The default order is ascending.",
+            "description": " - ASC: Sort in ascending order. This is the default unless otherwise specified.\n - DESC: Sort in descending order.",
             "schema": {
               "type": "string",
               "enum": [
@@ -143,14 +264,14 @@
         "operationId": "CockroachCloud_CreateCluster",
         "summary": "Create and initialize a new cluster",
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/CreateClusterRequest"
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "200": {
@@ -278,7 +399,7 @@
           {
             "name": "pagination.sort_order",
             "in": "query",
-            "description": " - DESC: Sort in descending order. The default order is ascending.",
+            "description": " - ASC: Sort in ascending order. This is the default unless otherwise specified.\n - DESC: Sort in descending order.",
             "schema": {
               "type": "string",
               "enum": [
@@ -546,14 +667,14 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/UpdateClusterSpecification"
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "200": {
@@ -728,6 +849,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -746,8 +868,7 @@
                 "title": "UpdateCMEKStatusRequest"
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "200": {
@@ -835,6 +956,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -865,8 +987,7 @@
                 "title": "CMEKClusterSpecification"
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "200": {
@@ -954,6 +1075,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -984,8 +1106,7 @@
                 "title": "CMEKClusterSpecification"
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "200": {
@@ -1221,7 +1342,7 @@
           {
             "name": "pagination.sort_order",
             "in": "query",
-            "description": " - DESC: Sort in descending order. The default order is ascending.",
+            "description": " - ASC: Sort in ascending order. This is the default unless otherwise specified.\n - DESC: Sort in descending order.",
             "schema": {
               "type": "string",
               "enum": [
@@ -1323,6 +1444,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -1345,8 +1467,7 @@
                 "title": "UpdateDatabaseRequest"
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "200": {
@@ -1440,6 +1561,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -1458,8 +1580,7 @@
                 "title": "CreateDatabaseRequest"
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "200": {
@@ -1838,6 +1959,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -1894,8 +2016,7 @@
                 "title": "EnableLogExportRequest"
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "200": {
@@ -2184,6 +2305,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -2205,8 +2327,7 @@
                 "title": "EnableMetricExportRequest"
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "200": {
@@ -2327,7 +2448,7 @@
           {
             "name": "pagination.sort_order",
             "in": "query",
-            "description": " - DESC: Sort in descending order. The default order is ascending.",
+            "description": " - ASC: Sort in ascending order. This is the default unless otherwise specified.\n - DESC: Sort in descending order.",
             "schema": {
               "type": "string",
               "enum": [
@@ -2423,14 +2544,14 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/AllowlistEntry"
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "200": {
@@ -2642,6 +2763,7 @@
         ],
         "requestBody": {
           "description": "AllowlistEntry",
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -2671,8 +2793,7 @@
                 "title": "AllowlistEntry"
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "200": {
@@ -2778,6 +2899,7 @@
         ],
         "requestBody": {
           "description": "AllowlistEntry",
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -2807,8 +2929,7 @@
                 "title": "AllowlistEntry"
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "200": {
@@ -3003,6 +3124,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -3017,8 +3139,7 @@
                 }
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "200": {
@@ -3140,7 +3261,7 @@
           {
             "name": "pagination.sort_order",
             "in": "query",
-            "description": " - DESC: Sort in descending order. The default order is ascending.",
+            "description": " - ASC: Sort in ascending order. This is the default unless otherwise specified.\n - DESC: Sort in descending order.",
             "schema": {
               "type": "string",
               "enum": [
@@ -3243,6 +3364,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -3309,8 +3431,7 @@
                 "title": "AddEgressRuleRequest"
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "200": {
@@ -3407,6 +3528,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -3428,8 +3550,7 @@
                 "title": "SetEgressTrafficPolicyRequest"
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "200": {
@@ -3745,6 +3866,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -3794,8 +3916,7 @@
                 "title": "EditEgressRuleRequest"
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "200": {
@@ -3985,14 +4106,14 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "type": "object"
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "200": {
@@ -4121,7 +4242,7 @@
           {
             "name": "pagination.sort_order",
             "in": "query",
-            "description": " - DESC: Sort in descending order. The default order is ascending.",
+            "description": " - ASC: Sort in ascending order. This is the default unless otherwise specified.\n - DESC: Sort in descending order.",
             "schema": {
               "type": "string",
               "enum": [
@@ -4244,7 +4365,7 @@
           {
             "name": "pagination.sort_order",
             "in": "query",
-            "description": " - DESC: Sort in descending order. The default order is ascending.",
+            "description": " - ASC: Sort in ascending order. This is the default unless otherwise specified.\n - DESC: Sort in descending order.",
             "schema": {
               "type": "string",
               "enum": [
@@ -4340,6 +4461,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -4363,8 +4485,7 @@
                 "title": "CreateSQLUserRequest"
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "200": {
@@ -4557,6 +4678,7 @@
           }
         ],
         "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
@@ -4575,8 +4697,7 @@
                 "title": "UpdateSQLUserPasswordRequest"
               }
             }
-          },
-          "required": true
+          }
         },
         "responses": {
           "200": {
@@ -5003,7 +5124,7 @@
         "title": "AllowlistEntry"
       },
       "Any": {
-        "description": "`Any` contains an arbitrary serialized protocol buffer message along with a\nURL that describes the type of the serialized message.\n\nProtobuf library provides support to pack/unpack Any values in the form\nof utility functions or additional generated methods of the Any type.\n\nExample 1: Pack and unpack a message in C++.\n\n    Foo foo = ...;\n    Any any;\n    any.PackFrom(foo);\n    ...\n    if (any.UnpackTo(&foo)) {\n      ...\n    }\n\nExample 2: Pack and unpack a message in Java.\n\n    Foo foo = ...;\n    Any any = Any.pack(foo);\n    ...\n    if (any.is(Foo.class)) {\n      foo = any.unpack(Foo.class);\n    }\n\n Example 3: Pack and unpack a message in Python.\n\n    foo = Foo(...)\n    any = Any()\n    any.Pack(foo)\n    ...\n    if any.Is(Foo.DESCRIPTOR):\n      any.Unpack(foo)\n      ...\n\n Example 4: Pack and unpack a message in Go\n\n     foo := &pb.Foo{...}\n     any, err := ptypes.MarshalAny(foo)\n     ...\n     foo := &pb.Foo{}\n     if err := ptypes.UnmarshalAny(any, foo); err != nil {\n       ...\n     }\n\nThe pack methods provided by protobuf library will by default use\n'type.googleapis.com/full.type.name' as the type URL and the unpack\nmethods only use the fully qualified type name after the last '/'\nin the type URL, for example \"foo.bar.com/x/y.z\" will yield type\nname \"y.z\".\n\n\nJSON\n====\nThe JSON representation of an `Any` value uses the regular\nrepresentation of the deserialized, embedded message, with an\nadditional field `@type` which contains the type URL. Example:\n\n    package google.profile;\n    message Person {\n      string first_name = 1;\n      string last_name = 2;\n    }\n\n    {\n      \"@type\": \"type.googleapis.com/google.profile.Person\",\n      \"firstName\": <string>,\n      \"lastName\": <string>\n    }\n\nIf the embedded message type is well-known and has a custom JSON\nrepresentation, that representation will be embedded adding a field\n`value` which holds the custom JSON in addition to the `@type`\nfield. Example (for message [google.protobuf.Duration][]):\n\n    {\n      \"@type\": \"type.googleapis.com/google.protobuf.Duration\",\n      \"value\": \"1.212s\"\n    }",
+        "description": "`Any` contains an arbitrary serialized protocol buffer message along with a\nURL that describes the type of the serialized message.\n\nProtobuf library provides support to pack/unpack Any values in the form\nof utility functions or additional generated methods of the Any type.\n\nExample 1: Pack and unpack a message in C++.\n\n    Foo foo = ...;\n    Any any;\n    any.PackFrom(foo);\n    ...\n    if (any.UnpackTo(&foo)) {\n      ...\n    }\n\nExample 2: Pack and unpack a message in Java.\n\n    Foo foo = ...;\n    Any any = Any.pack(foo);\n    ...\n    if (any.is(Foo.class)) {\n      foo = any.unpack(Foo.class);\n    }\n\nExample 3: Pack and unpack a message in Python.\n\n    foo = Foo(...)\n    any = Any()\n    any.Pack(foo)\n    ...\n    if any.Is(Foo.DESCRIPTOR):\n      any.Unpack(foo)\n      ...\n\nExample 4: Pack and unpack a message in Go\n\n     foo := &pb.Foo{...}\n     any, err := anypb.New(foo)\n     if err != nil {\n       ...\n     }\n     ...\n     foo := &pb.Foo{}\n     if err := any.UnmarshalTo(foo); err != nil {\n       ...\n     }\n\nThe pack methods provided by protobuf library will by default use\n'type.googleapis.com/full.type.name' as the type URL and the unpack\nmethods only use the fully qualified type name after the last '/'\nin the type URL, for example \"foo.bar.com/x/y.z\" will yield type\nname \"y.z\".\n\n\nJSON\n\nThe JSON representation of an `Any` value uses the regular\nrepresentation of the deserialized, embedded message, with an\nadditional field `@type` which contains the type URL. Example:\n\n    package google.profile;\n    message Person {\n      string first_name = 1;\n      string last_name = 2;\n    }\n\n    {\n      \"@type\": \"type.googleapis.com/google.profile.Person\",\n      \"firstName\": <string>,\n      \"lastName\": <string>\n    }\n\nIf the embedded message type is well-known and has a custom JSON\nrepresentation, that representation will be embedded adding a field\n`value` which holds the custom JSON in addition to the `@type`\nfield. Example (for message [google.protobuf.Duration][]):\n\n    {\n      \"@type\": \"type.googleapis.com/google.protobuf.Duration\",\n      \"value\": \"1.212s\"\n    }",
         "type": "object",
         "properties": {
           "@type": {
@@ -5342,6 +5463,30 @@
             "$ref": "#/components/schemas/ServerlessClusterConfig"
           }
         }
+      },
+      "ClusterMajorVersion": {
+        "description": "For more information about CockroachDB cluster version support, see https://www.cockroachlabs.com/docs/releases/release-support-policy.html",
+        "type": "object",
+        "properties": {
+          "support_status": {
+            "$ref": "#/components/schemas/ClusterMajorVersionSupportStatus"
+          },
+          "version": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "version",
+          "support_status"
+        ]
+      },
+      "ClusterMajorVersionSupportStatus": {
+        "type": "string",
+        "enum": [
+          "UNSUPPORTED",
+          "SUPPORTED",
+          "PREVIEW"
+        ]
       },
       "ClusterStateType": {
         "description": " - LOCKED: An exclusive operation is being performed on this cluster.\nOther operations should not proceed if they did not set a cluster into the LOCKED state.",
@@ -6020,6 +6165,23 @@
           "invoices"
         ]
       },
+      "ListMajorClusterVersionsResponse": {
+        "type": "object",
+        "properties": {
+          "pagination": {
+            "$ref": "#/components/schemas/KeysetPaginationResponse"
+          },
+          "versions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ClusterMajorVersion"
+            }
+          }
+        },
+        "required": [
+          "versions"
+        ]
+      },
       "ListSQLUsersResponse": {
         "type": "object",
         "properties": {
@@ -6397,6 +6559,10 @@
       "ServerlessClusterCreateSpecification": {
         "type": "object",
         "properties": {
+          "primary_region": {
+            "description": "Specify which region should be made the primary region.\nThis is only applicable to multi-region Serverless clusters.\nThis field is required if you create the cluster in more than\none region.",
+            "type": "string"
+          },
           "regions": {
             "description": "Region values should match the cloud provider's zone code.\nFor example, for Oregon, set region_name to \"us-west2\" for\nGCP and \"us-west-2\" for AWS.",
             "type": "array",
@@ -6429,7 +6595,7 @@
         ]
       },
       "SortOrder": {
-        "description": " - DESC: Sort in descending order. The default order is ascending.",
+        "description": " - ASC: Sort in ascending order. This is the default unless otherwise specified.\n - DESC: Sort in descending order.",
         "type": "string",
         "enum": [
           "ASC",

@@ -64,6 +64,7 @@ type Service interface {
 	ListDatabases(ctx _context.Context, clusterId string, options *ListDatabasesOptions) (*ApiListDatabasesResponse, *_nethttp.Response, error)
 	ListEgressRules(ctx _context.Context, clusterId string, options *ListEgressRulesOptions) (*ListEgressRulesResponse, *_nethttp.Response, error)
 	ListInvoices(ctx _context.Context) (*ListInvoicesResponse, *_nethttp.Response, error)
+	ListMajorClusterVersions(ctx _context.Context, options *ListMajorClusterVersionsOptions) (*ListMajorClusterVersionsResponse, *_nethttp.Response, error)
 	ListPrivateEndpointServices(ctx _context.Context, clusterId string) (*PrivateEndpointServices, *_nethttp.Response, error)
 	ListSQLUsers(ctx _context.Context, clusterId string, options *ListSQLUsersOptions) (*ListSQLUsersResponse, *_nethttp.Response, error)
 	SetAwsEndpointConnectionState(ctx _context.Context, clusterId string, endpointId string, cockroachCloudSetAwsEndpointConnectionStateRequest *CockroachCloudSetAwsEndpointConnectionStateRequest) (*AwsEndpointConnection, *_nethttp.Response, error)
@@ -3787,7 +3788,7 @@ type ListAllowlistEntriesOptions struct {
 
 	PaginationAsOfTime *time.Time
 
-	//  - DESC: Sort in descending order. The default order is ascending.
+	//  - ASC: Sort in ascending order. This is the default unless otherwise specified.  - DESC: Sort in descending order.
 	PaginationSortOrder *string
 }
 
@@ -3950,7 +3951,7 @@ type ListAvailableRegionsOptions struct {
 
 	PaginationAsOfTime *time.Time
 
-	//  - DESC: Sort in descending order. The default order is ascending.
+	//  - ASC: Sort in ascending order. This is the default unless otherwise specified.  - DESC: Sort in descending order.
 	PaginationSortOrder *string
 }
 
@@ -4248,7 +4249,7 @@ type ListClusterNodesOptions struct {
 
 	PaginationAsOfTime *time.Time
 
-	//  - DESC: Sort in descending order. The default order is ascending.
+	//  - ASC: Sort in ascending order. This is the default unless otherwise specified.  - DESC: Sort in descending order.
 	PaginationSortOrder *string
 }
 
@@ -4411,7 +4412,7 @@ type ListClustersOptions struct {
 
 	PaginationAsOfTime *time.Time
 
-	//  - DESC: Sort in descending order. The default order is ascending.
+	//  - ASC: Sort in ascending order. This is the default unless otherwise specified.  - DESC: Sort in descending order.
 	PaginationSortOrder *string
 }
 
@@ -4570,7 +4571,7 @@ type ListDatabasesOptions struct {
 
 	PaginationAsOfTime *time.Time
 
-	//  - DESC: Sort in descending order. The default order is ascending.
+	//  - ASC: Sort in ascending order. This is the default unless otherwise specified.  - DESC: Sort in descending order.
 	PaginationSortOrder *string
 }
 
@@ -4727,7 +4728,7 @@ type ListEgressRulesOptions struct {
 
 	PaginationAsOfTime *time.Time
 
-	//  - DESC: Sort in descending order. The default order is ascending.
+	//  - ASC: Sort in ascending order. This is the default unless otherwise specified.  - DESC: Sort in descending order.
 	PaginationSortOrder *string
 }
 
@@ -5008,6 +5009,162 @@ func (a *ServiceImpl) ListInvoices(
 	return &localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// ListMajorClusterVersionsOptions contains optional parameters for ListMajorClusterVersions.
+type ListMajorClusterVersionsOptions struct {
+	PaginationPage *string
+
+	PaginationLimit *int32
+
+	PaginationAsOfTime *time.Time
+
+	//  - ASC: Sort in ascending order. This is the default unless otherwise specified.  - DESC: Sort in descending order.
+	PaginationSortOrder *string
+}
+
+// ListMajorClusterVersions executes the request.
+func (a *ServiceImpl) ListMajorClusterVersions(
+	ctx _context.Context, options *ListMajorClusterVersionsOptions,
+) (*ListMajorClusterVersionsResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+	)
+
+	localBasePath := a.client.cfg.ServerURL
+
+	localVarPath := localBasePath + "/api/v1/cluster-versions"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	if options.PaginationPage != nil {
+		localVarQueryParams.Add("pagination.page", parameterToString(*options.PaginationPage, ""))
+	}
+	if options.PaginationLimit != nil {
+		localVarQueryParams.Add("pagination.limit", parameterToString(*options.PaginationLimit, ""))
+	}
+	if options.PaginationAsOfTime != nil {
+		localVarQueryParams.Add("pagination.as_of_time", parameterToString(*options.PaginationAsOfTime, ""))
+	}
+	if options.PaginationSortOrder != nil {
+		localVarQueryParams.Add("pagination.sort_order", parameterToString(*options.PaginationSortOrder, ""))
+	}
+	// Determine the Content-Type header.
+	localVarHTTPContentTypes := []string{}
+
+	// Set Content-Type header.
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// Determine the Accept header.
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// Set Accept header.
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return nil, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return nil, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := Error{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v interface{}
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return nil, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return nil, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v interface{}
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return nil, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return nil, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v interface{}
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return nil, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return nil, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v interface{}
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return nil, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return nil, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v interface{}
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return nil, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return nil, localVarHTTPResponse, newErr
+		}
+		var v Status
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return nil, localVarHTTPResponse, newErr
+		}
+		newErr.model = v
+		return nil, localVarHTTPResponse, newErr
+	}
+
+	var localVarReturnValue ListMajorClusterVersionsResponse
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := Error{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return &localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return &localVarReturnValue, localVarHTTPResponse, nil
+}
+
 // ListPrivateEndpointServices executes the request.
 func (a *ServiceImpl) ListPrivateEndpointServices(
 	ctx _context.Context, clusterId string,
@@ -5149,7 +5306,7 @@ type ListSQLUsersOptions struct {
 
 	PaginationAsOfTime *time.Time
 
-	//  - DESC: Sort in descending order. The default order is ascending.
+	//  - ASC: Sort in ascending order. This is the default unless otherwise specified.  - DESC: Sort in descending order.
 	PaginationSortOrder *string
 }
 

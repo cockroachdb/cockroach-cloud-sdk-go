@@ -18,6 +18,98 @@ security:
 tags:
 - name: CockroachCloud
 paths:
+  /api/v1/cluster-versions:
+    get:
+      description: "Sort order: Version number descending"
+      operationId: CockroachCloud_ListMajorClusterVersions
+      parameters:
+      - explode: true
+        in: query
+        name: pagination.page
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: pagination.limit
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: pagination.as_of_time
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: |2-
+           - ASC: Sort in ascending order. This is the default unless otherwise specified.
+           - DESC: Sort in descending order.
+        explode: true
+        in: query
+        name: pagination.sort_order
+        required: false
+        schema:
+          enum:
+          - ASC
+          - DESC
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListMajorClusterVersionsResponse'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: List available major cluster versions
+      tags:
+      - CockroachCloud
+      x-badges:
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request GET \
+            --url 'https://cockroachlabs.cloud/api/v1/cluster-versions?pagination.page=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.as_of_time=SOME_STRING_VALUE&pagination.sort_order=SOME_STRING_VALUE' \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
   /api/v1/clusters:
     get:
       description: "Sort order: Cluster name"
@@ -56,7 +148,9 @@ paths:
           format: date-time
           type: string
         style: form
-      - description: " - DESC: Sort in descending order. The default order is ascending."
+      - description: |2-
+           - ASC: Sort in ascending order. This is the default unless otherwise specified.
+           - DESC: Sort in descending order.
         explode: true
         in: query
         name: pagination.sort_order
@@ -226,7 +320,9 @@ paths:
           format: date-time
           type: string
         style: form
-      - description: " - DESC: Sort in descending order. The default order is ascending."
+      - description: |2-
+           - ASC: Sort in ascending order. This is the default unless otherwise specified.
+           - DESC: Sort in descending order.
         explode: true
         in: query
         name: pagination.sort_order
@@ -849,7 +945,9 @@ paths:
           format: date-time
           type: string
         style: form
-      - description: " - DESC: Sort in descending order. The default order is ascending."
+      - description: |2-
+           - ASC: Sort in ascending order. This is the default unless otherwise specified.
+           - DESC: Sort in descending order.
         explode: true
         in: query
         name: pagination.sort_order
@@ -1549,7 +1647,9 @@ paths:
           format: date-time
           type: string
         style: form
-      - description: " - DESC: Sort in descending order. The default order is ascending."
+      - description: |2-
+           - ASC: Sort in ascending order. This is the default unless otherwise specified.
+           - DESC: Sort in descending order.
         explode: true
         in: query
         name: pagination.sort_order
@@ -2096,7 +2196,9 @@ paths:
           format: date-time
           type: string
         style: form
-      - description: " - DESC: Sort in descending order. The default order is ascending."
+      - description: |2-
+           - ASC: Sort in ascending order. This is the default unless otherwise specified.
+           - DESC: Sort in descending order.
         explode: true
         in: query
         name: pagination.sort_order
@@ -2712,7 +2814,9 @@ paths:
           format: date-time
           type: string
         style: form
-      - description: " - DESC: Sort in descending order. The default order is ascending."
+      - description: |2-
+           - ASC: Sort in ascending order. This is the default unless otherwise specified.
+           - DESC: Sort in descending order.
         explode: true
         in: query
         name: pagination.sort_order
@@ -2806,7 +2910,9 @@ paths:
           format: date-time
           type: string
         style: form
-      - description: " - DESC: Sort in descending order. The default order is ascending."
+      - description: |2-
+           - ASC: Sort in ascending order. This is the default unless otherwise specified.
+           - DESC: Sort in descending order.
         explode: true
         in: query
         name: pagination.sort_order
@@ -3417,7 +3523,7 @@ components:
               foo = any.unpack(Foo.class);
             }
 
-         Example 3: Pack and unpack a message in Python.
+        Example 3: Pack and unpack a message in Python.
 
             foo = Foo(...)
             any = Any()
@@ -3427,13 +3533,16 @@ components:
               any.Unpack(foo)
               ...
 
-         Example 4: Pack and unpack a message in Go
+        Example 4: Pack and unpack a message in Go
 
              foo := &pb.Foo{...}
-             any, err := ptypes.MarshalAny(foo)
+             any, err := anypb.New(foo)
+             if err != nil {
+               ...
+             }
              ...
              foo := &pb.Foo{}
-             if err := ptypes.UnmarshalAny(any, foo); err != nil {
+             if err := any.UnmarshalTo(foo); err != nil {
                ...
              }
 
@@ -3445,7 +3554,7 @@ components:
 
 
         JSON
-        ====
+
         The JSON representation of an `Any` value uses the regular
         representation of the deserialized, embedded message, with an
         additional field `@type` which contains the type URL. Example:
@@ -3890,6 +3999,27 @@ components:
         serverless:
           $ref: '#/components/schemas/ServerlessClusterConfig'
       type: object
+    ClusterMajorVersion:
+      description: "For more information about CockroachDB cluster version support,\
+        \ see https://www.cockroachlabs.com/docs/releases/release-support-policy.html"
+      example:
+        support_status: null
+        version: version
+      properties:
+        support_status:
+          $ref: '#/components/schemas/ClusterMajorVersionSupportStatus'
+        version:
+          type: string
+      required:
+      - support_status
+      - version
+      type: object
+    ClusterMajorVersionSupportStatus:
+      enum:
+      - UNSUPPORTED
+      - SUPPORTED
+      - PREVIEW
+      type: string
     ClusterStateType:
       description: |2-
          - LOCKED: An exclusive operation is being performed on this cluster.
@@ -5019,6 +5149,26 @@ components:
       required:
       - invoices
       type: object
+    ListMajorClusterVersionsResponse:
+      example:
+        pagination:
+          next_page: next_page
+          previous_page: previous_page
+        versions:
+        - support_status: null
+          version: version
+        - support_status: null
+          version: version
+      properties:
+        pagination:
+          $ref: '#/components/schemas/KeysetPaginationResponse'
+        versions:
+          items:
+            $ref: '#/components/schemas/ClusterMajorVersion'
+          type: array
+      required:
+      - versions
+      type: object
     ListSQLUsersResponse:
       example:
         pagination:
@@ -5473,6 +5623,13 @@ components:
       type: object
     ServerlessClusterCreateSpecification:
       properties:
+        primary_region:
+          description: |-
+            Specify which region should be made the primary region.
+            This is only applicable to multi-region Serverless clusters.
+            This field is required if you create the cluster in more than
+            one region.
+          type: string
         regions:
           description: |-
             Region values should match the cloud provider's zone code.
@@ -5499,7 +5656,9 @@ components:
       - spend_limit
       type: object
     SortOrder:
-      description: " - DESC: Sort in descending order. The default order is ascending."
+      description: |2-
+         - ASC: Sort in ascending order. This is the default unless otherwise specified.
+         - DESC: Sort in descending order.
       enum:
       - ASC
       - DESC

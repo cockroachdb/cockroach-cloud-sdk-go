@@ -100,6 +100,7 @@ Class | Method | HTTP request | Description
 *CockroachCloudApi* | **ListDatabases** | **Get** /api/v1/clusters/{cluster_id}/databases | List databases for a cluster
 *CockroachCloudApi* | **ListEgressRules** | **Get** /api/v1/clusters/{cluster_id}/networking/egress-rules | List all egress rules associates with a cluster
 *CockroachCloudApi* | **ListInvoices** | **Get** /api/v1/invoices | List invoices for a given organization
+*CockroachCloudApi* | **ListMajorClusterVersions** | **Get** /api/v1/cluster-versions | List available major cluster versions
 *CockroachCloudApi* | **ListPrivateEndpointServices** | **Get** /api/v1/clusters/{cluster_id}/networking/private-endpoint-services | Lists all PrivateEndpointServices for a given cluster
 *CockroachCloudApi* | **ListSQLUsers** | **Get** /api/v1/clusters/{cluster_id}/sql-users | List SQL users for a cluster
 *CockroachCloudApi* | **SetAwsEndpointConnectionState** | **Patch** /api/v1/clusters/{cluster_id}/networking/aws-endpoint-connections/{endpoint_id} | Sets the AWS Endpoint Connection state based on what is passed in the body
