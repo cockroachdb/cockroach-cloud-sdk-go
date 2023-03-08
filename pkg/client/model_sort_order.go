@@ -23,7 +23,7 @@ import (
 	"fmt"
 )
 
-// SortOrder  - DESC: Sort in descending order. The default order is ascending.
+// SortOrder  - ASC: Sort in ascending order. This is the default unless otherwise specified.  - DESC: Sort in descending order.
 type SortOrder string
 
 // List of SortOrder.

@@ -27,6 +27,8 @@ docs/CloudProviderRegion.md
 docs/CloudWatchConfig.md
 docs/Cluster.md
 docs/ClusterConfig.md
+docs/ClusterMajorVersion.md
+docs/ClusterMajorVersionSupportStatus.md
 docs/ClusterStateType.md
 docs/ClusterStatusType.md
 docs/ClusterUpgradeStatus.md
@@ -67,6 +69,7 @@ docs/ListClusterNodesResponse.md
 docs/ListClustersResponse.md
 docs/ListEgressRulesResponse.md
 docs/ListInvoicesResponse.md
+docs/ListMajorClusterVersionsResponse.md
 docs/ListSQLUsersResponse.md
 docs/LogExportClusterInfo.md
 docs/LogExportClusterSpecification.md
@@ -116,6 +119,8 @@ model_cloud_provider_region.go
 model_cloud_watch_config.go
 model_cluster.go
 model_cluster_config.go
+model_cluster_major_version.go
+model_cluster_major_version_support_status.go
 model_cluster_state_type.go
 model_cluster_status_type.go
 model_cluster_upgrade_status.go
@@ -164,6 +169,7 @@ model_list_cluster_nodes_response.go
 model_list_clusters_response.go
 model_list_egress_rules_response.go
 model_list_invoices_response.go
+model_list_major_cluster_versions_response.go
 model_list_sql_users_response.go
 model_log_export_cluster_info.go
 model_log_export_cluster_specification.go

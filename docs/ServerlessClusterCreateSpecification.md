@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**PrimaryRegion** | Pointer to **string** | Specify which region should be made the primary region. This is only applicable to multi-region Serverless clusters. This field is required if you create the cluster in more than one region. | [optional] 
 **Regions** | **[]string** | Region values should match the cloud provider&#39;s zone code. For example, for Oregon, set region_name to \&quot;us-west2\&quot; for GCP and \&quot;us-west-2\&quot; for AWS. | 
 **SpendLimit** | **int32** |  | 
 
@@ -25,6 +26,18 @@ will change when the set of required properties is changed.
 NewServerlessClusterCreateSpecificationWithDefaults instantiates a new ServerlessClusterCreateSpecification object.
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set.
+
+### GetPrimaryRegion
+
+`func (o *ServerlessClusterCreateSpecification) GetPrimaryRegion() string`
+
+GetPrimaryRegion returns the PrimaryRegion field if non-nil, zero value otherwise.
+
+### SetPrimaryRegion
+
+`func (o *ServerlessClusterCreateSpecification) SetPrimaryRegion(v string)`
+
+SetPrimaryRegion sets PrimaryRegion field to given value.
 
 ### GetRegions
 
