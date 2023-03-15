@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Adjustments** | Pointer to [**[]InvoiceAdjustment**](InvoiceAdjustment.md) | adjustments is a list of credits or costs that adjust the value of the invoice (e.g. a Serverless Free Credit or Premium Support adjustment). Unlike line items, adjustments are not tied to a particular cluster. | [optional] 
 **Balances** | [**[]CurrencyAmount**](CurrencyAmount.md) | balances are the amounts of currency left at the time of the invoice. | 
 **InvoiceId** | **string** | invoice_id is the unique ID representing the invoice. | 
 **InvoiceItems** | [**[]InvoiceItem**](InvoiceItem.md) | invoice_items are sorted by the cluster name. | 
@@ -29,6 +30,18 @@ will change when the set of required properties is changed.
 NewInvoiceWithDefaults instantiates a new Invoice object.
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set.
+
+### GetAdjustments
+
+`func (o *Invoice) GetAdjustments() []InvoiceAdjustment`
+
+GetAdjustments returns the Adjustments field if non-nil, zero value otherwise.
+
+### SetAdjustments
+
+`func (o *Invoice) SetAdjustments(v []InvoiceAdjustment)`
+
+SetAdjustments sets Adjustments field to given value.
 
 ### GetBalances
 

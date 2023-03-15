@@ -1,15 +1,15 @@
-# LogLevel
+# ClientCACertStatus
 
 ## Enum
 
 
-* `LOG_LEVEL_UNSPECIFIED` (value: `"LOG_LEVEL_UNSPECIFIED"`)
+* `NOT_SET` (value: `"NOT_SET"`)
 
-* `WARNING` (value: `"WARNING"`)
+* `IS_SET` (value: `"IS_SET"`)
 
-* `ERROR` (value: `"ERROR"`)
+* `PENDING` (value: `"PENDING"`)
 
-* `FATAL` (value: `"FATAL"`)
+* `FAILED` (value: `"FAILED"`)
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

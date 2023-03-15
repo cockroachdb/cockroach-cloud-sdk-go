@@ -23,18 +23,20 @@ import (
 	"fmt"
 )
 
-// LogLevel  - WARNING: The WARNING severity is used for situations which may require special handling, where normal operation is expected to resume  automatically.  - ERROR: The ERROR severity is used for situations that require special  handling, where normal operation could not proceed as expected.  Other operations can continue mostly unaffected.  - FATAL: The FATAL severity is used for situations that require an  immediate, hard server shutdown. A report is also sent to  telemetry if telemetry is enabled.
+// LogLevel  - LOG_LEVEL_UNSPECIFIED: The unspecified log level includes all logs.  - WARNING: The WARNING severity is used for situations which may require special handling, where normal operation is expected to resume  automatically.  - ERROR: The ERROR severity is used for situations that require special  handling, where normal operation could not proceed as expected.  Other operations can continue mostly unaffected.  - FATAL: The FATAL severity is used for situations that require an  immediate, hard server shutdown. A report is also sent to  telemetry if telemetry is enabled.
 type LogLevel string
 
 // List of LogLevel.
 const (
-	LOGLEVEL_WARNING LogLevel = "WARNING"
-	LOGLEVEL_ERROR   LogLevel = "ERROR"
-	LOGLEVEL_FATAL   LogLevel = "FATAL"
+	LOGLEVEL_LOG_LEVEL_UNSPECIFIED LogLevel = "LOG_LEVEL_UNSPECIFIED"
+	LOGLEVEL_WARNING               LogLevel = "WARNING"
+	LOGLEVEL_ERROR                 LogLevel = "ERROR"
+	LOGLEVEL_FATAL                 LogLevel = "FATAL"
 )
 
 // All allowed values of LogLevel enum.
 var AllowedLogLevelEnumValues = []LogLevel{
+	"LOG_LEVEL_UNSPECIFIED",
 	"WARNING",
 	"ERROR",
 	"FATAL",

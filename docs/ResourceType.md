@@ -1,15 +1,11 @@
-# LogLevel
+# ResourceType
 
 ## Enum
 
 
-* `LOG_LEVEL_UNSPECIFIED` (value: `"LOG_LEVEL_UNSPECIFIED"`)
+* `ORGANIZATION` (value: `"ORGANIZATION"`)
 
-* `WARNING` (value: `"WARNING"`)
-
-* `ERROR` (value: `"ERROR"`)
-
-* `FATAL` (value: `"FATAL"`)
+* `CLUSTER` (value: `"CLUSTER"`)
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
