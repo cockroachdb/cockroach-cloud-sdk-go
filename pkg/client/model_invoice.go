@@ -25,6 +25,8 @@ import (
 
 // Invoice Invoice message represents the details and the total charges associated with one billing period, which starts at the beginning of the month and ends at the beginning of the next month.  The message also includes details about each invoice item..
 type Invoice struct {
+	// adjustments is a list of credits or costs that adjust the value of the invoice (e.g. a Serverless Free Credit or Premium Support adjustment). Unlike line items, adjustments are not tied to a particular cluster.
+	Adjustments *[]InvoiceAdjustment `json:"adjustments,omitempty"`
 	// balances are the amounts of currency left at the time of the invoice.
 	Balances []CurrencyAmount `json:"balances"`
 	// invoice_id is the unique ID representing the invoice.
@@ -60,6 +62,20 @@ func NewInvoice(balances []CurrencyAmount, invoiceId string, invoiceItems []Invo
 func NewInvoiceWithDefaults() *Invoice {
 	p := Invoice{}
 	return &p
+}
+
+// GetAdjustments returns the Adjustments field value if set, zero value otherwise.
+func (o *Invoice) GetAdjustments() []InvoiceAdjustment {
+	if o == nil || o.Adjustments == nil {
+		var ret []InvoiceAdjustment
+		return ret
+	}
+	return *o.Adjustments
+}
+
+// SetAdjustments gets a reference to the given []InvoiceAdjustment and assigns it to the Adjustments field.
+func (o *Invoice) SetAdjustments(v []InvoiceAdjustment) {
+	o.Adjustments = &v
 }
 
 // GetBalances returns the Balances field value.
@@ -154,6 +170,9 @@ func (o *Invoice) SetTotals(v []CurrencyAmount) {
 
 func (o Invoice) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.Adjustments != nil {
+		toSerialize["adjustments"] = o.Adjustments
+	}
 	if true {
 		toSerialize["balances"] = o.Balances
 	}

@@ -51,6 +51,10 @@
 
 * `CRDB_REPAVE_FAILED` (value: `"CRDB_REPAVE_FAILED"`)
 
+* `CRDB_CUSTOM_CLIENT_CA_RUNNING` (value: `"CRDB_CUSTOM_CLIENT_CA_RUNNING"`)
+
+* `CRDB_CUSTOM_CLIENT_CA_FAILED` (value: `"CRDB_CUSTOM_CLIENT_CA_FAILED"`)
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

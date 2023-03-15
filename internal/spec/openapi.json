@@ -749,6 +749,413 @@
         ]
       }
     },
+    "/api/v1/clusters/{cluster_id}/client-ca-cert": {
+      "delete": {
+        "operationId": "CockroachCloud_DeleteClientCACert",
+        "summary": "Delete Client CA Cert for a cluster",
+        "parameters": [
+          {
+            "name": "cluster_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClientCACertInfo"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "CockroachCloud"
+        ],
+        "x-badges": [
+          {
+            "color": "blue",
+            "label": "PREVIEW"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request DELETE \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/client-ca-cert \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+          }
+        ]
+      },
+      "get": {
+        "operationId": "CockroachCloud_GetClientCACert",
+        "summary": "Get Client CA Cert information for a cluster",
+        "parameters": [
+          {
+            "name": "cluster_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClientCACertInfo"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "CockroachCloud"
+        ],
+        "x-badges": [
+          {
+            "color": "blue",
+            "label": "PREVIEW"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request GET \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/client-ca-cert \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+          }
+        ]
+      },
+      "patch": {
+        "operationId": "CockroachCloud_UpdateClientCACert",
+        "summary": "Update Client CA Cert for a cluster",
+        "parameters": [
+          {
+            "name": "cluster_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "x509_pem_cert": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "x509_pem_cert": "-----BEGIN CERTIFICATE-----..."
+                },
+                "title": "UpdateClientCACertRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClientCACertInfo"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "CockroachCloud"
+        ],
+        "x-badges": [
+          {
+            "color": "blue",
+            "label": "PREVIEW"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request PATCH \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/client-ca-cert \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"x509_pem_cert\":\"-----BEGIN CERTIFICATE-----...\"}'"
+          }
+        ]
+      },
+      "post": {
+        "operationId": "CockroachCloud_SetClientCACert",
+        "summary": "Set Client CA Cert for a cluster",
+        "parameters": [
+          {
+            "name": "cluster_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "x509_pem_cert": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "x509_pem_cert": "-----BEGIN CERTIFICATE-----..."
+                },
+                "required": [
+                  "x509_pem_cert"
+                ],
+                "title": "SetClientCACertRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClientCACertInfo"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "CockroachCloud"
+        ],
+        "x-badges": [
+          {
+            "color": "blue",
+            "label": "PREVIEW"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/client-ca-cert \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"x509_pem_cert\":\"-----BEGIN CERTIFICATE-----...\"}'"
+          }
+        ]
+      }
+    },
     "/api/v1/clusters/{cluster_id}/cmek": {
       "get": {
         "operationId": "CockroachCloud_GetCMEKClusterInfo",
@@ -5032,6 +5439,566 @@
           }
         ]
       }
+    },
+    "/api/v1/roles": {
+      "get": {
+        "operationId": "CockroachCloud_ListRoleGrants",
+        "summary": "Lists all RoleGrants",
+        "parameters": [
+          {
+            "name": "pagination.page",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pagination.limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pagination.as_of_time",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "pagination.sort_order",
+            "in": "query",
+            "description": " - ASC: Sort in ascending order. This is the default unless otherwise specified.\n - DESC: Sort in descending order.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "ASC",
+                "DESC"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListRoleGrantsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "CockroachCloud"
+        ],
+        "x-badges": [
+          {
+            "color": "blue",
+            "label": "PREVIEW"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request GET \\\n  --url 'https://cockroachlabs.cloud/api/v1/roles?pagination.page=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.as_of_time=SOME_STRING_VALUE&pagination.sort_order=SOME_STRING_VALUE' \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+          }
+        ]
+      }
+    },
+    "/api/v1/roles/{user_id}": {
+      "delete": {
+        "operationId": "CockroachCloud_RemoveUserFromRole",
+        "summary": "Removes the user from the given role",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "role.name",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "ORG_ROLE_DEVELOPER",
+                "ORG_ROLE_ADMIN",
+                "ORG_ROLE_BILLING_COORDINATOR",
+                "ORG_ROLE_ORG_ADMIN",
+                "ORG_ROLE_ORG_MEMBER",
+                "ORG_ROLE_CLUSTER_ADMIN",
+                "ORG_ROLE_CLUSTER_OPERATOR_WRITER",
+                "ORG_ROLE_CLUSTER_OPERATOR_READER",
+                "ORG_ROLE_CLUSTER_DEVELOPER",
+                "ORG_ROLE_CLUSTER_CREATOR"
+              ]
+            }
+          },
+          {
+            "name": "role.resource.type",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "ORGANIZATION",
+                "CLUSTER"
+              ]
+            }
+          },
+          {
+            "name": "role.resource.id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "CockroachCloud"
+        ],
+        "x-badges": [
+          {
+            "color": "blue",
+            "label": "PREVIEW"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request DELETE \\\n  --url 'https://cockroachlabs.cloud/api/v1/roles/{user_id}?role.name=SOME_STRING_VALUE&role.resource.type=SOME_STRING_VALUE&role.resource.id=SOME_STRING_VALUE' \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+          }
+        ]
+      },
+      "get": {
+        "operationId": "CockroachCloud_GetAllRolesForUser",
+        "summary": "Gets All Role Grants for the specified user",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetAllRolesForUserResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "CockroachCloud"
+        ],
+        "x-badges": [
+          {
+            "color": "blue",
+            "label": "PREVIEW"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request GET \\\n  --url https://cockroachlabs.cloud/api/v1/roles/{user_id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+          }
+        ]
+      },
+      "post": {
+        "operationId": "CockroachCloud_AddUserToRole",
+        "summary": "Adds the user to the given role",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "role.name",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "ORG_ROLE_DEVELOPER",
+                "ORG_ROLE_ADMIN",
+                "ORG_ROLE_BILLING_COORDINATOR",
+                "ORG_ROLE_ORG_ADMIN",
+                "ORG_ROLE_ORG_MEMBER",
+                "ORG_ROLE_CLUSTER_ADMIN",
+                "ORG_ROLE_CLUSTER_OPERATOR_WRITER",
+                "ORG_ROLE_CLUSTER_OPERATOR_READER",
+                "ORG_ROLE_CLUSTER_DEVELOPER",
+                "ORG_ROLE_CLUSTER_CREATOR"
+              ]
+            }
+          },
+          {
+            "name": "role.resource.type",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "ORGANIZATION",
+                "CLUSTER"
+              ]
+            }
+          },
+          {
+            "name": "role.resource.id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "CockroachCloud"
+        ],
+        "x-badges": [
+          {
+            "color": "blue",
+            "label": "PREVIEW"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request POST \\\n  --url 'https://cockroachlabs.cloud/api/v1/roles/{user_id}?role.name=SOME_STRING_VALUE&role.resource.type=SOME_STRING_VALUE&role.resource.id=SOME_STRING_VALUE' \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+          }
+        ]
+      },
+      "put": {
+        "operationId": "CockroachCloud_SetRolesForUser",
+        "summary": "Makes the users roles exactly those provided",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "CockroachCloud"
+        ],
+        "x-badges": [
+          {
+            "color": "blue",
+            "label": "PREVIEW"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/v1/roles/{user_id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+          }
+        ]
+      }
     }
   },
   "components": {
@@ -5179,6 +6146,17 @@
           "connections"
         ]
       },
+      "BuiltInRole": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "$ref": "#/components/schemas/OrganizationUserRole"
+          },
+          "resource": {
+            "$ref": "#/components/schemas/Resource"
+          }
+        }
+      },
       "CMEKClusterInfo": {
         "description": "CMEKClusterInfo contains the status of CMEK across an entire cluster,\nincluding within each one its regions.",
         "type": "object",
@@ -5295,6 +6273,28 @@
           "REVOKING",
           "REVOKE_FAILED"
         ]
+      },
+      "ClientCACertInfo": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "$ref": "#/components/schemas/ClientCACertStatus"
+          },
+          "x509_pem_cert": {
+            "type": "string"
+          }
+        }
+      },
+      "ClientCACertStatus": {
+        "description": "- UNKNOWN_STATUS: UNKNOWN should never be used; if it is used, it indicates a bug.\n - NOT_SET: NOT_SET indicates a client CA cert is not set on the cluster.\nNew clusters won't have a client CA cert set.\n - IS_SET: IS_SET indicates a client CA cert is set on the cluster.\n - PENDING: PENDING indicates a client CA cert update is in flight on the cluster.\n - FAILED: FAILED indicates a client CA cert update was attempted, but failed.",
+        "type": "string",
+        "enum": [
+          "NOT_SET",
+          "IS_SET",
+          "PENDING",
+          "FAILED"
+        ],
+        "title": "TODO: work w/ intrusion to see which statuses will actually be available"
       },
       "CloudProviderRegion": {
         "type": "object",
@@ -5525,7 +6525,9 @@
           "CRDB_CLUSTER_DISRUPTION_RUNNING",
           "CRDB_CLUSTER_DISRUPTION_FAILED",
           "CRDB_REPAVE_RUNNING",
-          "CRDB_REPAVE_FAILED"
+          "CRDB_REPAVE_FAILED",
+          "CRDB_CUSTOM_CLIENT_CA_RUNNING",
+          "CRDB_CUSTOM_CLIENT_CA_FAILED"
         ]
       },
       "ClusterUpgradeStatus": {
@@ -5893,6 +6895,18 @@
           "POLICY_UPDATING"
         ]
       },
+      "GetAllRolesForUserResponse": {
+        "type": "object",
+        "properties": {
+          "roles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BuiltInRole"
+            }
+          }
+        },
+        "title": "get_all_roles_for_user_response contains a representation of all roles a given user has"
+      },
       "GetConnectionStringResponse": {
         "type": "object",
         "properties": {
@@ -5926,6 +6940,13 @@
         "description": "Invoice message represents the details and the total charges associated with\none billing period, which starts at the beginning of the month and ends at\nthe beginning of the next month.\n\nThe message also includes details about each invoice item.",
         "type": "object",
         "properties": {
+          "adjustments": {
+            "description": "adjustments is a list of credits or costs that adjust the value of the\ninvoice (e.g. a Serverless Free Credit or Premium Support adjustment).\nUnlike line items, adjustments are not tied to a particular cluster.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InvoiceAdjustment"
+            }
+          },
           "balances": {
             "description": "balances are the amounts of currency left at the time of the invoice.",
             "type": "array",
@@ -5969,6 +6990,22 @@
           "period_end",
           "invoice_items",
           "balances"
+        ]
+      },
+      "InvoiceAdjustment": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "$ref": "#/components/schemas/CurrencyAmount"
+          },
+          "name": {
+            "description": "name identifies the adjustment.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "amount"
         ]
       },
       "InvoiceItem": {
@@ -6182,6 +7219,21 @@
           "versions"
         ]
       },
+      "ListRoleGrantsResponse": {
+        "type": "object",
+        "properties": {
+          "grants": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserRoleGrants"
+            }
+          },
+          "pagination": {
+            "$ref": "#/components/schemas/KeysetPaginationResponse"
+          }
+        },
+        "title": "list_role_grants_response contains a representation of all roles"
+      },
       "ListSQLUsersResponse": {
         "type": "object",
         "properties": {
@@ -6306,9 +7358,10 @@
         ]
       },
       "LogLevel": {
-        "description": " - WARNING: The WARNING severity is used for situations which may require\nspecial handling, where normal operation is expected to resume \nautomatically.\n - ERROR: The ERROR severity is used for situations that require special \nhandling, where normal operation could not proceed as expected. \nOther operations can continue mostly unaffected.\n - FATAL: The FATAL severity is used for situations that require an \nimmediate, hard server shutdown. A report is also sent to \ntelemetry if telemetry is enabled.",
+        "description": " - LOG_LEVEL_UNSPECIFIED: The unspecified log level includes all logs.\n - WARNING: The WARNING severity is used for situations which may require\nspecial handling, where normal operation is expected to resume \nautomatically.\n - ERROR: The ERROR severity is used for situations that require special \nhandling, where normal operation could not proceed as expected. \nOther operations can continue mostly unaffected.\n - FATAL: The FATAL severity is used for situations that require an \nimmediate, hard server shutdown. A report is also sent to \ntelemetry if telemetry is enabled.",
         "type": "string",
         "enum": [
+          "LOG_LEVEL_UNSPECIFIED",
           "WARNING",
           "ERROR",
           "FATAL"
@@ -6427,6 +7480,21 @@
           "created_at"
         ]
       },
+      "OrganizationUserRole": {
+        "type": "string",
+        "enum": [
+          "ORG_ROLE_DEVELOPER",
+          "ORG_ROLE_ADMIN",
+          "ORG_ROLE_BILLING_COORDINATOR",
+          "ORG_ROLE_ORG_ADMIN",
+          "ORG_ROLE_ORG_MEMBER",
+          "ORG_ROLE_CLUSTER_ADMIN",
+          "ORG_ROLE_CLUSTER_OPERATOR_WRITER",
+          "ORG_ROLE_CLUSTER_OPERATOR_READER",
+          "ORG_ROLE_CLUSTER_DEVELOPER",
+          "ORG_ROLE_CLUSTER_CREATOR"
+        ]
+      },
       "Plan": {
         "description": " - DEDICATED: A paid plan that offers dedicated hardware in any location.\n - CUSTOM: A plan option that is used for clusters whose machine configs are not \nsupported in self-service. All INVOICE clusters are under this plan option.\n - SERVERLESS: A paid plan that runs on shared hardware and caps the users'\nmaximum monthly spending to a user-specified (possibly 0) amount.",
         "type": "string",
@@ -6525,6 +7593,24 @@
           "ui_dns",
           "node_count",
           "internal_dns"
+        ]
+      },
+      "Resource": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "$ref": "#/components/schemas/ResourceType"
+          }
+        }
+      },
+      "ResourceType": {
+        "type": "string",
+        "enum": [
+          "ORGANIZATION",
+          "CLUSTER"
         ]
       },
       "SQLUser": {
@@ -6647,6 +7733,20 @@
             }
           },
           "upgrade_status": "UPGRADE_RUNNING"
+        }
+      },
+      "UserRoleGrants": {
+        "type": "object",
+        "properties": {
+          "roles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BuiltInRole"
+            }
+          },
+          "user_id": {
+            "type": "string"
+          }
         }
       },
       "api.CloudProvider": {
