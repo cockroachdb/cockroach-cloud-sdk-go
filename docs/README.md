@@ -75,26 +75,29 @@ Class | Method | HTTP request | Description
 *CockroachCloudApi* | **CreateSQLUser** | **Post** /api/v1/clusters/{cluster_id}/sql-users | Create a new SQL user
 *CockroachCloudApi* | **DeleteAllowlistEntry** | **Delete** /api/v1/clusters/{cluster_id}/networking/allowlist/{cidr_ip}/{cidr_mask} | Delete an IP allowlist entry
 *CockroachCloudApi* | **DeleteClientCACert** | **Delete** /api/v1/clusters/{cluster_id}/client-ca-cert | Delete Client CA Cert for a cluster
+*CockroachCloudApi* | **DeleteCloudWatchMetricExport** | **Delete** /api/v1/clusters/{cluster_id}/metricexport/cloudwatch | Delete the CloudWatch Metric Export configuration for a cluster
 *CockroachCloudApi* | **DeleteCluster** | **Delete** /api/v1/clusters/{cluster_id} | Delete a cluster and all of its data
 *CockroachCloudApi* | **DeleteDatabase** | **Delete** /api/v1/clusters/{cluster_id}/databases/{name} | Delete a database
+*CockroachCloudApi* | **DeleteDatadogMetricExport** | **Delete** /api/v1/clusters/{cluster_id}/metricexport/datadog | Delete the Datadog Metric Export configuration for a cluster
 *CockroachCloudApi* | **DeleteEgressRule** | **Delete** /api/v1/clusters/{cluster_id}/networking/egress-rules/{rule_id} | Delete an existing egress rule
 *CockroachCloudApi* | **DeleteLogExport** | **Delete** /api/v1/clusters/{cluster_id}/logexport | Delete the Log Export configuration for a cluster
-*CockroachCloudApi* | **DeleteMetricExport** | **Delete** /api/v1/clusters/{cluster_id}/metricexport | Delete the Metric Export configuration for a cluster
 *CockroachCloudApi* | **DeleteSQLUser** | **Delete** /api/v1/clusters/{cluster_id}/sql-users/{name} | Delete a SQL user
 *CockroachCloudApi* | **EditDatabase** | **Patch** /api/v1/clusters/{cluster_id}/databases | Update a database
 *CockroachCloudApi* | **EditEgressRule** | **Patch** /api/v1/clusters/{cluster_id}/networking/egress-rules/{rule_id} | Edit an existing egress rule
 *CockroachCloudApi* | **EnableCMEKSpec** | **Post** /api/v1/clusters/{cluster_id}/cmek | Enable CMEK for a cluster
+*CockroachCloudApi* | **EnableCloudWatchMetricExport** | **Post** /api/v1/clusters/{cluster_id}/metricexport/cloudwatch | Create or update the CloudWatch Metric Export configuration for a cluster
+*CockroachCloudApi* | **EnableDatadogMetricExport** | **Post** /api/v1/clusters/{cluster_id}/metricexport/datadog | Create or update the Datadog Metric Export configuration for a cluster
 *CockroachCloudApi* | **EnableLogExport** | **Post** /api/v1/clusters/{cluster_id}/logexport | Create or update the Log Export configuration for a cluster
-*CockroachCloudApi* | **EnableMetricExport** | **Post** /api/v1/clusters/{cluster_id}/metricexport | Create or update the Metric Export configuration for a cluster
 *CockroachCloudApi* | **GetAllRolesForUser** | **Get** /api/v1/roles/{user_id} | Gets All Role Grants for the specified user
 *CockroachCloudApi* | **GetCMEKClusterInfo** | **Get** /api/v1/clusters/{cluster_id}/cmek | Get CMEK-related information for a cluster
 *CockroachCloudApi* | **GetClientCACert** | **Get** /api/v1/clusters/{cluster_id}/client-ca-cert | Get Client CA Cert information for a cluster
+*CockroachCloudApi* | **GetCloudWatchMetricExportInfo** | **Get** /api/v1/clusters/{cluster_id}/metricexport/cloudwatch | Get the CloudWatch Metric Export configuration for a cluster
 *CockroachCloudApi* | **GetCluster** | **Get** /api/v1/clusters/{cluster_id} | Get extended information about a cluster
 *CockroachCloudApi* | **GetConnectionString** | **Get** /api/v1/clusters/{cluster_id}/connection-string | Get a formatted generic connection string for a cluster
+*CockroachCloudApi* | **GetDatadogMetricExportInfo** | **Get** /api/v1/clusters/{cluster_id}/metricexport/datadog | Get the Datadog Metric Export configuration for a cluster
 *CockroachCloudApi* | **GetEgressRule** | **Get** /api/v1/clusters/{cluster_id}/networking/egress-rules/{rule_id} | Get an existing egress rule
 *CockroachCloudApi* | **GetInvoice** | **Get** /api/v1/invoices/{invoice_id} | Gets a specific invoice for an organization
 *CockroachCloudApi* | **GetLogExportInfo** | **Get** /api/v1/clusters/{cluster_id}/logexport | Get the Log Export configuration for a cluster
-*CockroachCloudApi* | **GetMetricExportInfo** | **Get** /api/v1/clusters/{cluster_id}/metricexport | Metric export Get the Metric Export configuration for a cluster
 *CockroachCloudApi* | **GetOrganizationInfo** | **Get** /api/v1/organization | Get information about the caller&#39;s organization
 *CockroachCloudApi* | **ListAllowlistEntries** | **Get** /api/v1/clusters/{cluster_id}/networking/allowlist | Get the IP allowlist and propagation status for a cluster
 *CockroachCloudApi* | **ListAvailableRegions** | **Get** /api/v1/clusters/available-regions | List the regions available for new clusters and nodes

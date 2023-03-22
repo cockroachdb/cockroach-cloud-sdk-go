@@ -2504,10 +2504,10 @@
         ]
       }
     },
-    "/api/v1/clusters/{cluster_id}/metricexport": {
+    "/api/v1/clusters/{cluster_id}/metricexport/cloudwatch": {
       "delete": {
-        "operationId": "CockroachCloud_DeleteMetricExport",
-        "summary": "Delete the Metric Export configuration for a cluster",
+        "operationId": "CockroachCloud_DeleteCloudWatchMetricExport",
+        "summary": "Delete the CloudWatch Metric Export configuration for a cluster",
         "parameters": [
           {
             "name": "cluster_id",
@@ -2515,17 +2515,6 @@
             "required": true,
             "schema": {
               "type": "string"
-            }
-          },
-          {
-            "name": "type",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "enum": [
-                "DATADOG",
-                "CLOUDWATCH"
-              ]
             }
           }
         ],
@@ -2603,13 +2592,13 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request DELETE \\\n  --url 'https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/metricexport?type=SOME_STRING_VALUE' \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+            "source": "curl --request DELETE \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/metricexport/cloudwatch \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
           }
         ]
       },
       "get": {
-        "operationId": "CockroachCloud_GetMetricExportInfo",
-        "summary": "Metric export\nGet the Metric Export configuration for a cluster",
+        "operationId": "CockroachCloud_GetCloudWatchMetricExportInfo",
+        "summary": "Get the CloudWatch Metric Export configuration for a cluster",
         "parameters": [
           {
             "name": "cluster_id",
@@ -2626,7 +2615,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/MetricExportInfo"
+                  "$ref": "#/components/schemas/CloudWatchMetricExportInfo"
                 }
               }
             }
@@ -2694,13 +2683,13 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request GET \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/metricexport \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+            "source": "curl --request GET \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/metricexport/cloudwatch \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
           }
         ]
       },
       "post": {
-        "operationId": "CockroachCloud_EnableMetricExport",
-        "summary": "Create or update the Metric Export configuration for a cluster",
+        "operationId": "CockroachCloud_EnableCloudWatchMetricExport",
+        "summary": "Create or update the CloudWatch Metric Export configuration for a cluster",
         "parameters": [
           {
             "name": "cluster_id",
@@ -2718,20 +2707,28 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "cloudwatch": {
-                    "$ref": "#/components/schemas/CloudWatchConfig"
+                  "log_group_name": {
+                    "description": "log_group_name is the customized log group name.",
+                    "type": "string"
                   },
-                  "datadog": {
-                    "$ref": "#/components/schemas/DatadogConfig"
+                  "role_arn": {
+                    "description": "role_arn is the IAM role used to upload metric segments to the\ntarget AWS account.",
+                    "type": "string"
+                  },
+                  "target_region": {
+                    "description": "target_region specifies the specific AWS region that the metrics will\nbe exported to.",
+                    "type": "string"
                   }
                 },
                 "example": {
-                  "datadog": {
-                    "api_key": "datadog_api_key",
-                    "site": "US1"
-                  }
+                  "log_group_name": "example",
+                  "role_arn": "arn:aws:iam::account:role/ExampleRole",
+                  "target_region": "us-east-1"
                 },
-                "title": "EnableMetricExportRequest"
+                "required": [
+                  "role_arn"
+                ],
+                "title": "EnableCloudWatchMetricExportRequest"
               }
             }
           }
@@ -2742,7 +2739,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/MetricExportInfo"
+                  "$ref": "#/components/schemas/CloudWatchMetricExportInfo"
                 }
               }
             }
@@ -2810,7 +2807,310 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/metricexport \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"datadog\":{\"api_key\":\"datadog_api_key\",\"site\":\"US1\"}}'"
+            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/metricexport/cloudwatch \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"log_group_name\":\"example\",\"role_arn\":\"arn:aws:iam::account:role/ExampleRole\",\"target_region\":\"us-east-1\"}'"
+          }
+        ]
+      }
+    },
+    "/api/v1/clusters/{cluster_id}/metricexport/datadog": {
+      "delete": {
+        "operationId": "CockroachCloud_DeleteDatadogMetricExport",
+        "summary": "Delete the Datadog Metric Export configuration for a cluster",
+        "parameters": [
+          {
+            "name": "cluster_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteMetricExportResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "CockroachCloud"
+        ],
+        "x-badges": [
+          {
+            "color": "blue",
+            "label": "PREVIEW"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request DELETE \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/metricexport/datadog \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+          }
+        ]
+      },
+      "get": {
+        "operationId": "CockroachCloud_GetDatadogMetricExportInfo",
+        "summary": "Get the Datadog Metric Export configuration for a cluster",
+        "parameters": [
+          {
+            "name": "cluster_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DatadogMetricExportInfo"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "CockroachCloud"
+        ],
+        "x-badges": [
+          {
+            "color": "blue",
+            "label": "PREVIEW"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request GET \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/metricexport/datadog \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+          }
+        ]
+      },
+      "post": {
+        "operationId": "CockroachCloud_EnableDatadogMetricExport",
+        "summary": "Create or update the Datadog Metric Export configuration for a cluster",
+        "parameters": [
+          {
+            "name": "cluster_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "api_key": {
+                    "description": "api_key is a Datadog API key.",
+                    "type": "string"
+                  },
+                  "site": {
+                    "$ref": "#/components/schemas/api.DatadogSite"
+                  }
+                },
+                "example": {
+                  "api_key": "datadog_api_key",
+                  "site": "US1"
+                },
+                "required": [
+                  "site",
+                  "api_key"
+                ],
+                "title": "EnableDatadogMetricExportRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DatadogMetricExportInfo"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "CockroachCloud"
+        ],
+        "x-badges": [
+          {
+            "color": "blue",
+            "label": "PREVIEW"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/metricexport/datadog \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"api_key\":\"datadog_api_key\",\"site\":\"US1\"}'"
           }
         ]
       }
@@ -5617,7 +5917,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/GetAllRolesForUserResponse"
                 }
               }
             }
@@ -5836,7 +6136,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/GetAllRolesForUserResponse"
                 }
               }
             }
@@ -5927,7 +6227,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/GetAllRolesForUserResponse"
                 }
               }
             }
@@ -6091,7 +6391,7 @@
         "title": "AllowlistEntry"
       },
       "Any": {
-        "description": "`Any` contains an arbitrary serialized protocol buffer message along with a\nURL that describes the type of the serialized message.\n\nProtobuf library provides support to pack/unpack Any values in the form\nof utility functions or additional generated methods of the Any type.\n\nExample 1: Pack and unpack a message in C++.\n\n    Foo foo = ...;\n    Any any;\n    any.PackFrom(foo);\n    ...\n    if (any.UnpackTo(&foo)) {\n      ...\n    }\n\nExample 2: Pack and unpack a message in Java.\n\n    Foo foo = ...;\n    Any any = Any.pack(foo);\n    ...\n    if (any.is(Foo.class)) {\n      foo = any.unpack(Foo.class);\n    }\n\nExample 3: Pack and unpack a message in Python.\n\n    foo = Foo(...)\n    any = Any()\n    any.Pack(foo)\n    ...\n    if any.Is(Foo.DESCRIPTOR):\n      any.Unpack(foo)\n      ...\n\nExample 4: Pack and unpack a message in Go\n\n     foo := &pb.Foo{...}\n     any, err := anypb.New(foo)\n     if err != nil {\n       ...\n     }\n     ...\n     foo := &pb.Foo{}\n     if err := any.UnmarshalTo(foo); err != nil {\n       ...\n     }\n\nThe pack methods provided by protobuf library will by default use\n'type.googleapis.com/full.type.name' as the type URL and the unpack\nmethods only use the fully qualified type name after the last '/'\nin the type URL, for example \"foo.bar.com/x/y.z\" will yield type\nname \"y.z\".\n\n\nJSON\n\nThe JSON representation of an `Any` value uses the regular\nrepresentation of the deserialized, embedded message, with an\nadditional field `@type` which contains the type URL. Example:\n\n    package google.profile;\n    message Person {\n      string first_name = 1;\n      string last_name = 2;\n    }\n\n    {\n      \"@type\": \"type.googleapis.com/google.profile.Person\",\n      \"firstName\": <string>,\n      \"lastName\": <string>\n    }\n\nIf the embedded message type is well-known and has a custom JSON\nrepresentation, that representation will be embedded adding a field\n`value` which holds the custom JSON in addition to the `@type`\nfield. Example (for message [google.protobuf.Duration][]):\n\n    {\n      \"@type\": \"type.googleapis.com/google.protobuf.Duration\",\n      \"value\": \"1.212s\"\n    }",
+        "description": "`Any` contains an arbitrary serialized protocol buffer message along with a\nURL that describes the type of the serialized message.\n\nProtobuf library provides support to pack/unpack Any values in the form\nof utility functions or additional generated methods of the Any type.\n\nExample 1: Pack and unpack a message in C++.\n\n    Foo foo = ...;\n    Any any;\n    any.PackFrom(foo);\n    ...\n    if (any.UnpackTo(&foo)) {\n      ...\n    }\n\nExample 2: Pack and unpack a message in Java.\n\n    Foo foo = ...;\n    Any any = Any.pack(foo);\n    ...\n    if (any.is(Foo.class)) {\n      foo = any.unpack(Foo.class);\n    }\n\n Example 3: Pack and unpack a message in Python.\n\n    foo = Foo(...)\n    any = Any()\n    any.Pack(foo)\n    ...\n    if any.Is(Foo.DESCRIPTOR):\n      any.Unpack(foo)\n      ...\n\n Example 4: Pack and unpack a message in Go\n\n     foo := &pb.Foo{...}\n     any, err := ptypes.MarshalAny(foo)\n     ...\n     foo := &pb.Foo{}\n     if err := ptypes.UnmarshalAny(any, foo); err != nil {\n       ...\n     }\n\nThe pack methods provided by protobuf library will by default use\n'type.googleapis.com/full.type.name' as the type URL and the unpack\nmethods only use the fully qualified type name after the last '/'\nin the type URL, for example \"foo.bar.com/x/y.z\" will yield type\nname \"y.z\".\n\n\nJSON\n====\nThe JSON representation of an `Any` value uses the regular\nrepresentation of the deserialized, embedded message, with an\nadditional field `@type` which contains the type URL. Example:\n\n    package google.profile;\n    message Person {\n      string first_name = 1;\n      string last_name = 2;\n    }\n\n    {\n      \"@type\": \"type.googleapis.com/google.profile.Person\",\n      \"firstName\": <string>,\n      \"lastName\": <string>\n    }\n\nIf the embedded message type is well-known and has a custom JSON\nrepresentation, that representation will be embedded adding a field\n`value` which holds the custom JSON in addition to the `@type`\nfield. Example (for message [google.protobuf.Duration][]):\n\n    {\n      \"@type\": \"type.googleapis.com/google.protobuf.Duration\",\n      \"value\": \"1.212s\"\n    }",
         "type": "object",
         "properties": {
           "@type": {
@@ -6325,9 +6625,12 @@
           "distance"
         ]
       },
-      "CloudWatchConfig": {
+      "CloudWatchMetricExportInfo": {
         "type": "object",
         "properties": {
+          "cluster_id": {
+            "type": "string"
+          },
           "log_group_name": {
             "description": "log_group_name is the customized log group name.",
             "type": "string"
@@ -6336,14 +6639,22 @@
             "description": "role_arn is the IAM role used to upload metric segments to the\ntarget AWS account.",
             "type": "string"
           },
+          "status": {
+            "$ref": "#/components/schemas/MetricExportStatus"
+          },
           "target_region": {
             "description": "target_region specifies the specific AWS region that the metrics will\nbe exported to.",
+            "type": "string"
+          },
+          "user_message": {
             "type": "string"
           }
         },
         "required": [
+          "cluster_id",
           "role_arn"
-        ]
+        ],
+        "title": "CloudWatchMetricExportInfo"
       },
       "Cluster": {
         "type": "object",
@@ -6606,30 +6917,31 @@
           }
         }
       },
-      "DatadogConfig": {
+      "DatadogMetricExportInfo": {
         "type": "object",
         "properties": {
           "api_key": {
+            "description": "api_key is the last 4 digits of a Datadog API key.",
+            "type": "string"
+          },
+          "cluster_id": {
             "type": "string"
           },
           "site": {
-            "$ref": "#/components/schemas/DatadogConfig.DatadogSite"
+            "$ref": "#/components/schemas/api.DatadogSite"
+          },
+          "status": {
+            "$ref": "#/components/schemas/MetricExportStatus"
+          },
+          "user_message": {
+            "type": "string"
           }
         },
         "required": [
-          "site",
-          "api_key"
-        ]
-      },
-      "DatadogConfig.DatadogSite": {
-        "type": "string",
-        "enum": [
-          "US1",
-          "US3",
-          "US5",
-          "US1_GOV",
-          "EU1"
-        ]
+          "cluster_id",
+          "site"
+        ],
+        "title": "DatadogMetricExportInfo"
       },
       "DedicatedClusterCreateSpecification": {
         "type": "object",
@@ -6796,11 +7108,12 @@
           },
           "status": {
             "$ref": "#/components/schemas/MetricExportStatus"
-          },
-          "type": {
-            "$ref": "#/components/schemas/MetricExportIntegrationType"
           }
-        }
+        },
+        "required": [
+          "cluster_id"
+        ],
+        "title": "DeleteMetricExportResponse"
       },
       "EditEgressRuleResponse": {
         "description": "EditEgressRuleResponse is the output message to the EditEgressRule RPC.",
@@ -7367,44 +7680,6 @@
           "FATAL"
         ]
       },
-      "MetricExportInfo": {
-        "type": "object",
-        "properties": {
-          "cluster_id": {
-            "type": "string"
-          },
-          "integration": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/MetricExportIntegrationInfo"
-            }
-          }
-        }
-      },
-      "MetricExportIntegrationInfo": {
-        "type": "object",
-        "properties": {
-          "cloudwatch": {
-            "$ref": "#/components/schemas/CloudWatchConfig"
-          },
-          "datadog": {
-            "$ref": "#/components/schemas/DatadogConfig"
-          },
-          "status": {
-            "$ref": "#/components/schemas/MetricExportStatus"
-          },
-          "user_message": {
-            "type": "string"
-          }
-        }
-      },
-      "MetricExportIntegrationType": {
-        "type": "string",
-        "enum": [
-          "DATADOG",
-          "CLOUDWATCH"
-        ]
-      },
       "MetricExportStatus": {
         "type": "string",
         "enum": [
@@ -7574,9 +7849,13 @@
             "type": "string"
           },
           "node_count": {
-            "description": "node_count will be 0 for serverless clusters.",
+            "description": "node_count will be 0 for Serverless clusters.",
             "type": "integer",
             "format": "int32"
+          },
+          "primary": {
+            "description": "primary is true only for the primary region in a Multi Region Serverless cluster.",
+            "type": "boolean"
           },
           "sql_dns": {
             "description": "sql_dns is the DNS name of SQL interface of the cluster. It is used to connect to the cluster with IP allowlisting.",
@@ -7772,6 +8051,17 @@
           "name"
         ],
         "title": "Database"
+      },
+      "api.DatadogSite": {
+        "description": "DatadogSite specifies the Datadog region to export to.\nNOTE: Regions are completely independent from one another.",
+        "type": "string",
+        "enum": [
+          "US1",
+          "US3",
+          "US5",
+          "US1_GOV",
+          "EU1"
+        ]
       },
       "api.ListDatabasesResponse": {
         "type": "object",

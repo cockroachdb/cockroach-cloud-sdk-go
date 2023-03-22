@@ -1,4 +1,4 @@
-# DatadogConfigDatadogSite
+# ApiDatadogSite
 
 ## Enum
 

@@ -1,4 +1,4 @@
-# CloudWatchConfig
+# EnableCloudWatchMetricExportRequest
 
 ## Properties
 
@@ -10,56 +10,56 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewCloudWatchConfig
+### NewEnableCloudWatchMetricExportRequest
 
-`func NewCloudWatchConfig(roleArn string, ) *CloudWatchConfig`
+`func NewEnableCloudWatchMetricExportRequest(roleArn string, ) *EnableCloudWatchMetricExportRequest`
 
-NewCloudWatchConfig instantiates a new CloudWatchConfig object.
+NewEnableCloudWatchMetricExportRequest instantiates a new EnableCloudWatchMetricExportRequest object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed.
 
-### NewCloudWatchConfigWithDefaults
+### NewEnableCloudWatchMetricExportRequestWithDefaults
 
-`func NewCloudWatchConfigWithDefaults() *CloudWatchConfig`
+`func NewEnableCloudWatchMetricExportRequestWithDefaults() *EnableCloudWatchMetricExportRequest`
 
-NewCloudWatchConfigWithDefaults instantiates a new CloudWatchConfig object.
+NewEnableCloudWatchMetricExportRequestWithDefaults instantiates a new EnableCloudWatchMetricExportRequest object.
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set.
 
 ### GetLogGroupName
 
-`func (o *CloudWatchConfig) GetLogGroupName() string`
+`func (o *EnableCloudWatchMetricExportRequest) GetLogGroupName() string`
 
 GetLogGroupName returns the LogGroupName field if non-nil, zero value otherwise.
 
 ### SetLogGroupName
 
-`func (o *CloudWatchConfig) SetLogGroupName(v string)`
+`func (o *EnableCloudWatchMetricExportRequest) SetLogGroupName(v string)`
 
 SetLogGroupName sets LogGroupName field to given value.
 
 ### GetRoleArn
 
-`func (o *CloudWatchConfig) GetRoleArn() string`
+`func (o *EnableCloudWatchMetricExportRequest) GetRoleArn() string`
 
 GetRoleArn returns the RoleArn field if non-nil, zero value otherwise.
 
 ### SetRoleArn
 
-`func (o *CloudWatchConfig) SetRoleArn(v string)`
+`func (o *EnableCloudWatchMetricExportRequest) SetRoleArn(v string)`
 
 SetRoleArn sets RoleArn field to given value.
 
 ### GetTargetRegion
 
-`func (o *CloudWatchConfig) GetTargetRegion() string`
+`func (o *EnableCloudWatchMetricExportRequest) GetTargetRegion() string`
 
 GetTargetRegion returns the TargetRegion field if non-nil, zero value otherwise.
 
 ### SetTargetRegion
 
-`func (o *CloudWatchConfig) SetTargetRegion(v string)`
+`func (o *EnableCloudWatchMetricExportRequest) SetTargetRegion(v string)`
 
 SetTargetRegion sets TargetRegion field to given value.
 

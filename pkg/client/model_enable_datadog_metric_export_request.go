@@ -22,33 +22,34 @@ import (
 	"encoding/json"
 )
 
-// DatadogConfig struct for DatadogConfig.
-type DatadogConfig struct {
-	ApiKey string                   `json:"api_key"`
-	Site   DatadogConfigDatadogSite `json:"site"`
+// EnableDatadogMetricExportRequest struct for EnableDatadogMetricExportRequest.
+type EnableDatadogMetricExportRequest struct {
+	// api_key is a Datadog API key.
+	ApiKey string         `json:"api_key"`
+	Site   ApiDatadogSite `json:"site"`
 }
 
-// NewDatadogConfig instantiates a new DatadogConfig object.
+// NewEnableDatadogMetricExportRequest instantiates a new EnableDatadogMetricExportRequest object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDatadogConfig(apiKey string, site DatadogConfigDatadogSite) *DatadogConfig {
-	p := DatadogConfig{}
+func NewEnableDatadogMetricExportRequest(apiKey string, site ApiDatadogSite) *EnableDatadogMetricExportRequest {
+	p := EnableDatadogMetricExportRequest{}
 	p.ApiKey = apiKey
 	p.Site = site
 	return &p
 }
 
-// NewDatadogConfigWithDefaults instantiates a new DatadogConfig object.
+// NewEnableDatadogMetricExportRequestWithDefaults instantiates a new EnableDatadogMetricExportRequest object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewDatadogConfigWithDefaults() *DatadogConfig {
-	p := DatadogConfig{}
+func NewEnableDatadogMetricExportRequestWithDefaults() *EnableDatadogMetricExportRequest {
+	p := EnableDatadogMetricExportRequest{}
 	return &p
 }
 
 // GetApiKey returns the ApiKey field value.
-func (o *DatadogConfig) GetApiKey() string {
+func (o *EnableDatadogMetricExportRequest) GetApiKey() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -58,14 +59,14 @@ func (o *DatadogConfig) GetApiKey() string {
 }
 
 // SetApiKey sets field value.
-func (o *DatadogConfig) SetApiKey(v string) {
+func (o *EnableDatadogMetricExportRequest) SetApiKey(v string) {
 	o.ApiKey = v
 }
 
 // GetSite returns the Site field value.
-func (o *DatadogConfig) GetSite() DatadogConfigDatadogSite {
+func (o *EnableDatadogMetricExportRequest) GetSite() ApiDatadogSite {
 	if o == nil {
-		var ret DatadogConfigDatadogSite
+		var ret ApiDatadogSite
 		return ret
 	}
 
@@ -73,11 +74,11 @@ func (o *DatadogConfig) GetSite() DatadogConfigDatadogSite {
 }
 
 // SetSite sets field value.
-func (o *DatadogConfig) SetSite(v DatadogConfigDatadogSite) {
+func (o *EnableDatadogMetricExportRequest) SetSite(v ApiDatadogSite) {
 	o.Site = v
 }
 
-func (o DatadogConfig) MarshalJSON() ([]byte, error) {
+func (o EnableDatadogMetricExportRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["api_key"] = o.ApiKey

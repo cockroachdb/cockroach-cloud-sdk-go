@@ -11,6 +11,7 @@ docs/AllowlistEntry1.md
 docs/Any.md
 docs/ApiCloudProvider.md
 docs/ApiDatabase.md
+docs/ApiDatadogSite.md
 docs/ApiListDatabasesResponse.md
 docs/AwsEndpointConnection.md
 docs/AwsEndpointConnections.md
@@ -27,7 +28,7 @@ docs/CMEKStatus.md
 docs/ClientCACertInfo.md
 docs/ClientCACertStatus.md
 docs/CloudProviderRegion.md
-docs/CloudWatchConfig.md
+docs/CloudWatchMetricExportInfo.md
 docs/Cluster.md
 docs/ClusterConfig.md
 docs/ClusterMajorVersion.md
@@ -43,8 +44,7 @@ docs/CreateDatabaseRequest.md
 docs/CreateSQLUserRequest.md
 docs/Currency.md
 docs/CurrencyAmount.md
-docs/DatadogConfig.md
-docs/DatadogConfigDatadogSite.md
+docs/DatadogMetricExportInfo.md
 docs/DedicatedClusterCreateSpecification.md
 docs/DedicatedClusterUpdateSpecification.md
 docs/DedicatedHardwareConfig.md
@@ -57,8 +57,9 @@ docs/EditEgressRuleRequest.md
 docs/EditEgressRuleResponse.md
 docs/EgressRule.md
 docs/EgressTrafficPolicy.md
+docs/EnableCloudWatchMetricExportRequest.md
+docs/EnableDatadogMetricExportRequest.md
 docs/EnableLogExportRequest.md
-docs/EnableMetricExportRequest.md
 docs/GetAllRolesForUserResponse.md
 docs/GetConnectionStringResponse.md
 docs/GetEgressRuleResponse.md
@@ -83,9 +84,6 @@ docs/LogExportGroup.md
 docs/LogExportStatus.md
 docs/LogExportType.md
 docs/LogLevel.md
-docs/MetricExportInfo.md
-docs/MetricExportIntegrationInfo.md
-docs/MetricExportIntegrationType.md
 docs/MetricExportStatus.md
 docs/NetworkVisiblity.md
 docs/Node.md
@@ -122,6 +120,7 @@ model_allowlist_entry_1.go
 model_any.go
 model_api_cloud_provider.go
 model_api_database.go
+model_api_datadog_site.go
 model_api_list_databases_response.go
 model_aws_endpoint_connection.go
 model_aws_endpoint_connection_status.go
@@ -131,7 +130,7 @@ model_built_in_role.go
 model_client_ca_cert_info.go
 model_client_ca_cert_status.go
 model_cloud_provider_region.go
-model_cloud_watch_config.go
+model_cloud_watch_metric_export_info.go
 model_cluster.go
 model_cluster_config.go
 model_cluster_major_version.go
@@ -155,8 +154,7 @@ model_create_database_request.go
 model_create_sql_user_request.go
 model_currency.go
 model_currency_amount.go
-model_datadog_config.go
-model_datadog_config_datadog_site.go
+model_datadog_metric_export_info.go
 model_dedicated_cluster_create_specification.go
 model_dedicated_cluster_update_specification.go
 model_dedicated_hardware_config.go
@@ -169,8 +167,9 @@ model_edit_egress_rule_request.go
 model_edit_egress_rule_response.go
 model_egress_rule.go
 model_egress_traffic_policy.go
+model_enable_cloud_watch_metric_export_request.go
+model_enable_datadog_metric_export_request.go
 model_enable_log_export_request.go
-model_enable_metric_export_request.go
 model_get_all_roles_for_user_response.go
 model_get_connection_string_response.go
 model_get_egress_rule_response.go
@@ -195,9 +194,6 @@ model_log_export_group.go
 model_log_export_status.go
 model_log_export_type.go
 model_log_level.go
-model_metric_export_info.go
-model_metric_export_integration_info.go
-model_metric_export_integration_type.go
 model_metric_export_status.go
 model_network_visiblity.go
 model_node.go

@@ -14,26 +14,29 @@ Method | HTTP request | Description
 [**CreateSQLUser**](CockroachCloudApi.md#CreateSQLUser) | **Post** /api/v1/clusters/{cluster_id}/sql-users | Create a new SQL user
 [**DeleteAllowlistEntry**](CockroachCloudApi.md#DeleteAllowlistEntry) | **Delete** /api/v1/clusters/{cluster_id}/networking/allowlist/{cidr_ip}/{cidr_mask} | Delete an IP allowlist entry
 [**DeleteClientCACert**](CockroachCloudApi.md#DeleteClientCACert) | **Delete** /api/v1/clusters/{cluster_id}/client-ca-cert | Delete Client CA Cert for a cluster
+[**DeleteCloudWatchMetricExport**](CockroachCloudApi.md#DeleteCloudWatchMetricExport) | **Delete** /api/v1/clusters/{cluster_id}/metricexport/cloudwatch | Delete the CloudWatch Metric Export configuration for a cluster
 [**DeleteCluster**](CockroachCloudApi.md#DeleteCluster) | **Delete** /api/v1/clusters/{cluster_id} | Delete a cluster and all of its data
 [**DeleteDatabase**](CockroachCloudApi.md#DeleteDatabase) | **Delete** /api/v1/clusters/{cluster_id}/databases/{name} | Delete a database
+[**DeleteDatadogMetricExport**](CockroachCloudApi.md#DeleteDatadogMetricExport) | **Delete** /api/v1/clusters/{cluster_id}/metricexport/datadog | Delete the Datadog Metric Export configuration for a cluster
 [**DeleteEgressRule**](CockroachCloudApi.md#DeleteEgressRule) | **Delete** /api/v1/clusters/{cluster_id}/networking/egress-rules/{rule_id} | Delete an existing egress rule
 [**DeleteLogExport**](CockroachCloudApi.md#DeleteLogExport) | **Delete** /api/v1/clusters/{cluster_id}/logexport | Delete the Log Export configuration for a cluster
-[**DeleteMetricExport**](CockroachCloudApi.md#DeleteMetricExport) | **Delete** /api/v1/clusters/{cluster_id}/metricexport | Delete the Metric Export configuration for a cluster
 [**DeleteSQLUser**](CockroachCloudApi.md#DeleteSQLUser) | **Delete** /api/v1/clusters/{cluster_id}/sql-users/{name} | Delete a SQL user
 [**EditDatabase**](CockroachCloudApi.md#EditDatabase) | **Patch** /api/v1/clusters/{cluster_id}/databases | Update a database
 [**EditEgressRule**](CockroachCloudApi.md#EditEgressRule) | **Patch** /api/v1/clusters/{cluster_id}/networking/egress-rules/{rule_id} | Edit an existing egress rule
 [**EnableCMEKSpec**](CockroachCloudApi.md#EnableCMEKSpec) | **Post** /api/v1/clusters/{cluster_id}/cmek | Enable CMEK for a cluster
+[**EnableCloudWatchMetricExport**](CockroachCloudApi.md#EnableCloudWatchMetricExport) | **Post** /api/v1/clusters/{cluster_id}/metricexport/cloudwatch | Create or update the CloudWatch Metric Export configuration for a cluster
+[**EnableDatadogMetricExport**](CockroachCloudApi.md#EnableDatadogMetricExport) | **Post** /api/v1/clusters/{cluster_id}/metricexport/datadog | Create or update the Datadog Metric Export configuration for a cluster
 [**EnableLogExport**](CockroachCloudApi.md#EnableLogExport) | **Post** /api/v1/clusters/{cluster_id}/logexport | Create or update the Log Export configuration for a cluster
-[**EnableMetricExport**](CockroachCloudApi.md#EnableMetricExport) | **Post** /api/v1/clusters/{cluster_id}/metricexport | Create or update the Metric Export configuration for a cluster
 [**GetAllRolesForUser**](CockroachCloudApi.md#GetAllRolesForUser) | **Get** /api/v1/roles/{user_id} | Gets All Role Grants for the specified user
 [**GetCMEKClusterInfo**](CockroachCloudApi.md#GetCMEKClusterInfo) | **Get** /api/v1/clusters/{cluster_id}/cmek | Get CMEK-related information for a cluster
 [**GetClientCACert**](CockroachCloudApi.md#GetClientCACert) | **Get** /api/v1/clusters/{cluster_id}/client-ca-cert | Get Client CA Cert information for a cluster
+[**GetCloudWatchMetricExportInfo**](CockroachCloudApi.md#GetCloudWatchMetricExportInfo) | **Get** /api/v1/clusters/{cluster_id}/metricexport/cloudwatch | Get the CloudWatch Metric Export configuration for a cluster
 [**GetCluster**](CockroachCloudApi.md#GetCluster) | **Get** /api/v1/clusters/{cluster_id} | Get extended information about a cluster
 [**GetConnectionString**](CockroachCloudApi.md#GetConnectionString) | **Get** /api/v1/clusters/{cluster_id}/connection-string | Get a formatted generic connection string for a cluster
+[**GetDatadogMetricExportInfo**](CockroachCloudApi.md#GetDatadogMetricExportInfo) | **Get** /api/v1/clusters/{cluster_id}/metricexport/datadog | Get the Datadog Metric Export configuration for a cluster
 [**GetEgressRule**](CockroachCloudApi.md#GetEgressRule) | **Get** /api/v1/clusters/{cluster_id}/networking/egress-rules/{rule_id} | Get an existing egress rule
 [**GetInvoice**](CockroachCloudApi.md#GetInvoice) | **Get** /api/v1/invoices/{invoice_id} | Gets a specific invoice for an organization
 [**GetLogExportInfo**](CockroachCloudApi.md#GetLogExportInfo) | **Get** /api/v1/clusters/{cluster_id}/logexport | Get the Log Export configuration for a cluster
-[**GetMetricExportInfo**](CockroachCloudApi.md#GetMetricExportInfo) | **Get** /api/v1/clusters/{cluster_id}/metricexport | Metric export Get the Metric Export configuration for a cluster
 [**GetOrganizationInfo**](CockroachCloudApi.md#GetOrganizationInfo) | **Get** /api/v1/organization | Get information about the caller&#39;s organization
 [**ListAllowlistEntries**](CockroachCloudApi.md#ListAllowlistEntries) | **Get** /api/v1/clusters/{cluster_id}/networking/allowlist | Get the IP allowlist and propagation status for a cluster
 [**ListAvailableRegions**](CockroachCloudApi.md#ListAvailableRegions) | **Get** /api/v1/clusters/available-regions | List the regions available for new clusters and nodes
@@ -279,7 +282,7 @@ Name | Type | Description  | Notes
 
 ## AddUserToRole
 
-> map[string]interface{} AddUserToRole(ctx, userId).RoleName(roleName).RoleResourceType(roleResourceType).RoleResourceId(roleResourceId).Execute()
+> GetAllRolesForUserResponse AddUserToRole(ctx, userId).RoleName(roleName).RoleResourceType(roleResourceType).RoleResourceId(roleResourceId).Execute()
 
 Adds the user to the given role
 
@@ -308,7 +311,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.AddUserToRole``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `AddUserToRole`: map[string]interface{}
+    // response from `AddUserToRole`: GetAllRolesForUserResponse
     fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.AddUserToRole`: %v\n", resp)
 }
 ```
@@ -335,7 +338,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**map[string]interface{}**
+[**GetAllRolesForUserResponse**](GetAllRolesForUserResponse.md)
 
 ### Authorization
 
@@ -767,6 +770,74 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## DeleteCloudWatchMetricExport
+
+> DeleteMetricExportResponse DeleteCloudWatchMetricExport(ctx, clusterId).Execute()
+
+Delete the CloudWatch Metric Export configuration for a cluster
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    clusterId := "clusterId_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.CockroachCloudApi.DeleteCloudWatchMetricExport(context.Background(), clusterId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.DeleteCloudWatchMetricExport``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DeleteCloudWatchMetricExport`: DeleteMetricExportResponse
+    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.DeleteCloudWatchMetricExport`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**clusterId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteCloudWatchMetricExport struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**DeleteMetricExportResponse**](DeleteMetricExportResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## DeleteCluster
 
 > Cluster DeleteCluster(ctx, clusterId).Execute()
@@ -891,6 +962,74 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ApiDatabase**](ApiDatabase.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeleteDatadogMetricExport
+
+> DeleteMetricExportResponse DeleteDatadogMetricExport(ctx, clusterId).Execute()
+
+Delete the Datadog Metric Export configuration for a cluster
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    clusterId := "clusterId_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.CockroachCloudApi.DeleteDatadogMetricExport(context.Background(), clusterId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.DeleteDatadogMetricExport``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DeleteDatadogMetricExport`: DeleteMetricExportResponse
+    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.DeleteDatadogMetricExport`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**clusterId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteDatadogMetricExport struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**DeleteMetricExportResponse**](DeleteMetricExportResponse.md)
 
 ### Authorization
 
@@ -1032,76 +1171,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**LogExportClusterInfo**](LogExportClusterInfo.md)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## DeleteMetricExport
-
-> DeleteMetricExportResponse DeleteMetricExport(ctx, clusterId).Type_(type_).Execute()
-
-Delete the Metric Export configuration for a cluster
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-    clusterId := "clusterId_example" // string | 
-    type_ := "type__example" // string |  (optional)
-
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewClient(configuration)
-    resp, r, err := api_client.CockroachCloudApi.DeleteMetricExport(context.Background(), clusterId).Type_(type_).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.DeleteMetricExport``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `DeleteMetricExport`: DeleteMetricExportResponse
-    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.DeleteMetricExport`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**clusterId** | **string** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiDeleteMetricExport struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **type_** | **string** |  | 
-
-### Return type
-
-[**DeleteMetricExportResponse**](DeleteMetricExportResponse.md)
 
 ### Authorization
 
@@ -1401,6 +1470,146 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## EnableCloudWatchMetricExport
+
+> CloudWatchMetricExportInfo EnableCloudWatchMetricExport(ctx, clusterId).EnableCloudWatchMetricExportRequest(enableCloudWatchMetricExportRequest).Execute()
+
+Create or update the CloudWatch Metric Export configuration for a cluster
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    clusterId := "clusterId_example" // string | 
+    enableCloudWatchMetricExportRequest := *openapiclient.NewEnableCloudWatchMetricExportRequest("RoleArn_example") // EnableCloudWatchMetricExportRequest | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.CockroachCloudApi.EnableCloudWatchMetricExport(context.Background(), clusterId).EnableCloudWatchMetricExportRequest(enableCloudWatchMetricExportRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.EnableCloudWatchMetricExport``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `EnableCloudWatchMetricExport`: CloudWatchMetricExportInfo
+    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.EnableCloudWatchMetricExport`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**clusterId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiEnableCloudWatchMetricExport struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **enableCloudWatchMetricExportRequest** | [**EnableCloudWatchMetricExportRequest**](EnableCloudWatchMetricExportRequest.md) |  | 
+
+### Return type
+
+[**CloudWatchMetricExportInfo**](CloudWatchMetricExportInfo.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## EnableDatadogMetricExport
+
+> DatadogMetricExportInfo EnableDatadogMetricExport(ctx, clusterId).EnableDatadogMetricExportRequest(enableDatadogMetricExportRequest).Execute()
+
+Create or update the Datadog Metric Export configuration for a cluster
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    clusterId := "clusterId_example" // string | 
+    enableDatadogMetricExportRequest := *openapiclient.NewEnableDatadogMetricExportRequest("ApiKey_example", openapiclient.api.DatadogSite("US1")) // EnableDatadogMetricExportRequest | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.CockroachCloudApi.EnableDatadogMetricExport(context.Background(), clusterId).EnableDatadogMetricExportRequest(enableDatadogMetricExportRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.EnableDatadogMetricExport``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `EnableDatadogMetricExport`: DatadogMetricExportInfo
+    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.EnableDatadogMetricExport`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**clusterId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiEnableDatadogMetricExport struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **enableDatadogMetricExportRequest** | [**EnableDatadogMetricExportRequest**](EnableDatadogMetricExportRequest.md) |  | 
+
+### Return type
+
+[**DatadogMetricExportInfo**](DatadogMetricExportInfo.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## EnableLogExport
 
 > LogExportClusterInfo EnableLogExport(ctx, clusterId).EnableLogExportRequest(enableLogExportRequest).Execute()
@@ -1456,76 +1665,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**LogExportClusterInfo**](LogExportClusterInfo.md)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## EnableMetricExport
-
-> MetricExportInfo EnableMetricExport(ctx, clusterId).EnableMetricExportRequest(enableMetricExportRequest).Execute()
-
-Create or update the Metric Export configuration for a cluster
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-    clusterId := "clusterId_example" // string | 
-    enableMetricExportRequest := *openapiclient.NewEnableMetricExportRequest() // EnableMetricExportRequest | 
-
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewClient(configuration)
-    resp, r, err := api_client.CockroachCloudApi.EnableMetricExport(context.Background(), clusterId).EnableMetricExportRequest(enableMetricExportRequest).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.EnableMetricExport``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `EnableMetricExport`: MetricExportInfo
-    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.EnableMetricExport`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**clusterId** | **string** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiEnableMetricExport struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **enableMetricExportRequest** | [**EnableMetricExportRequest**](EnableMetricExportRequest.md) |  | 
-
-### Return type
-
-[**MetricExportInfo**](MetricExportInfo.md)
 
 ### Authorization
 
@@ -1745,6 +1884,74 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetCloudWatchMetricExportInfo
+
+> CloudWatchMetricExportInfo GetCloudWatchMetricExportInfo(ctx, clusterId).Execute()
+
+Get the CloudWatch Metric Export configuration for a cluster
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    clusterId := "clusterId_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.CockroachCloudApi.GetCloudWatchMetricExportInfo(context.Background(), clusterId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.GetCloudWatchMetricExportInfo``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetCloudWatchMetricExportInfo`: CloudWatchMetricExportInfo
+    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.GetCloudWatchMetricExportInfo`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**clusterId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetCloudWatchMetricExportInfo struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**CloudWatchMetricExportInfo**](CloudWatchMetricExportInfo.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetCluster
 
 > Cluster GetCluster(ctx, clusterId).Execute()
@@ -1872,6 +2079,74 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**GetConnectionStringResponse**](GetConnectionStringResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetDatadogMetricExportInfo
+
+> DatadogMetricExportInfo GetDatadogMetricExportInfo(ctx, clusterId).Execute()
+
+Get the Datadog Metric Export configuration for a cluster
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    clusterId := "clusterId_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.CockroachCloudApi.GetDatadogMetricExportInfo(context.Background(), clusterId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.GetDatadogMetricExportInfo``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetDatadogMetricExportInfo`: DatadogMetricExportInfo
+    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.GetDatadogMetricExportInfo`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**clusterId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetDatadogMetricExportInfo struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**DatadogMetricExportInfo**](DatadogMetricExportInfo.md)
 
 ### Authorization
 
@@ -2079,74 +2354,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**LogExportClusterInfo**](LogExportClusterInfo.md)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## GetMetricExportInfo
-
-> MetricExportInfo GetMetricExportInfo(ctx, clusterId).Execute()
-
-Metric export Get the Metric Export configuration for a cluster
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-    clusterId := "clusterId_example" // string | 
-
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewClient(configuration)
-    resp, r, err := api_client.CockroachCloudApi.GetMetricExportInfo(context.Background(), clusterId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.GetMetricExportInfo``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetMetricExportInfo`: MetricExportInfo
-    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.GetMetricExportInfo`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**clusterId** | **string** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetMetricExportInfo struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
-### Return type
-
-[**MetricExportInfo**](MetricExportInfo.md)
 
 ### Authorization
 
@@ -3115,7 +3322,7 @@ Name | Type | Description  | Notes
 
 ## RemoveUserFromRole
 
-> map[string]interface{} RemoveUserFromRole(ctx, userId).RoleName(roleName).RoleResourceType(roleResourceType).RoleResourceId(roleResourceId).Execute()
+> GetAllRolesForUserResponse RemoveUserFromRole(ctx, userId).RoleName(roleName).RoleResourceType(roleResourceType).RoleResourceId(roleResourceId).Execute()
 
 Removes the user from the given role
 
@@ -3144,7 +3351,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.RemoveUserFromRole``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `RemoveUserFromRole`: map[string]interface{}
+    // response from `RemoveUserFromRole`: GetAllRolesForUserResponse
     fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.RemoveUserFromRole`: %v\n", resp)
 }
 ```
@@ -3171,7 +3378,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**map[string]interface{}**
+[**GetAllRolesForUserResponse**](GetAllRolesForUserResponse.md)
 
 ### Authorization
 
@@ -3404,7 +3611,7 @@ Name | Type | Description  | Notes
 
 ## SetRolesForUser
 
-> map[string]interface{} SetRolesForUser(ctx, userId).Execute()
+> GetAllRolesForUserResponse SetRolesForUser(ctx, userId).Execute()
 
 Makes the users roles exactly those provided
 
@@ -3430,7 +3637,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.SetRolesForUser``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `SetRolesForUser`: map[string]interface{}
+    // response from `SetRolesForUser`: GetAllRolesForUserResponse
     fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.SetRolesForUser`: %v\n", resp)
 }
 ```
@@ -3454,7 +3661,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**map[string]interface{}**
+[**GetAllRolesForUserResponse**](GetAllRolesForUserResponse.md)
 
 ### Authorization
 

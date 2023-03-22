@@ -27,8 +27,10 @@ type Region struct {
 	// internal_dns is the internal DNS name of the cluster within the cloud provider's network. It is used to connect to the cluster with PrivateLink or VPC peering.
 	InternalDns string `json:"internal_dns"`
 	Name        string `json:"name"`
-	// node_count will be 0 for serverless clusters.
+	// node_count will be 0 for Serverless clusters.
 	NodeCount int32 `json:"node_count"`
+	// primary is true only for the primary region in a Multi Region Serverless cluster.
+	Primary *bool `json:"primary,omitempty"`
 	// sql_dns is the DNS name of SQL interface of the cluster. It is used to connect to the cluster with IP allowlisting.
 	SqlDns string `json:"sql_dns"`
 	// ui_dns is the DNS name used when connecting to the DB Console for the cluster.
@@ -102,6 +104,20 @@ func (o *Region) SetNodeCount(v int32) {
 	o.NodeCount = v
 }
 
+// GetPrimary returns the Primary field value if set, zero value otherwise.
+func (o *Region) GetPrimary() bool {
+	if o == nil || o.Primary == nil {
+		var ret bool
+		return ret
+	}
+	return *o.Primary
+}
+
+// SetPrimary gets a reference to the given bool and assigns it to the Primary field.
+func (o *Region) SetPrimary(v bool) {
+	o.Primary = &v
+}
+
 // GetSqlDns returns the SqlDns field value.
 func (o *Region) GetSqlDns() string {
 	if o == nil {
@@ -142,6 +158,9 @@ func (o Region) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["node_count"] = o.NodeCount
+	}
+	if o.Primary != nil {
+		toSerialize["primary"] = o.Primary
 	}
 	if true {
 		toSerialize["sql_dns"] = o.SqlDns
