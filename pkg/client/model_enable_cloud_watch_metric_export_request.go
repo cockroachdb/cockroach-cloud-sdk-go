@@ -22,8 +22,8 @@ import (
 	"encoding/json"
 )
 
-// CloudWatchConfig struct for CloudWatchConfig.
-type CloudWatchConfig struct {
+// EnableCloudWatchMetricExportRequest struct for EnableCloudWatchMetricExportRequest.
+type EnableCloudWatchMetricExportRequest struct {
 	// log_group_name is the customized log group name.
 	LogGroupName *string `json:"log_group_name,omitempty"`
 	// role_arn is the IAM role used to upload metric segments to the target AWS account.
@@ -32,26 +32,26 @@ type CloudWatchConfig struct {
 	TargetRegion *string `json:"target_region,omitempty"`
 }
 
-// NewCloudWatchConfig instantiates a new CloudWatchConfig object.
+// NewEnableCloudWatchMetricExportRequest instantiates a new EnableCloudWatchMetricExportRequest object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCloudWatchConfig(roleArn string) *CloudWatchConfig {
-	p := CloudWatchConfig{}
+func NewEnableCloudWatchMetricExportRequest(roleArn string) *EnableCloudWatchMetricExportRequest {
+	p := EnableCloudWatchMetricExportRequest{}
 	p.RoleArn = roleArn
 	return &p
 }
 
-// NewCloudWatchConfigWithDefaults instantiates a new CloudWatchConfig object.
+// NewEnableCloudWatchMetricExportRequestWithDefaults instantiates a new EnableCloudWatchMetricExportRequest object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewCloudWatchConfigWithDefaults() *CloudWatchConfig {
-	p := CloudWatchConfig{}
+func NewEnableCloudWatchMetricExportRequestWithDefaults() *EnableCloudWatchMetricExportRequest {
+	p := EnableCloudWatchMetricExportRequest{}
 	return &p
 }
 
 // GetLogGroupName returns the LogGroupName field value if set, zero value otherwise.
-func (o *CloudWatchConfig) GetLogGroupName() string {
+func (o *EnableCloudWatchMetricExportRequest) GetLogGroupName() string {
 	if o == nil || o.LogGroupName == nil {
 		var ret string
 		return ret
@@ -60,12 +60,12 @@ func (o *CloudWatchConfig) GetLogGroupName() string {
 }
 
 // SetLogGroupName gets a reference to the given string and assigns it to the LogGroupName field.
-func (o *CloudWatchConfig) SetLogGroupName(v string) {
+func (o *EnableCloudWatchMetricExportRequest) SetLogGroupName(v string) {
 	o.LogGroupName = &v
 }
 
 // GetRoleArn returns the RoleArn field value.
-func (o *CloudWatchConfig) GetRoleArn() string {
+func (o *EnableCloudWatchMetricExportRequest) GetRoleArn() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -75,12 +75,12 @@ func (o *CloudWatchConfig) GetRoleArn() string {
 }
 
 // SetRoleArn sets field value.
-func (o *CloudWatchConfig) SetRoleArn(v string) {
+func (o *EnableCloudWatchMetricExportRequest) SetRoleArn(v string) {
 	o.RoleArn = v
 }
 
 // GetTargetRegion returns the TargetRegion field value if set, zero value otherwise.
-func (o *CloudWatchConfig) GetTargetRegion() string {
+func (o *EnableCloudWatchMetricExportRequest) GetTargetRegion() string {
 	if o == nil || o.TargetRegion == nil {
 		var ret string
 		return ret
@@ -89,11 +89,11 @@ func (o *CloudWatchConfig) GetTargetRegion() string {
 }
 
 // SetTargetRegion gets a reference to the given string and assigns it to the TargetRegion field.
-func (o *CloudWatchConfig) SetTargetRegion(v string) {
+func (o *EnableCloudWatchMetricExportRequest) SetTargetRegion(v string) {
 	o.TargetRegion = &v
 }
 
-func (o CloudWatchConfig) MarshalJSON() ([]byte, error) {
+func (o EnableCloudWatchMetricExportRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.LogGroupName != nil {
 		toSerialize["log_group_name"] = o.LogGroupName

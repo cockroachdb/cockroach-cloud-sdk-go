@@ -6,7 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **InternalDns** | **string** | internal_dns is the internal DNS name of the cluster within the cloud provider&#39;s network. It is used to connect to the cluster with PrivateLink or VPC peering. | 
 **Name** | **string** |  | 
-**NodeCount** | **int32** | node_count will be 0 for serverless clusters. | 
+**NodeCount** | **int32** | node_count will be 0 for Serverless clusters. | 
+**Primary** | Pointer to **bool** | primary is true only for the primary region in a Multi Region Serverless cluster. | [optional] 
 **SqlDns** | **string** | sql_dns is the DNS name of SQL interface of the cluster. It is used to connect to the cluster with IP allowlisting. | 
 **UiDns** | **string** | ui_dns is the DNS name used when connecting to the DB Console for the cluster. | 
 
@@ -64,6 +65,18 @@ GetNodeCount returns the NodeCount field if non-nil, zero value otherwise.
 `func (o *Region) SetNodeCount(v int32)`
 
 SetNodeCount sets NodeCount field to given value.
+
+### GetPrimary
+
+`func (o *Region) GetPrimary() bool`
+
+GetPrimary returns the Primary field if non-nil, zero value otherwise.
+
+### SetPrimary
+
+`func (o *Region) SetPrimary(v bool)`
+
+SetPrimary sets Primary field to given value.
 
 ### GetSqlDns
 

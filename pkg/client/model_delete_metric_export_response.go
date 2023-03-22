@@ -24,32 +24,41 @@ import (
 
 // DeleteMetricExportResponse struct for DeleteMetricExportResponse.
 type DeleteMetricExportResponse struct {
-	ClusterId *string                      `json:"cluster_id,omitempty"`
-	Status    *MetricExportStatus          `json:"status,omitempty"`
-	Type      *MetricExportIntegrationType `json:"type,omitempty"`
+	ClusterId string              `json:"cluster_id"`
+	Status    *MetricExportStatus `json:"status,omitempty"`
 }
 
 // NewDeleteMetricExportResponse instantiates a new DeleteMetricExportResponse object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDeleteMetricExportResponse() *DeleteMetricExportResponse {
+func NewDeleteMetricExportResponse(clusterId string) *DeleteMetricExportResponse {
+	p := DeleteMetricExportResponse{}
+	p.ClusterId = clusterId
+	return &p
+}
+
+// NewDeleteMetricExportResponseWithDefaults instantiates a new DeleteMetricExportResponse object.
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewDeleteMetricExportResponseWithDefaults() *DeleteMetricExportResponse {
 	p := DeleteMetricExportResponse{}
 	return &p
 }
 
-// GetClusterId returns the ClusterId field value if set, zero value otherwise.
+// GetClusterId returns the ClusterId field value.
 func (o *DeleteMetricExportResponse) GetClusterId() string {
-	if o == nil || o.ClusterId == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.ClusterId
+
+	return o.ClusterId
 }
 
-// SetClusterId gets a reference to the given string and assigns it to the ClusterId field.
+// SetClusterId sets field value.
 func (o *DeleteMetricExportResponse) SetClusterId(v string) {
-	o.ClusterId = &v
+	o.ClusterId = v
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
@@ -66,30 +75,13 @@ func (o *DeleteMetricExportResponse) SetStatus(v MetricExportStatus) {
 	o.Status = &v
 }
 
-// GetType returns the Type field value if set, zero value otherwise.
-func (o *DeleteMetricExportResponse) GetType() MetricExportIntegrationType {
-	if o == nil || o.Type == nil {
-		var ret MetricExportIntegrationType
-		return ret
-	}
-	return *o.Type
-}
-
-// SetType gets a reference to the given MetricExportIntegrationType and assigns it to the Type field.
-func (o *DeleteMetricExportResponse) SetType(v MetricExportIntegrationType) {
-	o.Type = &v
-}
-
 func (o DeleteMetricExportResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.ClusterId != nil {
+	if true {
 		toSerialize["cluster_id"] = o.ClusterId
 	}
 	if o.Status != nil {
 		toSerialize["status"] = o.Status
-	}
-	if o.Type != nil {
-		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
 }

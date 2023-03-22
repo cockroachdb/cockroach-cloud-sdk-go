@@ -1669,9 +1669,9 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
             --header 'content-type: application/json' \
             --data '{"auth_principal":"my-gcp-project-id","groups":[{"channels":["OPS","HEALTH"],"log_name":"devops","min_level":"WARNING"}],"log_name":"default","redact":true,"type":"GCP_CLOUD_LOGGING"}'
-  /api/v1/clusters/{cluster_id}/metricexport:
+  /api/v1/clusters/{cluster_id}/metricexport/cloudwatch:
     delete:
-      operationId: CockroachCloud_DeleteMetricExport
+      operationId: CockroachCloud_DeleteCloudWatchMetricExport
       parameters:
       - explode: false
         in: path
@@ -1680,16 +1680,6 @@ paths:
         schema:
           type: string
         style: simple
-      - explode: true
-        in: query
-        name: type
-        required: false
-        schema:
-          enum:
-          - DATADOG
-          - CLOUDWATCH
-          type: string
-        style: form
       responses:
         "200":
           content:
@@ -1729,7 +1719,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
-      summary: Delete the Metric Export configuration for a cluster
+      summary: Delete the CloudWatch Metric Export configuration for a cluster
       tags:
       - CockroachCloud
       x-badges:
@@ -1739,10 +1729,10 @@ paths:
       - lang: Shell + Curl
         source: |-
           curl --request DELETE \
-            --url 'https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/metricexport?type=SOME_STRING_VALUE' \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/metricexport/cloudwatch \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     get:
-      operationId: CockroachCloud_GetMetricExportInfo
+      operationId: CockroachCloud_GetCloudWatchMetricExportInfo
       parameters:
       - explode: false
         in: path
@@ -1756,7 +1746,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/MetricExportInfo'
+                $ref: '#/components/schemas/CloudWatchMetricExportInfo'
           description: A successful response.
         "400":
           content:
@@ -1790,9 +1780,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
-      summary: |-
-        Metric export
-        Get the Metric Export configuration for a cluster
+      summary: Get the CloudWatch Metric Export configuration for a cluster
       tags:
       - CockroachCloud
       x-badges:
@@ -1802,10 +1790,10 @@ paths:
       - lang: Shell + Curl
         source: |-
           curl --request GET \
-            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/metricexport \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/metricexport/cloudwatch \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     post:
-      operationId: CockroachCloud_EnableMetricExport
+      operationId: CockroachCloud_EnableCloudWatchMetricExport
       parameters:
       - explode: false
         in: path
@@ -1818,14 +1806,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/EnableMetricExportRequest'
+              $ref: '#/components/schemas/EnableCloudWatchMetricExportRequest'
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/MetricExportInfo'
+                $ref: '#/components/schemas/CloudWatchMetricExportInfo'
           description: A successful response.
         "400":
           content:
@@ -1859,7 +1847,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
-      summary: Create or update the Metric Export configuration for a cluster
+      summary: Create or update the CloudWatch Metric Export configuration for a cluster
       tags:
       - CockroachCloud
       x-badges:
@@ -1869,10 +1857,202 @@ paths:
       - lang: Shell + Curl
         source: |-
           curl --request POST \
-            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/metricexport \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/metricexport/cloudwatch \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
             --header 'content-type: application/json' \
-            --data '{"datadog":{"api_key":"datadog_api_key","site":"US1"}}'
+            --data '{"log_group_name":"example","role_arn":"arn:aws:iam::account:role/ExampleRole","target_region":"us-east-1"}'
+  /api/v1/clusters/{cluster_id}/metricexport/datadog:
+    delete:
+      operationId: CockroachCloud_DeleteDatadogMetricExport
+      parameters:
+      - explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteMetricExportResponse'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Delete the Datadog Metric Export configuration for a cluster
+      tags:
+      - CockroachCloud
+      x-badges:
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request DELETE \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/metricexport/datadog \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+    get:
+      operationId: CockroachCloud_GetDatadogMetricExportInfo
+      parameters:
+      - explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatadogMetricExportInfo'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Get the Datadog Metric Export configuration for a cluster
+      tags:
+      - CockroachCloud
+      x-badges:
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request GET \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/metricexport/datadog \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+    post:
+      operationId: CockroachCloud_EnableDatadogMetricExport
+      parameters:
+      - explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnableDatadogMetricExportRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatadogMetricExportInfo'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Create or update the Datadog Metric Export configuration for a cluster
+      tags:
+      - CockroachCloud
+      x-badges:
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request POST \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/metricexport/datadog \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
+            --header 'content-type: application/json' \
+            --data '{"api_key":"datadog_api_key","site":"US1"}'
   /api/v1/clusters/{cluster_id}/networking/allowlist:
     get:
       description: "Sort order: CIDR address"
@@ -3755,7 +3935,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/GetAllRolesForUserResponse'
           description: A successful response.
         "400":
           content:
@@ -3912,7 +4092,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/GetAllRolesForUserResponse'
           description: A successful response.
         "400":
           content:
@@ -3973,7 +4153,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/GetAllRolesForUserResponse'
           description: A successful response.
         "400":
           content:
@@ -4190,7 +4370,7 @@ components:
               foo = any.unpack(Foo.class);
             }
 
-        Example 3: Pack and unpack a message in Python.
+         Example 3: Pack and unpack a message in Python.
 
             foo = Foo(...)
             any = Any()
@@ -4200,16 +4380,13 @@ components:
               any.Unpack(foo)
               ...
 
-        Example 4: Pack and unpack a message in Go
+         Example 4: Pack and unpack a message in Go
 
              foo := &pb.Foo{...}
-             any, err := anypb.New(foo)
-             if err != nil {
-               ...
-             }
+             any, err := ptypes.MarshalAny(foo)
              ...
              foo := &pb.Foo{}
-             if err := any.UnmarshalTo(foo); err != nil {
+             if err := ptypes.UnmarshalAny(any, foo); err != nil {
                ...
              }
 
@@ -4221,7 +4398,7 @@ components:
 
 
         JSON
-
+        ====
         The JSON representation of an `Any` value uses the regular
         representation of the deserialized, embedded message, with an
         additional field `@type` which contains the type URL. Example:
@@ -4594,12 +4771,17 @@ components:
       - provider
       - serverless
       type: object
-    CloudWatchConfig:
+    CloudWatchMetricExportInfo:
       example:
         target_region: target_region
         log_group_name: log_group_name
+        cluster_id: cluster_id
         role_arn: role_arn
+        user_message: user_message
+        status: null
       properties:
+        cluster_id:
+          type: string
         log_group_name:
           description: log_group_name is the customized log group name.
           type: string
@@ -4608,13 +4790,19 @@ components:
             role_arn is the IAM role used to upload metric segments to the
             target AWS account.
           type: string
+        status:
+          $ref: '#/components/schemas/MetricExportStatus'
         target_region:
           description: |-
             target_region specifies the specific AWS region that the metrics will
             be exported to.
           type: string
+        user_message:
+          type: string
       required:
+      - cluster_id
       - role_arn
+      title: CloudWatchMetricExportInfo
       type: object
     Cluster:
       example:
@@ -4828,27 +5016,30 @@ components:
         currency:
           $ref: '#/components/schemas/Currency'
       type: object
-    DatadogConfig:
+    DatadogMetricExportInfo:
       example:
+        cluster_id: cluster_id
         site: null
         api_key: api_key
+        user_message: user_message
+        status: null
       properties:
         api_key:
+          description: api_key is the last 4 digits of a Datadog API key.
+          type: string
+        cluster_id:
           type: string
         site:
-          $ref: '#/components/schemas/DatadogConfig.DatadogSite'
+          $ref: '#/components/schemas/api.DatadogSite'
+        status:
+          $ref: '#/components/schemas/MetricExportStatus'
+        user_message:
+          type: string
       required:
-      - api_key
+      - cluster_id
       - site
+      title: DatadogMetricExportInfo
       type: object
-    DatadogConfig.DatadogSite:
-      enum:
-      - US1
-      - US3
-      - US5
-      - US1_GOV
-      - EU1
-      type: string
     DedicatedClusterCreateSpecification:
       properties:
         cockroach_version:
@@ -5015,15 +5206,15 @@ components:
     DeleteMetricExportResponse:
       example:
         cluster_id: cluster_id
-        type: null
         status: null
       properties:
         cluster_id:
           type: string
         status:
           $ref: '#/components/schemas/MetricExportStatus'
-        type:
-          $ref: '#/components/schemas/MetricExportIntegrationType'
+      required:
+      - cluster_id
+      title: DeleteMetricExportResponse
       type: object
     EditEgressRuleResponse:
       description: EditEgressRuleResponse is the output message to the EditEgressRule
@@ -6176,62 +6367,6 @@ components:
       - ERROR
       - FATAL
       type: string
-    MetricExportInfo:
-      example:
-        cluster_id: cluster_id
-        integration:
-        - datadog:
-            site: null
-            api_key: api_key
-          user_message: user_message
-          cloudwatch:
-            target_region: target_region
-            log_group_name: log_group_name
-            role_arn: role_arn
-          status: null
-        - datadog:
-            site: null
-            api_key: api_key
-          user_message: user_message
-          cloudwatch:
-            target_region: target_region
-            log_group_name: log_group_name
-            role_arn: role_arn
-          status: null
-      properties:
-        cluster_id:
-          type: string
-        integration:
-          items:
-            $ref: '#/components/schemas/MetricExportIntegrationInfo'
-          type: array
-      type: object
-    MetricExportIntegrationInfo:
-      example:
-        datadog:
-          site: null
-          api_key: api_key
-        user_message: user_message
-        cloudwatch:
-          target_region: target_region
-          log_group_name: log_group_name
-          role_arn: role_arn
-        status: null
-      properties:
-        cloudwatch:
-          $ref: '#/components/schemas/CloudWatchConfig'
-        datadog:
-          $ref: '#/components/schemas/DatadogConfig'
-        status:
-          $ref: '#/components/schemas/MetricExportStatus'
-        user_message:
-          type: string
-      type: object
-    MetricExportIntegrationType:
-      enum:
-      - DATADOG
-      - CLOUDWATCH
-      type: string
     MetricExportStatus:
       enum:
       - NOT_DEPLOYED
@@ -6407,9 +6542,13 @@ components:
         name:
           type: string
         node_count:
-          description: node_count will be 0 for serverless clusters.
+          description: node_count will be 0 for Serverless clusters.
           format: int32
           type: integer
+        primary:
+          description: primary is true only for the primary region in a Multi Region
+            Serverless cluster.
+          type: boolean
         sql_dns:
           description: sql_dns is the DNS name of SQL interface of the cluster. It
             is used to connect to the cluster with IP allowlisting.
@@ -6584,6 +6723,17 @@ components:
       - name
       title: Database
       type: object
+    api.DatadogSite:
+      description: |-
+        DatadogSite specifies the Datadog region to export to.
+        NOTE: Regions are completely independent from one another.
+      enum:
+      - US1
+      - US3
+      - US5
+      - US1_GOV
+      - EU1
+      type: string
     api.ListDatabasesResponse:
       example:
         databases:
@@ -6725,17 +6875,43 @@ components:
       - type
       title: EnableLogExportRequest
       type: object
-    EnableMetricExportRequest:
+    EnableCloudWatchMetricExportRequest:
       example:
-        datadog:
-          api_key: datadog_api_key
-          site: US1
+        log_group_name: example
+        role_arn: arn:aws:iam::account:role/ExampleRole
+        target_region: us-east-1
       properties:
-        cloudwatch:
-          $ref: '#/components/schemas/CloudWatchConfig'
-        datadog:
-          $ref: '#/components/schemas/DatadogConfig'
-      title: EnableMetricExportRequest
+        log_group_name:
+          description: log_group_name is the customized log group name.
+          type: string
+        role_arn:
+          description: |-
+            role_arn is the IAM role used to upload metric segments to the
+            target AWS account.
+          type: string
+        target_region:
+          description: |-
+            target_region specifies the specific AWS region that the metrics will
+            be exported to.
+          type: string
+      required:
+      - role_arn
+      title: EnableCloudWatchMetricExportRequest
+      type: object
+    EnableDatadogMetricExportRequest:
+      example:
+        api_key: datadog_api_key
+        site: US1
+      properties:
+        api_key:
+          description: api_key is a Datadog API key.
+          type: string
+        site:
+          $ref: '#/components/schemas/api.DatadogSite'
+      required:
+      - api_key
+      - site
+      title: EnableDatadogMetricExportRequest
       type: object
     AllowlistEntry_1:
       example:
