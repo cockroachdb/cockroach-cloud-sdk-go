@@ -3885,102 +3885,6 @@ paths:
             --url 'https://cockroachlabs.cloud/api/v1/roles?pagination.page=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.as_of_time=SOME_STRING_VALUE&pagination.sort_order=SOME_STRING_VALUE' \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
   /api/v1/roles/{user_id}:
-    delete:
-      operationId: CockroachCloud_RemoveUserFromRole
-      parameters:
-      - explode: false
-        in: path
-        name: user_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - explode: true
-        in: query
-        name: role.name
-        required: false
-        schema:
-          enum:
-          - ORG_ROLE_DEVELOPER
-          - ORG_ROLE_ADMIN
-          - ORG_ROLE_BILLING_COORDINATOR
-          - ORG_ROLE_ORG_ADMIN
-          - ORG_ROLE_ORG_MEMBER
-          - ORG_ROLE_CLUSTER_ADMIN
-          - ORG_ROLE_CLUSTER_OPERATOR_WRITER
-          - ORG_ROLE_CLUSTER_OPERATOR_READER
-          - ORG_ROLE_CLUSTER_DEVELOPER
-          - ORG_ROLE_CLUSTER_CREATOR
-          type: string
-        style: form
-      - explode: true
-        in: query
-        name: role.resource.type
-        required: false
-        schema:
-          enum:
-          - ORGANIZATION
-          - CLUSTER
-          type: string
-        style: form
-      - explode: true
-        in: query
-        name: role.resource.id
-        required: false
-        schema:
-          type: string
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GetAllRolesForUserResponse'
-          description: A successful response.
-        "400":
-          content:
-            application/json:
-              schema: {}
-          description: Returned when a request field is invalid.
-        "401":
-          content:
-            application/json:
-              schema: {}
-          description: Returned when the token bearer cannot be authenticated.
-        "403":
-          content:
-            application/json:
-              schema: {}
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            application/json:
-              schema: {}
-          description: Returned when the resource does not exist.
-        "500":
-          content:
-            application/json:
-              schema: {}
-          description: Server error
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Status'
-          description: An unexpected error response.
-      summary: Removes the user from the given role
-      tags:
-      - CockroachCloud
-      x-badges:
-      - color: blue
-        label: PREVIEW
-      x-codeSamples:
-      - lang: Shell + Curl
-        source: |-
-          curl --request DELETE \
-            --url 'https://cockroachlabs.cloud/api/v1/roles/{user_id}?role.name=SOME_STRING_VALUE&role.resource.type=SOME_STRING_VALUE&role.resource.id=SOME_STRING_VALUE' \
-            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     get:
       operationId: CockroachCloud_GetAllRolesForUser
       parameters:
@@ -4042,102 +3946,6 @@ paths:
           curl --request GET \
             --url https://cockroachlabs.cloud/api/v1/roles/{user_id} \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
-    post:
-      operationId: CockroachCloud_AddUserToRole
-      parameters:
-      - explode: false
-        in: path
-        name: user_id
-        required: true
-        schema:
-          type: string
-        style: simple
-      - explode: true
-        in: query
-        name: role.name
-        required: false
-        schema:
-          enum:
-          - ORG_ROLE_DEVELOPER
-          - ORG_ROLE_ADMIN
-          - ORG_ROLE_BILLING_COORDINATOR
-          - ORG_ROLE_ORG_ADMIN
-          - ORG_ROLE_ORG_MEMBER
-          - ORG_ROLE_CLUSTER_ADMIN
-          - ORG_ROLE_CLUSTER_OPERATOR_WRITER
-          - ORG_ROLE_CLUSTER_OPERATOR_READER
-          - ORG_ROLE_CLUSTER_DEVELOPER
-          - ORG_ROLE_CLUSTER_CREATOR
-          type: string
-        style: form
-      - explode: true
-        in: query
-        name: role.resource.type
-        required: false
-        schema:
-          enum:
-          - ORGANIZATION
-          - CLUSTER
-          type: string
-        style: form
-      - explode: true
-        in: query
-        name: role.resource.id
-        required: false
-        schema:
-          type: string
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GetAllRolesForUserResponse'
-          description: A successful response.
-        "400":
-          content:
-            application/json:
-              schema: {}
-          description: Returned when a request field is invalid.
-        "401":
-          content:
-            application/json:
-              schema: {}
-          description: Returned when the token bearer cannot be authenticated.
-        "403":
-          content:
-            application/json:
-              schema: {}
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            application/json:
-              schema: {}
-          description: Returned when the resource does not exist.
-        "500":
-          content:
-            application/json:
-              schema: {}
-          description: Server error
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Status'
-          description: An unexpected error response.
-      summary: Adds the user to the given role
-      tags:
-      - CockroachCloud
-      x-badges:
-      - color: blue
-        label: PREVIEW
-      x-codeSamples:
-      - lang: Shell + Curl
-        source: |-
-          curl --request POST \
-            --url 'https://cockroachlabs.cloud/api/v1/roles/{user_id}?role.name=SOME_STRING_VALUE&role.resource.type=SOME_STRING_VALUE&role.resource.id=SOME_STRING_VALUE' \
-            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     put:
       operationId: CockroachCloud_SetRolesForUser
       parameters:
@@ -4148,6 +3956,12 @@ paths:
         schema:
           type: string
         style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CockroachCloud_SetRolesForUser_request'
+        required: true
       responses:
         "200":
           content:
@@ -4198,6 +4012,201 @@ paths:
         source: |-
           curl --request PUT \
             --url https://cockroachlabs.cloud/api/v1/roles/{user_id} \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
+            --header 'content-type: application/json' \
+            --data '[{"name":"ORG_ROLE_CLUSTER_ADMIN","resource":{"id":"example_cluster_id","type":"CLUSTER"}}]'
+  /api/v1/roles/{user_id}/{resource_type}/{resource_id}/{role_name}:
+    delete:
+      operationId: CockroachCloud_RemoveUserFromRole
+      parameters:
+      - explode: false
+        in: path
+        name: user_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: resource_type
+        required: true
+        schema:
+          enum:
+          - ORGANIZATION
+          - CLUSTER
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: resource_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: role_name
+        required: true
+        schema:
+          enum:
+          - ORG_ROLE_DEVELOPER
+          - ORG_ROLE_ADMIN
+          - ORG_ROLE_BILLING_COORDINATOR
+          - ORG_ROLE_ORG_ADMIN
+          - ORG_ROLE_ORG_MEMBER
+          - ORG_ROLE_CLUSTER_ADMIN
+          - ORG_ROLE_CLUSTER_OPERATOR_WRITER
+          - ORG_ROLE_CLUSTER_OPERATOR_READER
+          - ORG_ROLE_CLUSTER_DEVELOPER
+          - ORG_ROLE_CLUSTER_CREATOR
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetAllRolesForUserResponse'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Removes the user from the given role
+      tags:
+      - CockroachCloud
+      x-badges:
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request DELETE \
+            --url https://cockroachlabs.cloud/api/v1/roles/{user_id}/{resource_type}/{resource_id}/{role_name} \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+    post:
+      operationId: CockroachCloud_AddUserToRole
+      parameters:
+      - explode: false
+        in: path
+        name: user_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: resource_type
+        required: true
+        schema:
+          enum:
+          - ORGANIZATION
+          - CLUSTER
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: resource_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: role_name
+        required: true
+        schema:
+          enum:
+          - ORG_ROLE_DEVELOPER
+          - ORG_ROLE_ADMIN
+          - ORG_ROLE_BILLING_COORDINATOR
+          - ORG_ROLE_ORG_ADMIN
+          - ORG_ROLE_ORG_MEMBER
+          - ORG_ROLE_CLUSTER_ADMIN
+          - ORG_ROLE_CLUSTER_OPERATOR_WRITER
+          - ORG_ROLE_CLUSTER_OPERATOR_READER
+          - ORG_ROLE_CLUSTER_DEVELOPER
+          - ORG_ROLE_CLUSTER_CREATOR
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetAllRolesForUserResponse'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Adds the user to the given role
+      tags:
+      - CockroachCloud
+      x-badges:
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request POST \
+            --url https://cockroachlabs.cloud/api/v1/roles/{user_id}/{resource_type}/{resource_id}/{role_name} \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
 components:
   requestBodies:
@@ -4370,7 +4379,7 @@ components:
               foo = any.unpack(Foo.class);
             }
 
-         Example 3: Pack and unpack a message in Python.
+        Example 3: Pack and unpack a message in Python.
 
             foo = Foo(...)
             any = Any()
@@ -4380,13 +4389,16 @@ components:
               any.Unpack(foo)
               ...
 
-         Example 4: Pack and unpack a message in Go
+        Example 4: Pack and unpack a message in Go
 
              foo := &pb.Foo{...}
-             any, err := ptypes.MarshalAny(foo)
+             any, err := anypb.New(foo)
+             if err != nil {
+               ...
+             }
              ...
              foo := &pb.Foo{}
-             if err := ptypes.UnmarshalAny(any, foo); err != nil {
+             if err := any.UnmarshalTo(foo); err != nil {
                ...
              }
 
@@ -4398,7 +4410,7 @@ components:
 
 
         JSON
-        ====
+
         The JSON representation of an `Any` value uses the regular
         representation of the deserialized, embedded message, with an
         additional field `@type` which contains the type URL. Example:
@@ -4519,6 +4531,9 @@ components:
           $ref: '#/components/schemas/OrganizationUserRole'
         resource:
           $ref: '#/components/schemas/Resource'
+      required:
+      - name
+      - resource
       type: object
     CMEKClusterInfo:
       description: |-
@@ -6139,26 +6154,14 @@ components:
     ListRoleGrantsResponse:
       example:
         grants:
-        - user_id: user_id
-          roles:
-          - resource:
-              id: id
-              type: null
-            name: null
-          - resource:
-              id: id
-              type: null
-            name: null
-        - user_id: user_id
-          roles:
-          - resource:
-              id: id
-              type: null
-            name: null
-          - resource:
-              id: id
-              type: null
-            name: null
+        - - name: ORG_ROLE_CLUSTER_ADMIN
+            resource:
+              id: example_cluster_id
+              type: CLUSTER
+        - - name: ORG_ROLE_CLUSTER_ADMIN
+            resource:
+              id: example_cluster_id
+              type: CLUSTER
         pagination:
           next_page: next_page
           previous_page: previous_page
@@ -6573,6 +6576,8 @@ components:
           type: string
         type:
           $ref: '#/components/schemas/ResourceType'
+      required:
+      - type
       type: object
     ResourceType:
       enum:
@@ -6683,16 +6688,10 @@ components:
       type: object
     UserRoleGrants:
       example:
-        user_id: user_id
-        roles:
-        - resource:
-            id: id
-            type: null
-          name: null
-        - resource:
-            id: id
-            type: null
-          name: null
+      - name: ORG_ROLE_CLUSTER_ADMIN
+        resource:
+          id: example_cluster_id
+          type: CLUSTER
       properties:
         roles:
           items:
@@ -6700,6 +6699,9 @@ components:
           type: array
         user_id:
           type: string
+      required:
+      - roles
+      - user_id
       type: object
     api.CloudProvider:
       description: |2-
@@ -7087,6 +7089,20 @@ components:
       required:
       - password
       title: UpdateSQLUserPasswordRequest
+      type: object
+    CockroachCloud_SetRolesForUser_request:
+      example:
+      - name: ORG_ROLE_CLUSTER_ADMIN
+        resource:
+          id: example_cluster_id
+          type: CLUSTER
+      properties:
+        roles:
+          items:
+            $ref: '#/components/schemas/BuiltInRole'
+          type: array
+      required:
+      - roles
       type: object
   securitySchemes:
     Bearer:

@@ -5861,134 +5861,6 @@
       }
     },
     "/api/v1/roles/{user_id}": {
-      "delete": {
-        "operationId": "CockroachCloud_RemoveUserFromRole",
-        "summary": "Removes the user from the given role",
-        "parameters": [
-          {
-            "name": "user_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "role.name",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "enum": [
-                "ORG_ROLE_DEVELOPER",
-                "ORG_ROLE_ADMIN",
-                "ORG_ROLE_BILLING_COORDINATOR",
-                "ORG_ROLE_ORG_ADMIN",
-                "ORG_ROLE_ORG_MEMBER",
-                "ORG_ROLE_CLUSTER_ADMIN",
-                "ORG_ROLE_CLUSTER_OPERATOR_WRITER",
-                "ORG_ROLE_CLUSTER_OPERATOR_READER",
-                "ORG_ROLE_CLUSTER_DEVELOPER",
-                "ORG_ROLE_CLUSTER_CREATOR"
-              ]
-            }
-          },
-          {
-            "name": "role.resource.type",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "enum": [
-                "ORGANIZATION",
-                "CLUSTER"
-              ]
-            }
-          },
-          {
-            "name": "role.resource.id",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetAllRolesForUserResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Returned when a request field is invalid.",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "401": {
-            "description": "Returned when the token bearer cannot be authenticated.",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "403": {
-            "description": "Returned when the user does not have permission to access the resource.",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "404": {
-            "description": "Returned when the resource does not exist.",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "500": {
-            "description": "Server error",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Status"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "CockroachCloud"
-        ],
-        "x-badges": [
-          {
-            "color": "blue",
-            "label": "PREVIEW"
-          }
-        ],
-        "x-codeSamples": [
-          {
-            "lang": "Shell + Curl",
-            "source": "curl --request DELETE \\\n  --url 'https://cockroachlabs.cloud/api/v1/roles/{user_id}?role.name=SOME_STRING_VALUE&role.resource.type=SOME_STRING_VALUE&role.resource.id=SOME_STRING_VALUE' \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
-          }
-        ]
-      },
       "get": {
         "operationId": "CockroachCloud_GetAllRolesForUser",
         "summary": "Gets All Role Grants for the specified user",
@@ -6080,9 +5952,132 @@
           }
         ]
       },
-      "post": {
-        "operationId": "CockroachCloud_AddUserToRole",
-        "summary": "Adds the user to the given role",
+      "put": {
+        "operationId": "CockroachCloud_SetRolesForUser",
+        "summary": "Makes the users roles exactly those provided",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "roles": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/BuiltInRole"
+                    }
+                  }
+                },
+                "example": [
+                  {
+                    "name": "ORG_ROLE_CLUSTER_ADMIN",
+                    "resource": {
+                      "id": "example_cluster_id",
+                      "type": "CLUSTER"
+                    }
+                  }
+                ],
+                "required": [
+                  "roles"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetAllRolesForUserResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "CockroachCloud"
+        ],
+        "x-badges": [
+          {
+            "color": "blue",
+            "label": "PREVIEW"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/v1/roles/{user_id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '[{\"name\":\"ORG_ROLE_CLUSTER_ADMIN\",\"resource\":{\"id\":\"example_cluster_id\",\"type\":\"CLUSTER\"}}]'"
+          }
+        ]
+      }
+    },
+    "/api/v1/roles/{user_id}/{resource_type}/{resource_id}/{role_name}": {
+      "delete": {
+        "operationId": "CockroachCloud_RemoveUserFromRole",
+        "summary": "Removes the user from the given role",
         "parameters": [
           {
             "name": "user_id",
@@ -6093,8 +6088,29 @@
             }
           },
           {
-            "name": "role.name",
-            "in": "query",
+            "name": "resource_type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "ORGANIZATION",
+                "CLUSTER"
+              ]
+            }
+          },
+          {
+            "name": "resource_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "role_name",
+            "in": "path",
+            "required": true,
             "schema": {
               "type": "string",
               "enum": [
@@ -6110,10 +6126,102 @@
                 "ORG_ROLE_CLUSTER_CREATOR"
               ]
             }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetAllRolesForUserResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "CockroachCloud"
+        ],
+        "x-badges": [
+          {
+            "color": "blue",
+            "label": "PREVIEW"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request DELETE \\\n  --url https://cockroachlabs.cloud/api/v1/roles/{user_id}/{resource_type}/{resource_id}/{role_name} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+          }
+        ]
+      },
+      "post": {
+        "operationId": "CockroachCloud_AddUserToRole",
+        "summary": "Adds the user to the given role",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           },
           {
-            "name": "role.resource.type",
-            "in": "query",
+            "name": "resource_type",
+            "in": "path",
+            "required": true,
             "schema": {
               "type": "string",
               "enum": [
@@ -6123,102 +6231,32 @@
             }
           },
           {
-            "name": "role.resource.id",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetAllRolesForUserResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Returned when a request field is invalid.",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "401": {
-            "description": "Returned when the token bearer cannot be authenticated.",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "403": {
-            "description": "Returned when the user does not have permission to access the resource.",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "404": {
-            "description": "Returned when the resource does not exist.",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "500": {
-            "description": "Server error",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Status"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "CockroachCloud"
-        ],
-        "x-badges": [
-          {
-            "color": "blue",
-            "label": "PREVIEW"
-          }
-        ],
-        "x-codeSamples": [
-          {
-            "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url 'https://cockroachlabs.cloud/api/v1/roles/{user_id}?role.name=SOME_STRING_VALUE&role.resource.type=SOME_STRING_VALUE&role.resource.id=SOME_STRING_VALUE' \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
-          }
-        ]
-      },
-      "put": {
-        "operationId": "CockroachCloud_SetRolesForUser",
-        "summary": "Makes the users roles exactly those provided",
-        "parameters": [
-          {
-            "name": "user_id",
+            "name": "resource_id",
             "in": "path",
             "required": true,
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "role_name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "ORG_ROLE_DEVELOPER",
+                "ORG_ROLE_ADMIN",
+                "ORG_ROLE_BILLING_COORDINATOR",
+                "ORG_ROLE_ORG_ADMIN",
+                "ORG_ROLE_ORG_MEMBER",
+                "ORG_ROLE_CLUSTER_ADMIN",
+                "ORG_ROLE_CLUSTER_OPERATOR_WRITER",
+                "ORG_ROLE_CLUSTER_OPERATOR_READER",
+                "ORG_ROLE_CLUSTER_DEVELOPER",
+                "ORG_ROLE_CLUSTER_CREATOR"
+              ]
+            }
           }
         ],
         "responses": {
@@ -6295,7 +6333,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/v1/roles/{user_id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/roles/{user_id}/{resource_type}/{resource_id}/{role_name} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
           }
         ]
       }
@@ -6391,7 +6429,7 @@
         "title": "AllowlistEntry"
       },
       "Any": {
-        "description": "`Any` contains an arbitrary serialized protocol buffer message along with a\nURL that describes the type of the serialized message.\n\nProtobuf library provides support to pack/unpack Any values in the form\nof utility functions or additional generated methods of the Any type.\n\nExample 1: Pack and unpack a message in C++.\n\n    Foo foo = ...;\n    Any any;\n    any.PackFrom(foo);\n    ...\n    if (any.UnpackTo(&foo)) {\n      ...\n    }\n\nExample 2: Pack and unpack a message in Java.\n\n    Foo foo = ...;\n    Any any = Any.pack(foo);\n    ...\n    if (any.is(Foo.class)) {\n      foo = any.unpack(Foo.class);\n    }\n\n Example 3: Pack and unpack a message in Python.\n\n    foo = Foo(...)\n    any = Any()\n    any.Pack(foo)\n    ...\n    if any.Is(Foo.DESCRIPTOR):\n      any.Unpack(foo)\n      ...\n\n Example 4: Pack and unpack a message in Go\n\n     foo := &pb.Foo{...}\n     any, err := ptypes.MarshalAny(foo)\n     ...\n     foo := &pb.Foo{}\n     if err := ptypes.UnmarshalAny(any, foo); err != nil {\n       ...\n     }\n\nThe pack methods provided by protobuf library will by default use\n'type.googleapis.com/full.type.name' as the type URL and the unpack\nmethods only use the fully qualified type name after the last '/'\nin the type URL, for example \"foo.bar.com/x/y.z\" will yield type\nname \"y.z\".\n\n\nJSON\n====\nThe JSON representation of an `Any` value uses the regular\nrepresentation of the deserialized, embedded message, with an\nadditional field `@type` which contains the type URL. Example:\n\n    package google.profile;\n    message Person {\n      string first_name = 1;\n      string last_name = 2;\n    }\n\n    {\n      \"@type\": \"type.googleapis.com/google.profile.Person\",\n      \"firstName\": <string>,\n      \"lastName\": <string>\n    }\n\nIf the embedded message type is well-known and has a custom JSON\nrepresentation, that representation will be embedded adding a field\n`value` which holds the custom JSON in addition to the `@type`\nfield. Example (for message [google.protobuf.Duration][]):\n\n    {\n      \"@type\": \"type.googleapis.com/google.protobuf.Duration\",\n      \"value\": \"1.212s\"\n    }",
+        "description": "`Any` contains an arbitrary serialized protocol buffer message along with a\nURL that describes the type of the serialized message.\n\nProtobuf library provides support to pack/unpack Any values in the form\nof utility functions or additional generated methods of the Any type.\n\nExample 1: Pack and unpack a message in C++.\n\n    Foo foo = ...;\n    Any any;\n    any.PackFrom(foo);\n    ...\n    if (any.UnpackTo(&foo)) {\n      ...\n    }\n\nExample 2: Pack and unpack a message in Java.\n\n    Foo foo = ...;\n    Any any = Any.pack(foo);\n    ...\n    if (any.is(Foo.class)) {\n      foo = any.unpack(Foo.class);\n    }\n\nExample 3: Pack and unpack a message in Python.\n\n    foo = Foo(...)\n    any = Any()\n    any.Pack(foo)\n    ...\n    if any.Is(Foo.DESCRIPTOR):\n      any.Unpack(foo)\n      ...\n\nExample 4: Pack and unpack a message in Go\n\n     foo := &pb.Foo{...}\n     any, err := anypb.New(foo)\n     if err != nil {\n       ...\n     }\n     ...\n     foo := &pb.Foo{}\n     if err := any.UnmarshalTo(foo); err != nil {\n       ...\n     }\n\nThe pack methods provided by protobuf library will by default use\n'type.googleapis.com/full.type.name' as the type URL and the unpack\nmethods only use the fully qualified type name after the last '/'\nin the type URL, for example \"foo.bar.com/x/y.z\" will yield type\nname \"y.z\".\n\n\nJSON\n\nThe JSON representation of an `Any` value uses the regular\nrepresentation of the deserialized, embedded message, with an\nadditional field `@type` which contains the type URL. Example:\n\n    package google.profile;\n    message Person {\n      string first_name = 1;\n      string last_name = 2;\n    }\n\n    {\n      \"@type\": \"type.googleapis.com/google.profile.Person\",\n      \"firstName\": <string>,\n      \"lastName\": <string>\n    }\n\nIf the embedded message type is well-known and has a custom JSON\nrepresentation, that representation will be embedded adding a field\n`value` which holds the custom JSON in addition to the `@type`\nfield. Example (for message [google.protobuf.Duration][]):\n\n    {\n      \"@type\": \"type.googleapis.com/google.protobuf.Duration\",\n      \"value\": \"1.212s\"\n    }",
         "type": "object",
         "properties": {
           "@type": {
@@ -6455,7 +6493,11 @@
           "resource": {
             "$ref": "#/components/schemas/Resource"
           }
-        }
+        },
+        "required": [
+          "name",
+          "resource"
+        ]
       },
       "CMEKClusterInfo": {
         "description": "CMEKClusterInfo contains the status of CMEK across an entire cluster,\nincluding within each one its regions.",
@@ -7883,7 +7925,10 @@
           "type": {
             "$ref": "#/components/schemas/ResourceType"
           }
-        }
+        },
+        "required": [
+          "type"
+        ]
       },
       "ResourceType": {
         "type": "string",
@@ -8026,7 +8071,20 @@
           "user_id": {
             "type": "string"
           }
-        }
+        },
+        "example": [
+          {
+            "name": "ORG_ROLE_CLUSTER_ADMIN",
+            "resource": {
+              "id": "example_cluster_id",
+              "type": "CLUSTER"
+            }
+          }
+        ],
+        "required": [
+          "roles",
+          "user_id"
+        ]
       },
       "api.CloudProvider": {
         "description": " - GCP: The Google Cloud Platform cloud provider.\n - AWS: The Amazon Web Services cloud provider.",

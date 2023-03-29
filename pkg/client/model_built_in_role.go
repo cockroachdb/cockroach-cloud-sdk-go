@@ -24,53 +24,65 @@ import (
 
 // BuiltInRole struct for BuiltInRole.
 type BuiltInRole struct {
-	Name     *OrganizationUserRole `json:"name,omitempty"`
-	Resource *Resource             `json:"resource,omitempty"`
+	Name     OrganizationUserRole `json:"name"`
+	Resource Resource             `json:"resource"`
 }
 
 // NewBuiltInRole instantiates a new BuiltInRole object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBuiltInRole() *BuiltInRole {
+func NewBuiltInRole(name OrganizationUserRole, resource Resource) *BuiltInRole {
+	p := BuiltInRole{}
+	p.Name = name
+	p.Resource = resource
+	return &p
+}
+
+// NewBuiltInRoleWithDefaults instantiates a new BuiltInRole object.
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewBuiltInRoleWithDefaults() *BuiltInRole {
 	p := BuiltInRole{}
 	return &p
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
+// GetName returns the Name field value.
 func (o *BuiltInRole) GetName() OrganizationUserRole {
-	if o == nil || o.Name == nil {
+	if o == nil {
 		var ret OrganizationUserRole
 		return ret
 	}
-	return *o.Name
+
+	return o.Name
 }
 
-// SetName gets a reference to the given OrganizationUserRole and assigns it to the Name field.
+// SetName sets field value.
 func (o *BuiltInRole) SetName(v OrganizationUserRole) {
-	o.Name = &v
+	o.Name = v
 }
 
-// GetResource returns the Resource field value if set, zero value otherwise.
+// GetResource returns the Resource field value.
 func (o *BuiltInRole) GetResource() Resource {
-	if o == nil || o.Resource == nil {
+	if o == nil {
 		var ret Resource
 		return ret
 	}
-	return *o.Resource
+
+	return o.Resource
 }
 
-// SetResource gets a reference to the given Resource and assigns it to the Resource field.
+// SetResource sets field value.
 func (o *BuiltInRole) SetResource(v Resource) {
-	o.Resource = &v
+	o.Resource = v
 }
 
 func (o BuiltInRole) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Name != nil {
+	if true {
 		toSerialize["name"] = o.Name
 	}
-	if o.Resource != nil {
+	if true {
 		toSerialize["resource"] = o.Resource
 	}
 	return json.Marshal(toSerialize)
