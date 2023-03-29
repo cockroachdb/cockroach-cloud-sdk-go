@@ -22,33 +22,31 @@ import (
 	"encoding/json"
 )
 
-// UserRoleGrants struct for UserRoleGrants.
-type UserRoleGrants struct {
-	Roles  []BuiltInRole `json:"roles"`
-	UserId string        `json:"user_id"`
+// CockroachCloudSetRolesForUserRequest struct for CockroachCloudSetRolesForUserRequest.
+type CockroachCloudSetRolesForUserRequest struct {
+	Roles []BuiltInRole `json:"roles"`
 }
 
-// NewUserRoleGrants instantiates a new UserRoleGrants object.
+// NewCockroachCloudSetRolesForUserRequest instantiates a new CockroachCloudSetRolesForUserRequest object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUserRoleGrants(roles []BuiltInRole, userId string) *UserRoleGrants {
-	p := UserRoleGrants{}
+func NewCockroachCloudSetRolesForUserRequest(roles []BuiltInRole) *CockroachCloudSetRolesForUserRequest {
+	p := CockroachCloudSetRolesForUserRequest{}
 	p.Roles = roles
-	p.UserId = userId
 	return &p
 }
 
-// NewUserRoleGrantsWithDefaults instantiates a new UserRoleGrants object.
+// NewCockroachCloudSetRolesForUserRequestWithDefaults instantiates a new CockroachCloudSetRolesForUserRequest object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewUserRoleGrantsWithDefaults() *UserRoleGrants {
-	p := UserRoleGrants{}
+func NewCockroachCloudSetRolesForUserRequestWithDefaults() *CockroachCloudSetRolesForUserRequest {
+	p := CockroachCloudSetRolesForUserRequest{}
 	return &p
 }
 
 // GetRoles returns the Roles field value.
-func (o *UserRoleGrants) GetRoles() []BuiltInRole {
+func (o *CockroachCloudSetRolesForUserRequest) GetRoles() []BuiltInRole {
 	if o == nil {
 		var ret []BuiltInRole
 		return ret
@@ -58,32 +56,14 @@ func (o *UserRoleGrants) GetRoles() []BuiltInRole {
 }
 
 // SetRoles sets field value.
-func (o *UserRoleGrants) SetRoles(v []BuiltInRole) {
+func (o *CockroachCloudSetRolesForUserRequest) SetRoles(v []BuiltInRole) {
 	o.Roles = v
 }
 
-// GetUserId returns the UserId field value.
-func (o *UserRoleGrants) GetUserId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.UserId
-}
-
-// SetUserId sets field value.
-func (o *UserRoleGrants) SetUserId(v string) {
-	o.UserId = v
-}
-
-func (o UserRoleGrants) MarshalJSON() ([]byte, error) {
+func (o CockroachCloudSetRolesForUserRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["roles"] = o.Roles
-	}
-	if true {
-		toSerialize["user_id"] = o.UserId
 	}
 	return json.Marshal(toSerialize)
 }

@@ -32,7 +32,7 @@ type Service interface {
 	AddAllowlistEntry(ctx _context.Context, clusterId string, allowlistEntry *AllowlistEntry) (*AllowlistEntry, *_nethttp.Response, error)
 	AddAllowlistEntry2(ctx _context.Context, clusterId string, entryCidrIp string, entryCidrMask int32, allowlistEntry1 *AllowlistEntry1) (*AllowlistEntry, *_nethttp.Response, error)
 	AddEgressRule(ctx _context.Context, clusterId string, addEgressRuleRequest *AddEgressRuleRequest) (*AddEgressRuleResponse, *_nethttp.Response, error)
-	AddUserToRole(ctx _context.Context, userId string, options *AddUserToRoleOptions) (*GetAllRolesForUserResponse, *_nethttp.Response, error)
+	AddUserToRole(ctx _context.Context, userId string, resourceType string, resourceId string, roleName string) (*GetAllRolesForUserResponse, *_nethttp.Response, error)
 	CreateCluster(ctx _context.Context, createClusterRequest *CreateClusterRequest) (*Cluster, *_nethttp.Response, error)
 	CreateDatabase(ctx _context.Context, clusterId string, createDatabaseRequest *CreateDatabaseRequest) (*ApiDatabase, *_nethttp.Response, error)
 	CreatePrivateEndpointServices(ctx _context.Context, clusterId string, body *map[string]interface{}) (*PrivateEndpointServices, *_nethttp.Response, error)
@@ -75,11 +75,11 @@ type Service interface {
 	ListPrivateEndpointServices(ctx _context.Context, clusterId string) (*PrivateEndpointServices, *_nethttp.Response, error)
 	ListRoleGrants(ctx _context.Context, options *ListRoleGrantsOptions) (*ListRoleGrantsResponse, *_nethttp.Response, error)
 	ListSQLUsers(ctx _context.Context, clusterId string, options *ListSQLUsersOptions) (*ListSQLUsersResponse, *_nethttp.Response, error)
-	RemoveUserFromRole(ctx _context.Context, userId string, options *RemoveUserFromRoleOptions) (*GetAllRolesForUserResponse, *_nethttp.Response, error)
+	RemoveUserFromRole(ctx _context.Context, userId string, resourceType string, resourceId string, roleName string) (*GetAllRolesForUserResponse, *_nethttp.Response, error)
 	SetAwsEndpointConnectionState(ctx _context.Context, clusterId string, endpointId string, cockroachCloudSetAwsEndpointConnectionStateRequest *CockroachCloudSetAwsEndpointConnectionStateRequest) (*AwsEndpointConnection, *_nethttp.Response, error)
 	SetClientCACert(ctx _context.Context, clusterId string, setClientCACertRequest *SetClientCACertRequest) (*ClientCACertInfo, *_nethttp.Response, error)
 	SetEgressTrafficPolicy(ctx _context.Context, clusterId string, setEgressTrafficPolicyRequest *SetEgressTrafficPolicyRequest) (*_nethttp.Response, error)
-	SetRolesForUser(ctx _context.Context, userId string) (*GetAllRolesForUserResponse, *_nethttp.Response, error)
+	SetRolesForUser(ctx _context.Context, userId string, cockroachCloudSetRolesForUserRequest *CockroachCloudSetRolesForUserRequest) (*GetAllRolesForUserResponse, *_nethttp.Response, error)
 	UpdateAllowlistEntry(ctx _context.Context, clusterId string, entryCidrIp string, entryCidrMask int32, allowlistEntry1 *AllowlistEntry1) (*AllowlistEntry, *_nethttp.Response, error)
 	UpdateCMEKSpec(ctx _context.Context, clusterId string, cMEKClusterSpecification *CMEKClusterSpecification) (*CMEKClusterInfo, *_nethttp.Response, error)
 	UpdateCMEKStatus(ctx _context.Context, clusterId string, updateCMEKStatusRequest *UpdateCMEKStatusRequest) (*CMEKClusterInfo, *_nethttp.Response, error)
@@ -514,18 +514,9 @@ func (a *ServiceImpl) AddEgressRule(
 	return &localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// AddUserToRoleOptions contains optional parameters for AddUserToRole.
-type AddUserToRoleOptions struct {
-	RoleName *string
-
-	RoleResourceType *string
-
-	RoleResourceId *string
-}
-
 // AddUserToRole executes the request.
 func (a *ServiceImpl) AddUserToRole(
-	ctx _context.Context, userId string, options *AddUserToRoleOptions,
+	ctx _context.Context, userId string, resourceType string, resourceId string, roleName string,
 ) (*GetAllRolesForUserResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
@@ -537,22 +528,16 @@ func (a *ServiceImpl) AddUserToRole(
 
 	localBasePath := a.client.cfg.ServerURL
 
-	localVarPath := localBasePath + "/api/v1/roles/{user_id}"
+	localVarPath := localBasePath + "/api/v1/roles/{user_id}/{resource_type}/{resource_id}/{role_name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"user_id"+"}", _neturl.PathEscape(parameterToString(userId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"resource_type"+"}", _neturl.PathEscape(parameterToString(resourceType, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"resource_id"+"}", _neturl.PathEscape(parameterToString(resourceId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"role_name"+"}", _neturl.PathEscape(parameterToString(roleName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if options.RoleName != nil {
-		localVarQueryParams.Add("role.name", parameterToString(*options.RoleName, ""))
-	}
-	if options.RoleResourceType != nil {
-		localVarQueryParams.Add("role.resource.type", parameterToString(*options.RoleResourceType, ""))
-	}
-	if options.RoleResourceId != nil {
-		localVarQueryParams.Add("role.resource.id", parameterToString(*options.RoleResourceId, ""))
-	}
 	// Determine the Content-Type header.
 	localVarHTTPContentTypes := []string{}
 
@@ -6569,18 +6554,9 @@ func (a *ServiceImpl) ListSQLUsers(
 	return &localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// RemoveUserFromRoleOptions contains optional parameters for RemoveUserFromRole.
-type RemoveUserFromRoleOptions struct {
-	RoleName *string
-
-	RoleResourceType *string
-
-	RoleResourceId *string
-}
-
 // RemoveUserFromRole executes the request.
 func (a *ServiceImpl) RemoveUserFromRole(
-	ctx _context.Context, userId string, options *RemoveUserFromRoleOptions,
+	ctx _context.Context, userId string, resourceType string, resourceId string, roleName string,
 ) (*GetAllRolesForUserResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodDelete
@@ -6592,22 +6568,16 @@ func (a *ServiceImpl) RemoveUserFromRole(
 
 	localBasePath := a.client.cfg.ServerURL
 
-	localVarPath := localBasePath + "/api/v1/roles/{user_id}"
+	localVarPath := localBasePath + "/api/v1/roles/{user_id}/{resource_type}/{resource_id}/{role_name}"
 	localVarPath = strings.Replace(localVarPath, "{"+"user_id"+"}", _neturl.PathEscape(parameterToString(userId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"resource_type"+"}", _neturl.PathEscape(parameterToString(resourceType, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"resource_id"+"}", _neturl.PathEscape(parameterToString(resourceId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"role_name"+"}", _neturl.PathEscape(parameterToString(roleName, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if options.RoleName != nil {
-		localVarQueryParams.Add("role.name", parameterToString(*options.RoleName, ""))
-	}
-	if options.RoleResourceType != nil {
-		localVarQueryParams.Add("role.resource.type", parameterToString(*options.RoleResourceType, ""))
-	}
-	if options.RoleResourceId != nil {
-		localVarQueryParams.Add("role.resource.id", parameterToString(*options.RoleResourceId, ""))
-	}
 	// Determine the Content-Type header.
 	localVarHTTPContentTypes := []string{}
 
@@ -7127,7 +7097,7 @@ func (a *ServiceImpl) SetEgressTrafficPolicy(
 
 // SetRolesForUser executes the request.
 func (a *ServiceImpl) SetRolesForUser(
-	ctx _context.Context, userId string,
+	ctx _context.Context, userId string, cockroachCloudSetRolesForUserRequest *CockroachCloudSetRolesForUserRequest,
 ) (*GetAllRolesForUserResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
@@ -7145,9 +7115,12 @@ func (a *ServiceImpl) SetRolesForUser(
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	if cockroachCloudSetRolesForUserRequest == nil {
+		return nil, nil, reportError("cockroachCloudSetRolesForUserRequest is required and must be specified")
+	}
 
 	// Determine the Content-Type header.
-	localVarHTTPContentTypes := []string{}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// Set Content-Type header.
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -7163,6 +7136,8 @@ func (a *ServiceImpl) SetRolesForUser(
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	// Body params.
+	localVarPostBody = cockroachCloudSetRolesForUserRequest
 	req, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return nil, nil, err

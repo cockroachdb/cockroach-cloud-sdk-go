@@ -5,18 +5,26 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **string** |  | [optional] 
-**Type** | Pointer to [**ResourceType**](ResourceType.md) |  | [optional] 
+**Type** | [**ResourceType**](ResourceType.md) |  | 
 
 ## Methods
 
 ### NewResource
 
-`func NewResource() *Resource`
+`func NewResource(type_ ResourceType, ) *Resource`
 
 NewResource instantiates a new Resource object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed.
+
+### NewResourceWithDefaults
+
+`func NewResourceWithDefaults() *Resource`
+
+NewResourceWithDefaults instantiates a new Resource object.
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set.
 
 ### GetId
 

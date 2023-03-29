@@ -38,6 +38,7 @@ docs/ClusterStatusType.md
 docs/ClusterUpgradeStatus.md
 docs/CockroachCloudApi.md
 docs/CockroachCloudSetAwsEndpointConnectionStateRequest.md
+docs/CockroachCloudSetRolesForUserRequest.md
 docs/CreateClusterRequest.md
 docs/CreateClusterSpecification.md
 docs/CreateDatabaseRequest.md
@@ -148,6 +149,7 @@ model_cmek_region_info.go
 model_cmek_region_specification.go
 model_cmek_status.go
 model_cockroach_cloud_set_aws_endpoint_connection_state_request.go
+model_cockroach_cloud_set_roles_for_user_request.go
 model_create_cluster_request.go
 model_create_cluster_specification.go
 model_create_database_request.go

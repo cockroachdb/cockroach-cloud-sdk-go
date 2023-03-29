@@ -24,15 +24,24 @@ import (
 
 // Resource struct for Resource.
 type Resource struct {
-	Id   *string       `json:"id,omitempty"`
-	Type *ResourceType `json:"type,omitempty"`
+	Id   *string      `json:"id,omitempty"`
+	Type ResourceType `json:"type"`
 }
 
 // NewResource instantiates a new Resource object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewResource() *Resource {
+func NewResource(type_ ResourceType) *Resource {
+	p := Resource{}
+	p.Type = type_
+	return &p
+}
+
+// NewResourceWithDefaults instantiates a new Resource object.
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewResourceWithDefaults() *Resource {
 	p := Resource{}
 	return &p
 }
@@ -51,18 +60,19 @@ func (o *Resource) SetId(v string) {
 	o.Id = &v
 }
 
-// GetType returns the Type field value if set, zero value otherwise.
+// GetType returns the Type field value.
 func (o *Resource) GetType() ResourceType {
-	if o == nil || o.Type == nil {
+	if o == nil {
 		var ret ResourceType
 		return ret
 	}
-	return *o.Type
+
+	return o.Type
 }
 
-// SetType gets a reference to the given ResourceType and assigns it to the Type field.
+// SetType sets field value.
 func (o *Resource) SetType(v ResourceType) {
-	o.Type = &v
+	o.Type = v
 }
 
 func (o Resource) MarshalJSON() ([]byte, error) {
@@ -70,7 +80,7 @@ func (o Resource) MarshalJSON() ([]byte, error) {
 	if o.Id != nil {
 		toSerialize["id"] = o.Id
 	}
-	if o.Type != nil {
+	if true {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)

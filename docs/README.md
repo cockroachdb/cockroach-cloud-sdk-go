@@ -68,7 +68,7 @@ Class | Method | HTTP request | Description
 *CockroachCloudApi* | **AddAllowlistEntry** | **Post** /api/v1/clusters/{cluster_id}/networking/allowlist | Add a new CIDR address to the IP allowlist
 *CockroachCloudApi* | **AddAllowlistEntry2** | **Put** /api/v1/clusters/{cluster_id}/networking/allowlist/{entry.cidr_ip}/{entry.cidr_mask} | Add a new CIDR address to the IP allowlist
 *CockroachCloudApi* | **AddEgressRule** | **Post** /api/v1/clusters/{cluster_id}/networking/egress-rules | Add an egress rule
-*CockroachCloudApi* | **AddUserToRole** | **Post** /api/v1/roles/{user_id} | Adds the user to the given role
+*CockroachCloudApi* | **AddUserToRole** | **Post** /api/v1/roles/{user_id}/{resource_type}/{resource_id}/{role_name} | Adds the user to the given role
 *CockroachCloudApi* | **CreateCluster** | **Post** /api/v1/clusters | Create and initialize a new cluster
 *CockroachCloudApi* | **CreateDatabase** | **Post** /api/v1/clusters/{cluster_id}/databases | Create a new database
 *CockroachCloudApi* | **CreatePrivateEndpointServices** | **Post** /api/v1/clusters/{cluster_id}/networking/private-endpoint-services | Creates all PrivateEndpointServices for a given cluster
@@ -111,7 +111,7 @@ Class | Method | HTTP request | Description
 *CockroachCloudApi* | **ListPrivateEndpointServices** | **Get** /api/v1/clusters/{cluster_id}/networking/private-endpoint-services | Lists all PrivateEndpointServices for a given cluster
 *CockroachCloudApi* | **ListRoleGrants** | **Get** /api/v1/roles | Lists all RoleGrants
 *CockroachCloudApi* | **ListSQLUsers** | **Get** /api/v1/clusters/{cluster_id}/sql-users | List SQL users for a cluster
-*CockroachCloudApi* | **RemoveUserFromRole** | **Delete** /api/v1/roles/{user_id} | Removes the user from the given role
+*CockroachCloudApi* | **RemoveUserFromRole** | **Delete** /api/v1/roles/{user_id}/{resource_type}/{resource_id}/{role_name} | Removes the user from the given role
 *CockroachCloudApi* | **SetAwsEndpointConnectionState** | **Patch** /api/v1/clusters/{cluster_id}/networking/aws-endpoint-connections/{endpoint_id} | Sets the AWS Endpoint Connection state based on what is passed in the body
 *CockroachCloudApi* | **SetClientCACert** | **Post** /api/v1/clusters/{cluster_id}/client-ca-cert | Set Client CA Cert for a cluster
 *CockroachCloudApi* | **SetEgressTrafficPolicy** | **Post** /api/v1/clusters/{cluster_id}/networking/egress-rules/egress-traffic-policy | Outbound traffic management

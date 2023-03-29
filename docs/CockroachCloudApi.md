@@ -7,7 +7,7 @@ Method | HTTP request | Description
 [**AddAllowlistEntry**](CockroachCloudApi.md#AddAllowlistEntry) | **Post** /api/v1/clusters/{cluster_id}/networking/allowlist | Add a new CIDR address to the IP allowlist
 [**AddAllowlistEntry2**](CockroachCloudApi.md#AddAllowlistEntry2) | **Put** /api/v1/clusters/{cluster_id}/networking/allowlist/{entry.cidr_ip}/{entry.cidr_mask} | Add a new CIDR address to the IP allowlist
 [**AddEgressRule**](CockroachCloudApi.md#AddEgressRule) | **Post** /api/v1/clusters/{cluster_id}/networking/egress-rules | Add an egress rule
-[**AddUserToRole**](CockroachCloudApi.md#AddUserToRole) | **Post** /api/v1/roles/{user_id} | Adds the user to the given role
+[**AddUserToRole**](CockroachCloudApi.md#AddUserToRole) | **Post** /api/v1/roles/{user_id}/{resource_type}/{resource_id}/{role_name} | Adds the user to the given role
 [**CreateCluster**](CockroachCloudApi.md#CreateCluster) | **Post** /api/v1/clusters | Create and initialize a new cluster
 [**CreateDatabase**](CockroachCloudApi.md#CreateDatabase) | **Post** /api/v1/clusters/{cluster_id}/databases | Create a new database
 [**CreatePrivateEndpointServices**](CockroachCloudApi.md#CreatePrivateEndpointServices) | **Post** /api/v1/clusters/{cluster_id}/networking/private-endpoint-services | Creates all PrivateEndpointServices for a given cluster
@@ -50,7 +50,7 @@ Method | HTTP request | Description
 [**ListPrivateEndpointServices**](CockroachCloudApi.md#ListPrivateEndpointServices) | **Get** /api/v1/clusters/{cluster_id}/networking/private-endpoint-services | Lists all PrivateEndpointServices for a given cluster
 [**ListRoleGrants**](CockroachCloudApi.md#ListRoleGrants) | **Get** /api/v1/roles | Lists all RoleGrants
 [**ListSQLUsers**](CockroachCloudApi.md#ListSQLUsers) | **Get** /api/v1/clusters/{cluster_id}/sql-users | List SQL users for a cluster
-[**RemoveUserFromRole**](CockroachCloudApi.md#RemoveUserFromRole) | **Delete** /api/v1/roles/{user_id} | Removes the user from the given role
+[**RemoveUserFromRole**](CockroachCloudApi.md#RemoveUserFromRole) | **Delete** /api/v1/roles/{user_id}/{resource_type}/{resource_id}/{role_name} | Removes the user from the given role
 [**SetAwsEndpointConnectionState**](CockroachCloudApi.md#SetAwsEndpointConnectionState) | **Patch** /api/v1/clusters/{cluster_id}/networking/aws-endpoint-connections/{endpoint_id} | Sets the AWS Endpoint Connection state based on what is passed in the body
 [**SetClientCACert**](CockroachCloudApi.md#SetClientCACert) | **Post** /api/v1/clusters/{cluster_id}/client-ca-cert | Set Client CA Cert for a cluster
 [**SetEgressTrafficPolicy**](CockroachCloudApi.md#SetEgressTrafficPolicy) | **Post** /api/v1/clusters/{cluster_id}/networking/egress-rules/egress-traffic-policy | Outbound traffic management
@@ -282,7 +282,7 @@ Name | Type | Description  | Notes
 
 ## AddUserToRole
 
-> GetAllRolesForUserResponse AddUserToRole(ctx, userId).RoleName(roleName).RoleResourceType(roleResourceType).RoleResourceId(roleResourceId).Execute()
+> GetAllRolesForUserResponse AddUserToRole(ctx, userId, resourceType, resourceId, roleName).Execute()
 
 Adds the user to the given role
 
@@ -300,13 +300,13 @@ import (
 
 func main() {
     userId := "userId_example" // string | 
-    roleName := "roleName_example" // string |  (optional)
-    roleResourceType := "roleResourceType_example" // string |  (optional)
-    roleResourceId := "roleResourceId_example" // string |  (optional)
+    resourceType := "resourceType_example" // string | 
+    resourceId := "resourceId_example" // string | 
+    roleName := "roleName_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
-    resp, r, err := api_client.CockroachCloudApi.AddUserToRole(context.Background(), userId).RoleName(roleName).RoleResourceType(roleResourceType).RoleResourceId(roleResourceId).Execute()
+    resp, r, err := api_client.CockroachCloudApi.AddUserToRole(context.Background(), userId, resourceType, resourceId, roleName).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.AddUserToRole``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -323,6 +323,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **userId** | **string** |  | 
+**resourceType** | **string** |  | 
+**resourceId** | **string** |  | 
+**roleName** | **string** |  | 
 
 ### Other Parameters
 
@@ -332,9 +335,9 @@ Other parameters are passed through a pointer to a apiAddUserToRole struct via t
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **roleName** | **string** |  | 
- **roleResourceType** | **string** |  | 
- **roleResourceId** | **string** |  | 
+
+
+
 
 ### Return type
 
@@ -3322,7 +3325,7 @@ Name | Type | Description  | Notes
 
 ## RemoveUserFromRole
 
-> GetAllRolesForUserResponse RemoveUserFromRole(ctx, userId).RoleName(roleName).RoleResourceType(roleResourceType).RoleResourceId(roleResourceId).Execute()
+> GetAllRolesForUserResponse RemoveUserFromRole(ctx, userId, resourceType, resourceId, roleName).Execute()
 
 Removes the user from the given role
 
@@ -3340,13 +3343,13 @@ import (
 
 func main() {
     userId := "userId_example" // string | 
-    roleName := "roleName_example" // string |  (optional)
-    roleResourceType := "roleResourceType_example" // string |  (optional)
-    roleResourceId := "roleResourceId_example" // string |  (optional)
+    resourceType := "resourceType_example" // string | 
+    resourceId := "resourceId_example" // string | 
+    roleName := "roleName_example" // string | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
-    resp, r, err := api_client.CockroachCloudApi.RemoveUserFromRole(context.Background(), userId).RoleName(roleName).RoleResourceType(roleResourceType).RoleResourceId(roleResourceId).Execute()
+    resp, r, err := api_client.CockroachCloudApi.RemoveUserFromRole(context.Background(), userId, resourceType, resourceId, roleName).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.RemoveUserFromRole``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -3363,6 +3366,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **userId** | **string** |  | 
+**resourceType** | **string** |  | 
+**resourceId** | **string** |  | 
+**roleName** | **string** |  | 
 
 ### Other Parameters
 
@@ -3372,9 +3378,9 @@ Other parameters are passed through a pointer to a apiRemoveUserFromRole struct 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **roleName** | **string** |  | 
- **roleResourceType** | **string** |  | 
- **roleResourceId** | **string** |  | 
+
+
+
 
 ### Return type
 
@@ -3611,7 +3617,7 @@ Name | Type | Description  | Notes
 
 ## SetRolesForUser
 
-> GetAllRolesForUserResponse SetRolesForUser(ctx, userId).Execute()
+> GetAllRolesForUserResponse SetRolesForUser(ctx, userId).CockroachCloudSetRolesForUserRequest(cockroachCloudSetRolesForUserRequest).Execute()
 
 Makes the users roles exactly those provided
 
@@ -3629,10 +3635,11 @@ import (
 
 func main() {
     userId := "userId_example" // string | 
+    cockroachCloudSetRolesForUserRequest := *openapiclient.NewCockroachCloudSetRolesForUserRequest([]openapiclient.BuiltInRole{*openapiclient.NewBuiltInRole(openapiclient.OrganizationUserRole("ORG_ROLE_DEVELOPER"), *openapiclient.NewResource(openapiclient.ResourceType("ORGANIZATION")))}) // CockroachCloudSetRolesForUserRequest | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
-    resp, r, err := api_client.CockroachCloudApi.SetRolesForUser(context.Background(), userId).Execute()
+    resp, r, err := api_client.CockroachCloudApi.SetRolesForUser(context.Background(), userId).CockroachCloudSetRolesForUserRequest(cockroachCloudSetRolesForUserRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.SetRolesForUser``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -3658,6 +3665,7 @@ Other parameters are passed through a pointer to a apiSetRolesForUser struct via
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **cockroachCloudSetRolesForUserRequest** | [**CockroachCloudSetRolesForUserRequest**](CockroachCloudSetRolesForUserRequest.md) |  | 
 
 ### Return type
 
@@ -3669,7 +3677,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
