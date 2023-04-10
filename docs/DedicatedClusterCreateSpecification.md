@@ -6,9 +6,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CockroachVersion** | Pointer to **string** | The CockroachDB version for the cluster. The current version is used if omitted. | [optional] 
 **Hardware** | [**DedicatedHardwareCreateSpecification**](DedicatedHardwareCreateSpecification.md) |  | 
-**NetworkVisibility** | Pointer to [**NetworkVisiblity**](NetworkVisiblity.md) |  | [optional] 
+**NetworkVisibility** | Pointer to [**NetworkVisibilityType**](NetworkVisibilityType.md) |  | [optional] 
 **RegionNodes** | **map[string]int32** | Region keys should match the cloud provider&#39;s zone code. For example, for Oregon, set region_name to \&quot;us-west2\&quot; for GCP and \&quot;us-west-2\&quot; for AWS. Values represent the node count. | 
-**RestrictEgressTraffic** | Pointer to **bool** | RestrictEgressTraffic if set, results in an egress traffic policy of default-deny at creation time. | [optional] 
+**RestrictEgressTraffic** | Pointer to **bool** | Preview: RestrictEgressTraffic if set, results in an egress traffic policy of default-deny at creation time. | [optional] 
 
 ## Methods
 
@@ -55,13 +55,13 @@ SetHardware sets Hardware field to given value.
 
 ### GetNetworkVisibility
 
-`func (o *DedicatedClusterCreateSpecification) GetNetworkVisibility() NetworkVisiblity`
+`func (o *DedicatedClusterCreateSpecification) GetNetworkVisibility() NetworkVisibilityType`
 
 GetNetworkVisibility returns the NetworkVisibility field if non-nil, zero value otherwise.
 
 ### SetNetworkVisibility
 
-`func (o *DedicatedClusterCreateSpecification) SetNetworkVisibility(v NetworkVisiblity)`
+`func (o *DedicatedClusterCreateSpecification) SetNetworkVisibility(v NetworkVisibilityType)`
 
 SetNetworkVisibility sets NetworkVisibility field to given value.
 

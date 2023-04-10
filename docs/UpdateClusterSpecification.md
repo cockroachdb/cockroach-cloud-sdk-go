@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Dedicated** | Pointer to [**DedicatedClusterUpdateSpecification**](DedicatedClusterUpdateSpecification.md) |  | [optional] 
 **Serverless** | Pointer to [**ServerlessClusterUpdateSpecification**](ServerlessClusterUpdateSpecification.md) |  | [optional] 
-**UpgradeStatus** | Pointer to [**ClusterUpgradeStatus**](ClusterUpgradeStatus.md) |  | [optional] 
+**UpgradeStatus** | Pointer to [**ClusterUpgradeStatusType**](ClusterUpgradeStatusType.md) |  | [optional] 
 
 ## Methods
 
@@ -45,13 +45,13 @@ SetServerless sets Serverless field to given value.
 
 ### GetUpgradeStatus
 
-`func (o *UpdateClusterSpecification) GetUpgradeStatus() ClusterUpgradeStatus`
+`func (o *UpdateClusterSpecification) GetUpgradeStatus() ClusterUpgradeStatusType`
 
 GetUpgradeStatus returns the UpgradeStatus field if non-nil, zero value otherwise.
 
 ### SetUpgradeStatus
 
-`func (o *UpdateClusterSpecification) SetUpgradeStatus(v ClusterUpgradeStatus)`
+`func (o *UpdateClusterSpecification) SetUpgradeStatus(v ClusterUpgradeStatusType)`
 
 SetUpgradeStatus sets UpgradeStatus field to given value.
 

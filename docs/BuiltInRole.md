@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | [**OrganizationUserRole**](OrganizationUserRole.md) |  | 
+**Name** | [**OrganizationUserRoleType**](OrganizationUserRoleType.md) |  | 
 **Resource** | [**Resource**](Resource.md) |  | 
 
 ## Methods
 
 ### NewBuiltInRole
 
-`func NewBuiltInRole(name OrganizationUserRole, resource Resource, ) *BuiltInRole`
+`func NewBuiltInRole(name OrganizationUserRoleType, resource Resource, ) *BuiltInRole`
 
 NewBuiltInRole instantiates a new BuiltInRole object.
 This constructor will assign default values to properties that have it defined,
@@ -28,13 +28,13 @@ but it doesn't guarantee that properties required by API are set.
 
 ### GetName
 
-`func (o *BuiltInRole) GetName() OrganizationUserRole`
+`func (o *BuiltInRole) GetName() OrganizationUserRoleType`
 
 GetName returns the Name field if non-nil, zero value otherwise.
 
 ### SetName
 
-`func (o *BuiltInRole) SetName(v OrganizationUserRole)`
+`func (o *BuiltInRole) SetName(v OrganizationUserRoleType)`
 
 SetName sets Name field to given value.
 

@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Amount** | Pointer to **float64** | amount is the quantity of currency. | [optional] 
-**Currency** | Pointer to [**Currency**](Currency.md) |  | [optional] 
+**Amount** | Pointer to **float64** | amount is the quantity of currency. Internally, currency amounts are tracked and stored using an arbitrary-precision decimal representation, but are serialized as 64-bit floating point numbers. There may be minor rounding discrepancies when parsed as a 32-bit float. | [optional] 
+**Currency** | Pointer to [**CurrencyType**](CurrencyType.md) |  | [optional] 
 
 ## Methods
 
@@ -32,13 +32,13 @@ SetAmount sets Amount field to given value.
 
 ### GetCurrency
 
-`func (o *CurrencyAmount) GetCurrency() Currency`
+`func (o *CurrencyAmount) GetCurrency() CurrencyType`
 
 GetCurrency returns the Currency field if non-nil, zero value otherwise.
 
 ### SetCurrency
 
-`func (o *CurrencyAmount) SetCurrency(v Currency)`
+`func (o *CurrencyAmount) SetCurrency(v CurrencyType)`
 
 SetCurrency sets Currency field to given value.
 

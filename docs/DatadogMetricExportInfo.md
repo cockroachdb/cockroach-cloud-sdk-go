@@ -6,15 +6,15 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ApiKey** | Pointer to **string** | api_key is the last 4 digits of a Datadog API key. | [optional] 
 **ClusterId** | **string** |  | 
-**Site** | [**ApiDatadogSite**](ApiDatadogSite.md) |  | 
-**Status** | Pointer to [**MetricExportStatus**](MetricExportStatus.md) |  | [optional] 
+**Site** | [**DatadogSiteType**](DatadogSiteType.md) |  | 
+**Status** | Pointer to [**MetricExportStatusType**](MetricExportStatusType.md) |  | [optional] 
 **UserMessage** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
 ### NewDatadogMetricExportInfo
 
-`func NewDatadogMetricExportInfo(clusterId string, site ApiDatadogSite, ) *DatadogMetricExportInfo`
+`func NewDatadogMetricExportInfo(clusterId string, site DatadogSiteType, ) *DatadogMetricExportInfo`
 
 NewDatadogMetricExportInfo instantiates a new DatadogMetricExportInfo object.
 This constructor will assign default values to properties that have it defined,
@@ -55,25 +55,25 @@ SetClusterId sets ClusterId field to given value.
 
 ### GetSite
 
-`func (o *DatadogMetricExportInfo) GetSite() ApiDatadogSite`
+`func (o *DatadogMetricExportInfo) GetSite() DatadogSiteType`
 
 GetSite returns the Site field if non-nil, zero value otherwise.
 
 ### SetSite
 
-`func (o *DatadogMetricExportInfo) SetSite(v ApiDatadogSite)`
+`func (o *DatadogMetricExportInfo) SetSite(v DatadogSiteType)`
 
 SetSite sets Site field to given value.
 
 ### GetStatus
 
-`func (o *DatadogMetricExportInfo) GetStatus() MetricExportStatus`
+`func (o *DatadogMetricExportInfo) GetStatus() MetricExportStatusType`
 
 GetStatus returns the Status field if non-nil, zero value otherwise.
 
 ### SetStatus
 
-`func (o *DatadogMetricExportInfo) SetStatus(v MetricExportStatus)`
+`func (o *DatadogMetricExportInfo) SetStatus(v MetricExportStatusType)`
 
 SetStatus sets Status field to given value.
 

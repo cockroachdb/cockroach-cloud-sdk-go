@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**SupportStatus** | [**ClusterMajorVersionSupportStatus**](ClusterMajorVersionSupportStatus.md) |  | 
+**SupportStatus** | [**ClusterMajorVersionSupportStatusType**](ClusterMajorVersionSupportStatusType.md) |  | 
 **Version** | **string** |  | 
 
 ## Methods
 
 ### NewClusterMajorVersion
 
-`func NewClusterMajorVersion(supportStatus ClusterMajorVersionSupportStatus, version string, ) *ClusterMajorVersion`
+`func NewClusterMajorVersion(supportStatus ClusterMajorVersionSupportStatusType, version string, ) *ClusterMajorVersion`
 
 NewClusterMajorVersion instantiates a new ClusterMajorVersion object.
 This constructor will assign default values to properties that have it defined,
@@ -28,13 +28,13 @@ but it doesn't guarantee that properties required by API are set.
 
 ### GetSupportStatus
 
-`func (o *ClusterMajorVersion) GetSupportStatus() ClusterMajorVersionSupportStatus`
+`func (o *ClusterMajorVersion) GetSupportStatus() ClusterMajorVersionSupportStatusType`
 
 GetSupportStatus returns the SupportStatus field if non-nil, zero value otherwise.
 
 ### SetSupportStatus
 
-`func (o *ClusterMajorVersion) SetSupportStatus(v ClusterMajorVersionSupportStatus)`
+`func (o *ClusterMajorVersion) SetSupportStatus(v ClusterMajorVersionSupportStatusType)`
 
 SetSupportStatus sets SupportStatus field to given value.
 

@@ -5,15 +5,15 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Aws** | [**AWSPrivateLinkServiceDetail**](AWSPrivateLinkServiceDetail.md) |  | 
-**CloudProvider** | [**ApiCloudProvider**](ApiCloudProvider.md) |  | 
+**CloudProvider** | [**CloudProviderType**](CloudProviderType.md) |  | 
 **RegionName** | **string** | region_name is the cloud provider region name (i.e. us-east-1). | 
-**Status** | [**PrivateEndpointServiceStatus**](PrivateEndpointServiceStatus.md) |  | 
+**Status** | [**PrivateEndpointServiceStatusType**](PrivateEndpointServiceStatusType.md) |  | 
 
 ## Methods
 
 ### NewPrivateEndpointService
 
-`func NewPrivateEndpointService(aws AWSPrivateLinkServiceDetail, cloudProvider ApiCloudProvider, regionName string, status PrivateEndpointServiceStatus, ) *PrivateEndpointService`
+`func NewPrivateEndpointService(aws AWSPrivateLinkServiceDetail, cloudProvider CloudProviderType, regionName string, status PrivateEndpointServiceStatusType, ) *PrivateEndpointService`
 
 NewPrivateEndpointService instantiates a new PrivateEndpointService object.
 This constructor will assign default values to properties that have it defined,
@@ -42,13 +42,13 @@ SetAws sets Aws field to given value.
 
 ### GetCloudProvider
 
-`func (o *PrivateEndpointService) GetCloudProvider() ApiCloudProvider`
+`func (o *PrivateEndpointService) GetCloudProvider() CloudProviderType`
 
 GetCloudProvider returns the CloudProvider field if non-nil, zero value otherwise.
 
 ### SetCloudProvider
 
-`func (o *PrivateEndpointService) SetCloudProvider(v ApiCloudProvider)`
+`func (o *PrivateEndpointService) SetCloudProvider(v CloudProviderType)`
 
 SetCloudProvider sets CloudProvider field to given value.
 
@@ -66,13 +66,13 @@ SetRegionName sets RegionName field to given value.
 
 ### GetStatus
 
-`func (o *PrivateEndpointService) GetStatus() PrivateEndpointServiceStatus`
+`func (o *PrivateEndpointService) GetStatus() PrivateEndpointServiceStatusType`
 
 GetStatus returns the Status field if non-nil, zero value otherwise.
 
 ### SetStatus
 
-`func (o *PrivateEndpointService) SetStatus(v PrivateEndpointServiceStatus)`
+`func (o *PrivateEndpointService) SetStatus(v PrivateEndpointServiceStatusType)`
 
 SetStatus sets Status field to given value.
 

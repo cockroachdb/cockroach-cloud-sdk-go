@@ -4,14 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**RoutingId** | **string** | Used to build a connection string. | 
-**SpendLimit** | **int32** | Spend limit in US cents. | 
+**RoutingId** | **string** | routing_id is used to identify the cluster in a connection string. | 
+**SpendLimit** | Pointer to **int32** | spend_limit is the maximum monthly charge for a cluster, in US cents. We recommend using usage_limits instead, since spend_limit will be deprecated in the future. | [optional] 
+**UsageLimits** | Pointer to [**UsageLimits**](UsageLimits.md) |  | [optional] 
 
 ## Methods
 
 ### NewServerlessClusterConfig
 
-`func NewServerlessClusterConfig(routingId string, spendLimit int32, ) *ServerlessClusterConfig`
+`func NewServerlessClusterConfig(routingId string, ) *ServerlessClusterConfig`
 
 NewServerlessClusterConfig instantiates a new ServerlessClusterConfig object.
 This constructor will assign default values to properties that have it defined,
@@ -49,6 +50,18 @@ GetSpendLimit returns the SpendLimit field if non-nil, zero value otherwise.
 `func (o *ServerlessClusterConfig) SetSpendLimit(v int32)`
 
 SetSpendLimit sets SpendLimit field to given value.
+
+### GetUsageLimits
+
+`func (o *ServerlessClusterConfig) GetUsageLimits() UsageLimits`
+
+GetUsageLimits returns the UsageLimits field if non-nil, zero value otherwise.
+
+### SetUsageLimits
+
+`func (o *ServerlessClusterConfig) SetUsageLimits(v UsageLimits)`
+
+SetUsageLimits sets UsageLimits field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

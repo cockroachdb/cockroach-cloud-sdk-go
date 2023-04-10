@@ -6,13 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** |  | 
 **RegionName** | **string** |  | 
-**Status** | [**NodeStatus**](NodeStatus.md) |  | 
+**Status** | [**NodeStatusType**](NodeStatusType.md) |  | 
 
 ## Methods
 
 ### NewNode
 
-`func NewNode(name string, regionName string, status NodeStatus, ) *Node`
+`func NewNode(name string, regionName string, status NodeStatusType, ) *Node`
 
 NewNode instantiates a new Node object.
 This constructor will assign default values to properties that have it defined,
@@ -53,13 +53,13 @@ SetRegionName sets RegionName field to given value.
 
 ### GetStatus
 
-`func (o *Node) GetStatus() NodeStatus`
+`func (o *Node) GetStatus() NodeStatusType`
 
 GetStatus returns the Status field if non-nil, zero value otherwise.
 
 ### SetStatus
 
-`func (o *Node) SetStatus(v NodeStatus)`
+`func (o *Node) SetStatus(v NodeStatusType)`
 
 SetStatus sets Status field to given value.
 

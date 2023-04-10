@@ -5,14 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** | Name must be 6-20 characters in length and can include numbers, lowercase letters, and dashes (but no leading or trailing dashes). | 
-**Provider** | [**ApiCloudProvider**](ApiCloudProvider.md) |  | 
+**Provider** | [**CloudProviderType**](CloudProviderType.md) |  | 
 **Spec** | [**CreateClusterSpecification**](CreateClusterSpecification.md) |  | 
 
 ## Methods
 
 ### NewCreateClusterRequest
 
-`func NewCreateClusterRequest(name string, provider ApiCloudProvider, spec CreateClusterSpecification, ) *CreateClusterRequest`
+`func NewCreateClusterRequest(name string, provider CloudProviderType, spec CreateClusterSpecification, ) *CreateClusterRequest`
 
 NewCreateClusterRequest instantiates a new CreateClusterRequest object.
 This constructor will assign default values to properties that have it defined,
@@ -41,13 +41,13 @@ SetName sets Name field to given value.
 
 ### GetProvider
 
-`func (o *CreateClusterRequest) GetProvider() ApiCloudProvider`
+`func (o *CreateClusterRequest) GetProvider() CloudProviderType`
 
 GetProvider returns the Provider field if non-nil, zero value otherwise.
 
 ### SetProvider
 
-`func (o *CreateClusterRequest) SetProvider(v ApiCloudProvider)`
+`func (o *CreateClusterRequest) SetProvider(v CloudProviderType)`
 
 SetProvider sets Provider field to given value.
 
