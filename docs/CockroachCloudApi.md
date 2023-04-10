@@ -21,7 +21,8 @@ Method | HTTP request | Description
 [**DeleteEgressRule**](CockroachCloudApi.md#DeleteEgressRule) | **Delete** /api/v1/clusters/{cluster_id}/networking/egress-rules/{rule_id} | Delete an existing egress rule
 [**DeleteLogExport**](CockroachCloudApi.md#DeleteLogExport) | **Delete** /api/v1/clusters/{cluster_id}/logexport | Delete the Log Export configuration for a cluster
 [**DeleteSQLUser**](CockroachCloudApi.md#DeleteSQLUser) | **Delete** /api/v1/clusters/{cluster_id}/sql-users/{name} | Delete a SQL user
-[**EditDatabase**](CockroachCloudApi.md#EditDatabase) | **Patch** /api/v1/clusters/{cluster_id}/databases | Update a database
+[**EditDatabase**](CockroachCloudApi.md#EditDatabase) | **Patch** /api/v1/clusters/{cluster_id}/databases/{name} | Update a database
+[**EditDatabase2**](CockroachCloudApi.md#EditDatabase2) | **Patch** /api/v1/clusters/{cluster_id}/databases | Update a database
 [**EditEgressRule**](CockroachCloudApi.md#EditEgressRule) | **Patch** /api/v1/clusters/{cluster_id}/networking/egress-rules/{rule_id} | Edit an existing egress rule
 [**EnableCMEKSpec**](CockroachCloudApi.md#EnableCMEKSpec) | **Post** /api/v1/clusters/{cluster_id}/cmek | Enable CMEK for a cluster
 [**EnableCloudWatchMetricExport**](CockroachCloudApi.md#EnableCloudWatchMetricExport) | **Post** /api/v1/clusters/{cluster_id}/metricexport/cloudwatch | Create or update the CloudWatch Metric Export configuration for a cluster
@@ -38,6 +39,7 @@ Method | HTTP request | Description
 [**GetInvoice**](CockroachCloudApi.md#GetInvoice) | **Get** /api/v1/invoices/{invoice_id} | Gets a specific invoice for an organization
 [**GetLogExportInfo**](CockroachCloudApi.md#GetLogExportInfo) | **Get** /api/v1/clusters/{cluster_id}/logexport | Get the Log Export configuration for a cluster
 [**GetOrganizationInfo**](CockroachCloudApi.md#GetOrganizationInfo) | **Get** /api/v1/organization | Get information about the caller&#39;s organization
+[**GetPersonUsersByEmail**](CockroachCloudApi.md#GetPersonUsersByEmail) | **Get** /api/v1/users/persons-by-email | Search person users by email address
 [**ListAllowlistEntries**](CockroachCloudApi.md#ListAllowlistEntries) | **Get** /api/v1/clusters/{cluster_id}/networking/allowlist | Get the IP allowlist and propagation status for a cluster
 [**ListAvailableRegions**](CockroachCloudApi.md#ListAvailableRegions) | **Get** /api/v1/clusters/available-regions | List the regions available for new clusters and nodes
 [**ListAwsEndpointConnections**](CockroachCloudApi.md#ListAwsEndpointConnections) | **Get** /api/v1/clusters/{cluster_id}/networking/aws-endpoint-connections | Lists all AwsEndpointConnections for a given cluster
@@ -376,7 +378,7 @@ import (
 )
 
 func main() {
-    createClusterRequest := *openapiclient.NewCreateClusterRequest("Name_example", openapiclient.api.CloudProvider("GCP"), *openapiclient.NewCreateClusterSpecification()) // CreateClusterRequest | 
+    createClusterRequest := *openapiclient.NewCreateClusterRequest("Name_example", openapiclient.CloudProvider.Type("GCP"), *openapiclient.NewCreateClusterSpecification()) // CreateClusterRequest | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
@@ -493,7 +495,7 @@ Name | Type | Description  | Notes
 
 ## CreatePrivateEndpointServices
 
-> PrivateEndpointServices CreatePrivateEndpointServices(ctx, clusterId).Body(body).Execute()
+> PrivateEndpointServices CreatePrivateEndpointServices(ctx, clusterId).Execute()
 
 Creates all PrivateEndpointServices for a given cluster
 
@@ -511,11 +513,10 @@ import (
 
 func main() {
     clusterId := "clusterId_example" // string | cluster_id is the ID for the cluster.
-    body := map[string]interface{}{ ... } // map[string]interface{} | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
-    resp, r, err := api_client.CockroachCloudApi.CreatePrivateEndpointServices(context.Background(), clusterId).Body(body).Execute()
+    resp, r, err := api_client.CockroachCloudApi.CreatePrivateEndpointServices(context.Background(), clusterId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.CreatePrivateEndpointServices``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -541,7 +542,6 @@ Other parameters are passed through a pointer to a apiCreatePrivateEndpointServi
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | **map[string]interface{}** |  | 
 
 ### Return type
 
@@ -553,7 +553,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -1262,7 +1262,80 @@ Name | Type | Description  | Notes
 
 ## EditDatabase
 
-> ApiDatabase EditDatabase(ctx, clusterId).UpdateDatabaseRequest(updateDatabaseRequest).Execute()
+> ApiDatabase EditDatabase(ctx, clusterId, name).UpdateDatabaseRequest1(updateDatabaseRequest1).Execute()
+
+Update a database
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    clusterId := "clusterId_example" // string | 
+    name := "name_example" // string | 
+    updateDatabaseRequest1 := *openapiclient.NewUpdateDatabaseRequest1("NewName_example") // UpdateDatabaseRequest1 | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.CockroachCloudApi.EditDatabase(context.Background(), clusterId, name).UpdateDatabaseRequest1(updateDatabaseRequest1).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.EditDatabase``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `EditDatabase`: ApiDatabase
+    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.EditDatabase`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**clusterId** | **string** |  | 
+**name** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiEditDatabase struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **updateDatabaseRequest1** | [**UpdateDatabaseRequest1**](UpdateDatabaseRequest1.md) |  | 
+
+### Return type
+
+[**ApiDatabase**](ApiDatabase.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## EditDatabase2
+
+> ApiDatabase EditDatabase2(ctx, clusterId).UpdateDatabaseRequest(updateDatabaseRequest).Execute()
 
 Update a database
 
@@ -1284,13 +1357,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
-    resp, r, err := api_client.CockroachCloudApi.EditDatabase(context.Background(), clusterId).UpdateDatabaseRequest(updateDatabaseRequest).Execute()
+    resp, r, err := api_client.CockroachCloudApi.EditDatabase2(context.Background(), clusterId).UpdateDatabaseRequest(updateDatabaseRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.EditDatabase``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.EditDatabase2``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `EditDatabase`: ApiDatabase
-    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.EditDatabase`: %v\n", resp)
+    // response from `EditDatabase2`: ApiDatabase
+    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.EditDatabase2`: %v\n", resp)
 }
 ```
 
@@ -1304,7 +1377,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiEditDatabase struct via the builder pattern
+Other parameters are passed through a pointer to a apiEditDatabase2 struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -1563,7 +1636,7 @@ import (
 
 func main() {
     clusterId := "clusterId_example" // string | 
-    enableDatadogMetricExportRequest := *openapiclient.NewEnableDatadogMetricExportRequest("ApiKey_example", openapiclient.api.DatadogSite("US1")) // EnableDatadogMetricExportRequest | 
+    enableDatadogMetricExportRequest := *openapiclient.NewEnableDatadogMetricExportRequest("ApiKey_example", openapiclient.DatadogSite.Type("US1")) // EnableDatadogMetricExportRequest | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
@@ -2416,6 +2489,70 @@ Other parameters are passed through a pointer to a apiGetOrganizationInfo struct
 ### Return type
 
 [**Organization**](Organization.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetPersonUsersByEmail
+
+> GetPersonUsersByEmailResponse GetPersonUsersByEmail(ctx).Email(email).Execute()
+
+Search person users by email address
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    email := "email_example" // string | an email address is required.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.CockroachCloudApi.GetPersonUsersByEmail(context.Background()).Email(email).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.GetPersonUsersByEmail``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetPersonUsersByEmail`: GetPersonUsersByEmailResponse
+    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.GetPersonUsersByEmail`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetPersonUsersByEmail struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **email** | **string** | an email address is required. | 
+
+### Return type
+
+[**GetPersonUsersByEmailResponse**](GetPersonUsersByEmailResponse.md)
 
 ### Authorization
 
@@ -3402,7 +3539,7 @@ Name | Type | Description  | Notes
 
 ## SetAwsEndpointConnectionState
 
-> AwsEndpointConnection SetAwsEndpointConnectionState(ctx, clusterId, endpointId).CockroachCloudSetAwsEndpointConnectionStateRequest(cockroachCloudSetAwsEndpointConnectionStateRequest).Execute()
+> AwsEndpointConnection SetAwsEndpointConnectionState(ctx, clusterId, endpointId).SetAwsEndpointConnectionStateRequest(setAwsEndpointConnectionStateRequest).Execute()
 
 Sets the AWS Endpoint Connection state based on what is passed in the body
 
@@ -3423,11 +3560,11 @@ import (
 func main() {
     clusterId := "clusterId_example" // string | cluster_id is the ID for the cluster.
     endpointId := "endpointId_example" // string | endpoint_id is the ID for the VPC endpoint on the customer's side.
-    cockroachCloudSetAwsEndpointConnectionStateRequest := *openapiclient.NewCockroachCloudSetAwsEndpointConnectionStateRequest() // CockroachCloudSetAwsEndpointConnectionStateRequest | 
+    setAwsEndpointConnectionStateRequest := *openapiclient.NewSetAwsEndpointConnectionStateRequest(openapiclient.SetAWSEndpointConnectionStatus.Type("AVAILABLE")) // SetAwsEndpointConnectionStateRequest | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
-    resp, r, err := api_client.CockroachCloudApi.SetAwsEndpointConnectionState(context.Background(), clusterId, endpointId).CockroachCloudSetAwsEndpointConnectionStateRequest(cockroachCloudSetAwsEndpointConnectionStateRequest).Execute()
+    resp, r, err := api_client.CockroachCloudApi.SetAwsEndpointConnectionState(context.Background(), clusterId, endpointId).SetAwsEndpointConnectionStateRequest(setAwsEndpointConnectionStateRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.SetAwsEndpointConnectionState``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -3455,7 +3592,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **cockroachCloudSetAwsEndpointConnectionStateRequest** | [**CockroachCloudSetAwsEndpointConnectionStateRequest**](CockroachCloudSetAwsEndpointConnectionStateRequest.md) |  | 
+ **setAwsEndpointConnectionStateRequest** | [**SetAwsEndpointConnectionStateRequest**](SetAwsEndpointConnectionStateRequest.md) |  | 
 
 ### Return type
 
@@ -3635,7 +3772,7 @@ import (
 
 func main() {
     userId := "userId_example" // string | 
-    cockroachCloudSetRolesForUserRequest := *openapiclient.NewCockroachCloudSetRolesForUserRequest([]openapiclient.BuiltInRole{*openapiclient.NewBuiltInRole(openapiclient.OrganizationUserRole("ORG_ROLE_DEVELOPER"), *openapiclient.NewResource(openapiclient.ResourceType("ORGANIZATION")))}) // CockroachCloudSetRolesForUserRequest | 
+    cockroachCloudSetRolesForUserRequest := *openapiclient.NewCockroachCloudSetRolesForUserRequest([]openapiclient.BuiltInRole{*openapiclient.NewBuiltInRole(openapiclient.OrganizationUserRole.Type("DEVELOPER"), *openapiclient.NewResource(openapiclient.ResourceType.Type("ORGANIZATION")))}) // CockroachCloudSetRolesForUserRequest | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)

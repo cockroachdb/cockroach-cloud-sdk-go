@@ -6,9 +6,9 @@
       "name": "Cockroach Labs Support",
       "url": "https://support.cockroachlabs.com"
     },
-    "description": "This is a preview version of the Cloud API. The interface and output is subject to change, and there may be bugs.",
+    "description": "An API for managing CockroachDB Cloud resources",
     "title": "CockroachDB Cloud API",
-    "version": "2022-09-20"
+    "version": "2023-04-10"
   },
   "servers": [
     {
@@ -122,12 +122,6 @@
         },
         "tags": [
           "CockroachCloud"
-        ],
-        "x-badges": [
-          {
-            "color": "blue",
-            "label": "PREVIEW"
-          }
         ],
         "x-codeSamples": [
           {
@@ -1623,9 +1617,9 @@
             "schema": {
               "type": "string",
               "enum": [
-                "OS_MAC",
-                "OS_LINUX",
-                "OS_WINDOWS"
+                "MAC",
+                "LINUX",
+                "WINDOWS"
               ]
             }
           }
@@ -1694,12 +1688,6 @@
         },
         "tags": [
           "CockroachCloud"
-        ],
-        "x-badges": [
-          {
-            "color": "blue",
-            "label": "PREVIEW"
-          }
         ],
         "x-codeSamples": [
           {
@@ -1824,12 +1812,6 @@
         "tags": [
           "CockroachCloud"
         ],
-        "x-badges": [
-          {
-            "color": "blue",
-            "label": "PREVIEW"
-          }
-        ],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -1838,7 +1820,7 @@
         ]
       },
       "patch": {
-        "operationId": "CockroachCloud_EditDatabase",
+        "operationId": "CockroachCloud_EditDatabase2",
         "summary": "Update a database",
         "parameters": [
           {
@@ -1865,6 +1847,7 @@
                   }
                 },
                 "example": {
+                  "name": "example_database_name",
                   "new_name": "example_new_database_name"
                 },
                 "required": [
@@ -1941,16 +1924,10 @@
         "tags": [
           "CockroachCloud"
         ],
-        "x-badges": [
-          {
-            "color": "blue",
-            "label": "PREVIEW"
-          }
-        ],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PATCH \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/databases \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"new_name\":\"example_new_database_name\"}'"
+            "source": "curl --request PATCH \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/databases \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"name\":\"example_database_name\",\"new_name\":\"example_new_database_name\"}'"
           }
         ]
       },
@@ -2054,12 +2031,6 @@
         "tags": [
           "CockroachCloud"
         ],
-        "x-badges": [
-          {
-            "color": "blue",
-            "label": "PREVIEW"
-          }
-        ],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -2155,16 +2126,126 @@
         "tags": [
           "CockroachCloud"
         ],
-        "x-badges": [
-          {
-            "color": "blue",
-            "label": "PREVIEW"
-          }
-        ],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
             "source": "curl --request DELETE \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/databases/{name} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+          }
+        ]
+      },
+      "patch": {
+        "operationId": "CockroachCloud_EditDatabase",
+        "summary": "Update a database",
+        "parameters": [
+          {
+            "name": "cluster_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "new_name": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "name": "example_database_name",
+                  "new_name": "example_new_database_name"
+                },
+                "required": [
+                  "new_name"
+                ],
+                "title": "UpdateDatabaseRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/api.Database"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "CockroachCloud"
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request PATCH \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/databases/{name} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"name\":\"example_database_name\",\"new_name\":\"example_new_database_name\"}'"
           }
         ]
       }
@@ -3020,7 +3101,7 @@
                     "type": "string"
                   },
                   "site": {
-                    "$ref": "#/components/schemas/api.DatadogSite"
+                    "$ref": "#/components/schemas/DatadogSite.Type"
                   }
                 },
                 "example": {
@@ -3791,12 +3872,6 @@
         "tags": [
           "CockroachCloud"
         ],
-        "x-badges": [
-          {
-            "color": "blue",
-            "label": "PREVIEW"
-          }
-        ],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -3838,12 +3913,16 @@
                 "type": "object",
                 "properties": {
                   "status": {
-                    "$ref": "#/components/schemas/AWSEndpointConnectionStatus"
+                    "$ref": "#/components/schemas/SetAWSEndpointConnectionStatus.Type"
                   }
                 },
                 "example": {
-                  "status": "ENDPOINT_AVAILABLE"
-                }
+                  "status": "AVAILABLE"
+                },
+                "required": [
+                  "status"
+                ],
+                "title": "SetAwsEndpointConnectionStateRequest"
               }
             }
           }
@@ -3913,16 +3992,10 @@
         "tags": [
           "CockroachCloud"
         ],
-        "x-badges": [
-          {
-            "color": "blue",
-            "label": "PREVIEW"
-          }
-        ],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PATCH \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/aws-endpoint-connections/{endpoint_id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"status\":\"ENDPOINT_AVAILABLE\"}'"
+            "source": "curl --request PATCH \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/aws-endpoint-connections/{endpoint_id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"status\":\"AVAILABLE\"}'"
           }
         ]
       }
@@ -4785,12 +4858,6 @@
         "tags": [
           "CockroachCloud"
         ],
-        "x-badges": [
-          {
-            "color": "blue",
-            "label": "PREVIEW"
-          }
-        ],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -4812,16 +4879,6 @@
             }
           }
         ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object"
-              }
-            }
-          }
-        },
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -4887,16 +4944,10 @@
         "tags": [
           "CockroachCloud"
         ],
-        "x-badges": [
-          {
-            "color": "blue",
-            "label": "PREVIEW"
-          }
-        ],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/private-endpoint-services \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{}'"
+            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/private-endpoint-services \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
           }
         ]
       }
@@ -5549,12 +5600,6 @@
         "tags": [
           "CockroachCloud"
         ],
-        "x-badges": [
-          {
-            "color": "blue",
-            "label": "PREVIEW"
-          }
-        ],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -5643,12 +5688,6 @@
         "tags": [
           "CockroachCloud"
         ],
-        "x-badges": [
-          {
-            "color": "blue",
-            "label": "PREVIEW"
-          }
-        ],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -5725,12 +5764,6 @@
         },
         "tags": [
           "CockroachCloud"
-        ],
-        "x-badges": [
-          {
-            "color": "blue",
-            "label": "PREVIEW"
-          }
         ],
         "x-codeSamples": [
           {
@@ -5981,7 +6014,7 @@
                 },
                 "example": [
                   {
-                    "name": "ORG_ROLE_CLUSTER_ADMIN",
+                    "name": "CLUSTER_ADMIN",
                     "resource": {
                       "id": "example_cluster_id",
                       "type": "CLUSTER"
@@ -6069,7 +6102,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/v1/roles/{user_id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '[{\"name\":\"ORG_ROLE_CLUSTER_ADMIN\",\"resource\":{\"id\":\"example_cluster_id\",\"type\":\"CLUSTER\"}}]'"
+            "source": "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/v1/roles/{user_id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '[{\"name\":\"CLUSTER_ADMIN\",\"resource\":{\"id\":\"example_cluster_id\",\"type\":\"CLUSTER\"}}]'"
           }
         ]
       }
@@ -6114,16 +6147,16 @@
             "schema": {
               "type": "string",
               "enum": [
-                "ORG_ROLE_DEVELOPER",
-                "ORG_ROLE_ADMIN",
-                "ORG_ROLE_BILLING_COORDINATOR",
-                "ORG_ROLE_ORG_ADMIN",
-                "ORG_ROLE_ORG_MEMBER",
-                "ORG_ROLE_CLUSTER_ADMIN",
-                "ORG_ROLE_CLUSTER_OPERATOR_WRITER",
-                "ORG_ROLE_CLUSTER_OPERATOR_READER",
-                "ORG_ROLE_CLUSTER_DEVELOPER",
-                "ORG_ROLE_CLUSTER_CREATOR"
+                "DEVELOPER",
+                "ADMIN",
+                "BILLING_COORDINATOR",
+                "ORG_ADMIN",
+                "ORG_MEMBER",
+                "CLUSTER_ADMIN",
+                "CLUSTER_OPERATOR_WRITER",
+                "CLUSTER_OPERATOR_READER",
+                "CLUSTER_DEVELOPER",
+                "CLUSTER_CREATOR"
               ]
             }
           }
@@ -6245,16 +6278,16 @@
             "schema": {
               "type": "string",
               "enum": [
-                "ORG_ROLE_DEVELOPER",
-                "ORG_ROLE_ADMIN",
-                "ORG_ROLE_BILLING_COORDINATOR",
-                "ORG_ROLE_ORG_ADMIN",
-                "ORG_ROLE_ORG_MEMBER",
-                "ORG_ROLE_CLUSTER_ADMIN",
-                "ORG_ROLE_CLUSTER_OPERATOR_WRITER",
-                "ORG_ROLE_CLUSTER_OPERATOR_READER",
-                "ORG_ROLE_CLUSTER_DEVELOPER",
-                "ORG_ROLE_CLUSTER_CREATOR"
+                "DEVELOPER",
+                "ADMIN",
+                "BILLING_COORDINATOR",
+                "ORG_ADMIN",
+                "ORG_MEMBER",
+                "CLUSTER_ADMIN",
+                "CLUSTER_OPERATOR_WRITER",
+                "CLUSTER_OPERATOR_READER",
+                "CLUSTER_DEVELOPER",
+                "CLUSTER_CREATOR"
               ]
             }
           }
@@ -6337,22 +6370,115 @@
           }
         ]
       }
+    },
+    "/api/v1/users/persons-by-email": {
+      "get": {
+        "operationId": "CockroachCloud_GetPersonUsersByEmail",
+        "summary": "Search person users by email address",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "description": "an email address is required.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetPersonUsersByEmailResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "CockroachCloud"
+        ],
+        "x-badges": [
+          {
+            "color": "blue",
+            "label": "PREVIEW"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request GET \\\n  --url 'https://cockroachlabs.cloud/api/v1/users/persons-by-email?email=SOME_STRING_VALUE' \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+          }
+        ]
+      }
     }
   },
   "components": {
     "schemas": {
-      "AWSEndpointConnectionStatus": {
-        "description": "The statuses map to the statuses returned by the AWS API.",
+      "AWSEndpointConnectionStatus.Type": {
         "type": "string",
         "enum": [
-          "ENDPOINT_PENDING",
-          "ENDPOINT_PENDING_ACCEPTANCE",
-          "ENDPOINT_AVAILABLE",
-          "ENDPOINT_DELETING",
-          "ENDPOINT_DELETED",
-          "ENDPOINT_REJECTED",
-          "ENDPOINT_FAILED",
-          "ENDPOINT_EXPIRED"
+          "PENDING",
+          "PENDING_ACCEPTANCE",
+          "AVAILABLE",
+          "DELETING",
+          "DELETED",
+          "REJECTED",
+          "FAILED",
+          "EXPIRED"
         ]
       },
       "AWSPrivateLinkServiceDetail": {
@@ -6443,7 +6569,7 @@
         "type": "object",
         "properties": {
           "cloud_provider": {
-            "$ref": "#/components/schemas/api.CloudProvider"
+            "$ref": "#/components/schemas/CloudProvider.Type"
           },
           "endpoint_id": {
             "description": "endpoint_id is the client side of the PrivateLink connection.",
@@ -6458,7 +6584,7 @@
             "type": "string"
           },
           "status": {
-            "$ref": "#/components/schemas/AWSEndpointConnectionStatus"
+            "$ref": "#/components/schemas/AWSEndpointConnectionStatus.Type"
           }
         },
         "required": [
@@ -6488,7 +6614,7 @@
         "type": "object",
         "properties": {
           "name": {
-            "$ref": "#/components/schemas/OrganizationUserRole"
+            "$ref": "#/components/schemas/OrganizationUserRole.Type"
           },
           "resource": {
             "$ref": "#/components/schemas/Resource"
@@ -6628,23 +6754,30 @@
         }
       },
       "ClientCACertStatus": {
-        "description": "- UNKNOWN_STATUS: UNKNOWN should never be used; if it is used, it indicates a bug.\n - NOT_SET: NOT_SET indicates a client CA cert is not set on the cluster.\nNew clusters won't have a client CA cert set.\n - IS_SET: IS_SET indicates a client CA cert is set on the cluster.\n - PENDING: PENDING indicates a client CA cert update is in flight on the cluster.\n - FAILED: FAILED indicates a client CA cert update was attempted, but failed.",
+        "description": " - UNKNOWN_STATUS: UNKNOWN should never be used; if it is used, it indicates a bug.\n - NOT_SET: NOT_SET indicates a client CA cert is not set on the cluster.\nNew clusters won't have a client CA cert set.\n - IS_SET: IS_SET indicates a client CA cert is set on the cluster.\n - PENDING: PENDING indicates a client CA cert update is in flight on the cluster.\n - FAILED: FAILED indicates a client CA cert update was attempted, but failed.",
         "type": "string",
         "enum": [
           "NOT_SET",
           "IS_SET",
           "PENDING",
           "FAILED"
-        ],
-        "title": "TODO: work w/ intrusion to see which statuses will actually be available"
+        ]
+      },
+      "CloudProvider.Type": {
+        "description": " - GCP: The Google Cloud Platform cloud provider.\n - AWS: The Amazon Web Services cloud provider.",
+        "type": "string",
+        "enum": [
+          "GCP",
+          "AWS"
+        ]
       },
       "CloudProviderRegion": {
         "type": "object",
         "properties": {
           "distance": {
+            "description": "Distance in miles, based on client IP address.",
             "type": "number",
-            "format": "float",
-            "title": "Distance in miles, based on client IP address"
+            "format": "float"
           },
           "location": {
             "type": "string"
@@ -6653,7 +6786,7 @@
             "type": "string"
           },
           "provider": {
-            "$ref": "#/components/schemas/api.CloudProvider"
+            "$ref": "#/components/schemas/CloudProvider.Type"
           },
           "serverless": {
             "type": "boolean"
@@ -6682,7 +6815,7 @@
             "type": "string"
           },
           "status": {
-            "$ref": "#/components/schemas/MetricExportStatus"
+            "$ref": "#/components/schemas/MetricExportStatus.Type"
           },
           "target_region": {
             "description": "target_region specifies the specific AWS region that the metrics will\nbe exported to.",
@@ -6705,7 +6838,7 @@
             "type": "string"
           },
           "cloud_provider": {
-            "$ref": "#/components/schemas/api.CloudProvider"
+            "$ref": "#/components/schemas/CloudProvider.Type"
           },
           "cockroach_version": {
             "type": "string"
@@ -6725,7 +6858,7 @@
             "format": "date-time"
           },
           "egress_traffic_policy": {
-            "$ref": "#/components/schemas/EgressTrafficPolicy"
+            "$ref": "#/components/schemas/EgressTrafficPolicy.Type"
           },
           "id": {
             "type": "string"
@@ -6734,13 +6867,13 @@
             "type": "string"
           },
           "network_visibility": {
-            "$ref": "#/components/schemas/NetworkVisiblity"
+            "$ref": "#/components/schemas/NetworkVisibility.Type"
           },
           "operation_status": {
-            "$ref": "#/components/schemas/ClusterStatusType"
+            "$ref": "#/components/schemas/ClusterStatus.Type"
           },
           "plan": {
-            "$ref": "#/components/schemas/Plan"
+            "$ref": "#/components/schemas/Plan.Type"
           },
           "regions": {
             "type": "array",
@@ -6753,14 +6886,14 @@
             "type": "string"
           },
           "state": {
-            "$ref": "#/components/schemas/ClusterStateType"
+            "$ref": "#/components/schemas/ClusterState.Type"
           },
           "updated_at": {
             "type": "string",
             "format": "date-time"
           },
           "upgrade_status": {
-            "$ref": "#/components/schemas/ClusterUpgradeStatus"
+            "$ref": "#/components/schemas/ClusterUpgradeStatus.Type"
           }
         },
         "example": {
@@ -6822,7 +6955,7 @@
         "type": "object",
         "properties": {
           "support_status": {
-            "$ref": "#/components/schemas/ClusterMajorVersionSupportStatus"
+            "$ref": "#/components/schemas/ClusterMajorVersionSupportStatus.Type"
           },
           "version": {
             "type": "string"
@@ -6833,7 +6966,7 @@
           "support_status"
         ]
       },
-      "ClusterMajorVersionSupportStatus": {
+      "ClusterMajorVersionSupportStatus.Type": {
         "type": "string",
         "enum": [
           "UNSUPPORTED",
@@ -6841,7 +6974,7 @@
           "PREVIEW"
         ]
       },
-      "ClusterStateType": {
+      "ClusterState.Type": {
         "description": " - LOCKED: An exclusive operation is being performed on this cluster.\nOther operations should not proceed if they did not set a cluster into the LOCKED state.",
         "type": "string",
         "enum": [
@@ -6852,10 +6985,10 @@
           "LOCKED"
         ]
       },
-      "ClusterStatusType": {
+      "ClusterStatus.Type": {
         "type": "string",
         "enum": [
-          "CLUSTER_STATUS_UNSPECIFIED",
+          "UNSPECIFIED",
           "CRDB_MAJOR_UPGRADE_RUNNING",
           "CRDB_MAJOR_UPGRADE_FAILED",
           "CRDB_MAJOR_ROLLBACK_RUNNING",
@@ -6883,7 +7016,7 @@
           "CRDB_CUSTOM_CLIENT_CA_FAILED"
         ]
       },
-      "ClusterUpgradeStatus": {
+      "ClusterUpgradeStatus.Type": {
         "description": " - FINALIZED: The cluster is running the latest available CockroachDB version, and all upgrades have been finalized.\n - MAJOR_UPGRADE_RUNNING: An major version upgrade is currently in progress.\n - UPGRADE_AVAILABLE: An upgrade is available. If preview builds are enabled for the parent organization, this could indicate that a preview upgrade is available.\n - PENDING_FINALIZATION: An upgrade is complete, but pending finalization. Upgrades are automatically finalized after 72 hours. For more information, see https://www.cockroachlabs.com/docs/stable/upgrade-cockroach-version.html\n - ROLLBACK_RUNNING: A rollback operation is currently in progress.",
         "type": "string",
         "enum": [
@@ -6902,7 +7035,7 @@
             "type": "string"
           },
           "provider": {
-            "$ref": "#/components/schemas/api.CloudProvider"
+            "$ref": "#/components/schemas/CloudProvider.Type"
           },
           "spec": {
             "$ref": "#/components/schemas/CreateClusterSpecification"
@@ -6938,8 +7071,7 @@
           }
         }
       },
-      "Currency": {
-        "description": "Currency is the set of currencies supported in CockroachDB Cloud.",
+      "Currency.Type": {
         "type": "string",
         "enum": [
           "USD",
@@ -6950,12 +7082,12 @@
         "type": "object",
         "properties": {
           "amount": {
-            "description": "amount is the quantity of currency.",
+            "description": "amount is the quantity of currency. Internally, currency amounts are tracked\nand stored using an arbitrary-precision decimal representation, but are serialized\nas 64-bit floating point numbers. There may be minor rounding discrepancies\nwhen parsed as a 32-bit float.",
             "type": "number",
             "format": "double"
           },
           "currency": {
-            "$ref": "#/components/schemas/Currency"
+            "$ref": "#/components/schemas/Currency.Type"
           }
         }
       },
@@ -6970,10 +7102,10 @@
             "type": "string"
           },
           "site": {
-            "$ref": "#/components/schemas/api.DatadogSite"
+            "$ref": "#/components/schemas/DatadogSite.Type"
           },
           "status": {
-            "$ref": "#/components/schemas/MetricExportStatus"
+            "$ref": "#/components/schemas/MetricExportStatus.Type"
           },
           "user_message": {
             "type": "string"
@@ -6984,6 +7116,16 @@
           "site"
         ],
         "title": "DatadogMetricExportInfo"
+      },
+      "DatadogSite.Type": {
+        "type": "string",
+        "enum": [
+          "US1",
+          "US3",
+          "US5",
+          "US1_GOV",
+          "EU1"
+        ]
       },
       "DedicatedClusterCreateSpecification": {
         "type": "object",
@@ -6996,7 +7138,7 @@
             "$ref": "#/components/schemas/DedicatedHardwareCreateSpecification"
           },
           "network_visibility": {
-            "$ref": "#/components/schemas/NetworkVisiblity"
+            "$ref": "#/components/schemas/NetworkVisibility.Type"
           },
           "region_nodes": {
             "description": "Region keys should match the cloud provider's zone code.\nFor example, for Oregon, set region_name to \"us-west2\" for\nGCP and \"us-west-2\" for AWS. Values represent the node count.",
@@ -7007,7 +7149,7 @@
             }
           },
           "restrict_egress_traffic": {
-            "description": "RestrictEgressTraffic if set, results in an egress traffic policy of\ndefault-deny at creation time.",
+            "description": "Preview: RestrictEgressTraffic if set, results in an egress traffic policy of\ndefault-deny at creation time.",
             "type": "boolean"
           }
         },
@@ -7149,7 +7291,7 @@
             "type": "string"
           },
           "status": {
-            "$ref": "#/components/schemas/MetricExportStatus"
+            "$ref": "#/components/schemas/MetricExportStatus.Type"
           }
         },
         "required": [
@@ -7239,15 +7381,15 @@
         ],
         "title": "EgressRule"
       },
-      "EgressTrafficPolicy": {
-        "description": " - POLICY_UNSPECIFIED: POLICY_UNSPECIFIED signifies the egress traffic policy is unspecified.\n - POLICY_ERROR: POLICY_ERROR signifies there has been an internal server error during\nan update to the egress traffic policy.\n - ALLOW_ALL: ALLOW_ALL signifies all outbound connections from CockroachDB are allowed.\n - DEFAULT_DENY: DEFAULT_DENY signifies that CockroachDB can only initiate network\nconnections to destinations explicitly allowed by the user or CockroachDB\nCloud operators.\n - POLICY_UPDATING: POLICY_UPDATING signifies the egress traffic policy is updating.",
+      "EgressTrafficPolicy.Type": {
+        "description": " - UNSPECIFIED: UNSPECIFIED signifies the egress traffic policy is unspecified.\n - ERROR: ERROR signifies there has been an internal server error during\nan update to the egress traffic policy.\n - ALLOW_ALL: ALLOW_ALL signifies all outbound connections from CockroachDB are allowed.\n - DEFAULT_DENY: DEFAULT_DENY signifies that CockroachDB can only initiate network\nconnections to destinations explicitly allowed by the user or CockroachDB\nCloud operators.\n - UPDATING: UPDATING signifies the egress traffic policy is updating.",
         "type": "string",
         "enum": [
-          "POLICY_UNSPECIFIED",
-          "POLICY_ERROR",
+          "UNSPECIFIED",
+          "ERROR",
           "ALLOW_ALL",
           "DEFAULT_DENY",
-          "POLICY_UPDATING"
+          "UPDATING"
         ]
       },
       "GetAllRolesForUserResponse": {
@@ -7290,6 +7432,17 @@
           "rule"
         ],
         "title": "GetEgressRuleResponse"
+      },
+      "GetPersonUsersByEmailResponse": {
+        "type": "object",
+        "properties": {
+          "user": {
+            "$ref": "#/components/schemas/PersonUserInfo"
+          }
+        },
+        "required": [
+          "users"
+        ]
       },
       "Invoice": {
         "description": "Invoice message represents the details and the total charges associated with\none billing period, which starts at the beginning of the month and ends at\nthe beginning of the next month.\n\nThe message also includes details about each invoice item.",
@@ -7433,7 +7586,7 @@
             "format": "double"
           },
           "quantity_unit": {
-            "$ref": "#/components/schemas/QuantityUnitType"
+            "$ref": "#/components/schemas/QuantityUnit.Type"
           },
           "total": {
             "$ref": "#/components/schemas/CurrencyAmount"
@@ -7676,11 +7829,11 @@
             }
           },
           "log_name": {
-            "type": "string",
-            "title": "log_name is the name of the group, reflected in the log sink"
+            "description": "log_name is the name of the group, reflected in the log sink.",
+            "type": "string"
           },
           "min_level": {
-            "$ref": "#/components/schemas/LogLevel"
+            "$ref": "#/components/schemas/LogLevel.Type"
           },
           "redact": {
             "description": "redact is a boolean that governs whether this log group\nshould aggregate redacted logs. Redaction settings will\ninherit from the cluster log export defaults if unset.",
@@ -7712,17 +7865,17 @@
           "GCP_CLOUD_LOGGING"
         ]
       },
-      "LogLevel": {
-        "description": " - LOG_LEVEL_UNSPECIFIED: The unspecified log level includes all logs.\n - WARNING: The WARNING severity is used for situations which may require\nspecial handling, where normal operation is expected to resume \nautomatically.\n - ERROR: The ERROR severity is used for situations that require special \nhandling, where normal operation could not proceed as expected. \nOther operations can continue mostly unaffected.\n - FATAL: The FATAL severity is used for situations that require an \nimmediate, hard server shutdown. A report is also sent to \ntelemetry if telemetry is enabled.",
+      "LogLevel.Type": {
+        "description": " - UNSPECIFIED: The unspecified log level includes all logs.\n - WARNING: The WARNING severity is used for situations which may require\nspecial handling, where normal operation is expected to resume\nautomatically.\n - ERROR: The ERROR severity is used for situations that require special\nhandling, where normal operation could not proceed as expected.\nOther operations can continue mostly unaffected.\n - FATAL: The FATAL severity is used for situations that require an\nimmediate, hard server shutdown. A report is also sent to\ntelemetry if telemetry is enabled.",
         "type": "string",
         "enum": [
-          "LOG_LEVEL_UNSPECIFIED",
+          "UNSPECIFIED",
           "WARNING",
           "ERROR",
           "FATAL"
         ]
       },
-      "MetricExportStatus": {
+      "MetricExportStatus.Type": {
         "type": "string",
         "enum": [
           "NOT_DEPLOYED",
@@ -7732,11 +7885,11 @@
           "ERROR"
         ]
       },
-      "NetworkVisiblity": {
+      "NetworkVisibility.Type": {
         "type": "string",
         "enum": [
-          "NETWORK_VISIBILITY_PUBLIC",
-          "NETWORK_VISIBILITY_PRIVATE"
+          "PUBLIC",
+          "PRIVATE"
         ]
       },
       "Node": {
@@ -7749,7 +7902,7 @@
             "type": "string"
           },
           "status": {
-            "$ref": "#/components/schemas/NodeStatus"
+            "$ref": "#/components/schemas/NodeStatus.Type"
           }
         },
         "required": [
@@ -7758,19 +7911,19 @@
           "status"
         ]
       },
-      "NodeStatus": {
+      "NodeStatus.Type": {
         "type": "string",
         "enum": [
           "LIVE",
           "NOT_READY"
         ]
       },
-      "OperatingSystem": {
+      "OperatingSystem.Type": {
         "type": "string",
         "enum": [
-          "OS_MAC",
-          "OS_LINUX",
-          "OS_WINDOWS"
+          "MAC",
+          "LINUX",
+          "WINDOWS"
         ]
       },
       "Organization": {
@@ -7797,23 +7950,40 @@
           "created_at"
         ]
       },
-      "OrganizationUserRole": {
+      "OrganizationUserRole.Type": {
         "type": "string",
         "enum": [
-          "ORG_ROLE_DEVELOPER",
-          "ORG_ROLE_ADMIN",
-          "ORG_ROLE_BILLING_COORDINATOR",
-          "ORG_ROLE_ORG_ADMIN",
-          "ORG_ROLE_ORG_MEMBER",
-          "ORG_ROLE_CLUSTER_ADMIN",
-          "ORG_ROLE_CLUSTER_OPERATOR_WRITER",
-          "ORG_ROLE_CLUSTER_OPERATOR_READER",
-          "ORG_ROLE_CLUSTER_DEVELOPER",
-          "ORG_ROLE_CLUSTER_CREATOR"
+          "DEVELOPER",
+          "ADMIN",
+          "BILLING_COORDINATOR",
+          "ORG_ADMIN",
+          "ORG_MEMBER",
+          "CLUSTER_ADMIN",
+          "CLUSTER_OPERATOR_WRITER",
+          "CLUSTER_OPERATOR_READER",
+          "CLUSTER_DEVELOPER",
+          "CLUSTER_CREATOR"
         ]
       },
-      "Plan": {
-        "description": " - DEDICATED: A paid plan that offers dedicated hardware in any location.\n - CUSTOM: A plan option that is used for clusters whose machine configs are not \nsupported in self-service. All INVOICE clusters are under this plan option.\n - SERVERLESS: A paid plan that runs on shared hardware and caps the users'\nmaximum monthly spending to a user-specified (possibly 0) amount.",
+      "PersonUserInfo": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "description": "email is an email address.",
+            "type": "string"
+          },
+          "id": {
+            "description": "id is the user id.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ],
+        "title": "person_user_info contains information about a person"
+      },
+      "Plan.Type": {
+        "description": " - DEDICATED: A paid plan that offers dedicated hardware in any location.\n - CUSTOM: A plan option that is used for clusters whose machine configs are not\nsupported in self-service. All INVOICE clusters are under this plan option.\n - SERVERLESS: A paid plan that runs on shared hardware and caps the users'\nmaximum monthly spending to a user-specified (possibly 0) amount.",
         "type": "string",
         "enum": [
           "DEDICATED",
@@ -7828,14 +7998,14 @@
             "$ref": "#/components/schemas/AWSPrivateLinkServiceDetail"
           },
           "cloud_provider": {
-            "$ref": "#/components/schemas/api.CloudProvider"
+            "$ref": "#/components/schemas/CloudProvider.Type"
           },
           "region_name": {
             "description": "region_name is the cloud provider region name (i.e. us-east-1).",
             "type": "string"
           },
           "status": {
-            "$ref": "#/components/schemas/PrivateEndpointServiceStatus"
+            "$ref": "#/components/schemas/PrivateEndpointServiceStatus.Type"
           }
         },
         "required": [
@@ -7845,17 +8015,15 @@
           "aws"
         ]
       },
-      "PrivateEndpointServiceStatus": {
-        "description": "- ENDPOINT_SERVICE_STATUS_DELETE_FAILED: One note is that if the service is deleted, there is no longer\na record, hence there is no \"DELETED\" status.",
+      "PrivateEndpointServiceStatus.Type": {
         "type": "string",
         "enum": [
-          "ENDPOINT_SERVICE_STATUS_CREATING",
-          "ENDPOINT_SERVICE_STATUS_AVAILABLE",
-          "ENDPOINT_SERVICE_STATUS_CREATE_FAILED",
-          "ENDPOINT_SERVICE_STATUS_DELETING",
-          "ENDPOINT_SERVICE_STATUS_DELETE_FAILED"
-        ],
-        "title": "Private Endpoints"
+          "CREATING",
+          "AVAILABLE",
+          "CREATE_FAILED",
+          "DELETING",
+          "DELETE_FAILED"
+        ]
       },
       "PrivateEndpointServices": {
         "type": "object",
@@ -7872,8 +8040,7 @@
           "services"
         ]
       },
-      "QuantityUnitType": {
-        "description": "Billing\nQuantityUnitType is the unit type for a quantity of billing line item.",
+      "QuantityUnit.Type": {
         "type": "string",
         "enum": [
           "HOURS",
@@ -7923,14 +8090,14 @@
             "type": "string"
           },
           "type": {
-            "$ref": "#/components/schemas/ResourceType"
+            "$ref": "#/components/schemas/ResourceType.Type"
           }
         },
         "required": [
           "type"
         ]
       },
-      "ResourceType": {
+      "ResourceType.Type": {
         "type": "string",
         "enum": [
           "ORGANIZATION",
@@ -7952,17 +8119,19 @@
         "type": "object",
         "properties": {
           "routing_id": {
-            "description": "Used to build a connection string.",
+            "description": "routing_id is used to identify the cluster in a connection string.",
             "type": "string"
           },
           "spend_limit": {
-            "description": "Spend limit in US cents.",
+            "description": "spend_limit is the maximum monthly charge for a cluster, in US cents. We\nrecommend using usage_limits instead, since spend_limit will be deprecated\nin the future.",
             "type": "integer",
             "format": "int32"
+          },
+          "usage_limits": {
+            "$ref": "#/components/schemas/UsageLimits"
           }
         },
         "required": [
-          "spend_limit",
           "routing_id"
         ]
       },
@@ -7970,7 +8139,7 @@
         "type": "object",
         "properties": {
           "primary_region": {
-            "description": "Specify which region should be made the primary region.\nThis is only applicable to multi-region Serverless clusters.\nThis field is required if you create the cluster in more than\none region.",
+            "description": "Preview: Specify which region should be made the primary region.\nThis is only applicable to multi-region Serverless clusters.\nThis field is required if you create the cluster in more than\none region.",
             "type": "string"
           },
           "regions": {
@@ -7981,27 +8150,37 @@
             }
           },
           "spend_limit": {
+            "description": "spend_limit is the maximum monthly charge for a cluster, in US cents. We\nrecommend using usage_limits instead, since spend_limit will be deprecated\nin the future.",
             "type": "integer",
-            "format": "int32",
-            "title": "Spend limit in US cents"
+            "format": "int32"
+          },
+          "usage_limits": {
+            "$ref": "#/components/schemas/UsageLimits"
           }
         },
         "required": [
-          "regions",
-          "spend_limit"
+          "regions"
         ]
       },
       "ServerlessClusterUpdateSpecification": {
         "type": "object",
         "properties": {
           "spend_limit": {
+            "description": "spend_limit is the maximum monthly charge for a cluster, in US cents. We\nrecommend using usage_limits instead, since spend_limit will be deprecated\nin the future.",
             "type": "integer",
-            "format": "int32",
-            "title": "Spend limit in US cents"
+            "format": "int32"
+          },
+          "usage_limits": {
+            "$ref": "#/components/schemas/UsageLimits"
           }
-        },
-        "required": [
-          "spend_limit"
+        }
+      },
+      "SetAWSEndpointConnectionStatus.Type": {
+        "description": " - AVAILABLE: accept/verify the connection on the service side.\n - REJECTED: reject the connection on the service side.",
+        "type": "string",
+        "enum": [
+          "AVAILABLE",
+          "REJECTED"
         ]
       },
       "SortOrder": {
@@ -8041,7 +8220,7 @@
             "$ref": "#/components/schemas/ServerlessClusterUpdateSpecification"
           },
           "upgrade_status": {
-            "$ref": "#/components/schemas/ClusterUpgradeStatus"
+            "$ref": "#/components/schemas/ClusterUpgradeStatus.Type"
           }
         },
         "example": {
@@ -8059,6 +8238,25 @@
           "upgrade_status": "UPGRADE_RUNNING"
         }
       },
+      "UsageLimits": {
+        "type": "object",
+        "properties": {
+          "request_unit_limit": {
+            "description": "request_unit_limit is the maximum number of request units that the cluster\ncan consume during the month. If this limit is exceeded, then the cluster\nis disabled until the limit is increased, or until the beginning of the\nnext month when more free request units are granted. It is an error for\nthis to be zero.",
+            "type": "string",
+            "format": "int64"
+          },
+          "storage_mib_limit": {
+            "description": "storage_mib_limit is the maximum number of Mebibytes of storage that the\ncluster can have at any time during the month. If this limit is exceeded,\nthen the cluster is throttled; only one SQL connection is allowed at a\ntime, with the expectation that it is used to delete data to reduce storage\nusage. If is an error for this to be zero.",
+            "type": "string",
+            "format": "int64"
+          }
+        },
+        "required": [
+          "request_unit_limit",
+          "storage_mib_limit"
+        ]
+      },
       "UserRoleGrants": {
         "type": "object",
         "properties": {
@@ -8074,7 +8272,7 @@
         },
         "example": [
           {
-            "name": "ORG_ROLE_CLUSTER_ADMIN",
+            "name": "CLUSTER_ADMIN",
             "resource": {
               "id": "example_cluster_id",
               "type": "CLUSTER"
@@ -8084,14 +8282,6 @@
         "required": [
           "roles",
           "user_id"
-        ]
-      },
-      "api.CloudProvider": {
-        "description": " - GCP: The Google Cloud Platform cloud provider.\n - AWS: The Amazon Web Services cloud provider.",
-        "type": "string",
-        "enum": [
-          "GCP",
-          "AWS"
         ]
       },
       "api.Database": {
@@ -8109,17 +8299,6 @@
           "name"
         ],
         "title": "Database"
-      },
-      "api.DatadogSite": {
-        "description": "DatadogSite specifies the Datadog region to export to.\nNOTE: Regions are completely independent from one another.",
-        "type": "string",
-        "enum": [
-          "US1",
-          "US3",
-          "US5",
-          "US1_GOV",
-          "EU1"
-        ]
       },
       "api.ListDatabasesResponse": {
         "type": "object",

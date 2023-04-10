@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Distance** | **float32** |  | 
+**Distance** | **float32** | Distance in miles, based on client IP address. | 
 **Location** | **string** |  | 
 **Name** | **string** |  | 
-**Provider** | [**ApiCloudProvider**](ApiCloudProvider.md) |  | 
+**Provider** | [**CloudProviderType**](CloudProviderType.md) |  | 
 **Serverless** | **bool** |  | 
 
 ## Methods
 
 ### NewCloudProviderRegion
 
-`func NewCloudProviderRegion(distance float32, location string, name string, provider ApiCloudProvider, serverless bool, ) *CloudProviderRegion`
+`func NewCloudProviderRegion(distance float32, location string, name string, provider CloudProviderType, serverless bool, ) *CloudProviderRegion`
 
 NewCloudProviderRegion instantiates a new CloudProviderRegion object.
 This constructor will assign default values to properties that have it defined,
@@ -67,13 +67,13 @@ SetName sets Name field to given value.
 
 ### GetProvider
 
-`func (o *CloudProviderRegion) GetProvider() ApiCloudProvider`
+`func (o *CloudProviderRegion) GetProvider() CloudProviderType`
 
 GetProvider returns the Provider field if non-nil, zero value otherwise.
 
 ### SetProvider
 
-`func (o *CloudProviderRegion) SetProvider(v ApiCloudProvider)`
+`func (o *CloudProviderRegion) SetProvider(v CloudProviderType)`
 
 SetProvider sets Provider field to given value.
 

@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **ClusterId** | **string** |  | 
 **LogGroupName** | Pointer to **string** | log_group_name is the customized log group name. | [optional] 
 **RoleArn** | **string** | role_arn is the IAM role used to upload metric segments to the target AWS account. | 
-**Status** | Pointer to [**MetricExportStatus**](MetricExportStatus.md) |  | [optional] 
+**Status** | Pointer to [**MetricExportStatusType**](MetricExportStatusType.md) |  | [optional] 
 **TargetRegion** | Pointer to **string** | target_region specifies the specific AWS region that the metrics will be exported to. | [optional] 
 **UserMessage** | Pointer to **string** |  | [optional] 
 
@@ -68,13 +68,13 @@ SetRoleArn sets RoleArn field to given value.
 
 ### GetStatus
 
-`func (o *CloudWatchMetricExportInfo) GetStatus() MetricExportStatus`
+`func (o *CloudWatchMetricExportInfo) GetStatus() MetricExportStatusType`
 
 GetStatus returns the Status field if non-nil, zero value otherwise.
 
 ### SetStatus
 
-`func (o *CloudWatchMetricExportInfo) SetStatus(v MetricExportStatus)`
+`func (o *CloudWatchMetricExportInfo) SetStatus(v MetricExportStatusType)`
 
 SetStatus sets Status field to given value.
 

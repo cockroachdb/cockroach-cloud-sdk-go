@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CloudProvider** | [**ApiCloudProvider**](ApiCloudProvider.md) |  | 
+**CloudProvider** | [**CloudProviderType**](CloudProviderType.md) |  | 
 **EndpointId** | **string** | endpoint_id is the client side of the PrivateLink connection. | 
 **RegionName** | **string** | region_name is the cloud provider region name (i.e. us-east-1). | 
 **ServiceId** | **string** | service_id is the server side of the PrivateLink connection. This is the same as AWSPrivateLinkEndpoint.service_id. | 
-**Status** | [**AWSEndpointConnectionStatus**](AWSEndpointConnectionStatus.md) |  | 
+**Status** | [**AWSEndpointConnectionStatusType**](AWSEndpointConnectionStatusType.md) |  | 
 
 ## Methods
 
 ### NewAwsEndpointConnection
 
-`func NewAwsEndpointConnection(cloudProvider ApiCloudProvider, endpointId string, regionName string, serviceId string, status AWSEndpointConnectionStatus, ) *AwsEndpointConnection`
+`func NewAwsEndpointConnection(cloudProvider CloudProviderType, endpointId string, regionName string, serviceId string, status AWSEndpointConnectionStatusType, ) *AwsEndpointConnection`
 
 NewAwsEndpointConnection instantiates a new AwsEndpointConnection object.
 This constructor will assign default values to properties that have it defined,
@@ -31,13 +31,13 @@ but it doesn't guarantee that properties required by API are set.
 
 ### GetCloudProvider
 
-`func (o *AwsEndpointConnection) GetCloudProvider() ApiCloudProvider`
+`func (o *AwsEndpointConnection) GetCloudProvider() CloudProviderType`
 
 GetCloudProvider returns the CloudProvider field if non-nil, zero value otherwise.
 
 ### SetCloudProvider
 
-`func (o *AwsEndpointConnection) SetCloudProvider(v ApiCloudProvider)`
+`func (o *AwsEndpointConnection) SetCloudProvider(v CloudProviderType)`
 
 SetCloudProvider sets CloudProvider field to given value.
 
@@ -79,13 +79,13 @@ SetServiceId sets ServiceId field to given value.
 
 ### GetStatus
 
-`func (o *AwsEndpointConnection) GetStatus() AWSEndpointConnectionStatus`
+`func (o *AwsEndpointConnection) GetStatus() AWSEndpointConnectionStatusType`
 
 GetStatus returns the Status field if non-nil, zero value otherwise.
 
 ### SetStatus
 
-`func (o *AwsEndpointConnection) SetStatus(v AWSEndpointConnectionStatus)`
+`func (o *AwsEndpointConnection) SetStatus(v AWSEndpointConnectionStatusType)`
 
 SetStatus sets Status field to given value.
 

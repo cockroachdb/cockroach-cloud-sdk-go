@@ -11,6 +11,7 @@ generate-openapi-client:
 			-c internal/spec/config.yaml
 	mv internal/openapi-generator/docs ./
 	mv internal/openapi-generator/*.md ./docs/
+	cp ./docs/README.md ./
 	go fmt ./internal/openapi-generator/...
 	mv ./internal/openapi-generator/*.go pkg/client/
 	@$(MAKE) add-boilerplate

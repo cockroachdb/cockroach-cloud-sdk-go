@@ -5,13 +5,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | Pointer to **string** |  | [optional] 
-**Type** | [**ResourceType**](ResourceType.md) |  | 
+**Type** | [**ResourceTypeType**](ResourceTypeType.md) |  | 
 
 ## Methods
 
 ### NewResource
 
-`func NewResource(type_ ResourceType, ) *Resource`
+`func NewResource(type_ ResourceTypeType, ) *Resource`
 
 NewResource instantiates a new Resource object.
 This constructor will assign default values to properties that have it defined,
@@ -40,13 +40,13 @@ SetId sets Id field to given value.
 
 ### GetType
 
-`func (o *Resource) GetType() ResourceType`
+`func (o *Resource) GetType() ResourceTypeType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### SetType
 
-`func (o *Resource) SetType(v ResourceType)`
+`func (o *Resource) SetType(v ResourceTypeType)`
 
 SetType sets Type field to given value.
 

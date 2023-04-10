@@ -5,29 +5,29 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AccountId** | Pointer to **string** |  | [optional] 
-**CloudProvider** | [**ApiCloudProvider**](ApiCloudProvider.md) |  | 
+**CloudProvider** | [**CloudProviderType**](CloudProviderType.md) |  | 
 **CockroachVersion** | **string** |  | 
 **Config** | [**ClusterConfig**](ClusterConfig.md) |  | 
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
 **CreatorId** | **string** |  | 
 **DeletedAt** | Pointer to **time.Time** |  | [optional] 
-**EgressTrafficPolicy** | Pointer to [**EgressTrafficPolicy**](EgressTrafficPolicy.md) |  | [optional] 
+**EgressTrafficPolicy** | Pointer to [**EgressTrafficPolicyType**](EgressTrafficPolicyType.md) |  | [optional] 
 **Id** | **string** |  | 
 **Name** | **string** |  | 
-**NetworkVisibility** | Pointer to [**NetworkVisiblity**](NetworkVisiblity.md) |  | [optional] 
+**NetworkVisibility** | Pointer to [**NetworkVisibilityType**](NetworkVisibilityType.md) |  | [optional] 
 **OperationStatus** | [**ClusterStatusType**](ClusterStatusType.md) |  | 
-**Plan** | [**Plan**](Plan.md) |  | 
+**Plan** | [**PlanType**](PlanType.md) |  | 
 **Regions** | [**[]Region**](Region.md) |  | 
 **SqlDns** | Pointer to **string** | sql_dns is the DNS name of SQL interface of the cluster. | [optional] 
 **State** | [**ClusterStateType**](ClusterStateType.md) |  | 
 **UpdatedAt** | Pointer to **time.Time** |  | [optional] 
-**UpgradeStatus** | [**ClusterUpgradeStatus**](ClusterUpgradeStatus.md) |  | 
+**UpgradeStatus** | [**ClusterUpgradeStatusType**](ClusterUpgradeStatusType.md) |  | 
 
 ## Methods
 
 ### NewCluster
 
-`func NewCluster(cloudProvider ApiCloudProvider, cockroachVersion string, config ClusterConfig, creatorId string, id string, name string, operationStatus ClusterStatusType, plan Plan, regions []Region, state ClusterStateType, upgradeStatus ClusterUpgradeStatus, ) *Cluster`
+`func NewCluster(cloudProvider CloudProviderType, cockroachVersion string, config ClusterConfig, creatorId string, id string, name string, operationStatus ClusterStatusType, plan PlanType, regions []Region, state ClusterStateType, upgradeStatus ClusterUpgradeStatusType, ) *Cluster`
 
 NewCluster instantiates a new Cluster object.
 This constructor will assign default values to properties that have it defined,
@@ -56,13 +56,13 @@ SetAccountId sets AccountId field to given value.
 
 ### GetCloudProvider
 
-`func (o *Cluster) GetCloudProvider() ApiCloudProvider`
+`func (o *Cluster) GetCloudProvider() CloudProviderType`
 
 GetCloudProvider returns the CloudProvider field if non-nil, zero value otherwise.
 
 ### SetCloudProvider
 
-`func (o *Cluster) SetCloudProvider(v ApiCloudProvider)`
+`func (o *Cluster) SetCloudProvider(v CloudProviderType)`
 
 SetCloudProvider sets CloudProvider field to given value.
 
@@ -128,13 +128,13 @@ SetDeletedAt sets DeletedAt field to given value.
 
 ### GetEgressTrafficPolicy
 
-`func (o *Cluster) GetEgressTrafficPolicy() EgressTrafficPolicy`
+`func (o *Cluster) GetEgressTrafficPolicy() EgressTrafficPolicyType`
 
 GetEgressTrafficPolicy returns the EgressTrafficPolicy field if non-nil, zero value otherwise.
 
 ### SetEgressTrafficPolicy
 
-`func (o *Cluster) SetEgressTrafficPolicy(v EgressTrafficPolicy)`
+`func (o *Cluster) SetEgressTrafficPolicy(v EgressTrafficPolicyType)`
 
 SetEgressTrafficPolicy sets EgressTrafficPolicy field to given value.
 
@@ -164,13 +164,13 @@ SetName sets Name field to given value.
 
 ### GetNetworkVisibility
 
-`func (o *Cluster) GetNetworkVisibility() NetworkVisiblity`
+`func (o *Cluster) GetNetworkVisibility() NetworkVisibilityType`
 
 GetNetworkVisibility returns the NetworkVisibility field if non-nil, zero value otherwise.
 
 ### SetNetworkVisibility
 
-`func (o *Cluster) SetNetworkVisibility(v NetworkVisiblity)`
+`func (o *Cluster) SetNetworkVisibility(v NetworkVisibilityType)`
 
 SetNetworkVisibility sets NetworkVisibility field to given value.
 
@@ -188,13 +188,13 @@ SetOperationStatus sets OperationStatus field to given value.
 
 ### GetPlan
 
-`func (o *Cluster) GetPlan() Plan`
+`func (o *Cluster) GetPlan() PlanType`
 
 GetPlan returns the Plan field if non-nil, zero value otherwise.
 
 ### SetPlan
 
-`func (o *Cluster) SetPlan(v Plan)`
+`func (o *Cluster) SetPlan(v PlanType)`
 
 SetPlan sets Plan field to given value.
 
@@ -248,13 +248,13 @@ SetUpdatedAt sets UpdatedAt field to given value.
 
 ### GetUpgradeStatus
 
-`func (o *Cluster) GetUpgradeStatus() ClusterUpgradeStatus`
+`func (o *Cluster) GetUpgradeStatus() ClusterUpgradeStatusType`
 
 GetUpgradeStatus returns the UpgradeStatus field if non-nil, zero value otherwise.
 
 ### SetUpgradeStatus
 
-`func (o *Cluster) SetUpgradeStatus(v ClusterUpgradeStatus)`
+`func (o *Cluster) SetUpgradeStatus(v ClusterUpgradeStatusType)`
 
 SetUpgradeStatus sets UpgradeStatus field to given value.
 

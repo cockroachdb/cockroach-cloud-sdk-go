@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Channels** | **[]string** | channels is a list of CRDB log channels to include in this group. | 
-**LogName** | **string** |  | 
-**MinLevel** | Pointer to [**LogLevel**](LogLevel.md) |  | [optional] 
+**LogName** | **string** | log_name is the name of the group, reflected in the log sink. | 
+**MinLevel** | Pointer to [**LogLevelType**](LogLevelType.md) |  | [optional] 
 **Redact** | Pointer to **bool** | redact is a boolean that governs whether this log group should aggregate redacted logs. Redaction settings will inherit from the cluster log export defaults if unset. | [optional] 
 
 ## Methods
@@ -54,13 +54,13 @@ SetLogName sets LogName field to given value.
 
 ### GetMinLevel
 
-`func (o *LogExportGroup) GetMinLevel() LogLevel`
+`func (o *LogExportGroup) GetMinLevel() LogLevelType`
 
 GetMinLevel returns the MinLevel field if non-nil, zero value otherwise.
 
 ### SetMinLevel
 
-`func (o *LogExportGroup) SetMinLevel(v LogLevel)`
+`func (o *LogExportGroup) SetMinLevel(v LogLevelType)`
 
 SetMinLevel sets MinLevel field to given value.
 

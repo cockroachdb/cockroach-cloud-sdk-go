@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ClusterId** | **string** |  | 
-**Status** | Pointer to [**MetricExportStatus**](MetricExportStatus.md) |  | [optional] 
+**Status** | Pointer to [**MetricExportStatusType**](MetricExportStatusType.md) |  | [optional] 
 
 ## Methods
 
@@ -40,13 +40,13 @@ SetClusterId sets ClusterId field to given value.
 
 ### GetStatus
 
-`func (o *DeleteMetricExportResponse) GetStatus() MetricExportStatus`
+`func (o *DeleteMetricExportResponse) GetStatus() MetricExportStatusType`
 
 GetStatus returns the Status field if non-nil, zero value otherwise.
 
 ### SetStatus
 
-`func (o *DeleteMetricExportResponse) SetStatus(v MetricExportStatus)`
+`func (o *DeleteMetricExportResponse) SetStatus(v MetricExportStatusType)`
 
 SetStatus sets Status field to given value.
 
