@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** |  | 
-**TableCount** | Pointer to **string** |  | [optional] 
+**TableCount** | Pointer to **int64** |  | [optional] 
 
 ## Methods
 
@@ -40,13 +40,13 @@ SetName sets Name field to given value.
 
 ### GetTableCount
 
-`func (o *ApiDatabase) GetTableCount() string`
+`func (o *ApiDatabase) GetTableCount() int64`
 
 GetTableCount returns the TableCount field if non-nil, zero value otherwise.
 
 ### SetTableCount
 
-`func (o *ApiDatabase) SetTableCount(v string)`
+`func (o *ApiDatabase) SetTableCount(v int64)`
 
 SetTableCount sets TableCount field to given value.
 

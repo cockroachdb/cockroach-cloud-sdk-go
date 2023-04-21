@@ -20,3 +20,6 @@ disallowAdditionalPropertiesIfNotPresent: true
 
 # Prefix enum with class name
 enumClassPrefix: true
+# Without the type mapping, int64 is mapped to string.
+typeMappings:
+  int64: int64
