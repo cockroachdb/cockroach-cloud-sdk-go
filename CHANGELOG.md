@@ -1,3 +1,9 @@
+## 1.0.1 (April 21, 2023)
+
+BUG FIXES:
+
+* 64-bit integers were incorrectly represented as strings. Changed to int64.
+
 ## 1.0.0 (April 10, 2023)
 
 NOTES:
