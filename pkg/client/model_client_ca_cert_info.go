@@ -25,7 +25,7 @@ import (
 // ClientCACertInfo struct for ClientCACertInfo.
 type ClientCACertInfo struct {
 	Status      *ClientCACertStatus `json:"status,omitempty"`
-	X509PemCert *string             `json:"x509_pem_cert,omitempty"`
+	X509PemCert *string             `json:"x509_pem_cert,omitempty,string"`
 }
 
 // NewClientCACertInfo instantiates a new ClientCACertInfo object.

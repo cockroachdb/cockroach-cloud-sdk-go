@@ -24,8 +24,8 @@ import (
 
 // KeysetPaginationResponse struct for KeysetPaginationResponse.
 type KeysetPaginationResponse struct {
-	NextPage     *string `json:"next_page,omitempty"`
-	PreviousPage *string `json:"previous_page,omitempty"`
+	NextPage     *string `json:"next_page,omitempty,string"`
+	PreviousPage *string `json:"previous_page,omitempty,string"`
 }
 
 // NewKeysetPaginationResponse instantiates a new KeysetPaginationResponse object.

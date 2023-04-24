@@ -24,7 +24,7 @@ import (
 
 // UpdateClientCACertRequest struct for UpdateClientCACertRequest.
 type UpdateClientCACertRequest struct {
-	X509PemCert *string `json:"x509_pem_cert,omitempty"`
+	X509PemCert *string `json:"x509_pem_cert,omitempty,string"`
 }
 
 // NewUpdateClientCACertRequest instantiates a new UpdateClientCACertRequest object.

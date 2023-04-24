@@ -26,7 +26,7 @@ import (
 type InvoiceAdjustment struct {
 	Amount CurrencyAmount `json:"amount"`
 	// name identifies the adjustment.
-	Name string `json:"name"`
+	Name string `json:"name,string"`
 }
 
 // NewInvoiceAdjustment instantiates a new InvoiceAdjustment object.

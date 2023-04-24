@@ -25,11 +25,11 @@ import (
 // EnableCloudWatchMetricExportRequest struct for EnableCloudWatchMetricExportRequest.
 type EnableCloudWatchMetricExportRequest struct {
 	// log_group_name is the customized log group name.
-	LogGroupName *string `json:"log_group_name,omitempty"`
+	LogGroupName *string `json:"log_group_name,omitempty,string"`
 	// role_arn is the IAM role used to upload metric segments to the target AWS account.
-	RoleArn string `json:"role_arn"`
+	RoleArn string `json:"role_arn,string"`
 	// target_region specifies the specific AWS region that the metrics will be exported to.
-	TargetRegion *string `json:"target_region,omitempty"`
+	TargetRegion *string `json:"target_region,omitempty,string"`
 }
 
 // NewEnableCloudWatchMetricExportRequest instantiates a new EnableCloudWatchMetricExportRequest object.

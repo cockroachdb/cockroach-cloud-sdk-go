@@ -25,7 +25,7 @@ import (
 // LineItem struct for LineItem.
 type LineItem struct {
 	// description contains the details of the line item (i.e t3 micro).
-	Description string `json:"description"`
+	Description string `json:"description,string"`
 	// quantity is the number of the specific line items used.
 	Quantity     float64          `json:"quantity"`
 	QuantityUnit QuantityUnitType `json:"quantity_unit"`

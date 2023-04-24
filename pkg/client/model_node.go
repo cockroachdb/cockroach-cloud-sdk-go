@@ -24,8 +24,8 @@ import (
 
 // Node struct for Node.
 type Node struct {
-	Name       string         `json:"name"`
-	RegionName string         `json:"region_name"`
+	Name       string         `json:"name,string"`
+	RegionName string         `json:"region_name,string"`
 	Status     NodeStatusType `json:"status"`
 }
 

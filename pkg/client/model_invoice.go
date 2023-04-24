@@ -30,7 +30,7 @@ type Invoice struct {
 	// balances are the amounts of currency left at the time of the invoice.
 	Balances []CurrencyAmount `json:"balances"`
 	// invoice_id is the unique ID representing the invoice.
-	InvoiceId string `json:"invoice_id"`
+	InvoiceId string `json:"invoice_id,string"`
 	// invoice_items are sorted by the cluster name.
 	InvoiceItems []InvoiceItem `json:"invoice_items"`
 	// period_end is the end of the billing period (exclusive).

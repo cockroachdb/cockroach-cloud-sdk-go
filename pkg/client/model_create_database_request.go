@@ -24,7 +24,7 @@ import (
 
 // CreateDatabaseRequest struct for CreateDatabaseRequest.
 type CreateDatabaseRequest struct {
-	Name string `json:"name"`
+	Name string `json:"name,string"`
 }
 
 // NewCreateDatabaseRequest instantiates a new CreateDatabaseRequest object.

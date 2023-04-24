@@ -25,11 +25,11 @@ import (
 // DatadogMetricExportInfo struct for DatadogMetricExportInfo.
 type DatadogMetricExportInfo struct {
 	// api_key is the last 4 digits of a Datadog API key.
-	ApiKey      *string                 `json:"api_key,omitempty"`
-	ClusterId   string                  `json:"cluster_id"`
+	ApiKey      *string                 `json:"api_key,omitempty,string"`
+	ClusterId   string                  `json:"cluster_id,string"`
 	Site        DatadogSiteType         `json:"site"`
 	Status      *MetricExportStatusType `json:"status,omitempty"`
-	UserMessage *string                 `json:"user_message,omitempty"`
+	UserMessage *string                 `json:"user_message,omitempty,string"`
 }
 
 // NewDatadogMetricExportInfo instantiates a new DatadogMetricExportInfo object.

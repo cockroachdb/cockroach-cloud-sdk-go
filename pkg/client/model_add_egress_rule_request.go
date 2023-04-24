@@ -25,19 +25,19 @@ import (
 // AddEgressRuleRequest AddEgressRuleRequest is the input for the rpc AddEgressRule()..
 type AddEgressRuleRequest struct {
 	// description is text that serves to document the rules purpose.
-	Description string `json:"description"`
+	Description string `json:"description,string"`
 	// destination is the endpoint (or subnetwork if CIDR) to which traffic is allowed.
-	Destination string `json:"destination"`
+	Destination string `json:"destination,string"`
 	// idempotency_key uniquely identifies this request. If not set, it will be set by the server.
-	IdempotencyKey *string `json:"idempotency_key,omitempty"`
+	IdempotencyKey *string `json:"idempotency_key,omitempty,string"`
 	// name is the name of the egress rule.
-	Name string `json:"name"`
+	Name string `json:"name,string"`
 	// paths are the allowed URL paths. If empty, all paths are allowed. Only valid if Type=\"FQDN\".
 	Paths *[]string `json:"paths,omitempty"`
 	// ports are the allowed ports for TCP protocol. If Empty, all ports are allowed.
 	Ports *[]int32 `json:"ports,omitempty"`
 	// type classifies the Destination field. Valid types include: \"FQDN\", \"CIDR\".
-	Type string `json:"type"`
+	Type string `json:"type,string"`
 }
 
 // NewAddEgressRuleRequest instantiates a new AddEgressRuleRequest object.

@@ -25,7 +25,7 @@ import (
 // DedicatedMachineTypeSpecification struct for DedicatedMachineTypeSpecification.
 type DedicatedMachineTypeSpecification struct {
 	// machine_type is the machine type identifier within the given cloud provider, ex. m5.xlarge, n2-standard-4.
-	MachineType *string `json:"machine_type,omitempty"`
+	MachineType *string `json:"machine_type,omitempty,string"`
 	// num_virtual_cpus may be used to automatically select a machine type according to the desired number of vCPUs.
 	NumVirtualCpus *int32 `json:"num_virtual_cpus,omitempty"`
 }

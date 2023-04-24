@@ -24,7 +24,7 @@ import (
 
 // SQLUser struct for SQLUser.
 type SQLUser struct {
-	Name string `json:"name"`
+	Name string `json:"name,string"`
 }
 
 // NewSQLUser instantiates a new SQLUser object.

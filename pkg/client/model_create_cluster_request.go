@@ -25,7 +25,7 @@ import (
 // CreateClusterRequest struct for CreateClusterRequest.
 type CreateClusterRequest struct {
 	// Name must be 6-20 characters in length and can include numbers, lowercase letters, and dashes (but no leading or trailing dashes).
-	Name     string                     `json:"name"`
+	Name     string                     `json:"name,string"`
 	Provider CloudProviderType          `json:"provider"`
 	Spec     CreateClusterSpecification `json:"spec"`
 }

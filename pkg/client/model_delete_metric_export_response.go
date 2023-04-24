@@ -24,7 +24,7 @@ import (
 
 // DeleteMetricExportResponse struct for DeleteMetricExportResponse.
 type DeleteMetricExportResponse struct {
-	ClusterId string                  `json:"cluster_id"`
+	ClusterId string                  `json:"cluster_id,string"`
 	Status    *MetricExportStatusType `json:"status,omitempty"`
 }
 

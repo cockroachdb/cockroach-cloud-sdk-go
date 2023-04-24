@@ -24,7 +24,7 @@ import (
 
 // Resource struct for Resource.
 type Resource struct {
-	Id   *string          `json:"id,omitempty"`
+	Id   *string          `json:"id,omitempty,string"`
 	Type ResourceTypeType `json:"type"`
 }
 

@@ -25,7 +25,7 @@ import (
 // GetConnectionStringResponse struct for GetConnectionStringResponse.
 type GetConnectionStringResponse struct {
 	// connection_string contains the full connection string with parameters formatted inline.
-	ConnectionString *string `json:"connection_string,omitempty"`
+	ConnectionString *string `json:"connection_string,omitempty,string"`
 	// params contains a list of individual key parameters for generating nonstandard connection strings.
 	Params *map[string]string `json:"params,omitempty"`
 }

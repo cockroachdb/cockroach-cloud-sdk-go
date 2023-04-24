@@ -26,9 +26,9 @@ import (
 // Organization struct for Organization.
 type Organization struct {
 	CreatedAt time.Time `json:"created_at"`
-	Id        string    `json:"id"`
-	Label     string    `json:"label"`
-	Name      string    `json:"name"`
+	Id        string    `json:"id,string"`
+	Label     string    `json:"label,string"`
+	Name      string    `json:"name,string"`
 }
 
 // NewOrganization instantiates a new Organization object.

@@ -26,8 +26,8 @@ import (
 type CloudProviderRegion struct {
 	// Distance in miles, based on client IP address.
 	Distance   float32           `json:"distance"`
-	Location   string            `json:"location"`
-	Name       string            `json:"name"`
+	Location   string            `json:"location,string"`
+	Name       string            `json:"name,string"`
 	Provider   CloudProviderType `json:"provider"`
 	Serverless bool              `json:"serverless"`
 }

@@ -25,7 +25,7 @@ import (
 // DedicatedClusterCreateSpecification struct for DedicatedClusterCreateSpecification.
 type DedicatedClusterCreateSpecification struct {
 	// The CockroachDB version for the cluster. The current version is used if omitted.
-	CockroachVersion  *string                              `json:"cockroach_version,omitempty"`
+	CockroachVersion  *string                              `json:"cockroach_version,omitempty,string"`
 	Hardware          DedicatedHardwareCreateSpecification `json:"hardware"`
 	NetworkVisibility *NetworkVisibilityType               `json:"network_visibility,omitempty"`
 	// Region keys should match the cloud provider's zone code. For example, for Oregon, set region_name to \"us-west2\" for GCP and \"us-west-2\" for AWS. Values represent the node count.

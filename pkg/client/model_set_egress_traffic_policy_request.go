@@ -27,7 +27,7 @@ type SetEgressTrafficPolicyRequest struct {
 	// allow_all, if true results in unrestricted egress traffic. If false, egress traffic is set to default-deny and is managed via the Egress Rule Management API.
 	AllowAll bool `json:"allow_all"`
 	// idempotency_key uniquely identifies this request. If not set, it will be set by the server.
-	IdempotencyKey *string `json:"idempotency_key,omitempty"`
+	IdempotencyKey *string `json:"idempotency_key,omitempty,string"`
 }
 
 // NewSetEgressTrafficPolicyRequest instantiates a new SetEgressTrafficPolicyRequest object.

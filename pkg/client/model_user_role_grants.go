@@ -25,7 +25,7 @@ import (
 // UserRoleGrants struct for UserRoleGrants.
 type UserRoleGrants struct {
 	Roles  []BuiltInRole `json:"roles"`
-	UserId string        `json:"user_id"`
+	UserId string        `json:"user_id,string"`
 }
 
 // NewUserRoleGrants instantiates a new UserRoleGrants object.

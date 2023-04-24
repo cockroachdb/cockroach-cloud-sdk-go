@@ -24,7 +24,7 @@ import (
 
 // AllowlistEntry1 struct for AllowlistEntry1.
 type AllowlistEntry1 struct {
-	Name *string `json:"name,omitempty"`
+	Name *string `json:"name,omitempty,string"`
 	Sql  bool    `json:"sql"`
 	Ui   bool    `json:"ui"`
 }

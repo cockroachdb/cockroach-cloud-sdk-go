@@ -25,7 +25,7 @@ import (
 // CMEKRegionSpecification CMEKRegionSpecification declares the customer-provided key specification that should be used in a given region..
 type CMEKRegionSpecification struct {
 	KeySpec *CMEKKeySpecification `json:"key_spec,omitempty"`
-	Region  *string               `json:"region,omitempty"`
+	Region  *string               `json:"region,omitempty,string"`
 }
 
 // NewCMEKRegionSpecification instantiates a new CMEKRegionSpecification object.

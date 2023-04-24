@@ -24,9 +24,9 @@ import (
 
 // AllowlistEntry struct for AllowlistEntry.
 type AllowlistEntry struct {
-	CidrIp   string  `json:"cidr_ip"`
+	CidrIp   string  `json:"cidr_ip,string"`
 	CidrMask int32   `json:"cidr_mask"`
-	Name     *string `json:"name,omitempty"`
+	Name     *string `json:"name,omitempty,string"`
 	Sql      bool    `json:"sql"`
 	Ui       bool    `json:"ui"`
 }

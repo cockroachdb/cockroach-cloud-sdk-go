@@ -25,7 +25,7 @@ import (
 // ServerlessClusterCreateSpecification struct for ServerlessClusterCreateSpecification.
 type ServerlessClusterCreateSpecification struct {
 	// Preview: Specify which region should be made the primary region. This is only applicable to multi-region Serverless clusters. This field is required if you create the cluster in more than one region.
-	PrimaryRegion *string `json:"primary_region,omitempty"`
+	PrimaryRegion *string `json:"primary_region,omitempty,string"`
 	// Region values should match the cloud provider's zone code. For example, for Oregon, set region_name to \"us-west2\" for GCP and \"us-west-2\" for AWS.
 	Regions []string `json:"regions"`
 	// spend_limit is the maximum monthly charge for a cluster, in US cents. We recommend using usage_limits instead, since spend_limit will be deprecated in the future.

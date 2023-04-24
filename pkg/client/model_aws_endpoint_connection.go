@@ -26,11 +26,11 @@ import (
 type AwsEndpointConnection struct {
 	CloudProvider CloudProviderType `json:"cloud_provider"`
 	// endpoint_id is the client side of the PrivateLink connection.
-	EndpointId string `json:"endpoint_id"`
+	EndpointId string `json:"endpoint_id,string"`
 	// region_name is the cloud provider region name (i.e. us-east-1).
-	RegionName string `json:"region_name"`
+	RegionName string `json:"region_name,string"`
 	// service_id is the server side of the PrivateLink connection. This is the same as AWSPrivateLinkEndpoint.service_id.
-	ServiceId string                          `json:"service_id"`
+	ServiceId string                          `json:"service_id,string"`
 	Status    AWSEndpointConnectionStatusType `json:"status"`
 }
 

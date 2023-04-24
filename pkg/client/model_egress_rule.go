@@ -26,27 +26,27 @@ import (
 // EgressRule EgressRule represents a network egress rule..
 type EgressRule struct {
 	// cluster_id identifies the cluster to which this egress rule applies.
-	ClusterId string `json:"cluster_id"`
+	ClusterId string `json:"cluster_id,string"`
 	// created_at is the time at which the time at which the egress rule was created.
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	// crl_managed indicates this egress rule is managed by CockroachDB Cloud services. This field is set by the server.
 	CrlManaged bool `json:"crl_managed"`
 	// description is a longer that serves to document the rules purpose.
-	Description string `json:"description"`
+	Description string `json:"description,string"`
 	// destination is the endpoint (or subnetwork if CIDR) to which traffic is allowed.
-	Destination string `json:"destination"`
+	Destination string `json:"destination,string"`
 	// id uniquely identifies this egress rule.
-	Id string `json:"id"`
+	Id string `json:"id,string"`
 	// name is the name of the egress rule.
-	Name string `json:"name"`
+	Name string `json:"name,string"`
 	// paths are the allowed URL paths. Only valid if Type=\"FQDN\".
 	Paths *[]string `json:"paths,omitempty"`
 	// ports are the allowed ports for TCP protocol. If Empty, all ports are allowed.
 	Ports *[]int32 `json:"ports,omitempty"`
 	// state indicates the state of the egress rule.
-	State string `json:"state"`
+	State string `json:"state,string"`
 	// type classifies the destination field. Valid types include: \"FQDN\", \"CIDR\".
-	Type string `json:"type"`
+	Type string `json:"type,string"`
 }
 
 // NewEgressRule instantiates a new EgressRule object.

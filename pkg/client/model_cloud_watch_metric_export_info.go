@@ -24,15 +24,15 @@ import (
 
 // CloudWatchMetricExportInfo struct for CloudWatchMetricExportInfo.
 type CloudWatchMetricExportInfo struct {
-	ClusterId string `json:"cluster_id"`
+	ClusterId string `json:"cluster_id,string"`
 	// log_group_name is the customized log group name.
-	LogGroupName *string `json:"log_group_name,omitempty"`
+	LogGroupName *string `json:"log_group_name,omitempty,string"`
 	// role_arn is the IAM role used to upload metric segments to the target AWS account.
-	RoleArn string                  `json:"role_arn"`
+	RoleArn string                  `json:"role_arn,string"`
 	Status  *MetricExportStatusType `json:"status,omitempty"`
 	// target_region specifies the specific AWS region that the metrics will be exported to.
-	TargetRegion *string `json:"target_region,omitempty"`
-	UserMessage  *string `json:"user_message,omitempty"`
+	TargetRegion *string `json:"target_region,omitempty,string"`
+	UserMessage  *string `json:"user_message,omitempty,string"`
 }
 
 // NewCloudWatchMetricExportInfo instantiates a new CloudWatchMetricExportInfo object.

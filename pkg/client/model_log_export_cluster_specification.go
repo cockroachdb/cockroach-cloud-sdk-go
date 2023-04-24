@@ -25,15 +25,15 @@ import (
 // LogExportClusterSpecification LogExportClusterSpecification contains all the data necessary to configure log export for an individual cluster. Users would supply this data via the API and also receive it back when inspecting the state of their log export configuration..
 type LogExportClusterSpecification struct {
 	// auth_principal is either the AWS Role ARN that identifies a role that the cluster account can assume to write to CloudWatch or the GCP Project ID that the cluster service account has permissions to write to for cloud logging.
-	AuthPrincipal *string `json:"auth_principal,omitempty"`
+	AuthPrincipal *string `json:"auth_principal,omitempty,string"`
 	// groups is a collection of log group configurations to customize which CRDB channels get aggregated into different groups at the target sink. Unconfigured channels will be sent to the default locations via the settings above.
 	Groups *[]LogExportGroup `json:"groups,omitempty"`
 	// log_name is an identifier for the logs in the customer's log sink.
-	LogName *string `json:"log_name,omitempty"`
+	LogName *string `json:"log_name,omitempty,string"`
 	// redact controls whether logs are redacted before forwarding to customer sinks. By default they are not redacted.
 	Redact *bool `json:"redact,omitempty"`
 	// region controls whether all logs are sent to a specific region in the customer sink. By default, logs will remain their region of origin depending on the cluster node's region.
-	Region *string        `json:"region,omitempty"`
+	Region *string        `json:"region,omitempty,string"`
 	Type   *LogExportType `json:"type,omitempty"`
 }
 

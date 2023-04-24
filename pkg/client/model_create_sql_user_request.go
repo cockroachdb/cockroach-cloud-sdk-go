@@ -24,8 +24,8 @@ import (
 
 // CreateSQLUserRequest struct for CreateSQLUserRequest.
 type CreateSQLUserRequest struct {
-	Name     string `json:"name"`
-	Password string `json:"password"`
+	Name     string `json:"name,string"`
+	Password string `json:"password,string"`
 }
 
 // NewCreateSQLUserRequest instantiates a new CreateSQLUserRequest object.

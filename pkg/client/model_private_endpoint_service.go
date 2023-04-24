@@ -27,7 +27,7 @@ type PrivateEndpointService struct {
 	Aws           AWSPrivateLinkServiceDetail `json:"aws"`
 	CloudProvider CloudProviderType           `json:"cloud_provider"`
 	// region_name is the cloud provider region name (i.e. us-east-1).
-	RegionName string                           `json:"region_name"`
+	RegionName string                           `json:"region_name,string"`
 	Status     PrivateEndpointServiceStatusType `json:"status"`
 }
 

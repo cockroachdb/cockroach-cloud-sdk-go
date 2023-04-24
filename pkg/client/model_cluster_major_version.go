@@ -25,7 +25,7 @@ import (
 // ClusterMajorVersion For more information about CockroachDB cluster version support, see https://www.cockroachlabs.com/docs/releases/release-support-policy.html.
 type ClusterMajorVersion struct {
 	SupportStatus ClusterMajorVersionSupportStatusType `json:"support_status"`
-	Version       string                               `json:"version"`
+	Version       string                               `json:"version,string"`
 }
 
 // NewClusterMajorVersion instantiates a new ClusterMajorVersion object.

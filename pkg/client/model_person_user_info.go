@@ -25,9 +25,9 @@ import (
 // PersonUserInfo struct for PersonUserInfo.
 type PersonUserInfo struct {
 	// email is an email address.
-	Email *string `json:"email,omitempty"`
+	Email *string `json:"email,omitempty,string"`
 	// id is the user id.
-	Id string `json:"id"`
+	Id string `json:"id,string"`
 }
 
 // NewPersonUserInfo instantiates a new PersonUserInfo object.

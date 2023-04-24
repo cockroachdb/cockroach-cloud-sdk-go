@@ -24,7 +24,7 @@ import (
 
 // SetClientCACertRequest struct for SetClientCACertRequest.
 type SetClientCACertRequest struct {
-	X509PemCert string `json:"x509_pem_cert"`
+	X509PemCert string `json:"x509_pem_cert,string"`
 }
 
 // NewSetClientCACertRequest instantiates a new SetClientCACertRequest object.

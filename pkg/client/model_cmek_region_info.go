@@ -25,7 +25,7 @@ import (
 // CMEKRegionInfo CMEKRegionInfo contains the status of CMEK within a region.  This includes current and past key specifications used within the region,  as well as the status of those specifications.
 type CMEKRegionInfo struct {
 	KeyInfos *[]CMEKKeyInfo `json:"key_infos,omitempty"`
-	Region   *string        `json:"region,omitempty"`
+	Region   *string        `json:"region,omitempty,string"`
 	Status   *CMEKStatus    `json:"status,omitempty"`
 }
 

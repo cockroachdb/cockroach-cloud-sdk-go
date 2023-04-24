@@ -24,8 +24,8 @@ import (
 
 // ApiDatabase struct for ApiDatabase.
 type ApiDatabase struct {
-	Name       string `json:"name"`
-	TableCount *int64 `json:"table_count,omitempty"`
+	Name       string `json:"name,string"`
+	TableCount *int64 `json:"table_count,omitempty,string"`
 }
 
 // NewApiDatabase instantiates a new ApiDatabase object.

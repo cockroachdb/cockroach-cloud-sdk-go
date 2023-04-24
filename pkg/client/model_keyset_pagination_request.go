@@ -27,7 +27,7 @@ import (
 type KeysetPaginationRequest struct {
 	AsOfTime  *time.Time `json:"as_of_time,omitempty"`
 	Limit     *int32     `json:"limit,omitempty"`
-	Page      *string    `json:"page,omitempty"`
+	Page      *string    `json:"page,omitempty,string"`
 	SortOrder *SortOrder `json:"sort_order,omitempty"`
 }
 

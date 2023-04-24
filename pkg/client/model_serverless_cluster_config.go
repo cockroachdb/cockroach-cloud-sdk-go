@@ -25,7 +25,7 @@ import (
 // ServerlessClusterConfig struct for ServerlessClusterConfig.
 type ServerlessClusterConfig struct {
 	// routing_id is used to identify the cluster in a connection string.
-	RoutingId string `json:"routing_id"`
+	RoutingId string `json:"routing_id,string"`
 	// spend_limit is the maximum monthly charge for a cluster, in US cents. We recommend using usage_limits instead, since spend_limit will be deprecated in the future.
 	SpendLimit  *int32       `json:"spend_limit,omitempty"`
 	UsageLimits *UsageLimits `json:"usage_limits,omitempty"`

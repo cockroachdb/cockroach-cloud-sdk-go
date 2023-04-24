@@ -24,9 +24,9 @@ import (
 
 // CMEKKeySpecification CMEKKeySpecification contains all the details necessary to use a customer-provided encryption key.  This involves the type/location of the key and the principal to authenticate as  when accessing it..
 type CMEKKeySpecification struct {
-	AuthPrincipal *string      `json:"auth_principal,omitempty"`
+	AuthPrincipal *string      `json:"auth_principal,omitempty,string"`
 	Type          *CMEKKeyType `json:"type,omitempty"`
-	Uri           *string      `json:"uri,omitempty"`
+	Uri           *string      `json:"uri,omitempty,string"`
 }
 
 // NewCMEKKeySpecification instantiates a new CMEKKeySpecification object.

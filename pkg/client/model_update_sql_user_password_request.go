@@ -24,7 +24,7 @@ import (
 
 // UpdateSQLUserPasswordRequest struct for UpdateSQLUserPasswordRequest.
 type UpdateSQLUserPasswordRequest struct {
-	Password string `json:"password"`
+	Password string `json:"password,string"`
 }
 
 // NewUpdateSQLUserPasswordRequest instantiates a new UpdateSQLUserPasswordRequest object.

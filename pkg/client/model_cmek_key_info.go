@@ -29,7 +29,7 @@ type CMEKKeyInfo struct {
 	Spec        *CMEKKeySpecification `json:"spec,omitempty"`
 	Status      *CMEKStatus           `json:"status,omitempty"`
 	UpdatedAt   *time.Time            `json:"updated_at,omitempty"`
-	UserMessage *string               `json:"user_message,omitempty"`
+	UserMessage *string               `json:"user_message,omitempty,string"`
 }
 
 // NewCMEKKeyInfo instantiates a new CMEKKeyInfo object.

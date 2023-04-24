@@ -27,7 +27,7 @@ type LogExportGroup struct {
 	// channels is a list of CRDB log channels to include in this group.
 	Channels []string `json:"channels"`
 	// log_name is the name of the group, reflected in the log sink.
-	LogName  string        `json:"log_name"`
+	LogName  string        `json:"log_name,string"`
 	MinLevel *LogLevelType `json:"min_level,omitempty"`
 	// redact is a boolean that governs whether this log group should aggregate redacted logs. Redaction settings will inherit from the cluster log export defaults if unset.
 	Redact *bool `json:"redact,omitempty"`

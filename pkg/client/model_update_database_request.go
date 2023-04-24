@@ -24,8 +24,8 @@ import (
 
 // UpdateDatabaseRequest struct for UpdateDatabaseRequest.
 type UpdateDatabaseRequest struct {
-	Name    string `json:"name"`
-	NewName string `json:"new_name"`
+	Name    string `json:"name,string"`
+	NewName string `json:"new_name,string"`
 }
 
 // NewUpdateDatabaseRequest instantiates a new UpdateDatabaseRequest object.

@@ -25,7 +25,7 @@ import (
 // EnableDatadogMetricExportRequest struct for EnableDatadogMetricExportRequest.
 type EnableDatadogMetricExportRequest struct {
 	// api_key is a Datadog API key.
-	ApiKey string          `json:"api_key"`
+	ApiKey string          `json:"api_key,string"`
 	Site   DatadogSiteType `json:"site"`
 }
 

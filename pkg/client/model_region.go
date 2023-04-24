@@ -25,16 +25,16 @@ import (
 // Region struct for Region.
 type Region struct {
 	// internal_dns is the internal DNS name of the cluster within the cloud provider's network. It is used to connect to the cluster with PrivateLink or VPC peering.
-	InternalDns string `json:"internal_dns"`
-	Name        string `json:"name"`
+	InternalDns string `json:"internal_dns,string"`
+	Name        string `json:"name,string"`
 	// node_count will be 0 for Serverless clusters.
 	NodeCount int32 `json:"node_count"`
 	// primary is true only for the primary region in a Multi Region Serverless cluster.
 	Primary *bool `json:"primary,omitempty"`
 	// sql_dns is the DNS name of SQL interface of the cluster. It is used to connect to the cluster with IP allowlisting.
-	SqlDns string `json:"sql_dns"`
+	SqlDns string `json:"sql_dns,string"`
 	// ui_dns is the DNS name used when connecting to the DB Console for the cluster.
-	UiDns string `json:"ui_dns"`
+	UiDns string `json:"ui_dns,string"`
 }
 
 // NewRegion instantiates a new Region object.

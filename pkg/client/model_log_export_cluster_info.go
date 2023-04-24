@@ -25,12 +25,12 @@ import (
 
 // LogExportClusterInfo LogExportClusterInfo contains a package of information that fully describes both the intended state of the log export configuration for a specific cluster but also some metadata around its deployment status, any error messages, and some timestamps..
 type LogExportClusterInfo struct {
-	ClusterId   *string                        `json:"cluster_id,omitempty"`
+	ClusterId   *string                        `json:"cluster_id,omitempty,string"`
 	CreatedAt   *time.Time                     `json:"created_at,omitempty"`
 	Spec        *LogExportClusterSpecification `json:"spec,omitempty"`
 	Status      *LogExportStatus               `json:"status,omitempty"`
 	UpdatedAt   *time.Time                     `json:"updated_at,omitempty"`
-	UserMessage *string                        `json:"user_message,omitempty"`
+	UserMessage *string                        `json:"user_message,omitempty,string"`
 }
 
 // NewLogExportClusterInfo instantiates a new LogExportClusterInfo object.

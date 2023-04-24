@@ -25,22 +25,22 @@ import (
 
 // Cluster struct for Cluster.
 type Cluster struct {
-	AccountId           *string                  `json:"account_id,omitempty"`
+	AccountId           *string                  `json:"account_id,omitempty,string"`
 	CloudProvider       CloudProviderType        `json:"cloud_provider"`
-	CockroachVersion    string                   `json:"cockroach_version"`
+	CockroachVersion    string                   `json:"cockroach_version,string"`
 	Config              ClusterConfig            `json:"config"`
 	CreatedAt           *time.Time               `json:"created_at,omitempty"`
-	CreatorId           string                   `json:"creator_id"`
+	CreatorId           string                   `json:"creator_id,string"`
 	DeletedAt           *time.Time               `json:"deleted_at,omitempty"`
 	EgressTrafficPolicy *EgressTrafficPolicyType `json:"egress_traffic_policy,omitempty"`
-	Id                  string                   `json:"id"`
-	Name                string                   `json:"name"`
+	Id                  string                   `json:"id,string"`
+	Name                string                   `json:"name,string"`
 	NetworkVisibility   *NetworkVisibilityType   `json:"network_visibility,omitempty"`
 	OperationStatus     ClusterStatusType        `json:"operation_status"`
 	Plan                PlanType                 `json:"plan"`
 	Regions             []Region                 `json:"regions"`
 	// sql_dns is the DNS name of SQL interface of the cluster.
-	SqlDns        *string                  `json:"sql_dns,omitempty"`
+	SqlDns        *string                  `json:"sql_dns,omitempty,string"`
 	State         ClusterStateType         `json:"state"`
 	UpdatedAt     *time.Time               `json:"updated_at,omitempty"`
 	UpgradeStatus ClusterUpgradeStatusType `json:"upgrade_status"`

@@ -25,17 +25,17 @@ import (
 // EditEgressRuleRequest EditEgressRuleRequest is the input message to the EditEgressRule RPC..
 type EditEgressRuleRequest struct {
 	// description is text that serves to document the rules purpose.
-	Description *string `json:"description,omitempty"`
+	Description *string `json:"description,omitempty,string"`
 	// destination is a CIDR range or fully-qualified domain name to which outgoing traffic should be allowed. This field is required.
-	Destination *string `json:"destination,omitempty"`
+	Destination *string `json:"destination,omitempty,string"`
 	// idempotency_key uniquely identifies this request. If not set, it will be set by the server.
-	IdempotencyKey *string `json:"idempotency_key,omitempty"`
+	IdempotencyKey *string `json:"idempotency_key,omitempty,string"`
 	// paths are the allowed URL paths. If empty, all paths are allowed. Only valid if Type=\"FQDN\".
 	Paths *[]string `json:"paths,omitempty"`
 	// ports are the allowed ports for TCP protocol. If empty, all ports are allowed.
 	Ports *[]int32 `json:"ports,omitempty"`
 	// type is the destination type of this rule. Example values are FQDN or CIDR. This field is required.
-	Type *string `json:"type,omitempty"`
+	Type *string `json:"type,omitempty,string"`
 }
 
 // NewEditEgressRuleRequest instantiates a new EditEgressRuleRequest object.

@@ -27,7 +27,7 @@ type DedicatedHardwareConfig struct {
 	// disk_iops is the number of disk I/O operations per second that are permitted on each node in the cluster. Zero indicates the cloud provider-specific default.
 	DiskIops int32 `json:"disk_iops"`
 	// machine_type is the machine type identifier within the given cloud provider, ex. m5.xlarge, n2-standard-4.
-	MachineType string `json:"machine_type"`
+	MachineType string `json:"machine_type,string"`
 	// memory_gib is the memory GiB per node in the cluster.
 	MemoryGib float32 `json:"memory_gib"`
 	// num_virtual_cpus is the number of virtual CPUs per node in the cluster.

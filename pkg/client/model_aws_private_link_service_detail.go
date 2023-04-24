@@ -27,9 +27,9 @@ type AWSPrivateLinkServiceDetail struct {
 	// availability_zone_ids are the identifiers for the availability zones that the service is available in.
 	AvailabilityZoneIds []string `json:"availability_zone_ids"`
 	// service_id is the server side of the PrivateLink connection. This is the same as AWSPrivateLinkEndpoint.service_id.
-	ServiceId string `json:"service_id"`
+	ServiceId string `json:"service_id,string"`
 	// service_name is the AWS service name customers use to create endpoints on their end.
-	ServiceName string `json:"service_name"`
+	ServiceName string `json:"service_name,string"`
 }
 
 // NewAWSPrivateLinkServiceDetail instantiates a new AWSPrivateLinkServiceDetail object.
