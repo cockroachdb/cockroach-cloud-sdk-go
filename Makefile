@@ -4,9 +4,11 @@
 generate-openapi-client:
 	rm -rf ./pkg/client/*.go docs
 	docker-compose -f ./docker-compose.yml run --rm \
+		jq -M -f filter.jq internal/spec/openapi.json > internal/openapi-generator/api/openapi-modified.json
+	docker-compose -f ./docker-compose.yml run --rm \
 		openapi-generator generate \
 			-g go \
-			-i internal/spec/openapi.json \
+			-i internal/openapi-generator/api/openapi-modified.json \
 			-o internal/openapi-generator \
 			-c internal/spec/config.yaml
 	mv internal/openapi-generator/docs ./
