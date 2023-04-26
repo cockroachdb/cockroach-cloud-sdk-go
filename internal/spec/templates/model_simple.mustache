@@ -19,7 +19,7 @@ type {{classname}} struct {
 {{#deprecated}}
 	// Deprecated
 {{/deprecated}}
-	{{name}} {{^required}}*{{/required}}{{{dataType}}} `json:"{{baseName}}{{^required}},omitempty{{/required}}"{{#withXml}} xml:"{{baseName}}{{#isXmlAttribute}},attr{{/isXmlAttribute}}"{{/withXml}}{{#vendorExtensions.x-go-custom-tag}} {{{.}}}{{/vendorExtensions.x-go-custom-tag}}`
+    {{name}} {{#vendorExtensions.x-emit-null}}Optional[{{{dataType}}}]{{/vendorExtensions.x-emit-null}}{{^vendorExtensions.x-emit-null}}{{^required}}*{{/required}}{{{dataType}}}{{/vendorExtensions.x-emit-null}} `json:"{{baseName}}{{^required}},omitempty{{/required}}"{{#withXml}} xml:"{{baseName}}{{#isXmlAttribute}},attr{{/isXmlAttribute}}"{{/withXml}}{{#vendorExtensions.x-go-custom-tag}} {{{.}}}{{/vendorExtensions.x-go-custom-tag}}`
 {{/vars}}
 {{#isAdditionalPropertiesTrue}}
 	AdditionalProperties map[string]interface{}
@@ -105,19 +105,19 @@ func (o *{{classname}}) Set{{name}}(v {{vendorExtensions.x-go-base-type}}) {
 // Deprecated.
 {{/deprecated}}
 func (o *{{classname}}) Get{{name}}() {{vendorExtensions.x-go-base-type}} {
-	if o == nil || o.{{name}} == nil {
+	if o == nil{{^vendorExtensions.x-emit-null}} || o.{{name}} == nil{{/vendorExtensions.x-emit-null}} {
 		var ret {{vendorExtensions.x-go-base-type}}
 		return ret
 	}
-	return *o.{{name}}
+    return {{^vendorExtensions.x-emit-null}}*{{/vendorExtensions.x-emit-null}}o.{{name}}{{#vendorExtensions.x-emit-null}}.GetValue(){{/vendorExtensions.x-emit-null}}
 }
 
 // Set{{name}} gets a reference to the given {{dataType}} and assigns it to the {{name}} field.
 {{#deprecated}}
 // Deprecated.
 {{/deprecated}}
-func (o *{{classname}}) Set{{name}}(v {{vendorExtensions.x-go-base-type}}) {
-	o.{{name}} = &v
+func (o *{{classname}}) Set{{name}}(v {{#vendorExtensions.x-emit-null}}*{{/vendorExtensions.x-emit-null}}{{vendorExtensions.x-go-base-type}}{{#vendorExtensions.x-emit-null}}, marshalNull bool{{/vendorExtensions.x-emit-null}}) {
+    {{^vendorExtensions.x-emit-null}}o.{{name}} = &v{{/vendorExtensions.x-emit-null}}{{#vendorExtensions.x-emit-null}}o.{{name}} = Optional[{{vendorExtensions.x-go-base-type}}]{inner: v, marshalNull: marshalNull}{{/vendorExtensions.x-emit-null}}
 }
 
 {{/required}}
@@ -144,9 +144,9 @@ func (o {{classname}}) MarshalJSON() ([]byte, error) {
 	{{/isArray}}
 	{{/parent}}
 	{{#vars}}
-	if {{#required}}true{{/required}}{{^required}}o.{{name}} != nil{{/required}} {
-		toSerialize["{{baseName}}"] = o.{{name}}
-	}
+        if {{#required}}true{{/required}}{{^required}}o.{{name}}{{#vendorExtensions.x-emit-null}}.marshalNull || o.{{name}}.inner{{/vendorExtensions.x-emit-null}} != nil{{/required}} {
+        toSerialize["{{baseName}}"] = o.{{name}}
+    }
 	{{/vars}}
 	{{#isAdditionalPropertiesTrue}}
 

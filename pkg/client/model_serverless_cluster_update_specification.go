@@ -25,8 +25,8 @@ import (
 // ServerlessClusterUpdateSpecification struct for ServerlessClusterUpdateSpecification.
 type ServerlessClusterUpdateSpecification struct {
 	// spend_limit is the maximum monthly charge for a cluster, in US cents. We recommend using usage_limits instead, since spend_limit will be deprecated in the future.
-	SpendLimit  *int32       `json:"spend_limit,omitempty"`
-	UsageLimits *UsageLimits `json:"usage_limits,omitempty"`
+	SpendLimit  Optional[int32] `json:"spend_limit,omitempty"`
+	UsageLimits *UsageLimits    `json:"usage_limits,omitempty"`
 }
 
 // NewServerlessClusterUpdateSpecification instantiates a new ServerlessClusterUpdateSpecification object.
@@ -40,16 +40,16 @@ func NewServerlessClusterUpdateSpecification() *ServerlessClusterUpdateSpecifica
 
 // GetSpendLimit returns the SpendLimit field value if set, zero value otherwise.
 func (o *ServerlessClusterUpdateSpecification) GetSpendLimit() int32 {
-	if o == nil || o.SpendLimit == nil {
+	if o == nil {
 		var ret int32
 		return ret
 	}
-	return *o.SpendLimit
+	return o.SpendLimit.GetValue()
 }
 
 // SetSpendLimit gets a reference to the given int32 and assigns it to the SpendLimit field.
-func (o *ServerlessClusterUpdateSpecification) SetSpendLimit(v int32) {
-	o.SpendLimit = &v
+func (o *ServerlessClusterUpdateSpecification) SetSpendLimit(v *int32, marshalNull bool) {
+	o.SpendLimit = Optional[int32]{inner: v, marshalNull: marshalNull}
 }
 
 // GetUsageLimits returns the UsageLimits field value if set, zero value otherwise.
@@ -68,7 +68,7 @@ func (o *ServerlessClusterUpdateSpecification) SetUsageLimits(v UsageLimits) {
 
 func (o ServerlessClusterUpdateSpecification) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.SpendLimit != nil {
+	if o.SpendLimit.marshalNull || o.SpendLimit.inner != nil {
 		toSerialize["spend_limit"] = o.SpendLimit
 	}
 	if o.UsageLimits != nil {
