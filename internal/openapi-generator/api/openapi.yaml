@@ -6775,6 +6775,7 @@ components:
             recommend using usage_limits instead, since spend_limit will be deprecated
             in the future.
           format: int32
+          nullable: true
           type: integer
         usage_limits:
           $ref: '#/components/schemas/UsageLimits'

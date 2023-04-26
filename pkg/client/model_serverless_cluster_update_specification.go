@@ -21,8 +21,8 @@ package client
 // ServerlessClusterUpdateSpecification struct for ServerlessClusterUpdateSpecification.
 type ServerlessClusterUpdateSpecification struct {
 	// spend_limit is the maximum monthly charge for a cluster, in US cents. We recommend using usage_limits instead, since spend_limit will be deprecated in the future.
-	SpendLimit  *int32       `json:"spend_limit,omitempty"`
-	UsageLimits *UsageLimits `json:"usage_limits,omitempty"`
+	SpendLimit  *Nullable[int32] `json:"spend_limit,omitempty"`
+	UsageLimits *UsageLimits     `json:"usage_limits,omitempty"`
 }
 
 // NewServerlessClusterUpdateSpecification instantiates a new ServerlessClusterUpdateSpecification object.
@@ -40,12 +40,17 @@ func (o *ServerlessClusterUpdateSpecification) GetSpendLimit() int32 {
 		var ret int32
 		return ret
 	}
-	return *o.SpendLimit
+	return o.SpendLimit.GetValue()
 }
 
 // SetSpendLimit gets a reference to the given int32 and assigns it to the SpendLimit field.
-func (o *ServerlessClusterUpdateSpecification) SetSpendLimit(v int32) {
-	o.SpendLimit = &v
+func (o *ServerlessClusterUpdateSpecification) SetSpendLimit(v *int32) {
+	o.SpendLimit = &Nullable[int32]{inner: v}
+}
+
+// OmitSpendLimit removes the field from the request.
+func (o *ServerlessClusterUpdateSpecification) OmitSpendLimit() {
+	o.SpendLimit = nil
 }
 
 // GetUsageLimits returns the UsageLimits field value if set, zero value otherwise.

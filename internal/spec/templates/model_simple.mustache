@@ -19,7 +19,7 @@ type {{classname}} struct {
 {{#deprecated}}
 	// Deprecated
 {{/deprecated}}
-{{name}} {{^required}}*{{/required}}{{{dataType}}} `json:"{{baseName}}{{^required}},omitempty{{/required}}{{#isLong}},string{{/isLong}}"{{#withXml}} xml:"{{baseName}}{{#isXmlAttribute}},attr{{/isXmlAttribute}}"{{/withXml}}{{#vendorExtensions.x-go-custom-tag}} {{{.}}}{{/vendorExtensions.x-go-custom-tag}}`
+    {{name}} {{^required}}*{{/required}}{{#isNullable}}Nullable[{{vendorExtensions.x-go-base-type}}]{{/isNullable}}{{^isNullable}}{{{dataType}}}{{/isNullable}} `json:"{{baseName}}{{^required}},omitempty{{/required}}{{#isLong}},string{{/isLong}}"{{#withXml}} xml:"{{baseName}}{{#isXmlAttribute}},attr{{/isXmlAttribute}}"{{/withXml}}{{#vendorExtensions.x-go-custom-tag}} {{{.}}}{{/vendorExtensions.x-go-custom-tag}}`
 {{/vars}}
 {{#isAdditionalPropertiesTrue}}
 	AdditionalProperties map[string]interface{}
@@ -109,16 +109,21 @@ func (o *{{classname}}) Get{{name}}() {{vendorExtensions.x-go-base-type}} {
 		var ret {{vendorExtensions.x-go-base-type}}
 		return ret
 	}
-	return *o.{{name}}
+    return {{^isNullable}}*{{/isNullable}}o.{{name}}{{#isNullable}}.GetValue(){{/isNullable}}
 }
 
-// Set{{name}} gets a reference to the given {{dataType}} and assigns it to the {{name}} field.
+// Set{{name}} gets a reference to the given {{vendorExtensions.x-go-base-type}} and assigns it to the {{name}} field.
 {{#deprecated}}
 // Deprecated.
 {{/deprecated}}
-func (o *{{classname}}) Set{{name}}(v {{vendorExtensions.x-go-base-type}}) {
-	o.{{name}} = &v
-}
+func (o *{{classname}}) Set{{name}}(v {{#isNullable}}*{{/isNullable}}{{vendorExtensions.x-go-base-type}}) {
+    {{^isNullable}}o.{{name}} = &v{{/isNullable}}{{#isNullable}}o.{{name}} = &Nullable[{{vendorExtensions.x-go-base-type}}]{inner: v}{{/isNullable}}
+}{{#isNullable}}
+
+// Omit{{{name}}} removes the field from the request.
+func (o *{{{classname}}}) Omit{{{name}}}() {
+    o.{{{name}}} = nil
+}{{/isNullable}}
 
 {{/required}}
 {{/vars}}
@@ -146,9 +151,9 @@ func (o {{classname}}) MarshalJSON() ([]byte, error) {
 	{{/isArray}}
 	{{/parent}}
 	{{#vars}}
-	if {{#required}}true{{/required}}{{^required}}o.{{name}} != nil{{/required}} {
-		toSerialize["{{baseName}}"] = o.{{name}}
-	}
+        if {{#required}}true{{/required}}{{^required}}o.{{name}}{{#isNullable}}.marshalNull || o.{{name}}.inner{{/isNullable}} != nil{{/required}} {
+        toSerialize["{{baseName}}"] = o.{{name}}
+    }
 	{{/vars}}
 	{{#isAdditionalPropertiesTrue}}
 

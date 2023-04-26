@@ -8168,7 +8168,8 @@
           "spend_limit": {
             "description": "spend_limit is the maximum monthly charge for a cluster, in US cents. We\nrecommend using usage_limits instead, since spend_limit will be deprecated\nin the future.",
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "nullable": true
           },
           "usage_limits": {
             "$ref": "#/components/schemas/UsageLimits"
