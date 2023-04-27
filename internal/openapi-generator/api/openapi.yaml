@@ -6843,16 +6843,16 @@ components:
             next month when more free request units are granted. It is an error for
             this to be zero.
           format: int64
-          type: string
+          type: integer
         storage_mib_limit:
           description: |-
             storage_mib_limit is the maximum number of Mebibytes of storage that the
             cluster can have at any time during the month. If this limit is exceeded,
             then the cluster is throttled; only one SQL connection is allowed at a
             time, with the expectation that it is used to delete data to reduce storage
-            usage. If is an error for this to be zero.
+            usage. It is an error for this to be zero.
           format: int64
-          type: string
+          type: integer
       required:
       - request_unit_limit
       - storage_mib_limit
@@ -6876,14 +6876,14 @@ components:
       type: object
     api.Database:
       example:
-        table_count: table_count
+        table_count: 0
         name: name
       properties:
         name:
           type: string
         table_count:
           format: int64
-          type: string
+          type: integer
       required:
       - name
       title: Database
@@ -6891,9 +6891,9 @@ components:
     api.ListDatabasesResponse:
       example:
         databases:
-        - table_count: table_count
+        - table_count: 0
           name: name
-        - table_count: table_count
+        - table_count: 0
           name: name
         pagination:
           next_page: next_page

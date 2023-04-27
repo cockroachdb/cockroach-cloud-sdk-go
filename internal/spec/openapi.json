@@ -8247,7 +8247,7 @@
             "format": "int64"
           },
           "storage_mib_limit": {
-            "description": "storage_mib_limit is the maximum number of Mebibytes of storage that the\ncluster can have at any time during the month. If this limit is exceeded,\nthen the cluster is throttled; only one SQL connection is allowed at a\ntime, with the expectation that it is used to delete data to reduce storage\nusage. If is an error for this to be zero.",
+            "description": "storage_mib_limit is the maximum number of Mebibytes of storage that the\ncluster can have at any time during the month. If this limit is exceeded,\nthen the cluster is throttled; only one SQL connection is allowed at a\ntime, with the expectation that it is used to delete data to reduce storage\nusage. It is an error for this to be zero.",
             "type": "string",
             "format": "int64"
           }
