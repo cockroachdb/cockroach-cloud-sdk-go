@@ -122,6 +122,8 @@ func (o *{{classname}}) Set{{name}}(v {{vendorExtensions.x-go-base-type}}) {
 
 {{/required}}
 {{/vars}}
+
+{{#isAdditionalPropertiesTrue}}
 func (o {{classname}}) MarshalJSON() ([]byte, error) {
 	toSerialize := {{#isArray}}make([]interface{}, len(o.Items)){{/isArray}}{{^isArray}}map[string]interface{}{}{{/isArray}}
 	{{#parent}}
@@ -158,7 +160,6 @@ func (o {{classname}}) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-{{#isAdditionalPropertiesTrue}}
 func (o *{{{classname}}}) UnmarshalJSON(bytes []byte) (err error) {
 {{#parent}}
 {{^isMap}}
