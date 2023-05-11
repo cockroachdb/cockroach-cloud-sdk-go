@@ -2,7 +2,6 @@
 
 ## Enum
 
-
 * `UNSUPPORTED` (value: `"UNSUPPORTED"`)
 
 * `SUPPORTED` (value: `"SUPPORTED"`)

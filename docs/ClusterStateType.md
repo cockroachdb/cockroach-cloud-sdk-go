@@ -1,7 +1,7 @@
 # ClusterStateType
 
 ## Enum
-
+> ` - LOCKED: An exclusive operation is being performed on this cluster. Other operations should not proceed if they did not set a cluster into the LOCKED state.`
 
 * `CREATING` (value: `"CREATING"`)
 

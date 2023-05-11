@@ -2,7 +2,6 @@
 
 ## Enum
 
-
 * `UNSPECIFIED` (value: `"UNSPECIFIED"`)
 
 * `CRDB_MAJOR_UPGRADE_RUNNING` (value: `"CRDB_MAJOR_UPGRADE_RUNNING"`)

@@ -2,7 +2,6 @@
 
 ## Enum
 
-
 * `HOURS` (value: `"HOURS"`)
 
 * `REQUEST_UNITS` (value: `"REQUEST_UNITS"`)

@@ -2,7 +2,6 @@
 
 ## Enum
 
-
 * `PENDING` (value: `"PENDING"`)
 
 * `PENDING_ACCEPTANCE` (value: `"PENDING_ACCEPTANCE"`)

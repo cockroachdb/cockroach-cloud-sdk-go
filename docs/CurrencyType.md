@@ -2,7 +2,6 @@
 
 ## Enum
 
-
 * `USD` (value: `"USD"`)
 
 * `CRDB_CLOUD_CREDITS` (value: `"CRDB_CLOUD_CREDITS"`)

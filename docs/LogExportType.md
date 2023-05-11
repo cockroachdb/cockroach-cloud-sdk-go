@@ -1,7 +1,7 @@
 # LogExportType
 
 ## Enum
-
+> `LogExportType encodes the cloud selection that we're exporting to along with the cloud logging platform.  Currently, each cloud has a single logging platform.`
 
 * `AWS_CLOUDWATCH` (value: `"AWS_CLOUDWATCH"`)
 

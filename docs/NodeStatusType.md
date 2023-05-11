@@ -2,7 +2,6 @@
 
 ## Enum
 
-
 * `LIVE` (value: `"LIVE"`)
 
 * `NOT_READY` (value: `"NOT_READY"`)

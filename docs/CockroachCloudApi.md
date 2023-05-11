@@ -10,8 +10,10 @@ Method | HTTP request | Description
 [**AddUserToRole**](CockroachCloudApi.md#AddUserToRole) | **Post** /api/v1/roles/{user_id}/{resource_type}/{resource_id}/{role_name} | Adds the user to the given role
 [**CreateCluster**](CockroachCloudApi.md#CreateCluster) | **Post** /api/v1/clusters | Create and initialize a new cluster
 [**CreateDatabase**](CockroachCloudApi.md#CreateDatabase) | **Post** /api/v1/clusters/{cluster_id}/databases | Create a new database
+[**CreateGroup**](CockroachCloudApi.md#CreateGroup) | **Post** /api/scim/v2/Groups | Creates a group
 [**CreatePrivateEndpointServices**](CockroachCloudApi.md#CreatePrivateEndpointServices) | **Post** /api/v1/clusters/{cluster_id}/networking/private-endpoint-services | Creates all PrivateEndpointServices for a given cluster
 [**CreateSQLUser**](CockroachCloudApi.md#CreateSQLUser) | **Post** /api/v1/clusters/{cluster_id}/sql-users | Create a new SQL user
+[**CreateUser**](CockroachCloudApi.md#CreateUser) | **Post** /api/scim/v2/Users | Creates a user
 [**DeleteAllowlistEntry**](CockroachCloudApi.md#DeleteAllowlistEntry) | **Delete** /api/v1/clusters/{cluster_id}/networking/allowlist/{cidr_ip}/{cidr_mask} | Delete an IP allowlist entry
 [**DeleteClientCACert**](CockroachCloudApi.md#DeleteClientCACert) | **Delete** /api/v1/clusters/{cluster_id}/client-ca-cert | Delete Client CA Cert for a cluster
 [**DeleteCloudWatchMetricExport**](CockroachCloudApi.md#DeleteCloudWatchMetricExport) | **Delete** /api/v1/clusters/{cluster_id}/metricexport/cloudwatch | Delete the CloudWatch Metric Export configuration for a cluster
@@ -19,8 +21,10 @@ Method | HTTP request | Description
 [**DeleteDatabase**](CockroachCloudApi.md#DeleteDatabase) | **Delete** /api/v1/clusters/{cluster_id}/databases/{name} | Delete a database
 [**DeleteDatadogMetricExport**](CockroachCloudApi.md#DeleteDatadogMetricExport) | **Delete** /api/v1/clusters/{cluster_id}/metricexport/datadog | Delete the Datadog Metric Export configuration for a cluster
 [**DeleteEgressRule**](CockroachCloudApi.md#DeleteEgressRule) | **Delete** /api/v1/clusters/{cluster_id}/networking/egress-rules/{rule_id} | Delete an existing egress rule
+[**DeleteGroup**](CockroachCloudApi.md#DeleteGroup) | **Delete** /api/scim/v2/Groups/{id} | Deletes a group based on id
 [**DeleteLogExport**](CockroachCloudApi.md#DeleteLogExport) | **Delete** /api/v1/clusters/{cluster_id}/logexport | Delete the Log Export configuration for a cluster
 [**DeleteSQLUser**](CockroachCloudApi.md#DeleteSQLUser) | **Delete** /api/v1/clusters/{cluster_id}/sql-users/{name} | Delete a SQL user
+[**DeleteUser**](CockroachCloudApi.md#DeleteUser) | **Delete** /api/scim/v2/Users/{id} | Deletes a user based on id
 [**EditDatabase**](CockroachCloudApi.md#EditDatabase) | **Patch** /api/v1/clusters/{cluster_id}/databases/{name} | Update a database
 [**EditDatabase2**](CockroachCloudApi.md#EditDatabase2) | **Patch** /api/v1/clusters/{cluster_id}/databases | Update a database
 [**EditEgressRule**](CockroachCloudApi.md#EditEgressRule) | **Patch** /api/v1/clusters/{cluster_id}/networking/egress-rules/{rule_id} | Edit an existing egress rule
@@ -36,11 +40,25 @@ Method | HTTP request | Description
 [**GetConnectionString**](CockroachCloudApi.md#GetConnectionString) | **Get** /api/v1/clusters/{cluster_id}/connection-string | Get a formatted generic connection string for a cluster
 [**GetDatadogMetricExportInfo**](CockroachCloudApi.md#GetDatadogMetricExportInfo) | **Get** /api/v1/clusters/{cluster_id}/metricexport/datadog | Get the Datadog Metric Export configuration for a cluster
 [**GetEgressRule**](CockroachCloudApi.md#GetEgressRule) | **Get** /api/v1/clusters/{cluster_id}/networking/egress-rules/{rule_id} | Get an existing egress rule
+[**GetGroup**](CockroachCloudApi.md#GetGroup) | **Get** /api/scim/v2/Groups/{id} | Gets a group based on id
+[**GetGroup2**](CockroachCloudApi.md#GetGroup2) | **Put** /api/scim/v2/Groups/{id}/.search | Gets a group based on id
+[**GetGroups**](CockroachCloudApi.md#GetGroups) | **Get** /api/scim/v2/Groups | Gets groups based on query parameters
+[**GetGroups2**](CockroachCloudApi.md#GetGroups2) | **Put** /api/scim/v2/Groups/.search | Gets groups based on query parameters
 [**GetInvoice**](CockroachCloudApi.md#GetInvoice) | **Get** /api/v1/invoices/{invoice_id} | Gets a specific invoice for an organization
 [**GetLogExportInfo**](CockroachCloudApi.md#GetLogExportInfo) | **Get** /api/v1/clusters/{cluster_id}/logexport | Get the Log Export configuration for a cluster
 [**GetOrganizationInfo**](CockroachCloudApi.md#GetOrganizationInfo) | **Get** /api/v1/organization | Get information about the caller&#39;s organization
 [**GetPersonUsersByEmail**](CockroachCloudApi.md#GetPersonUsersByEmail) | **Get** /api/v1/users/persons-by-email | Search person users by email address
+[**GetResourceType**](CockroachCloudApi.md#GetResourceType) | **Get** /api/scim/v2/ResourceTypes/{resourceId} | 
+[**GetResourceTypes**](CockroachCloudApi.md#GetResourceTypes) | **Get** /api/scim/v2/ResourceTypes | 
+[**GetSchema**](CockroachCloudApi.md#GetSchema) | **Get** /api/scim/v2/Schemas/{schemaId} | 
+[**GetSchemas**](CockroachCloudApi.md#GetSchemas) | **Get** /api/scim/v2/Schemas | 
+[**GetServiceProviderConfig**](CockroachCloudApi.md#GetServiceProviderConfig) | **Get** /api/scim/v2/ServiceProviderConfig | Returns our SCIM configuration
+[**GetUser**](CockroachCloudApi.md#GetUser) | **Get** /api/scim/v2/Users/{id} | Gets a user based on id
+[**GetUser2**](CockroachCloudApi.md#GetUser2) | **Put** /api/scim/v2/Users/{id}/.search | Gets a user based on id
+[**GetUsers**](CockroachCloudApi.md#GetUsers) | **Get** /api/scim/v2/Users | Gets Users based on query parameters
+[**GetUsers2**](CockroachCloudApi.md#GetUsers2) | **Put** /api/scim/v2/Users/.search | Gets Users based on query parameters
 [**ListAllowlistEntries**](CockroachCloudApi.md#ListAllowlistEntries) | **Get** /api/v1/clusters/{cluster_id}/networking/allowlist | Get the IP allowlist and propagation status for a cluster
+[**ListAuditLogs**](CockroachCloudApi.md#ListAuditLogs) | **Get** /api/v1/auditlogevents | Limited Access: List audit logs.
 [**ListAvailableRegions**](CockroachCloudApi.md#ListAvailableRegions) | **Get** /api/v1/clusters/available-regions | List the regions available for new clusters and nodes
 [**ListAwsEndpointConnections**](CockroachCloudApi.md#ListAwsEndpointConnections) | **Get** /api/v1/clusters/{cluster_id}/networking/aws-endpoint-connections | Lists all AwsEndpointConnections for a given cluster
 [**ListClusterNodes**](CockroachCloudApi.md#ListClusterNodes) | **Get** /api/v1/clusters/{cluster_id}/nodes | List nodes for a cluster
@@ -52,6 +70,8 @@ Method | HTTP request | Description
 [**ListPrivateEndpointServices**](CockroachCloudApi.md#ListPrivateEndpointServices) | **Get** /api/v1/clusters/{cluster_id}/networking/private-endpoint-services | Lists all PrivateEndpointServices for a given cluster
 [**ListRoleGrants**](CockroachCloudApi.md#ListRoleGrants) | **Get** /api/v1/roles | Lists all RoleGrants
 [**ListSQLUsers**](CockroachCloudApi.md#ListSQLUsers) | **Get** /api/v1/clusters/{cluster_id}/sql-users | List SQL users for a cluster
+[**PatchGroup**](CockroachCloudApi.md#PatchGroup) | **Patch** /api/scim/v2/Groups/{id} | Updates a group by specifying individual values to update
+[**PatchUser**](CockroachCloudApi.md#PatchUser) | **Patch** /api/scim/v2/Users/{id} | Updates a user by specifying individual values to update
 [**RemoveUserFromRole**](CockroachCloudApi.md#RemoveUserFromRole) | **Delete** /api/v1/roles/{user_id}/{resource_type}/{resource_id}/{role_name} | Removes the user from the given role
 [**SetAwsEndpointConnectionState**](CockroachCloudApi.md#SetAwsEndpointConnectionState) | **Patch** /api/v1/clusters/{cluster_id}/networking/aws-endpoint-connections/{endpoint_id} | Sets the AWS Endpoint Connection state based on what is passed in the body
 [**SetClientCACert**](CockroachCloudApi.md#SetClientCACert) | **Post** /api/v1/clusters/{cluster_id}/client-ca-cert | Set Client CA Cert for a cluster
@@ -62,7 +82,9 @@ Method | HTTP request | Description
 [**UpdateCMEKStatus**](CockroachCloudApi.md#UpdateCMEKStatus) | **Patch** /api/v1/clusters/{cluster_id}/cmek | Update the CMEK-related status for a cluster
 [**UpdateClientCACert**](CockroachCloudApi.md#UpdateClientCACert) | **Patch** /api/v1/clusters/{cluster_id}/client-ca-cert | Update Client CA Cert for a cluster
 [**UpdateCluster**](CockroachCloudApi.md#UpdateCluster) | **Patch** /api/v1/clusters/{cluster_id} | Scale or edit a cluster
+[**UpdateGroup**](CockroachCloudApi.md#UpdateGroup) | **Put** /api/scim/v2/Groups/{id} | Updates a group by supplying all values of the user object
 [**UpdateSQLUserPassword**](CockroachCloudApi.md#UpdateSQLUserPassword) | **Put** /api/v1/clusters/{cluster_id}/sql-users/{name}/password | Update a SQL user&#39;s password
+[**UpdateUser**](CockroachCloudApi.md#UpdateUser) | **Put** /api/scim/v2/Users/{id} | Updates a user by supplying all values of the user object
 
 
 
@@ -493,6 +515,70 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## CreateGroup
+
+> ScimGroup CreateGroup(ctx).CreateGroupRequest(createGroupRequest).Execute()
+
+Creates a group
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    createGroupRequest := *openapiclient.NewCreateGroupRequest("DisplayName_example") // CreateGroupRequest | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.CockroachCloudApi.CreateGroup(context.Background()).CreateGroupRequest(createGroupRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.CreateGroup``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateGroup`: ScimGroup
+    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.CreateGroup`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateGroup struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **createGroupRequest** | [**CreateGroupRequest**](CreateGroupRequest.md) |  | 
+
+### Return type
+
+[**ScimGroup**](ScimGroup.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## CreatePrivateEndpointServices
 
 > PrivateEndpointServices CreatePrivateEndpointServices(ctx, clusterId).Execute()
@@ -616,6 +702,70 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**SQLUser**](SQLUser.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CreateUser
+
+> ScimUser CreateUser(ctx).CreateUserRequest(createUserRequest).Execute()
+
+Creates a user
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    createUserRequest := *openapiclient.NewCreateUserRequest(false, "DisplayName_example", []openapiclient.ScimEmail{*openapiclient.NewScimEmail(false, "Value_example")}, *openapiclient.NewScimName()) // CreateUserRequest | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.CockroachCloudApi.CreateUser(context.Background()).CreateUserRequest(createUserRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.CreateUser``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateUser`: ScimUser
+    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.CreateUser`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateUser struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **createUserRequest** | [**CreateUserRequest**](CreateUserRequest.md) |  | 
+
+### Return type
+
+[**ScimUser**](ScimUser.md)
 
 ### Authorization
 
@@ -1121,6 +1271,74 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## DeleteGroup
+
+> map[string]interface{} DeleteGroup(ctx, id).Execute()
+
+Deletes a group based on id
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.CockroachCloudApi.DeleteGroup(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.DeleteGroup``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DeleteGroup`: map[string]interface{}
+    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.DeleteGroup`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteGroup struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**map[string]interface{}**
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## DeleteLogExport
 
 > LogExportClusterInfo DeleteLogExport(ctx, clusterId).Execute()
@@ -1245,6 +1463,74 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**SQLUser**](SQLUser.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeleteUser
+
+> map[string]interface{} DeleteUser(ctx, id).Execute()
+
+Deletes a user based on id
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.CockroachCloudApi.DeleteUser(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.DeleteUser``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DeleteUser`: map[string]interface{}
+    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.DeleteUser`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteUser struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**map[string]interface{}**
 
 ### Authorization
 
@@ -2309,6 +2595,278 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetGroup
+
+> ScimGroup GetGroup(ctx, id).Attributes(attributes).ExcludedAttributes(excludedAttributes).Execute()
+
+Gets a group based on id
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+    attributes := "attributes_example" // string |  (optional)
+    excludedAttributes := "excludedAttributes_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.CockroachCloudApi.GetGroup(context.Background(), id).Attributes(attributes).ExcludedAttributes(excludedAttributes).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.GetGroup``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetGroup`: ScimGroup
+    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.GetGroup`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetGroup struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **attributes** | **string** |  | 
+ **excludedAttributes** | **string** |  | 
+
+### Return type
+
+[**ScimGroup**](ScimGroup.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetGroup2
+
+> ScimGroup GetGroup2(ctx, id).GetGroupRequest(getGroupRequest).Execute()
+
+Gets a group based on id
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+    getGroupRequest := *openapiclient.NewGetGroupRequest() // GetGroupRequest | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.CockroachCloudApi.GetGroup2(context.Background(), id).GetGroupRequest(getGroupRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.GetGroup2``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetGroup2`: ScimGroup
+    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.GetGroup2`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetGroup2 struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **getGroupRequest** | [**GetGroupRequest**](GetGroupRequest.md) |  | 
+
+### Return type
+
+[**ScimGroup**](ScimGroup.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetGroups
+
+> GetGroupsResponse GetGroups(ctx).Attributes(attributes).ExcludedAttributes(excludedAttributes).Execute()
+
+Gets groups based on query parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    attributes := "attributes_example" // string |  (optional)
+    excludedAttributes := "excludedAttributes_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.CockroachCloudApi.GetGroups(context.Background()).Attributes(attributes).ExcludedAttributes(excludedAttributes).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.GetGroups``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetGroups`: GetGroupsResponse
+    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.GetGroups`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetGroups struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **attributes** | **string** |  | 
+ **excludedAttributes** | **string** |  | 
+
+### Return type
+
+[**GetGroupsResponse**](GetGroupsResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetGroups2
+
+> GetGroupsResponse GetGroups2(ctx).GetGroupsRequest(getGroupsRequest).Execute()
+
+Gets groups based on query parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    getGroupsRequest := *openapiclient.NewGetGroupsRequest() // GetGroupsRequest | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.CockroachCloudApi.GetGroups2(context.Background()).GetGroupsRequest(getGroupsRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.GetGroups2``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetGroups2`: GetGroupsResponse
+    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.GetGroups2`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetGroups2 struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **getGroupsRequest** | [**GetGroupsRequest**](GetGroupsRequest.md) |  | 
+
+### Return type
+
+[**GetGroupsResponse**](GetGroupsResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetInvoice
 
 > Invoice GetInvoice(ctx, invoiceId).Execute()
@@ -2568,6 +3126,615 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetResourceType
+
+> ScimResourceType GetResourceType(ctx, resourceId).Attributes(attributes).ExcludedAttributes(excludedAttributes).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    resourceId := "resourceId_example" // string | 
+    attributes := "attributes_example" // string |  (optional)
+    excludedAttributes := "excludedAttributes_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.CockroachCloudApi.GetResourceType(context.Background(), resourceId).Attributes(attributes).ExcludedAttributes(excludedAttributes).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.GetResourceType``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetResourceType`: ScimResourceType
+    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.GetResourceType`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**resourceId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetResourceType struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **attributes** | **string** |  | 
+ **excludedAttributes** | **string** |  | 
+
+### Return type
+
+[**ScimResourceType**](ScimResourceType.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetResourceTypes
+
+> GetResourceTypesResponse GetResourceTypes(ctx).Attributes(attributes).ExcludedAttributes(excludedAttributes).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    attributes := "attributes_example" // string |  (optional)
+    excludedAttributes := "excludedAttributes_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.CockroachCloudApi.GetResourceTypes(context.Background()).Attributes(attributes).ExcludedAttributes(excludedAttributes).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.GetResourceTypes``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetResourceTypes`: GetResourceTypesResponse
+    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.GetResourceTypes`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetResourceTypes struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **attributes** | **string** |  | 
+ **excludedAttributes** | **string** |  | 
+
+### Return type
+
+[**GetResourceTypesResponse**](GetResourceTypesResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetSchema
+
+> ScimSchema GetSchema(ctx, schemaId).Attributes(attributes).ExcludedAttributes(excludedAttributes).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    schemaId := "schemaId_example" // string | 
+    attributes := "attributes_example" // string |  (optional)
+    excludedAttributes := "excludedAttributes_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.CockroachCloudApi.GetSchema(context.Background(), schemaId).Attributes(attributes).ExcludedAttributes(excludedAttributes).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.GetSchema``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetSchema`: ScimSchema
+    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.GetSchema`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**schemaId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetSchema struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **attributes** | **string** |  | 
+ **excludedAttributes** | **string** |  | 
+
+### Return type
+
+[**ScimSchema**](ScimSchema.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetSchemas
+
+> GetSchemasResponse GetSchemas(ctx).Attributes(attributes).ExcludedAttributes(excludedAttributes).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    attributes := "attributes_example" // string |  (optional)
+    excludedAttributes := "excludedAttributes_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.CockroachCloudApi.GetSchemas(context.Background()).Attributes(attributes).ExcludedAttributes(excludedAttributes).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.GetSchemas``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetSchemas`: GetSchemasResponse
+    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.GetSchemas`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetSchemas struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **attributes** | **string** |  | 
+ **excludedAttributes** | **string** |  | 
+
+### Return type
+
+[**GetSchemasResponse**](GetSchemasResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetServiceProviderConfig
+
+> GetServiceProviderConfigResponse GetServiceProviderConfig(ctx).Execute()
+
+Returns our SCIM configuration
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.CockroachCloudApi.GetServiceProviderConfig(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.GetServiceProviderConfig``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetServiceProviderConfig`: GetServiceProviderConfigResponse
+    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.GetServiceProviderConfig`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetServiceProviderConfig struct via the builder pattern
+
+
+### Return type
+
+[**GetServiceProviderConfigResponse**](GetServiceProviderConfigResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetUser
+
+> ScimUser GetUser(ctx, id).Attributes(attributes).ExcludedAttributes(excludedAttributes).Execute()
+
+Gets a user based on id
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+    attributes := "attributes_example" // string |  (optional)
+    excludedAttributes := "excludedAttributes_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.CockroachCloudApi.GetUser(context.Background(), id).Attributes(attributes).ExcludedAttributes(excludedAttributes).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.GetUser``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetUser`: ScimUser
+    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.GetUser`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetUser struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **attributes** | **string** |  | 
+ **excludedAttributes** | **string** |  | 
+
+### Return type
+
+[**ScimUser**](ScimUser.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetUser2
+
+> ScimUser GetUser2(ctx, id).GetUserRequest(getUserRequest).Execute()
+
+Gets a user based on id
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+    getUserRequest := *openapiclient.NewGetUserRequest() // GetUserRequest | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.CockroachCloudApi.GetUser2(context.Background(), id).GetUserRequest(getUserRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.GetUser2``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetUser2`: ScimUser
+    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.GetUser2`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetUser2 struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **getUserRequest** | [**GetUserRequest**](GetUserRequest.md) |  | 
+
+### Return type
+
+[**ScimUser**](ScimUser.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetUsers
+
+> GetUsersResponse GetUsers(ctx).Filter(filter).Attributes(attributes).ExcludedAttributes(excludedAttributes).Execute()
+
+Gets Users based on query parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    filter := "filter_example" // string |  (optional)
+    attributes := "attributes_example" // string |  (optional)
+    excludedAttributes := "excludedAttributes_example" // string |  (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.CockroachCloudApi.GetUsers(context.Background()).Filter(filter).Attributes(attributes).ExcludedAttributes(excludedAttributes).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.GetUsers``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetUsers`: GetUsersResponse
+    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.GetUsers`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetUsers struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **filter** | **string** |  | 
+ **attributes** | **string** |  | 
+ **excludedAttributes** | **string** |  | 
+
+### Return type
+
+[**GetUsersResponse**](GetUsersResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetUsers2
+
+> GetUsersResponse GetUsers2(ctx).GetUsersRequest(getUsersRequest).Execute()
+
+Gets Users based on query parameters
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    getUsersRequest := *openapiclient.NewGetUsersRequest() // GetUsersRequest | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.CockroachCloudApi.GetUsers2(context.Background()).GetUsersRequest(getUsersRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.GetUsers2``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetUsers2`: GetUsersResponse
+    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.GetUsers2`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetUsers2 struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **getUsersRequest** | [**GetUsersRequest**](GetUsersRequest.md) |  | 
+
+### Return type
+
+[**GetUsersResponse**](GetUsersResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## ListAllowlistEntries
 
 > ListAllowlistEntriesResponse ListAllowlistEntries(ctx, clusterId).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).Execute()
@@ -2647,6 +3814,75 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## ListAuditLogs
+
+> ListAuditLogsResponse ListAuditLogs(ctx).StartingFrom(startingFrom).SortOrder(sortOrder).Limit(limit).Execute()
+
+Limited Access: List audit logs.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    "time"
+    openapiclient "./openapi"
+)
+
+func main() {
+    startingFrom := time.Now() // time.Time | starting_from is the (exclusive) timestamp from which log entries will be returned in the response based on their created_at time, respecting the sort order specified in pagination. If unset, the default will be the current time if results are returned in descending order and the beginning of time if results are in ascending order. (optional)
+    sortOrder := "sortOrder_example" // string | sort_order is the direction of pagination, with starting_from as the start point. If unset, the default is ascending order.   - ASC: Sort in ascending order. This is the default unless otherwise specified.  - DESC: Sort in descending order. (optional)
+    limit := int32(56) // int32 | limit is the number of entries requested in the response. Note that the response may still contain slightly more results, since the response will always contain every entry at a particular timestamp. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.CockroachCloudApi.ListAuditLogs(context.Background()).StartingFrom(startingFrom).SortOrder(sortOrder).Limit(limit).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.ListAuditLogs``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListAuditLogs`: ListAuditLogsResponse
+    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.ListAuditLogs`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListAuditLogs struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **startingFrom** | **time.Time** | starting_from is the (exclusive) timestamp from which log entries will be returned in the response based on their created_at time, respecting the sort order specified in pagination. If unset, the default will be the current time if results are returned in descending order and the beginning of time if results are in ascending order. | 
+ **sortOrder** | **string** | sort_order is the direction of pagination, with starting_from as the start point. If unset, the default is ascending order.   - ASC: Sort in ascending order. This is the default unless otherwise specified.  - DESC: Sort in descending order. | 
+ **limit** | **int32** | limit is the number of entries requested in the response. Note that the response may still contain slightly more results, since the response will always contain every entry at a particular timestamp. | 
+
+### Return type
+
+[**ListAuditLogsResponse**](ListAuditLogsResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## ListAvailableRegions
 
 > ListAvailableRegionsResponse ListAvailableRegions(ctx).Provider(provider).Serverless(serverless).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).Execute()
@@ -2669,7 +3905,7 @@ import (
 )
 
 func main() {
-    provider := "provider_example" // string | Optional CloudProvider for filtering.   - GCP: The Google Cloud Platform cloud provider.  - AWS: The Amazon Web Services cloud provider. (optional)
+    provider := "provider_example" // string | Optional CloudProvider for filtering.   - GCP: The Google Cloud Platform cloud provider.  - AWS: The Amazon Web Services cloud provider.  - AZURE: Limited Access: The Azure cloud provider. (optional)
     serverless := true // bool | Optional filter to only show regions available for serverless clusters. (optional) (default to false)
     paginationPage := "paginationPage_example" // string |  (optional)
     paginationLimit := int32(56) // int32 |  (optional)
@@ -2699,7 +3935,7 @@ Other parameters are passed through a pointer to a apiListAvailableRegions struc
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **provider** | **string** | Optional CloudProvider for filtering.   - GCP: The Google Cloud Platform cloud provider.  - AWS: The Amazon Web Services cloud provider. | 
+ **provider** | **string** | Optional CloudProvider for filtering.   - GCP: The Google Cloud Platform cloud provider.  - AWS: The Amazon Web Services cloud provider.  - AZURE: Limited Access: The Azure cloud provider. | 
  **serverless** | **bool** | Optional filter to only show regions available for serverless clusters. | [default to false]
  **paginationPage** | **string** |  | 
  **paginationLimit** | **int32** |  | 
@@ -3460,6 +4696,146 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## PatchGroup
+
+> ScimGroup PatchGroup(ctx, id).PatchGroupRequest(patchGroupRequest).Execute()
+
+Updates a group by specifying individual values to update
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+    patchGroupRequest := *openapiclient.NewPatchGroupRequest() // PatchGroupRequest | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.CockroachCloudApi.PatchGroup(context.Background(), id).PatchGroupRequest(patchGroupRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.PatchGroup``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `PatchGroup`: ScimGroup
+    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.PatchGroup`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPatchGroup struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **patchGroupRequest** | [**PatchGroupRequest**](PatchGroupRequest.md) |  | 
+
+### Return type
+
+[**ScimGroup**](ScimGroup.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## PatchUser
+
+> ScimUser PatchUser(ctx, id).PatchUserRequest(patchUserRequest).Execute()
+
+Updates a user by specifying individual values to update
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+    patchUserRequest := *openapiclient.NewPatchUserRequest() // PatchUserRequest | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.CockroachCloudApi.PatchUser(context.Background(), id).PatchUserRequest(patchUserRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.PatchUser``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `PatchUser`: ScimUser
+    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.PatchUser`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPatchUser struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **patchUserRequest** | [**PatchUserRequest**](PatchUserRequest.md) |  | 
+
+### Return type
+
+[**ScimUser**](ScimUser.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## RemoveUserFromRole
 
 > GetAllRolesForUserResponse RemoveUserFromRole(ctx, userId, resourceType, resourceId, roleName).Execute()
@@ -4178,6 +5554,76 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## UpdateGroup
+
+> ScimGroup UpdateGroup(ctx, id).UpdateGroupRequest(updateGroupRequest).Execute()
+
+Updates a group by supplying all values of the user object
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+    updateGroupRequest := *openapiclient.NewUpdateGroupRequest("DisplayName_example") // UpdateGroupRequest | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.CockroachCloudApi.UpdateGroup(context.Background(), id).UpdateGroupRequest(updateGroupRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.UpdateGroup``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateGroup`: ScimGroup
+    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.UpdateGroup`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateGroup struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **updateGroupRequest** | [**UpdateGroupRequest**](UpdateGroupRequest.md) |  | 
+
+### Return type
+
+[**ScimGroup**](ScimGroup.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## UpdateSQLUserPassword
 
 > SQLUser UpdateSQLUserPassword(ctx, clusterId, name).UpdateSQLUserPasswordRequest(updateSQLUserPasswordRequest).Execute()
@@ -4236,6 +5682,76 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**SQLUser**](SQLUser.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateUser
+
+> ScimUser UpdateUser(ctx, id).UpdateUserRequest(updateUserRequest).Execute()
+
+Updates a user by supplying all values of the user object
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+    updateUserRequest := *openapiclient.NewUpdateUserRequest(false) // UpdateUserRequest | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.CockroachCloudApi.UpdateUser(context.Background(), id).UpdateUserRequest(updateUserRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.UpdateUser``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateUser`: ScimUser
+    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.UpdateUser`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateUser struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **updateUserRequest** | [**UpdateUserRequest**](UpdateUserRequest.md) |  | 
+
+### Return type
+
+[**ScimUser**](ScimUser.md)
 
 ### Authorization
 

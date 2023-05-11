@@ -2,7 +2,6 @@
 
 ## Enum
 
-
 * `MAC` (value: `"MAC"`)
 
 * `LINUX` (value: `"LINUX"`)

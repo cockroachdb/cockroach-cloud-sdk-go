@@ -16,6 +16,2390 @@
     }
   ],
   "paths": {
+    "/api/scim/v2/Groups": {
+      "get": {
+        "operationId": "CockroachCloud_GetGroups",
+        "summary": "Gets groups based on query parameters",
+        "parameters": [
+          {
+            "name": "attributes",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "excludedAttributes",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetGroupsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "CockroachCloud"
+        ],
+        "x-badges": [
+          {
+            "color": "blue",
+            "label": "PREVIEW"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request GET \\\n  --url 'https://cockroachlabs.cloud/api/scim/v2/Groups?attributes=SOME_STRING_VALUE&excludedAttributes=SOME_STRING_VALUE' \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+          }
+        ]
+      },
+      "post": {
+        "operationId": "CockroachCloud_CreateGroup",
+        "summary": "Creates a group",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateGroupRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScimGroup"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "CockroachCloud"
+        ],
+        "x-badges": [
+          {
+            "color": "blue",
+            "label": "PREVIEW"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/scim/v2/Groups \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"displayName\":\"Test SCIM\",\"members\":[],\"schemas\":[\"urn:ietf:params:scim:schemas:core:2.0:Group\"]}'"
+          }
+        ]
+      }
+    },
+    "/api/scim/v2/Groups/.search": {
+      "put": {
+        "operationId": "CockroachCloud_GetGroups2",
+        "summary": "Gets groups based on query parameters",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetGroupsRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetGroupsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "CockroachCloud"
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/scim/v2/Groups/.search \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"attributes\":\"string\",\"excludedAttributes\":\"string\"}'"
+          }
+        ]
+      }
+    },
+    "/api/scim/v2/Groups/{id}": {
+      "delete": {
+        "operationId": "CockroachCloud_DeleteGroup",
+        "summary": "Deletes a group based on id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "CockroachCloud"
+        ],
+        "x-badges": [
+          {
+            "color": "blue",
+            "label": "PREVIEW"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request DELETE \\\n  --url https://cockroachlabs.cloud/api/scim/v2/Groups/{id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+          }
+        ]
+      },
+      "get": {
+        "operationId": "CockroachCloud_GetGroup",
+        "summary": "Gets a group based on id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "attributes",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "excludedAttributes",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScimGroup"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "CockroachCloud"
+        ],
+        "x-badges": [
+          {
+            "color": "blue",
+            "label": "PREVIEW"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request GET \\\n  --url 'https://cockroachlabs.cloud/api/scim/v2/Groups/{id}?attributes=SOME_STRING_VALUE&excludedAttributes=SOME_STRING_VALUE' \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+          }
+        ]
+      },
+      "patch": {
+        "operationId": "CockroachCloud_PatchGroup",
+        "summary": "Updates a group by specifying individual values to update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Operations": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/ScimOperations"
+                    }
+                  },
+                  "schemas": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "title": "PatchGroupRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScimGroup"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "CockroachCloud"
+        ],
+        "x-badges": [
+          {
+            "color": "blue",
+            "label": "PREVIEW"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request PATCH \\\n  --url https://cockroachlabs.cloud/api/scim/v2/Groups/{id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"Operations\":[{\"op\":\"string\",\"path\":\"string\",\"value\":{\"@type\":\"string\",\"property1\":null,\"property2\":null}}],\"schemas\":[\"string\"]}'"
+          }
+        ]
+      },
+      "put": {
+        "operationId": "CockroachCloud_UpdateGroup",
+        "summary": "Updates a group by supplying all values of the user object",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "displayName": {
+                    "type": "string"
+                  },
+                  "externalId": {
+                    "type": "string"
+                  },
+                  "members": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/ScimResource"
+                    }
+                  },
+                  "schemas": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "displayName": "Test SCIM",
+                  "id": "23a35c27-23d3-4c03-b4c5-6443c09e7173",
+                  "members": [
+                    {
+                      "display": "croach@example.com",
+                      "value": "45a35c27-23d3-4d03-c4c5-9043c09e7175"
+                    }
+                  ],
+                  "schemas": [
+                    {
+                      "0": "u",
+                      "1": "r",
+                      "2": "n",
+                      "3": ":",
+                      "4": "i",
+                      "5": "e",
+                      "6": "t",
+                      "7": "f",
+                      "8": ":",
+                      "9": "p",
+                      "10": "a",
+                      "11": "r",
+                      "12": "a",
+                      "13": "m",
+                      "14": "s",
+                      "15": ":",
+                      "16": "s",
+                      "17": "c",
+                      "18": "i",
+                      "19": "m",
+                      "20": ":",
+                      "21": "s",
+                      "22": "c",
+                      "23": "h",
+                      "24": "e",
+                      "25": "m",
+                      "26": "a",
+                      "27": "s",
+                      "28": ":",
+                      "29": "c",
+                      "30": "o",
+                      "31": "r",
+                      "32": "e",
+                      "33": ":",
+                      "34": "2",
+                      "35": ".",
+                      "36": "0",
+                      "37": ":",
+                      "38": "G",
+                      "39": "r",
+                      "40": "o",
+                      "41": "u",
+                      "42": "p"
+                    }
+                  ]
+                },
+                "required": [
+                  "displayName"
+                ],
+                "title": "UpdateGroupRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScimGroup"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "CockroachCloud"
+        ],
+        "x-badges": [
+          {
+            "color": "blue",
+            "label": "PREVIEW"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/scim/v2/Groups/{id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"displayName\":\"Test SCIM\",\"id\":\"23a35c27-23d3-4c03-b4c5-6443c09e7173\",\"members\":[{\"display\":\"croach@example.com\",\"value\":\"45a35c27-23d3-4d03-c4c5-9043c09e7175\"}],\"schemas\":[\"urn:ietf:params:scim:schemas:core:2.0:Group\"]}'"
+          }
+        ]
+      }
+    },
+    "/api/scim/v2/Groups/{id}/.search": {
+      "put": {
+        "operationId": "CockroachCloud_GetGroup2",
+        "summary": "Gets a group based on id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "attributes": {
+                    "type": "string"
+                  },
+                  "excludedAttributes": {
+                    "type": "string"
+                  }
+                },
+                "title": "GetGroupRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScimGroup"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "CockroachCloud"
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/scim/v2/Groups/{id}/.search \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"attributes\":\"string\",\"excludedAttributes\":\"string\"}'"
+          }
+        ]
+      }
+    },
+    "/api/scim/v2/ResourceTypes": {
+      "get": {
+        "operationId": "CockroachCloud_GetResourceTypes",
+        "parameters": [
+          {
+            "name": "attributes",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "excludedAttributes",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetResourceTypesResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "CockroachCloud"
+        ],
+        "x-badges": [
+          {
+            "color": "blue",
+            "label": "PREVIEW"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request GET \\\n  --url 'https://cockroachlabs.cloud/api/scim/v2/ResourceTypes?attributes=SOME_STRING_VALUE&excludedAttributes=SOME_STRING_VALUE' \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+          }
+        ]
+      }
+    },
+    "/api/scim/v2/ResourceTypes/{resourceId}": {
+      "get": {
+        "operationId": "CockroachCloud_GetResourceType",
+        "parameters": [
+          {
+            "name": "resourceId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "attributes",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "excludedAttributes",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScimResourceType"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "CockroachCloud"
+        ],
+        "x-badges": [
+          {
+            "color": "blue",
+            "label": "PREVIEW"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request GET \\\n  --url 'https://cockroachlabs.cloud/api/scim/v2/ResourceTypes/{resourceId}?attributes=SOME_STRING_VALUE&excludedAttributes=SOME_STRING_VALUE' \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+          }
+        ]
+      }
+    },
+    "/api/scim/v2/Schemas": {
+      "get": {
+        "operationId": "CockroachCloud_GetSchemas",
+        "parameters": [
+          {
+            "name": "attributes",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "excludedAttributes",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetSchemasResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "CockroachCloud"
+        ],
+        "x-badges": [
+          {
+            "color": "blue",
+            "label": "PREVIEW"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request GET \\\n  --url 'https://cockroachlabs.cloud/api/scim/v2/Schemas?attributes=SOME_STRING_VALUE&excludedAttributes=SOME_STRING_VALUE' \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+          }
+        ]
+      }
+    },
+    "/api/scim/v2/Schemas/{schemaId}": {
+      "get": {
+        "operationId": "CockroachCloud_GetSchema",
+        "parameters": [
+          {
+            "name": "schemaId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "attributes",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "excludedAttributes",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScimSchema"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "CockroachCloud"
+        ],
+        "x-badges": [
+          {
+            "color": "blue",
+            "label": "PREVIEW"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request GET \\\n  --url 'https://cockroachlabs.cloud/api/scim/v2/Schemas/{schemaId}?attributes=SOME_STRING_VALUE&excludedAttributes=SOME_STRING_VALUE' \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+          }
+        ]
+      }
+    },
+    "/api/scim/v2/ServiceProviderConfig": {
+      "get": {
+        "operationId": "CockroachCloud_GetServiceProviderConfig",
+        "summary": "Returns our SCIM configuration",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetServiceProviderConfigResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "CockroachCloud"
+        ],
+        "x-badges": [
+          {
+            "color": "blue",
+            "label": "PREVIEW"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request GET \\\n  --url https://cockroachlabs.cloud/api/scim/v2/ServiceProviderConfig \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+          }
+        ]
+      }
+    },
+    "/api/scim/v2/Users": {
+      "get": {
+        "operationId": "CockroachCloud_GetUsers",
+        "summary": "Gets Users based on query parameters",
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "attributes",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "excludedAttributes",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUsersResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "CockroachCloud"
+        ],
+        "x-badges": [
+          {
+            "color": "blue",
+            "label": "PREVIEW"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request GET \\\n  --url 'https://cockroachlabs.cloud/api/scim/v2/Users?filter=SOME_STRING_VALUE&attributes=SOME_STRING_VALUE&excludedAttributes=SOME_STRING_VALUE' \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+          }
+        ]
+      },
+      "post": {
+        "operationId": "CockroachCloud_CreateUser",
+        "summary": "Creates a user",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateUserRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScimUser"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "CockroachCloud"
+        ],
+        "x-badges": [
+          {
+            "color": "blue",
+            "label": "PREVIEW"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/scim/v2/Users \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"active\":true,\"displayName\":\"Carl Roach\",\"emails\":[{\"primary\":true,\"type\":\"work\",\"value\":\"croach@example.com\"}],\"externalId\":\"11ujl29u0le5T6Aj10h9\",\"name\":{\"familyName\":\"Roach\",\"givenName\":\"Carl\"},\"schemas\":[\"urn:ietf:params:scim:schemas:core:2.0:User\"],\"userName\":\"croach@example.com\"}'"
+          }
+        ]
+      }
+    },
+    "/api/scim/v2/Users/.search": {
+      "put": {
+        "operationId": "CockroachCloud_GetUsers2",
+        "summary": "Gets Users based on query parameters",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetUsersRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUsersResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "CockroachCloud"
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/scim/v2/Users/.search \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"attributes\":\"string\",\"excludedAttributes\":\"string\",\"filter\":\"string\"}'"
+          }
+        ]
+      }
+    },
+    "/api/scim/v2/Users/{id}": {
+      "delete": {
+        "operationId": "CockroachCloud_DeleteUser",
+        "summary": "Deletes a user based on id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "CockroachCloud"
+        ],
+        "x-badges": [
+          {
+            "color": "blue",
+            "label": "PREVIEW"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request DELETE \\\n  --url https://cockroachlabs.cloud/api/scim/v2/Users/{id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+          }
+        ]
+      },
+      "get": {
+        "operationId": "CockroachCloud_GetUser",
+        "summary": "Gets a user based on id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "attributes",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "excludedAttributes",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScimUser"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "CockroachCloud"
+        ],
+        "x-badges": [
+          {
+            "color": "blue",
+            "label": "PREVIEW"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request GET \\\n  --url 'https://cockroachlabs.cloud/api/scim/v2/Users/{id}?attributes=SOME_STRING_VALUE&excludedAttributes=SOME_STRING_VALUE' \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+          }
+        ]
+      },
+      "patch": {
+        "operationId": "CockroachCloud_PatchUser",
+        "summary": "Updates a user by specifying individual values to update",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Operations": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/ScimOperations"
+                    }
+                  },
+                  "schemas": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "title": "PatchUserRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScimUser"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "CockroachCloud"
+        ],
+        "x-badges": [
+          {
+            "color": "blue",
+            "label": "PREVIEW"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request PATCH \\\n  --url https://cockroachlabs.cloud/api/scim/v2/Users/{id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"Operations\":[{\"op\":\"string\",\"path\":\"string\",\"value\":{\"@type\":\"string\",\"property1\":null,\"property2\":null}}],\"schemas\":[\"string\"]}'"
+          }
+        ]
+      },
+      "put": {
+        "operationId": "CockroachCloud_UpdateUser",
+        "summary": "Updates a user by supplying all values of the user object",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "active": {
+                    "type": "boolean"
+                  },
+                  "displayName": {
+                    "type": "string"
+                  },
+                  "emails": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/ScimEmail"
+                    }
+                  },
+                  "externalId": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "$ref": "#/components/schemas/ScimName"
+                  },
+                  "schemas": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "userName": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "active": true,
+                  "emails": [
+                    {
+                      "display": "croach@example.com",
+                      "primary": true,
+                      "type": "work",
+                      "value": "croach@example.com"
+                    }
+                  ],
+                  "name": {
+                    "familyName": "Roach",
+                    "givenName": "Carl"
+                  },
+                  "schemas": [
+                    {
+                      "0": "u",
+                      "1": "r",
+                      "2": "n",
+                      "3": ":",
+                      "4": "i",
+                      "5": "e",
+                      "6": "t",
+                      "7": "f",
+                      "8": ":",
+                      "9": "p",
+                      "10": "a",
+                      "11": "r",
+                      "12": "a",
+                      "13": "m",
+                      "14": "s",
+                      "15": ":",
+                      "16": "s",
+                      "17": "c",
+                      "18": "i",
+                      "19": "m",
+                      "20": ":",
+                      "21": "s",
+                      "22": "c",
+                      "23": "h",
+                      "24": "e",
+                      "25": "m",
+                      "26": "a",
+                      "27": "s",
+                      "28": ":",
+                      "29": "c",
+                      "30": "o",
+                      "31": "r",
+                      "32": "e",
+                      "33": ":",
+                      "34": "2",
+                      "35": ".",
+                      "36": "0",
+                      "37": ":",
+                      "38": "U",
+                      "39": "s",
+                      "40": "e",
+                      "41": "r"
+                    }
+                  ]
+                },
+                "required": [
+                  "active"
+                ],
+                "title": "UpdateUserRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScimUser"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "CockroachCloud"
+        ],
+        "x-badges": [
+          {
+            "color": "blue",
+            "label": "PREVIEW"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/scim/v2/Users/{id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"active\":true,\"emails\":[{\"display\":\"croach@example.com\",\"primary\":true,\"type\":\"work\",\"value\":\"croach@example.com\"}],\"name\":{\"familyName\":\"Roach\",\"givenName\":\"Carl\"},\"schemas\":[\"urn:ietf:params:scim:schemas:core:2.0:User\"]}'"
+          }
+        ]
+      }
+    },
+    "/api/scim/v2/Users/{id}/.search": {
+      "put": {
+        "operationId": "CockroachCloud_GetUser2",
+        "summary": "Gets a user based on id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "attributes": {
+                    "type": "string"
+                  },
+                  "excludedAttributes": {
+                    "type": "string"
+                  }
+                },
+                "title": "GetUserRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScimUser"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "CockroachCloud"
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/scim/v2/Users/{id}/.search \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"attributes\":\"string\",\"excludedAttributes\":\"string\"}'"
+          }
+        ]
+      }
+    },
+    "/api/v1/auditlogevents": {
+      "get": {
+        "operationId": "CockroachCloud_ListAuditLogs",
+        "summary": "Limited Access: List audit logs.",
+        "parameters": [
+          {
+            "name": "starting_from",
+            "in": "query",
+            "description": "starting_from is the (exclusive) timestamp from which log entries will be\nreturned in the response based on their created_at time, respecting the\nsort order specified in pagination. If unset, the default will be the\ncurrent time if results are returned in descending order and the\nbeginning of time if results are in ascending order.",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "sort_order",
+            "in": "query",
+            "description": "sort_order is the direction of pagination, with starting_from as the\nstart point. If unset, the default is ascending order.\n\n - ASC: Sort in ascending order. This is the default unless otherwise specified.\n - DESC: Sort in descending order.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "ASC",
+                "DESC"
+              ]
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "limit is the number of entries requested in the response. Note that the\nresponse may still contain slightly more results, since the response will\nalways contain every entry at a particular timestamp.",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListAuditLogsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "CockroachCloud"
+        ],
+        "x-badges": [
+          {
+            "color": "red",
+            "label": "LIMITED ACCESS"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request GET \\\n  --url 'https://cockroachlabs.cloud/api/v1/auditlogevents?starting_from=SOME_STRING_VALUE&sort_order=SOME_STRING_VALUE&limit=SOME_INTEGER_VALUE' \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+          }
+        ]
+      }
+    },
     "/api/v1/cluster-versions": {
       "get": {
         "operationId": "CockroachCloud_ListMajorClusterVersions",
@@ -349,12 +2733,13 @@
           {
             "name": "provider",
             "in": "query",
-            "description": "Optional CloudProvider for filtering.\n\n - GCP: The Google Cloud Platform cloud provider.\n - AWS: The Amazon Web Services cloud provider.",
+            "description": "Optional CloudProvider for filtering.\n\n - GCP: The Google Cloud Platform cloud provider.\n - AWS: The Amazon Web Services cloud provider.\n - AZURE: Limited Access: The Azure cloud provider.",
             "schema": {
               "type": "string",
               "enum": [
                 "GCP",
-                "AWS"
+                "AWS",
+                "AZURE"
               ]
             }
           },
@@ -6565,6 +8950,119 @@
         },
         "additionalProperties": {}
       },
+      "AuditLogAction": {
+        "type": "string",
+        "enum": [
+          "AUDIT_LOG_ACTION_CREATE_CLUSTER",
+          "AUDIT_LOG_ACTION_DELETE_CLUSTER",
+          "AUDIT_LOG_ACTION_INVITE_USER_TO_ORGANIZATION",
+          "AUDIT_LOG_ACTION_EDIT_USER_INVITE",
+          "AUDIT_LOG_ACTION_REVOKE_USER_INVITE",
+          "AUDIT_LOG_ACTION_ACCEPT_USER_INVITE",
+          "AUDIT_LOG_ACTION_ASSIGN_USER_ROLE",
+          "AUDIT_LOG_ACTION_DELETE_USER_FROM_ORGANIZATION",
+          "AUDIT_LOG_ACTION_CREATE_SERVICE_ACCOUNT",
+          "AUDIT_LOG_ACTION_UPDATE_SERVICE_ACCOUNT",
+          "AUDIT_LOG_ACTION_DELETE_SERVICE_ACCOUNT",
+          "AUDIT_LOG_ACTION_CREATE_API_KEY",
+          "AUDIT_LOG_ACTION_UPDATE_API_KEY",
+          "AUDIT_LOG_ACTION_DELETE_API_KEY",
+          "AUDIT_LOG_ACTION_UPDATE_CLUSTER",
+          "AUDIT_LOG_ACTION_CREATE_SQL_USER",
+          "AUDIT_LOG_ACTION_CHANGE_SQL_USER_PASSWORD",
+          "AUDIT_LOG_ACTION_DELETE_SQL_USER",
+          "AUDIT_LOG_ACTION_ADD_IP_ALLOWLIST",
+          "AUDIT_LOG_ACTION_EDIT_IP_ALLOWLIST",
+          "AUDIT_LOG_ACTION_DELETE_IP_ALLOWLIST",
+          "AUDIT_LOG_ACTION_CREATE_VPC_PEERING",
+          "AUDIT_LOG_ACTION_DELETE_VPC_PEERING",
+          "AUDIT_LOG_ACTION_CREATE_PRIVATE_LINK",
+          "AUDIT_LOG_ACTION_ACCEPT_PRIVATE_LINK",
+          "AUDIT_LOG_ACTION_REJECT_PRIVATE_LINK",
+          "AUDIT_LOG_ACTION_USER_LOGIN",
+          "AUDIT_LOG_ACTION_ADD_USER_TO_ROLE",
+          "AUDIT_LOG_ACTION_REMOVE_USER_FROM_ROLE",
+          "AUDIT_LOG_ACTION_CREATE_USER",
+          "AUDIT_LOG_ACTION_DELETE_USER",
+          "AUDIT_LOG_ACTION_UPDATE_USER",
+          "AUDIT_LOG_ACTION_CREATE_GROUP",
+          "AUDIT_LOG_ACTION_DELETE_GROUP",
+          "AUDIT_LOG_ACTION_UPDATE_GROUP"
+        ]
+      },
+      "AuditLogEntry": {
+        "description": "AuditLogEntry represents an entry in the cloud event log.\nNote that this message definition should always match exactly with the\ncorresponding `AuditLogEntry` message in `console/consolepb/console.proto`.",
+        "type": "object",
+        "properties": {
+          "action": {
+            "$ref": "#/components/schemas/AuditLogAction"
+          },
+          "cluster_id": {
+            "description": "ClusterId is the ID of the cluster to which this log entry applies, if it\napplies to a single cluster.",
+            "type": "string"
+          },
+          "cluster_name": {
+            "description": "ClusterName is the name of the cluster to which this log entry applies, if\nit applies to a single cluster.",
+            "type": "string"
+          },
+          "created_at": {
+            "description": "CreatedAt is the time that this log entry was recorded.",
+            "type": "string",
+            "format": "date-time"
+          },
+          "error": {
+            "description": "Error is the error that applies to this entry if it represents a failure.",
+            "type": "string"
+          },
+          "id": {
+            "description": "Id uniquely identifies this entry.",
+            "type": "string"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/AuditLogMetadata"
+          },
+          "payload": {
+            "description": "Payload is a representation of the essential details relating to this\nlog entry.",
+            "type": "object"
+          },
+          "service_account_name": {
+            "description": "ServiceAccountName is the name of the service account that triggered this\nlog entry. If it was not a service account, it will be empty.",
+            "type": "string"
+          },
+          "session_id": {
+            "description": "SessionId is an ID that can be used to correlate this log entry with\nothers that are emitted as part of the same user session, typically for\nusers interacting through the UI. It should be treated as an opaque string\nwith no guaranteed structure.",
+            "type": "string"
+          },
+          "source": {
+            "$ref": "#/components/schemas/AuditLogSource"
+          },
+          "trace_id": {
+            "description": "TraceId is an ID that can be used to correlate this log entry with others\nthat are emitted as part of the same process. It should be treated as an\nopaque string with no guaranteed structure.",
+            "type": "string"
+          },
+          "user_email": {
+            "description": "UserEmail is the email address of the user that triggered this log entry.\nIf it was not a human user, it will be empty.",
+            "type": "string"
+          }
+        }
+      },
+      "AuditLogMetadata": {
+        "type": "object",
+        "properties": {
+          "ip_address": {
+            "type": "string"
+          }
+        }
+      },
+      "AuditLogSource": {
+        "type": "string",
+        "enum": [
+          "AUDIT_LOG_SOURCE_CC_API",
+          "AUDIT_LOG_SOURCE_CLI",
+          "AUDIT_LOG_SOURCE_UI",
+          "AUDIT_LOG_SOURCE_INTERNAL"
+        ]
+      },
       "AwsEndpointConnection": {
         "type": "object",
         "properties": {
@@ -6609,6 +9107,20 @@
         "required": [
           "connections"
         ]
+      },
+      "BuiltInFromGroups": {
+        "type": "object",
+        "properties": {
+          "group_names": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "role": {
+            "$ref": "#/components/schemas/BuiltInRole"
+          }
+        }
       },
       "BuiltInRole": {
         "type": "object",
@@ -6686,7 +9198,6 @@
         }
       },
       "CMEKKeyType": {
-        "description": "- UNKNOWN_KEY_TYPE: UNKNOWN should never be used; if it is used, it indicates a bug.",
         "type": "string",
         "enum": [
           "AWS_KMS",
@@ -6726,7 +9237,7 @@
         }
       },
       "CMEKStatus": {
-        "description": "CMEKStatus describes the current status of CMEK for an entire CRDB cluster\nor a CMEK key within a region.\n\n - UNKNOWN_STATUS: UNKNOWN should never be used; if it is used, it indicates a bug.\n - DISABLED: DISABLED corresponds to the state of a cluster or region-level key when\nCMEK has finished being disabled. By default, CMEK will be disabled for\nnew clusters.\n - DISABLING: DISABLING corresponds to the state of a cluster or region-level key when\nCMEK is in the process of being disabled.\n - DISABLE_FAILED: DISABLE_FAILED corresponds to the state of a cluster or region-level key\nwhen CMEK has failed to be disabled.\n - ENABLED: ENABLED corresponds to the state of a cluster or region-level key when\nCMEK is enabled.\n - ENABLING: ENABLING corresponds to the state of a cluster or region-level key when\nCMEK is in the process of being enabled.\n - ENABLE_FAILED: ENABLE_FAILED corresponds to the state of a cluster or region-level key\nwhen CMEK has failed to be enabled.\n - ROTATING: ROTATING corresponds to the state of a cluster or region when the a new\nspec is in the process of being enabled while an existing spec is being\ndisabled.\n - ROTATE_FAILED: ROTATE_FAILED corresponds to the state of a cluster or region if there was\na failure to update from one CMEK spec to another.\n - REVOKED: REVOKED corresponds to the state of a cluster or region-level key when the\ncustomer has revoked CockroachLab's permissions for their key.\n - REVOKING: REVOKING corresponds to the state of a cluster or region-level key when\nCMEK is in the process of being revoked.\n - REVOKE_FAILED: REVOKE_FAILED corresponds to the state of a cluster or region-level key\nwhen CMEK has failed to be revoked.",
+        "description": "CMEKStatus describes the current status of CMEK for an entire CRDB cluster\nor a CMEK key within a region.\n\n - DISABLED: DISABLED corresponds to the state of a cluster or region-level key when\nCMEK has finished being disabled. By default, CMEK will be disabled for\nnew clusters.\n - DISABLING: DISABLING corresponds to the state of a cluster or region-level key when\nCMEK is in the process of being disabled.\n - DISABLE_FAILED: DISABLE_FAILED corresponds to the state of a cluster or region-level key\nwhen CMEK has failed to be disabled.\n - ENABLED: ENABLED corresponds to the state of a cluster or region-level key when\nCMEK is enabled.\n - ENABLING: ENABLING corresponds to the state of a cluster or region-level key when\nCMEK is in the process of being enabled.\n - ENABLE_FAILED: ENABLE_FAILED corresponds to the state of a cluster or region-level key\nwhen CMEK has failed to be enabled.\n - ROTATING: ROTATING corresponds to the state of a cluster or region when the a new\nspec is in the process of being enabled while an existing spec is being\ndisabled.\n - ROTATE_FAILED: ROTATE_FAILED corresponds to the state of a cluster or region if there was\na failure to update from one CMEK spec to another.\n - REVOKED: REVOKED corresponds to the state of a cluster or region-level key when the\ncustomer has revoked CockroachLab's permissions for their key.\n - REVOKING: REVOKING corresponds to the state of a cluster or region-level key when\nCMEK is in the process of being revoked.\n - REVOKE_FAILED: REVOKE_FAILED corresponds to the state of a cluster or region-level key\nwhen CMEK has failed to be revoked.",
         "type": "string",
         "enum": [
           "DISABLED",
@@ -6754,7 +9265,7 @@
         }
       },
       "ClientCACertStatus": {
-        "description": " - UNKNOWN_STATUS: UNKNOWN should never be used; if it is used, it indicates a bug.\n - NOT_SET: NOT_SET indicates a client CA cert is not set on the cluster.\nNew clusters won't have a client CA cert set.\n - IS_SET: IS_SET indicates a client CA cert is set on the cluster.\n - PENDING: PENDING indicates a client CA cert update is in flight on the cluster.\n - FAILED: FAILED indicates a client CA cert update was attempted, but failed.",
+        "description": " - NOT_SET: NOT_SET indicates a client CA cert is not set on the cluster.\nNew clusters won't have a client CA cert set.\n - IS_SET: IS_SET indicates a client CA cert is set on the cluster.\n - PENDING: PENDING indicates a client CA cert update is in flight on the cluster.\n - FAILED: FAILED indicates a client CA cert update was attempted, but failed.",
         "type": "string",
         "enum": [
           "NOT_SET",
@@ -6764,11 +9275,12 @@
         ]
       },
       "CloudProvider.Type": {
-        "description": " - GCP: The Google Cloud Platform cloud provider.\n - AWS: The Amazon Web Services cloud provider.",
+        "description": " - GCP: The Google Cloud Platform cloud provider.\n - AWS: The Amazon Web Services cloud provider.\n - AZURE: Limited Access: The Azure cloud provider.",
         "type": "string",
         "enum": [
           "GCP",
-          "AWS"
+          "AWS",
+          "AZURE"
         ]
       },
       "CloudProviderRegion": {
@@ -7070,6 +9582,186 @@
             "$ref": "#/components/schemas/ServerlessClusterCreateSpecification"
           }
         }
+      },
+      "CreateGroupRequest": {
+        "type": "object",
+        "properties": {
+          "displayName": {
+            "type": "string"
+          },
+          "externalId": {
+            "type": "string"
+          },
+          "members": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ScimResource"
+            }
+          },
+          "schemas": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "example": {
+          "displayName": "Test SCIM",
+          "members": [],
+          "schemas": [
+            {
+              "0": "u",
+              "1": "r",
+              "2": "n",
+              "3": ":",
+              "4": "i",
+              "5": "e",
+              "6": "t",
+              "7": "f",
+              "8": ":",
+              "9": "p",
+              "10": "a",
+              "11": "r",
+              "12": "a",
+              "13": "m",
+              "14": "s",
+              "15": ":",
+              "16": "s",
+              "17": "c",
+              "18": "i",
+              "19": "m",
+              "20": ":",
+              "21": "s",
+              "22": "c",
+              "23": "h",
+              "24": "e",
+              "25": "m",
+              "26": "a",
+              "27": "s",
+              "28": ":",
+              "29": "c",
+              "30": "o",
+              "31": "r",
+              "32": "e",
+              "33": ":",
+              "34": "2",
+              "35": ".",
+              "36": "0",
+              "37": ":",
+              "38": "G",
+              "39": "r",
+              "40": "o",
+              "41": "u",
+              "42": "p"
+            }
+          ]
+        },
+        "required": [
+          "displayName"
+        ],
+        "title": "CreateGroupRequest"
+      },
+      "CreateUserRequest": {
+        "type": "object",
+        "properties": {
+          "active": {
+            "type": "boolean"
+          },
+          "displayName": {
+            "type": "string"
+          },
+          "emails": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ScimEmail"
+            }
+          },
+          "externalId": {
+            "type": "string"
+          },
+          "name": {
+            "$ref": "#/components/schemas/ScimName"
+          },
+          "schemas": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "userName": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "active": true,
+          "displayName": "Carl Roach",
+          "emails": [
+            {
+              "primary": true,
+              "type": "work",
+              "value": "croach@example.com"
+            }
+          ],
+          "externalId": "11ujl29u0le5T6Aj10h9",
+          "name": {
+            "familyName": "Roach",
+            "givenName": "Carl"
+          },
+          "schemas": [
+            {
+              "0": "u",
+              "1": "r",
+              "2": "n",
+              "3": ":",
+              "4": "i",
+              "5": "e",
+              "6": "t",
+              "7": "f",
+              "8": ":",
+              "9": "p",
+              "10": "a",
+              "11": "r",
+              "12": "a",
+              "13": "m",
+              "14": "s",
+              "15": ":",
+              "16": "s",
+              "17": "c",
+              "18": "i",
+              "19": "m",
+              "20": ":",
+              "21": "s",
+              "22": "c",
+              "23": "h",
+              "24": "e",
+              "25": "m",
+              "26": "a",
+              "27": "s",
+              "28": ":",
+              "29": "c",
+              "30": "o",
+              "31": "r",
+              "32": "e",
+              "33": ":",
+              "34": "2",
+              "35": ".",
+              "36": "0",
+              "37": ":",
+              "38": "U",
+              "39": "s",
+              "40": "e",
+              "41": "r"
+            }
+          ],
+          "userName": "croach@example.com"
+        },
+        "required": [
+          "name",
+          "displayName",
+          "emails",
+          "active"
+        ],
+        "title": "CreateUserRequest"
       },
       "Currency.Type": {
         "type": "string",
@@ -7395,6 +10087,12 @@
       "GetAllRolesForUserResponse": {
         "type": "object",
         "properties": {
+          "group_roles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BuiltInFromGroups"
+            }
+          },
           "roles": {
             "type": "array",
             "items": {
@@ -7433,6 +10131,44 @@
         ],
         "title": "GetEgressRuleResponse"
       },
+      "GetGroupsRequest": {
+        "type": "object",
+        "properties": {
+          "attributes": {
+            "type": "string"
+          },
+          "excludedAttributes": {
+            "type": "string"
+          }
+        },
+        "title": "GetGroupsRequest"
+      },
+      "GetGroupsResponse": {
+        "type": "object",
+        "properties": {
+          "Resources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ScimGroup"
+            }
+          },
+          "itemsPerPage": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "schemas": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "totalResults": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "title": "GetGroupsResponse"
+      },
       "GetPersonUsersByEmailResponse": {
         "type": "object",
         "properties": {
@@ -7443,6 +10179,139 @@
         "required": [
           "users"
         ]
+      },
+      "GetResourceTypesResponse": {
+        "type": "object",
+        "properties": {
+          "Resources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ScimResourceType"
+            }
+          },
+          "itemsPerPage": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "schemas": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "startIndex": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalResults": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "title": "GetResourceTypesResponse"
+      },
+      "GetSchemasResponse": {
+        "type": "object",
+        "properties": {
+          "Resources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ScimSchema"
+            }
+          },
+          "itemsPerPage": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "schemas": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "startIndex": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalResults": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "title": "GetSchemasResponse"
+      },
+      "GetServiceProviderConfigResponse": {
+        "type": "object",
+        "properties": {
+          "authenticationSchemes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ScimAuthenticationScheme"
+            }
+          },
+          "bulk": {
+            "$ref": "#/components/schemas/ScimBulkSupport"
+          },
+          "changePassword": {
+            "$ref": "#/components/schemas/ScimChangePasswordSupport"
+          },
+          "etag": {
+            "$ref": "#/components/schemas/ScimEtagSupport"
+          },
+          "filter": {
+            "$ref": "#/components/schemas/ScimFilterSupport"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ScimMetadata"
+          },
+          "schemas": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "sort": {
+            "$ref": "#/components/schemas/ScimSortSupport"
+          }
+        },
+        "title": "GetServiceProviderConfigResponse"
+      },
+      "GetUsersRequest": {
+        "type": "object",
+        "properties": {
+          "attributes": {
+            "type": "string"
+          },
+          "excludedAttributes": {
+            "type": "string"
+          },
+          "filter": {
+            "type": "string"
+          }
+        },
+        "title": "GetUsersRequest"
+      },
+      "GetUsersResponse": {
+        "type": "object",
+        "properties": {
+          "Resources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ScimUser"
+            }
+          },
+          "schemas": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "totalResults": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "title": "GetUsersResponse"
       },
       "Invoice": {
         "description": "Invoice message represents the details and the total charges associated with\none billing period, which starts at the beginning of the month and ends at\nthe beginning of the next month.\n\nThe message also includes details about each invoice item.",
@@ -7627,6 +10496,23 @@
         ],
         "title": "ListAllowlistEntriesResponse"
       },
+      "ListAuditLogsResponse": {
+        "type": "object",
+        "properties": {
+          "entries": {
+            "description": "entries is the contiguous list of audit log entries matching the\npagination request, sorted in the order requested.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AuditLogEntry"
+            }
+          },
+          "next_starting_from": {
+            "description": "next_starting_from is the timestamp the caller should use to continue\npaginating in the same direction. If the timestamp is unset, it means\nthat there are no more entries in the direction of the request, and\nthere never will be.",
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
       "ListAvailableRegionsResponse": {
         "type": "object",
         "properties": {
@@ -7738,6 +10624,12 @@
           },
           "pagination": {
             "$ref": "#/components/schemas/KeysetPaginationResponse"
+          },
+          "user_group_grants": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserGroupRoleGrant"
+            }
           }
         },
         "title": "list_role_grants_response contains a representation of all roles"
@@ -7917,6 +10809,10 @@
           "LIVE",
           "NOT_READY"
         ]
+      },
+      "NullValue": {
+        "description": "`NullValue` is a singleton enumeration to represent the null value for the\n`Value` type union.\n\n The JSON representation for `NullValue` is JSON `null`.\n\n - NULL_VALUE: Null value.",
+        "type": "string"
       },
       "OperatingSystem.Type": {
         "type": "string",
@@ -8115,6 +11011,343 @@
           "name"
         ]
       },
+      "ScimAuthenticationScheme": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "documentationUri": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "primary": {
+            "type": "boolean"
+          },
+          "specUri": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          }
+        }
+      },
+      "ScimBulkSupport": {
+        "type": "object",
+        "properties": {
+          "maxOperations": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "maxPayloadSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "supported": {
+            "type": "boolean"
+          }
+        }
+      },
+      "ScimChangePasswordSupport": {
+        "type": "object",
+        "properties": {
+          "supported": {
+            "type": "boolean"
+          }
+        }
+      },
+      "ScimEmail": {
+        "type": "object",
+        "properties": {
+          "display": {
+            "type": "string"
+          },
+          "primary": {
+            "type": "boolean"
+          },
+          "type": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "value",
+          "primary"
+        ]
+      },
+      "ScimEtagSupport": {
+        "type": "object",
+        "properties": {
+          "maxResults": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "supported": {
+            "type": "boolean"
+          }
+        }
+      },
+      "ScimFilterSupport": {
+        "type": "object",
+        "properties": {
+          "maxResults": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "supported": {
+            "type": "boolean"
+          }
+        }
+      },
+      "ScimGroup": {
+        "type": "object",
+        "properties": {
+          "displayName": {
+            "type": "string"
+          },
+          "externalId": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "members": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ScimResource"
+            }
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ScimMetadata"
+          },
+          "schemas": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "ScimMetadata": {
+        "type": "object",
+        "properties": {
+          "created": {
+            "type": "string"
+          },
+          "lastModified": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          },
+          "resourceType": {
+            "type": "string"
+          }
+        },
+        "title": "meta"
+      },
+      "ScimName": {
+        "type": "object",
+        "properties": {
+          "familyName": {
+            "type": "string"
+          },
+          "givenName": {
+            "type": "string"
+          }
+        },
+        "title": "name"
+      },
+      "ScimOperations": {
+        "type": "object",
+        "properties": {
+          "op": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "value": {
+            "$ref": "#/components/schemas/Any"
+          }
+        }
+      },
+      "ScimResource": {
+        "type": "object",
+        "properties": {
+          "display": {
+            "type": "string"
+          },
+          "ref": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "title": "SCIM"
+      },
+      "ScimResourceType": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "endpoint": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ScimMetadata"
+          },
+          "name": {
+            "type": "string"
+          },
+          "schema": {
+            "type": "string"
+          },
+          "schemas": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "ScimSchema": {
+        "type": "object",
+        "properties": {
+          "attributes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ScimSchemaAttribute"
+            }
+          },
+          "description": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ScimMetadata"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "ScimSchemaAttribute": {
+        "type": "object",
+        "properties": {
+          "canonicalValues": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "caseExact": {
+            "type": "boolean"
+          },
+          "description": {
+            "type": "string"
+          },
+          "multiValued": {
+            "type": "boolean"
+          },
+          "mutability": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "referenceTypes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "required": {
+            "type": "boolean"
+          },
+          "returned": {
+            "type": "string"
+          },
+          "subAttributes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ScimSchemaAttribute"
+            }
+          },
+          "type": {
+            "type": "string"
+          },
+          "uniqueness": {
+            "type": "string"
+          }
+        }
+      },
+      "ScimSortSupport": {
+        "type": "object",
+        "properties": {
+          "supported": {
+            "type": "boolean"
+          }
+        }
+      },
+      "ScimUser": {
+        "type": "object",
+        "properties": {
+          "active": {
+            "type": "boolean"
+          },
+          "displayName": {
+            "type": "string"
+          },
+          "emails": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ScimEmail"
+            }
+          },
+          "externalId": {
+            "type": "string"
+          },
+          "groups": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ScimResource"
+            }
+          },
+          "id": {
+            "type": "string"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ScimMetadata"
+          },
+          "name": {
+            "$ref": "#/components/schemas/ScimName"
+          },
+          "schemas": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "userName": {
+            "type": "string"
+          }
+        }
+      },
       "ServerlessClusterConfig": {
         "type": "object",
         "properties": {
@@ -8256,6 +11489,20 @@
           "request_unit_limit",
           "storage_mib_limit"
         ]
+      },
+      "UserGroupRoleGrant": {
+        "type": "object",
+        "properties": {
+          "group_roles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BuiltInFromGroups"
+            }
+          },
+          "user_id": {
+            "type": "string"
+          }
+        }
       },
       "UserRoleGrants": {
         "type": "object",

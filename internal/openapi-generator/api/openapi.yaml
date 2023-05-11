@@ -17,6 +17,1512 @@ security:
 tags:
 - name: CockroachCloud
 paths:
+  /api/scim/v2/Groups:
+    get:
+      operationId: CockroachCloud_GetGroups
+      parameters:
+      - explode: true
+        in: query
+        name: attributes
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: excludedAttributes
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetGroupsResponse'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Gets groups based on query parameters
+      tags:
+      - CockroachCloud
+      x-badges:
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request GET \
+            --url 'https://cockroachlabs.cloud/api/scim/v2/Groups?attributes=SOME_STRING_VALUE&excludedAttributes=SOME_STRING_VALUE' \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+    post:
+      operationId: CockroachCloud_CreateGroup
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateGroupRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScimGroup'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Creates a group
+      tags:
+      - CockroachCloud
+      x-badges:
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request POST \
+            --url https://cockroachlabs.cloud/api/scim/v2/Groups \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
+            --header 'content-type: application/json' \
+            --data '{"displayName":"Test SCIM","members":[],"schemas":["urn:ietf:params:scim:schemas:core:2.0:Group"]}'
+  /api/scim/v2/Groups/.search:
+    put:
+      operationId: CockroachCloud_GetGroups2
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetGroupsRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetGroupsResponse'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Gets groups based on query parameters
+      tags:
+      - CockroachCloud
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request PUT \
+            --url https://cockroachlabs.cloud/api/scim/v2/Groups/.search \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
+            --header 'content-type: application/json' \
+            --data '{"attributes":"string","excludedAttributes":"string"}'
+  /api/scim/v2/Groups/{id}:
+    delete:
+      operationId: CockroachCloud_DeleteGroup
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Deletes a group based on id
+      tags:
+      - CockroachCloud
+      x-badges:
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request DELETE \
+            --url https://cockroachlabs.cloud/api/scim/v2/Groups/{id} \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+    get:
+      operationId: CockroachCloud_GetGroup
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: attributes
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: excludedAttributes
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScimGroup'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Gets a group based on id
+      tags:
+      - CockroachCloud
+      x-badges:
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request GET \
+            --url 'https://cockroachlabs.cloud/api/scim/v2/Groups/{id}?attributes=SOME_STRING_VALUE&excludedAttributes=SOME_STRING_VALUE' \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+    patch:
+      operationId: CockroachCloud_PatchGroup
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchGroupRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScimGroup'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Updates a group by specifying individual values to update
+      tags:
+      - CockroachCloud
+      x-badges:
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request PATCH \
+            --url https://cockroachlabs.cloud/api/scim/v2/Groups/{id} \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
+            --header 'content-type: application/json' \
+            --data '{"Operations":[{"op":"string","path":"string","value":{"@type":"string","property1":null,"property2":null}}],"schemas":["string"]}'
+    put:
+      operationId: CockroachCloud_UpdateGroup
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateGroupRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScimGroup'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Updates a group by supplying all values of the user object
+      tags:
+      - CockroachCloud
+      x-badges:
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request PUT \
+            --url https://cockroachlabs.cloud/api/scim/v2/Groups/{id} \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
+            --header 'content-type: application/json' \
+            --data '{"displayName":"Test SCIM","id":"23a35c27-23d3-4c03-b4c5-6443c09e7173","members":[{"display":"croach@example.com","value":"45a35c27-23d3-4d03-c4c5-9043c09e7175"}],"schemas":["urn:ietf:params:scim:schemas:core:2.0:Group"]}'
+  /api/scim/v2/Groups/{id}/.search:
+    put:
+      operationId: CockroachCloud_GetGroup2
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetGroupRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScimGroup'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Gets a group based on id
+      tags:
+      - CockroachCloud
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request PUT \
+            --url https://cockroachlabs.cloud/api/scim/v2/Groups/{id}/.search \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
+            --header 'content-type: application/json' \
+            --data '{"attributes":"string","excludedAttributes":"string"}'
+  /api/scim/v2/ResourceTypes:
+    get:
+      operationId: CockroachCloud_GetResourceTypes
+      parameters:
+      - explode: true
+        in: query
+        name: attributes
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: excludedAttributes
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetResourceTypesResponse'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      tags:
+      - CockroachCloud
+      x-badges:
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request GET \
+            --url 'https://cockroachlabs.cloud/api/scim/v2/ResourceTypes?attributes=SOME_STRING_VALUE&excludedAttributes=SOME_STRING_VALUE' \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+  /api/scim/v2/ResourceTypes/{resourceId}:
+    get:
+      operationId: CockroachCloud_GetResourceType
+      parameters:
+      - explode: false
+        in: path
+        name: resourceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: attributes
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: excludedAttributes
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScimResourceType'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      tags:
+      - CockroachCloud
+      x-badges:
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request GET \
+            --url 'https://cockroachlabs.cloud/api/scim/v2/ResourceTypes/{resourceId}?attributes=SOME_STRING_VALUE&excludedAttributes=SOME_STRING_VALUE' \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+  /api/scim/v2/Schemas:
+    get:
+      operationId: CockroachCloud_GetSchemas
+      parameters:
+      - explode: true
+        in: query
+        name: attributes
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: excludedAttributes
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetSchemasResponse'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      tags:
+      - CockroachCloud
+      x-badges:
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request GET \
+            --url 'https://cockroachlabs.cloud/api/scim/v2/Schemas?attributes=SOME_STRING_VALUE&excludedAttributes=SOME_STRING_VALUE' \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+  /api/scim/v2/Schemas/{schemaId}:
+    get:
+      operationId: CockroachCloud_GetSchema
+      parameters:
+      - explode: false
+        in: path
+        name: schemaId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: attributes
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: excludedAttributes
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScimSchema'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      tags:
+      - CockroachCloud
+      x-badges:
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request GET \
+            --url 'https://cockroachlabs.cloud/api/scim/v2/Schemas/{schemaId}?attributes=SOME_STRING_VALUE&excludedAttributes=SOME_STRING_VALUE' \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+  /api/scim/v2/ServiceProviderConfig:
+    get:
+      operationId: CockroachCloud_GetServiceProviderConfig
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetServiceProviderConfigResponse'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Returns our SCIM configuration
+      tags:
+      - CockroachCloud
+      x-badges:
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request GET \
+            --url https://cockroachlabs.cloud/api/scim/v2/ServiceProviderConfig \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+  /api/scim/v2/Users:
+    get:
+      operationId: CockroachCloud_GetUsers
+      parameters:
+      - explode: true
+        in: query
+        name: filter
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: attributes
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: excludedAttributes
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetUsersResponse'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Gets Users based on query parameters
+      tags:
+      - CockroachCloud
+      x-badges:
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request GET \
+            --url 'https://cockroachlabs.cloud/api/scim/v2/Users?filter=SOME_STRING_VALUE&attributes=SOME_STRING_VALUE&excludedAttributes=SOME_STRING_VALUE' \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+    post:
+      operationId: CockroachCloud_CreateUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScimUser'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Creates a user
+      tags:
+      - CockroachCloud
+      x-badges:
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request POST \
+            --url https://cockroachlabs.cloud/api/scim/v2/Users \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
+            --header 'content-type: application/json' \
+            --data '{"active":true,"displayName":"Carl Roach","emails":[{"primary":true,"type":"work","value":"croach@example.com"}],"externalId":"11ujl29u0le5T6Aj10h9","name":{"familyName":"Roach","givenName":"Carl"},"schemas":["urn:ietf:params:scim:schemas:core:2.0:User"],"userName":"croach@example.com"}'
+  /api/scim/v2/Users/.search:
+    put:
+      operationId: CockroachCloud_GetUsers2
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetUsersRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetUsersResponse'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Gets Users based on query parameters
+      tags:
+      - CockroachCloud
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request PUT \
+            --url https://cockroachlabs.cloud/api/scim/v2/Users/.search \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
+            --header 'content-type: application/json' \
+            --data '{"attributes":"string","excludedAttributes":"string","filter":"string"}'
+  /api/scim/v2/Users/{id}:
+    delete:
+      operationId: CockroachCloud_DeleteUser
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Deletes a user based on id
+      tags:
+      - CockroachCloud
+      x-badges:
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request DELETE \
+            --url https://cockroachlabs.cloud/api/scim/v2/Users/{id} \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+    get:
+      operationId: CockroachCloud_GetUser
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: attributes
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: excludedAttributes
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScimUser'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Gets a user based on id
+      tags:
+      - CockroachCloud
+      x-badges:
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request GET \
+            --url 'https://cockroachlabs.cloud/api/scim/v2/Users/{id}?attributes=SOME_STRING_VALUE&excludedAttributes=SOME_STRING_VALUE' \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+    patch:
+      operationId: CockroachCloud_PatchUser
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchUserRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScimUser'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Updates a user by specifying individual values to update
+      tags:
+      - CockroachCloud
+      x-badges:
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request PATCH \
+            --url https://cockroachlabs.cloud/api/scim/v2/Users/{id} \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
+            --header 'content-type: application/json' \
+            --data '{"Operations":[{"op":"string","path":"string","value":{"@type":"string","property1":null,"property2":null}}],"schemas":["string"]}'
+    put:
+      operationId: CockroachCloud_UpdateUser
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScimUser'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Updates a user by supplying all values of the user object
+      tags:
+      - CockroachCloud
+      x-badges:
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request PUT \
+            --url https://cockroachlabs.cloud/api/scim/v2/Users/{id} \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
+            --header 'content-type: application/json' \
+            --data '{"active":true,"emails":[{"display":"croach@example.com","primary":true,"type":"work","value":"croach@example.com"}],"name":{"familyName":"Roach","givenName":"Carl"},"schemas":["urn:ietf:params:scim:schemas:core:2.0:User"]}'
+  /api/scim/v2/Users/{id}/.search:
+    put:
+      operationId: CockroachCloud_GetUser2
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetUserRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScimUser'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Gets a user based on id
+      tags:
+      - CockroachCloud
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request PUT \
+            --url https://cockroachlabs.cloud/api/scim/v2/Users/{id}/.search \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
+            --header 'content-type: application/json' \
+            --data '{"attributes":"string","excludedAttributes":"string"}'
+  /api/v1/auditlogevents:
+    get:
+      operationId: CockroachCloud_ListAuditLogs
+      parameters:
+      - description: |-
+          starting_from is the (exclusive) timestamp from which log entries will be
+          returned in the response based on their created_at time, respecting the
+          sort order specified in pagination. If unset, the default will be the
+          current time if results are returned in descending order and the
+          beginning of time if results are in ascending order.
+        explode: true
+        in: query
+        name: starting_from
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: |-
+          sort_order is the direction of pagination, with starting_from as the
+          start point. If unset, the default is ascending order.
+
+           - ASC: Sort in ascending order. This is the default unless otherwise specified.
+           - DESC: Sort in descending order.
+        explode: true
+        in: query
+        name: sort_order
+        required: false
+        schema:
+          enum:
+          - ASC
+          - DESC
+          type: string
+        style: form
+      - description: |-
+          limit is the number of entries requested in the response. Note that the
+          response may still contain slightly more results, since the response will
+          always contain every entry at a particular timestamp.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListAuditLogsResponse'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: "Limited Access: List audit logs."
+      tags:
+      - CockroachCloud
+      x-badges:
+      - color: red
+        label: LIMITED ACCESS
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request GET \
+            --url 'https://cockroachlabs.cloud/api/v1/auditlogevents?starting_from=SOME_STRING_VALUE&sort_order=SOME_STRING_VALUE&limit=SOME_INTEGER_VALUE' \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
   /api/v1/cluster-versions:
     get:
       description: "Sort order: Version number descending"
@@ -273,6 +1779,7 @@ paths:
 
            - GCP: The Google Cloud Platform cloud provider.
            - AWS: The Amazon Web Services cloud provider.
+           - AZURE: Limited Access: The Azure cloud provider.
         explode: true
         in: query
         name: provider
@@ -281,6 +1788,7 @@ paths:
           enum:
           - GCP
           - AWS
+          - AZURE
           type: string
         style: form
       - description: Optional filter to only show regions available for serverless
@@ -4523,6 +6031,8 @@ components:
               "@type": "type.googleapis.com/google.protobuf.Duration",
               "value": "1.212s"
             }
+      example:
+        '@type': '@type'
       properties:
         '@type':
           description: |-
@@ -4555,6 +6065,135 @@ components:
             used with implementation specific semantics.
           type: string
       type: object
+    AuditLogAction:
+      enum:
+      - AUDIT_LOG_ACTION_CREATE_CLUSTER
+      - AUDIT_LOG_ACTION_DELETE_CLUSTER
+      - AUDIT_LOG_ACTION_INVITE_USER_TO_ORGANIZATION
+      - AUDIT_LOG_ACTION_EDIT_USER_INVITE
+      - AUDIT_LOG_ACTION_REVOKE_USER_INVITE
+      - AUDIT_LOG_ACTION_ACCEPT_USER_INVITE
+      - AUDIT_LOG_ACTION_ASSIGN_USER_ROLE
+      - AUDIT_LOG_ACTION_DELETE_USER_FROM_ORGANIZATION
+      - AUDIT_LOG_ACTION_CREATE_SERVICE_ACCOUNT
+      - AUDIT_LOG_ACTION_UPDATE_SERVICE_ACCOUNT
+      - AUDIT_LOG_ACTION_DELETE_SERVICE_ACCOUNT
+      - AUDIT_LOG_ACTION_CREATE_API_KEY
+      - AUDIT_LOG_ACTION_UPDATE_API_KEY
+      - AUDIT_LOG_ACTION_DELETE_API_KEY
+      - AUDIT_LOG_ACTION_UPDATE_CLUSTER
+      - AUDIT_LOG_ACTION_CREATE_SQL_USER
+      - AUDIT_LOG_ACTION_CHANGE_SQL_USER_PASSWORD
+      - AUDIT_LOG_ACTION_DELETE_SQL_USER
+      - AUDIT_LOG_ACTION_ADD_IP_ALLOWLIST
+      - AUDIT_LOG_ACTION_EDIT_IP_ALLOWLIST
+      - AUDIT_LOG_ACTION_DELETE_IP_ALLOWLIST
+      - AUDIT_LOG_ACTION_CREATE_VPC_PEERING
+      - AUDIT_LOG_ACTION_DELETE_VPC_PEERING
+      - AUDIT_LOG_ACTION_CREATE_PRIVATE_LINK
+      - AUDIT_LOG_ACTION_ACCEPT_PRIVATE_LINK
+      - AUDIT_LOG_ACTION_REJECT_PRIVATE_LINK
+      - AUDIT_LOG_ACTION_USER_LOGIN
+      - AUDIT_LOG_ACTION_ADD_USER_TO_ROLE
+      - AUDIT_LOG_ACTION_REMOVE_USER_FROM_ROLE
+      - AUDIT_LOG_ACTION_CREATE_USER
+      - AUDIT_LOG_ACTION_DELETE_USER
+      - AUDIT_LOG_ACTION_UPDATE_USER
+      - AUDIT_LOG_ACTION_CREATE_GROUP
+      - AUDIT_LOG_ACTION_DELETE_GROUP
+      - AUDIT_LOG_ACTION_UPDATE_GROUP
+      type: string
+    AuditLogEntry:
+      description: |-
+        AuditLogEntry represents an entry in the cloud event log.
+        Note that this message definition should always match exactly with the
+        corresponding `AuditLogEntry` message in `console/consolepb/console.proto`.
+      example:
+        service_account_name: service_account_name
+        cluster_name: cluster_name
+        metadata:
+          ip_address: ip_address
+        trace_id: trace_id
+        user_email: user_email
+        created_at: 2000-01-23T04:56:07.000+00:00
+        session_id: session_id
+        source: null
+        error: error
+        cluster_id: cluster_id
+        payload: "{}"
+        action: null
+        id: id
+      properties:
+        action:
+          $ref: '#/components/schemas/AuditLogAction'
+        cluster_id:
+          description: |-
+            ClusterId is the ID of the cluster to which this log entry applies, if it
+            applies to a single cluster.
+          type: string
+        cluster_name:
+          description: |-
+            ClusterName is the name of the cluster to which this log entry applies, if
+            it applies to a single cluster.
+          type: string
+        created_at:
+          description: CreatedAt is the time that this log entry was recorded.
+          format: date-time
+          type: string
+        error:
+          description: Error is the error that applies to this entry if it represents
+            a failure.
+          type: string
+        id:
+          description: Id uniquely identifies this entry.
+          type: string
+        metadata:
+          $ref: '#/components/schemas/AuditLogMetadata'
+        payload:
+          description: |-
+            Payload is a representation of the essential details relating to this
+            log entry.
+          type: object
+        service_account_name:
+          description: |-
+            ServiceAccountName is the name of the service account that triggered this
+            log entry. If it was not a service account, it will be empty.
+          type: string
+        session_id:
+          description: |-
+            SessionId is an ID that can be used to correlate this log entry with
+            others that are emitted as part of the same user session, typically for
+            users interacting through the UI. It should be treated as an opaque string
+            with no guaranteed structure.
+          type: string
+        source:
+          $ref: '#/components/schemas/AuditLogSource'
+        trace_id:
+          description: |-
+            TraceId is an ID that can be used to correlate this log entry with others
+            that are emitted as part of the same process. It should be treated as an
+            opaque string with no guaranteed structure.
+          type: string
+        user_email:
+          description: |-
+            UserEmail is the email address of the user that triggered this log entry.
+            If it was not a human user, it will be empty.
+          type: string
+      type: object
+    AuditLogMetadata:
+      example:
+        ip_address: ip_address
+      properties:
+        ip_address:
+          type: string
+      type: object
+    AuditLogSource:
+      enum:
+      - AUDIT_LOG_SOURCE_CC_API
+      - AUDIT_LOG_SOURCE_CLI
+      - AUDIT_LOG_SOURCE_UI
+      - AUDIT_LOG_SOURCE_INTERNAL
+      type: string
     AwsEndpointConnection:
       example:
         service_id: service_id
@@ -4606,6 +6245,24 @@ components:
           type: array
       required:
       - connections
+      type: object
+    BuiltInFromGroups:
+      example:
+        role:
+          resource:
+            id: id
+            type: null
+          name: null
+        group_names:
+        - group_names
+        - group_names
+      properties:
+        group_names:
+          items:
+            type: string
+          type: array
+        role:
+          $ref: '#/components/schemas/BuiltInRole'
       type: object
     BuiltInRole:
       example:
@@ -4726,8 +6383,6 @@ components:
           type: string
       type: object
     CMEKKeyType:
-      description: "- UNKNOWN_KEY_TYPE: UNKNOWN should never be used; if it is used,\
-        \ it indicates a bug."
       enum:
       - AWS_KMS
       - GCP_CLOUD_KMS
@@ -4783,7 +6438,6 @@ components:
         CMEKStatus describes the current status of CMEK for an entire CRDB cluster
         or a CMEK key within a region.
 
-         - UNKNOWN_STATUS: UNKNOWN should never be used; if it is used, it indicates a bug.
          - DISABLED: DISABLED corresponds to the state of a cluster or region-level key when
         CMEK has finished being disabled. By default, CMEK will be disabled for
         new clusters.
@@ -4833,7 +6487,6 @@ components:
       type: object
     ClientCACertStatus:
       description: |2-
-         - UNKNOWN_STATUS: UNKNOWN should never be used; if it is used, it indicates a bug.
          - NOT_SET: NOT_SET indicates a client CA cert is not set on the cluster.
         New clusters won't have a client CA cert set.
          - IS_SET: IS_SET indicates a client CA cert is set on the cluster.
@@ -4849,9 +6502,11 @@ components:
       description: |2-
          - GCP: The Google Cloud Platform cloud provider.
          - AWS: The Amazon Web Services cloud provider.
+         - AZURE: Limited Access: The Azure cloud provider.
       enum:
       - GCP
       - AWS
+      - AZURE
       type: string
     CloudProviderRegion:
       example:
@@ -5106,6 +6761,153 @@ components:
           $ref: '#/components/schemas/DedicatedClusterCreateSpecification'
         serverless:
           $ref: '#/components/schemas/ServerlessClusterCreateSpecification'
+      type: object
+    CreateGroupRequest:
+      example:
+        displayName: Test SCIM
+        members: []
+        schemas:
+        - "0": u
+          "1": r
+          "2": "n"
+          "3": ':'
+          "4": i
+          "5": e
+          "6": t
+          "7": f
+          "8": ':'
+          "9": p
+          "10": a
+          "11": r
+          "12": a
+          "13": m
+          "14": s
+          "15": ':'
+          "16": s
+          "17": c
+          "18": i
+          "19": m
+          "20": ':'
+          "21": s
+          "22": c
+          "23": h
+          "24": e
+          "25": m
+          "26": a
+          "27": s
+          "28": ':'
+          "29": c
+          "30": o
+          "31": r
+          "32": e
+          "33": ':'
+          "34": "2"
+          "35": "."
+          "36": "0"
+          "37": ':'
+          "38": G
+          "39": r
+          "40": o
+          "41": u
+          "42": p
+      properties:
+        displayName:
+          type: string
+        externalId:
+          type: string
+        members:
+          items:
+            $ref: '#/components/schemas/ScimResource'
+          type: array
+        schemas:
+          items:
+            type: string
+          type: array
+      required:
+      - displayName
+      title: CreateGroupRequest
+      type: object
+    CreateUserRequest:
+      example:
+        active: true
+        displayName: Carl Roach
+        emails:
+        - primary: true
+          type: work
+          value: croach@example.com
+        externalId: 11ujl29u0le5T6Aj10h9
+        name:
+          familyName: Roach
+          givenName: Carl
+        schemas:
+        - "0": u
+          "1": r
+          "2": "n"
+          "3": ':'
+          "4": i
+          "5": e
+          "6": t
+          "7": f
+          "8": ':'
+          "9": p
+          "10": a
+          "11": r
+          "12": a
+          "13": m
+          "14": s
+          "15": ':'
+          "16": s
+          "17": c
+          "18": i
+          "19": m
+          "20": ':'
+          "21": s
+          "22": c
+          "23": h
+          "24": e
+          "25": m
+          "26": a
+          "27": s
+          "28": ':'
+          "29": c
+          "30": o
+          "31": r
+          "32": e
+          "33": ':'
+          "34": "2"
+          "35": "."
+          "36": "0"
+          "37": ':'
+          "38": U
+          "39": s
+          "40": e
+          "41": r
+        userName: croach@example.com
+      properties:
+        active:
+          type: boolean
+        displayName:
+          type: string
+        emails:
+          items:
+            $ref: '#/components/schemas/ScimEmail'
+          type: array
+        externalId:
+          type: string
+        name:
+          $ref: '#/components/schemas/ScimName'
+        schemas:
+          items:
+            type: string
+          type: array
+        userName:
+          type: string
+      required:
+      - active
+      - displayName
+      - emails
+      - name
+      title: CreateUserRequest
       type: object
     Currency.Type:
       enum:
@@ -5462,6 +7264,23 @@ components:
       type: string
     GetAllRolesForUserResponse:
       example:
+        group_roles:
+        - role:
+            resource:
+              id: id
+              type: null
+            name: null
+          group_names:
+          - group_names
+          - group_names
+        - role:
+            resource:
+              id: id
+              type: null
+            name: null
+          group_names:
+          - group_names
+          - group_names
         roles:
         - resource:
             id: id
@@ -5472,6 +7291,10 @@ components:
             type: null
           name: null
       properties:
+        group_roles:
+          items:
+            $ref: '#/components/schemas/BuiltInFromGroups'
+          type: array
         roles:
           items:
             $ref: '#/components/schemas/BuiltInRole'
@@ -5523,6 +7346,82 @@ components:
       - rule
       title: GetEgressRuleResponse
       type: object
+    GetGroupsRequest:
+      example:
+        attributes: attributes
+        excludedAttributes: excludedAttributes
+      properties:
+        attributes:
+          type: string
+        excludedAttributes:
+          type: string
+      title: GetGroupsRequest
+      type: object
+    GetGroupsResponse:
+      example:
+        totalResults: 6
+        itemsPerPage: 0
+        schemas:
+        - schemas
+        - schemas
+        Resources:
+        - displayName: displayName
+          meta:
+            created: created
+            location: location
+            lastModified: lastModified
+            resourceType: resourceType
+          members:
+          - ref: ref
+            display: display
+            type: type
+            value: value
+          - ref: ref
+            display: display
+            type: type
+            value: value
+          schemas:
+          - schemas
+          - schemas
+          externalId: externalId
+          id: id
+        - displayName: displayName
+          meta:
+            created: created
+            location: location
+            lastModified: lastModified
+            resourceType: resourceType
+          members:
+          - ref: ref
+            display: display
+            type: type
+            value: value
+          - ref: ref
+            display: display
+            type: type
+            value: value
+          schemas:
+          - schemas
+          - schemas
+          externalId: externalId
+          id: id
+      properties:
+        Resources:
+          items:
+            $ref: '#/components/schemas/ScimGroup'
+          type: array
+        itemsPerPage:
+          format: int32
+          type: integer
+        schemas:
+          items:
+            type: string
+          type: array
+        totalResults:
+          format: int32
+          type: integer
+      title: GetGroupsResponse
+      type: object
     GetPersonUsersByEmailResponse:
       example:
         user:
@@ -5533,6 +7432,343 @@ components:
           $ref: '#/components/schemas/PersonUserInfo'
       required:
       - users
+      type: object
+    GetResourceTypesResponse:
+      example:
+        startIndex: 6
+        totalResults: 1
+        itemsPerPage: 0
+        schemas:
+        - schemas
+        - schemas
+        Resources:
+        - schema: schema
+          endpoint: endpoint
+          meta:
+            created: created
+            location: location
+            lastModified: lastModified
+            resourceType: resourceType
+          schemas:
+          - schemas
+          - schemas
+          name: name
+          description: description
+          id: id
+        - schema: schema
+          endpoint: endpoint
+          meta:
+            created: created
+            location: location
+            lastModified: lastModified
+            resourceType: resourceType
+          schemas:
+          - schemas
+          - schemas
+          name: name
+          description: description
+          id: id
+      properties:
+        Resources:
+          items:
+            $ref: '#/components/schemas/ScimResourceType'
+          type: array
+        itemsPerPage:
+          format: int32
+          type: integer
+        schemas:
+          items:
+            type: string
+          type: array
+        startIndex:
+          format: int32
+          type: integer
+        totalResults:
+          format: int32
+          type: integer
+      title: GetResourceTypesResponse
+      type: object
+    GetSchemasResponse:
+      example:
+        startIndex: 6
+        totalResults: 1
+        itemsPerPage: 0
+        schemas:
+        - schemas
+        - schemas
+        Resources:
+        - meta:
+            created: created
+            location: location
+            lastModified: lastModified
+            resourceType: resourceType
+          name: name
+          description: description
+          attributes:
+          - uniqueness: uniqueness
+            name: name
+            canonicalValues:
+            - canonicalValues
+            - canonicalValues
+            description: description
+            referenceTypes:
+            - referenceTypes
+            - referenceTypes
+            mutability: mutability
+            caseExact: true
+            multiValued: true
+            returned: returned
+            type: type
+            required: true
+            subAttributes:
+            - null
+            - null
+          - uniqueness: uniqueness
+            name: name
+            canonicalValues:
+            - canonicalValues
+            - canonicalValues
+            description: description
+            referenceTypes:
+            - referenceTypes
+            - referenceTypes
+            mutability: mutability
+            caseExact: true
+            multiValued: true
+            returned: returned
+            type: type
+            required: true
+            subAttributes:
+            - null
+            - null
+          id: id
+        - meta:
+            created: created
+            location: location
+            lastModified: lastModified
+            resourceType: resourceType
+          name: name
+          description: description
+          attributes:
+          - uniqueness: uniqueness
+            name: name
+            canonicalValues:
+            - canonicalValues
+            - canonicalValues
+            description: description
+            referenceTypes:
+            - referenceTypes
+            - referenceTypes
+            mutability: mutability
+            caseExact: true
+            multiValued: true
+            returned: returned
+            type: type
+            required: true
+            subAttributes:
+            - null
+            - null
+          - uniqueness: uniqueness
+            name: name
+            canonicalValues:
+            - canonicalValues
+            - canonicalValues
+            description: description
+            referenceTypes:
+            - referenceTypes
+            - referenceTypes
+            mutability: mutability
+            caseExact: true
+            multiValued: true
+            returned: returned
+            type: type
+            required: true
+            subAttributes:
+            - null
+            - null
+          id: id
+      properties:
+        Resources:
+          items:
+            $ref: '#/components/schemas/ScimSchema'
+          type: array
+        itemsPerPage:
+          format: int32
+          type: integer
+        schemas:
+          items:
+            type: string
+          type: array
+        startIndex:
+          format: int32
+          type: integer
+        totalResults:
+          format: int32
+          type: integer
+      title: GetSchemasResponse
+      type: object
+    GetServiceProviderConfigResponse:
+      example:
+        filter:
+          maxResults: 5
+          supported: true
+        authenticationSchemes:
+        - documentationUri: documentationUri
+          name: name
+          description: description
+          specUri: specUri
+          type: type
+          primary: true
+        - documentationUri: documentationUri
+          name: name
+          description: description
+          specUri: specUri
+          type: type
+          primary: true
+        meta:
+          created: created
+          location: location
+          lastModified: lastModified
+          resourceType: resourceType
+        schemas:
+        - schemas
+        - schemas
+        etag:
+          maxResults: 1
+          supported: true
+        sort:
+          supported: true
+        bulk:
+          maxPayloadSize: 6
+          maxOperations: 0
+          supported: true
+        changePassword:
+          supported: true
+      properties:
+        authenticationSchemes:
+          items:
+            $ref: '#/components/schemas/ScimAuthenticationScheme'
+          type: array
+        bulk:
+          $ref: '#/components/schemas/ScimBulkSupport'
+        changePassword:
+          $ref: '#/components/schemas/ScimChangePasswordSupport'
+        etag:
+          $ref: '#/components/schemas/ScimEtagSupport'
+        filter:
+          $ref: '#/components/schemas/ScimFilterSupport'
+        meta:
+          $ref: '#/components/schemas/ScimMetadata'
+        schemas:
+          items:
+            type: string
+          type: array
+        sort:
+          $ref: '#/components/schemas/ScimSortSupport'
+      title: GetServiceProviderConfigResponse
+      type: object
+    GetUsersRequest:
+      example:
+        filter: filter
+        attributes: attributes
+        excludedAttributes: excludedAttributes
+      properties:
+        attributes:
+          type: string
+        excludedAttributes:
+          type: string
+        filter:
+          type: string
+      title: GetUsersRequest
+      type: object
+    GetUsersResponse:
+      example:
+        totalResults: 0
+        schemas:
+        - schemas
+        - schemas
+        Resources:
+        - emails:
+          - display: display
+            type: type
+            value: value
+            primary: true
+          - display: display
+            type: type
+            value: value
+            primary: true
+          displayName: displayName
+          meta:
+            created: created
+            location: location
+            lastModified: lastModified
+            resourceType: resourceType
+          schemas:
+          - schemas
+          - schemas
+          name:
+            familyName: familyName
+            givenName: givenName
+          active: true
+          externalId: externalId
+          groups:
+          - ref: ref
+            display: display
+            type: type
+            value: value
+          - ref: ref
+            display: display
+            type: type
+            value: value
+          id: id
+          userName: userName
+        - emails:
+          - display: display
+            type: type
+            value: value
+            primary: true
+          - display: display
+            type: type
+            value: value
+            primary: true
+          displayName: displayName
+          meta:
+            created: created
+            location: location
+            lastModified: lastModified
+            resourceType: resourceType
+          schemas:
+          - schemas
+          - schemas
+          name:
+            familyName: familyName
+            givenName: givenName
+          active: true
+          externalId: externalId
+          groups:
+          - ref: ref
+            display: display
+            type: type
+            value: value
+          - ref: ref
+            display: display
+            type: type
+            value: value
+          id: id
+          userName: userName
+      properties:
+        Resources:
+          items:
+            $ref: '#/components/schemas/ScimUser'
+          type: array
+        schemas:
+          items:
+            type: string
+          type: array
+        totalResults:
+          format: int32
+          type: integer
+      title: GetUsersResponse
       type: object
     Invoice:
       description: |-
@@ -5860,6 +8096,55 @@ components:
       - allowlist
       - propagating
       title: ListAllowlistEntriesResponse
+      type: object
+    ListAuditLogsResponse:
+      example:
+        next_starting_from: 2000-01-23T04:56:07.000+00:00
+        entries:
+        - service_account_name: service_account_name
+          cluster_name: cluster_name
+          metadata:
+            ip_address: ip_address
+          trace_id: trace_id
+          user_email: user_email
+          created_at: 2000-01-23T04:56:07.000+00:00
+          session_id: session_id
+          source: null
+          error: error
+          cluster_id: cluster_id
+          payload: "{}"
+          action: null
+          id: id
+        - service_account_name: service_account_name
+          cluster_name: cluster_name
+          metadata:
+            ip_address: ip_address
+          trace_id: trace_id
+          user_email: user_email
+          created_at: 2000-01-23T04:56:07.000+00:00
+          session_id: session_id
+          source: null
+          error: error
+          cluster_id: cluster_id
+          payload: "{}"
+          action: null
+          id: id
+      properties:
+        entries:
+          description: |-
+            entries is the contiguous list of audit log entries matching the
+            pagination request, sorted in the order requested.
+          items:
+            $ref: '#/components/schemas/AuditLogEntry'
+          type: array
+        next_starting_from:
+          description: |-
+            next_starting_from is the timestamp the caller should use to continue
+            paginating in the same direction. If the timestamp is unset, it means
+            that there are no more entries in the direction of the request, and
+            there never will be.
+          format: date-time
+          type: string
       type: object
     ListAvailableRegionsResponse:
       example:
@@ -6281,6 +8566,43 @@ components:
         pagination:
           next_page: next_page
           previous_page: previous_page
+        user_group_grants:
+        - group_roles:
+          - role:
+              resource:
+                id: id
+                type: null
+              name: null
+            group_names:
+            - group_names
+            - group_names
+          - role:
+              resource:
+                id: id
+                type: null
+              name: null
+            group_names:
+            - group_names
+            - group_names
+          user_id: user_id
+        - group_roles:
+          - role:
+              resource:
+                id: id
+                type: null
+              name: null
+            group_names:
+            - group_names
+            - group_names
+          - role:
+              resource:
+                id: id
+                type: null
+              name: null
+            group_names:
+            - group_names
+            - group_names
+          user_id: user_id
       properties:
         grants:
           items:
@@ -6288,6 +8610,10 @@ components:
           type: array
         pagination:
           $ref: '#/components/schemas/KeysetPaginationResponse'
+        user_group_grants:
+          items:
+            $ref: '#/components/schemas/UserGroupRoleGrant'
+          type: array
       title: list_role_grants_response contains a representation of all roles
       type: object
     ListSQLUsersResponse:
@@ -6524,6 +8850,15 @@ components:
       - LIVE
       - NOT_READY
       type: string
+    NullValue:
+      description: |-
+        `NullValue` is a singleton enumeration to represent the null value for the
+        `Value` type union.
+
+         The JSON representation for `NullValue` is JSON `null`.
+
+         - NULL_VALUE: Null value.
+      type: string
     OperatingSystem.Type:
       enum:
       - MAC
@@ -6720,6 +9055,407 @@ components:
       required:
       - name
       type: object
+    ScimAuthenticationScheme:
+      example:
+        documentationUri: documentationUri
+        name: name
+        description: description
+        specUri: specUri
+        type: type
+        primary: true
+      properties:
+        description:
+          type: string
+        documentationUri:
+          type: string
+        name:
+          type: string
+        primary:
+          type: boolean
+        specUri:
+          type: string
+        type:
+          type: string
+      type: object
+    ScimBulkSupport:
+      example:
+        maxPayloadSize: 6
+        maxOperations: 0
+        supported: true
+      properties:
+        maxOperations:
+          format: int32
+          type: integer
+        maxPayloadSize:
+          format: int32
+          type: integer
+        supported:
+          type: boolean
+      type: object
+    ScimChangePasswordSupport:
+      example:
+        supported: true
+      properties:
+        supported:
+          type: boolean
+      type: object
+    ScimEmail:
+      example:
+        display: display
+        type: type
+        value: value
+        primary: true
+      properties:
+        display:
+          type: string
+        primary:
+          type: boolean
+        type:
+          type: string
+        value:
+          type: string
+      required:
+      - primary
+      - value
+      type: object
+    ScimEtagSupport:
+      example:
+        maxResults: 1
+        supported: true
+      properties:
+        maxResults:
+          format: int32
+          type: integer
+        supported:
+          type: boolean
+      type: object
+    ScimFilterSupport:
+      example:
+        maxResults: 5
+        supported: true
+      properties:
+        maxResults:
+          format: int32
+          type: integer
+        supported:
+          type: boolean
+      type: object
+    ScimGroup:
+      example:
+        displayName: displayName
+        meta:
+          created: created
+          location: location
+          lastModified: lastModified
+          resourceType: resourceType
+        members:
+        - ref: ref
+          display: display
+          type: type
+          value: value
+        - ref: ref
+          display: display
+          type: type
+          value: value
+        schemas:
+        - schemas
+        - schemas
+        externalId: externalId
+        id: id
+      properties:
+        displayName:
+          type: string
+        externalId:
+          type: string
+        id:
+          type: string
+        members:
+          items:
+            $ref: '#/components/schemas/ScimResource'
+          type: array
+        meta:
+          $ref: '#/components/schemas/ScimMetadata'
+        schemas:
+          items:
+            type: string
+          type: array
+      type: object
+    ScimMetadata:
+      example:
+        created: created
+        location: location
+        lastModified: lastModified
+        resourceType: resourceType
+      properties:
+        created:
+          type: string
+        lastModified:
+          type: string
+        location:
+          type: string
+        resourceType:
+          type: string
+      title: meta
+      type: object
+    ScimName:
+      example:
+        familyName: familyName
+        givenName: givenName
+      properties:
+        familyName:
+          type: string
+        givenName:
+          type: string
+      title: name
+      type: object
+    ScimOperations:
+      example:
+        op: op
+        path: path
+        value:
+          '@type': '@type'
+      properties:
+        op:
+          type: string
+        path:
+          type: string
+        value:
+          $ref: '#/components/schemas/Any'
+      type: object
+    ScimResource:
+      example:
+        ref: ref
+        display: display
+        type: type
+        value: value
+      properties:
+        display:
+          type: string
+        ref:
+          type: string
+        type:
+          type: string
+        value:
+          type: string
+      title: SCIM
+      type: object
+    ScimResourceType:
+      example:
+        schema: schema
+        endpoint: endpoint
+        meta:
+          created: created
+          location: location
+          lastModified: lastModified
+          resourceType: resourceType
+        schemas:
+        - schemas
+        - schemas
+        name: name
+        description: description
+        id: id
+      properties:
+        description:
+          type: string
+        endpoint:
+          type: string
+        id:
+          type: string
+        meta:
+          $ref: '#/components/schemas/ScimMetadata'
+        name:
+          type: string
+        schema:
+          type: string
+        schemas:
+          items:
+            type: string
+          type: array
+      type: object
+    ScimSchema:
+      example:
+        meta:
+          created: created
+          location: location
+          lastModified: lastModified
+          resourceType: resourceType
+        name: name
+        description: description
+        attributes:
+        - uniqueness: uniqueness
+          name: name
+          canonicalValues:
+          - canonicalValues
+          - canonicalValues
+          description: description
+          referenceTypes:
+          - referenceTypes
+          - referenceTypes
+          mutability: mutability
+          caseExact: true
+          multiValued: true
+          returned: returned
+          type: type
+          required: true
+          subAttributes:
+          - null
+          - null
+        - uniqueness: uniqueness
+          name: name
+          canonicalValues:
+          - canonicalValues
+          - canonicalValues
+          description: description
+          referenceTypes:
+          - referenceTypes
+          - referenceTypes
+          mutability: mutability
+          caseExact: true
+          multiValued: true
+          returned: returned
+          type: type
+          required: true
+          subAttributes:
+          - null
+          - null
+        id: id
+      properties:
+        attributes:
+          items:
+            $ref: '#/components/schemas/ScimSchemaAttribute'
+          type: array
+        description:
+          type: string
+        id:
+          type: string
+        meta:
+          $ref: '#/components/schemas/ScimMetadata'
+        name:
+          type: string
+      type: object
+    ScimSchemaAttribute:
+      example:
+        uniqueness: uniqueness
+        name: name
+        canonicalValues:
+        - canonicalValues
+        - canonicalValues
+        description: description
+        referenceTypes:
+        - referenceTypes
+        - referenceTypes
+        mutability: mutability
+        caseExact: true
+        multiValued: true
+        returned: returned
+        type: type
+        required: true
+        subAttributes:
+        - null
+        - null
+      properties:
+        canonicalValues:
+          items:
+            type: string
+          type: array
+        caseExact:
+          type: boolean
+        description:
+          type: string
+        multiValued:
+          type: boolean
+        mutability:
+          type: string
+        name:
+          type: string
+        referenceTypes:
+          items:
+            type: string
+          type: array
+        required:
+          type: boolean
+        returned:
+          type: string
+        subAttributes:
+          items:
+            $ref: '#/components/schemas/ScimSchemaAttribute'
+          type: array
+        type:
+          type: string
+        uniqueness:
+          type: string
+      type: object
+    ScimSortSupport:
+      example:
+        supported: true
+      properties:
+        supported:
+          type: boolean
+      type: object
+    ScimUser:
+      example:
+        emails:
+        - display: display
+          type: type
+          value: value
+          primary: true
+        - display: display
+          type: type
+          value: value
+          primary: true
+        displayName: displayName
+        meta:
+          created: created
+          location: location
+          lastModified: lastModified
+          resourceType: resourceType
+        schemas:
+        - schemas
+        - schemas
+        name:
+          familyName: familyName
+          givenName: givenName
+        active: true
+        externalId: externalId
+        groups:
+        - ref: ref
+          display: display
+          type: type
+          value: value
+        - ref: ref
+          display: display
+          type: type
+          value: value
+        id: id
+        userName: userName
+      properties:
+        active:
+          type: boolean
+        displayName:
+          type: string
+        emails:
+          items:
+            $ref: '#/components/schemas/ScimEmail'
+          type: array
+        externalId:
+          type: string
+        groups:
+          items:
+            $ref: '#/components/schemas/ScimResource'
+          type: array
+        id:
+          type: string
+        meta:
+          $ref: '#/components/schemas/ScimMetadata'
+        name:
+          $ref: '#/components/schemas/ScimName'
+        schemas:
+          items:
+            type: string
+          type: array
+        userName:
+          type: string
+      type: object
     ServerlessClusterConfig:
       properties:
         routing_id:
@@ -6857,6 +9593,34 @@ components:
       - request_unit_limit
       - storage_mib_limit
       type: object
+    UserGroupRoleGrant:
+      example:
+        group_roles:
+        - role:
+            resource:
+              id: id
+              type: null
+            name: null
+          group_names:
+          - group_names
+          - group_names
+        - role:
+            resource:
+              id: id
+              type: null
+            name: null
+          group_names:
+          - group_names
+          - group_names
+        user_id: user_id
+      properties:
+        group_roles:
+          items:
+            $ref: '#/components/schemas/BuiltInFromGroups'
+          type: array
+        user_id:
+          type: string
+      type: object
     UserRoleGrants:
       example:
       - name: CLUSTER_ADMIN
@@ -6908,6 +9672,223 @@ components:
       required:
       - databases
       title: ListDatabasesResponse
+      type: object
+    UpdateGroupRequest:
+      example:
+        displayName: Test SCIM
+        id: 23a35c27-23d3-4c03-b4c5-6443c09e7173
+        members:
+        - display: croach@example.com
+          value: 45a35c27-23d3-4d03-c4c5-9043c09e7175
+        schemas:
+        - "0": u
+          "1": r
+          "2": "n"
+          "3": ':'
+          "4": i
+          "5": e
+          "6": t
+          "7": f
+          "8": ':'
+          "9": p
+          "10": a
+          "11": r
+          "12": a
+          "13": m
+          "14": s
+          "15": ':'
+          "16": s
+          "17": c
+          "18": i
+          "19": m
+          "20": ':'
+          "21": s
+          "22": c
+          "23": h
+          "24": e
+          "25": m
+          "26": a
+          "27": s
+          "28": ':'
+          "29": c
+          "30": o
+          "31": r
+          "32": e
+          "33": ':'
+          "34": "2"
+          "35": "."
+          "36": "0"
+          "37": ':'
+          "38": G
+          "39": r
+          "40": o
+          "41": u
+          "42": p
+      properties:
+        displayName:
+          type: string
+        externalId:
+          type: string
+        members:
+          items:
+            $ref: '#/components/schemas/ScimResource'
+          type: array
+        schemas:
+          items:
+            type: string
+          type: array
+      required:
+      - displayName
+      title: UpdateGroupRequest
+      type: object
+    PatchGroupRequest:
+      example:
+        schemas:
+        - schemas
+        - schemas
+        Operations:
+        - op: op
+          path: path
+          value:
+            '@type': '@type'
+        - op: op
+          path: path
+          value:
+            '@type': '@type'
+      properties:
+        Operations:
+          items:
+            $ref: '#/components/schemas/ScimOperations'
+          type: array
+        schemas:
+          items:
+            type: string
+          type: array
+      title: PatchGroupRequest
+      type: object
+    GetGroupRequest:
+      example:
+        attributes: attributes
+        excludedAttributes: excludedAttributes
+      properties:
+        attributes:
+          type: string
+        excludedAttributes:
+          type: string
+      title: GetGroupRequest
+      type: object
+    UpdateUserRequest:
+      example:
+        active: true
+        emails:
+        - display: croach@example.com
+          primary: true
+          type: work
+          value: croach@example.com
+        name:
+          familyName: Roach
+          givenName: Carl
+        schemas:
+        - "0": u
+          "1": r
+          "2": "n"
+          "3": ':'
+          "4": i
+          "5": e
+          "6": t
+          "7": f
+          "8": ':'
+          "9": p
+          "10": a
+          "11": r
+          "12": a
+          "13": m
+          "14": s
+          "15": ':'
+          "16": s
+          "17": c
+          "18": i
+          "19": m
+          "20": ':'
+          "21": s
+          "22": c
+          "23": h
+          "24": e
+          "25": m
+          "26": a
+          "27": s
+          "28": ':'
+          "29": c
+          "30": o
+          "31": r
+          "32": e
+          "33": ':'
+          "34": "2"
+          "35": "."
+          "36": "0"
+          "37": ':'
+          "38": U
+          "39": s
+          "40": e
+          "41": r
+      properties:
+        active:
+          type: boolean
+        displayName:
+          type: string
+        emails:
+          items:
+            $ref: '#/components/schemas/ScimEmail'
+          type: array
+        externalId:
+          type: string
+        name:
+          $ref: '#/components/schemas/ScimName'
+        schemas:
+          items:
+            type: string
+          type: array
+        userName:
+          type: string
+      required:
+      - active
+      title: UpdateUserRequest
+      type: object
+    PatchUserRequest:
+      example:
+        schemas:
+        - schemas
+        - schemas
+        Operations:
+        - op: op
+          path: path
+          value:
+            '@type': '@type'
+        - op: op
+          path: path
+          value:
+            '@type': '@type'
+      properties:
+        Operations:
+          items:
+            $ref: '#/components/schemas/ScimOperations'
+          type: array
+        schemas:
+          items:
+            type: string
+          type: array
+      title: PatchUserRequest
+      type: object
+    GetUserRequest:
+      example:
+        attributes: attributes
+        excludedAttributes: excludedAttributes
+      properties:
+        attributes:
+          type: string
+        excludedAttributes:
+          type: string
+      title: GetUserRequest
       type: object
     SetClientCACertRequest:
       example:
