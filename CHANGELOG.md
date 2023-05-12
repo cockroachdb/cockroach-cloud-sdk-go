@@ -1,3 +1,14 @@
+## 1.1.0 (May 11, 2023)
+
+NEW FEATURES:
+
+* Enum Docs now include the description field from the api spec
+* Limited Access features now included in the SDK. Access must be requested for
+  these features. Currently these include:
+  * ListAuditLogs
+  * Azure Cloud Provider
+* SCIM
+
 ## 1.0.1 (April 21, 2023)
 
 BUG FIXES:

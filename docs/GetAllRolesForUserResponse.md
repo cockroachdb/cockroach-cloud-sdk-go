@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**GroupRoles** | Pointer to [**[]BuiltInFromGroups**](BuiltInFromGroups.md) |  | [optional] 
 **Roles** | Pointer to [**[]BuiltInRole**](BuiltInRole.md) |  | [optional] 
 
 ## Methods
@@ -16,6 +17,18 @@ NewGetAllRolesForUserResponse instantiates a new GetAllRolesForUserResponse obje
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed.
+
+### GetGroupRoles
+
+`func (o *GetAllRolesForUserResponse) GetGroupRoles() []BuiltInFromGroups`
+
+GetGroupRoles returns the GroupRoles field if non-nil, zero value otherwise.
+
+### SetGroupRoles
+
+`func (o *GetAllRolesForUserResponse) SetGroupRoles(v []BuiltInFromGroups)`
+
+SetGroupRoles sets GroupRoles field to given value.
 
 ### GetRoles
 

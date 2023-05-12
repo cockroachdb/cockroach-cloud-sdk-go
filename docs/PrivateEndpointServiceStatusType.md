@@ -2,7 +2,6 @@
 
 ## Enum
 
-
 * `CREATING` (value: `"CREATING"`)
 
 * `AVAILABLE` (value: `"AVAILABLE"`)

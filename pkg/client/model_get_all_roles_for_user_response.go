@@ -20,7 +20,8 @@ package client
 
 // GetAllRolesForUserResponse struct for GetAllRolesForUserResponse.
 type GetAllRolesForUserResponse struct {
-	Roles *[]BuiltInRole `json:"roles,omitempty"`
+	GroupRoles *[]BuiltInFromGroups `json:"group_roles,omitempty"`
+	Roles      *[]BuiltInRole       `json:"roles,omitempty"`
 }
 
 // NewGetAllRolesForUserResponse instantiates a new GetAllRolesForUserResponse object.
@@ -30,6 +31,20 @@ type GetAllRolesForUserResponse struct {
 func NewGetAllRolesForUserResponse() *GetAllRolesForUserResponse {
 	p := GetAllRolesForUserResponse{}
 	return &p
+}
+
+// GetGroupRoles returns the GroupRoles field value if set, zero value otherwise.
+func (o *GetAllRolesForUserResponse) GetGroupRoles() []BuiltInFromGroups {
+	if o == nil || o.GroupRoles == nil {
+		var ret []BuiltInFromGroups
+		return ret
+	}
+	return *o.GroupRoles
+}
+
+// SetGroupRoles gets a reference to the given []BuiltInFromGroups and assigns it to the GroupRoles field.
+func (o *GetAllRolesForUserResponse) SetGroupRoles(v []BuiltInFromGroups) {
+	o.GroupRoles = &v
 }
 
 // GetRoles returns the Roles field value if set, zero value otherwise.

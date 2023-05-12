@@ -1,7 +1,7 @@
 # CMEKCustomerAction
 
 ## Enum
-
+> `CMEKCustomerAction enumerates the actions a customer can take on a cluster that has been enabled for CMEK.`
 
 * `REVOKE` (value: `"REVOKE"`)
 

@@ -70,8 +70,10 @@ Class | Method | HTTP request | Description
 *CockroachCloudApi* | **AddUserToRole** | **Post** /api/v1/roles/{user_id}/{resource_type}/{resource_id}/{role_name} | Adds the user to the given role
 *CockroachCloudApi* | **CreateCluster** | **Post** /api/v1/clusters | Create and initialize a new cluster
 *CockroachCloudApi* | **CreateDatabase** | **Post** /api/v1/clusters/{cluster_id}/databases | Create a new database
+*CockroachCloudApi* | **CreateGroup** | **Post** /api/scim/v2/Groups | Creates a group
 *CockroachCloudApi* | **CreatePrivateEndpointServices** | **Post** /api/v1/clusters/{cluster_id}/networking/private-endpoint-services | Creates all PrivateEndpointServices for a given cluster
 *CockroachCloudApi* | **CreateSQLUser** | **Post** /api/v1/clusters/{cluster_id}/sql-users | Create a new SQL user
+*CockroachCloudApi* | **CreateUser** | **Post** /api/scim/v2/Users | Creates a user
 *CockroachCloudApi* | **DeleteAllowlistEntry** | **Delete** /api/v1/clusters/{cluster_id}/networking/allowlist/{cidr_ip}/{cidr_mask} | Delete an IP allowlist entry
 *CockroachCloudApi* | **DeleteClientCACert** | **Delete** /api/v1/clusters/{cluster_id}/client-ca-cert | Delete Client CA Cert for a cluster
 *CockroachCloudApi* | **DeleteCloudWatchMetricExport** | **Delete** /api/v1/clusters/{cluster_id}/metricexport/cloudwatch | Delete the CloudWatch Metric Export configuration for a cluster
@@ -79,8 +81,10 @@ Class | Method | HTTP request | Description
 *CockroachCloudApi* | **DeleteDatabase** | **Delete** /api/v1/clusters/{cluster_id}/databases/{name} | Delete a database
 *CockroachCloudApi* | **DeleteDatadogMetricExport** | **Delete** /api/v1/clusters/{cluster_id}/metricexport/datadog | Delete the Datadog Metric Export configuration for a cluster
 *CockroachCloudApi* | **DeleteEgressRule** | **Delete** /api/v1/clusters/{cluster_id}/networking/egress-rules/{rule_id} | Delete an existing egress rule
+*CockroachCloudApi* | **DeleteGroup** | **Delete** /api/scim/v2/Groups/{id} | Deletes a group based on id
 *CockroachCloudApi* | **DeleteLogExport** | **Delete** /api/v1/clusters/{cluster_id}/logexport | Delete the Log Export configuration for a cluster
 *CockroachCloudApi* | **DeleteSQLUser** | **Delete** /api/v1/clusters/{cluster_id}/sql-users/{name} | Delete a SQL user
+*CockroachCloudApi* | **DeleteUser** | **Delete** /api/scim/v2/Users/{id} | Deletes a user based on id
 *CockroachCloudApi* | **EditDatabase** | **Patch** /api/v1/clusters/{cluster_id}/databases/{name} | Update a database
 *CockroachCloudApi* | **EditDatabase2** | **Patch** /api/v1/clusters/{cluster_id}/databases | Update a database
 *CockroachCloudApi* | **EditEgressRule** | **Patch** /api/v1/clusters/{cluster_id}/networking/egress-rules/{rule_id} | Edit an existing egress rule
@@ -96,11 +100,25 @@ Class | Method | HTTP request | Description
 *CockroachCloudApi* | **GetConnectionString** | **Get** /api/v1/clusters/{cluster_id}/connection-string | Get a formatted generic connection string for a cluster
 *CockroachCloudApi* | **GetDatadogMetricExportInfo** | **Get** /api/v1/clusters/{cluster_id}/metricexport/datadog | Get the Datadog Metric Export configuration for a cluster
 *CockroachCloudApi* | **GetEgressRule** | **Get** /api/v1/clusters/{cluster_id}/networking/egress-rules/{rule_id} | Get an existing egress rule
+*CockroachCloudApi* | **GetGroup** | **Get** /api/scim/v2/Groups/{id} | Gets a group based on id
+*CockroachCloudApi* | **GetGroup2** | **Put** /api/scim/v2/Groups/{id}/.search | Gets a group based on id
+*CockroachCloudApi* | **GetGroups** | **Get** /api/scim/v2/Groups | Gets groups based on query parameters
+*CockroachCloudApi* | **GetGroups2** | **Put** /api/scim/v2/Groups/.search | Gets groups based on query parameters
 *CockroachCloudApi* | **GetInvoice** | **Get** /api/v1/invoices/{invoice_id} | Gets a specific invoice for an organization
 *CockroachCloudApi* | **GetLogExportInfo** | **Get** /api/v1/clusters/{cluster_id}/logexport | Get the Log Export configuration for a cluster
 *CockroachCloudApi* | **GetOrganizationInfo** | **Get** /api/v1/organization | Get information about the caller&#39;s organization
 *CockroachCloudApi* | **GetPersonUsersByEmail** | **Get** /api/v1/users/persons-by-email | Search person users by email address
+*CockroachCloudApi* | **GetResourceType** | **Get** /api/scim/v2/ResourceTypes/{resourceId} | 
+*CockroachCloudApi* | **GetResourceTypes** | **Get** /api/scim/v2/ResourceTypes | 
+*CockroachCloudApi* | **GetSchema** | **Get** /api/scim/v2/Schemas/{schemaId} | 
+*CockroachCloudApi* | **GetSchemas** | **Get** /api/scim/v2/Schemas | 
+*CockroachCloudApi* | **GetServiceProviderConfig** | **Get** /api/scim/v2/ServiceProviderConfig | Returns our SCIM configuration
+*CockroachCloudApi* | **GetUser** | **Get** /api/scim/v2/Users/{id} | Gets a user based on id
+*CockroachCloudApi* | **GetUser2** | **Put** /api/scim/v2/Users/{id}/.search | Gets a user based on id
+*CockroachCloudApi* | **GetUsers** | **Get** /api/scim/v2/Users | Gets Users based on query parameters
+*CockroachCloudApi* | **GetUsers2** | **Put** /api/scim/v2/Users/.search | Gets Users based on query parameters
 *CockroachCloudApi* | **ListAllowlistEntries** | **Get** /api/v1/clusters/{cluster_id}/networking/allowlist | Get the IP allowlist and propagation status for a cluster
+*CockroachCloudApi* | **ListAuditLogs** | **Get** /api/v1/auditlogevents | Limited Access: List audit logs.
 *CockroachCloudApi* | **ListAvailableRegions** | **Get** /api/v1/clusters/available-regions | List the regions available for new clusters and nodes
 *CockroachCloudApi* | **ListAwsEndpointConnections** | **Get** /api/v1/clusters/{cluster_id}/networking/aws-endpoint-connections | Lists all AwsEndpointConnections for a given cluster
 *CockroachCloudApi* | **ListClusterNodes** | **Get** /api/v1/clusters/{cluster_id}/nodes | List nodes for a cluster
@@ -112,6 +130,8 @@ Class | Method | HTTP request | Description
 *CockroachCloudApi* | **ListPrivateEndpointServices** | **Get** /api/v1/clusters/{cluster_id}/networking/private-endpoint-services | Lists all PrivateEndpointServices for a given cluster
 *CockroachCloudApi* | **ListRoleGrants** | **Get** /api/v1/roles | Lists all RoleGrants
 *CockroachCloudApi* | **ListSQLUsers** | **Get** /api/v1/clusters/{cluster_id}/sql-users | List SQL users for a cluster
+*CockroachCloudApi* | **PatchGroup** | **Patch** /api/scim/v2/Groups/{id} | Updates a group by specifying individual values to update
+*CockroachCloudApi* | **PatchUser** | **Patch** /api/scim/v2/Users/{id} | Updates a user by specifying individual values to update
 *CockroachCloudApi* | **RemoveUserFromRole** | **Delete** /api/v1/roles/{user_id}/{resource_type}/{resource_id}/{role_name} | Removes the user from the given role
 *CockroachCloudApi* | **SetAwsEndpointConnectionState** | **Patch** /api/v1/clusters/{cluster_id}/networking/aws-endpoint-connections/{endpoint_id} | Sets the AWS Endpoint Connection state based on what is passed in the body
 *CockroachCloudApi* | **SetClientCACert** | **Post** /api/v1/clusters/{cluster_id}/client-ca-cert | Set Client CA Cert for a cluster
@@ -122,7 +142,9 @@ Class | Method | HTTP request | Description
 *CockroachCloudApi* | **UpdateCMEKStatus** | **Patch** /api/v1/clusters/{cluster_id}/cmek | Update the CMEK-related status for a cluster
 *CockroachCloudApi* | **UpdateClientCACert** | **Patch** /api/v1/clusters/{cluster_id}/client-ca-cert | Update Client CA Cert for a cluster
 *CockroachCloudApi* | **UpdateCluster** | **Patch** /api/v1/clusters/{cluster_id} | Scale or edit a cluster
+*CockroachCloudApi* | **UpdateGroup** | **Put** /api/scim/v2/Groups/{id} | Updates a group by supplying all values of the user object
 *CockroachCloudApi* | **UpdateSQLUserPassword** | **Put** /api/v1/clusters/{cluster_id}/sql-users/{name}/password | Update a SQL user&#39;s password
+*CockroachCloudApi* | **UpdateUser** | **Put** /api/scim/v2/Users/{id} | Updates a user by supplying all values of the user object
 
 
 ## Author

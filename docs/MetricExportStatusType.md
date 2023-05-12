@@ -2,7 +2,6 @@
 
 ## Enum
 
-
 * `NOT_DEPLOYED` (value: `"NOT_DEPLOYED"`)
 
 * `DISABLING` (value: `"DISABLING"`)

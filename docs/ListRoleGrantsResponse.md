@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Grants** | Pointer to [**[]UserRoleGrants**](UserRoleGrants.md) |  | [optional] 
 **Pagination** | Pointer to [**KeysetPaginationResponse**](KeysetPaginationResponse.md) |  | [optional] 
+**UserGroupGrants** | Pointer to [**[]UserGroupRoleGrant**](UserGroupRoleGrant.md) |  | [optional] 
 
 ## Methods
 
@@ -41,6 +42,18 @@ GetPagination returns the Pagination field if non-nil, zero value otherwise.
 `func (o *ListRoleGrantsResponse) SetPagination(v KeysetPaginationResponse)`
 
 SetPagination sets Pagination field to given value.
+
+### GetUserGroupGrants
+
+`func (o *ListRoleGrantsResponse) GetUserGroupGrants() []UserGroupRoleGrant`
+
+GetUserGroupGrants returns the UserGroupGrants field if non-nil, zero value otherwise.
+
+### SetUserGroupGrants
+
+`func (o *ListRoleGrantsResponse) SetUserGroupGrants(v []UserGroupRoleGrant)`
+
+SetUserGroupGrants sets UserGroupGrants field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

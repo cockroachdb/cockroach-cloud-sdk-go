@@ -62,7 +62,9 @@ Convenience method to wrap this instance of {{classname}} in {{{.}}}.
 {{/isEnum}}
 {{#isEnum}}
 ## Enum
-
+{{#description}}
+> {{{description}}}
+{{/description}}
 {{#allowableValues}}{{#enumVars}}
 * `{{name}}` (value: `{{{value}}}`)
 {{/enumVars}}{{/allowableValues}}

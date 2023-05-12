@@ -2,7 +2,6 @@
 
 ## Enum
 
-
 * `DEVELOPER` (value: `"DEVELOPER"`)
 
 * `ADMIN` (value: `"ADMIN"`)

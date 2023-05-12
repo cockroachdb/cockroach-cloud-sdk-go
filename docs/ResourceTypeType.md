@@ -2,7 +2,6 @@
 
 ## Enum
 
-
 * `ORGANIZATION` (value: `"ORGANIZATION"`)
 
 * `CLUSTER` (value: `"CLUSTER"`)
