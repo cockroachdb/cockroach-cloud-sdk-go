@@ -20,6 +20,7 @@ package client
 
 import (
 	"net/http"
+	"time"
 )
 
 const DefaultServerURL string = "https://cockroachlabs.cloud"
@@ -28,24 +29,28 @@ const ApiVersion = "2023-04-10"
 
 // Configuration stores the configuration of the API client.
 type Configuration struct {
-	Host          string            `json:"host,omitempty"`
-	Scheme        string            `json:"scheme,omitempty"`
-	DefaultHeader map[string]string `json:"defaultHeader,omitempty"`
-	UserAgent     string            `json:"userAgent,omitempty"`
-	Debug         bool              `json:"debug,omitempty"`
-	ServerURL     string
-	HTTPClient    *http.Client
-	apiKey        string
+	Host              string            `json:"host,omitempty"`
+	Scheme            string            `json:"scheme,omitempty"`
+	DefaultHeader     map[string]string `json:"defaultHeader,omitempty"`
+	UserAgent         string            `json:"userAgent,omitempty"`
+	Debug             bool              `json:"debug,omitempty"`
+	GetRequestRetries int               `json:"getRequestRetries,omitempty"`
+	RetryInterval     time.Duration     `json:"retryInterval,omitempty"`
+	ServerURL         string
+	HTTPClient        *http.Client
+	apiKey            string
 }
 
 // NewConfiguration returns a new Configuration object.
 func NewConfiguration(apiKey string) *Configuration {
 	cfg := &Configuration{
-		DefaultHeader: make(map[string]string),
-		UserAgent:     "ccloud-sdk-go/1.0.0",
-		Debug:         false,
-		ServerURL:     DefaultServerURL,
-		apiKey:        apiKey,
+		DefaultHeader:     make(map[string]string),
+		UserAgent:         "ccloud-sdk-go/1.0.0",
+		Debug:             false,
+		GetRequestRetries: 0,
+		RetryInterval:     time.Second,
+		ServerURL:         DefaultServerURL,
+		apiKey:            apiKey,
 	}
 
 	cfg.AddDefaultHeader("Cc-Version", ApiVersion)

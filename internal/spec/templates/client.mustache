@@ -125,8 +125,8 @@ func parameterToJson(obj interface{}) (string, error) {
 	return string(jsonBuf), err
 }
 
-// callAPI do the request.
-func (c *Client) callAPI(request *http.Request) (*http.Response, error) {
+// callAPI executes the request.
+func (c *Client) callAPI(request *http.Request) (resp *http.Response, err error) {
 	if c.cfg.Debug {
 		dump, err := httputil.DumpRequestOut(request, true)
 		if err != nil {
@@ -135,7 +135,23 @@ func (c *Client) callAPI(request *http.Request) (*http.Response, error) {
 		log.Printf("\n%s\n", string(dump))
 	}
 
-	resp, err := c.cfg.HTTPClient.Do(request)
+	attempts := 1
+	if request.Method == http.MethodGet {
+		attempts += c.cfg.GetRequestRetries
+	}
+
+	for i := attempts; i > 0; i-- {
+		resp, err = c.cfg.HTTPClient.Do(request)
+		if resp.StatusCode < http.StatusInternalServerError {
+			break
+		}
+		if c.cfg.Debug {
+			log.Printf("\nError calling API: %v. Retries remaining: %d\n", err, i)
+		}
+        if i > 1 {
+		    time.Sleep(c.cfg.RetryInterval)
+        }
+	}
 	if err != nil {
 		return resp, err
 	}

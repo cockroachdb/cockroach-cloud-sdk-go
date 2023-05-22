@@ -1,7 +1,7 @@
 # LogExportStatus
 
 ## Enum
-> `LogExportStatus encodes the possible states that a configuration can be in as it is created, deployed, and disabled.`
+> LogExportStatus encodes the possible states that a configuration can be in as it is created, deployed, and disabled.
 
 * `DISABLED` (value: `"DISABLED"`)
 
