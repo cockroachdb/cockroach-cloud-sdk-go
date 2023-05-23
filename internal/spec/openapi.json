@@ -19,7 +19,7 @@
     "/api/scim/v2/Groups": {
       "get": {
         "operationId": "CockroachCloud_GetGroups",
-        "summary": "Gets groups based on query parameters",
+        "summary": "Get groups based on query parameters",
         "parameters": [
           {
             "name": "attributes",
@@ -99,7 +99,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "SCIM"
         ],
         "x-badges": [
           {
@@ -116,7 +116,7 @@
       },
       "post": {
         "operationId": "CockroachCloud_CreateGroup",
-        "summary": "Creates a group",
+        "summary": "Create a group",
         "requestBody": {
           "required": true,
           "content": {
@@ -190,7 +190,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "SCIM"
         ],
         "x-badges": [
           {
@@ -209,7 +209,7 @@
     "/api/scim/v2/Groups/.search": {
       "put": {
         "operationId": "CockroachCloud_GetGroups2",
-        "summary": "Gets groups based on query parameters",
+        "summary": "Get groups based on query parameters",
         "requestBody": {
           "required": true,
           "content": {
@@ -283,7 +283,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "SCIM"
         ],
         "x-codeSamples": [
           {
@@ -296,7 +296,7 @@
     "/api/scim/v2/Groups/{id}": {
       "delete": {
         "operationId": "CockroachCloud_DeleteGroup",
-        "summary": "Deletes a group based on id",
+        "summary": "Delete a group based on ID",
         "parameters": [
           {
             "name": "id",
@@ -370,7 +370,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "SCIM"
         ],
         "x-badges": [
           {
@@ -387,7 +387,7 @@
       },
       "get": {
         "operationId": "CockroachCloud_GetGroup",
-        "summary": "Gets a group based on id",
+        "summary": "Get a group based on ID",
         "parameters": [
           {
             "name": "id",
@@ -475,7 +475,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "SCIM"
         ],
         "x-badges": [
           {
@@ -492,7 +492,7 @@
       },
       "put": {
         "operationId": "CockroachCloud_UpdateGroup",
-        "summary": "Updates a group by supplying all values of the user object",
+        "summary": "Update a group by supplying all values of the user object",
         "parameters": [
           {
             "name": "id",
@@ -657,7 +657,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "SCIM"
         ],
         "x-badges": [
           {
@@ -676,7 +676,7 @@
     "/api/scim/v2/Groups/{id}/.search": {
       "put": {
         "operationId": "CockroachCloud_GetGroup2",
-        "summary": "Gets a group based on id",
+        "summary": "Get a group based on ID",
         "parameters": [
           {
             "name": "id",
@@ -769,7 +769,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "SCIM"
         ],
         "x-codeSamples": [
           {
@@ -861,7 +861,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "SCIM"
         ],
         "x-badges": [
           {
@@ -967,7 +967,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "SCIM"
         ],
         "x-badges": [
           {
@@ -1065,7 +1065,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "SCIM"
         ],
         "x-badges": [
           {
@@ -1171,7 +1171,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "SCIM"
         ],
         "x-badges": [
           {
@@ -1190,7 +1190,7 @@
     "/api/scim/v2/ServiceProviderConfig": {
       "get": {
         "operationId": "CockroachCloud_GetServiceProviderConfig",
-        "summary": "Returns our SCIM configuration",
+        "summary": "Return our SCIM configuration",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -1254,7 +1254,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "SCIM"
         ],
         "x-badges": [
           {
@@ -1273,7 +1273,7 @@
     "/api/scim/v2/Users": {
       "get": {
         "operationId": "CockroachCloud_GetUsers",
-        "summary": "Gets Users based on query parameters",
+        "summary": "Get Users based on query parameters",
         "parameters": [
           {
             "name": "filter",
@@ -1360,7 +1360,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "SCIM"
         ],
         "x-badges": [
           {
@@ -1377,7 +1377,7 @@
       },
       "post": {
         "operationId": "CockroachCloud_CreateUser",
-        "summary": "Creates a user",
+        "summary": "Create a user",
         "requestBody": {
           "required": true,
           "content": {
@@ -1451,7 +1451,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "SCIM"
         ],
         "x-badges": [
           {
@@ -1470,7 +1470,7 @@
     "/api/scim/v2/Users/.search": {
       "put": {
         "operationId": "CockroachCloud_GetUsers2",
-        "summary": "Gets Users based on query parameters",
+        "summary": "Get Users based on query parameters",
         "requestBody": {
           "required": true,
           "content": {
@@ -1544,7 +1544,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "SCIM"
         ],
         "x-codeSamples": [
           {
@@ -1557,7 +1557,7 @@
     "/api/scim/v2/Users/{id}": {
       "delete": {
         "operationId": "CockroachCloud_DeleteUser",
-        "summary": "Deletes a user based on id",
+        "summary": "Delete a user based on ID",
         "parameters": [
           {
             "name": "id",
@@ -1631,7 +1631,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "SCIM"
         ],
         "x-badges": [
           {
@@ -1648,7 +1648,7 @@
       },
       "get": {
         "operationId": "CockroachCloud_GetUser",
-        "summary": "Gets a user based on id",
+        "summary": "Get a user based on ID",
         "parameters": [
           {
             "name": "id",
@@ -1736,7 +1736,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "SCIM"
         ],
         "x-badges": [
           {
@@ -1753,7 +1753,7 @@
       },
       "put": {
         "operationId": "CockroachCloud_UpdateUser",
-        "summary": "Updates a user by supplying all values of the user object",
+        "summary": "Update a user by supplying all values of the user object",
         "parameters": [
           {
             "name": "id",
@@ -1931,7 +1931,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "SCIM"
         ],
         "x-badges": [
           {
@@ -1950,7 +1950,7 @@
     "/api/scim/v2/Users/{id}/.search": {
       "put": {
         "operationId": "CockroachCloud_GetUser2",
-        "summary": "Gets a user based on id",
+        "summary": "Get a user based on ID",
         "parameters": [
           {
             "name": "id",
@@ -2043,7 +2043,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "SCIM"
         ],
         "x-codeSamples": [
           {
@@ -2056,7 +2056,7 @@
     "/api/v1/auditlogevents": {
       "get": {
         "operationId": "CockroachCloud_ListAuditLogs",
-        "summary": "Limited Access: List audit logs.",
+        "summary": "Limited Access: List audit logs",
         "parameters": [
           {
             "name": "starting_from",
@@ -2152,7 +2152,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "Audit Logs"
         ],
         "x-badges": [
           {
@@ -2273,7 +2273,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "Clusters"
         ],
         "x-codeSamples": [
           {
@@ -2397,7 +2397,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "Clusters"
         ],
         "x-codeSamples": [
           {
@@ -2482,7 +2482,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "Clusters"
         ],
         "x-codeSamples": [
           {
@@ -2619,7 +2619,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "Clusters"
         ],
         "x-codeSamples": [
           {
@@ -2706,7 +2706,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "Clusters"
         ],
         "x-codeSamples": [
           {
@@ -2791,7 +2791,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "Clusters"
         ],
         "x-codeSamples": [
           {
@@ -2886,7 +2886,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "Clusters"
         ],
         "x-codeSamples": [
           {
@@ -2973,7 +2973,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "Client CA Certificates"
         ],
         "x-badges": [
           {
@@ -3064,7 +3064,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "Client CA Certificates"
         ],
         "x-badges": [
           {
@@ -3174,7 +3174,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "Client CA Certificates"
         ],
         "x-badges": [
           {
@@ -3287,7 +3287,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "Client CA Certificates"
         ],
         "x-badges": [
           {
@@ -3380,7 +3380,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "Customer-managed Encryption Keys"
         ],
         "x-codeSamples": [
           {
@@ -3487,7 +3487,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "Customer-managed Encryption Keys"
         ],
         "x-codeSamples": [
           {
@@ -3606,7 +3606,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "Customer-managed Encryption Keys"
         ],
         "x-codeSamples": [
           {
@@ -3725,7 +3725,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "Customer-managed Encryption Keys"
         ],
         "x-codeSamples": [
           {
@@ -3840,7 +3840,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "Clusters"
         ],
         "x-codeSamples": [
           {
@@ -3963,7 +3963,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "Databases"
         ],
         "x-codeSamples": [
           {
@@ -4075,7 +4075,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "Databases"
         ],
         "x-codeSamples": [
           {
@@ -4182,7 +4182,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "Databases"
         ],
         "x-codeSamples": [
           {
@@ -4277,7 +4277,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "Databases"
         ],
         "x-codeSamples": [
           {
@@ -4393,7 +4393,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "Databases"
         ],
         "x-codeSamples": [
           {
@@ -4480,7 +4480,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "Log Export"
         ],
         "x-badges": [
           {
@@ -4571,7 +4571,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "Log Export"
         ],
         "x-badges": [
           {
@@ -4722,7 +4722,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "Log Export"
         ],
         "x-badges": [
           {
@@ -4815,7 +4815,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "Metric Export"
         ],
         "x-badges": [
           {
@@ -4906,7 +4906,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "Metric Export"
         ],
         "x-badges": [
           {
@@ -5030,7 +5030,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "Metric Export"
         ],
         "x-badges": [
           {
@@ -5123,7 +5123,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "Metric Export"
         ],
         "x-badges": [
           {
@@ -5214,7 +5214,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "Metric Export"
         ],
         "x-badges": [
           {
@@ -5333,7 +5333,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "Metric Export"
         ],
         "x-badges": [
           {
@@ -5462,7 +5462,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "IP Allowlists"
         ],
         "x-codeSamples": [
           {
@@ -5557,7 +5557,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "IP Allowlists"
         ],
         "x-codeSamples": [
           {
@@ -5661,7 +5661,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "IP Allowlists"
         ],
         "x-codeSamples": [
           {
@@ -5799,7 +5799,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "IP Allowlists"
         ],
         "x-codeSamples": [
           {
@@ -5935,7 +5935,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "IP Allowlists"
         ],
         "x-codeSamples": [
           {
@@ -5948,7 +5948,7 @@
     "/api/v1/clusters/{cluster_id}/networking/aws-endpoint-connections": {
       "get": {
         "operationId": "CockroachCloud_ListAwsEndpointConnections",
-        "summary": "Lists all AwsEndpointConnections for a given cluster",
+        "summary": "List all AwsEndpointConnections for a cluster",
         "parameters": [
           {
             "name": "cluster_id",
@@ -6023,7 +6023,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "Private Endpoint Services"
         ],
         "x-codeSamples": [
           {
@@ -6036,7 +6036,7 @@
     "/api/v1/clusters/{cluster_id}/networking/aws-endpoint-connections/{endpoint_id}": {
       "patch": {
         "operationId": "CockroachCloud_SetAwsEndpointConnectionState",
-        "summary": "Sets the AWS Endpoint Connection state based on what is passed in the body",
+        "summary": "Set the AWS Endpoint Connection state",
         "description": "The \"status\" in the returned proto does not reflect the latest post-update\nstatus, but rather the status before the state is transitioned.",
         "parameters": [
           {
@@ -6143,7 +6143,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "Private Endpoint Services"
         ],
         "x-codeSamples": [
           {
@@ -6267,7 +6267,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "Egress Rules"
         ],
         "x-badges": [
           {
@@ -6429,7 +6429,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "Egress Rules"
         ],
         "x-badges": [
           {
@@ -6548,7 +6548,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "Egress Rules"
         ],
         "x-badges": [
           {
@@ -6659,7 +6659,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "Egress Rules"
         ],
         "x-badges": [
           {
@@ -6760,7 +6760,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "Egress Rules"
         ],
         "x-badges": [
           {
@@ -6914,7 +6914,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "Egress Rules"
         ],
         "x-badges": [
           {
@@ -6933,7 +6933,7 @@
     "/api/v1/clusters/{cluster_id}/networking/private-endpoint-services": {
       "get": {
         "operationId": "CockroachCloud_ListPrivateEndpointServices",
-        "summary": "Lists all PrivateEndpointServices for a given cluster",
+        "summary": "List all PrivateEndpointServices for a cluster",
         "description": "The internal_dns property from the regions field in the ListClusters response can be used to connect to PrivateEndpointServices.",
         "parameters": [
           {
@@ -7009,7 +7009,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "Private Endpoint Services"
         ],
         "x-codeSamples": [
           {
@@ -7020,7 +7020,7 @@
       },
       "post": {
         "operationId": "CockroachCloud_CreatePrivateEndpointServices",
-        "summary": "Creates all PrivateEndpointServices for a given cluster",
+        "summary": "Create all PrivateEndpointServices for a cluster",
         "parameters": [
           {
             "name": "cluster_id",
@@ -7095,7 +7095,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "Private Endpoint Services"
         ],
         "x-codeSamples": [
           {
@@ -7226,7 +7226,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "Clusters"
         ],
         "x-codeSamples": [
           {
@@ -7349,7 +7349,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "SQL Users"
         ],
         "x-codeSamples": [
           {
@@ -7461,7 +7461,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "SQL Users"
         ],
         "x-codeSamples": [
           {
@@ -7556,7 +7556,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "SQL Users"
         ],
         "x-codeSamples": [
           {
@@ -7673,7 +7673,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "SQL Users"
         ],
         "x-codeSamples": [
           {
@@ -7751,7 +7751,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "Billing"
         ],
         "x-codeSamples": [
           {
@@ -7764,7 +7764,7 @@
     "/api/v1/invoices/{invoice_id}": {
       "get": {
         "operationId": "CockroachCloud_GetInvoice",
-        "summary": "Gets a specific invoice for an organization",
+        "summary": "Get a specific invoice for an organization",
         "parameters": [
           {
             "name": "invoice_id",
@@ -7839,7 +7839,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "Billing"
         ],
         "x-codeSamples": [
           {
@@ -7916,7 +7916,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "Organizations"
         ],
         "x-codeSamples": [
           {
@@ -7929,7 +7929,7 @@
     "/api/v1/roles": {
       "get": {
         "operationId": "CockroachCloud_ListRoleGrants",
-        "summary": "Lists all RoleGrants",
+        "summary": "List all RoleGrants",
         "parameters": [
           {
             "name": "pagination.page",
@@ -8030,7 +8030,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "Role Management"
         ],
         "x-badges": [
           {
@@ -8049,7 +8049,7 @@
     "/api/v1/roles/{user_id}": {
       "get": {
         "operationId": "CockroachCloud_GetAllRolesForUser",
-        "summary": "Gets All Role Grants for the specified user",
+        "summary": "Get all Role Grants for a user",
         "parameters": [
           {
             "name": "user_id",
@@ -8123,7 +8123,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "Role Management"
         ],
         "x-badges": [
           {
@@ -8140,7 +8140,7 @@
       },
       "put": {
         "operationId": "CockroachCloud_SetRolesForUser",
-        "summary": "Makes the users roles exactly those provided",
+        "summary": "Make a user's roles exactly those provided",
         "parameters": [
           {
             "name": "user_id",
@@ -8244,7 +8244,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "Role Management"
         ],
         "x-badges": [
           {
@@ -8263,7 +8263,7 @@
     "/api/v1/roles/{user_id}/{resource_type}/{resource_id}/{role_name}": {
       "delete": {
         "operationId": "CockroachCloud_RemoveUserFromRole",
-        "summary": "Removes the user from the given role",
+        "summary": "Remove the user from the given role",
         "parameters": [
           {
             "name": "user_id",
@@ -8378,7 +8378,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "Role Management"
         ],
         "x-badges": [
           {
@@ -8395,7 +8395,7 @@
       },
       "post": {
         "operationId": "CockroachCloud_AddUserToRole",
-        "summary": "Adds the user to the given role",
+        "summary": "Add the user to the given role",
         "parameters": [
           {
             "name": "user_id",
@@ -8510,7 +8510,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "Role Management"
         ],
         "x-badges": [
           {
@@ -8604,7 +8604,7 @@
           }
         },
         "tags": [
-          "CockroachCloud"
+          "Role Management"
         ],
         "x-badges": [
           {
@@ -11401,11 +11401,6 @@
       }
     }
   },
-  "tags": [
-    {
-      "name": "CockroachCloud"
-    }
-  ],
   "externalDocs": {
     "description": "Use the CockroachDB Cloud API",
     "url": "https://www.cockroachlabs.com/docs/cockroachcloud/cloud-api.html"

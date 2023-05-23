@@ -67,10 +67,10 @@ if apiResponse != nil {
 
 All URIs are relative to *{{basePath}}*
 
-Class | Method | HTTP request | Description
+API | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-{{#apiInfo}}{{#apis}}{{#-first}}{{#operations}}{{#operation}}*{{classname}}* | **{{operationId}}** | **{{httpMethod}}** {{path}} | {{summary}}
-{{/operation}}{{/operations}}{{/-first}}{{/apis}}{{/apiInfo}}
+{{#apiInfo}}{{#apis}}{{#operations}}{{#operation}}[{{classname}}](docs/{{classname}}.md) | **{{operationId}}** | **{{httpMethod}}** {{path}} | {{summary}}
+{{/operation}}{{/operations}}{{/apis}}{{/apiInfo}}
 
 {{#apiInfo}}{{#apis}}{{#-first}}{{#infoEmail}}## Author
 {{{.}}}
