@@ -1,7 +1,7 @@
 # CloudProviderType
 
 ## Enum
-> ` - GCP: The Google Cloud Platform cloud provider.  - AWS: The Amazon Web Services cloud provider.  - AZURE: Limited Access: The Azure cloud provider.`
+>  - GCP: The Google Cloud Platform cloud provider.  - AWS: The Amazon Web Services cloud provider.  - AZURE: Limited Access: The Azure cloud provider.
 
 * `GCP` (value: `"GCP"`)
 

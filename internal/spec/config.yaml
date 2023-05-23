@@ -1,4 +1,5 @@
 templateDir: internal/spec/templates
+packageVersion: 1.1.0
 # Include new templates and filenames.
 files:
     service.mustache:

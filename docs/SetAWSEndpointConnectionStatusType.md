@@ -1,7 +1,7 @@
 # SetAWSEndpointConnectionStatusType
 
 ## Enum
-> ` - AVAILABLE: accept/verify the connection on the service side.  - REJECTED: reject the connection on the service side.`
+>  - AVAILABLE: accept/verify the connection on the service side.  - REJECTED: reject the connection on the service side.
 
 * `AVAILABLE` (value: `"AVAILABLE"`)
 

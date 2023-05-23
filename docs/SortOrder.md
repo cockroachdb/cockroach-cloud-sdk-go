@@ -1,7 +1,7 @@
 # SortOrder
 
 ## Enum
-> ` - ASC: Sort in ascending order. This is the default unless otherwise specified.  - DESC: Sort in descending order.`
+>  - ASC: Sort in ascending order. This is the default unless otherwise specified.  - DESC: Sort in descending order.
 
 * `ASC` (value: `"ASC"`)
 
