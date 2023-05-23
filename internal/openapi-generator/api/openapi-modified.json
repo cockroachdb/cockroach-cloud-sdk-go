@@ -490,122 +490,6 @@
           }
         ]
       },
-      "patch": {
-        "operationId": "CockroachCloud_PatchGroup",
-        "summary": "Updates a group by specifying individual values to update",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "Operations": {
-                    "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/ScimOperations"
-                    }
-                  },
-                  "schemas": {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "title": "PatchGroupRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ScimGroup"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Returned when a request field is invalid.",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "401": {
-            "description": "Returned when the token bearer cannot be authenticated.",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "403": {
-            "description": "Returned when the user does not have permission to access the resource.",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "404": {
-            "description": "Returned when the resource does not exist.",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "500": {
-            "description": "Server error",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Status"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "CockroachCloud"
-        ],
-        "x-badges": [
-          {
-            "color": "blue",
-            "label": "PREVIEW"
-          }
-        ],
-        "x-codeSamples": [
-          {
-            "lang": "Shell + Curl",
-            "source": "curl --request PATCH \\\n  --url https://cockroachlabs.cloud/api/scim/v2/Groups/{id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"Operations\":[{\"op\":\"string\",\"path\":\"string\",\"value\":{\"@type\":\"string\",\"property1\":null,\"property2\":null}}],\"schemas\":[\"string\"]}'"
-          }
-        ]
-      },
       "put": {
         "operationId": "CockroachCloud_UpdateGroup",
         "summary": "Updates a group by supplying all values of the user object",
@@ -1864,122 +1748,6 @@
           {
             "lang": "Shell + Curl",
             "source": "curl --request GET \\\n  --url 'https://cockroachlabs.cloud/api/scim/v2/Users/{id}?attributes=SOME_STRING_VALUE&excludedAttributes=SOME_STRING_VALUE' \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
-          }
-        ]
-      },
-      "patch": {
-        "operationId": "CockroachCloud_PatchUser",
-        "summary": "Updates a user by specifying individual values to update",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "Operations": {
-                    "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/ScimOperations"
-                    }
-                  },
-                  "schemas": {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "title": "PatchUserRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ScimUser"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Returned when a request field is invalid.",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "401": {
-            "description": "Returned when the token bearer cannot be authenticated.",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "403": {
-            "description": "Returned when the user does not have permission to access the resource.",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "404": {
-            "description": "Returned when the resource does not exist.",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "500": {
-            "description": "Server error",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Status"
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "CockroachCloud"
-        ],
-        "x-badges": [
-          {
-            "color": "blue",
-            "label": "PREVIEW"
-          }
-        ],
-        "x-codeSamples": [
-          {
-            "lang": "Shell + Curl",
-            "source": "curl --request PATCH \\\n  --url https://cockroachlabs.cloud/api/scim/v2/Users/{id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"Operations\":[{\"op\":\"string\",\"path\":\"string\",\"value\":{\"@type\":\"string\",\"property1\":null,\"property2\":null}}],\"schemas\":[\"string\"]}'"
           }
         ]
       },
@@ -8541,7 +8309,8 @@
                 "CLUSTER_OPERATOR_WRITER",
                 "CLUSTER_OPERATOR_READER",
                 "CLUSTER_DEVELOPER",
-                "CLUSTER_CREATOR"
+                "CLUSTER_CREATOR",
+                "USAGE_READER"
               ]
             }
           }
@@ -8672,7 +8441,8 @@
                 "CLUSTER_OPERATOR_WRITER",
                 "CLUSTER_OPERATOR_READER",
                 "CLUSTER_DEVELOPER",
-                "CLUSTER_CREATOR"
+                "CLUSTER_CREATOR",
+                "USAGE_READER"
               ]
             }
           }
@@ -10858,8 +10628,10 @@
           "CLUSTER_OPERATOR_WRITER",
           "CLUSTER_OPERATOR_READER",
           "CLUSTER_DEVELOPER",
-          "CLUSTER_CREATOR"
-        ]
+          "CLUSTER_CREATOR",
+          "USAGE_READER"
+        ],
+        "title": "- DEVELOPER: To be deprecated\n - ADMIN: To be deprecated"
       },
       "PersonUserInfo": {
         "type": "object",
@@ -11161,20 +10933,6 @@
           }
         },
         "title": "name"
-      },
-      "ScimOperations": {
-        "type": "object",
-        "properties": {
-          "op": {
-            "type": "string"
-          },
-          "path": {
-            "type": "string"
-          },
-          "value": {
-            "$ref": "#/components/schemas/Any"
-          }
-        }
       },
       "ScimResource": {
         "type": "object",

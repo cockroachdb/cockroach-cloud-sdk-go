@@ -22,6 +22,8 @@
 
 * `CLUSTER_CREATOR` (value: `"CLUSTER_CREATOR"`)
 
+* `USAGE_READER` (value: `"USAGE_READER"`)
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

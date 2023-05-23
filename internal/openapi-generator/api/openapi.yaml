@@ -343,75 +343,6 @@ paths:
           curl --request GET \
             --url 'https://cockroachlabs.cloud/api/scim/v2/Groups/{id}?attributes=SOME_STRING_VALUE&excludedAttributes=SOME_STRING_VALUE' \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
-    patch:
-      operationId: CockroachCloud_PatchGroup
-      parameters:
-      - explode: false
-        in: path
-        name: id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/PatchGroupRequest'
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ScimGroup'
-          description: A successful response.
-        "400":
-          content:
-            application/json:
-              schema: {}
-          description: Returned when a request field is invalid.
-        "401":
-          content:
-            application/json:
-              schema: {}
-          description: Returned when the token bearer cannot be authenticated.
-        "403":
-          content:
-            application/json:
-              schema: {}
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            application/json:
-              schema: {}
-          description: Returned when the resource does not exist.
-        "500":
-          content:
-            application/json:
-              schema: {}
-          description: Server error
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Status'
-          description: An unexpected error response.
-      summary: Updates a group by specifying individual values to update
-      tags:
-      - CockroachCloud
-      x-badges:
-      - color: blue
-        label: PREVIEW
-      x-codeSamples:
-      - lang: Shell + Curl
-        source: |-
-          curl --request PATCH \
-            --url https://cockroachlabs.cloud/api/scim/v2/Groups/{id} \
-            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
-            --header 'content-type: application/json' \
-            --data '{"Operations":[{"op":"string","path":"string","value":{"@type":"string","property1":null,"property2":null}}],"schemas":["string"]}'
     put:
       operationId: CockroachCloud_UpdateGroup
       parameters:
@@ -1221,75 +1152,6 @@ paths:
           curl --request GET \
             --url 'https://cockroachlabs.cloud/api/scim/v2/Users/{id}?attributes=SOME_STRING_VALUE&excludedAttributes=SOME_STRING_VALUE' \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
-    patch:
-      operationId: CockroachCloud_PatchUser
-      parameters:
-      - explode: false
-        in: path
-        name: id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/PatchUserRequest'
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ScimUser'
-          description: A successful response.
-        "400":
-          content:
-            application/json:
-              schema: {}
-          description: Returned when a request field is invalid.
-        "401":
-          content:
-            application/json:
-              schema: {}
-          description: Returned when the token bearer cannot be authenticated.
-        "403":
-          content:
-            application/json:
-              schema: {}
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            application/json:
-              schema: {}
-          description: Returned when the resource does not exist.
-        "500":
-          content:
-            application/json:
-              schema: {}
-          description: Server error
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Status'
-          description: An unexpected error response.
-      summary: Updates a user by specifying individual values to update
-      tags:
-      - CockroachCloud
-      x-badges:
-      - color: blue
-        label: PREVIEW
-      x-codeSamples:
-      - lang: Shell + Curl
-        source: |-
-          curl --request PATCH \
-            --url https://cockroachlabs.cloud/api/scim/v2/Users/{id} \
-            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
-            --header 'content-type: application/json' \
-            --data '{"Operations":[{"op":"string","path":"string","value":{"@type":"string","property1":null,"property2":null}}],"schemas":["string"]}'
     put:
       operationId: CockroachCloud_UpdateUser
       parameters:
@@ -5592,6 +5454,7 @@ paths:
           - CLUSTER_OPERATOR_READER
           - CLUSTER_DEVELOPER
           - CLUSTER_CREATOR
+          - USAGE_READER
           type: string
         style: simple
       responses:
@@ -5688,6 +5551,7 @@ paths:
           - CLUSTER_OPERATOR_READER
           - CLUSTER_DEVELOPER
           - CLUSTER_CREATOR
+          - USAGE_READER
           type: string
         style: simple
       responses:
@@ -6031,8 +5895,6 @@ components:
               "@type": "type.googleapis.com/google.protobuf.Duration",
               "value": "1.212s"
             }
-      example:
-        '@type': '@type'
       properties:
         '@type':
           description: |-
@@ -8899,6 +8761,10 @@ components:
       - CLUSTER_OPERATOR_READER
       - CLUSTER_DEVELOPER
       - CLUSTER_CREATOR
+      - USAGE_READER
+      title: |-
+        - DEVELOPER: To be deprecated
+         - ADMIN: To be deprecated
       type: string
     PersonUserInfo:
       example:
@@ -9207,20 +9073,6 @@ components:
         givenName:
           type: string
       title: name
-      type: object
-    ScimOperations:
-      example:
-        op: op
-        path: path
-        value:
-          '@type': '@type'
-      properties:
-        op:
-          type: string
-        path:
-          type: string
-        value:
-          $ref: '#/components/schemas/Any'
       type: object
     ScimResource:
       example:
@@ -9741,31 +9593,6 @@ components:
       - displayName
       title: UpdateGroupRequest
       type: object
-    PatchGroupRequest:
-      example:
-        schemas:
-        - schemas
-        - schemas
-        Operations:
-        - op: op
-          path: path
-          value:
-            '@type': '@type'
-        - op: op
-          path: path
-          value:
-            '@type': '@type'
-      properties:
-        Operations:
-          items:
-            $ref: '#/components/schemas/ScimOperations'
-          type: array
-        schemas:
-          items:
-            type: string
-          type: array
-      title: PatchGroupRequest
-      type: object
     GetGroupRequest:
       example:
         attributes: attributes
@@ -9853,31 +9680,6 @@ components:
       required:
       - active
       title: UpdateUserRequest
-      type: object
-    PatchUserRequest:
-      example:
-        schemas:
-        - schemas
-        - schemas
-        Operations:
-        - op: op
-          path: path
-          value:
-            '@type': '@type'
-        - op: op
-          path: path
-          value:
-            '@type': '@type'
-      properties:
-        Operations:
-          items:
-            $ref: '#/components/schemas/ScimOperations'
-          type: array
-        schemas:
-          items:
-            type: string
-          type: array
-      title: PatchUserRequest
       type: object
     GetUserRequest:
       example:

@@ -38,6 +38,7 @@ const (
 	ORGANIZATIONUSERROLETYPE_CLUSTER_OPERATOR_READER OrganizationUserRoleType = "CLUSTER_OPERATOR_READER"
 	ORGANIZATIONUSERROLETYPE_CLUSTER_DEVELOPER       OrganizationUserRoleType = "CLUSTER_DEVELOPER"
 	ORGANIZATIONUSERROLETYPE_CLUSTER_CREATOR         OrganizationUserRoleType = "CLUSTER_CREATOR"
+	ORGANIZATIONUSERROLETYPE_USAGE_READER            OrganizationUserRoleType = "USAGE_READER"
 )
 
 // All allowed values of OrganizationUserRoleType enum.
@@ -52,6 +53,7 @@ var AllowedOrganizationUserRoleTypeEnumValues = []OrganizationUserRoleType{
 	"CLUSTER_OPERATOR_READER",
 	"CLUSTER_DEVELOPER",
 	"CLUSTER_CREATOR",
+	"USAGE_READER",
 }
 
 func (v *OrganizationUserRoleType) UnmarshalJSON(src []byte) error {

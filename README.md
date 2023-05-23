@@ -130,8 +130,6 @@ Class | Method | HTTP request | Description
 *CockroachCloudApi* | **ListPrivateEndpointServices** | **Get** /api/v1/clusters/{cluster_id}/networking/private-endpoint-services | Lists all PrivateEndpointServices for a given cluster
 *CockroachCloudApi* | **ListRoleGrants** | **Get** /api/v1/roles | Lists all RoleGrants
 *CockroachCloudApi* | **ListSQLUsers** | **Get** /api/v1/clusters/{cluster_id}/sql-users | List SQL users for a cluster
-*CockroachCloudApi* | **PatchGroup** | **Patch** /api/scim/v2/Groups/{id} | Updates a group by specifying individual values to update
-*CockroachCloudApi* | **PatchUser** | **Patch** /api/scim/v2/Users/{id} | Updates a user by specifying individual values to update
 *CockroachCloudApi* | **RemoveUserFromRole** | **Delete** /api/v1/roles/{user_id}/{resource_type}/{resource_id}/{role_name} | Removes the user from the given role
 *CockroachCloudApi* | **SetAwsEndpointConnectionState** | **Patch** /api/v1/clusters/{cluster_id}/networking/aws-endpoint-connections/{endpoint_id} | Sets the AWS Endpoint Connection state based on what is passed in the body
 *CockroachCloudApi* | **SetClientCACert** | **Post** /api/v1/clusters/{cluster_id}/client-ca-cert | Set Client CA Cert for a cluster
