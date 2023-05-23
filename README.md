@@ -64,85 +64,85 @@ All URIs are relative to *https://cockroachlabs.cloud*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*CockroachCloudApi* | **AddAllowlistEntry** | **Post** /api/v1/clusters/{cluster_id}/networking/allowlist | Add a new CIDR address to the IP allowlist
-*CockroachCloudApi* | **AddAllowlistEntry2** | **Put** /api/v1/clusters/{cluster_id}/networking/allowlist/{entry.cidr_ip}/{entry.cidr_mask} | Add a new CIDR address to the IP allowlist
-*CockroachCloudApi* | **AddEgressRule** | **Post** /api/v1/clusters/{cluster_id}/networking/egress-rules | Add an egress rule
-*CockroachCloudApi* | **AddUserToRole** | **Post** /api/v1/roles/{user_id}/{resource_type}/{resource_id}/{role_name} | Adds the user to the given role
-*CockroachCloudApi* | **CreateCluster** | **Post** /api/v1/clusters | Create and initialize a new cluster
-*CockroachCloudApi* | **CreateDatabase** | **Post** /api/v1/clusters/{cluster_id}/databases | Create a new database
-*CockroachCloudApi* | **CreateGroup** | **Post** /api/scim/v2/Groups | Creates a group
-*CockroachCloudApi* | **CreatePrivateEndpointServices** | **Post** /api/v1/clusters/{cluster_id}/networking/private-endpoint-services | Creates all PrivateEndpointServices for a given cluster
-*CockroachCloudApi* | **CreateSQLUser** | **Post** /api/v1/clusters/{cluster_id}/sql-users | Create a new SQL user
-*CockroachCloudApi* | **CreateUser** | **Post** /api/scim/v2/Users | Creates a user
-*CockroachCloudApi* | **DeleteAllowlistEntry** | **Delete** /api/v1/clusters/{cluster_id}/networking/allowlist/{cidr_ip}/{cidr_mask} | Delete an IP allowlist entry
-*CockroachCloudApi* | **DeleteClientCACert** | **Delete** /api/v1/clusters/{cluster_id}/client-ca-cert | Delete Client CA Cert for a cluster
-*CockroachCloudApi* | **DeleteCloudWatchMetricExport** | **Delete** /api/v1/clusters/{cluster_id}/metricexport/cloudwatch | Delete the CloudWatch Metric Export configuration for a cluster
-*CockroachCloudApi* | **DeleteCluster** | **Delete** /api/v1/clusters/{cluster_id} | Delete a cluster and all of its data
-*CockroachCloudApi* | **DeleteDatabase** | **Delete** /api/v1/clusters/{cluster_id}/databases/{name} | Delete a database
-*CockroachCloudApi* | **DeleteDatadogMetricExport** | **Delete** /api/v1/clusters/{cluster_id}/metricexport/datadog | Delete the Datadog Metric Export configuration for a cluster
-*CockroachCloudApi* | **DeleteEgressRule** | **Delete** /api/v1/clusters/{cluster_id}/networking/egress-rules/{rule_id} | Delete an existing egress rule
-*CockroachCloudApi* | **DeleteGroup** | **Delete** /api/scim/v2/Groups/{id} | Deletes a group based on id
-*CockroachCloudApi* | **DeleteLogExport** | **Delete** /api/v1/clusters/{cluster_id}/logexport | Delete the Log Export configuration for a cluster
-*CockroachCloudApi* | **DeleteSQLUser** | **Delete** /api/v1/clusters/{cluster_id}/sql-users/{name} | Delete a SQL user
-*CockroachCloudApi* | **DeleteUser** | **Delete** /api/scim/v2/Users/{id} | Deletes a user based on id
-*CockroachCloudApi* | **EditDatabase** | **Patch** /api/v1/clusters/{cluster_id}/databases/{name} | Update a database
-*CockroachCloudApi* | **EditDatabase2** | **Patch** /api/v1/clusters/{cluster_id}/databases | Update a database
-*CockroachCloudApi* | **EditEgressRule** | **Patch** /api/v1/clusters/{cluster_id}/networking/egress-rules/{rule_id} | Edit an existing egress rule
-*CockroachCloudApi* | **EnableCMEKSpec** | **Post** /api/v1/clusters/{cluster_id}/cmek | Enable CMEK for a cluster
-*CockroachCloudApi* | **EnableCloudWatchMetricExport** | **Post** /api/v1/clusters/{cluster_id}/metricexport/cloudwatch | Create or update the CloudWatch Metric Export configuration for a cluster
-*CockroachCloudApi* | **EnableDatadogMetricExport** | **Post** /api/v1/clusters/{cluster_id}/metricexport/datadog | Create or update the Datadog Metric Export configuration for a cluster
-*CockroachCloudApi* | **EnableLogExport** | **Post** /api/v1/clusters/{cluster_id}/logexport | Create or update the Log Export configuration for a cluster
-*CockroachCloudApi* | **GetAllRolesForUser** | **Get** /api/v1/roles/{user_id} | Gets All Role Grants for the specified user
-*CockroachCloudApi* | **GetCMEKClusterInfo** | **Get** /api/v1/clusters/{cluster_id}/cmek | Get CMEK-related information for a cluster
-*CockroachCloudApi* | **GetClientCACert** | **Get** /api/v1/clusters/{cluster_id}/client-ca-cert | Get Client CA Cert information for a cluster
-*CockroachCloudApi* | **GetCloudWatchMetricExportInfo** | **Get** /api/v1/clusters/{cluster_id}/metricexport/cloudwatch | Get the CloudWatch Metric Export configuration for a cluster
-*CockroachCloudApi* | **GetCluster** | **Get** /api/v1/clusters/{cluster_id} | Get extended information about a cluster
-*CockroachCloudApi* | **GetConnectionString** | **Get** /api/v1/clusters/{cluster_id}/connection-string | Get a formatted generic connection string for a cluster
-*CockroachCloudApi* | **GetDatadogMetricExportInfo** | **Get** /api/v1/clusters/{cluster_id}/metricexport/datadog | Get the Datadog Metric Export configuration for a cluster
-*CockroachCloudApi* | **GetEgressRule** | **Get** /api/v1/clusters/{cluster_id}/networking/egress-rules/{rule_id} | Get an existing egress rule
-*CockroachCloudApi* | **GetGroup** | **Get** /api/scim/v2/Groups/{id} | Gets a group based on id
-*CockroachCloudApi* | **GetGroup2** | **Put** /api/scim/v2/Groups/{id}/.search | Gets a group based on id
-*CockroachCloudApi* | **GetGroups** | **Get** /api/scim/v2/Groups | Gets groups based on query parameters
-*CockroachCloudApi* | **GetGroups2** | **Put** /api/scim/v2/Groups/.search | Gets groups based on query parameters
-*CockroachCloudApi* | **GetInvoice** | **Get** /api/v1/invoices/{invoice_id} | Gets a specific invoice for an organization
-*CockroachCloudApi* | **GetLogExportInfo** | **Get** /api/v1/clusters/{cluster_id}/logexport | Get the Log Export configuration for a cluster
-*CockroachCloudApi* | **GetOrganizationInfo** | **Get** /api/v1/organization | Get information about the caller&#39;s organization
-*CockroachCloudApi* | **GetPersonUsersByEmail** | **Get** /api/v1/users/persons-by-email | Search person users by email address
-*CockroachCloudApi* | **GetResourceType** | **Get** /api/scim/v2/ResourceTypes/{resourceId} | 
-*CockroachCloudApi* | **GetResourceTypes** | **Get** /api/scim/v2/ResourceTypes | 
-*CockroachCloudApi* | **GetSchema** | **Get** /api/scim/v2/Schemas/{schemaId} | 
-*CockroachCloudApi* | **GetSchemas** | **Get** /api/scim/v2/Schemas | 
-*CockroachCloudApi* | **GetServiceProviderConfig** | **Get** /api/scim/v2/ServiceProviderConfig | Returns our SCIM configuration
-*CockroachCloudApi* | **GetUser** | **Get** /api/scim/v2/Users/{id} | Gets a user based on id
-*CockroachCloudApi* | **GetUser2** | **Put** /api/scim/v2/Users/{id}/.search | Gets a user based on id
-*CockroachCloudApi* | **GetUsers** | **Get** /api/scim/v2/Users | Gets Users based on query parameters
-*CockroachCloudApi* | **GetUsers2** | **Put** /api/scim/v2/Users/.search | Gets Users based on query parameters
-*CockroachCloudApi* | **ListAllowlistEntries** | **Get** /api/v1/clusters/{cluster_id}/networking/allowlist | Get the IP allowlist and propagation status for a cluster
-*CockroachCloudApi* | **ListAuditLogs** | **Get** /api/v1/auditlogevents | Limited Access: List audit logs.
-*CockroachCloudApi* | **ListAvailableRegions** | **Get** /api/v1/clusters/available-regions | List the regions available for new clusters and nodes
-*CockroachCloudApi* | **ListAwsEndpointConnections** | **Get** /api/v1/clusters/{cluster_id}/networking/aws-endpoint-connections | Lists all AwsEndpointConnections for a given cluster
-*CockroachCloudApi* | **ListClusterNodes** | **Get** /api/v1/clusters/{cluster_id}/nodes | List nodes for a cluster
-*CockroachCloudApi* | **ListClusters** | **Get** /api/v1/clusters | List clusters owned by an organization
-*CockroachCloudApi* | **ListDatabases** | **Get** /api/v1/clusters/{cluster_id}/databases | List databases for a cluster
-*CockroachCloudApi* | **ListEgressRules** | **Get** /api/v1/clusters/{cluster_id}/networking/egress-rules | List all egress rules associates with a cluster
-*CockroachCloudApi* | **ListInvoices** | **Get** /api/v1/invoices | List invoices for a given organization
-*CockroachCloudApi* | **ListMajorClusterVersions** | **Get** /api/v1/cluster-versions | List available major cluster versions
-*CockroachCloudApi* | **ListPrivateEndpointServices** | **Get** /api/v1/clusters/{cluster_id}/networking/private-endpoint-services | Lists all PrivateEndpointServices for a given cluster
-*CockroachCloudApi* | **ListRoleGrants** | **Get** /api/v1/roles | Lists all RoleGrants
-*CockroachCloudApi* | **ListSQLUsers** | **Get** /api/v1/clusters/{cluster_id}/sql-users | List SQL users for a cluster
-*CockroachCloudApi* | **RemoveUserFromRole** | **Delete** /api/v1/roles/{user_id}/{resource_type}/{resource_id}/{role_name} | Removes the user from the given role
-*CockroachCloudApi* | **SetAwsEndpointConnectionState** | **Patch** /api/v1/clusters/{cluster_id}/networking/aws-endpoint-connections/{endpoint_id} | Sets the AWS Endpoint Connection state based on what is passed in the body
-*CockroachCloudApi* | **SetClientCACert** | **Post** /api/v1/clusters/{cluster_id}/client-ca-cert | Set Client CA Cert for a cluster
-*CockroachCloudApi* | **SetEgressTrafficPolicy** | **Post** /api/v1/clusters/{cluster_id}/networking/egress-rules/egress-traffic-policy | Outbound traffic management
-*CockroachCloudApi* | **SetRolesForUser** | **Put** /api/v1/roles/{user_id} | Makes the users roles exactly those provided
-*CockroachCloudApi* | **UpdateAllowlistEntry** | **Patch** /api/v1/clusters/{cluster_id}/networking/allowlist/{entry.cidr_ip}/{entry.cidr_mask} | Update an IP allowlist entry
-*CockroachCloudApi* | **UpdateCMEKSpec** | **Put** /api/v1/clusters/{cluster_id}/cmek | Enable or update the CMEK spec for a cluster
-*CockroachCloudApi* | **UpdateCMEKStatus** | **Patch** /api/v1/clusters/{cluster_id}/cmek | Update the CMEK-related status for a cluster
-*CockroachCloudApi* | **UpdateClientCACert** | **Patch** /api/v1/clusters/{cluster_id}/client-ca-cert | Update Client CA Cert for a cluster
-*CockroachCloudApi* | **UpdateCluster** | **Patch** /api/v1/clusters/{cluster_id} | Scale or edit a cluster
-*CockroachCloudApi* | **UpdateGroup** | **Put** /api/scim/v2/Groups/{id} | Updates a group by supplying all values of the user object
-*CockroachCloudApi* | **UpdateSQLUserPassword** | **Put** /api/v1/clusters/{cluster_id}/sql-users/{name}/password | Update a SQL user&#39;s password
-*CockroachCloudApi* | **UpdateUser** | **Put** /api/scim/v2/Users/{id} | Updates a user by supplying all values of the user object
+*AuditLogsApi* | **ListAuditLogs** | **Get** /api/v1/auditlogevents | Limited Access: List audit logs
+*BillingApi* | **GetInvoice** | **Get** /api/v1/invoices/{invoice_id} | Get a specific invoice for an organization
+*BillingApi* | **ListInvoices** | **Get** /api/v1/invoices | List invoices for a given organization
+*ClientCACertificatesApi* | **DeleteClientCACert** | **Delete** /api/v1/clusters/{cluster_id}/client-ca-cert | Delete Client CA Cert for a cluster
+*ClientCACertificatesApi* | **GetClientCACert** | **Get** /api/v1/clusters/{cluster_id}/client-ca-cert | Get Client CA Cert information for a cluster
+*ClientCACertificatesApi* | **SetClientCACert** | **Post** /api/v1/clusters/{cluster_id}/client-ca-cert | Set Client CA Cert for a cluster
+*ClientCACertificatesApi* | **UpdateClientCACert** | **Patch** /api/v1/clusters/{cluster_id}/client-ca-cert | Update Client CA Cert for a cluster
+*ClustersApi* | **CreateCluster** | **Post** /api/v1/clusters | Create and initialize a new cluster
+*ClustersApi* | **DeleteCluster** | **Delete** /api/v1/clusters/{cluster_id} | Delete a cluster and all of its data
+*ClustersApi* | **GetCluster** | **Get** /api/v1/clusters/{cluster_id} | Get extended information about a cluster
+*ClustersApi* | **GetConnectionString** | **Get** /api/v1/clusters/{cluster_id}/connection-string | Get a formatted generic connection string for a cluster
+*ClustersApi* | **ListAvailableRegions** | **Get** /api/v1/clusters/available-regions | List the regions available for new clusters and nodes
+*ClustersApi* | **ListClusterNodes** | **Get** /api/v1/clusters/{cluster_id}/nodes | List nodes for a cluster
+*ClustersApi* | **ListClusters** | **Get** /api/v1/clusters | List clusters owned by an organization
+*ClustersApi* | **ListMajorClusterVersions** | **Get** /api/v1/cluster-versions | List available major cluster versions
+*ClustersApi* | **UpdateCluster** | **Patch** /api/v1/clusters/{cluster_id} | Scale or edit a cluster
+*CustomerManagedEncryptionKeysApi* | **EnableCMEKSpec** | **Post** /api/v1/clusters/{cluster_id}/cmek | Enable CMEK for a cluster
+*CustomerManagedEncryptionKeysApi* | **GetCMEKClusterInfo** | **Get** /api/v1/clusters/{cluster_id}/cmek | Get CMEK-related information for a cluster
+*CustomerManagedEncryptionKeysApi* | **UpdateCMEKSpec** | **Put** /api/v1/clusters/{cluster_id}/cmek | Enable or update the CMEK spec for a cluster
+*CustomerManagedEncryptionKeysApi* | **UpdateCMEKStatus** | **Patch** /api/v1/clusters/{cluster_id}/cmek | Update the CMEK-related status for a cluster
+*DatabasesApi* | **CreateDatabase** | **Post** /api/v1/clusters/{cluster_id}/databases | Create a new database
+*DatabasesApi* | **DeleteDatabase** | **Delete** /api/v1/clusters/{cluster_id}/databases/{name} | Delete a database
+*DatabasesApi* | **EditDatabase** | **Patch** /api/v1/clusters/{cluster_id}/databases/{name} | Update a database
+*DatabasesApi* | **EditDatabase2** | **Patch** /api/v1/clusters/{cluster_id}/databases | Update a database
+*DatabasesApi* | **ListDatabases** | **Get** /api/v1/clusters/{cluster_id}/databases | List databases for a cluster
+*EgressRulesApi* | **AddEgressRule** | **Post** /api/v1/clusters/{cluster_id}/networking/egress-rules | Add an egress rule
+*EgressRulesApi* | **DeleteEgressRule** | **Delete** /api/v1/clusters/{cluster_id}/networking/egress-rules/{rule_id} | Delete an existing egress rule
+*EgressRulesApi* | **EditEgressRule** | **Patch** /api/v1/clusters/{cluster_id}/networking/egress-rules/{rule_id} | Edit an existing egress rule
+*EgressRulesApi* | **GetEgressRule** | **Get** /api/v1/clusters/{cluster_id}/networking/egress-rules/{rule_id} | Get an existing egress rule
+*EgressRulesApi* | **ListEgressRules** | **Get** /api/v1/clusters/{cluster_id}/networking/egress-rules | List all egress rules associates with a cluster
+*EgressRulesApi* | **SetEgressTrafficPolicy** | **Post** /api/v1/clusters/{cluster_id}/networking/egress-rules/egress-traffic-policy | Outbound traffic management
+*IPAllowlistsApi* | **AddAllowlistEntry** | **Post** /api/v1/clusters/{cluster_id}/networking/allowlist | Add a new CIDR address to the IP allowlist
+*IPAllowlistsApi* | **AddAllowlistEntry2** | **Put** /api/v1/clusters/{cluster_id}/networking/allowlist/{entry.cidr_ip}/{entry.cidr_mask} | Add a new CIDR address to the IP allowlist
+*IPAllowlistsApi* | **DeleteAllowlistEntry** | **Delete** /api/v1/clusters/{cluster_id}/networking/allowlist/{cidr_ip}/{cidr_mask} | Delete an IP allowlist entry
+*IPAllowlistsApi* | **ListAllowlistEntries** | **Get** /api/v1/clusters/{cluster_id}/networking/allowlist | Get the IP allowlist and propagation status for a cluster
+*IPAllowlistsApi* | **UpdateAllowlistEntry** | **Patch** /api/v1/clusters/{cluster_id}/networking/allowlist/{entry.cidr_ip}/{entry.cidr_mask} | Update an IP allowlist entry
+*LogExportApi* | **DeleteLogExport** | **Delete** /api/v1/clusters/{cluster_id}/logexport | Delete the Log Export configuration for a cluster
+*LogExportApi* | **EnableLogExport** | **Post** /api/v1/clusters/{cluster_id}/logexport | Create or update the Log Export configuration for a cluster
+*LogExportApi* | **GetLogExportInfo** | **Get** /api/v1/clusters/{cluster_id}/logexport | Get the Log Export configuration for a cluster
+*MetricExportApi* | **DeleteCloudWatchMetricExport** | **Delete** /api/v1/clusters/{cluster_id}/metricexport/cloudwatch | Delete the CloudWatch Metric Export configuration for a cluster
+*MetricExportApi* | **DeleteDatadogMetricExport** | **Delete** /api/v1/clusters/{cluster_id}/metricexport/datadog | Delete the Datadog Metric Export configuration for a cluster
+*MetricExportApi* | **EnableCloudWatchMetricExport** | **Post** /api/v1/clusters/{cluster_id}/metricexport/cloudwatch | Create or update the CloudWatch Metric Export configuration for a cluster
+*MetricExportApi* | **EnableDatadogMetricExport** | **Post** /api/v1/clusters/{cluster_id}/metricexport/datadog | Create or update the Datadog Metric Export configuration for a cluster
+*MetricExportApi* | **GetCloudWatchMetricExportInfo** | **Get** /api/v1/clusters/{cluster_id}/metricexport/cloudwatch | Get the CloudWatch Metric Export configuration for a cluster
+*MetricExportApi* | **GetDatadogMetricExportInfo** | **Get** /api/v1/clusters/{cluster_id}/metricexport/datadog | Get the Datadog Metric Export configuration for a cluster
+*OrganizationsApi* | **GetOrganizationInfo** | **Get** /api/v1/organization | Get information about the caller&#39;s organization
+*PrivateEndpointServicesApi* | **CreatePrivateEndpointServices** | **Post** /api/v1/clusters/{cluster_id}/networking/private-endpoint-services | Create all PrivateEndpointServices for a cluster
+*PrivateEndpointServicesApi* | **ListAwsEndpointConnections** | **Get** /api/v1/clusters/{cluster_id}/networking/aws-endpoint-connections | List all AwsEndpointConnections for a cluster
+*PrivateEndpointServicesApi* | **ListPrivateEndpointServices** | **Get** /api/v1/clusters/{cluster_id}/networking/private-endpoint-services | List all PrivateEndpointServices for a cluster
+*PrivateEndpointServicesApi* | **SetAwsEndpointConnectionState** | **Patch** /api/v1/clusters/{cluster_id}/networking/aws-endpoint-connections/{endpoint_id} | Set the AWS Endpoint Connection state
+*RoleManagementApi* | **AddUserToRole** | **Post** /api/v1/roles/{user_id}/{resource_type}/{resource_id}/{role_name} | Add the user to the given role
+*RoleManagementApi* | **GetAllRolesForUser** | **Get** /api/v1/roles/{user_id} | Get all Role Grants for a user
+*RoleManagementApi* | **GetPersonUsersByEmail** | **Get** /api/v1/users/persons-by-email | Search person users by email address
+*RoleManagementApi* | **ListRoleGrants** | **Get** /api/v1/roles | List all RoleGrants
+*RoleManagementApi* | **RemoveUserFromRole** | **Delete** /api/v1/roles/{user_id}/{resource_type}/{resource_id}/{role_name} | Remove the user from the given role
+*RoleManagementApi* | **SetRolesForUser** | **Put** /api/v1/roles/{user_id} | Make a user&#39;s roles exactly those provided
+*SCIMApi* | **CreateGroup** | **Post** /api/scim/v2/Groups | Create a group
+*SCIMApi* | **CreateUser** | **Post** /api/scim/v2/Users | Create a user
+*SCIMApi* | **DeleteGroup** | **Delete** /api/scim/v2/Groups/{id} | Delete a group based on ID
+*SCIMApi* | **DeleteUser** | **Delete** /api/scim/v2/Users/{id} | Delete a user based on ID
+*SCIMApi* | **GetGroup** | **Get** /api/scim/v2/Groups/{id} | Get a group based on ID
+*SCIMApi* | **GetGroup2** | **Put** /api/scim/v2/Groups/{id}/.search | Get a group based on ID
+*SCIMApi* | **GetGroups** | **Get** /api/scim/v2/Groups | Get groups based on query parameters
+*SCIMApi* | **GetGroups2** | **Put** /api/scim/v2/Groups/.search | Get groups based on query parameters
+*SCIMApi* | **GetResourceType** | **Get** /api/scim/v2/ResourceTypes/{resourceId} | 
+*SCIMApi* | **GetResourceTypes** | **Get** /api/scim/v2/ResourceTypes | 
+*SCIMApi* | **GetSchema** | **Get** /api/scim/v2/Schemas/{schemaId} | 
+*SCIMApi* | **GetSchemas** | **Get** /api/scim/v2/Schemas | 
+*SCIMApi* | **GetServiceProviderConfig** | **Get** /api/scim/v2/ServiceProviderConfig | Return our SCIM configuration
+*SCIMApi* | **GetUser** | **Get** /api/scim/v2/Users/{id} | Get a user based on ID
+*SCIMApi* | **GetUser2** | **Put** /api/scim/v2/Users/{id}/.search | Get a user based on ID
+*SCIMApi* | **GetUsers** | **Get** /api/scim/v2/Users | Get Users based on query parameters
+*SCIMApi* | **GetUsers2** | **Put** /api/scim/v2/Users/.search | Get Users based on query parameters
+*SCIMApi* | **UpdateGroup** | **Put** /api/scim/v2/Groups/{id} | Update a group by supplying all values of the user object
+*SCIMApi* | **UpdateUser** | **Put** /api/scim/v2/Users/{id} | Update a user by supplying all values of the user object
+*SQLUsersApi* | **CreateSQLUser** | **Post** /api/v1/clusters/{cluster_id}/sql-users | Create a new SQL user
+*SQLUsersApi* | **DeleteSQLUser** | **Delete** /api/v1/clusters/{cluster_id}/sql-users/{name} | Delete a SQL user
+*SQLUsersApi* | **ListSQLUsers** | **Get** /api/v1/clusters/{cluster_id}/sql-users | List SQL users for a cluster
+*SQLUsersApi* | **UpdateSQLUserPassword** | **Put** /api/v1/clusters/{cluster_id}/sql-users/{name}/password | Update a SQL user&#39;s password
 
 
 ## Author

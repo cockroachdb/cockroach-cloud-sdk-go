@@ -14,8 +14,6 @@ servers:
 - url: https://cockroachlabs.cloud
 security:
 - Bearer: []
-tags:
-- name: CockroachCloud
 paths:
   /api/scim/v2/Groups:
     get:
@@ -74,9 +72,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
-      summary: Gets groups based on query parameters
+      summary: Get groups based on query parameters
       tags:
-      - CockroachCloud
+      - SCIM
       x-badges:
       - color: blue
         label: PREVIEW
@@ -133,9 +131,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
-      summary: Creates a group
+      summary: Create a group
       tags:
-      - CockroachCloud
+      - SCIM
       x-badges:
       - color: blue
         label: PREVIEW
@@ -195,9 +193,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
-      summary: Gets groups based on query parameters
+      summary: Get groups based on query parameters
       tags:
-      - CockroachCloud
+      - SCIM
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -256,9 +254,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
-      summary: Deletes a group based on id
+      summary: Delete a group based on ID
       tags:
-      - CockroachCloud
+      - SCIM
       x-badges:
       - color: blue
         label: PREVIEW
@@ -331,9 +329,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
-      summary: Gets a group based on id
+      summary: Get a group based on ID
       tags:
-      - CockroachCloud
+      - SCIM
       x-badges:
       - color: blue
         label: PREVIEW
@@ -398,9 +396,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
-      summary: Updates a group by supplying all values of the user object
+      summary: Update a group by supplying all values of the user object
       tags:
-      - CockroachCloud
+      - SCIM
       x-badges:
       - color: blue
         label: PREVIEW
@@ -468,9 +466,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
-      summary: Gets a group based on id
+      summary: Get a group based on ID
       tags:
-      - CockroachCloud
+      - SCIM
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -537,7 +535,7 @@ paths:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
       tags:
-      - CockroachCloud
+      - SCIM
       x-badges:
       - color: blue
         label: PREVIEW
@@ -612,7 +610,7 @@ paths:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
       tags:
-      - CockroachCloud
+      - SCIM
       x-badges:
       - color: blue
         label: PREVIEW
@@ -680,7 +678,7 @@ paths:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
       tags:
-      - CockroachCloud
+      - SCIM
       x-badges:
       - color: blue
         label: PREVIEW
@@ -755,7 +753,7 @@ paths:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
       tags:
-      - CockroachCloud
+      - SCIM
       x-badges:
       - color: blue
         label: PREVIEW
@@ -807,9 +805,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
-      summary: Returns our SCIM configuration
+      summary: Return our SCIM configuration
       tags:
-      - CockroachCloud
+      - SCIM
       x-badges:
       - color: blue
         label: PREVIEW
@@ -883,9 +881,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
-      summary: Gets Users based on query parameters
+      summary: Get Users based on query parameters
       tags:
-      - CockroachCloud
+      - SCIM
       x-badges:
       - color: blue
         label: PREVIEW
@@ -942,9 +940,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
-      summary: Creates a user
+      summary: Create a user
       tags:
-      - CockroachCloud
+      - SCIM
       x-badges:
       - color: blue
         label: PREVIEW
@@ -1004,9 +1002,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
-      summary: Gets Users based on query parameters
+      summary: Get Users based on query parameters
       tags:
-      - CockroachCloud
+      - SCIM
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -1065,9 +1063,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
-      summary: Deletes a user based on id
+      summary: Delete a user based on ID
       tags:
-      - CockroachCloud
+      - SCIM
       x-badges:
       - color: blue
         label: PREVIEW
@@ -1140,9 +1138,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
-      summary: Gets a user based on id
+      summary: Get a user based on ID
       tags:
-      - CockroachCloud
+      - SCIM
       x-badges:
       - color: blue
         label: PREVIEW
@@ -1207,9 +1205,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
-      summary: Updates a user by supplying all values of the user object
+      summary: Update a user by supplying all values of the user object
       tags:
-      - CockroachCloud
+      - SCIM
       x-badges:
       - color: blue
         label: PREVIEW
@@ -1277,9 +1275,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
-      summary: Gets a user based on id
+      summary: Get a user based on ID
       tags:
-      - CockroachCloud
+      - SCIM
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -1373,9 +1371,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
-      summary: "Limited Access: List audit logs."
+      summary: "Limited Access: List audit logs"
       tags:
-      - CockroachCloud
+      - Audit Logs
       x-badges:
       - color: red
         label: LIMITED ACCESS
@@ -1467,7 +1465,7 @@ paths:
           description: An unexpected error response.
       summary: List available major cluster versions
       tags:
-      - CockroachCloud
+      - Clusters
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -1566,7 +1564,7 @@ paths:
           description: An unexpected error response.
       summary: List clusters owned by an organization
       tags:
-      - CockroachCloud
+      - Clusters
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -1622,7 +1620,7 @@ paths:
           description: An unexpected error response.
       summary: Create and initialize a new cluster
       tags:
-      - CockroachCloud
+      - Clusters
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -1740,7 +1738,7 @@ paths:
           description: An unexpected error response.
       summary: List the regions available for new clusters and nodes
       tags:
-      - CockroachCloud
+      - Clusters
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -1799,7 +1797,7 @@ paths:
           description: An unexpected error response.
       summary: Delete a cluster and all of its data
       tags:
-      - CockroachCloud
+      - Clusters
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -1857,7 +1855,7 @@ paths:
           description: An unexpected error response.
       summary: Get extended information about a cluster
       tags:
-      - CockroachCloud
+      - Clusters
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -1921,7 +1919,7 @@ paths:
           description: An unexpected error response.
       summary: Scale or edit a cluster
       tags:
-      - CockroachCloud
+      - Clusters
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -1982,7 +1980,7 @@ paths:
           description: An unexpected error response.
       summary: Delete Client CA Cert for a cluster
       tags:
-      - CockroachCloud
+      - Client CA Certificates
       x-badges:
       - color: blue
         label: PREVIEW
@@ -2043,7 +2041,7 @@ paths:
           description: An unexpected error response.
       summary: Get Client CA Cert information for a cluster
       tags:
-      - CockroachCloud
+      - Client CA Certificates
       x-badges:
       - color: blue
         label: PREVIEW
@@ -2110,7 +2108,7 @@ paths:
           description: An unexpected error response.
       summary: Update Client CA Cert for a cluster
       tags:
-      - CockroachCloud
+      - Client CA Certificates
       x-badges:
       - color: blue
         label: PREVIEW
@@ -2179,7 +2177,7 @@ paths:
           description: An unexpected error response.
       summary: Set Client CA Cert for a cluster
       tags:
-      - CockroachCloud
+      - Client CA Certificates
       x-badges:
       - color: blue
         label: PREVIEW
@@ -2243,7 +2241,7 @@ paths:
           description: An unexpected error response.
       summary: Get CMEK-related information for a cluster
       tags:
-      - CockroachCloud
+      - Customer-managed Encryption Keys
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -2307,7 +2305,7 @@ paths:
           description: An unexpected error response.
       summary: Update the CMEK-related status for a cluster
       tags:
-      - CockroachCloud
+      - Customer-managed Encryption Keys
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -2373,7 +2371,7 @@ paths:
           description: An unexpected error response.
       summary: Enable CMEK for a cluster
       tags:
-      - CockroachCloud
+      - Customer-managed Encryption Keys
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -2438,7 +2436,7 @@ paths:
           description: An unexpected error response.
       summary: Enable or update the CMEK spec for a cluster
       tags:
-      - CockroachCloud
+      - Customer-managed Encryption Keys
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -2527,7 +2525,7 @@ paths:
           description: An unexpected error response.
       summary: Get a formatted generic connection string for a cluster
       tags:
-      - CockroachCloud
+      - Clusters
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -2623,7 +2621,7 @@ paths:
           description: An unexpected error response.
       summary: List databases for a cluster
       tags:
-      - CockroachCloud
+      - Databases
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -2687,7 +2685,7 @@ paths:
           description: An unexpected error response.
       summary: Update a database
       tags:
-      - CockroachCloud
+      - Databases
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -2753,7 +2751,7 @@ paths:
           description: An unexpected error response.
       summary: Create a new database
       tags:
-      - CockroachCloud
+      - Databases
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -2821,7 +2819,7 @@ paths:
           description: An unexpected error response.
       summary: Delete a database
       tags:
-      - CockroachCloud
+      - Databases
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -2892,7 +2890,7 @@ paths:
           description: An unexpected error response.
       summary: Update a database
       tags:
-      - CockroachCloud
+      - Databases
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -2953,7 +2951,7 @@ paths:
           description: An unexpected error response.
       summary: Delete the Log Export configuration for a cluster
       tags:
-      - CockroachCloud
+      - Log Export
       x-badges:
       - color: blue
         label: PREVIEW
@@ -3014,7 +3012,7 @@ paths:
           description: An unexpected error response.
       summary: Get the Log Export configuration for a cluster
       tags:
-      - CockroachCloud
+      - Log Export
       x-badges:
       - color: blue
         label: PREVIEW
@@ -3081,7 +3079,7 @@ paths:
           description: An unexpected error response.
       summary: Create or update the Log Export configuration for a cluster
       tags:
-      - CockroachCloud
+      - Log Export
       x-badges:
       - color: blue
         label: PREVIEW
@@ -3145,7 +3143,7 @@ paths:
           description: An unexpected error response.
       summary: Delete the CloudWatch Metric Export configuration for a cluster
       tags:
-      - CockroachCloud
+      - Metric Export
       x-badges:
       - color: blue
         label: PREVIEW
@@ -3206,7 +3204,7 @@ paths:
           description: An unexpected error response.
       summary: Get the CloudWatch Metric Export configuration for a cluster
       tags:
-      - CockroachCloud
+      - Metric Export
       x-badges:
       - color: blue
         label: PREVIEW
@@ -3273,7 +3271,7 @@ paths:
           description: An unexpected error response.
       summary: Create or update the CloudWatch Metric Export configuration for a cluster
       tags:
-      - CockroachCloud
+      - Metric Export
       x-badges:
       - color: blue
         label: PREVIEW
@@ -3337,7 +3335,7 @@ paths:
           description: An unexpected error response.
       summary: Delete the Datadog Metric Export configuration for a cluster
       tags:
-      - CockroachCloud
+      - Metric Export
       x-badges:
       - color: blue
         label: PREVIEW
@@ -3398,7 +3396,7 @@ paths:
           description: An unexpected error response.
       summary: Get the Datadog Metric Export configuration for a cluster
       tags:
-      - CockroachCloud
+      - Metric Export
       x-badges:
       - color: blue
         label: PREVIEW
@@ -3465,7 +3463,7 @@ paths:
           description: An unexpected error response.
       summary: Create or update the Datadog Metric Export configuration for a cluster
       tags:
-      - CockroachCloud
+      - Metric Export
       x-badges:
       - color: blue
         label: PREVIEW
@@ -3566,7 +3564,7 @@ paths:
           description: An unexpected error response.
       summary: Get the IP allowlist and propagation status for a cluster
       tags:
-      - CockroachCloud
+      - IP Allowlists
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -3630,7 +3628,7 @@ paths:
           description: An unexpected error response.
       summary: Add a new CIDR address to the IP allowlist
       tags:
-      - CockroachCloud
+      - IP Allowlists
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -3706,7 +3704,7 @@ paths:
           description: An unexpected error response.
       summary: Delete an IP allowlist entry
       tags:
-      - CockroachCloud
+      - IP Allowlists
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -3787,7 +3785,7 @@ paths:
           description: An unexpected error response.
       summary: Update an IP allowlist entry
       tags:
-      - CockroachCloud
+      - IP Allowlists
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -3868,7 +3866,7 @@ paths:
           description: An unexpected error response.
       summary: Add a new CIDR address to the IP allowlist
       tags:
-      - CockroachCloud
+      - IP Allowlists
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -3927,9 +3925,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
-      summary: Lists all AwsEndpointConnections for a given cluster
+      summary: List all AwsEndpointConnections for a cluster
       tags:
-      - CockroachCloud
+      - Private Endpoint Services
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -4005,10 +4003,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
-      summary: Sets the AWS Endpoint Connection state based on what is passed in the
-        body
+      summary: Set the AWS Endpoint Connection state
       tags:
-      - CockroachCloud
+      - Private Endpoint Services
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -4109,7 +4106,7 @@ paths:
           description: An unexpected error response.
       summary: List all egress rules associates with a cluster
       tags:
-      - CockroachCloud
+      - Egress Rules
       x-badges:
       - color: blue
         label: PREVIEW
@@ -4177,7 +4174,7 @@ paths:
           description: An unexpected error response.
       summary: Add an egress rule
       tags:
-      - CockroachCloud
+      - Egress Rules
       x-badges:
       - color: blue
         label: PREVIEW
@@ -4249,7 +4246,7 @@ paths:
           description: An unexpected error response.
       summary: Outbound traffic management
       tags:
-      - CockroachCloud
+      - Egress Rules
       x-badges:
       - color: blue
         label: PREVIEW
@@ -4334,7 +4331,7 @@ paths:
           description: An unexpected error response.
       summary: Delete an existing egress rule
       tags:
-      - CockroachCloud
+      - Egress Rules
       x-badges:
       - color: blue
         label: PREVIEW
@@ -4405,7 +4402,7 @@ paths:
           description: An unexpected error response.
       summary: Get an existing egress rule
       tags:
-      - CockroachCloud
+      - Egress Rules
       x-badges:
       - color: blue
         label: PREVIEW
@@ -4483,7 +4480,7 @@ paths:
           description: An unexpected error response.
       summary: Edit an existing egress rule
       tags:
-      - CockroachCloud
+      - Egress Rules
       x-badges:
       - color: blue
         label: PREVIEW
@@ -4548,9 +4545,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
-      summary: Lists all PrivateEndpointServices for a given cluster
+      summary: List all PrivateEndpointServices for a cluster
       tags:
-      - CockroachCloud
+      - Private Endpoint Services
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -4607,9 +4604,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
-      summary: Creates all PrivateEndpointServices for a given cluster
+      summary: Create all PrivateEndpointServices for a cluster
       tags:
-      - CockroachCloud
+      - Private Endpoint Services
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -4713,7 +4710,7 @@ paths:
           description: An unexpected error response.
       summary: List nodes for a cluster
       tags:
-      - CockroachCloud
+      - Clusters
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -4809,7 +4806,7 @@ paths:
           description: An unexpected error response.
       summary: List SQL users for a cluster
       tags:
-      - CockroachCloud
+      - SQL Users
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -4873,7 +4870,7 @@ paths:
           description: An unexpected error response.
       summary: Create a new SQL user
       tags:
-      - CockroachCloud
+      - SQL Users
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -4941,7 +4938,7 @@ paths:
           description: An unexpected error response.
       summary: Delete a SQL user
       tags:
-      - CockroachCloud
+      - SQL Users
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -5013,7 +5010,7 @@ paths:
           description: An unexpected error response.
       summary: Update a SQL user's password
       tags:
-      - CockroachCloud
+      - SQL Users
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -5067,7 +5064,7 @@ paths:
           description: An unexpected error response.
       summary: List invoices for a given organization
       tags:
-      - CockroachCloud
+      - Billing
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -5128,9 +5125,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
-      summary: Gets a specific invoice for an organization
+      summary: Get a specific invoice for an organization
       tags:
-      - CockroachCloud
+      - Billing
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -5181,7 +5178,7 @@ paths:
           description: An unexpected error response.
       summary: Get information about the caller's organization
       tags:
-      - CockroachCloud
+      - Organizations
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -5267,9 +5264,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
-      summary: Lists all RoleGrants
+      summary: List all RoleGrants
       tags:
-      - CockroachCloud
+      - Role Management
       x-badges:
       - color: blue
         label: PREVIEW
@@ -5329,9 +5326,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
-      summary: Gets All Role Grants for the specified user
+      summary: Get all Role Grants for a user
       tags:
-      - CockroachCloud
+      - Role Management
       x-badges:
       - color: blue
         label: PREVIEW
@@ -5396,9 +5393,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
-      summary: Makes the users roles exactly those provided
+      summary: Make a user's roles exactly those provided
       tags:
-      - CockroachCloud
+      - Role Management
       x-badges:
       - color: blue
         label: PREVIEW
@@ -5496,9 +5493,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
-      summary: Removes the user from the given role
+      summary: Remove the user from the given role
       tags:
-      - CockroachCloud
+      - Role Management
       x-badges:
       - color: blue
         label: PREVIEW
@@ -5593,9 +5590,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
-      summary: Adds the user to the given role
+      summary: Add the user to the given role
       tags:
-      - CockroachCloud
+      - Role Management
       x-badges:
       - color: blue
         label: PREVIEW
@@ -5658,7 +5655,7 @@ paths:
           description: An unexpected error response.
       summary: Search person users by email address
       tags:
-      - CockroachCloud
+      - Role Management
       x-badges:
       - color: blue
         label: PREVIEW
