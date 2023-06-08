@@ -43,6 +43,8 @@ docs/ClusterMajorVersionSupportStatusType.md
 docs/ClusterStateType.md
 docs/ClusterStatusType.md
 docs/ClusterUpgradeStatusType.md
+docs/ClusterVersionDeferral.md
+docs/ClusterVersionDeferralPolicyType.md
 docs/ClustersApi.md
 docs/CockroachCloudSetRolesForUserRequest.md
 docs/CreateClusterRequest.md
@@ -63,6 +65,7 @@ docs/DedicatedHardwareConfig.md
 docs/DedicatedHardwareCreateSpecification.md
 docs/DedicatedHardwareUpdateSpecification.md
 docs/DedicatedMachineTypeSpecification.md
+docs/DefaultApi.md
 docs/DeleteEgressRuleResponse.md
 docs/DeleteMetricExportResponse.md
 docs/EditEgressRuleRequest.md
@@ -110,6 +113,8 @@ docs/LogExportGroup.md
 docs/LogExportStatus.md
 docs/LogExportType.md
 docs/LogLevelType.md
+docs/MaintenanceWindow.md
+docs/MaintenanceWindowsApi.md
 docs/MetricExportApi.md
 docs/MetricExportStatusType.md
 docs/NetworkVisibilityType.md
@@ -197,6 +202,8 @@ model_cluster_major_version_support_status_type.go
 model_cluster_state_type.go
 model_cluster_status_type.go
 model_cluster_upgrade_status_type.go
+model_cluster_version_deferral.go
+model_cluster_version_deferral_policy_type.go
 model_cmek_cluster_info.go
 model_cmek_cluster_specification.go
 model_cmek_customer_action.go
@@ -267,6 +274,7 @@ model_log_export_group.go
 model_log_export_status.go
 model_log_export_type.go
 model_log_level_type.go
+model_maintenance_window.go
 model_metric_export_status_type.go
 model_network_visibility_type.go
 model_node.go

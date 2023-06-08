@@ -1371,12 +1371,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
-      summary: "Limited Access: List audit logs"
+      summary: List audit logs
       tags:
       - Audit Logs
-      x-badges:
-      - color: red
-        label: LIMITED ACCESS
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -3091,6 +3088,195 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
             --header 'content-type: application/json' \
             --data '{"auth_principal":"my-gcp-project-id","groups":[{"channels":["OPS","HEALTH"],"log_name":"devops","min_level":"WARNING"}],"log_name":"default","redact":true,"type":"GCP_CLOUD_LOGGING"}'
+  /api/v1/clusters/{cluster_id}/maintenance-window:
+    delete:
+      operationId: CockroachCloud_DeleteMaintenanceWindow
+      parameters:
+      - explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MaintenanceWindow'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      tags:
+      - Maintenance Windows
+      x-badges:
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request DELETE \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/maintenance-window \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+    get:
+      operationId: CockroachCloud_GetMaintenanceWindow
+      parameters:
+      - explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MaintenanceWindow'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      tags:
+      - Maintenance Windows
+      x-badges:
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request GET \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/maintenance-window \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+    put:
+      operationId: CockroachCloud_SetMaintenanceWindow
+      parameters:
+      - explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MaintenanceWindow'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MaintenanceWindow'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      tags:
+      - Maintenance Windows
+      x-badges:
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request PUT \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/maintenance-window \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
+            --header 'content-type: application/json' \
+            --data '{"offset_duration":"172800s","window_duration":"21600s"}'
   /api/v1/clusters/{cluster_id}/metricexport/cloudwatch:
     delete:
       operationId: CockroachCloud_DeleteCloudWatchMetricExport
@@ -5019,6 +5205,131 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
             --header 'content-type: application/json' \
             --data '{"password":"example_new_password"}'
+  /api/v1/clusters/{cluster_id}/version-deferral:
+    get:
+      operationId: CockroachCloud_GetClusterVersionDeferral
+      parameters:
+      - explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClusterVersionDeferral'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      x-badges:
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request GET \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/version-deferral \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+    put:
+      operationId: CockroachCloud_SetClusterVersionDeferral
+      parameters:
+      - explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClusterVersionDeferral'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClusterVersionDeferral'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      x-badges:
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request PUT \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/version-deferral \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
+            --header 'content-type: application/json' \
+            --data '{"deferral_policy":"FIXED_DEFERRAL"}'
   /api/v1/invoices:
     get:
       description: "Sort order: invoice start date ascending"
@@ -5448,10 +5759,8 @@ paths:
           - ORG_MEMBER
           - CLUSTER_ADMIN
           - CLUSTER_OPERATOR_WRITER
-          - CLUSTER_OPERATOR_READER
           - CLUSTER_DEVELOPER
           - CLUSTER_CREATOR
-          - USAGE_READER
           type: string
         style: simple
       responses:
@@ -5545,10 +5854,8 @@ paths:
           - ORG_MEMBER
           - CLUSTER_ADMIN
           - CLUSTER_OPERATOR_WRITER
-          - CLUSTER_OPERATOR_READER
           - CLUSTER_DEVELOPER
           - CLUSTER_CREATOR
-          - USAGE_READER
           type: string
         style: simple
       responses:
@@ -5961,6 +6268,9 @@ components:
       - AUDIT_LOG_ACTION_CREATE_GROUP
       - AUDIT_LOG_ACTION_DELETE_GROUP
       - AUDIT_LOG_ACTION_UPDATE_GROUP
+      - AUDIT_LOG_ACTION_SET_CLIENT_CA_CERT
+      - AUDIT_LOG_ACTION_UPDATE_CLIENT_CA_CERT
+      - AUDIT_LOG_ACTION_DELETE_CLIENT_CA_CERT
       type: string
     AuditLogEntry:
       description: |-
@@ -6588,6 +6898,25 @@ components:
       - UPGRADE_AVAILABLE
       - PENDING_FINALIZATION
       - ROLLBACK_RUNNING
+      type: string
+    ClusterVersionDeferral:
+      description: |-
+        ClusterVersionDeferral specifies whether automatic patch version upgrades are applied
+        immediately or deferred. If upgrades are deferred, the cluster will be automatically
+        upgraded to each patch version 60 days after the version is released to CockroachDB Cloud.
+      example:
+        deferral_policy: FIXED_DEFERRAL
+      properties:
+        deferral_policy:
+          $ref: '#/components/schemas/ClusterVersionDeferralPolicy.Type'
+      required:
+      - deferral_policy
+      title: ClusterVersionDeferral
+      type: object
+    ClusterVersionDeferralPolicy.Type:
+      enum:
+      - NOT_DEFERRED
+      - FIXED_DEFERRAL
       type: string
     CreateClusterRequest:
       example:
@@ -8674,6 +9003,32 @@ components:
       - ERROR
       - FATAL
       type: string
+    MaintenanceWindow:
+      description: |-
+        MaintenanceWindowSpec specifies a weekly recurring maintenance window for a
+        cluster.
+      example:
+        offset_duration: 172800s
+        window_duration: 21600s
+      properties:
+        offset_duration:
+          description: |-
+            OffsetDuration is the duration from the start of a week (Monday 00:00 UTC)
+            that this maintenance window will start after.
+
+            Must be less than 1 week.
+          type: string
+        window_duration:
+          description: |-
+            WindowDuration is the duration of the maintenance window.
+
+            Must be at least 6 hours and less than 1 week.
+          type: string
+      required:
+      - offset_duration
+      - window_duration
+      title: MaintenanceWindow
+      type: object
     MetricExportStatus.Type:
       enum:
       - NOT_DEPLOYED
@@ -8755,10 +9110,8 @@ components:
       - ORG_MEMBER
       - CLUSTER_ADMIN
       - CLUSTER_OPERATOR_WRITER
-      - CLUSTER_OPERATOR_READER
       - CLUSTER_DEVELOPER
       - CLUSTER_CREATOR
-      - USAGE_READER
       title: |-
         - DEVELOPER: To be deprecated
          - ADMIN: To be deprecated

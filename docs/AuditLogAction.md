@@ -72,6 +72,12 @@
 
 * `UPDATE_GROUP` (value: `"AUDIT_LOG_ACTION_UPDATE_GROUP"`)
 
+* `SET_CLIENT_CA_CERT` (value: `"AUDIT_LOG_ACTION_SET_CLIENT_CA_CERT"`)
+
+* `UPDATE_CLIENT_CA_CERT` (value: `"AUDIT_LOG_ACTION_UPDATE_CLIENT_CA_CERT"`)
+
+* `DELETE_CLIENT_CA_CERT` (value: `"AUDIT_LOG_ACTION_DELETE_CLIENT_CA_CERT"`)
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
