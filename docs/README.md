@@ -64,7 +64,7 @@ All URIs are relative to *https://cockroachlabs.cloud*
 
 API | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-[AuditLogsApi](docs/AuditLogsApi.md) | **ListAuditLogs** | **Get** /api/v1/auditlogevents | Limited Access: List audit logs
+[AuditLogsApi](docs/AuditLogsApi.md) | **ListAuditLogs** | **Get** /api/v1/auditlogevents | List audit logs
 [BillingApi](docs/BillingApi.md) | **GetInvoice** | **Get** /api/v1/invoices/{invoice_id} | Get a specific invoice for an organization
 [BillingApi](docs/BillingApi.md) | **ListInvoices** | **Get** /api/v1/invoices | List invoices for a given organization
 [ClientCACertificatesApi](docs/ClientCACertificatesApi.md) | **DeleteClientCACert** | **Delete** /api/v1/clusters/{cluster_id}/client-ca-cert | Delete Client CA Cert for a cluster
@@ -89,6 +89,8 @@ API | Method | HTTP request | Description
 [DatabasesApi](docs/DatabasesApi.md) | **EditDatabase** | **Patch** /api/v1/clusters/{cluster_id}/databases/{name} | Update a database
 [DatabasesApi](docs/DatabasesApi.md) | **EditDatabase2** | **Patch** /api/v1/clusters/{cluster_id}/databases | Update a database
 [DatabasesApi](docs/DatabasesApi.md) | **ListDatabases** | **Get** /api/v1/clusters/{cluster_id}/databases | List databases for a cluster
+[DefaultApi](docs/DefaultApi.md) | **GetClusterVersionDeferral** | **Get** /api/v1/clusters/{cluster_id}/version-deferral | 
+[DefaultApi](docs/DefaultApi.md) | **SetClusterVersionDeferral** | **Put** /api/v1/clusters/{cluster_id}/version-deferral | 
 [EgressRulesApi](docs/EgressRulesApi.md) | **AddEgressRule** | **Post** /api/v1/clusters/{cluster_id}/networking/egress-rules | Add an egress rule
 [EgressRulesApi](docs/EgressRulesApi.md) | **DeleteEgressRule** | **Delete** /api/v1/clusters/{cluster_id}/networking/egress-rules/{rule_id} | Delete an existing egress rule
 [EgressRulesApi](docs/EgressRulesApi.md) | **EditEgressRule** | **Patch** /api/v1/clusters/{cluster_id}/networking/egress-rules/{rule_id} | Edit an existing egress rule
@@ -103,6 +105,9 @@ API | Method | HTTP request | Description
 [LogExportApi](docs/LogExportApi.md) | **DeleteLogExport** | **Delete** /api/v1/clusters/{cluster_id}/logexport | Delete the Log Export configuration for a cluster
 [LogExportApi](docs/LogExportApi.md) | **EnableLogExport** | **Post** /api/v1/clusters/{cluster_id}/logexport | Create or update the Log Export configuration for a cluster
 [LogExportApi](docs/LogExportApi.md) | **GetLogExportInfo** | **Get** /api/v1/clusters/{cluster_id}/logexport | Get the Log Export configuration for a cluster
+[MaintenanceWindowsApi](docs/MaintenanceWindowsApi.md) | **DeleteMaintenanceWindow** | **Delete** /api/v1/clusters/{cluster_id}/maintenance-window | 
+[MaintenanceWindowsApi](docs/MaintenanceWindowsApi.md) | **GetMaintenanceWindow** | **Get** /api/v1/clusters/{cluster_id}/maintenance-window | 
+[MaintenanceWindowsApi](docs/MaintenanceWindowsApi.md) | **SetMaintenanceWindow** | **Put** /api/v1/clusters/{cluster_id}/maintenance-window | 
 [MetricExportApi](docs/MetricExportApi.md) | **DeleteCloudWatchMetricExport** | **Delete** /api/v1/clusters/{cluster_id}/metricexport/cloudwatch | Delete the CloudWatch Metric Export configuration for a cluster
 [MetricExportApi](docs/MetricExportApi.md) | **DeleteDatadogMetricExport** | **Delete** /api/v1/clusters/{cluster_id}/metricexport/datadog | Delete the Datadog Metric Export configuration for a cluster
 [MetricExportApi](docs/MetricExportApi.md) | **EnableCloudWatchMetricExport** | **Post** /api/v1/clusters/{cluster_id}/metricexport/cloudwatch | Create or update the CloudWatch Metric Export configuration for a cluster

@@ -4,7 +4,7 @@ All URIs are relative to *https://cockroachlabs.cloud*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**ListAuditLogs**](AuditLogsApi.md#ListAuditLogs) | **Get** /api/v1/auditlogevents | Limited Access: List audit logs
+[**ListAuditLogs**](AuditLogsApi.md#ListAuditLogs) | **Get** /api/v1/auditlogevents | List audit logs
 
 
 
@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 > ListAuditLogsResponse ListAuditLogs(ctx).StartingFrom(startingFrom).SortOrder(sortOrder).Limit(limit).Execute()
 
-Limited Access: List audit logs
+List audit logs
 
 ### Example
 
