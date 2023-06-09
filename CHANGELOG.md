@@ -1,3 +1,15 @@
+## 1.2.0 (May 23, 2023)
+
+NEW FEATURES:
+
+* Service docs are now segmented by endpoint category.
+
+BREAKING CHANGES:
+
+* The following preview SCIM endpoints have been removed:
+  * PatchUser
+  * PatchGroup
+
 ## 1.1.0 (May 11, 2023)
 
 NEW FEATURES:

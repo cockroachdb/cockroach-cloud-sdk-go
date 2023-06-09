@@ -12,7 +12,7 @@ import (
 )
 
 type Service interface {
-    {{#apiInfo}}{{#apis}}{{#operations}}{{#operation}}
+    {{#apiInfo}}{{#apis}}// {{{baseName}}}{{#operations}}{{#operation}}
         {{nickname}}(ctx _context.Context{{#allParams}}{{#required}}, {{paramName}} {{^isPathParam}}*{{/isPathParam}}{{{dataType}}}{{/required}}{{/allParams}}{{#hasOptionalParams}}, options *{{nickname}}Options{{/hasOptionalParams}}) ({{^returnTypeIsPrimitive}}{{#returnType}}*{{{.}}}, {{/returnType}}{{/returnTypeIsPrimitive}}*_nethttp.Response, error){{/operation}}
 	{{/operations}}{{/apis}}{{/apiInfo}}
 }
