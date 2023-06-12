@@ -23,6 +23,7 @@ Method | HTTP request | Description
 [**DeleteEgressRule**](CockroachCloudApi.md#DeleteEgressRule) | **Delete** /api/v1/clusters/{cluster_id}/networking/egress-rules/{rule_id} | Delete an existing egress rule
 [**DeleteGroup**](CockroachCloudApi.md#DeleteGroup) | **Delete** /api/scim/v2/Groups/{id} | Deletes a group based on id
 [**DeleteLogExport**](CockroachCloudApi.md#DeleteLogExport) | **Delete** /api/v1/clusters/{cluster_id}/logexport | Delete the Log Export configuration for a cluster
+[**DeleteMaintenanceWindow**](CockroachCloudApi.md#DeleteMaintenanceWindow) | **Delete** /api/v1/clusters/{cluster_id}/maintenance-window | 
 [**DeleteSQLUser**](CockroachCloudApi.md#DeleteSQLUser) | **Delete** /api/v1/clusters/{cluster_id}/sql-users/{name} | Delete a SQL user
 [**DeleteUser**](CockroachCloudApi.md#DeleteUser) | **Delete** /api/scim/v2/Users/{id} | Deletes a user based on id
 [**EditDatabase**](CockroachCloudApi.md#EditDatabase) | **Patch** /api/v1/clusters/{cluster_id}/databases/{name} | Update a database
@@ -46,6 +47,7 @@ Method | HTTP request | Description
 [**GetGroups2**](CockroachCloudApi.md#GetGroups2) | **Put** /api/scim/v2/Groups/.search | Gets groups based on query parameters
 [**GetInvoice**](CockroachCloudApi.md#GetInvoice) | **Get** /api/v1/invoices/{invoice_id} | Gets a specific invoice for an organization
 [**GetLogExportInfo**](CockroachCloudApi.md#GetLogExportInfo) | **Get** /api/v1/clusters/{cluster_id}/logexport | Get the Log Export configuration for a cluster
+[**GetMaintenanceWindow**](CockroachCloudApi.md#GetMaintenanceWindow) | **Get** /api/v1/clusters/{cluster_id}/maintenance-window | 
 [**GetOrganizationInfo**](CockroachCloudApi.md#GetOrganizationInfo) | **Get** /api/v1/organization | Get information about the caller&#39;s organization
 [**GetPersonUsersByEmail**](CockroachCloudApi.md#GetPersonUsersByEmail) | **Get** /api/v1/users/persons-by-email | Search person users by email address
 [**GetResourceType**](CockroachCloudApi.md#GetResourceType) | **Get** /api/scim/v2/ResourceTypes/{resourceId} | 
@@ -70,12 +72,11 @@ Method | HTTP request | Description
 [**ListPrivateEndpointServices**](CockroachCloudApi.md#ListPrivateEndpointServices) | **Get** /api/v1/clusters/{cluster_id}/networking/private-endpoint-services | Lists all PrivateEndpointServices for a given cluster
 [**ListRoleGrants**](CockroachCloudApi.md#ListRoleGrants) | **Get** /api/v1/roles | Lists all RoleGrants
 [**ListSQLUsers**](CockroachCloudApi.md#ListSQLUsers) | **Get** /api/v1/clusters/{cluster_id}/sql-users | List SQL users for a cluster
-[**PatchGroup**](CockroachCloudApi.md#PatchGroup) | **Patch** /api/scim/v2/Groups/{id} | Updates a group by specifying individual values to update
-[**PatchUser**](CockroachCloudApi.md#PatchUser) | **Patch** /api/scim/v2/Users/{id} | Updates a user by specifying individual values to update
 [**RemoveUserFromRole**](CockroachCloudApi.md#RemoveUserFromRole) | **Delete** /api/v1/roles/{user_id}/{resource_type}/{resource_id}/{role_name} | Removes the user from the given role
 [**SetAwsEndpointConnectionState**](CockroachCloudApi.md#SetAwsEndpointConnectionState) | **Patch** /api/v1/clusters/{cluster_id}/networking/aws-endpoint-connections/{endpoint_id} | Sets the AWS Endpoint Connection state based on what is passed in the body
 [**SetClientCACert**](CockroachCloudApi.md#SetClientCACert) | **Post** /api/v1/clusters/{cluster_id}/client-ca-cert | Set Client CA Cert for a cluster
 [**SetEgressTrafficPolicy**](CockroachCloudApi.md#SetEgressTrafficPolicy) | **Post** /api/v1/clusters/{cluster_id}/networking/egress-rules/egress-traffic-policy | Outbound traffic management
+[**SetMaintenanceWindow**](CockroachCloudApi.md#SetMaintenanceWindow) | **Put** /api/v1/clusters/{cluster_id}/maintenance-window | 
 [**SetRolesForUser**](CockroachCloudApi.md#SetRolesForUser) | **Put** /api/v1/roles/{user_id} | Makes the users roles exactly those provided
 [**UpdateAllowlistEntry**](CockroachCloudApi.md#UpdateAllowlistEntry) | **Patch** /api/v1/clusters/{cluster_id}/networking/allowlist/{entry.cidr_ip}/{entry.cidr_mask} | Update an IP allowlist entry
 [**UpdateCMEKSpec**](CockroachCloudApi.md#UpdateCMEKSpec) | **Put** /api/v1/clusters/{cluster_id}/cmek | Enable or update the CMEK spec for a cluster
@@ -1392,6 +1393,74 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**LogExportClusterInfo**](LogExportClusterInfo.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeleteMaintenanceWindow
+
+> MaintenanceWindow DeleteMaintenanceWindow(ctx, clusterId).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    clusterId := "clusterId_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.CockroachCloudApi.DeleteMaintenanceWindow(context.Background(), clusterId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.DeleteMaintenanceWindow``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DeleteMaintenanceWindow`: MaintenanceWindow
+    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.DeleteMaintenanceWindow`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**clusterId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteMaintenanceWindow struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**MaintenanceWindow**](MaintenanceWindow.md)
 
 ### Authorization
 
@@ -2988,6 +3057,74 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**LogExportClusterInfo**](LogExportClusterInfo.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetMaintenanceWindow
+
+> MaintenanceWindow GetMaintenanceWindow(ctx, clusterId).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    clusterId := "clusterId_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.CockroachCloudApi.GetMaintenanceWindow(context.Background(), clusterId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.GetMaintenanceWindow``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetMaintenanceWindow`: MaintenanceWindow
+    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.GetMaintenanceWindow`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**clusterId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetMaintenanceWindow struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**MaintenanceWindow**](MaintenanceWindow.md)
 
 ### Authorization
 
@@ -4696,146 +4833,6 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## PatchGroup
-
-> ScimGroup PatchGroup(ctx, id).PatchGroupRequest(patchGroupRequest).Execute()
-
-Updates a group by specifying individual values to update
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-    id := "id_example" // string | 
-    patchGroupRequest := *openapiclient.NewPatchGroupRequest() // PatchGroupRequest | 
-
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewClient(configuration)
-    resp, r, err := api_client.CockroachCloudApi.PatchGroup(context.Background(), id).PatchGroupRequest(patchGroupRequest).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.PatchGroup``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PatchGroup`: ScimGroup
-    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.PatchGroup`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiPatchGroup struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **patchGroupRequest** | [**PatchGroupRequest**](PatchGroupRequest.md) |  | 
-
-### Return type
-
-[**ScimGroup**](ScimGroup.md)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## PatchUser
-
-> ScimUser PatchUser(ctx, id).PatchUserRequest(patchUserRequest).Execute()
-
-Updates a user by specifying individual values to update
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-    id := "id_example" // string | 
-    patchUserRequest := *openapiclient.NewPatchUserRequest() // PatchUserRequest | 
-
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewClient(configuration)
-    resp, r, err := api_client.CockroachCloudApi.PatchUser(context.Background(), id).PatchUserRequest(patchUserRequest).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.PatchUser``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `PatchUser`: ScimUser
-    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.PatchUser`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiPatchUser struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **patchUserRequest** | [**PatchUserRequest**](PatchUserRequest.md) |  | 
-
-### Return type
-
-[**ScimUser**](ScimUser.md)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
 ## RemoveUserFromRole
 
 > GetAllRolesForUserResponse RemoveUserFromRole(ctx, userId, resourceType, resourceId, roleName).Execute()
@@ -5113,6 +5110,76 @@ Name | Type | Description  | Notes
 ### Return type
 
 **map[string]interface{}**
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## SetMaintenanceWindow
+
+> MaintenanceWindow SetMaintenanceWindow(ctx, clusterId).MaintenanceWindow(maintenanceWindow).Execute()
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    clusterId := "clusterId_example" // string | 
+    maintenanceWindow := *openapiclient.NewMaintenanceWindow("OffsetDuration_example", "WindowDuration_example") // MaintenanceWindow | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.CockroachCloudApi.SetMaintenanceWindow(context.Background(), clusterId).MaintenanceWindow(maintenanceWindow).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `CockroachCloudApi.SetMaintenanceWindow``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `SetMaintenanceWindow`: MaintenanceWindow
+    fmt.Fprintf(os.Stdout, "Response from `CockroachCloudApi.SetMaintenanceWindow`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**clusterId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiSetMaintenanceWindow struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **maintenanceWindow** | [**MaintenanceWindow**](MaintenanceWindow.md) |  | 
+
+### Return type
+
+[**MaintenanceWindow**](MaintenanceWindow.md)
 
 ### Authorization
 

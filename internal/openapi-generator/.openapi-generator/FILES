@@ -102,6 +102,7 @@ docs/LogExportGroup.md
 docs/LogExportStatus.md
 docs/LogExportType.md
 docs/LogLevelType.md
+docs/MaintenanceWindow.md
 docs/MetricExportStatusType.md
 docs/NetworkVisibilityType.md
 docs/Node.md
@@ -109,8 +110,6 @@ docs/NodeStatusType.md
 docs/OperatingSystemType.md
 docs/Organization.md
 docs/OrganizationUserRoleType.md
-docs/PatchGroupRequest.md
-docs/PatchUserRequest.md
 docs/PersonUserInfo.md
 docs/PlanType.md
 docs/PrivateEndpointService.md
@@ -130,7 +129,6 @@ docs/ScimFilterSupport.md
 docs/ScimGroup.md
 docs/ScimMetadata.md
 docs/ScimName.md
-docs/ScimOperations.md
 docs/ScimResource.md
 docs/ScimResourceType.md
 docs/ScimSchema.md
@@ -256,6 +254,7 @@ model_log_export_group.go
 model_log_export_status.go
 model_log_export_type.go
 model_log_level_type.go
+model_maintenance_window.go
 model_metric_export_status_type.go
 model_network_visibility_type.go
 model_node.go
@@ -263,8 +262,6 @@ model_node_status_type.go
 model_operating_system_type.go
 model_organization.go
 model_organization_user_role_type.go
-model_patch_group_request.go
-model_patch_user_request.go
 model_person_user_info.go
 model_plan_type.go
 model_private_endpoint_service.go
@@ -283,7 +280,6 @@ model_scim_filter_support.go
 model_scim_group.go
 model_scim_metadata.go
 model_scim_name.go
-model_scim_operations.go
 model_scim_resource.go
 model_scim_resource_type.go
 model_scim_schema.go

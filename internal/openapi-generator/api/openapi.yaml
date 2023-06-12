@@ -343,75 +343,6 @@ paths:
           curl --request GET \
             --url 'https://cockroachlabs.cloud/api/scim/v2/Groups/{id}?attributes=SOME_STRING_VALUE&excludedAttributes=SOME_STRING_VALUE' \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
-    patch:
-      operationId: CockroachCloud_PatchGroup
-      parameters:
-      - explode: false
-        in: path
-        name: id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/PatchGroupRequest'
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ScimGroup'
-          description: A successful response.
-        "400":
-          content:
-            application/json:
-              schema: {}
-          description: Returned when a request field is invalid.
-        "401":
-          content:
-            application/json:
-              schema: {}
-          description: Returned when the token bearer cannot be authenticated.
-        "403":
-          content:
-            application/json:
-              schema: {}
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            application/json:
-              schema: {}
-          description: Returned when the resource does not exist.
-        "500":
-          content:
-            application/json:
-              schema: {}
-          description: Server error
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Status'
-          description: An unexpected error response.
-      summary: Updates a group by specifying individual values to update
-      tags:
-      - CockroachCloud
-      x-badges:
-      - color: blue
-        label: PREVIEW
-      x-codeSamples:
-      - lang: Shell + Curl
-        source: |-
-          curl --request PATCH \
-            --url https://cockroachlabs.cloud/api/scim/v2/Groups/{id} \
-            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
-            --header 'content-type: application/json' \
-            --data '{"Operations":[{"op":"string","path":"string","value":{"@type":"string","property1":null,"property2":null}}],"schemas":["string"]}'
     put:
       operationId: CockroachCloud_UpdateGroup
       parameters:
@@ -1221,75 +1152,6 @@ paths:
           curl --request GET \
             --url 'https://cockroachlabs.cloud/api/scim/v2/Users/{id}?attributes=SOME_STRING_VALUE&excludedAttributes=SOME_STRING_VALUE' \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
-    patch:
-      operationId: CockroachCloud_PatchUser
-      parameters:
-      - explode: false
-        in: path
-        name: id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/PatchUserRequest'
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ScimUser'
-          description: A successful response.
-        "400":
-          content:
-            application/json:
-              schema: {}
-          description: Returned when a request field is invalid.
-        "401":
-          content:
-            application/json:
-              schema: {}
-          description: Returned when the token bearer cannot be authenticated.
-        "403":
-          content:
-            application/json:
-              schema: {}
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            application/json:
-              schema: {}
-          description: Returned when the resource does not exist.
-        "500":
-          content:
-            application/json:
-              schema: {}
-          description: Server error
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Status'
-          description: An unexpected error response.
-      summary: Updates a user by specifying individual values to update
-      tags:
-      - CockroachCloud
-      x-badges:
-      - color: blue
-        label: PREVIEW
-      x-codeSamples:
-      - lang: Shell + Curl
-        source: |-
-          curl --request PATCH \
-            --url https://cockroachlabs.cloud/api/scim/v2/Users/{id} \
-            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
-            --header 'content-type: application/json' \
-            --data '{"Operations":[{"op":"string","path":"string","value":{"@type":"string","property1":null,"property2":null}}],"schemas":["string"]}'
     put:
       operationId: CockroachCloud_UpdateUser
       parameters:
@@ -1514,9 +1376,6 @@ paths:
       summary: "Limited Access: List audit logs."
       tags:
       - CockroachCloud
-      x-badges:
-      - color: red
-        label: LIMITED ACCESS
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -3231,6 +3090,195 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
             --header 'content-type: application/json' \
             --data '{"auth_principal":"my-gcp-project-id","groups":[{"channels":["OPS","HEALTH"],"log_name":"devops","min_level":"WARNING"}],"log_name":"default","redact":true,"type":"GCP_CLOUD_LOGGING"}'
+  /api/v1/clusters/{cluster_id}/maintenance-window:
+    delete:
+      operationId: CockroachCloud_DeleteMaintenanceWindow
+      parameters:
+      - explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MaintenanceWindow'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      tags:
+      - CockroachCloud
+      x-badges:
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request DELETE \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/maintenance-window \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+    get:
+      operationId: CockroachCloud_GetMaintenanceWindow
+      parameters:
+      - explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MaintenanceWindow'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      tags:
+      - CockroachCloud
+      x-badges:
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request GET \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/maintenance-window \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+    put:
+      operationId: CockroachCloud_SetMaintenanceWindow
+      parameters:
+      - explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MaintenanceWindow'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MaintenanceWindow'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      tags:
+      - CockroachCloud
+      x-badges:
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request PUT \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/maintenance-window \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
+            --header 'content-type: application/json' \
+            --data '{"offset_duration":"172800s","window_duration":"21600s"}'
   /api/v1/clusters/{cluster_id}/metricexport/cloudwatch:
     delete:
       operationId: CockroachCloud_DeleteCloudWatchMetricExport
@@ -5589,7 +5637,6 @@ paths:
           - ORG_MEMBER
           - CLUSTER_ADMIN
           - CLUSTER_OPERATOR_WRITER
-          - CLUSTER_OPERATOR_READER
           - CLUSTER_DEVELOPER
           - CLUSTER_CREATOR
           type: string
@@ -5685,7 +5732,6 @@ paths:
           - ORG_MEMBER
           - CLUSTER_ADMIN
           - CLUSTER_OPERATOR_WRITER
-          - CLUSTER_OPERATOR_READER
           - CLUSTER_DEVELOPER
           - CLUSTER_CREATOR
           type: string
@@ -6031,8 +6077,6 @@ components:
               "@type": "type.googleapis.com/google.protobuf.Duration",
               "value": "1.212s"
             }
-      example:
-        '@type': '@type'
       properties:
         '@type':
           description: |-
@@ -8815,6 +8859,32 @@ components:
       - ERROR
       - FATAL
       type: string
+    MaintenanceWindow:
+      description: |-
+        MaintenanceWindowSpec specifies a weekly recurring maintenance window for a
+        cluster.
+      example:
+        offset_duration: 172800s
+        window_duration: 21600s
+      properties:
+        offset_duration:
+          description: |-
+            OffsetDuration is the duration from the start of a week (Monday 00:00 UTC)
+            that this maintenance window will start after.
+
+            Must be less than 1 week.
+          type: string
+        window_duration:
+          description: |-
+            WindowDuration is the duration of the maintenance window.
+
+            Must be at least 6 hours and less than 1 week.
+          type: string
+      required:
+      - offset_duration
+      - window_duration
+      title: MaintenanceWindow
+      type: object
     MetricExportStatus.Type:
       enum:
       - NOT_DEPLOYED
@@ -8896,9 +8966,11 @@ components:
       - ORG_MEMBER
       - CLUSTER_ADMIN
       - CLUSTER_OPERATOR_WRITER
-      - CLUSTER_OPERATOR_READER
       - CLUSTER_DEVELOPER
       - CLUSTER_CREATOR
+      title: |-
+        - DEVELOPER: To be deprecated
+         - ADMIN: To be deprecated
       type: string
     PersonUserInfo:
       example:
@@ -9207,20 +9279,6 @@ components:
         givenName:
           type: string
       title: name
-      type: object
-    ScimOperations:
-      example:
-        op: op
-        path: path
-        value:
-          '@type': '@type'
-      properties:
-        op:
-          type: string
-        path:
-          type: string
-        value:
-          $ref: '#/components/schemas/Any'
       type: object
     ScimResource:
       example:
@@ -9741,31 +9799,6 @@ components:
       - displayName
       title: UpdateGroupRequest
       type: object
-    PatchGroupRequest:
-      example:
-        schemas:
-        - schemas
-        - schemas
-        Operations:
-        - op: op
-          path: path
-          value:
-            '@type': '@type'
-        - op: op
-          path: path
-          value:
-            '@type': '@type'
-      properties:
-        Operations:
-          items:
-            $ref: '#/components/schemas/ScimOperations'
-          type: array
-        schemas:
-          items:
-            type: string
-          type: array
-      title: PatchGroupRequest
-      type: object
     GetGroupRequest:
       example:
         attributes: attributes
@@ -9853,31 +9886,6 @@ components:
       required:
       - active
       title: UpdateUserRequest
-      type: object
-    PatchUserRequest:
-      example:
-        schemas:
-        - schemas
-        - schemas
-        Operations:
-        - op: op
-          path: path
-          value:
-            '@type': '@type'
-        - op: op
-          path: path
-          value:
-            '@type': '@type'
-      properties:
-        Operations:
-          items:
-            $ref: '#/components/schemas/ScimOperations'
-          type: array
-        schemas:
-          items:
-            type: string
-          type: array
-      title: PatchUserRequest
       type: object
     GetUserRequest:
       example:
