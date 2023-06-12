@@ -5804,6 +5804,197 @@ paths:
           curl --request GET \
             --url 'https://cockroachlabs.cloud/api/v1/users/persons-by-email?email=SOME_STRING_VALUE' \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+  /api/v1/clusters/{cluster_id}/maintenance-window:
+    delete:
+      operationId: CockroachCloud_DeleteMaintenanceWindow
+      parameters:
+      - explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MaintenanceWindow'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Deletes a maintenance window for a cluster.
+      tags:
+      - CockroachCloud
+      x-badges:
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request DELETE \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/maintenance-window \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+    get:
+      operationId: CockroachCloud_GetMaintenanceWindow
+      parameters:
+      - explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MaintenanceWindow'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Gets the maintenance window for a cluster.
+      tags:
+      - CockroachCloud
+      x-badges:
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request GET \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/maintenance-window \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+    patch:
+      operationId: CockroachCloud_SetMaintenanceWindow
+      parameters:
+      - explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MaintenanceWindow'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MaintenanceWindow'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Sets a maintenance window for a cluster.
+      tags:
+      - CockroachCloud
+      x-badges:
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request PATCH \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/maintenance-window \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
+            --data '{"maintenance_window":{"offset_duration":"86400s","window_duration":"21600s"}}'
 components:
   requestBodies:
     CockroachCloud_AddAllowlistEntry2Entry:
@@ -9672,6 +9863,27 @@ components:
       required:
       - databases
       title: ListDatabasesResponse
+      type: object
+    MaintenanceWindow:
+      description: MaintenanceWindow represents a maintenance window for a cluster.
+      example:
+        offset_duration: 86400s
+        window_duration: 21600.1s
+      properties:
+        offset_duration:
+          description: The offset duration is the duration in seconds from the beginning
+            of each Monday (UTC) after which the maintenance window starts.
+          pattern: ^\d+(\.\d+)?$
+          type: string
+        window_duration:
+          description: The window duration is the duration in seconds that the maintenance
+            window will remain active for after it starts.
+          pattern: ^\d+(\.\d+)?$
+          type: string
+      required:
+      - offset_duration
+      - window_duration
+      title: MaintenanceWindow
       type: object
     UpdateGroupRequest:
       example:

@@ -102,6 +102,7 @@ docs/LogExportGroup.md
 docs/LogExportStatus.md
 docs/LogExportType.md
 docs/LogLevelType.md
+docs/MaintenanceWindow.md
 docs/MetricExportStatusType.md
 docs/NetworkVisibilityType.md
 docs/Node.md
@@ -256,6 +257,7 @@ model_log_export_group.go
 model_log_export_status.go
 model_log_export_type.go
 model_log_level_type.go
+model_maintenance_window.go
 model_metric_export_status_type.go
 model_network_visibility_type.go
 model_node.go
