@@ -31,7 +31,7 @@ Method | HTTP request | Description
 > ScimGroup CreateGroup(ctx).CreateGroupRequest(createGroupRequest).Execute()
 
 Create a group
-    
+
 Can be used by the following roles assigned at the organization scope:
 - ORG_ADMIN
 
@@ -98,7 +98,7 @@ Name | Type | Description  | Notes
 > ScimUser CreateUser(ctx).CreateUserRequest(createUserRequest).Execute()
 
 Create a user
-    
+
 Can be used by the following roles assigned at the organization scope:
 - ORG_ADMIN
 
@@ -165,7 +165,7 @@ Name | Type | Description  | Notes
 > map[string]interface{} DeleteGroup(ctx, id).Execute()
 
 Delete a group based on ID
-    
+
 Can be used by the following roles assigned at the organization scope:
 - ORG_ADMIN
 
@@ -236,7 +236,7 @@ Name | Type | Description  | Notes
 > map[string]interface{} DeleteUser(ctx, id).Execute()
 
 Delete a user based on ID
-    
+
 Can be used by the following roles assigned at the organization scope:
 - ORG_ADMIN
 
@@ -307,7 +307,7 @@ Name | Type | Description  | Notes
 > ScimGroup GetGroup(ctx, id).Attributes(attributes).ExcludedAttributes(excludedAttributes).Execute()
 
 Get a group based on ID
-    
+
 Can be used by the following roles assigned at the organization scope:
 - ORG_ADMIN
 
@@ -382,7 +382,7 @@ Name | Type | Description  | Notes
 > ScimGroup GetGroup2(ctx, id).GetGroupRequest(getGroupRequest).Execute()
 
 Get a group based on ID
-    
+
 Can be used by the following roles assigned at the organization scope:
 - ORG_ADMIN
 
@@ -455,7 +455,7 @@ Name | Type | Description  | Notes
 > GetGroupsResponse GetGroups(ctx).Attributes(attributes).ExcludedAttributes(excludedAttributes).Execute()
 
 Get groups based on query parameters
-    
+
 Can be used by the following roles assigned at the organization scope:
 - ORG_ADMIN
 
@@ -524,7 +524,7 @@ Name | Type | Description  | Notes
 > GetGroupsResponse GetGroups2(ctx).GetGroupsRequest(getGroupsRequest).Execute()
 
 Get groups based on query parameters
-    
+
 Can be used by the following roles assigned at the organization scope:
 - ORG_ADMIN
 
@@ -591,7 +591,7 @@ Name | Type | Description  | Notes
 > ScimResourceType GetResourceType(ctx, resourceId).Attributes(attributes).ExcludedAttributes(excludedAttributes).Execute()
 
 
-    
+
 This endpoint may be used by any member of the organization.
 
 ### Example
@@ -664,7 +664,7 @@ Name | Type | Description  | Notes
 > GetResourceTypesResponse GetResourceTypes(ctx).Attributes(attributes).ExcludedAttributes(excludedAttributes).Execute()
 
 
-    
+
 This endpoint may be used by any member of the organization.
 
 ### Example
@@ -731,7 +731,7 @@ Name | Type | Description  | Notes
 > ScimSchema GetSchema(ctx, schemaId).Attributes(attributes).ExcludedAttributes(excludedAttributes).Execute()
 
 
-    
+
 This endpoint may be used by any member of the organization.
 
 ### Example
@@ -804,7 +804,7 @@ Name | Type | Description  | Notes
 > GetSchemasResponse GetSchemas(ctx).Attributes(attributes).ExcludedAttributes(excludedAttributes).Execute()
 
 
-    
+
 This endpoint may be used by any member of the organization.
 
 ### Example
@@ -871,7 +871,7 @@ Name | Type | Description  | Notes
 > GetServiceProviderConfigResponse GetServiceProviderConfig(ctx).Execute()
 
 Return our SCIM configuration
-    
+
 This endpoint may be used by any member of the organization.
 
 ### Example
@@ -931,7 +931,7 @@ Other parameters are passed through a pointer to a apiGetServiceProviderConfig s
 > ScimUser GetUser(ctx, id).Attributes(attributes).ExcludedAttributes(excludedAttributes).Execute()
 
 Get a user based on ID
-    
+
 Can be used by the following roles assigned at the organization scope:
 - ORG_ADMIN
 
@@ -1006,7 +1006,7 @@ Name | Type | Description  | Notes
 > ScimUser GetUser2(ctx, id).GetUserRequest(getUserRequest).Execute()
 
 Get a user based on ID
-    
+
 Can be used by the following roles assigned at the organization scope:
 - ORG_ADMIN
 
@@ -1079,7 +1079,7 @@ Name | Type | Description  | Notes
 > GetUsersResponse GetUsers(ctx).Filter(filter).Attributes(attributes).ExcludedAttributes(excludedAttributes).Execute()
 
 Get Users based on query parameters
-    
+
 Can be used by the following roles assigned at the organization scope:
 - ORG_ADMIN
 
@@ -1150,7 +1150,7 @@ Name | Type | Description  | Notes
 > GetUsersResponse GetUsers2(ctx).GetUsersRequest(getUsersRequest).Execute()
 
 Get Users based on query parameters
-    
+
 Can be used by the following roles assigned at the organization scope:
 - ORG_ADMIN
 
@@ -1217,7 +1217,7 @@ Name | Type | Description  | Notes
 > ScimGroup UpdateGroup(ctx, id).UpdateGroupRequest(updateGroupRequest).Execute()
 
 Update a group by supplying all values of the user object
-    
+
 Can be used by the following roles assigned at the organization scope:
 - ORG_ADMIN
 
@@ -1290,7 +1290,7 @@ Name | Type | Description  | Notes
 > ScimUser UpdateUser(ctx, id).UpdateUserRequest(updateUserRequest).Execute()
 
 Update a user by supplying all values of the user object
-    
+
 Can be used by the following roles assigned at the organization scope:
 - ORG_ADMIN
 

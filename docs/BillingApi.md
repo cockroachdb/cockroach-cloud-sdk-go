@@ -14,7 +14,7 @@ Method | HTTP request | Description
 > Invoice GetInvoice(ctx, invoiceId).Execute()
 
 Get a specific invoice for an organization
-    
+
 Can be used by the following roles assigned at the organization scope:
 - BILLING_COORDINATOR
 - CLUSTER_ADMIN
@@ -86,7 +86,7 @@ Name | Type | Description  | Notes
 > ListInvoicesResponse ListInvoices(ctx).Execute()
 
 List invoices for a given organization
-    
+
 Can be used by the following roles assigned at the organization scope:
 - BILLING_COORDINATOR
 - CLUSTER_ADMIN

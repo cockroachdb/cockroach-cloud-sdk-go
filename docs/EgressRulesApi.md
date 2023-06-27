@@ -18,7 +18,7 @@ Method | HTTP request | Description
 > AddEgressRuleResponse AddEgressRule(ctx, clusterId).AddEgressRuleRequest(addEgressRuleRequest).Execute()
 
 Add an egress rule
-    
+
 Can be used by the following roles assigned at the organization or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
@@ -92,7 +92,7 @@ Name | Type | Description  | Notes
 > DeleteEgressRuleResponse DeleteEgressRule(ctx, clusterId, ruleId).IdempotencyKey(idempotencyKey).Execute()
 
 Delete an existing egress rule
-    
+
 Can be used by the following roles assigned at the organization or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
@@ -169,7 +169,7 @@ Name | Type | Description  | Notes
 > EditEgressRuleResponse EditEgressRule(ctx, clusterId, ruleId).EditEgressRuleRequest(editEgressRuleRequest).Execute()
 
 Edit an existing egress rule
-    
+
 Can be used by the following roles assigned at the organization or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
@@ -246,7 +246,7 @@ Name | Type | Description  | Notes
 > GetEgressRuleResponse GetEgressRule(ctx, clusterId, ruleId).Execute()
 
 Get an existing egress rule
-    
+
 Can be used by the following roles assigned at the organization or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
@@ -321,7 +321,7 @@ Name | Type | Description  | Notes
 > ListEgressRulesResponse ListEgressRules(ctx, clusterId).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).Execute()
 
 List all egress rules associates with a cluster
-    
+
 Can be used by the following roles assigned at the organization or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
@@ -402,7 +402,7 @@ Name | Type | Description  | Notes
 > map[string]interface{} SetEgressTrafficPolicy(ctx, clusterId).SetEgressTrafficPolicyRequest(setEgressTrafficPolicyRequest).Execute()
 
 Outbound traffic management
-    
+
 Can be used by the following roles assigned at the organization or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
