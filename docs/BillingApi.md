@@ -15,6 +15,8 @@ Method | HTTP request | Description
 
 Get a specific invoice for an organization
 
+
+
 ### Example
 
 ```go

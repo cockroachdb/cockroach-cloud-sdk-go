@@ -16,6 +16,8 @@ Method | HTTP request | Description
 
 Delete the Log Export configuration for a cluster
 
+
+
 ### Example
 
 ```go
@@ -82,6 +84,8 @@ Name | Type | Description  | Notes
 > LogExportClusterInfo EnableLogExport(ctx, clusterId).EnableLogExportRequest(enableLogExportRequest).Execute()
 
 Create or update the Log Export configuration for a cluster
+
+
 
 ### Example
 
@@ -151,6 +155,8 @@ Name | Type | Description  | Notes
 > LogExportClusterInfo GetLogExportInfo(ctx, clusterId).Execute()
 
 Get the Log Export configuration for a cluster
+
+
 
 ### Example
 

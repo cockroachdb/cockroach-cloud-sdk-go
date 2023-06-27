@@ -17,6 +17,8 @@ Method | HTTP request | Description
 
 Enable CMEK for a cluster
 
+
+
 ### Example
 
 ```go
@@ -86,6 +88,8 @@ Name | Type | Description  | Notes
 
 Get CMEK-related information for a cluster
 
+
+
 ### Example
 
 ```go
@@ -152,6 +156,8 @@ Name | Type | Description  | Notes
 > CMEKClusterInfo UpdateCMEKSpec(ctx, clusterId).CMEKClusterSpecification(cMEKClusterSpecification).Execute()
 
 Enable or update the CMEK spec for a cluster
+
+
 
 ### Example
 
@@ -221,6 +227,8 @@ Name | Type | Description  | Notes
 > CMEKClusterInfo UpdateCMEKStatus(ctx, clusterId).UpdateCMEKStatusRequest(updateCMEKStatusRequest).Execute()
 
 Update the CMEK-related status for a cluster
+
+
 
 ### Example
 

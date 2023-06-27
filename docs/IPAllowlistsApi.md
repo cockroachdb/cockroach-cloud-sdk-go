@@ -18,6 +18,8 @@ Method | HTTP request | Description
 
 Add a new CIDR address to the IP allowlist
 
+
+
 ### Example
 
 ```go
@@ -86,6 +88,8 @@ Name | Type | Description  | Notes
 > AllowlistEntry AddAllowlistEntry2(ctx, clusterId, entryCidrIp, entryCidrMask).AllowlistEntry1(allowlistEntry1).Execute()
 
 Add a new CIDR address to the IP allowlist
+
+
 
 ### Example
 
@@ -161,6 +165,8 @@ Name | Type | Description  | Notes
 > AllowlistEntry DeleteAllowlistEntry(ctx, clusterId, cidrIp, cidrMask).Execute()
 
 Delete an IP allowlist entry
+
+
 
 ### Example
 
@@ -312,6 +318,8 @@ Name | Type | Description  | Notes
 > AllowlistEntry UpdateAllowlistEntry(ctx, clusterId, entryCidrIp, entryCidrMask).AllowlistEntry1(allowlistEntry1).Execute()
 
 Update an IP allowlist entry
+
+
 
 ### Example
 

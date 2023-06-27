@@ -18,6 +18,8 @@ Method | HTTP request | Description
 
 Create a new database
 
+
+
 ### Example
 
 ```go
@@ -86,6 +88,8 @@ Name | Type | Description  | Notes
 > ApiDatabase DeleteDatabase(ctx, clusterId, name).Execute()
 
 Delete a database
+
+
 
 ### Example
 
@@ -156,6 +160,8 @@ Name | Type | Description  | Notes
 > ApiDatabase EditDatabase(ctx, clusterId, name).UpdateDatabaseRequest1(updateDatabaseRequest1).Execute()
 
 Update a database
+
+
 
 ### Example
 
@@ -228,6 +234,8 @@ Name | Type | Description  | Notes
 > ApiDatabase EditDatabase2(ctx, clusterId).UpdateDatabaseRequest(updateDatabaseRequest).Execute()
 
 Update a database
+
+
 
 ### Example
 

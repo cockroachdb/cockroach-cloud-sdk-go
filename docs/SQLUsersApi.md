@@ -17,6 +17,8 @@ Method | HTTP request | Description
 
 Create a new SQL user
 
+
+
 ### Example
 
 ```go
@@ -85,6 +87,8 @@ Name | Type | Description  | Notes
 > SQLUser DeleteSQLUser(ctx, clusterId, name).Execute()
 
 Delete a SQL user
+
+
 
 ### Example
 
@@ -233,6 +237,8 @@ Name | Type | Description  | Notes
 > SQLUser UpdateSQLUserPassword(ctx, clusterId, name).UpdateSQLUserPasswordRequest(updateSQLUserPasswordRequest).Execute()
 
 Update a SQL user's password
+
+
 
 ### Example
 

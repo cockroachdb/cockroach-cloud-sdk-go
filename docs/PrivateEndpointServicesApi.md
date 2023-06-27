@@ -17,6 +17,8 @@ Method | HTTP request | Description
 
 Create all PrivateEndpointServices for a cluster
 
+
+
 ### Example
 
 ```go
@@ -83,6 +85,8 @@ Name | Type | Description  | Notes
 > AwsEndpointConnections ListAwsEndpointConnections(ctx, clusterId).Execute()
 
 List all AwsEndpointConnections for a cluster
+
+
 
 ### Example
 

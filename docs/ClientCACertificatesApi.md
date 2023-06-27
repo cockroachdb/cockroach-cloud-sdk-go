@@ -17,6 +17,8 @@ Method | HTTP request | Description
 
 Delete Client CA Cert for a cluster
 
+
+
 ### Example
 
 ```go
@@ -84,6 +86,8 @@ Name | Type | Description  | Notes
 
 Get Client CA Cert information for a cluster
 
+
+
 ### Example
 
 ```go
@@ -150,6 +154,8 @@ Name | Type | Description  | Notes
 > ClientCACertInfo SetClientCACert(ctx, clusterId).SetClientCACertRequest(setClientCACertRequest).Execute()
 
 Set Client CA Cert for a cluster
+
+
 
 ### Example
 
@@ -219,6 +225,8 @@ Name | Type | Description  | Notes
 > ClientCACertInfo UpdateClientCACert(ctx, clusterId).UpdateClientCACertRequest(updateClientCACertRequest).Execute()
 
 Update Client CA Cert for a cluster
+
+
 
 ### Example
 

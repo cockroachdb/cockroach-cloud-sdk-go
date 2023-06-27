@@ -19,6 +19,8 @@ Method | HTTP request | Description
 
 Delete the CloudWatch Metric Export configuration for a cluster
 
+
+
 ### Example
 
 ```go
@@ -86,6 +88,8 @@ Name | Type | Description  | Notes
 
 Delete the Datadog Metric Export configuration for a cluster
 
+
+
 ### Example
 
 ```go
@@ -152,6 +156,8 @@ Name | Type | Description  | Notes
 > CloudWatchMetricExportInfo EnableCloudWatchMetricExport(ctx, clusterId).EnableCloudWatchMetricExportRequest(enableCloudWatchMetricExportRequest).Execute()
 
 Create or update the CloudWatch Metric Export configuration for a cluster
+
+
 
 ### Example
 
@@ -222,6 +228,8 @@ Name | Type | Description  | Notes
 
 Create or update the Datadog Metric Export configuration for a cluster
 
+
+
 ### Example
 
 ```go
@@ -291,6 +299,8 @@ Name | Type | Description  | Notes
 
 Get the CloudWatch Metric Export configuration for a cluster
 
+
+
 ### Example
 
 ```go
@@ -357,6 +367,8 @@ Name | Type | Description  | Notes
 > DatadogMetricExportInfo GetDatadogMetricExportInfo(ctx, clusterId).Execute()
 
 Get the Datadog Metric Export configuration for a cluster
+
+
 
 ### Example
 

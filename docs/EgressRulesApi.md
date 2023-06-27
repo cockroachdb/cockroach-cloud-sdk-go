@@ -19,6 +19,8 @@ Method | HTTP request | Description
 
 Add an egress rule
 
+
+
 ### Example
 
 ```go
@@ -87,6 +89,8 @@ Name | Type | Description  | Notes
 > DeleteEgressRuleResponse DeleteEgressRule(ctx, clusterId, ruleId).IdempotencyKey(idempotencyKey).Execute()
 
 Delete an existing egress rule
+
+
 
 ### Example
 
@@ -160,6 +164,8 @@ Name | Type | Description  | Notes
 
 Edit an existing egress rule
 
+
+
 ### Example
 
 ```go
@@ -231,6 +237,8 @@ Name | Type | Description  | Notes
 > GetEgressRuleResponse GetEgressRule(ctx, clusterId, ruleId).Execute()
 
 Get an existing egress rule
+
+
 
 ### Example
 
@@ -379,6 +387,8 @@ Name | Type | Description  | Notes
 > map[string]interface{} SetEgressTrafficPolicy(ctx, clusterId).SetEgressTrafficPolicyRequest(setEgressTrafficPolicyRequest).Execute()
 
 Outbound traffic management
+
+
 
 ### Example
 

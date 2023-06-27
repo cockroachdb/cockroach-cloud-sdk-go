@@ -20,6 +20,7 @@
       "get": {
         "operationId": "CockroachCloud_GetGroups",
         "summary": "Get groups based on query parameters",
+        "description": "Can be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
         "parameters": [
           {
             "name": "attributes",
@@ -117,6 +118,7 @@
       "post": {
         "operationId": "CockroachCloud_CreateGroup",
         "summary": "Create a group",
+        "description": "Can be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
         "requestBody": {
           "required": true,
           "content": {
@@ -210,6 +212,7 @@
       "put": {
         "operationId": "CockroachCloud_GetGroups2",
         "summary": "Get groups based on query parameters",
+        "description": "Can be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
         "requestBody": {
           "required": true,
           "content": {
@@ -297,6 +300,7 @@
       "delete": {
         "operationId": "CockroachCloud_DeleteGroup",
         "summary": "Delete a group based on ID",
+        "description": "Can be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
         "parameters": [
           {
             "name": "id",
@@ -388,6 +392,7 @@
       "get": {
         "operationId": "CockroachCloud_GetGroup",
         "summary": "Get a group based on ID",
+        "description": "Can be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
         "parameters": [
           {
             "name": "id",
@@ -493,6 +498,7 @@
       "put": {
         "operationId": "CockroachCloud_UpdateGroup",
         "summary": "Update a group by supplying all values of the user object",
+        "description": "Can be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
         "parameters": [
           {
             "name": "id",
@@ -677,6 +683,7 @@
       "put": {
         "operationId": "CockroachCloud_GetGroup2",
         "summary": "Get a group based on ID",
+        "description": "Can be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
         "parameters": [
           {
             "name": "id",
@@ -782,6 +789,7 @@
     "/api/scim/v2/ResourceTypes": {
       "get": {
         "operationId": "CockroachCloud_GetResourceTypes",
+        "description": "This endpoint may be used by any member of the organization.",
         "parameters": [
           {
             "name": "attributes",
@@ -880,6 +888,7 @@
     "/api/scim/v2/ResourceTypes/{resourceId}": {
       "get": {
         "operationId": "CockroachCloud_GetResourceType",
+        "description": "This endpoint may be used by any member of the organization.",
         "parameters": [
           {
             "name": "resourceId",
@@ -986,6 +995,7 @@
     "/api/scim/v2/Schemas": {
       "get": {
         "operationId": "CockroachCloud_GetSchemas",
+        "description": "This endpoint may be used by any member of the organization.",
         "parameters": [
           {
             "name": "attributes",
@@ -1084,6 +1094,7 @@
     "/api/scim/v2/Schemas/{schemaId}": {
       "get": {
         "operationId": "CockroachCloud_GetSchema",
+        "description": "This endpoint may be used by any member of the organization.",
         "parameters": [
           {
             "name": "schemaId",
@@ -1191,6 +1202,7 @@
       "get": {
         "operationId": "CockroachCloud_GetServiceProviderConfig",
         "summary": "Return our SCIM configuration",
+        "description": "This endpoint may be used by any member of the organization.",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -1274,6 +1286,7 @@
       "get": {
         "operationId": "CockroachCloud_GetUsers",
         "summary": "Get Users based on query parameters",
+        "description": "Can be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
         "parameters": [
           {
             "name": "filter",
@@ -1378,6 +1391,7 @@
       "post": {
         "operationId": "CockroachCloud_CreateUser",
         "summary": "Create a user",
+        "description": "Can be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
         "requestBody": {
           "required": true,
           "content": {
@@ -1471,6 +1485,7 @@
       "put": {
         "operationId": "CockroachCloud_GetUsers2",
         "summary": "Get Users based on query parameters",
+        "description": "Can be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
         "requestBody": {
           "required": true,
           "content": {
@@ -1558,6 +1573,7 @@
       "delete": {
         "operationId": "CockroachCloud_DeleteUser",
         "summary": "Delete a user based on ID",
+        "description": "Can be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
         "parameters": [
           {
             "name": "id",
@@ -1649,6 +1665,7 @@
       "get": {
         "operationId": "CockroachCloud_GetUser",
         "summary": "Get a user based on ID",
+        "description": "Can be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
         "parameters": [
           {
             "name": "id",
@@ -1754,6 +1771,7 @@
       "put": {
         "operationId": "CockroachCloud_UpdateUser",
         "summary": "Update a user by supplying all values of the user object",
+        "description": "Can be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
         "parameters": [
           {
             "name": "id",
@@ -1951,6 +1969,7 @@
       "put": {
         "operationId": "CockroachCloud_GetUser2",
         "summary": "Get a user based on ID",
+        "description": "Can be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
         "parameters": [
           {
             "name": "id",
@@ -2057,6 +2076,7 @@
       "get": {
         "operationId": "CockroachCloud_ListAuditLogs",
         "summary": "List audit logs",
+        "description": "Can be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
         "parameters": [
           {
             "name": "starting_from",
@@ -2166,7 +2186,7 @@
       "get": {
         "operationId": "CockroachCloud_ListMajorClusterVersions",
         "summary": "List available major cluster versions",
-        "description": "Sort order: Version number descending",
+        "description": "This endpoint may be used by any member of the organization.",
         "parameters": [
           {
             "name": "pagination.page",
@@ -2281,7 +2301,7 @@
       "get": {
         "operationId": "CockroachCloud_ListClusters",
         "summary": "List clusters owned by an organization",
-        "description": "Sort order: Cluster name",
+        "description": "Returns all clusters that the user has read access over",
         "parameters": [
           {
             "name": "show_inactive",
@@ -2403,6 +2423,7 @@
       "post": {
         "operationId": "CockroachCloud_CreateCluster",
         "summary": "Create and initialize a new cluster",
+        "description": "Can be used by the following roles assigned at the organization scope:\n- CLUSTER_ADMIN\n- CLUSTER_CREATOR\n",
         "requestBody": {
           "required": true,
           "content": {
@@ -2490,7 +2511,7 @@
       "get": {
         "operationId": "CockroachCloud_ListAvailableRegions",
         "summary": "List the regions available for new clusters and nodes",
-        "description": "Sort order: Distance (based on client IP address)",
+        "description": "This endpoint may be used by any member of the organization.",
         "parameters": [
           {
             "name": "provider",
@@ -2627,6 +2648,7 @@
       "delete": {
         "operationId": "CockroachCloud_DeleteCluster",
         "summary": "Delete a cluster and all of its data",
+        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -2712,6 +2734,7 @@
       "get": {
         "operationId": "CockroachCloud_GetCluster",
         "summary": "Get extended information about a cluster",
+        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- ORG_ADMIN\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n- CLUSTER_DEVELOPER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -2797,6 +2820,7 @@
       "patch": {
         "operationId": "CockroachCloud_UpdateCluster",
         "summary": "Scale or edit a cluster",
+        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -2894,6 +2918,7 @@
       "delete": {
         "operationId": "CockroachCloud_DeleteClientCACert",
         "summary": "Delete Client CA Cert for a cluster",
+        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -2985,6 +3010,7 @@
       "get": {
         "operationId": "CockroachCloud_GetClientCACert",
         "summary": "Get Client CA Cert information for a cluster",
+        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -3076,6 +3102,7 @@
       "patch": {
         "operationId": "CockroachCloud_UpdateClientCACert",
         "summary": "Update Client CA Cert for a cluster",
+        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -3186,6 +3213,7 @@
       "post": {
         "operationId": "CockroachCloud_SetClientCACert",
         "summary": "Set Client CA Cert for a cluster",
+        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -3301,6 +3329,7 @@
       "get": {
         "operationId": "CockroachCloud_GetCMEKClusterInfo",
         "summary": "Get CMEK-related information for a cluster",
+        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -3386,6 +3415,7 @@
       "patch": {
         "operationId": "CockroachCloud_UpdateCMEKStatus",
         "summary": "Update the CMEK-related status for a cluster",
+        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -3493,6 +3523,7 @@
       "post": {
         "operationId": "CockroachCloud_EnableCMEKSpec",
         "summary": "Enable CMEK for a cluster",
+        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -3612,6 +3643,7 @@
       "put": {
         "operationId": "CockroachCloud_UpdateCMEKSpec",
         "summary": "Enable or update the CMEK spec for a cluster",
+        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -3733,6 +3765,7 @@
       "get": {
         "operationId": "CockroachCloud_GetConnectionString",
         "summary": "Get a formatted generic connection string for a cluster",
+        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- ORG_ADMIN\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n- CLUSTER_DEVELOPER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -3848,7 +3881,7 @@
       "get": {
         "operationId": "CockroachCloud_ListDatabases",
         "summary": "List databases for a cluster",
-        "description": "Sort order: Database name ascending",
+        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n- CLUSTER_DEVELOPER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -3969,6 +4002,7 @@
       "patch": {
         "operationId": "CockroachCloud_EditDatabase2",
         "summary": "Update a database",
+        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -4081,6 +4115,7 @@
       "post": {
         "operationId": "CockroachCloud_CreateDatabase",
         "summary": "Create a new database",
+        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -4190,6 +4225,7 @@
       "delete": {
         "operationId": "CockroachCloud_DeleteDatabase",
         "summary": "Delete a database",
+        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -4283,6 +4319,7 @@
       "patch": {
         "operationId": "CockroachCloud_EditDatabase",
         "summary": "Update a database",
+        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -4401,6 +4438,7 @@
       "delete": {
         "operationId": "CockroachCloud_DeleteLogExport",
         "summary": "Delete the Log Export configuration for a cluster",
+        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- ORG_ADMIN\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -4492,6 +4530,7 @@
       "get": {
         "operationId": "CockroachCloud_GetLogExportInfo",
         "summary": "Get the Log Export configuration for a cluster",
+        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- ORG_ADMIN\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -4583,6 +4622,7 @@
       "post": {
         "operationId": "CockroachCloud_EnableLogExport",
         "summary": "Create or update the Log Export configuration for a cluster",
+        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- ORG_ADMIN\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -5018,6 +5058,7 @@
       "delete": {
         "operationId": "CockroachCloud_DeleteCloudWatchMetricExport",
         "summary": "Delete the CloudWatch Metric Export configuration for a cluster",
+        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -5109,6 +5150,7 @@
       "get": {
         "operationId": "CockroachCloud_GetCloudWatchMetricExportInfo",
         "summary": "Get the CloudWatch Metric Export configuration for a cluster",
+        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -5200,6 +5242,7 @@
       "post": {
         "operationId": "CockroachCloud_EnableCloudWatchMetricExport",
         "summary": "Create or update the CloudWatch Metric Export configuration for a cluster",
+        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -5326,6 +5369,7 @@
       "delete": {
         "operationId": "CockroachCloud_DeleteDatadogMetricExport",
         "summary": "Delete the Datadog Metric Export configuration for a cluster",
+        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -5417,6 +5461,7 @@
       "get": {
         "operationId": "CockroachCloud_GetDatadogMetricExportInfo",
         "summary": "Get the Datadog Metric Export configuration for a cluster",
+        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -5508,6 +5553,7 @@
       "post": {
         "operationId": "CockroachCloud_EnableDatadogMetricExport",
         "summary": "Create or update the Datadog Metric Export configuration for a cluster",
+        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -5629,7 +5675,7 @@
       "get": {
         "operationId": "CockroachCloud_ListAllowlistEntries",
         "summary": "Get the IP allowlist and propagation status for a cluster",
-        "description": "Sort order: CIDR address",
+        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n- CLUSTER_DEVELOPER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -5750,6 +5796,7 @@
       "post": {
         "operationId": "CockroachCloud_AddAllowlistEntry",
         "summary": "Add a new CIDR address to the IP allowlist",
+        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -5847,6 +5894,7 @@
       "delete": {
         "operationId": "CockroachCloud_DeleteAllowlistEntry",
         "summary": "Delete an IP allowlist entry",
+        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -5951,6 +5999,7 @@
       "patch": {
         "operationId": "CockroachCloud_UpdateAllowlistEntry",
         "summary": "Update an IP allowlist entry",
+        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -6087,6 +6136,7 @@
       "put": {
         "operationId": "CockroachCloud_AddAllowlistEntry2",
         "summary": "Add a new CIDR address to the IP allowlist",
+        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -6225,6 +6275,7 @@
       "get": {
         "operationId": "CockroachCloud_ListAwsEndpointConnections",
         "summary": "List all AwsEndpointConnections for a cluster",
+        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -6313,7 +6364,7 @@
       "patch": {
         "operationId": "CockroachCloud_SetAwsEndpointConnectionState",
         "summary": "Set the AWS Endpoint Connection state",
-        "description": "The \"status\" in the returned proto does not reflect the latest post-update\nstatus, but rather the status before the state is transitioned.",
+        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -6433,7 +6484,7 @@
       "get": {
         "operationId": "CockroachCloud_ListEgressRules",
         "summary": "List all egress rules associates with a cluster",
-        "description": "Sort order: Name",
+        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -6561,6 +6612,7 @@
       "post": {
         "operationId": "CockroachCloud_AddEgressRule",
         "summary": "Add an egress rule",
+        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -6725,6 +6777,7 @@
       "post": {
         "operationId": "CockroachCloud_SetEgressTrafficPolicy",
         "summary": "Outbound traffic management",
+        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -6844,6 +6897,7 @@
       "delete": {
         "operationId": "CockroachCloud_DeleteEgressRule",
         "summary": "Delete an existing egress rule",
+        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -6953,6 +7007,7 @@
       "get": {
         "operationId": "CockroachCloud_GetEgressRule",
         "summary": "Get an existing egress rule",
+        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -7054,6 +7109,7 @@
       "patch": {
         "operationId": "CockroachCloud_EditEgressRule",
         "summary": "Edit an existing egress rule",
+        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -7210,7 +7266,7 @@
       "get": {
         "operationId": "CockroachCloud_ListPrivateEndpointServices",
         "summary": "List all PrivateEndpointServices for a cluster",
-        "description": "The internal_dns property from the regions field in the ListClusters response can be used to connect to PrivateEndpointServices.",
+        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -7297,6 +7353,7 @@
       "post": {
         "operationId": "CockroachCloud_CreatePrivateEndpointServices",
         "summary": "Create all PrivateEndpointServices for a cluster",
+        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -7385,7 +7442,7 @@
       "get": {
         "operationId": "CockroachCloud_ListClusterNodes",
         "summary": "List nodes for a cluster",
-        "description": "Sort order: Region name, node name",
+        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- ORG_ADMIN\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n- CLUSTER_DEVELOPER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -7516,7 +7573,7 @@
       "get": {
         "operationId": "CockroachCloud_ListSQLUsers",
         "summary": "List SQL users for a cluster",
-        "description": "Sort order: Username",
+        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n- CLUSTER_DEVELOPER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -7637,6 +7694,7 @@
       "post": {
         "operationId": "CockroachCloud_CreateSQLUser",
         "summary": "Create a new SQL user",
+        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -7751,6 +7809,7 @@
       "delete": {
         "operationId": "CockroachCloud_DeleteSQLUser",
         "summary": "Delete a SQL user",
+        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -7846,6 +7905,7 @@
       "put": {
         "operationId": "CockroachCloud_UpdateSQLUserPassword",
         "summary": "Update a SQL user's password",
+        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -8149,7 +8209,7 @@
       "get": {
         "operationId": "CockroachCloud_ListInvoices",
         "summary": "List invoices for a given organization",
-        "description": "Sort order: invoice start date ascending",
+        "description": "Can be used by the following roles assigned at the organization scope:\n- BILLING_COORDINATOR\n- CLUSTER_ADMIN\n",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -8227,6 +8287,7 @@
       "get": {
         "operationId": "CockroachCloud_GetInvoice",
         "summary": "Get a specific invoice for an organization",
+        "description": "Can be used by the following roles assigned at the organization scope:\n- BILLING_COORDINATOR\n- CLUSTER_ADMIN\n",
         "parameters": [
           {
             "name": "invoice_id",
@@ -8315,6 +8376,7 @@
       "get": {
         "operationId": "CockroachCloud_GetOrganizationInfo",
         "summary": "Get information about the caller's organization",
+        "description": "Can be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n- ORG_MEMBER\n",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -8392,6 +8454,7 @@
       "get": {
         "operationId": "CockroachCloud_ListRoleGrants",
         "summary": "List all RoleGrants",
+        "description": "Can be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n- CLUSTER_ADMIN\n",
         "parameters": [
           {
             "name": "pagination.page",
@@ -8512,6 +8575,7 @@
       "get": {
         "operationId": "CockroachCloud_GetAllRolesForUser",
         "summary": "Get all Role Grants for a user",
+        "description": "Can be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n- CLUSTER_ADMIN\n",
         "parameters": [
           {
             "name": "user_id",
@@ -8603,6 +8667,7 @@
       "put": {
         "operationId": "CockroachCloud_SetRolesForUser",
         "summary": "Make a user's roles exactly those provided",
+        "description": "Roles that will be removed or added as a result of this call must follow the CC rules for role assignment:\nhttps://www.cockroachlabs.com/docs/cockroachcloud/authorization#which-roles-grant-the-ability-to-add-remove-and-manage-members-in-in-a-cockroachdb-cloud-organization",
         "parameters": [
           {
             "name": "user_id",
@@ -8726,6 +8791,7 @@
       "delete": {
         "operationId": "CockroachCloud_RemoveUserFromRole",
         "summary": "Remove the user from the given role",
+        "description": "Roles that will be removed as a result of this call must follow the CC rules for role assignment:\nhttps://www.cockroachlabs.com/docs/cockroachcloud/authorization#which-roles-grant-the-ability-to-add-remove-and-manage-members-in-in-a-cockroachdb-cloud-organization",
         "parameters": [
           {
             "name": "user_id",
@@ -8856,6 +8922,7 @@
       "post": {
         "operationId": "CockroachCloud_AddUserToRole",
         "summary": "Add the user to the given role",
+        "description": "Roles that will be added as a result of this call must follow the CC rules for role assignment:\nhttps://www.cockroachlabs.com/docs/cockroachcloud/authorization#which-roles-grant-the-ability-to-add-remove-and-manage-members-in-in-a-cockroachdb-cloud-organization",
         "parameters": [
           {
             "name": "user_id",
@@ -8988,6 +9055,7 @@
       "get": {
         "operationId": "CockroachCloud_GetPersonUsersByEmail",
         "summary": "Search person users by email address",
+        "description": "Can be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n- CLUSTER_ADMIN\n",
         "parameters": [
           {
             "name": "email",
@@ -9756,7 +9824,9 @@
           "CRDB_REPAVE_RUNNING",
           "CRDB_REPAVE_FAILED",
           "CRDB_CUSTOM_CLIENT_CA_RUNNING",
-          "CRDB_CUSTOM_CLIENT_CA_FAILED"
+          "CRDB_CUSTOM_CLIENT_CA_FAILED",
+          "DEDICATED_FULL_CLUSTER_RESTORE_RUNNING",
+          "DEDICATED_FULL_CLUSTER_RESTORE_FAILED"
         ]
       },
       "ClusterUpgradeStatus.Type": {
@@ -11661,6 +11731,17 @@
       "ServerlessClusterUpdateSpecification": {
         "type": "object",
         "properties": {
+          "primary_region": {
+            "description": "Preview: Specify which region should be made the primary region.\nThis is only applicable to multi-region Serverless clusters.\nThis field is required if the regions field contains more than one region.",
+            "type": "string"
+          },
+          "regions": {
+            "description": "Region values should match the cloud provider's zone code.\nFor example, for Oregon, set region_name to \"us-west2\" for\nGCP and \"us-west-2\" for AWS. If this field is provided, the cluster's\nregions will be changed to match this list.\nRegions cannot currently be removed.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
           "spend_limit": {
             "description": "spend_limit is the maximum monthly charge for a cluster, in US cents. We\nrecommend using usage_limits instead, since spend_limit will be deprecated\nin the future.",
             "type": "integer",

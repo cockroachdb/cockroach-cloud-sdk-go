@@ -32,6 +32,8 @@ Method | HTTP request | Description
 
 Create a group
 
+
+
 ### Example
 
 ```go
@@ -95,6 +97,8 @@ Name | Type | Description  | Notes
 
 Create a user
 
+
+
 ### Example
 
 ```go
@@ -157,6 +161,8 @@ Name | Type | Description  | Notes
 > map[string]interface{} DeleteGroup(ctx, id).Execute()
 
 Delete a group based on ID
+
+
 
 ### Example
 
@@ -225,6 +231,8 @@ Name | Type | Description  | Notes
 
 Delete a user based on ID
 
+
+
 ### Example
 
 ```go
@@ -291,6 +299,8 @@ Name | Type | Description  | Notes
 > ScimGroup GetGroup(ctx, id).Attributes(attributes).ExcludedAttributes(excludedAttributes).Execute()
 
 Get a group based on ID
+
+
 
 ### Example
 
@@ -363,6 +373,8 @@ Name | Type | Description  | Notes
 
 Get a group based on ID
 
+
+
 ### Example
 
 ```go
@@ -432,6 +444,8 @@ Name | Type | Description  | Notes
 
 Get groups based on query parameters
 
+
+
 ### Example
 
 ```go
@@ -497,6 +511,8 @@ Name | Type | Description  | Notes
 
 Get groups based on query parameters
 
+
+
 ### Example
 
 ```go
@@ -557,6 +573,8 @@ Name | Type | Description  | Notes
 ## GetResourceType
 
 > ScimResourceType GetResourceType(ctx, resourceId).Attributes(attributes).ExcludedAttributes(excludedAttributes).Execute()
+
+
 
 
 
@@ -631,6 +649,8 @@ Name | Type | Description  | Notes
 
 
 
+
+
 ### Example
 
 ```go
@@ -693,6 +713,8 @@ Name | Type | Description  | Notes
 ## GetSchema
 
 > ScimSchema GetSchema(ctx, schemaId).Attributes(attributes).ExcludedAttributes(excludedAttributes).Execute()
+
+
 
 
 
@@ -767,6 +789,8 @@ Name | Type | Description  | Notes
 
 
 
+
+
 ### Example
 
 ```go
@@ -832,6 +856,8 @@ Name | Type | Description  | Notes
 
 Return our SCIM configuration
 
+
+
 ### Example
 
 ```go
@@ -889,6 +915,8 @@ Other parameters are passed through a pointer to a apiGetServiceProviderConfig s
 > ScimUser GetUser(ctx, id).Attributes(attributes).ExcludedAttributes(excludedAttributes).Execute()
 
 Get a user based on ID
+
+
 
 ### Example
 
@@ -961,6 +989,8 @@ Name | Type | Description  | Notes
 
 Get a user based on ID
 
+
+
 ### Example
 
 ```go
@@ -1030,6 +1060,8 @@ Name | Type | Description  | Notes
 
 Get Users based on query parameters
 
+
+
 ### Example
 
 ```go
@@ -1097,6 +1129,8 @@ Name | Type | Description  | Notes
 
 Get Users based on query parameters
 
+
+
 ### Example
 
 ```go
@@ -1159,6 +1193,8 @@ Name | Type | Description  | Notes
 > ScimGroup UpdateGroup(ctx, id).UpdateGroupRequest(updateGroupRequest).Execute()
 
 Update a group by supplying all values of the user object
+
+
 
 ### Example
 
@@ -1228,6 +1264,8 @@ Name | Type | Description  | Notes
 > ScimUser UpdateUser(ctx, id).UpdateUserRequest(updateUserRequest).Execute()
 
 Update a user by supplying all values of the user object
+
+
 
 ### Example
 

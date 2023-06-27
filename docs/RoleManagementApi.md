@@ -19,6 +19,8 @@ Method | HTTP request | Description
 
 Add the user to the given role
 
+
+
 ### Example
 
 ```go
@@ -95,6 +97,8 @@ Name | Type | Description  | Notes
 
 Get all Role Grants for a user
 
+
+
 ### Example
 
 ```go
@@ -162,6 +166,8 @@ Name | Type | Description  | Notes
 
 Search person users by email address
 
+
+
 ### Example
 
 ```go
@@ -224,6 +230,8 @@ Name | Type | Description  | Notes
 > ListRoleGrantsResponse ListRoleGrants(ctx).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).Execute()
 
 List all RoleGrants
+
+
 
 ### Example
 
@@ -294,6 +302,8 @@ Name | Type | Description  | Notes
 > GetAllRolesForUserResponse RemoveUserFromRole(ctx, userId, resourceType, resourceId, roleName).Execute()
 
 Remove the user from the given role
+
+
 
 ### Example
 
@@ -370,6 +380,8 @@ Name | Type | Description  | Notes
 > GetAllRolesForUserResponse SetRolesForUser(ctx, userId).CockroachCloudSetRolesForUserRequest(cockroachCloudSetRolesForUserRequest).Execute()
 
 Make a user's roles exactly those provided
+
+
 
 ### Example
 

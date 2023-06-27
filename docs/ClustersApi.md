@@ -22,6 +22,8 @@ Method | HTTP request | Description
 
 Create and initialize a new cluster
 
+
+
 ### Example
 
 ```go
@@ -84,6 +86,8 @@ Name | Type | Description  | Notes
 > Cluster DeleteCluster(ctx, clusterId).Execute()
 
 Delete a cluster and all of its data
+
+
 
 ### Example
 
@@ -152,6 +156,8 @@ Name | Type | Description  | Notes
 
 Get extended information about a cluster
 
+
+
 ### Example
 
 ```go
@@ -218,6 +224,8 @@ Name | Type | Description  | Notes
 > GetConnectionStringResponse GetConnectionString(ctx, clusterId).Database(database).SqlUser(sqlUser).Os(os).Execute()
 
 Get a formatted generic connection string for a cluster
+
+
 
 ### Example
 
@@ -593,6 +601,8 @@ Name | Type | Description  | Notes
 > Cluster UpdateCluster(ctx, clusterId).UpdateClusterSpecification(updateClusterSpecification).Execute()
 
 Scale or edit a cluster
+
+
 
 ### Example
 

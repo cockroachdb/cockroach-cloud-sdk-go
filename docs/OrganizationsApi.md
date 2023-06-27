@@ -14,6 +14,8 @@ Method | HTTP request | Description
 
 Get information about the caller's organization
 
+
+
 ### Example
 
 ```go

@@ -14,6 +14,8 @@ Method | HTTP request | Description
 
 List audit logs
 
+
+
 ### Example
 
 ```go
