@@ -18,6 +18,9 @@ Method | HTTP request | Description
 > GetAllRolesForUserResponse AddUserToRole(ctx, userId, resourceType, resourceId, roleName).Execute()
 
 Add the user to the given role
+    
+Roles that will be added as a result of this call must follow the CC rules for role assignment:
+https://www.cockroachlabs.com/docs/cockroachcloud/authorization#which-roles-grant-the-ability-to-add-remove-and-manage-members-in-in-a-cockroachdb-cloud-organization
 
 ### Example
 
@@ -94,6 +97,11 @@ Name | Type | Description  | Notes
 > GetAllRolesForUserResponse GetAllRolesForUser(ctx, userId).Execute()
 
 Get all Role Grants for a user
+    
+Can be used by the following roles assigned at the organization scope:
+- ORG_ADMIN
+- CLUSTER_ADMIN
+
 
 ### Example
 
@@ -161,6 +169,11 @@ Name | Type | Description  | Notes
 > GetPersonUsersByEmailResponse GetPersonUsersByEmail(ctx).Email(email).Execute()
 
 Search person users by email address
+    
+Can be used by the following roles assigned at the organization scope:
+- ORG_ADMIN
+- CLUSTER_ADMIN
+
 
 ### Example
 
@@ -224,6 +237,11 @@ Name | Type | Description  | Notes
 > ListRoleGrantsResponse ListRoleGrants(ctx).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).Execute()
 
 List all RoleGrants
+    
+Can be used by the following roles assigned at the organization scope:
+- ORG_ADMIN
+- CLUSTER_ADMIN
+
 
 ### Example
 
@@ -294,6 +312,9 @@ Name | Type | Description  | Notes
 > GetAllRolesForUserResponse RemoveUserFromRole(ctx, userId, resourceType, resourceId, roleName).Execute()
 
 Remove the user from the given role
+    
+Roles that will be removed as a result of this call must follow the CC rules for role assignment:
+https://www.cockroachlabs.com/docs/cockroachcloud/authorization#which-roles-grant-the-ability-to-add-remove-and-manage-members-in-in-a-cockroachdb-cloud-organization
 
 ### Example
 
@@ -370,6 +391,9 @@ Name | Type | Description  | Notes
 > GetAllRolesForUserResponse SetRolesForUser(ctx, userId).CockroachCloudSetRolesForUserRequest(cockroachCloudSetRolesForUserRequest).Execute()
 
 Make a user's roles exactly those provided
+    
+Roles that will be removed or added as a result of this call must follow the CC rules for role assignment:
+https://www.cockroachlabs.com/docs/cockroachcloud/authorization#which-roles-grant-the-ability-to-add-remove-and-manage-members-in-in-a-cockroachdb-cloud-organization
 
 ### Example
 

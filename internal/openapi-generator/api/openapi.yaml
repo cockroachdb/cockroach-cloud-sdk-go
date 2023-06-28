@@ -17,6 +17,9 @@ security:
 paths:
   /api/scim/v2/Groups:
     get:
+      description: |
+        Can be used by the following roles assigned at the organization scope:
+        - ORG_ADMIN
       operationId: CockroachCloud_GetGroups
       parameters:
       - explode: true
@@ -85,6 +88,9 @@ paths:
             --url 'https://cockroachlabs.cloud/api/scim/v2/Groups?attributes=SOME_STRING_VALUE&excludedAttributes=SOME_STRING_VALUE' \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     post:
+      description: |
+        Can be used by the following roles assigned at the organization scope:
+        - ORG_ADMIN
       operationId: CockroachCloud_CreateGroup
       requestBody:
         content:
@@ -147,6 +153,9 @@ paths:
             --data '{"displayName":"Test SCIM","members":[],"schemas":["urn:ietf:params:scim:schemas:core:2.0:Group"]}'
   /api/scim/v2/Groups/.search:
     put:
+      description: |
+        Can be used by the following roles assigned at the organization scope:
+        - ORG_ADMIN
       operationId: CockroachCloud_GetGroups2
       requestBody:
         content:
@@ -206,6 +215,9 @@ paths:
             --data '{"attributes":"string","excludedAttributes":"string"}'
   /api/scim/v2/Groups/{id}:
     delete:
+      description: |
+        Can be used by the following roles assigned at the organization scope:
+        - ORG_ADMIN
       operationId: CockroachCloud_DeleteGroup
       parameters:
       - explode: false
@@ -267,6 +279,9 @@ paths:
             --url https://cockroachlabs.cloud/api/scim/v2/Groups/{id} \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     get:
+      description: |
+        Can be used by the following roles assigned at the organization scope:
+        - ORG_ADMIN
       operationId: CockroachCloud_GetGroup
       parameters:
       - explode: false
@@ -342,6 +357,9 @@ paths:
             --url 'https://cockroachlabs.cloud/api/scim/v2/Groups/{id}?attributes=SOME_STRING_VALUE&excludedAttributes=SOME_STRING_VALUE' \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     put:
+      description: |
+        Can be used by the following roles assigned at the organization scope:
+        - ORG_ADMIN
       operationId: CockroachCloud_UpdateGroup
       parameters:
       - explode: false
@@ -412,6 +430,9 @@ paths:
             --data '{"displayName":"Test SCIM","id":"23a35c27-23d3-4c03-b4c5-6443c09e7173","members":[{"display":"croach@example.com","value":"45a35c27-23d3-4d03-c4c5-9043c09e7175"}],"schemas":["urn:ietf:params:scim:schemas:core:2.0:Group"]}'
   /api/scim/v2/Groups/{id}/.search:
     put:
+      description: |
+        Can be used by the following roles assigned at the organization scope:
+        - ORG_ADMIN
       operationId: CockroachCloud_GetGroup2
       parameters:
       - explode: false
@@ -479,6 +500,7 @@ paths:
             --data '{"attributes":"string","excludedAttributes":"string"}'
   /api/scim/v2/ResourceTypes:
     get:
+      description: This endpoint may be used by any member of the organization.
       operationId: CockroachCloud_GetResourceTypes
       parameters:
       - explode: true
@@ -547,6 +569,7 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
   /api/scim/v2/ResourceTypes/{resourceId}:
     get:
+      description: This endpoint may be used by any member of the organization.
       operationId: CockroachCloud_GetResourceType
       parameters:
       - explode: false
@@ -622,6 +645,7 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
   /api/scim/v2/Schemas:
     get:
+      description: This endpoint may be used by any member of the organization.
       operationId: CockroachCloud_GetSchemas
       parameters:
       - explode: true
@@ -690,6 +714,7 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
   /api/scim/v2/Schemas/{schemaId}:
     get:
+      description: This endpoint may be used by any member of the organization.
       operationId: CockroachCloud_GetSchema
       parameters:
       - explode: false
@@ -765,6 +790,7 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
   /api/scim/v2/ServiceProviderConfig:
     get:
+      description: This endpoint may be used by any member of the organization.
       operationId: CockroachCloud_GetServiceProviderConfig
       responses:
         "200":
@@ -819,6 +845,9 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
   /api/scim/v2/Users:
     get:
+      description: |
+        Can be used by the following roles assigned at the organization scope:
+        - ORG_ADMIN
       operationId: CockroachCloud_GetUsers
       parameters:
       - explode: true
@@ -894,6 +923,9 @@ paths:
             --url 'https://cockroachlabs.cloud/api/scim/v2/Users?filter=SOME_STRING_VALUE&attributes=SOME_STRING_VALUE&excludedAttributes=SOME_STRING_VALUE' \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     post:
+      description: |
+        Can be used by the following roles assigned at the organization scope:
+        - ORG_ADMIN
       operationId: CockroachCloud_CreateUser
       requestBody:
         content:
@@ -956,6 +988,9 @@ paths:
             --data '{"active":true,"displayName":"Carl Roach","emails":[{"primary":true,"type":"work","value":"croach@example.com"}],"externalId":"11ujl29u0le5T6Aj10h9","name":{"familyName":"Roach","givenName":"Carl"},"schemas":["urn:ietf:params:scim:schemas:core:2.0:User"],"userName":"croach@example.com"}'
   /api/scim/v2/Users/.search:
     put:
+      description: |
+        Can be used by the following roles assigned at the organization scope:
+        - ORG_ADMIN
       operationId: CockroachCloud_GetUsers2
       requestBody:
         content:
@@ -1015,6 +1050,9 @@ paths:
             --data '{"attributes":"string","excludedAttributes":"string","filter":"string"}'
   /api/scim/v2/Users/{id}:
     delete:
+      description: |
+        Can be used by the following roles assigned at the organization scope:
+        - ORG_ADMIN
       operationId: CockroachCloud_DeleteUser
       parameters:
       - explode: false
@@ -1076,6 +1114,9 @@ paths:
             --url https://cockroachlabs.cloud/api/scim/v2/Users/{id} \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     get:
+      description: |
+        Can be used by the following roles assigned at the organization scope:
+        - ORG_ADMIN
       operationId: CockroachCloud_GetUser
       parameters:
       - explode: false
@@ -1151,6 +1192,9 @@ paths:
             --url 'https://cockroachlabs.cloud/api/scim/v2/Users/{id}?attributes=SOME_STRING_VALUE&excludedAttributes=SOME_STRING_VALUE' \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     put:
+      description: |
+        Can be used by the following roles assigned at the organization scope:
+        - ORG_ADMIN
       operationId: CockroachCloud_UpdateUser
       parameters:
       - explode: false
@@ -1221,6 +1265,9 @@ paths:
             --data '{"active":true,"emails":[{"display":"croach@example.com","primary":true,"type":"work","value":"croach@example.com"}],"name":{"familyName":"Roach","givenName":"Carl"},"schemas":["urn:ietf:params:scim:schemas:core:2.0:User"]}'
   /api/scim/v2/Users/{id}/.search:
     put:
+      description: |
+        Can be used by the following roles assigned at the organization scope:
+        - ORG_ADMIN
       operationId: CockroachCloud_GetUser2
       parameters:
       - explode: false
@@ -1288,6 +1335,9 @@ paths:
             --data '{"attributes":"string","excludedAttributes":"string"}'
   /api/v1/auditlogevents:
     get:
+      description: |
+        Can be used by the following roles assigned at the organization scope:
+        - ORG_ADMIN
       operationId: CockroachCloud_ListAuditLogs
       parameters:
       - description: |-
@@ -1382,7 +1432,7 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
   /api/v1/cluster-versions:
     get:
-      description: "Sort order: Version number descending"
+      description: This endpoint may be used by any member of the organization.
       operationId: CockroachCloud_ListMajorClusterVersions
       parameters:
       - explode: true
@@ -1471,7 +1521,7 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
   /api/v1/clusters:
     get:
-      description: "Sort order: Cluster name"
+      description: Returns all clusters that the user has read access over
       operationId: CockroachCloud_ListClusters
       parameters:
       - description: "If `true`, show clusters that have been deleted or failed to\
@@ -1569,6 +1619,10 @@ paths:
             --url 'https://cockroachlabs.cloud/api/v1/clusters?show_inactive=SOME_BOOLEAN_VALUE&pagination.page=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.as_of_time=SOME_STRING_VALUE&pagination.sort_order=SOME_STRING_VALUE' \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     post:
+      description: |
+        Can be used by the following roles assigned at the organization scope:
+        - CLUSTER_ADMIN
+        - CLUSTER_CREATOR
       operationId: CockroachCloud_CreateCluster
       requestBody:
         content:
@@ -1628,7 +1682,7 @@ paths:
             --data '{"name":"test-cluster","provider":"GCP","spec":{"serverless":{"regions":["us-central1"],"spend_limit":0}}}'
   /api/v1/clusters/available-regions:
     get:
-      description: "Sort order: Distance (based on client IP address)"
+      description: This endpoint may be used by any member of the organization.
       operationId: CockroachCloud_ListAvailableRegions
       parameters:
       - description: |-
@@ -1744,6 +1798,9 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
   /api/v1/clusters/{cluster_id}:
     delete:
+      description: |
+        Can be used by the following roles assigned at the organization or cluster scope:
+        - CLUSTER_ADMIN
       operationId: CockroachCloud_DeleteCluster
       parameters:
       - explode: false
@@ -1802,6 +1859,12 @@ paths:
             --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id} \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     get:
+      description: |
+        Can be used by the following roles assigned at the organization or cluster scope:
+        - ORG_ADMIN
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
+        - CLUSTER_DEVELOPER
       operationId: CockroachCloud_GetCluster
       parameters:
       - explode: false
@@ -1860,6 +1923,10 @@ paths:
             --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id} \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     patch:
+      description: |
+        Can be used by the following roles assigned at the organization or cluster scope:
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_UpdateCluster
       parameters:
       - explode: false
@@ -1927,6 +1994,10 @@ paths:
             --data '{"dedicated":{"hardware":{"machine_spec":{"machine_type":"n2-standard-8"}},"region_nodes":{"us-central1":5,"us-west1":3}},"upgrade_status":"UPGRADE_RUNNING"}'
   /api/v1/clusters/{cluster_id}/client-ca-cert:
     delete:
+      description: |
+        Can be used by the following roles assigned at the organization or cluster scope:
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_DeleteClientCACert
       parameters:
       - explode: false
@@ -1988,6 +2059,10 @@ paths:
             --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/client-ca-cert \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     get:
+      description: |
+        Can be used by the following roles assigned at the organization or cluster scope:
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_GetClientCACert
       parameters:
       - explode: false
@@ -2049,6 +2124,10 @@ paths:
             --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/client-ca-cert \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     patch:
+      description: |
+        Can be used by the following roles assigned at the organization or cluster scope:
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_UpdateClientCACert
       parameters:
       - explode: false
@@ -2118,6 +2197,10 @@ paths:
             --header 'content-type: application/json' \
             --data '{"x509_pem_cert":"-----BEGIN CERTIFICATE-----..."}'
     post:
+      description: |
+        Can be used by the following roles assigned at the organization or cluster scope:
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_SetClientCACert
       parameters:
       - explode: false
@@ -2188,6 +2271,10 @@ paths:
             --data '{"x509_pem_cert":"-----BEGIN CERTIFICATE-----..."}'
   /api/v1/clusters/{cluster_id}/cmek:
     get:
+      description: |
+        Can be used by the following roles assigned at the organization or cluster scope:
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_GetCMEKClusterInfo
       parameters:
       - explode: false
@@ -2246,6 +2333,10 @@ paths:
             --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/cmek \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     patch:
+      description: |
+        Can be used by the following roles assigned at the organization or cluster scope:
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_UpdateCMEKStatus
       parameters:
       - explode: false
@@ -2312,6 +2403,10 @@ paths:
             --header 'content-type: application/json' \
             --data '{"action":"REVOKE"}'
     post:
+      description: |
+        Can be used by the following roles assigned at the organization or cluster scope:
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_EnableCMEKSpec
       parameters:
       - explode: false
@@ -2377,6 +2472,10 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
             --data '{"region_specs":[{"key_spec":{"auth_principal":"arn:aws:iam::account:role/role-name-with-path","type":"AWS_KMS","uri":"arn:aws:kms:us-west-2:111122223333:key/id-of-kms-key"},"region":"us-central1"}]}'
     put:
+      description: |
+        Can be used by the following roles assigned at the organization or cluster scope:
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_UpdateCMEKSpec
       parameters:
       - explode: false
@@ -2443,6 +2542,12 @@ paths:
             --data '{"region_specs":[{"key_spec":{"auth_principal":"arn:aws:iam::account:role/role-name-with-path","type":"AWS_KMS","uri":"arn:aws:kms:us-west-2:111122223333:key/id-of-kms-key"},"region":"us-central1"}]}'
   /api/v1/clusters/{cluster_id}/connection-string:
     get:
+      description: |
+        Can be used by the following roles assigned at the organization or cluster scope:
+        - ORG_ADMIN
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
+        - CLUSTER_DEVELOPER
       operationId: CockroachCloud_GetConnectionString
       parameters:
       - explode: false
@@ -2531,7 +2636,11 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
   /api/v1/clusters/{cluster_id}/databases:
     get:
-      description: "Sort order: Database name ascending"
+      description: |
+        Can be used by the following roles assigned at the organization or cluster scope:
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
+        - CLUSTER_DEVELOPER
       operationId: CockroachCloud_ListDatabases
       parameters:
       - explode: false
@@ -2626,6 +2735,10 @@ paths:
             --url 'https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/databases?pagination.page=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.as_of_time=SOME_STRING_VALUE&pagination.sort_order=SOME_STRING_VALUE' \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     patch:
+      description: |
+        Can be used by the following roles assigned at the organization or cluster scope:
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_EditDatabase2
       parameters:
       - explode: false
@@ -2692,6 +2805,10 @@ paths:
             --header 'content-type: application/json' \
             --data '{"name":"example_database_name","new_name":"example_new_database_name"}'
     post:
+      description: |
+        Can be used by the following roles assigned at the organization or cluster scope:
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_CreateDatabase
       parameters:
       - explode: false
@@ -2759,6 +2876,10 @@ paths:
             --data '{"name":"example_database_name"}'
   /api/v1/clusters/{cluster_id}/databases/{name}:
     delete:
+      description: |
+        Can be used by the following roles assigned at the organization or cluster scope:
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_DeleteDatabase
       parameters:
       - explode: false
@@ -2824,6 +2945,10 @@ paths:
             --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/databases/{name} \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     patch:
+      description: |
+        Can be used by the following roles assigned at the organization or cluster scope:
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_EditDatabase
       parameters:
       - explode: false
@@ -2898,6 +3023,9 @@ paths:
             --data '{"name":"example_database_name","new_name":"example_new_database_name"}'
   /api/v1/clusters/{cluster_id}/logexport:
     delete:
+      description: |
+        Can be used by the following roles assigned at the organization or cluster scope:
+        - ORG_ADMIN
       operationId: CockroachCloud_DeleteLogExport
       parameters:
       - explode: false
@@ -2959,6 +3087,9 @@ paths:
             --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/logexport \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     get:
+      description: |
+        Can be used by the following roles assigned at the organization or cluster scope:
+        - ORG_ADMIN
       operationId: CockroachCloud_GetLogExportInfo
       parameters:
       - explode: false
@@ -3020,6 +3151,9 @@ paths:
             --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/logexport \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     post:
+      description: |
+        Can be used by the following roles assigned at the organization or cluster scope:
+        - ORG_ADMIN
       operationId: CockroachCloud_EnableLogExport
       parameters:
       - explode: false
@@ -3279,6 +3413,10 @@ paths:
             --data '{"offset_duration":"172800s","window_duration":"21600s"}'
   /api/v1/clusters/{cluster_id}/metricexport/cloudwatch:
     delete:
+      description: |
+        Can be used by the following roles assigned at the organization or cluster scope:
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_DeleteCloudWatchMetricExport
       parameters:
       - explode: false
@@ -3340,6 +3478,10 @@ paths:
             --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/metricexport/cloudwatch \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     get:
+      description: |
+        Can be used by the following roles assigned at the organization or cluster scope:
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_GetCloudWatchMetricExportInfo
       parameters:
       - explode: false
@@ -3401,6 +3543,10 @@ paths:
             --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/metricexport/cloudwatch \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     post:
+      description: |
+        Can be used by the following roles assigned at the organization or cluster scope:
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_EnableCloudWatchMetricExport
       parameters:
       - explode: false
@@ -3471,6 +3617,10 @@ paths:
             --data '{"log_group_name":"example","role_arn":"arn:aws:iam::account:role/ExampleRole","target_region":"us-east-1"}'
   /api/v1/clusters/{cluster_id}/metricexport/datadog:
     delete:
+      description: |
+        Can be used by the following roles assigned at the organization or cluster scope:
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_DeleteDatadogMetricExport
       parameters:
       - explode: false
@@ -3532,6 +3682,10 @@ paths:
             --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/metricexport/datadog \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     get:
+      description: |
+        Can be used by the following roles assigned at the organization or cluster scope:
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_GetDatadogMetricExportInfo
       parameters:
       - explode: false
@@ -3593,6 +3747,10 @@ paths:
             --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/metricexport/datadog \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     post:
+      description: |
+        Can be used by the following roles assigned at the organization or cluster scope:
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_EnableDatadogMetricExport
       parameters:
       - explode: false
@@ -3663,7 +3821,11 @@ paths:
             --data '{"api_key":"datadog_api_key","site":"US1"}'
   /api/v1/clusters/{cluster_id}/networking/allowlist:
     get:
-      description: "Sort order: CIDR address"
+      description: |
+        Can be used by the following roles assigned at the organization or cluster scope:
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
+        - CLUSTER_DEVELOPER
       operationId: CockroachCloud_ListAllowlistEntries
       parameters:
       - explode: false
@@ -3758,6 +3920,10 @@ paths:
             --url 'https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/allowlist?pagination.page=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.as_of_time=SOME_STRING_VALUE&pagination.sort_order=SOME_STRING_VALUE' \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     post:
+      description: |
+        Can be used by the following roles assigned at the organization or cluster scope:
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_AddAllowlistEntry
       parameters:
       - explode: false
@@ -3825,6 +3991,10 @@ paths:
             --data '{"cidr_ip":"192.168.1.1","cidr_mask":32,"name":"Example","sql":true,"ui":true}'
   /api/v1/clusters/{cluster_id}/networking/allowlist/{cidr_ip}/{cidr_mask}:
     delete:
+      description: |
+        Can be used by the following roles assigned at the organization or cluster scope:
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_DeleteAllowlistEntry
       parameters:
       - explode: false
@@ -3899,6 +4069,10 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
   /api/v1/clusters/{cluster_id}/networking/allowlist/{entry.cidr_ip}/{entry.cidr_mask}:
     patch:
+      description: |
+        Can be used by the following roles assigned at the organization or cluster scope:
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_UpdateAllowlistEntry
       parameters:
       - explode: false
@@ -3980,6 +4154,10 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
             --data '{"cidr_ip":"192.168.1.1","cidr_mask":32,"name":"Example","sql":true,"ui":true}'
     put:
+      description: |
+        Can be used by the following roles assigned at the organization or cluster scope:
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_AddAllowlistEntry2
       parameters:
       - explode: false
@@ -4062,6 +4240,10 @@ paths:
             --data '{"cidr_ip":"192.168.1.1","cidr_mask":32,"name":"Example","sql":true,"ui":true}'
   /api/v1/clusters/{cluster_id}/networking/aws-endpoint-connections:
     get:
+      description: |
+        Can be used by the following roles assigned at the organization or cluster scope:
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_ListAwsEndpointConnections
       parameters:
       - description: cluster_id is the ID for the cluster.
@@ -4122,9 +4304,10 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
   /api/v1/clusters/{cluster_id}/networking/aws-endpoint-connections/{endpoint_id}:
     patch:
-      description: |-
-        The "status" in the returned proto does not reflect the latest post-update
-        status, but rather the status before the state is transitioned.
+      description: |
+        Can be used by the following roles assigned at the organization or cluster scope:
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_SetAwsEndpointConnectionState
       parameters:
       - description: cluster_id is the ID for the cluster.
@@ -4202,7 +4385,10 @@ paths:
             --data '{"status":"AVAILABLE"}'
   /api/v1/clusters/{cluster_id}/networking/egress-rules:
     get:
-      description: "Sort order: Name"
+      description: |
+        Can be used by the following roles assigned at the organization or cluster scope:
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_ListEgressRules
       parameters:
       - description: |-
@@ -4303,6 +4489,10 @@ paths:
             --url 'https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/egress-rules?pagination.page=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.as_of_time=SOME_STRING_VALUE&pagination.sort_order=SOME_STRING_VALUE' \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     post:
+      description: |
+        Can be used by the following roles assigned at the organization or cluster scope:
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_AddEgressRule
       parameters:
       - description: cluster_id identifies the cluster to which this egress rule applies.
@@ -4374,6 +4564,10 @@ paths:
             --data '{"cluster_id":"35c4abb2-bb66-46d7-afed-25ebef5ed100","description":"egress for GCP storage buckets","destination":"storage.googleapis.com","name":"roach-buckets","paths":["/customer-managed-bucket-1/*","/customer-managed-bucket-2/*"],"ports":[443,80],"type":"FQDN"}'
   /api/v1/clusters/{cluster_id}/networking/egress-rules/egress-traffic-policy:
     post:
+      description: |
+        Can be used by the following roles assigned at the organization or cluster scope:
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_SetEgressTrafficPolicy
       parameters:
       - description: cluster_id identifies the cluster whose egress policy will be
@@ -4446,6 +4640,10 @@ paths:
             --data '{"allow_all":true,"idempotency_key":"string"}'
   /api/v1/clusters/{cluster_id}/networking/egress-rules/{rule_id}:
     delete:
+      description: |
+        Can be used by the following roles assigned at the organization or cluster scope:
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_DeleteEgressRule
       parameters:
       - description: cluster_id uniquely identifies the cluster owning the egress
@@ -4528,6 +4726,10 @@ paths:
             --url 'https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/egress-rules/{rule_id}?idempotency_key=SOME_STRING_VALUE' \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     get:
+      description: |
+        Can be used by the following roles assigned at the organization or cluster scope:
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_GetEgressRule
       parameters:
       - description: cluster_id uniquely identifies the cluster owning the egress
@@ -4599,6 +4801,10 @@ paths:
             --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/egress-rules/{rule_id} \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     patch:
+      description: |
+        Can be used by the following roles assigned at the organization or cluster scope:
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_EditEgressRule
       parameters:
       - description: cluster_id uniquely identifies the cluster owning the egress
@@ -4680,8 +4886,10 @@ paths:
             --data '{"cluster_id":"35c4abb2-bb66-46d7-afed-25ebef5ed100","ports":[443,80],"rule_id":"35c4abb2-bb66-46d7-afed-25ebef5ed2aa"}'
   /api/v1/clusters/{cluster_id}/networking/private-endpoint-services:
     get:
-      description: The internal_dns property from the regions field in the ListClusters
-        response can be used to connect to PrivateEndpointServices.
+      description: |
+        Can be used by the following roles assigned at the organization or cluster scope:
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_ListPrivateEndpointServices
       parameters:
       - description: cluster_id is the ID for the cluster.
@@ -4741,6 +4949,10 @@ paths:
             --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/private-endpoint-services \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     post:
+      description: |
+        Can be used by the following roles assigned at the organization or cluster scope:
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_CreatePrivateEndpointServices
       parameters:
       - description: cluster_id is the ID for the cluster.
@@ -4801,7 +5013,12 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
   /api/v1/clusters/{cluster_id}/nodes:
     get:
-      description: "Sort order: Region name, node name"
+      description: |
+        Can be used by the following roles assigned at the organization or cluster scope:
+        - ORG_ADMIN
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
+        - CLUSTER_DEVELOPER
       operationId: CockroachCloud_ListClusterNodes
       parameters:
       - explode: false
@@ -4905,7 +5122,11 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
   /api/v1/clusters/{cluster_id}/sql-users:
     get:
-      description: "Sort order: Username"
+      description: |
+        Can be used by the following roles assigned at the organization or cluster scope:
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
+        - CLUSTER_DEVELOPER
       operationId: CockroachCloud_ListSQLUsers
       parameters:
       - explode: false
@@ -5000,6 +5221,9 @@ paths:
             --url 'https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/sql-users?pagination.page=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.as_of_time=SOME_STRING_VALUE&pagination.sort_order=SOME_STRING_VALUE' \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     post:
+      description: |
+        Can be used by the following roles assigned at the organization or cluster scope:
+        - CLUSTER_ADMIN
       operationId: CockroachCloud_CreateSQLUser
       parameters:
       - explode: false
@@ -5067,6 +5291,9 @@ paths:
             --data '{"name":"example_username","password":"example_password"}'
   /api/v1/clusters/{cluster_id}/sql-users/{name}:
     delete:
+      description: |
+        Can be used by the following roles assigned at the organization or cluster scope:
+        - CLUSTER_ADMIN
       operationId: CockroachCloud_DeleteSQLUser
       parameters:
       - explode: false
@@ -5133,6 +5360,9 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
   /api/v1/clusters/{cluster_id}/sql-users/{name}/password:
     put:
+      description: |
+        Can be used by the following roles assigned at the organization or cluster scope:
+        - CLUSTER_ADMIN
       operationId: CockroachCloud_UpdateSQLUserPassword
       parameters:
       - explode: false
@@ -5332,7 +5562,10 @@ paths:
             --data '{"deferral_policy":"FIXED_DEFERRAL"}'
   /api/v1/invoices:
     get:
-      description: "Sort order: invoice start date ascending"
+      description: |
+        Can be used by the following roles assigned at the organization scope:
+        - BILLING_COORDINATOR
+        - CLUSTER_ADMIN
       operationId: CockroachCloud_ListInvoices
       responses:
         "200":
@@ -5384,6 +5617,10 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
   /api/v1/invoices/{invoice_id}:
     get:
+      description: |
+        Can be used by the following roles assigned at the organization scope:
+        - BILLING_COORDINATOR
+        - CLUSTER_ADMIN
       operationId: CockroachCloud_GetInvoice
       parameters:
       - description: |-
@@ -5447,6 +5684,10 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
   /api/v1/organization:
     get:
+      description: |
+        Can be used by the following roles assigned at the organization scope:
+        - ORG_ADMIN
+        - ORG_MEMBER
       operationId: CockroachCloud_GetOrganizationInfo
       responses:
         "200":
@@ -5498,6 +5739,10 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
   /api/v1/roles:
     get:
+      description: |
+        Can be used by the following roles assigned at the organization scope:
+        - ORG_ADMIN
+        - CLUSTER_ADMIN
       operationId: CockroachCloud_ListRoleGrants
       parameters:
       - explode: true
@@ -5589,6 +5834,10 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
   /api/v1/roles/{user_id}:
     get:
+      description: |
+        Can be used by the following roles assigned at the organization scope:
+        - ORG_ADMIN
+        - CLUSTER_ADMIN
       operationId: CockroachCloud_GetAllRolesForUser
       parameters:
       - explode: false
@@ -5650,6 +5899,9 @@ paths:
             --url https://cockroachlabs.cloud/api/v1/roles/{user_id} \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     put:
+      description: |-
+        Roles that will be removed or added as a result of this call must follow the CC rules for role assignment:
+        https://www.cockroachlabs.com/docs/cockroachcloud/authorization#which-roles-grant-the-ability-to-add-remove-and-manage-members-in-in-a-cockroachdb-cloud-organization
       operationId: CockroachCloud_SetRolesForUser
       parameters:
       - explode: false
@@ -5720,6 +5972,9 @@ paths:
             --data '[{"name":"CLUSTER_ADMIN","resource":{"id":"example_cluster_id","type":"CLUSTER"}}]'
   /api/v1/roles/{user_id}/{resource_type}/{resource_id}/{role_name}:
     delete:
+      description: |-
+        Roles that will be removed as a result of this call must follow the CC rules for role assignment:
+        https://www.cockroachlabs.com/docs/cockroachcloud/authorization#which-roles-grant-the-ability-to-add-remove-and-manage-members-in-in-a-cockroachdb-cloud-organization
       operationId: CockroachCloud_RemoveUserFromRole
       parameters:
       - explode: false
@@ -5815,6 +6070,9 @@ paths:
             --url https://cockroachlabs.cloud/api/v1/roles/{user_id}/{resource_type}/{resource_id}/{role_name} \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     post:
+      description: |-
+        Roles that will be added as a result of this call must follow the CC rules for role assignment:
+        https://www.cockroachlabs.com/docs/cockroachcloud/authorization#which-roles-grant-the-ability-to-add-remove-and-manage-members-in-in-a-cockroachdb-cloud-organization
       operationId: CockroachCloud_AddUserToRole
       parameters:
       - explode: false
@@ -5911,6 +6169,10 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
   /api/v1/users/persons-by-email:
     get:
+      description: |
+        Can be used by the following roles assigned at the organization scope:
+        - ORG_ADMIN
+        - CLUSTER_ADMIN
       operationId: CockroachCloud_GetPersonUsersByEmail
       parameters:
       - description: an email address is required.
@@ -6884,6 +7146,8 @@ components:
       - CRDB_REPAVE_FAILED
       - CRDB_CUSTOM_CLIENT_CA_RUNNING
       - CRDB_CUSTOM_CLIENT_CA_FAILED
+      - DEDICATED_FULL_CLUSTER_RESTORE_RUNNING
+      - DEDICATED_FULL_CLUSTER_RESTORE_FAILED
       type: string
     ClusterUpgradeStatus.Type:
       description: |2-

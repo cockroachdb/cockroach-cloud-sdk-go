@@ -13,6 +13,11 @@ Method | HTTP request | Description
 > Organization GetOrganizationInfo(ctx).Execute()
 
 Get information about the caller's organization
+    
+Can be used by the following roles assigned at the organization scope:
+- ORG_ADMIN
+- ORG_MEMBER
+
 
 ### Example
 

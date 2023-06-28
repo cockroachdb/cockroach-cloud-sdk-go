@@ -15,6 +15,10 @@ Method | HTTP request | Description
 > LogExportClusterInfo DeleteLogExport(ctx, clusterId).Execute()
 
 Delete the Log Export configuration for a cluster
+    
+Can be used by the following roles assigned at the organization or cluster scope:
+- ORG_ADMIN
+
 
 ### Example
 
@@ -82,6 +86,10 @@ Name | Type | Description  | Notes
 > LogExportClusterInfo EnableLogExport(ctx, clusterId).EnableLogExportRequest(enableLogExportRequest).Execute()
 
 Create or update the Log Export configuration for a cluster
+    
+Can be used by the following roles assigned at the organization or cluster scope:
+- ORG_ADMIN
+
 
 ### Example
 
@@ -151,6 +159,10 @@ Name | Type | Description  | Notes
 > LogExportClusterInfo GetLogExportInfo(ctx, clusterId).Execute()
 
 Get the Log Export configuration for a cluster
+    
+Can be used by the following roles assigned at the organization or cluster scope:
+- ORG_ADMIN
+
 
 ### Example
 

@@ -13,6 +13,10 @@ Method | HTTP request | Description
 > ListAuditLogsResponse ListAuditLogs(ctx).StartingFrom(startingFrom).SortOrder(sortOrder).Limit(limit).Execute()
 
 List audit logs
+    
+Can be used by the following roles assigned at the organization scope:
+- ORG_ADMIN
+
 
 ### Example
 
