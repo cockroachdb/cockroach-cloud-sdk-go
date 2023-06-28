@@ -17,6 +17,11 @@ Method | HTTP request | Description
 > AllowlistEntry AddAllowlistEntry(ctx, clusterId).AllowlistEntry(allowlistEntry).Execute()
 
 Add a new CIDR address to the IP allowlist
+    
+Can be used by the following roles assigned at the organization or cluster scope:
+- CLUSTER_ADMIN
+- CLUSTER_OPERATOR_WRITER
+
 
 ### Example
 
@@ -86,6 +91,11 @@ Name | Type | Description  | Notes
 > AllowlistEntry AddAllowlistEntry2(ctx, clusterId, entryCidrIp, entryCidrMask).AllowlistEntry1(allowlistEntry1).Execute()
 
 Add a new CIDR address to the IP allowlist
+    
+Can be used by the following roles assigned at the organization or cluster scope:
+- CLUSTER_ADMIN
+- CLUSTER_OPERATOR_WRITER
+
 
 ### Example
 
@@ -161,6 +171,11 @@ Name | Type | Description  | Notes
 > AllowlistEntry DeleteAllowlistEntry(ctx, clusterId, cidrIp, cidrMask).Execute()
 
 Delete an IP allowlist entry
+    
+Can be used by the following roles assigned at the organization or cluster scope:
+- CLUSTER_ADMIN
+- CLUSTER_OPERATOR_WRITER
+
 
 ### Example
 
@@ -234,7 +249,11 @@ Name | Type | Description  | Notes
 > ListAllowlistEntriesResponse ListAllowlistEntries(ctx, clusterId).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).Execute()
 
 Get the IP allowlist and propagation status for a cluster
-
+    
+Can be used by the following roles assigned at the organization or cluster scope:
+- CLUSTER_ADMIN
+- CLUSTER_OPERATOR_WRITER
+- CLUSTER_DEVELOPER
 
 
 ### Example
@@ -312,6 +331,11 @@ Name | Type | Description  | Notes
 > AllowlistEntry UpdateAllowlistEntry(ctx, clusterId, entryCidrIp, entryCidrMask).AllowlistEntry1(allowlistEntry1).Execute()
 
 Update an IP allowlist entry
+    
+Can be used by the following roles assigned at the organization or cluster scope:
+- CLUSTER_ADMIN
+- CLUSTER_OPERATOR_WRITER
+
 
 ### Example
 

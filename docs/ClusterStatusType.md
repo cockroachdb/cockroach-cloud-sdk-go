@@ -54,6 +54,10 @@
 
 * `CRDB_CUSTOM_CLIENT_CA_FAILED` (value: `"CRDB_CUSTOM_CLIENT_CA_FAILED"`)
 
+* `DEDICATED_FULL_CLUSTER_RESTORE_RUNNING` (value: `"DEDICATED_FULL_CLUSTER_RESTORE_RUNNING"`)
+
+* `DEDICATED_FULL_CLUSTER_RESTORE_FAILED` (value: `"DEDICATED_FULL_CLUSTER_RESTORE_FAILED"`)
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -16,6 +16,10 @@ Method | HTTP request | Description
 > SQLUser CreateSQLUser(ctx, clusterId).CreateSQLUserRequest(createSQLUserRequest).Execute()
 
 Create a new SQL user
+    
+Can be used by the following roles assigned at the organization or cluster scope:
+- CLUSTER_ADMIN
+
 
 ### Example
 
@@ -85,6 +89,10 @@ Name | Type | Description  | Notes
 > SQLUser DeleteSQLUser(ctx, clusterId, name).Execute()
 
 Delete a SQL user
+    
+Can be used by the following roles assigned at the organization or cluster scope:
+- CLUSTER_ADMIN
+
 
 ### Example
 
@@ -155,7 +163,11 @@ Name | Type | Description  | Notes
 > ListSQLUsersResponse ListSQLUsers(ctx, clusterId).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).Execute()
 
 List SQL users for a cluster
-
+    
+Can be used by the following roles assigned at the organization or cluster scope:
+- CLUSTER_ADMIN
+- CLUSTER_OPERATOR_WRITER
+- CLUSTER_DEVELOPER
 
 
 ### Example
@@ -233,6 +245,10 @@ Name | Type | Description  | Notes
 > SQLUser UpdateSQLUserPassword(ctx, clusterId, name).UpdateSQLUserPasswordRequest(updateSQLUserPasswordRequest).Execute()
 
 Update a SQL user's password
+    
+Can be used by the following roles assigned at the organization or cluster scope:
+- CLUSTER_ADMIN
+
 
 ### Example
 

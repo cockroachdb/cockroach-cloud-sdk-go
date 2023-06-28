@@ -17,6 +17,11 @@ Method | HTTP request | Description
 > ApiDatabase CreateDatabase(ctx, clusterId).CreateDatabaseRequest(createDatabaseRequest).Execute()
 
 Create a new database
+    
+Can be used by the following roles assigned at the organization or cluster scope:
+- CLUSTER_ADMIN
+- CLUSTER_OPERATOR_WRITER
+
 
 ### Example
 
@@ -86,6 +91,11 @@ Name | Type | Description  | Notes
 > ApiDatabase DeleteDatabase(ctx, clusterId, name).Execute()
 
 Delete a database
+    
+Can be used by the following roles assigned at the organization or cluster scope:
+- CLUSTER_ADMIN
+- CLUSTER_OPERATOR_WRITER
+
 
 ### Example
 
@@ -156,6 +166,11 @@ Name | Type | Description  | Notes
 > ApiDatabase EditDatabase(ctx, clusterId, name).UpdateDatabaseRequest1(updateDatabaseRequest1).Execute()
 
 Update a database
+    
+Can be used by the following roles assigned at the organization or cluster scope:
+- CLUSTER_ADMIN
+- CLUSTER_OPERATOR_WRITER
+
 
 ### Example
 
@@ -228,6 +243,11 @@ Name | Type | Description  | Notes
 > ApiDatabase EditDatabase2(ctx, clusterId).UpdateDatabaseRequest(updateDatabaseRequest).Execute()
 
 Update a database
+    
+Can be used by the following roles assigned at the organization or cluster scope:
+- CLUSTER_ADMIN
+- CLUSTER_OPERATOR_WRITER
+
 
 ### Example
 
@@ -297,7 +317,11 @@ Name | Type | Description  | Notes
 > ApiListDatabasesResponse ListDatabases(ctx, clusterId).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).Execute()
 
 List databases for a cluster
-
+    
+Can be used by the following roles assigned at the organization or cluster scope:
+- CLUSTER_ADMIN
+- CLUSTER_OPERATOR_WRITER
+- CLUSTER_DEVELOPER
 
 
 ### Example

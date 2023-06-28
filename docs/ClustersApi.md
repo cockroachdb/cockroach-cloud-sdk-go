@@ -21,6 +21,11 @@ Method | HTTP request | Description
 > Cluster CreateCluster(ctx).CreateClusterRequest(createClusterRequest).Execute()
 
 Create and initialize a new cluster
+    
+Can be used by the following roles assigned at the organization scope:
+- CLUSTER_ADMIN
+- CLUSTER_CREATOR
+
 
 ### Example
 
@@ -84,6 +89,10 @@ Name | Type | Description  | Notes
 > Cluster DeleteCluster(ctx, clusterId).Execute()
 
 Delete a cluster and all of its data
+    
+Can be used by the following roles assigned at the organization or cluster scope:
+- CLUSTER_ADMIN
+
 
 ### Example
 
@@ -151,6 +160,13 @@ Name | Type | Description  | Notes
 > Cluster GetCluster(ctx, clusterId).Execute()
 
 Get extended information about a cluster
+    
+Can be used by the following roles assigned at the organization or cluster scope:
+- ORG_ADMIN
+- CLUSTER_ADMIN
+- CLUSTER_OPERATOR_WRITER
+- CLUSTER_DEVELOPER
+
 
 ### Example
 
@@ -218,6 +234,13 @@ Name | Type | Description  | Notes
 > GetConnectionStringResponse GetConnectionString(ctx, clusterId).Database(database).SqlUser(sqlUser).Os(os).Execute()
 
 Get a formatted generic connection string for a cluster
+    
+Can be used by the following roles assigned at the organization or cluster scope:
+- ORG_ADMIN
+- CLUSTER_ADMIN
+- CLUSTER_OPERATOR_WRITER
+- CLUSTER_DEVELOPER
+
 
 ### Example
 
@@ -291,8 +314,8 @@ Name | Type | Description  | Notes
 > ListAvailableRegionsResponse ListAvailableRegions(ctx).Provider(provider).Serverless(serverless).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).Execute()
 
 List the regions available for new clusters and nodes
-
-
+    
+This endpoint may be used by any member of the organization.
 
 ### Example
 
@@ -367,7 +390,12 @@ Name | Type | Description  | Notes
 > ListClusterNodesResponse ListClusterNodes(ctx, clusterId).RegionName(regionName).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).Execute()
 
 List nodes for a cluster
-
+    
+Can be used by the following roles assigned at the organization or cluster scope:
+- ORG_ADMIN
+- CLUSTER_ADMIN
+- CLUSTER_OPERATOR_WRITER
+- CLUSTER_DEVELOPER
 
 
 ### Example
@@ -447,8 +475,8 @@ Name | Type | Description  | Notes
 > ListClustersResponse ListClusters(ctx).ShowInactive(showInactive).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).Execute()
 
 List clusters owned by an organization
-
-
+    
+Returns all clusters that the user has read access over
 
 ### Example
 
@@ -521,8 +549,8 @@ Name | Type | Description  | Notes
 > ListMajorClusterVersionsResponse ListMajorClusterVersions(ctx).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).Execute()
 
 List available major cluster versions
-
-
+    
+This endpoint may be used by any member of the organization.
 
 ### Example
 
@@ -593,6 +621,11 @@ Name | Type | Description  | Notes
 > Cluster UpdateCluster(ctx, clusterId).UpdateClusterSpecification(updateClusterSpecification).Execute()
 
 Scale or edit a cluster
+    
+Can be used by the following roles assigned at the organization or cluster scope:
+- CLUSTER_ADMIN
+- CLUSTER_OPERATOR_WRITER
+
 
 ### Example
 
