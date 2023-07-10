@@ -18,7 +18,7 @@ Method | HTTP request | Description
 > DeleteMetricExportResponse DeleteCloudWatchMetricExport(ctx, clusterId).Execute()
 
 Delete the CloudWatch Metric Export configuration for a cluster
-    
+
 Can be used by the following roles assigned at the organization or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
@@ -90,7 +90,7 @@ Name | Type | Description  | Notes
 > DeleteMetricExportResponse DeleteDatadogMetricExport(ctx, clusterId).Execute()
 
 Delete the Datadog Metric Export configuration for a cluster
-    
+
 Can be used by the following roles assigned at the organization or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
@@ -162,7 +162,7 @@ Name | Type | Description  | Notes
 > CloudWatchMetricExportInfo EnableCloudWatchMetricExport(ctx, clusterId).EnableCloudWatchMetricExportRequest(enableCloudWatchMetricExportRequest).Execute()
 
 Create or update the CloudWatch Metric Export configuration for a cluster
-    
+
 Can be used by the following roles assigned at the organization or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
@@ -236,7 +236,7 @@ Name | Type | Description  | Notes
 > DatadogMetricExportInfo EnableDatadogMetricExport(ctx, clusterId).EnableDatadogMetricExportRequest(enableDatadogMetricExportRequest).Execute()
 
 Create or update the Datadog Metric Export configuration for a cluster
-    
+
 Can be used by the following roles assigned at the organization or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
@@ -310,7 +310,7 @@ Name | Type | Description  | Notes
 > CloudWatchMetricExportInfo GetCloudWatchMetricExportInfo(ctx, clusterId).Execute()
 
 Get the CloudWatch Metric Export configuration for a cluster
-    
+
 Can be used by the following roles assigned at the organization or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
@@ -382,7 +382,7 @@ Name | Type | Description  | Notes
 > DatadogMetricExportInfo GetDatadogMetricExportInfo(ctx, clusterId).Execute()
 
 Get the Datadog Metric Export configuration for a cluster
-    
+
 Can be used by the following roles assigned at the organization or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER

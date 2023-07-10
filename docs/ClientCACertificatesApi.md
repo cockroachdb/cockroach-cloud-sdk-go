@@ -16,7 +16,7 @@ Method | HTTP request | Description
 > ClientCACertInfo DeleteClientCACert(ctx, clusterId).Execute()
 
 Delete Client CA Cert for a cluster
-    
+
 Can be used by the following roles assigned at the organization or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
@@ -88,7 +88,7 @@ Name | Type | Description  | Notes
 > ClientCACertInfo GetClientCACert(ctx, clusterId).Execute()
 
 Get Client CA Cert information for a cluster
-    
+
 Can be used by the following roles assigned at the organization or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
@@ -160,7 +160,7 @@ Name | Type | Description  | Notes
 > ClientCACertInfo SetClientCACert(ctx, clusterId).SetClientCACertRequest(setClientCACertRequest).Execute()
 
 Set Client CA Cert for a cluster
-    
+
 Can be used by the following roles assigned at the organization or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
@@ -234,7 +234,7 @@ Name | Type | Description  | Notes
 > ClientCACertInfo UpdateClientCACert(ctx, clusterId).UpdateClientCACertRequest(updateClientCACertRequest).Execute()
 
 Update Client CA Cert for a cluster
-    
+
 Can be used by the following roles assigned at the organization or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER

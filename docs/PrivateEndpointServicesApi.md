@@ -16,7 +16,7 @@ Method | HTTP request | Description
 > PrivateEndpointServices CreatePrivateEndpointServices(ctx, clusterId).Execute()
 
 Create all PrivateEndpointServices for a cluster
-    
+
 Can be used by the following roles assigned at the organization or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
@@ -88,7 +88,7 @@ Name | Type | Description  | Notes
 > AwsEndpointConnections ListAwsEndpointConnections(ctx, clusterId).Execute()
 
 List all AwsEndpointConnections for a cluster
-    
+
 Can be used by the following roles assigned at the organization or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
@@ -160,7 +160,7 @@ Name | Type | Description  | Notes
 > PrivateEndpointServices ListPrivateEndpointServices(ctx, clusterId).Execute()
 
 List all PrivateEndpointServices for a cluster
-    
+
 Can be used by the following roles assigned at the organization or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
@@ -232,7 +232,7 @@ Name | Type | Description  | Notes
 > AwsEndpointConnection SetAwsEndpointConnectionState(ctx, clusterId, endpointId).SetAwsEndpointConnectionStateRequest(setAwsEndpointConnectionStateRequest).Execute()
 
 Set the AWS Endpoint Connection state
-    
+
 Can be used by the following roles assigned at the organization or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
