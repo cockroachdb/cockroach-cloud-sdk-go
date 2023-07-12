@@ -1,3 +1,9 @@
+## 1.3.0 (July 12, 2023)
+
+NEW FEATURES:
+
+* Regions can be changed for Multi-Region Serverless clusters.
+
 ## 1.2.0 (May 23, 2023)
 
 NEW FEATURES:
