@@ -1,3 +1,9 @@
+## 1.3.1 (August 7, 2023)
+
+BUG FIXES:
+
+* Unmarshalling enum values in server responses no longer results in an error if the value is unrecognized.
+
 ## 1.3.0 (July 12, 2023)
 
 NEW FEATURES:

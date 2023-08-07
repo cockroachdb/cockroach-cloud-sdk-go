@@ -19,7 +19,6 @@
 package client
 
 import (
-	"encoding/json"
 	"fmt"
 )
 
@@ -36,23 +35,6 @@ const (
 var AllowedResourceTypeTypeEnumValues = []ResourceTypeType{
 	"ORGANIZATION",
 	"CLUSTER",
-}
-
-func (v *ResourceTypeType) UnmarshalJSON(src []byte) error {
-	var value string
-	err := json.Unmarshal(src, &value)
-	if err != nil {
-		return err
-	}
-	enumTypeValue := ResourceTypeType(value)
-	for _, existing := range AllowedResourceTypeTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid ResourceTypeType", value)
 }
 
 // NewResourceTypeTypeFromValue returns a pointer to a valid ResourceTypeType

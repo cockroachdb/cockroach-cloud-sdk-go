@@ -21,23 +21,6 @@ var Allowed{{{classname}}}EnumValues = []{{{classname}}}{
 	{{/allowableValues}}
 }
 
-func (v *{{{classname}}}) UnmarshalJSON(src []byte) error {
-	var value {{{format}}}{{^format}}{{dataType}}{{/format}}
-	err := json.Unmarshal(src, &value)
-	if err != nil {
-		return err
-	}
-	enumTypeValue := {{{classname}}}(value)
-	for _, existing := range Allowed{{{classname}}}EnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid {{classname}}", value)
-}
-
 // New{{{classname}}}FromValue returns a pointer to a valid {{{classname}}}
 // for the value passed as argument, or an error if the value passed is not allowed by the enum.
 func New{{{classname}}}FromValue(v {{{format}}}{{^format}}{{dataType}}{{/format}}) (*{{{classname}}}, error) {
