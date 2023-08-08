@@ -19,7 +19,6 @@
 package client
 
 import (
-	"encoding/json"
 	"fmt"
 )
 
@@ -108,23 +107,6 @@ var AllowedAuditLogActionEnumValues = []AuditLogAction{
 	"AUDIT_LOG_ACTION_SET_CLIENT_CA_CERT",
 	"AUDIT_LOG_ACTION_UPDATE_CLIENT_CA_CERT",
 	"AUDIT_LOG_ACTION_DELETE_CLIENT_CA_CERT",
-}
-
-func (v *AuditLogAction) UnmarshalJSON(src []byte) error {
-	var value string
-	err := json.Unmarshal(src, &value)
-	if err != nil {
-		return err
-	}
-	enumTypeValue := AuditLogAction(value)
-	for _, existing := range AllowedAuditLogActionEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid AuditLogAction", value)
 }
 
 // NewAuditLogActionFromValue returns a pointer to a valid AuditLogAction

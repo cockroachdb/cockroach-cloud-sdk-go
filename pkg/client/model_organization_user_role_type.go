@@ -19,7 +19,6 @@
 package client
 
 import (
-	"encoding/json"
 	"fmt"
 )
 
@@ -50,23 +49,6 @@ var AllowedOrganizationUserRoleTypeEnumValues = []OrganizationUserRoleType{
 	"CLUSTER_OPERATOR_WRITER",
 	"CLUSTER_DEVELOPER",
 	"CLUSTER_CREATOR",
-}
-
-func (v *OrganizationUserRoleType) UnmarshalJSON(src []byte) error {
-	var value string
-	err := json.Unmarshal(src, &value)
-	if err != nil {
-		return err
-	}
-	enumTypeValue := OrganizationUserRoleType(value)
-	for _, existing := range AllowedOrganizationUserRoleTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid OrganizationUserRoleType", value)
 }
 
 // NewOrganizationUserRoleTypeFromValue returns a pointer to a valid OrganizationUserRoleType

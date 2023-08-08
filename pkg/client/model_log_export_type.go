@@ -19,7 +19,6 @@
 package client
 
 import (
-	"encoding/json"
 	"fmt"
 )
 
@@ -36,23 +35,6 @@ const (
 var AllowedLogExportTypeEnumValues = []LogExportType{
 	"AWS_CLOUDWATCH",
 	"GCP_CLOUD_LOGGING",
-}
-
-func (v *LogExportType) UnmarshalJSON(src []byte) error {
-	var value string
-	err := json.Unmarshal(src, &value)
-	if err != nil {
-		return err
-	}
-	enumTypeValue := LogExportType(value)
-	for _, existing := range AllowedLogExportTypeEnumValues {
-		if existing == enumTypeValue {
-			*v = enumTypeValue
-			return nil
-		}
-	}
-
-	return fmt.Errorf("%+v is not a valid LogExportType", value)
 }
 
 // NewLogExportTypeFromValue returns a pointer to a valid LogExportType
