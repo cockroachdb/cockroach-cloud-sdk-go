@@ -164,6 +164,8 @@ Name | Type | Description  | Notes
 
 List SQL users for a cluster
 
+Sort order: Username
+
 Can be used by the following roles assigned at the organization or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER

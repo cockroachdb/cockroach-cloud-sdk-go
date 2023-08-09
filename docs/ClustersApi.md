@@ -315,6 +315,8 @@ Name | Type | Description  | Notes
 
 List the regions available for new clusters and nodes
 
+Sort order: Distance (based on client IP address)
+
 This endpoint may be used by any member of the organization.
 
 ### Example
@@ -390,6 +392,8 @@ Name | Type | Description  | Notes
 > ListClusterNodesResponse ListClusterNodes(ctx, clusterId).RegionName(regionName).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).Execute()
 
 List nodes for a cluster
+
+Sort order: Region name, node name
 
 Can be used by the following roles assigned at the organization or cluster scope:
 - ORG_ADMIN
@@ -476,6 +480,8 @@ Name | Type | Description  | Notes
 
 List clusters owned by an organization
 
+Sort order: Cluster name
+
 Returns all clusters that the user has read access over
 
 ### Example
@@ -549,6 +555,8 @@ Name | Type | Description  | Notes
 > ListMajorClusterVersionsResponse ListMajorClusterVersions(ctx).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).Execute()
 
 List available major cluster versions
+
+Sort order: Version number descending
 
 This endpoint may be used by any member of the organization.
 

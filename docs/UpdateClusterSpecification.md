@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Dedicated** | Pointer to [**DedicatedClusterUpdateSpecification**](DedicatedClusterUpdateSpecification.md) |  | [optional] 
+**ParentId** | Pointer to **string** | Limited Access: The parent ID is a folder ID. An empty string or \&quot;root\&quot; represents the root level. | [optional] 
 **Serverless** | Pointer to [**ServerlessClusterUpdateSpecification**](ServerlessClusterUpdateSpecification.md) |  | [optional] 
 **UpgradeStatus** | Pointer to [**ClusterUpgradeStatusType**](ClusterUpgradeStatusType.md) |  | [optional] 
 
@@ -30,6 +31,18 @@ GetDedicated returns the Dedicated field if non-nil, zero value otherwise.
 `func (o *UpdateClusterSpecification) SetDedicated(v DedicatedClusterUpdateSpecification)`
 
 SetDedicated sets Dedicated field to given value.
+
+### GetParentId
+
+`func (o *UpdateClusterSpecification) GetParentId() string`
+
+GetParentId returns the ParentId field if non-nil, zero value otherwise.
+
+### SetParentId
+
+`func (o *UpdateClusterSpecification) SetParentId(v string)`
+
+SetParentId sets ParentId field to given value.
 
 ### GetServerless
 

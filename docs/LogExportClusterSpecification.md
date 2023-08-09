@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **AuthPrincipal** | Pointer to **string** | auth_principal is either the AWS Role ARN that identifies a role that the cluster account can assume to write to CloudWatch or the GCP Project ID that the cluster service account has permissions to write to for cloud logging. | [optional] 
 **Groups** | Pointer to [**[]LogExportGroup**](LogExportGroup.md) | groups is a collection of log group configurations to customize which CRDB channels get aggregated into different groups at the target sink. Unconfigured channels will be sent to the default locations via the settings above. | [optional] 
 **LogName** | Pointer to **string** | log_name is an identifier for the logs in the customer&#39;s log sink. | [optional] 
+**OmittedChannels** | Pointer to **[]string** | omitted_channels is a list of channels that the user does not want to export logs for. | [optional] 
 **Redact** | Pointer to **bool** | redact controls whether logs are redacted before forwarding to customer sinks. By default they are not redacted. | [optional] 
 **Region** | Pointer to **string** | region controls whether all logs are sent to a specific region in the customer sink. By default, logs will remain their region of origin depending on the cluster node&#39;s region. | [optional] 
 **Type** | Pointer to [**LogExportType**](LogExportType.md) |  | [optional] 
@@ -57,6 +58,18 @@ GetLogName returns the LogName field if non-nil, zero value otherwise.
 `func (o *LogExportClusterSpecification) SetLogName(v string)`
 
 SetLogName sets LogName field to given value.
+
+### GetOmittedChannels
+
+`func (o *LogExportClusterSpecification) GetOmittedChannels() []string`
+
+GetOmittedChannels returns the OmittedChannels field if non-nil, zero value otherwise.
+
+### SetOmittedChannels
+
+`func (o *LogExportClusterSpecification) SetOmittedChannels(v []string)`
+
+SetOmittedChannels sets OmittedChannels field to given value.
 
 ### GetRedact
 

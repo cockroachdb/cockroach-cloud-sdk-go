@@ -18,6 +18,8 @@ Delete the Log Export configuration for a cluster
 
 Can be used by the following roles assigned at the organization or cluster scope:
 - ORG_ADMIN
+- CLUSTER_ADMIN
+- CLUSTER_OPERATOR_WRITER
 
 
 ### Example
@@ -89,6 +91,8 @@ Create or update the Log Export configuration for a cluster
 
 Can be used by the following roles assigned at the organization or cluster scope:
 - ORG_ADMIN
+- CLUSTER_ADMIN
+- CLUSTER_OPERATOR_WRITER
 
 
 ### Example
@@ -162,6 +166,8 @@ Get the Log Export configuration for a cluster
 
 Can be used by the following roles assigned at the organization or cluster scope:
 - ORG_ADMIN
+- CLUSTER_ADMIN
+- CLUSTER_OPERATOR_WRITER
 
 
 ### Example

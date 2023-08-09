@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Regions** | **[]string** | Region values should match the cloud provider&#39;s zone code. For example, for Oregon, set region_name to \&quot;us-west2\&quot; for GCP and \&quot;us-west-2\&quot; for AWS. | 
 **SpendLimit** | Pointer to **int32** | spend_limit is the maximum monthly charge for a cluster, in US cents. We recommend using usage_limits instead, since spend_limit will be deprecated in the future. | [optional] 
 **UsageLimits** | Pointer to [**UsageLimits**](UsageLimits.md) |  | [optional] 
+**WithEmptyIpAllowlist** | Pointer to **bool** | WithEmptyIPAllowlist creates a cluster with no entries in the IP Allowlist. By default, Serverless clusters have one IP allowlist entry that opens the cluster to any IP. Set this property to true to ensure the cluster is closed to public traffic by default. | [optional] 
 
 ## Methods
 
@@ -75,6 +76,18 @@ GetUsageLimits returns the UsageLimits field if non-nil, zero value otherwise.
 `func (o *ServerlessClusterCreateSpecification) SetUsageLimits(v UsageLimits)`
 
 SetUsageLimits sets UsageLimits field to given value.
+
+### GetWithEmptyIpAllowlist
+
+`func (o *ServerlessClusterCreateSpecification) GetWithEmptyIpAllowlist() bool`
+
+GetWithEmptyIpAllowlist returns the WithEmptyIpAllowlist field if non-nil, zero value otherwise.
+
+### SetWithEmptyIpAllowlist
+
+`func (o *ServerlessClusterCreateSpecification) SetWithEmptyIpAllowlist(v bool)`
+
+SetWithEmptyIpAllowlist sets WithEmptyIpAllowlist field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

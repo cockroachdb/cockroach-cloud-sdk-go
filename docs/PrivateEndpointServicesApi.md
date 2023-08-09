@@ -161,6 +161,8 @@ Name | Type | Description  | Notes
 
 List all PrivateEndpointServices for a cluster
 
+The internal_dns property from the regions field in the ListClusters response can be used to connect to PrivateEndpointServices.
+
 Can be used by the following roles assigned at the organization or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
@@ -232,6 +234,9 @@ Name | Type | Description  | Notes
 > AwsEndpointConnection SetAwsEndpointConnectionState(ctx, clusterId, endpointId).SetAwsEndpointConnectionStateRequest(setAwsEndpointConnectionStateRequest).Execute()
 
 Set the AWS Endpoint Connection state
+
+The "status" in the response does not reflect the latest post-update
+status, but rather the status before the state is transitioned.
 
 Can be used by the following roles assigned at the organization or cluster scope:
 - CLUSTER_ADMIN

@@ -97,6 +97,11 @@ API | Method | HTTP request | Description
 [EgressRulesApi](docs/EgressRulesApi.md) | **GetEgressRule** | **Get** /api/v1/clusters/{cluster_id}/networking/egress-rules/{rule_id} | Get an existing egress rule
 [EgressRulesApi](docs/EgressRulesApi.md) | **ListEgressRules** | **Get** /api/v1/clusters/{cluster_id}/networking/egress-rules | List all egress rules associates with a cluster
 [EgressRulesApi](docs/EgressRulesApi.md) | **SetEgressTrafficPolicy** | **Post** /api/v1/clusters/{cluster_id}/networking/egress-rules/egress-traffic-policy | Outbound traffic management
+[FoldersApi](docs/FoldersApi.md) | **CreateFolder** | **Post** /api/v1/folders | Create a folder
+[FoldersApi](docs/FoldersApi.md) | **DeleteFolder** | **Delete** /api/v1/folders/{folder_id} | Delete a folder
+[FoldersApi](docs/FoldersApi.md) | **GetFolder** | **Get** /api/v1/folders/{folder_id} | Get folder info for a folder
+[FoldersApi](docs/FoldersApi.md) | **ListFolderContents** | **Get** /api/v1/folders/{folder_id}/contents | List contents of a folder
+[FoldersApi](docs/FoldersApi.md) | **UpdateFolder** | **Patch** /api/v1/folders/{folder_id} | Update a folder
 [IPAllowlistsApi](docs/IPAllowlistsApi.md) | **AddAllowlistEntry** | **Post** /api/v1/clusters/{cluster_id}/networking/allowlist | Add a new CIDR address to the IP allowlist
 [IPAllowlistsApi](docs/IPAllowlistsApi.md) | **AddAllowlistEntry2** | **Put** /api/v1/clusters/{cluster_id}/networking/allowlist/{entry.cidr_ip}/{entry.cidr_mask} | Add a new CIDR address to the IP allowlist
 [IPAllowlistsApi](docs/IPAllowlistsApi.md) | **DeleteAllowlistEntry** | **Delete** /api/v1/clusters/{cluster_id}/networking/allowlist/{cidr_ip}/{cidr_mask} | Delete an IP allowlist entry

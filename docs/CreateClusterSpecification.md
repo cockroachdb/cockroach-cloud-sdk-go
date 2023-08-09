@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Dedicated** | Pointer to [**DedicatedClusterCreateSpecification**](DedicatedClusterCreateSpecification.md) |  | [optional] 
+**ParentId** | Pointer to **string** | Limited Access: The parent ID is a folder ID. An empty string or \&quot;root\&quot; will create a cluster at the root level. | [optional] 
 **Serverless** | Pointer to [**ServerlessClusterCreateSpecification**](ServerlessClusterCreateSpecification.md) |  | [optional] 
 
 ## Methods
@@ -29,6 +30,18 @@ GetDedicated returns the Dedicated field if non-nil, zero value otherwise.
 `func (o *CreateClusterSpecification) SetDedicated(v DedicatedClusterCreateSpecification)`
 
 SetDedicated sets Dedicated field to given value.
+
+### GetParentId
+
+`func (o *CreateClusterSpecification) GetParentId() string`
+
+GetParentId returns the ParentId field if non-nil, zero value otherwise.
+
+### SetParentId
+
+`func (o *CreateClusterSpecification) SetParentId(v string)`
+
+SetParentId sets ParentId field to given value.
 
 ### GetServerless
 

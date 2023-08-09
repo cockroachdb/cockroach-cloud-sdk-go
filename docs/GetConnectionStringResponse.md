@@ -4,19 +4,27 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ConnectionString** | Pointer to **string** | connection_string contains the full connection string with parameters formatted inline. | [optional] 
-**Params** | Pointer to **map[string]string** | params contains a list of individual key parameters for generating nonstandard connection strings. | [optional] 
+**ConnectionString** | **string** | connection_string contains the full connection string with parameters formatted inline. | 
+**Params** | [**ConnectionStringParameters**](ConnectionStringParameters.md) |  | 
 
 ## Methods
 
 ### NewGetConnectionStringResponse
 
-`func NewGetConnectionStringResponse() *GetConnectionStringResponse`
+`func NewGetConnectionStringResponse(connectionString string, params ConnectionStringParameters, ) *GetConnectionStringResponse`
 
 NewGetConnectionStringResponse instantiates a new GetConnectionStringResponse object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed.
+
+### NewGetConnectionStringResponseWithDefaults
+
+`func NewGetConnectionStringResponseWithDefaults() *GetConnectionStringResponse`
+
+NewGetConnectionStringResponseWithDefaults instantiates a new GetConnectionStringResponse object.
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set.
 
 ### GetConnectionString
 
@@ -32,13 +40,13 @@ SetConnectionString sets ConnectionString field to given value.
 
 ### GetParams
 
-`func (o *GetConnectionStringResponse) GetParams() map[string]string`
+`func (o *GetConnectionStringResponse) GetParams() ConnectionStringParameters`
 
 GetParams returns the Params field if non-nil, zero value otherwise.
 
 ### SetParams
 
-`func (o *GetConnectionStringResponse) SetParams(v map[string]string)`
+`func (o *GetConnectionStringResponse) SetParams(v ConnectionStringParameters)`
 
 SetParams sets Params field to given value.
 
