@@ -1,8 +1,18 @@
-## 1.3.1 (August 7, 2023)
+## 1.4.0 (August 9, 2023)
+
+NEW FEATURES:
+
+* Folder operations added (Limited access)
+* Log Export now supports omitted channels
 
 BUG FIXES:
 
 * Unmarshalling enum values in server responses no longer results in an error if the value is unrecognized.
+
+BREAKING CHANGES:
+
+* GetConnectionStringResponse now represents Params as a ConnectionStringParameters object instead of a string map.
+  Both ConnectionString and Params are now required fields and no longer use pointers.
 
 ## 1.3.0 (July 12, 2023)
 

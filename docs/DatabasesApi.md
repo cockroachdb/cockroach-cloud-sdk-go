@@ -318,6 +318,8 @@ Name | Type | Description  | Notes
 
 List databases for a cluster
 
+Sort order: Database name ascending
+
 Can be used by the following roles assigned at the organization or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER

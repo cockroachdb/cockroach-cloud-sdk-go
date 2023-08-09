@@ -1432,7 +1432,10 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
   /api/v1/cluster-versions:
     get:
-      description: This endpoint may be used by any member of the organization.
+      description: |-
+        Sort order: Version number descending
+
+        This endpoint may be used by any member of the organization.
       operationId: CockroachCloud_ListMajorClusterVersions
       parameters:
       - explode: true
@@ -1521,7 +1524,10 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
   /api/v1/clusters:
     get:
-      description: Returns all clusters that the user has read access over
+      description: |-
+        Sort order: Cluster name
+
+        Returns all clusters that the user has read access over
       operationId: CockroachCloud_ListClusters
       parameters:
       - description: "If `true`, show clusters that have been deleted or failed to\
@@ -1682,7 +1688,10 @@ paths:
             --data '{"name":"test-cluster","provider":"GCP","spec":{"serverless":{"regions":["us-central1"],"spend_limit":0}}}'
   /api/v1/clusters/available-regions:
     get:
-      description: This endpoint may be used by any member of the organization.
+      description: |-
+        Sort order: Distance (based on client IP address)
+
+        This endpoint may be used by any member of the organization.
       operationId: CockroachCloud_ListAvailableRegions
       parameters:
       - description: |-
@@ -2637,6 +2646,8 @@ paths:
   /api/v1/clusters/{cluster_id}/databases:
     get:
       description: |
+        Sort order: Database name ascending
+
         Can be used by the following roles assigned at the organization or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
@@ -3026,6 +3037,8 @@ paths:
       description: |
         Can be used by the following roles assigned at the organization or cluster scope:
         - ORG_ADMIN
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_DeleteLogExport
       parameters:
       - explode: false
@@ -3090,6 +3103,8 @@ paths:
       description: |
         Can be used by the following roles assigned at the organization or cluster scope:
         - ORG_ADMIN
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_GetLogExportInfo
       parameters:
       - explode: false
@@ -3154,6 +3169,8 @@ paths:
       description: |
         Can be used by the following roles assigned at the organization or cluster scope:
         - ORG_ADMIN
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_EnableLogExport
       parameters:
       - explode: false
@@ -3221,7 +3238,7 @@ paths:
             --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/logexport \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
             --header 'content-type: application/json' \
-            --data '{"auth_principal":"my-gcp-project-id","groups":[{"channels":["OPS","HEALTH"],"log_name":"devops","min_level":"WARNING"}],"log_name":"default","redact":true,"type":"GCP_CLOUD_LOGGING"}'
+            --data '{"auth_principal":"my-gcp-project-id","groups":[{"channels":["OPS","HEALTH"],"log_name":"devops","min_level":"WARNING"}],"log_name":"default","omitted_channels":["SESSIONS","SQL_PERF"],"redact":true,"type":"GCP_CLOUD_LOGGING"}'
   /api/v1/clusters/{cluster_id}/maintenance-window:
     delete:
       operationId: CockroachCloud_DeleteMaintenanceWindow
@@ -3822,6 +3839,8 @@ paths:
   /api/v1/clusters/{cluster_id}/networking/allowlist:
     get:
       description: |
+        Sort order: CIDR address
+
         Can be used by the following roles assigned at the organization or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
@@ -4305,6 +4324,9 @@ paths:
   /api/v1/clusters/{cluster_id}/networking/aws-endpoint-connections/{endpoint_id}:
     patch:
       description: |
+        The "status" in the response does not reflect the latest post-update
+        status, but rather the status before the state is transitioned.
+
         Can be used by the following roles assigned at the organization or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
@@ -4386,6 +4408,8 @@ paths:
   /api/v1/clusters/{cluster_id}/networking/egress-rules:
     get:
       description: |
+        Sort order: Name
+
         Can be used by the following roles assigned at the organization or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
@@ -4887,6 +4911,8 @@ paths:
   /api/v1/clusters/{cluster_id}/networking/private-endpoint-services:
     get:
       description: |
+        The internal_dns property from the regions field in the ListClusters response can be used to connect to PrivateEndpointServices.
+
         Can be used by the following roles assigned at the organization or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
@@ -5014,6 +5040,8 @@ paths:
   /api/v1/clusters/{cluster_id}/nodes:
     get:
       description: |
+        Sort order: Region name, node name
+
         Can be used by the following roles assigned at the organization or cluster scope:
         - ORG_ADMIN
         - CLUSTER_ADMIN
@@ -5123,6 +5151,8 @@ paths:
   /api/v1/clusters/{cluster_id}/sql-users:
     get:
       description: |
+        Sort order: Username
+
         Can be used by the following roles assigned at the organization or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
@@ -5560,9 +5590,364 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
             --header 'content-type: application/json' \
             --data '{"deferral_policy":"FIXED_DEFERRAL"}'
+  /api/v1/folders:
+    post:
+      operationId: CockroachCloud_CreateFolder
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateFolderRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FolderResource'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Create a folder
+      tags:
+      - Folders
+      x-badges:
+      - color: red
+        label: LIMITED ACCESS
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request POST \
+            --url https://cockroachlabs.cloud/api/v1/folders \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
+            --header 'content-type: application/json' \
+            --data '{"name":"folder_name","parent_id":"12345678-1234-1234-1234-123456789012"}'
+  /api/v1/folders/{folder_id}:
+    delete:
+      operationId: CockroachCloud_DeleteFolder
+      parameters:
+      - explode: false
+        in: path
+        name: folder_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Delete a folder
+      tags:
+      - Folders
+      x-badges:
+      - color: red
+        label: LIMITED ACCESS
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request DELETE \
+            --url https://cockroachlabs.cloud/api/v1/folders/{folder_id} \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+    get:
+      operationId: CockroachCloud_GetFolder
+      parameters:
+      - explode: false
+        in: path
+        name: folder_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FolderResource'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Get folder info for a folder
+      tags:
+      - Folders
+      x-badges:
+      - color: red
+        label: LIMITED ACCESS
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request GET \
+            --url https://cockroachlabs.cloud/api/v1/folders/{folder_id} \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+    patch:
+      operationId: CockroachCloud_UpdateFolder
+      parameters:
+      - explode: false
+        in: path
+        name: folder_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateFolderSpecification'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FolderResource'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Update a folder
+      tags:
+      - Folders
+      x-badges:
+      - color: red
+        label: LIMITED ACCESS
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request PATCH \
+            --url https://cockroachlabs.cloud/api/v1/folders/{folder_id} \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
+            --header 'content-type: application/json' \
+            --data '{"name":"folder_name","parent_id":"12345678-1234-1234-1234-123456789012"}'
+  /api/v1/folders/{folder_id}/contents:
+    get:
+      description: Set `folder_id` to 'root' to list root level contents.
+      operationId: CockroachCloud_ListFolderContents
+      parameters:
+      - explode: false
+        in: path
+        name: folder_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: pagination.page
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: pagination.limit
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: pagination.as_of_time
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: |2-
+           - ASC: Sort in ascending order. This is the default unless otherwise specified.
+           - DESC: Sort in descending order.
+        explode: true
+        in: query
+        name: pagination.sort_order
+        required: false
+        schema:
+          enum:
+          - ASC
+          - DESC
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FolderResourceList'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: List contents of a folder
+      tags:
+      - Folders
+      x-badges:
+      - color: red
+        label: LIMITED ACCESS
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request GET \
+            --url 'https://cockroachlabs.cloud/api/v1/folders/{folder_id}/contents?pagination.page=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.as_of_time=SOME_STRING_VALUE&pagination.sort_order=SOME_STRING_VALUE' \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
   /api/v1/invoices:
     get:
       description: |
+        Sort order: invoice start date ascending
+
         Can be used by the following roles assigned at the organization scope:
         - BILLING_COORDINATOR
         - CLUSTER_ADMIN
@@ -5969,7 +6354,7 @@ paths:
             --url https://cockroachlabs.cloud/api/v1/roles/{user_id} \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
             --header 'content-type: application/json' \
-            --data '[{"name":"CLUSTER_ADMIN","resource":{"id":"example_cluster_id","type":"CLUSTER"}}]'
+            --data '{"roles":[{"name":"CLUSTER_ADMIN","resource":{"id":"example_cluster_id","type":"CLUSTER"}}]}'
   /api/v1/roles/{user_id}/{resource_type}/{resource_id}/{role_name}:
     delete:
       description: |-
@@ -5992,6 +6377,7 @@ paths:
           enum:
           - ORGANIZATION
           - CLUSTER
+          - FOLDER
           type: string
         style: simple
       - explode: false
@@ -6016,6 +6402,8 @@ paths:
           - CLUSTER_OPERATOR_WRITER
           - CLUSTER_DEVELOPER
           - CLUSTER_CREATOR
+          - FOLDER_ADMIN
+          - FOLDER_MOVER
           type: string
         style: simple
       responses:
@@ -6090,6 +6478,7 @@ paths:
           enum:
           - ORGANIZATION
           - CLUSTER
+          - FOLDER
           type: string
         style: simple
       - explode: false
@@ -6114,6 +6503,8 @@ paths:
           - CLUSTER_OPERATOR_WRITER
           - CLUSTER_DEVELOPER
           - CLUSTER_CREATOR
+          - FOLDER_ADMIN
+          - FOLDER_MOVER
           type: string
         style: simple
       responses:
@@ -6403,8 +6794,12 @@ components:
             if (any.is(Foo.class)) {
               foo = any.unpack(Foo.class);
             }
+            // or ...
+            if (any.isSameTypeAs(Foo.getDefaultInstance())) {
+              foo = any.unpack(Foo.getDefaultInstance());
+            }
 
-        Example 3: Pack and unpack a message in Python.
+         Example 3: Pack and unpack a message in Python.
 
             foo = Foo(...)
             any = Any()
@@ -6414,7 +6809,7 @@ components:
               any.Unpack(foo)
               ...
 
-        Example 4: Pack and unpack a message in Go
+         Example 4: Pack and unpack a message in Go
 
              foo := &pb.Foo{...}
              any, err := anypb.New(foo)
@@ -6433,9 +6828,8 @@ components:
         in the type URL, for example "foo.bar.com/x/y.z" will yield type
         name "y.z".
 
-
         JSON
-
+        ====
         The JSON representation of an `Any` value uses the regular
         representation of the deserialized, embedded message, with an
         additional field `@type` which contains the type URL. Example:
@@ -6533,6 +6927,12 @@ components:
       - AUDIT_LOG_ACTION_SET_CLIENT_CA_CERT
       - AUDIT_LOG_ACTION_UPDATE_CLIENT_CA_CERT
       - AUDIT_LOG_ACTION_DELETE_CLIENT_CA_CERT
+      - AUDIT_LOG_ACTION_CREATE_API_OIDC_CONFIG
+      - AUDIT_LOG_ACTION_DELETE_API_OIDC_CONFIG
+      - AUDIT_LOG_ACTION_UPDATE_API_OIDC_CONFIG
+      - AUDIT_LOG_ACTION_CREATE_FOLDER
+      - AUDIT_LOG_ACTION_DELETE_FOLDER
+      - AUDIT_LOG_ACTION_UPDATE_FOLDER
       type: string
     AuditLogEntry:
       description: |-
@@ -7050,6 +7450,10 @@ components:
           $ref: '#/components/schemas/NetworkVisibility.Type'
         operation_status:
           $ref: '#/components/schemas/ClusterStatus.Type'
+        parent_id:
+          description: "Limited Access: The parent ID is a folder ID. A \"root\" valued\
+            \ parent ID \nrefers to a cluster at the root level."
+          type: string
         plan:
           $ref: '#/components/schemas/Plan.Type'
         regions:
@@ -7182,6 +7586,27 @@ components:
       - NOT_DEFERRED
       - FIXED_DEFERRAL
       type: string
+    ConnectionStringParameters:
+      description: Individual parameters used to create a connection string.
+      example:
+        Username: Username
+        Port: Port
+        Database: Database
+        Host: Host
+      properties:
+        Database:
+          type: string
+        Host:
+          type: string
+        Port:
+          type: string
+        Username:
+          type: string
+      required:
+      - Database
+      - Host
+      - Port
+      type: object
     CreateClusterRequest:
       example:
         name: test-cluster
@@ -7211,8 +7636,28 @@ components:
       properties:
         dedicated:
           $ref: '#/components/schemas/DedicatedClusterCreateSpecification'
+        parent_id:
+          description: |-
+            Limited Access: The parent ID is a folder ID. An empty string or "root"
+            will create a cluster at the root level.
+          type: string
         serverless:
           $ref: '#/components/schemas/ServerlessClusterCreateSpecification'
+      type: object
+    CreateFolderRequest:
+      example:
+        name: folder_name
+        parent_id: 12345678-1234-1234-1234-123456789012
+      properties:
+        name:
+          type: string
+        parent_id:
+          description: "The parent ID is a folder ID. An empty string or \"root\"\
+            \ \nwill create a folder at the root level."
+          type: string
+      required:
+      - name
+      title: CreateFolderRequest
       type: object
     CreateGroupRequest:
       example:
@@ -7714,6 +8159,92 @@ components:
       - DEFAULT_DENY
       - UPDATING
       type: string
+    FolderResource:
+      description: "FolderResource describes a resource, and includes info about its\
+        \ lineage (parent/ancestors)."
+      example:
+        path:
+        - name: name
+          id: id
+        - name: name
+          id: id
+        parent_id: parent_id
+        organization_id: organization_id
+        name: name
+        resource_type: null
+        resource_id: resource_id
+      properties:
+        name:
+          description: name is the resource's name.
+          type: string
+        organization_id:
+          description: organization_id is the id of the organization this resource
+            belongs to.
+          type: string
+        parent_id:
+          description: "parent_id is the id of the resource's parent folder. \n\"\
+            root\" represents a root level resource."
+          type: string
+        path:
+          description: path contains the ids and names of ancestors that make up the
+            resource's lineage.
+          items:
+            $ref: '#/components/schemas/PathSegment'
+          type: array
+        resource_id:
+          description: resource_id is the resource's id.
+          type: string
+        resource_type:
+          $ref: '#/components/schemas/FolderResourceType.Type'
+      required:
+      - name
+      - organization_id
+      - parent_id
+      - path
+      - resource_id
+      - resource_type
+      title: FolderResource
+      type: object
+    FolderResourceList:
+      description: FolderResourceList contains a list of resources.
+      example:
+        pagination:
+          next_page: next_page
+          previous_page: previous_page
+        resources:
+        - path:
+          - name: name
+            id: id
+          - name: name
+            id: id
+          parent_id: parent_id
+          organization_id: organization_id
+          name: name
+          resource_type: null
+          resource_id: resource_id
+        - path:
+          - name: name
+            id: id
+          - name: name
+            id: id
+          parent_id: parent_id
+          organization_id: organization_id
+          name: name
+          resource_type: null
+          resource_id: resource_id
+      properties:
+        pagination:
+          $ref: '#/components/schemas/KeysetPaginationResponse'
+        resources:
+          items:
+            $ref: '#/components/schemas/FolderResource'
+          type: array
+      type: object
+    FolderResourceType.Type:
+      enum:
+      - FOLDER
+      - CLUSTER
+      type: string
     GetAllRolesForUserResponse:
       example:
         group_roles:
@@ -7757,7 +8288,10 @@ components:
     GetConnectionStringResponse:
       example:
         params:
-          key: params
+          Username: Username
+          Port: Port
+          Database: Database
+          Host: Host
         connection_string: connection_string
       properties:
         connection_string:
@@ -7765,11 +8299,10 @@ components:
             parameters formatted inline.
           type: string
         params:
-          additionalProperties:
-            type: string
-          description: params contains a list of individual key parameters for generating
-            nonstandard connection strings.
-          type: object
+          $ref: '#/components/schemas/ConnectionStringParameters'
+      required:
+      - connection_string
+      - params
       type: object
     GetEgressRuleResponse:
       description: GetEgressRuleResponse is the response message to the GetEgressRule
@@ -9007,11 +9540,13 @@ components:
     ListRoleGrantsResponse:
       example:
         grants:
-        - - name: CLUSTER_ADMIN
+        - roles:
+          - name: CLUSTER_ADMIN
             resource:
               id: example_cluster_id
               type: CLUSTER
-        - - name: CLUSTER_ADMIN
+        - roles:
+          - name: CLUSTER_ADMIN
             resource:
               id: example_cluster_id
               type: CLUSTER
@@ -9098,6 +9633,9 @@ components:
         created_at: 2000-01-23T04:56:07.000+00:00
         user_message: user_message
         spec:
+          omitted_channels:
+          - omitted_channels
+          - omitted_channels
           auth_principal: auth_principal
           log_name: log_name
           redact: true
@@ -9140,6 +9678,9 @@ components:
         this data via the API and also receive it back when inspecting the
         state of their log export configuration.
       example:
+        omitted_channels:
+        - omitted_channels
+        - omitted_channels
         auth_principal: auth_principal
         log_name: log_name
         redact: true
@@ -9179,6 +9720,13 @@ components:
           description: log_name is an identifier for the logs in the customer's log
             sink.
           type: string
+        omitted_channels:
+          description: |-
+            omitted_channels is a list of channels that the user does not want to
+            export logs for.
+          items:
+            type: string
+          type: array
         redact:
           description: |-
             redact controls whether logs are redacted before forwarding to
@@ -9333,7 +9881,7 @@ components:
         `NullValue` is a singleton enumeration to represent the null value for the
         `Value` type union.
 
-         The JSON representation for `NullValue` is JSON `null`.
+        The JSON representation for `NullValue` is JSON `null`.
 
          - NULL_VALUE: Null value.
       type: string
@@ -9366,6 +9914,11 @@ components:
       - name
       type: object
     OrganizationUserRole.Type:
+      description: |2-
+         - DEVELOPER: To be deprecated
+         - ADMIN: To be deprecated
+         - FOLDER_ADMIN: Limited Access: A folder admin role.
+         - FOLDER_MOVER: Limited Access: A folder mover role.
       enum:
       - DEVELOPER
       - ADMIN
@@ -9376,10 +9929,21 @@ components:
       - CLUSTER_OPERATOR_WRITER
       - CLUSTER_DEVELOPER
       - CLUSTER_CREATOR
-      title: |-
-        - DEVELOPER: To be deprecated
-         - ADMIN: To be deprecated
+      - FOLDER_ADMIN
+      - FOLDER_MOVER
       type: string
+    PathSegment:
+      example:
+        name: name
+        id: id
+      properties:
+        id:
+          description: id is a folder id.
+          type: string
+        name:
+          description: name is a folder name.
+          type: string
+      type: object
     PersonUserInfo:
       example:
         id: id
@@ -9522,9 +10086,14 @@ components:
       - type
       type: object
     ResourceType.Type:
+      description: |2-
+         - ORGANIZATION: An organization.
+         - CLUSTER: A cluster resource.
+         - FOLDER: Limited Access: A folder resource.
       enum:
       - ORGANIZATION
       - CLUSTER
+      - FOLDER
       type: string
     SQLUser:
       example:
@@ -9966,6 +10535,12 @@ components:
           type: integer
         usage_limits:
           $ref: '#/components/schemas/UsageLimits'
+        with_empty_ip_allowlist:
+          description: |-
+            WithEmptyIPAllowlist creates a cluster with no entries in the IP Allowlist.
+            By default, Serverless clusters have one IP allowlist entry that opens the cluster to any IP.
+            Set this property to true to ensure the cluster is closed to public traffic by default.
+          type: boolean
       required:
       - regions
       type: object
@@ -10046,10 +10621,27 @@ components:
       properties:
         dedicated:
           $ref: '#/components/schemas/DedicatedClusterUpdateSpecification'
+        parent_id:
+          description: |-
+            Limited Access: The parent ID is a folder ID. An empty string or "root"
+            represents the root level.
+          type: string
         serverless:
           $ref: '#/components/schemas/ServerlessClusterUpdateSpecification'
         upgrade_status:
           $ref: '#/components/schemas/ClusterUpgradeStatus.Type'
+      type: object
+    UpdateFolderSpecification:
+      description: Set `parent_id` to empty string '' or 'root' to move a folder to
+        the root level.
+      example:
+        name: folder_name
+        parent_id: 12345678-1234-1234-1234-123456789012
+      properties:
+        name:
+          type: string
+        parent_id:
+          type: string
       type: object
     UsageLimits:
       properties:
@@ -10105,10 +10697,11 @@ components:
       type: object
     UserRoleGrants:
       example:
-      - name: CLUSTER_ADMIN
-        resource:
-          id: example_cluster_id
-          type: CLUSTER
+        roles:
+        - name: CLUSTER_ADMIN
+          resource:
+            id: example_cluster_id
+            type: CLUSTER
       properties:
         roles:
           items:
@@ -10412,6 +11005,9 @@ components:
           log_name: devops
           min_level: WARNING
         log_name: default
+        omitted_channels:
+        - SESSIONS
+        - SQL_PERF
         redact: true
         type: GCP_CLOUD_LOGGING
       properties:
@@ -10434,6 +11030,13 @@ components:
           description: log_name is an identifier for the logs in the customer's log
             sink.
           type: string
+        omitted_channels:
+          description: |-
+            omitted_channels is a list of channels that the user does not want to
+            export logs for.
+          items:
+            type: string
+          type: array
         redact:
           description: |-
             redact allows the customer to set a default redaction policy for
@@ -10672,10 +11275,11 @@ components:
       type: object
     CockroachCloud_SetRolesForUser_request:
       example:
-      - name: CLUSTER_ADMIN
-        resource:
-          id: example_cluster_id
-          type: CLUSTER
+        roles:
+        - name: CLUSTER_ADMIN
+          resource:
+            id: example_cluster_id
+            type: CLUSTER
       properties:
         roles:
           items:

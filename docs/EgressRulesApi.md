@@ -322,6 +322,8 @@ Name | Type | Description  | Notes
 
 List all egress rules associates with a cluster
 
+Sort order: Name
+
 Can be used by the following roles assigned at the organization or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER

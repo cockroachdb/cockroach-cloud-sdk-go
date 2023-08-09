@@ -1,6 +1,7 @@
 # OrganizationUserRoleType
 
 ## Enum
+>  - DEVELOPER: To be deprecated  - ADMIN: To be deprecated  - FOLDER_ADMIN: Limited Access: A folder admin role.  - FOLDER_MOVER: Limited Access: A folder mover role.
 
 * `DEVELOPER` (value: `"DEVELOPER"`)
 
@@ -19,6 +20,10 @@
 * `CLUSTER_DEVELOPER` (value: `"CLUSTER_DEVELOPER"`)
 
 * `CLUSTER_CREATOR` (value: `"CLUSTER_CREATOR"`)
+
+* `FOLDER_ADMIN` (value: `"FOLDER_ADMIN"`)
+
+* `FOLDER_MOVER` (value: `"FOLDER_MOVER"`)
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

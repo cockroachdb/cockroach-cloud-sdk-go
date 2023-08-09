@@ -250,6 +250,8 @@ Name | Type | Description  | Notes
 
 Get the IP allowlist and propagation status for a cluster
 
+Sort order: CIDR address
+
 Can be used by the following roles assigned at the organization or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER

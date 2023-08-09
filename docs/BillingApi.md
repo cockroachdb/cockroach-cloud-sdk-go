@@ -87,6 +87,8 @@ Name | Type | Description  | Notes
 
 List invoices for a given organization
 
+Sort order: invoice start date ascending
+
 Can be used by the following roles assigned at the organization scope:
 - BILLING_COORDINATOR
 - CLUSTER_ADMIN

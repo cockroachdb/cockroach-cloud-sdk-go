@@ -47,9 +47,11 @@ docs/ClusterVersionDeferral.md
 docs/ClusterVersionDeferralPolicyType.md
 docs/ClustersApi.md
 docs/CockroachCloudSetRolesForUserRequest.md
+docs/ConnectionStringParameters.md
 docs/CreateClusterRequest.md
 docs/CreateClusterSpecification.md
 docs/CreateDatabaseRequest.md
+docs/CreateFolderRequest.md
 docs/CreateGroupRequest.md
 docs/CreateSQLUserRequest.md
 docs/CreateUserRequest.md
@@ -76,6 +78,10 @@ docs/EgressTrafficPolicyType.md
 docs/EnableCloudWatchMetricExportRequest.md
 docs/EnableDatadogMetricExportRequest.md
 docs/EnableLogExportRequest.md
+docs/FolderResource.md
+docs/FolderResourceList.md
+docs/FolderResourceTypeType.md
+docs/FoldersApi.md
 docs/GetAllRolesForUserResponse.md
 docs/GetConnectionStringResponse.md
 docs/GetEgressRuleResponse.md
@@ -124,6 +130,7 @@ docs/OperatingSystemType.md
 docs/Organization.md
 docs/OrganizationUserRoleType.md
 docs/OrganizationsApi.md
+docs/PathSegment.md
 docs/PersonUserInfo.md
 docs/PlanType.md
 docs/PrivateEndpointService.md
@@ -167,6 +174,7 @@ docs/UpdateClientCACertRequest.md
 docs/UpdateClusterSpecification.md
 docs/UpdateDatabaseRequest.md
 docs/UpdateDatabaseRequest1.md
+docs/UpdateFolderSpecification.md
 docs/UpdateGroupRequest.md
 docs/UpdateSQLUserPasswordRequest.md
 docs/UpdateUserRequest.md
@@ -214,9 +222,11 @@ model_cmek_region_info.go
 model_cmek_region_specification.go
 model_cmek_status.go
 model_cockroach_cloud_set_roles_for_user_request.go
+model_connection_string_parameters.go
 model_create_cluster_request.go
 model_create_cluster_specification.go
 model_create_database_request.go
+model_create_folder_request.go
 model_create_group_request.go
 model_create_sql_user_request.go
 model_create_user_request.go
@@ -239,6 +249,9 @@ model_egress_traffic_policy_type.go
 model_enable_cloud_watch_metric_export_request.go
 model_enable_datadog_metric_export_request.go
 model_enable_log_export_request.go
+model_folder_resource.go
+model_folder_resource_list.go
+model_folder_resource_type_type.go
 model_get_all_roles_for_user_response.go
 model_get_connection_string_response.go
 model_get_egress_rule_response.go
@@ -282,6 +295,7 @@ model_node_status_type.go
 model_operating_system_type.go
 model_organization.go
 model_organization_user_role_type.go
+model_path_segment.go
 model_person_user_info.go
 model_plan_type.go
 model_private_endpoint_service.go
@@ -321,6 +335,7 @@ model_update_cluster_specification.go
 model_update_cmek_status_request.go
 model_update_database_request.go
 model_update_database_request_1.go
+model_update_folder_specification.go
 model_update_group_request.go
 model_update_sql_user_password_request.go
 model_update_user_request.go
