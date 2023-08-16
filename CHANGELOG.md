@@ -1,3 +1,9 @@
+## 1.5.0 (August 16, 2023)
+
+NEW FEATURES:
+
+* API OIDC Config operations added (Limited access)
+
 ## 1.4.0 (August 9, 2023)
 
 NEW FEATURES:

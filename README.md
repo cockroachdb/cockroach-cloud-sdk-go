@@ -89,8 +89,13 @@ API | Method | HTTP request | Description
 [DatabasesApi](docs/DatabasesApi.md) | **EditDatabase** | **Patch** /api/v1/clusters/{cluster_id}/databases/{name} | Update a database
 [DatabasesApi](docs/DatabasesApi.md) | **EditDatabase2** | **Patch** /api/v1/clusters/{cluster_id}/databases | Update a database
 [DatabasesApi](docs/DatabasesApi.md) | **ListDatabases** | **Get** /api/v1/clusters/{cluster_id}/databases | List databases for a cluster
+[DefaultApi](docs/DefaultApi.md) | **CreateApiOidcConfig** | **Post** /api/v1/api_oidc | Create an API OIDC configuration
+[DefaultApi](docs/DefaultApi.md) | **DeleteApiOidcConfig** | **Delete** /api/v1/api_oidc/{id} | Delete an API OIDC configuration
+[DefaultApi](docs/DefaultApi.md) | **GetApiOidcConfig** | **Get** /api/v1/api_oidc/{id} | Get an API OIDC configuration
 [DefaultApi](docs/DefaultApi.md) | **GetClusterVersionDeferral** | **Get** /api/v1/clusters/{cluster_id}/version-deferral | 
+[DefaultApi](docs/DefaultApi.md) | **ListApiOidcConfig** | **Get** /api/v1/api_oidc | List all API OIDC configurations
 [DefaultApi](docs/DefaultApi.md) | **SetClusterVersionDeferral** | **Put** /api/v1/clusters/{cluster_id}/version-deferral | 
+[DefaultApi](docs/DefaultApi.md) | **UpdateApiOidcConfig** | **Put** /api/v1/api_oidc/{id} | Update an API OIDC configuration
 [EgressRulesApi](docs/EgressRulesApi.md) | **AddEgressRule** | **Post** /api/v1/clusters/{cluster_id}/networking/egress-rules | Add an egress rule
 [EgressRulesApi](docs/EgressRulesApi.md) | **DeleteEgressRule** | **Delete** /api/v1/clusters/{cluster_id}/networking/egress-rules/{rule_id} | Delete an existing egress rule
 [EgressRulesApi](docs/EgressRulesApi.md) | **EditEgressRule** | **Patch** /api/v1/clusters/{cluster_id}/networking/egress-rules/{rule_id} | Edit an existing egress rule

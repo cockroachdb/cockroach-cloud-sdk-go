@@ -11,6 +11,8 @@ docs/AllowlistEntry1.md
 docs/Any.md
 docs/ApiDatabase.md
 docs/ApiListDatabasesResponse.md
+docs/ApiOidcConfig.md
+docs/ApiOidcConfig1.md
 docs/AuditLogAction.md
 docs/AuditLogEntry.md
 docs/AuditLogMetadata.md
@@ -48,6 +50,7 @@ docs/ClusterVersionDeferralPolicyType.md
 docs/ClustersApi.md
 docs/CockroachCloudSetRolesForUserRequest.md
 docs/ConnectionStringParameters.md
+docs/CreateApiOidcConfigRequest.md
 docs/CreateClusterRequest.md
 docs/CreateClusterSpecification.md
 docs/CreateDatabaseRequest.md
@@ -103,6 +106,7 @@ docs/KeysetPaginationRequest.md
 docs/KeysetPaginationResponse.md
 docs/LineItem.md
 docs/ListAllowlistEntriesResponse.md
+docs/ListApiOidcConfigResponse.md
 docs/ListAuditLogsResponse.md
 docs/ListAvailableRegionsResponse.md
 docs/ListClusterNodesResponse.md
@@ -188,6 +192,8 @@ model_allowlist_entry_1.go
 model_any.go
 model_api_database.go
 model_api_list_databases_response.go
+model_api_oidc_config.go
+model_api_oidc_config_1.go
 model_audit_log_action.go
 model_audit_log_entry.go
 model_audit_log_metadata.go
@@ -223,6 +229,7 @@ model_cmek_region_specification.go
 model_cmek_status.go
 model_cockroach_cloud_set_roles_for_user_request.go
 model_connection_string_parameters.go
+model_create_api_oidc_config_request.go
 model_create_cluster_request.go
 model_create_cluster_specification.go
 model_create_database_request.go
@@ -272,6 +279,7 @@ model_keyset_pagination_request.go
 model_keyset_pagination_response.go
 model_line_item.go
 model_list_allowlist_entries_response.go
+model_list_api_oidc_config_response.go
 model_list_audit_logs_response.go
 model_list_available_regions_response.go
 model_list_cluster_nodes_response.go
