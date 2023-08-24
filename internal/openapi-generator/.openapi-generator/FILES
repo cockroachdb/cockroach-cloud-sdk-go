@@ -6,6 +6,7 @@ docs/AWSEndpointConnectionStatusType.md
 docs/AWSPrivateLinkServiceDetail.md
 docs/AddEgressRuleRequest.md
 docs/AddEgressRuleResponse.md
+docs/AddPrivateEndpointTrustedOwnerResponse.md
 docs/AllowlistEntry.md
 docs/AllowlistEntry1.md
 docs/Any.md
@@ -48,6 +49,7 @@ docs/ClusterUpgradeStatusType.md
 docs/ClusterVersionDeferral.md
 docs/ClusterVersionDeferralPolicyType.md
 docs/ClustersApi.md
+docs/CockroachCloudAddPrivateEndpointTrustedOwnerRequest.md
 docs/CockroachCloudSetRolesForUserRequest.md
 docs/ConnectionStringParameters.md
 docs/CreateApiOidcConfigRequest.md
@@ -92,6 +94,7 @@ docs/GetGroupRequest.md
 docs/GetGroupsRequest.md
 docs/GetGroupsResponse.md
 docs/GetPersonUsersByEmailResponse.md
+docs/GetPrivateEndpointTrustedOwnerResponse.md
 docs/GetResourceTypesResponse.md
 docs/GetSchemasResponse.md
 docs/GetServiceProviderConfigResponse.md
@@ -114,6 +117,7 @@ docs/ListClustersResponse.md
 docs/ListEgressRulesResponse.md
 docs/ListInvoicesResponse.md
 docs/ListMajorClusterVersionsResponse.md
+docs/ListPrivateEndpointTrustedOwnersResponse.md
 docs/ListRoleGrantsResponse.md
 docs/ListSQLUsersResponse.md
 docs/LogExportApi.md
@@ -141,8 +145,11 @@ docs/PrivateEndpointService.md
 docs/PrivateEndpointServiceStatusType.md
 docs/PrivateEndpointServices.md
 docs/PrivateEndpointServicesApi.md
+docs/PrivateEndpointTrustedOwner.md
+docs/PrivateEndpointTrustedOwnerTypeType.md
 docs/QuantityUnitType.md
 docs/Region.md
+docs/RemovePrivateEndpointTrustedOwnerResponse.md
 docs/Resource.md
 docs/ResourceTypeType.md
 docs/RoleManagementApi.md
@@ -187,6 +194,7 @@ docs/UserGroupRoleGrant.md
 docs/UserRoleGrants.md
 model_add_egress_rule_request.go
 model_add_egress_rule_response.go
+model_add_private_endpoint_trusted_owner_response.go
 model_allowlist_entry.go
 model_allowlist_entry_1.go
 model_any.go
@@ -227,6 +235,7 @@ model_cmek_key_type.go
 model_cmek_region_info.go
 model_cmek_region_specification.go
 model_cmek_status.go
+model_cockroach_cloud_add_private_endpoint_trusted_owner_request.go
 model_cockroach_cloud_set_roles_for_user_request.go
 model_connection_string_parameters.go
 model_create_api_oidc_config_request.go
@@ -266,6 +275,7 @@ model_get_group_request.go
 model_get_groups_request.go
 model_get_groups_response.go
 model_get_person_users_by_email_response.go
+model_get_private_endpoint_trusted_owner_response.go
 model_get_resource_types_response.go
 model_get_schemas_response.go
 model_get_service_provider_config_response.go
@@ -287,6 +297,7 @@ model_list_clusters_response.go
 model_list_egress_rules_response.go
 model_list_invoices_response.go
 model_list_major_cluster_versions_response.go
+model_list_private_endpoint_trusted_owners_response.go
 model_list_role_grants_response.go
 model_list_sql_users_response.go
 model_log_export_cluster_info.go
@@ -309,8 +320,11 @@ model_plan_type.go
 model_private_endpoint_service.go
 model_private_endpoint_service_status_type.go
 model_private_endpoint_services.go
+model_private_endpoint_trusted_owner.go
+model_private_endpoint_trusted_owner_type_type.go
 model_quantity_unit_type.go
 model_region.go
+model_remove_private_endpoint_trusted_owner_response.go
 model_resource.go
 model_resource_type_type.go
 model_scim_authentication_scheme.go

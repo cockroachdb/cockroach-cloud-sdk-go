@@ -7960,6 +7960,427 @@
         ]
       }
     },
+    "/api/v1/clusters/{cluster_id}/networking/private-endpoint-trusted-owners": {
+      "get": {
+        "operationId": "CockroachCloud_ListPrivateEndpointTrustedOwners",
+        "summary": "List all private endpoint trusted owners for a cluster",
+        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "parameters": [
+          {
+            "name": "cluster_id",
+            "in": "path",
+            "description": "cluster_id is the ID for the cluster.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListPrivateEndpointTrustedOwnersResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Private Endpoint Services"
+        ],
+        "x-badges": [
+          {
+            "color": "red",
+            "label": "LIMITED ACCESS"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request GET \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/private-endpoint-trusted-owners \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+          }
+        ]
+      },
+      "post": {
+        "operationId": "CockroachCloud_AddPrivateEndpointTrustedOwner",
+        "summary": "Add a private endpoint trusted owner to a cluster",
+        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n",
+        "parameters": [
+          {
+            "name": "cluster_id",
+            "in": "path",
+            "description": "cluster_id is the ID for the cluster.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "external_owner_id": {
+                    "description": "external_owner_id is the identifier of the owner within the cloud provider\nfor private endpoint connections. A wildcard character (\"*\") can be used to\ndenote all owners.",
+                    "type": "string"
+                  },
+                  "type": {
+                    "$ref": "#/components/schemas/PrivateEndpointTrustedOwnerType.Type"
+                  }
+                },
+                "example": {
+                  "external_owner_id": "012345678901",
+                  "type": "AWS_ACCOUNT_ID"
+                },
+                "required": [
+                  "type",
+                  "external_owner_id"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AddPrivateEndpointTrustedOwnerResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Private Endpoint Services"
+        ],
+        "x-badges": [
+          {
+            "color": "red",
+            "label": "LIMITED ACCESS"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/private-endpoint-trusted-owners \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"external_owner_id\":\"012345678901\",\"type\":\"AWS_ACCOUNT_ID\"}'"
+          }
+        ]
+      }
+    },
+    "/api/v1/clusters/{cluster_id}/networking/private-endpoint-trusted-owners/{owner_id}": {
+      "delete": {
+        "operationId": "CockroachCloud_RemovePrivateEndpointTrustedOwner",
+        "summary": "Remove a private endpoint trusted owner from a cluster",
+        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n",
+        "parameters": [
+          {
+            "name": "cluster_id",
+            "in": "path",
+            "description": "cluster_id is the ID for the cluster.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "owner_id",
+            "in": "path",
+            "description": "owner_id corresponds to the UUID of the private endpoint trusted owner\nentry.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RemovePrivateEndpointTrustedOwnerResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Private Endpoint Services"
+        ],
+        "x-badges": [
+          {
+            "color": "red",
+            "label": "LIMITED ACCESS"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request DELETE \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/private-endpoint-trusted-owners/{owner_id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+          }
+        ]
+      },
+      "get": {
+        "operationId": "CockroachCloud_GetPrivateEndpointTrustedOwner",
+        "summary": "Get a private endpoint trusted owner entry for a cluster",
+        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "parameters": [
+          {
+            "name": "cluster_id",
+            "in": "path",
+            "description": "cluster_id is the ID for the cluster.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "owner_id",
+            "in": "path",
+            "description": "owner_id corresponds to the UUID of the private endpoint trusted owner\nentry.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetPrivateEndpointTrustedOwnerResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Private Endpoint Services"
+        ],
+        "x-badges": [
+          {
+            "color": "red",
+            "label": "LIMITED ACCESS"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request GET \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/private-endpoint-trusted-owners/{owner_id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+          }
+        ]
+      }
+    },
     "/api/v1/clusters/{cluster_id}/nodes": {
       "get": {
         "operationId": "CockroachCloud_ListClusterNodes",
@@ -10237,6 +10658,17 @@
         ],
         "title": "AddEgressRuleResponse"
       },
+      "AddPrivateEndpointTrustedOwnerResponse": {
+        "type": "object",
+        "properties": {
+          "trusted_owner": {
+            "$ref": "#/components/schemas/PrivateEndpointTrustedOwner"
+          }
+        },
+        "required": [
+          "trusted_owner"
+        ]
+      },
       "AllowlistEntry": {
         "type": "object",
         "properties": {
@@ -10273,7 +10705,7 @@
         "title": "AllowlistEntry"
       },
       "Any": {
-        "description": "`Any` contains an arbitrary serialized protocol buffer message along with a\nURL that describes the type of the serialized message.\n\nProtobuf library provides support to pack/unpack Any values in the form\nof utility functions or additional generated methods of the Any type.\n\nExample 1: Pack and unpack a message in C++.\n\n    Foo foo = ...;\n    Any any;\n    any.PackFrom(foo);\n    ...\n    if (any.UnpackTo(&foo)) {\n      ...\n    }\n\nExample 2: Pack and unpack a message in Java.\n\n    Foo foo = ...;\n    Any any = Any.pack(foo);\n    ...\n    if (any.is(Foo.class)) {\n      foo = any.unpack(Foo.class);\n    }\n\nExample 3: Pack and unpack a message in Python.\n\n    foo = Foo(...)\n    any = Any()\n    any.Pack(foo)\n    ...\n    if any.Is(Foo.DESCRIPTOR):\n      any.Unpack(foo)\n      ...\n\nExample 4: Pack and unpack a message in Go\n\n     foo := &pb.Foo{...}\n     any, err := anypb.New(foo)\n     if err != nil {\n       ...\n     }\n     ...\n     foo := &pb.Foo{}\n     if err := any.UnmarshalTo(foo); err != nil {\n       ...\n     }\n\nThe pack methods provided by protobuf library will by default use\n'type.googleapis.com/full.type.name' as the type URL and the unpack\nmethods only use the fully qualified type name after the last '/'\nin the type URL, for example \"foo.bar.com/x/y.z\" will yield type\nname \"y.z\".\n\n\nJSON\n\nThe JSON representation of an `Any` value uses the regular\nrepresentation of the deserialized, embedded message, with an\nadditional field `@type` which contains the type URL. Example:\n\n    package google.profile;\n    message Person {\n      string first_name = 1;\n      string last_name = 2;\n    }\n\n    {\n      \"@type\": \"type.googleapis.com/google.profile.Person\",\n      \"firstName\": <string>,\n      \"lastName\": <string>\n    }\n\nIf the embedded message type is well-known and has a custom JSON\nrepresentation, that representation will be embedded adding a field\n`value` which holds the custom JSON in addition to the `@type`\nfield. Example (for message [google.protobuf.Duration][]):\n\n    {\n      \"@type\": \"type.googleapis.com/google.protobuf.Duration\",\n      \"value\": \"1.212s\"\n    }",
+        "description": "`Any` contains an arbitrary serialized protocol buffer message along with a\nURL that describes the type of the serialized message.\n\nProtobuf library provides support to pack/unpack Any values in the form\nof utility functions or additional generated methods of the Any type.\n\nExample 1: Pack and unpack a message in C++.\n\n    Foo foo = ...;\n    Any any;\n    any.PackFrom(foo);\n    ...\n    if (any.UnpackTo(&foo)) {\n      ...\n    }\n\nExample 2: Pack and unpack a message in Java.\n\n    Foo foo = ...;\n    Any any = Any.pack(foo);\n    ...\n    if (any.is(Foo.class)) {\n      foo = any.unpack(Foo.class);\n    }\n    // or ...\n    if (any.isSameTypeAs(Foo.getDefaultInstance())) {\n      foo = any.unpack(Foo.getDefaultInstance());\n    }\n\n Example 3: Pack and unpack a message in Python.\n\n    foo = Foo(...)\n    any = Any()\n    any.Pack(foo)\n    ...\n    if any.Is(Foo.DESCRIPTOR):\n      any.Unpack(foo)\n      ...\n\n Example 4: Pack and unpack a message in Go\n\n     foo := &pb.Foo{...}\n     any, err := anypb.New(foo)\n     if err != nil {\n       ...\n     }\n     ...\n     foo := &pb.Foo{}\n     if err := any.UnmarshalTo(foo); err != nil {\n       ...\n     }\n\nThe pack methods provided by protobuf library will by default use\n'type.googleapis.com/full.type.name' as the type URL and the unpack\nmethods only use the fully qualified type name after the last '/'\nin the type URL, for example \"foo.bar.com/x/y.z\" will yield type\nname \"y.z\".\n\nJSON\n====\nThe JSON representation of an `Any` value uses the regular\nrepresentation of the deserialized, embedded message, with an\nadditional field `@type` which contains the type URL. Example:\n\n    package google.profile;\n    message Person {\n      string first_name = 1;\n      string last_name = 2;\n    }\n\n    {\n      \"@type\": \"type.googleapis.com/google.profile.Person\",\n      \"firstName\": <string>,\n      \"lastName\": <string>\n    }\n\nIf the embedded message type is well-known and has a custom JSON\nrepresentation, that representation will be embedded adding a field\n`value` which holds the custom JSON in addition to the `@type`\nfield. Example (for message [google.protobuf.Duration][]):\n\n    {\n      \"@type\": \"type.googleapis.com/google.protobuf.Duration\",\n      \"value\": \"1.212s\"\n    }",
         "type": "object",
         "properties": {
           "@type": {
@@ -10366,7 +10798,9 @@
           "AUDIT_LOG_ACTION_UPDATE_API_OIDC_CONFIG",
           "AUDIT_LOG_ACTION_CREATE_FOLDER",
           "AUDIT_LOG_ACTION_DELETE_FOLDER",
-          "AUDIT_LOG_ACTION_UPDATE_FOLDER"
+          "AUDIT_LOG_ACTION_UPDATE_FOLDER",
+          "AUDIT_LOG_ACTION_ADD_PRIVATE_ENDPOINT_TRUSTED_OWNER",
+          "AUDIT_LOG_ACTION_REMOVE_PRIVATE_ENDPOINT_TRUSTED_OWNER"
         ]
       },
       "AuditLogEntry": {
@@ -10450,6 +10884,10 @@
           },
           "endpoint_id": {
             "description": "endpoint_id is the client side of the PrivateLink connection.",
+            "type": "string"
+          },
+          "external_owner_id": {
+            "description": "external_owner_id represents the ID of the AWS account that owns the\nPrivateLink connection.",
             "type": "string"
           },
           "region_name": {
@@ -11730,6 +12168,17 @@
           "users"
         ]
       },
+      "GetPrivateEndpointTrustedOwnerResponse": {
+        "type": "object",
+        "properties": {
+          "trusted_owner": {
+            "$ref": "#/components/schemas/PrivateEndpointTrustedOwner"
+          }
+        },
+        "required": [
+          "trusted_owner"
+        ]
+      },
       "GetResourceTypesResponse": {
         "type": "object",
         "properties": {
@@ -12179,6 +12628,18 @@
           "versions"
         ]
       },
+      "ListPrivateEndpointTrustedOwnersResponse": {
+        "type": "object",
+        "properties": {
+          "trusted_owners": {
+            "description": "trusted_owners describes the private endpoint trusted owner entries for the\nrequested cluster.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PrivateEndpointTrustedOwner"
+            }
+          }
+        }
+      },
       "ListRoleGrantsResponse": {
         "type": "object",
         "properties": {
@@ -12407,7 +12868,7 @@
         ]
       },
       "NullValue": {
-        "description": "`NullValue` is a singleton enumeration to represent the null value for the\n`Value` type union.\n\n The JSON representation for `NullValue` is JSON `null`.\n\n - NULL_VALUE: Null value.",
+        "description": "`NullValue` is a singleton enumeration to represent the null value for the\n`Value` type union.\n\nThe JSON representation for `NullValue` is JSON `null`.\n\n - NULL_VALUE: Null value.",
         "type": "string"
       },
       "OperatingSystem.Type": {
@@ -12547,6 +13008,47 @@
           "services"
         ]
       },
+      "PrivateEndpointTrustedOwner": {
+        "description": "PrivateEndpointTrustedOwner represents a trusted owner entry for private\nendpoint connections.",
+        "type": "object",
+        "properties": {
+          "cluster_id": {
+            "description": "cluster_id identifies the cluster to which this trusted owner entry applies.",
+            "type": "string"
+          },
+          "created_at": {
+            "description": "created_at is the time at which the entry was created.",
+            "type": "string",
+            "format": "date-time"
+          },
+          "external_owner_id": {
+            "description": "external_owner_id is the identifier of the owner within the cloud provider\nfor private endpoint connections. A wildcard character (\"*\") can be used to\ndenote all owners.",
+            "type": "string"
+          },
+          "id": {
+            "description": "id is a UUID that uniquely identifies this trusted owner entry.",
+            "type": "string"
+          },
+          "type": {
+            "$ref": "#/components/schemas/PrivateEndpointTrustedOwnerType.Type"
+          }
+        },
+        "required": [
+          "id",
+          "cluster_id",
+          "type",
+          "external_owner_id",
+          "created_at"
+        ],
+        "title": "PrivateEndpointTrustedOwner"
+      },
+      "PrivateEndpointTrustedOwnerType.Type": {
+        "description": " - AWS_ACCOUNT_ID: AWS_ACCOUNT_ID represents the 12-digit AWS account number.",
+        "type": "string",
+        "enum": [
+          "AWS_ACCOUNT_ID"
+        ]
+      },
       "QuantityUnit.Type": {
         "type": "string",
         "enum": [
@@ -12588,6 +13090,17 @@
           "ui_dns",
           "node_count",
           "internal_dns"
+        ]
+      },
+      "RemovePrivateEndpointTrustedOwnerResponse": {
+        "type": "object",
+        "properties": {
+          "trusted_owner": {
+            "$ref": "#/components/schemas/PrivateEndpointTrustedOwner"
+          }
+        },
+        "required": [
+          "trusted_owner"
         ]
       },
       "Resource": {

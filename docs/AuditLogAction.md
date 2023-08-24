@@ -90,6 +90,10 @@
 
 * `UPDATE_FOLDER` (value: `"AUDIT_LOG_ACTION_UPDATE_FOLDER"`)
 
+* `ADD_PRIVATE_ENDPOINT_TRUSTED_OWNER` (value: `"AUDIT_LOG_ACTION_ADD_PRIVATE_ENDPOINT_TRUSTED_OWNER"`)
+
+* `REMOVE_PRIVATE_ENDPOINT_TRUSTED_OWNER` (value: `"AUDIT_LOG_ACTION_REMOVE_PRIVATE_ENDPOINT_TRUSTED_OWNER"`)
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
