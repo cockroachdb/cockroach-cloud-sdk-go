@@ -4,11 +4,88 @@ All URIs are relative to *https://cockroachlabs.cloud*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**AddPrivateEndpointTrustedOwner**](PrivateEndpointServicesApi.md#AddPrivateEndpointTrustedOwner) | **Post** /api/v1/clusters/{cluster_id}/networking/private-endpoint-trusted-owners | Add a private endpoint trusted owner to a cluster
 [**CreatePrivateEndpointServices**](PrivateEndpointServicesApi.md#CreatePrivateEndpointServices) | **Post** /api/v1/clusters/{cluster_id}/networking/private-endpoint-services | Create all PrivateEndpointServices for a cluster
+[**GetPrivateEndpointTrustedOwner**](PrivateEndpointServicesApi.md#GetPrivateEndpointTrustedOwner) | **Get** /api/v1/clusters/{cluster_id}/networking/private-endpoint-trusted-owners/{owner_id} | Get a private endpoint trusted owner entry for a cluster
 [**ListAwsEndpointConnections**](PrivateEndpointServicesApi.md#ListAwsEndpointConnections) | **Get** /api/v1/clusters/{cluster_id}/networking/aws-endpoint-connections | List all AwsEndpointConnections for a cluster
 [**ListPrivateEndpointServices**](PrivateEndpointServicesApi.md#ListPrivateEndpointServices) | **Get** /api/v1/clusters/{cluster_id}/networking/private-endpoint-services | List all PrivateEndpointServices for a cluster
+[**ListPrivateEndpointTrustedOwners**](PrivateEndpointServicesApi.md#ListPrivateEndpointTrustedOwners) | **Get** /api/v1/clusters/{cluster_id}/networking/private-endpoint-trusted-owners | List all private endpoint trusted owners for a cluster
+[**RemovePrivateEndpointTrustedOwner**](PrivateEndpointServicesApi.md#RemovePrivateEndpointTrustedOwner) | **Delete** /api/v1/clusters/{cluster_id}/networking/private-endpoint-trusted-owners/{owner_id} | Remove a private endpoint trusted owner from a cluster
 [**SetAwsEndpointConnectionState**](PrivateEndpointServicesApi.md#SetAwsEndpointConnectionState) | **Patch** /api/v1/clusters/{cluster_id}/networking/aws-endpoint-connections/{endpoint_id} | Set the AWS Endpoint Connection state
 
+
+
+## AddPrivateEndpointTrustedOwner
+
+> AddPrivateEndpointTrustedOwnerResponse AddPrivateEndpointTrustedOwner(ctx, clusterId).CockroachCloudAddPrivateEndpointTrustedOwnerRequest(cockroachCloudAddPrivateEndpointTrustedOwnerRequest).Execute()
+
+Add a private endpoint trusted owner to a cluster
+
+Can be used by the following roles assigned at the organization or cluster scope:
+- CLUSTER_ADMIN
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    clusterId := "clusterId_example" // string | cluster_id is the ID for the cluster.
+    cockroachCloudAddPrivateEndpointTrustedOwnerRequest := *openapiclient.NewCockroachCloudAddPrivateEndpointTrustedOwnerRequest("ExternalOwnerId_example", openapiclient.PrivateEndpointTrustedOwnerType.Type("AWS_ACCOUNT_ID")) // CockroachCloudAddPrivateEndpointTrustedOwnerRequest | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.PrivateEndpointServicesApi.AddPrivateEndpointTrustedOwner(context.Background(), clusterId).CockroachCloudAddPrivateEndpointTrustedOwnerRequest(cockroachCloudAddPrivateEndpointTrustedOwnerRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `PrivateEndpointServicesApi.AddPrivateEndpointTrustedOwner``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `AddPrivateEndpointTrustedOwner`: AddPrivateEndpointTrustedOwnerResponse
+    fmt.Fprintf(os.Stdout, "Response from `PrivateEndpointServicesApi.AddPrivateEndpointTrustedOwner`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**clusterId** | **string** | cluster_id is the ID for the cluster. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAddPrivateEndpointTrustedOwner struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **cockroachCloudAddPrivateEndpointTrustedOwnerRequest** | [**CockroachCloudAddPrivateEndpointTrustedOwnerRequest**](CockroachCloudAddPrivateEndpointTrustedOwnerRequest.md) |  | 
+
+### Return type
+
+[**AddPrivateEndpointTrustedOwnerResponse**](AddPrivateEndpointTrustedOwnerResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
 
 
 ## CreatePrivateEndpointServices
@@ -69,6 +146,81 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**PrivateEndpointServices**](PrivateEndpointServices.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetPrivateEndpointTrustedOwner
+
+> GetPrivateEndpointTrustedOwnerResponse GetPrivateEndpointTrustedOwner(ctx, clusterId, ownerId).Execute()
+
+Get a private endpoint trusted owner entry for a cluster
+
+Can be used by the following roles assigned at the organization or cluster scope:
+- CLUSTER_ADMIN
+- CLUSTER_OPERATOR_WRITER
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    clusterId := "clusterId_example" // string | cluster_id is the ID for the cluster.
+    ownerId := "ownerId_example" // string | owner_id corresponds to the UUID of the private endpoint trusted owner entry.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.PrivateEndpointServicesApi.GetPrivateEndpointTrustedOwner(context.Background(), clusterId, ownerId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `PrivateEndpointServicesApi.GetPrivateEndpointTrustedOwner``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetPrivateEndpointTrustedOwner`: GetPrivateEndpointTrustedOwnerResponse
+    fmt.Fprintf(os.Stdout, "Response from `PrivateEndpointServicesApi.GetPrivateEndpointTrustedOwner`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**clusterId** | **string** | cluster_id is the ID for the cluster. | 
+**ownerId** | **string** | owner_id corresponds to the UUID of the private endpoint trusted owner entry. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetPrivateEndpointTrustedOwner struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+[**GetPrivateEndpointTrustedOwnerResponse**](GetPrivateEndpointTrustedOwnerResponse.md)
 
 ### Authorization
 
@@ -215,6 +367,152 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**PrivateEndpointServices**](PrivateEndpointServices.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListPrivateEndpointTrustedOwners
+
+> ListPrivateEndpointTrustedOwnersResponse ListPrivateEndpointTrustedOwners(ctx, clusterId).Execute()
+
+List all private endpoint trusted owners for a cluster
+
+Can be used by the following roles assigned at the organization or cluster scope:
+- CLUSTER_ADMIN
+- CLUSTER_OPERATOR_WRITER
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    clusterId := "clusterId_example" // string | cluster_id is the ID for the cluster.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.PrivateEndpointServicesApi.ListPrivateEndpointTrustedOwners(context.Background(), clusterId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `PrivateEndpointServicesApi.ListPrivateEndpointTrustedOwners``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListPrivateEndpointTrustedOwners`: ListPrivateEndpointTrustedOwnersResponse
+    fmt.Fprintf(os.Stdout, "Response from `PrivateEndpointServicesApi.ListPrivateEndpointTrustedOwners`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**clusterId** | **string** | cluster_id is the ID for the cluster. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListPrivateEndpointTrustedOwners struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**ListPrivateEndpointTrustedOwnersResponse**](ListPrivateEndpointTrustedOwnersResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## RemovePrivateEndpointTrustedOwner
+
+> RemovePrivateEndpointTrustedOwnerResponse RemovePrivateEndpointTrustedOwner(ctx, clusterId, ownerId).Execute()
+
+Remove a private endpoint trusted owner from a cluster
+
+Can be used by the following roles assigned at the organization or cluster scope:
+- CLUSTER_ADMIN
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    clusterId := "clusterId_example" // string | cluster_id is the ID for the cluster.
+    ownerId := "ownerId_example" // string | owner_id corresponds to the UUID of the private endpoint trusted owner entry.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.PrivateEndpointServicesApi.RemovePrivateEndpointTrustedOwner(context.Background(), clusterId, ownerId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `PrivateEndpointServicesApi.RemovePrivateEndpointTrustedOwner``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `RemovePrivateEndpointTrustedOwner`: RemovePrivateEndpointTrustedOwnerResponse
+    fmt.Fprintf(os.Stdout, "Response from `PrivateEndpointServicesApi.RemovePrivateEndpointTrustedOwner`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**clusterId** | **string** | cluster_id is the ID for the cluster. | 
+**ownerId** | **string** | owner_id corresponds to the UUID of the private endpoint trusted owner entry. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiRemovePrivateEndpointTrustedOwner struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+[**RemovePrivateEndpointTrustedOwnerResponse**](RemovePrivateEndpointTrustedOwnerResponse.md)
 
 ### Authorization
 

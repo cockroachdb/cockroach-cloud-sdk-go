@@ -5371,6 +5371,298 @@ paths:
           curl --request POST \
             --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/private-endpoint-services \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+  /api/v1/clusters/{cluster_id}/networking/private-endpoint-trusted-owners:
+    get:
+      description: |
+        Can be used by the following roles assigned at the organization or cluster scope:
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
+      operationId: CockroachCloud_ListPrivateEndpointTrustedOwners
+      parameters:
+      - description: cluster_id is the ID for the cluster.
+        explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListPrivateEndpointTrustedOwnersResponse'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: List all private endpoint trusted owners for a cluster
+      tags:
+      - Private Endpoint Services
+      x-badges:
+      - color: red
+        label: LIMITED ACCESS
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request GET \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/private-endpoint-trusted-owners \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+    post:
+      description: |
+        Can be used by the following roles assigned at the organization or cluster scope:
+        - CLUSTER_ADMIN
+      operationId: CockroachCloud_AddPrivateEndpointTrustedOwner
+      parameters:
+      - description: cluster_id is the ID for the cluster.
+        explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CockroachCloud_AddPrivateEndpointTrustedOwner_request'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddPrivateEndpointTrustedOwnerResponse'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Add a private endpoint trusted owner to a cluster
+      tags:
+      - Private Endpoint Services
+      x-badges:
+      - color: red
+        label: LIMITED ACCESS
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request POST \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/private-endpoint-trusted-owners \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
+            --header 'content-type: application/json' \
+            --data '{"external_owner_id":"012345678901","type":"AWS_ACCOUNT_ID"}'
+  /api/v1/clusters/{cluster_id}/networking/private-endpoint-trusted-owners/{owner_id}:
+    delete:
+      description: |
+        Can be used by the following roles assigned at the organization or cluster scope:
+        - CLUSTER_ADMIN
+      operationId: CockroachCloud_RemovePrivateEndpointTrustedOwner
+      parameters:
+      - description: cluster_id is the ID for the cluster.
+        explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: |-
+          owner_id corresponds to the UUID of the private endpoint trusted owner
+          entry.
+        explode: false
+        in: path
+        name: owner_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RemovePrivateEndpointTrustedOwnerResponse'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Remove a private endpoint trusted owner from a cluster
+      tags:
+      - Private Endpoint Services
+      x-badges:
+      - color: red
+        label: LIMITED ACCESS
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request DELETE \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/private-endpoint-trusted-owners/{owner_id} \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+    get:
+      description: |
+        Can be used by the following roles assigned at the organization or cluster scope:
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
+      operationId: CockroachCloud_GetPrivateEndpointTrustedOwner
+      parameters:
+      - description: cluster_id is the ID for the cluster.
+        explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: |-
+          owner_id corresponds to the UUID of the private endpoint trusted owner
+          entry.
+        explode: false
+        in: path
+        name: owner_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetPrivateEndpointTrustedOwnerResponse'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Get a private endpoint trusted owner entry for a cluster
+      tags:
+      - Private Endpoint Services
+      x-badges:
+      - color: red
+        label: LIMITED ACCESS
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request GET \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/private-endpoint-trusted-owners/{owner_id} \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
   /api/v1/clusters/{cluster_id}/nodes:
     get:
       description: |
@@ -7075,6 +7367,20 @@ components:
       - rule
       title: AddEgressRuleResponse
       type: object
+    AddPrivateEndpointTrustedOwnerResponse:
+      example:
+        trusted_owner:
+          cluster_id: cluster_id
+          external_owner_id: external_owner_id
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: id
+          type: null
+      properties:
+        trusted_owner:
+          $ref: '#/components/schemas/PrivateEndpointTrustedOwner'
+      required:
+      - trusted_owner
+      type: object
     AllowlistEntry:
       example:
         cidr_ip: 192.168.1.1
@@ -7128,8 +7434,12 @@ components:
             if (any.is(Foo.class)) {
               foo = any.unpack(Foo.class);
             }
+            // or ...
+            if (any.isSameTypeAs(Foo.getDefaultInstance())) {
+              foo = any.unpack(Foo.getDefaultInstance());
+            }
 
-        Example 3: Pack and unpack a message in Python.
+         Example 3: Pack and unpack a message in Python.
 
             foo = Foo(...)
             any = Any()
@@ -7139,7 +7449,7 @@ components:
               any.Unpack(foo)
               ...
 
-        Example 4: Pack and unpack a message in Go
+         Example 4: Pack and unpack a message in Go
 
              foo := &pb.Foo{...}
              any, err := anypb.New(foo)
@@ -7158,9 +7468,8 @@ components:
         in the type URL, for example "foo.bar.com/x/y.z" will yield type
         name "y.z".
 
-
         JSON
-
+        ====
         The JSON representation of an `Any` value uses the regular
         representation of the deserialized, embedded message, with an
         additional field `@type` which contains the type URL. Example:
@@ -7297,6 +7606,8 @@ components:
       - AUDIT_LOG_ACTION_CREATE_FOLDER
       - AUDIT_LOG_ACTION_DELETE_FOLDER
       - AUDIT_LOG_ACTION_UPDATE_FOLDER
+      - AUDIT_LOG_ACTION_ADD_PRIVATE_ENDPOINT_TRUSTED_OWNER
+      - AUDIT_LOG_ACTION_REMOVE_PRIVATE_ENDPOINT_TRUSTED_OWNER
       type: string
     AuditLogEntry:
       description: |-
@@ -7391,6 +7702,7 @@ components:
       type: string
     AwsEndpointConnection:
       example:
+        external_owner_id: external_owner_id
         service_id: service_id
         endpoint_id: endpoint_id
         cloud_provider: null
@@ -7401,6 +7713,11 @@ components:
           $ref: '#/components/schemas/CloudProvider.Type'
         endpoint_id:
           description: endpoint_id is the client side of the PrivateLink connection.
+          type: string
+        external_owner_id:
+          description: |-
+            external_owner_id represents the ID of the AWS account that owns the
+            PrivateLink connection.
           type: string
         region_name:
           description: region_name is the cloud provider region name (i.e. us-east-1).
@@ -7422,12 +7739,14 @@ components:
     AwsEndpointConnections:
       example:
         connections:
-        - service_id: service_id
+        - external_owner_id: external_owner_id
+          service_id: service_id
           endpoint_id: endpoint_id
           cloud_provider: null
           region_name: region_name
           status: null
-        - service_id: service_id
+        - external_owner_id: external_owner_id
+          service_id: service_id
           endpoint_id: endpoint_id
           cloud_provider: null
           region_name: region_name
@@ -8809,6 +9128,20 @@ components:
       required:
       - users
       type: object
+    GetPrivateEndpointTrustedOwnerResponse:
+      example:
+        trusted_owner:
+          cluster_id: cluster_id
+          external_owner_id: external_owner_id
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: id
+          type: null
+      properties:
+        trusted_owner:
+          $ref: '#/components/schemas/PrivateEndpointTrustedOwner'
+      required:
+      - trusted_owner
+      type: object
     GetResourceTypesResponse:
       example:
         startIndex: 6
@@ -9962,6 +10295,28 @@ components:
       required:
       - versions
       type: object
+    ListPrivateEndpointTrustedOwnersResponse:
+      example:
+        trusted_owners:
+        - cluster_id: cluster_id
+          external_owner_id: external_owner_id
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: id
+          type: null
+        - cluster_id: cluster_id
+          external_owner_id: external_owner_id
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: id
+          type: null
+      properties:
+        trusted_owners:
+          description: |-
+            trusted_owners describes the private endpoint trusted owner entries for the
+            requested cluster.
+          items:
+            $ref: '#/components/schemas/PrivateEndpointTrustedOwner'
+          type: array
+      type: object
     ListRoleGrantsResponse:
       example:
         grants:
@@ -10306,7 +10661,7 @@ components:
         `NullValue` is a singleton enumeration to represent the null value for the
         `Value` type union.
 
-         The JSON representation for `NullValue` is JSON `null`.
+        The JSON representation for `NullValue` is JSON `null`.
 
          - NULL_VALUE: Null value.
       type: string
@@ -10461,6 +10816,50 @@ components:
       required:
       - services
       type: object
+    PrivateEndpointTrustedOwner:
+      description: |-
+        PrivateEndpointTrustedOwner represents a trusted owner entry for private
+        endpoint connections.
+      example:
+        cluster_id: cluster_id
+        external_owner_id: external_owner_id
+        created_at: 2000-01-23T04:56:07.000+00:00
+        id: id
+        type: null
+      properties:
+        cluster_id:
+          description: cluster_id identifies the cluster to which this trusted owner
+            entry applies.
+          type: string
+        created_at:
+          description: created_at is the time at which the entry was created.
+          format: date-time
+          type: string
+        external_owner_id:
+          description: |-
+            external_owner_id is the identifier of the owner within the cloud provider
+            for private endpoint connections. A wildcard character ("*") can be used to
+            denote all owners.
+          type: string
+        id:
+          description: id is a UUID that uniquely identifies this trusted owner entry.
+          type: string
+        type:
+          $ref: '#/components/schemas/PrivateEndpointTrustedOwnerType.Type'
+      required:
+      - cluster_id
+      - created_at
+      - external_owner_id
+      - id
+      - type
+      title: PrivateEndpointTrustedOwner
+      type: object
+    PrivateEndpointTrustedOwnerType.Type:
+      description: " - AWS_ACCOUNT_ID: AWS_ACCOUNT_ID represents the 12-digit AWS\
+        \ account number."
+      enum:
+      - AWS_ACCOUNT_ID
+      type: string
     QuantityUnit.Type:
       enum:
       - HOURS
@@ -10497,6 +10896,20 @@ components:
       - node_count
       - sql_dns
       - ui_dns
+      type: object
+    RemovePrivateEndpointTrustedOwnerResponse:
+      example:
+        trusted_owner:
+          cluster_id: cluster_id
+          external_owner_id: external_owner_id
+          created_at: 2000-01-23T04:56:07.000+00:00
+          id: id
+          type: null
+      properties:
+        trusted_owner:
+          $ref: '#/components/schemas/PrivateEndpointTrustedOwner'
+      required:
+      - trusted_owner
       type: object
     Resource:
       example:
@@ -11703,6 +12116,23 @@ components:
             FQDN or CIDR. This field is required.
           type: string
       title: EditEgressRuleRequest
+      type: object
+    CockroachCloud_AddPrivateEndpointTrustedOwner_request:
+      example:
+        external_owner_id: "012345678901"
+        type: AWS_ACCOUNT_ID
+      properties:
+        external_owner_id:
+          description: |-
+            external_owner_id is the identifier of the owner within the cloud provider
+            for private endpoint connections. A wildcard character ("*") can be used to
+            denote all owners.
+          type: string
+        type:
+          $ref: '#/components/schemas/PrivateEndpointTrustedOwnerType.Type'
+      required:
+      - external_owner_id
+      - type
       type: object
     CreateSQLUserRequest:
       example:

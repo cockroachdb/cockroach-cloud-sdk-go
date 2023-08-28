@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CloudProvider** | [**CloudProviderType**](CloudProviderType.md) |  | 
 **EndpointId** | **string** | endpoint_id is the client side of the PrivateLink connection. | 
+**ExternalOwnerId** | Pointer to **string** | external_owner_id represents the ID of the AWS account that owns the PrivateLink connection. | [optional] 
 **RegionName** | **string** | region_name is the cloud provider region name (i.e. us-east-1). | 
 **ServiceId** | **string** | service_id is the server side of the PrivateLink connection. This is the same as AWSPrivateLinkEndpoint.service_id. | 
 **Status** | [**AWSEndpointConnectionStatusType**](AWSEndpointConnectionStatusType.md) |  | 
@@ -52,6 +53,18 @@ GetEndpointId returns the EndpointId field if non-nil, zero value otherwise.
 `func (o *AwsEndpointConnection) SetEndpointId(v string)`
 
 SetEndpointId sets EndpointId field to given value.
+
+### GetExternalOwnerId
+
+`func (o *AwsEndpointConnection) GetExternalOwnerId() string`
+
+GetExternalOwnerId returns the ExternalOwnerId field if non-nil, zero value otherwise.
+
+### SetExternalOwnerId
+
+`func (o *AwsEndpointConnection) SetExternalOwnerId(v string)`
+
+SetExternalOwnerId sets ExternalOwnerId field to given value.
 
 ### GetRegionName
 
