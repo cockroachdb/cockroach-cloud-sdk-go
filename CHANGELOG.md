@@ -1,3 +1,9 @@
+## 1.6.0 (August 28, 2023)
+
+NEW FEATURES:
+
+* Support for Private Endpoint Trusted Owners (Limited access)
+
 ## 1.5.0 (August 16, 2023)
 
 NEW FEATURES:
