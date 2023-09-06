@@ -1,3 +1,9 @@
+## 1.7.0 (September 6, 2023)
+
+NEW FEATURES:
+
+* Enhanced support for API OIDC Config Identity maps
+
 ## 1.6.0 (August 28, 2023)
 
 NEW FEATURES:
