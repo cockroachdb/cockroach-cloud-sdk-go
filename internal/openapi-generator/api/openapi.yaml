@@ -1480,7 +1480,7 @@ paths:
             --url https://cockroachlabs.cloud/api/v1/api_oidc \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
             --header 'content-type: application/json' \
-            --data '{"audience":"542c6390-bf38-4912-856b-8f31480e978b","claim":"sub","identity_map":"sso_(.*) \\1\ngcp_(.*) \\2","jwks":"{\"keys\":[{\"e\":\"AQAB\",\"use\":\"sig\",\"kty\":\"RSA\",\"alg\":\"RS256\",\"n\":\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\",\"kid\":\"9341dedeee2d1869b657fa930300082fe26b3d92\"}]}"}'
+            --data '{"audience":"542c6390-bf38-4912-856b-8f31480e978b","claim":"sub","identity_map":[{"cc_identity":"\\1","is_regex":true,"token_identity":"sso_(.*)"},{"cc_identity":"\\1","is_regex":true,"token_identity":"gcp_(.*)"}],"jwks":"{\"keys\":[{\"e\":\"AQAB\",\"use\":\"sig\",\"kty\":\"RSA\",\"alg\":\"RS256\",\"n\":\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\",\"kid\":\"9341dedeee2d1869b657fa930300082fe26b3d92\"}]}"}'
   /api/v1/api_oidc/{id}:
     delete:
       operationId: CockroachCloud_DeleteApiOidcConfig
@@ -1666,7 +1666,7 @@ paths:
             --url https://cockroachlabs.cloud/api/v1/api_oidc/{id} \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
             --header 'content-type: application/json' \
-            --data '{"audience":"542c6390-bf38-4912-856b-8f31480e978b","claim":"sub","identity_map":"sso_(.*) \\1\ngcp_(.*) \\2","jwks":"{\"keys\":[{\"e\":\"AQAB\",\"use\":\"sig\",\"kty\":\"RSA\",\"alg\":\"RS256\",\"n\":\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\",\"kid\":\"9341dedeee2d1869b657fa930300082fe26b3d92\"}]}"}'
+            --data '{"audience":"542c6390-bf38-4912-856b-8f31480e978b","claim":"sub","identity_map":[{"cc_identity":"\\1","is_regex":true,"token_identity":"sso_(.*)"},{"cc_identity":"\\1","is_regex":true,"token_identity":"gcp_(.*)"}],"jwks":"{\"keys\":[{\"e\":\"AQAB\",\"use\":\"sig\",\"kty\":\"RSA\",\"alg\":\"RS256\",\"n\":\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\",\"kid\":\"9341dedeee2d1869b657fa930300082fe26b3d92\"}]}"}'
   /api/v1/auditlogevents:
     get:
       description: |
@@ -7434,12 +7434,8 @@ components:
             if (any.is(Foo.class)) {
               foo = any.unpack(Foo.class);
             }
-            // or ...
-            if (any.isSameTypeAs(Foo.getDefaultInstance())) {
-              foo = any.unpack(Foo.getDefaultInstance());
-            }
 
-         Example 3: Pack and unpack a message in Python.
+        Example 3: Pack and unpack a message in Python.
 
             foo = Foo(...)
             any = Any()
@@ -7449,7 +7445,7 @@ components:
               any.Unpack(foo)
               ...
 
-         Example 4: Pack and unpack a message in Go
+        Example 4: Pack and unpack a message in Go
 
              foo := &pb.Foo{...}
              any, err := anypb.New(foo)
@@ -7468,8 +7464,9 @@ components:
         in the type URL, for example "foo.bar.com/x/y.z" will yield type
         name "y.z".
 
+
         JSON
-        ====
+
         The JSON representation of an `Any` value uses the regular
         representation of the deserialized, embedded message, with an
         additional field `@type` which contains the type URL. Example:
@@ -7534,9 +7531,13 @@ components:
       example:
         audience: 542c6390-bf38-4912-856b-8f31480e978b
         claim: sub
-        identity_map: |-
-          sso_(.*) \1
-          gcp_(.*) \2
+        identity_map:
+        - cc_identity: \1
+          is_regex: true
+          token_identity: sso_(.*)
+        - cc_identity: \1
+          is_regex: true
+          token_identity: gcp_(.*)
         jwks: "{\"keys\":[{\"e\":\"AQAB\",\"use\":\"sig\",\"kty\":\"RSA\",\"alg\"\
           :\"RS256\",\"n\":\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\"\
           ,\"kid\":\"9341dedeee2d1869b657fa930300082fe26b3d92\"}]}"
@@ -7548,7 +7549,9 @@ components:
         id:
           type: string
         identity_map:
-          type: string
+          items:
+            $ref: '#/components/schemas/ApiOidcIdentityMapEntry'
+          type: array
         issuer:
           type: string
         jwks:
@@ -7559,6 +7562,15 @@ components:
       - issuer
       - jwks
       title: ApiOidcConfig
+      type: object
+    ApiOidcIdentityMapEntry:
+      properties:
+        cc_identity:
+          type: string
+        is_regex:
+          type: boolean
+        token_identity:
+          type: string
       type: object
     AuditLogAction:
       enum:
@@ -8294,9 +8306,13 @@ components:
       example:
         audience: 542c6390-bf38-4912-856b-8f31480e978b
         claim: sub
-        identity_map: |-
-          sso_(.*) \1
-          gcp_(.*) \2
+        identity_map:
+        - cc_identity: \1
+          is_regex: true
+          token_identity: sso_(.*)
+        - cc_identity: \1
+          is_regex: true
+          token_identity: gcp_(.*)
         jwks: "{\"keys\":[{\"e\":\"AQAB\",\"use\":\"sig\",\"kty\":\"RSA\",\"alg\"\
           :\"RS256\",\"n\":\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\"\
           ,\"kid\":\"9341dedeee2d1869b657fa930300082fe26b3d92\"}]}"
@@ -8306,7 +8322,9 @@ components:
         claim:
           type: string
         identity_map:
-          type: string
+          items:
+            $ref: '#/components/schemas/ApiOidcIdentityMapEntry'
+          type: array
         issuer:
           type: string
         jwks:
@@ -9817,17 +9835,25 @@ components:
         api_oidc_configs:
         - audience: 542c6390-bf38-4912-856b-8f31480e978b
           claim: sub
-          identity_map: |-
-            sso_(.*) \1
-            gcp_(.*) \2
+          identity_map:
+          - cc_identity: \1
+            is_regex: true
+            token_identity: sso_(.*)
+          - cc_identity: \1
+            is_regex: true
+            token_identity: gcp_(.*)
           jwks: "{\"keys\":[{\"e\":\"AQAB\",\"use\":\"sig\",\"kty\":\"RSA\",\"alg\"\
             :\"RS256\",\"n\":\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\"\
             ,\"kid\":\"9341dedeee2d1869b657fa930300082fe26b3d92\"}]}"
         - audience: 542c6390-bf38-4912-856b-8f31480e978b
           claim: sub
-          identity_map: |-
-            sso_(.*) \1
-            gcp_(.*) \2
+          identity_map:
+          - cc_identity: \1
+            is_regex: true
+            token_identity: sso_(.*)
+          - cc_identity: \1
+            is_regex: true
+            token_identity: gcp_(.*)
           jwks: "{\"keys\":[{\"e\":\"AQAB\",\"use\":\"sig\",\"kty\":\"RSA\",\"alg\"\
             :\"RS256\",\"n\":\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\"\
             ,\"kid\":\"9341dedeee2d1869b657fa930300082fe26b3d92\"}]}"
@@ -10661,7 +10687,7 @@ components:
         `NullValue` is a singleton enumeration to represent the null value for the
         `Value` type union.
 
-        The JSON representation for `NullValue` is JSON `null`.
+         The JSON representation for `NullValue` is JSON `null`.
 
          - NULL_VALUE: Null value.
       type: string
@@ -11760,9 +11786,13 @@ components:
       example:
         audience: 542c6390-bf38-4912-856b-8f31480e978b
         claim: sub
-        identity_map: |-
-          sso_(.*) \1
-          gcp_(.*) \2
+        identity_map:
+        - cc_identity: \1
+          is_regex: true
+          token_identity: sso_(.*)
+        - cc_identity: \1
+          is_regex: true
+          token_identity: gcp_(.*)
         jwks: "{\"keys\":[{\"e\":\"AQAB\",\"use\":\"sig\",\"kty\":\"RSA\",\"alg\"\
           :\"RS256\",\"n\":\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\"\
           ,\"kid\":\"9341dedeee2d1869b657fa930300082fe26b3d92\"}]}"
@@ -11772,7 +11802,9 @@ components:
         claim:
           type: string
         identity_map:
-          type: string
+          items:
+            $ref: '#/components/schemas/ApiOidcIdentityMapEntry'
+          type: array
         issuer:
           type: string
         jwks:

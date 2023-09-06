@@ -2272,7 +2272,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/api_oidc \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"audience\":\"542c6390-bf38-4912-856b-8f31480e978b\",\"claim\":\"sub\",\"identity_map\":\"sso_(.*) \\\\1\\ngcp_(.*) \\\\2\",\"jwks\":\"{\\\"keys\\\":[{\\\"e\\\":\\\"AQAB\\\",\\\"use\\\":\\\"sig\\\",\\\"kty\\\":\\\"RSA\\\",\\\"alg\\\":\\\"RS256\\\",\\\"n\\\":\\\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\\\",\\\"kid\\\":\\\"9341dedeee2d1869b657fa930300082fe26b3d92\\\"}]}\"}'"
+            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/api_oidc \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"audience\":\"542c6390-bf38-4912-856b-8f31480e978b\",\"claim\":\"sub\",\"identity_map\":[{\"cc_identity\":\"\\\\1\",\"is_regex\":true,\"token_identity\":\"sso_(.*)\"},{\"cc_identity\":\"\\\\1\",\"is_regex\":true,\"token_identity\":\"gcp_(.*)\"}],\"jwks\":\"{\\\"keys\\\":[{\\\"e\\\":\\\"AQAB\\\",\\\"use\\\":\\\"sig\\\",\\\"kty\\\":\\\"RSA\\\",\\\"alg\\\":\\\"RS256\\\",\\\"n\\\":\\\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\\\",\\\"kid\\\":\\\"9341dedeee2d1869b657fa930300082fe26b3d92\\\"}]}\"}'"
           }
         ]
       }
@@ -2482,7 +2482,10 @@
                     "type": "string"
                   },
                   "identity_map": {
-                    "type": "string"
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/ApiOidcIdentityMapEntry"
+                    }
                   },
                   "issuer": {
                     "type": "string"
@@ -2494,7 +2497,18 @@
                 "example": {
                   "audience": "542c6390-bf38-4912-856b-8f31480e978b",
                   "claim": "sub",
-                  "identity_map": "sso_(.*) \\1\ngcp_(.*) \\2",
+                  "identity_map": [
+                    {
+                      "cc_identity": "\\1",
+                      "is_regex": true,
+                      "token_identity": "sso_(.*)"
+                    },
+                    {
+                      "cc_identity": "\\1",
+                      "is_regex": true,
+                      "token_identity": "gcp_(.*)"
+                    }
+                  ],
                   "jwks": "{\"keys\":[{\"e\":\"AQAB\",\"use\":\"sig\",\"kty\":\"RSA\",\"alg\":\"RS256\",\"n\":\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\",\"kid\":\"9341dedeee2d1869b657fa930300082fe26b3d92\"}]}"
                 },
                 "required": [
@@ -2578,7 +2592,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/v1/api_oidc/{id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"audience\":\"542c6390-bf38-4912-856b-8f31480e978b\",\"claim\":\"sub\",\"identity_map\":\"sso_(.*) \\\\1\\ngcp_(.*) \\\\2\",\"jwks\":\"{\\\"keys\\\":[{\\\"e\\\":\\\"AQAB\\\",\\\"use\\\":\\\"sig\\\",\\\"kty\\\":\\\"RSA\\\",\\\"alg\\\":\\\"RS256\\\",\\\"n\\\":\\\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\\\",\\\"kid\\\":\\\"9341dedeee2d1869b657fa930300082fe26b3d92\\\"}]}\"}'"
+            "source": "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/v1/api_oidc/{id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"audience\":\"542c6390-bf38-4912-856b-8f31480e978b\",\"claim\":\"sub\",\"identity_map\":[{\"cc_identity\":\"\\\\1\",\"is_regex\":true,\"token_identity\":\"sso_(.*)\"},{\"cc_identity\":\"\\\\1\",\"is_regex\":true,\"token_identity\":\"gcp_(.*)\"}],\"jwks\":\"{\\\"keys\\\":[{\\\"e\\\":\\\"AQAB\\\",\\\"use\\\":\\\"sig\\\",\\\"kty\\\":\\\"RSA\\\",\\\"alg\\\":\\\"RS256\\\",\\\"n\\\":\\\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\\\",\\\"kid\\\":\\\"9341dedeee2d1869b657fa930300082fe26b3d92\\\"}]}\"}'"
           }
         ]
       }
@@ -10705,7 +10719,7 @@
         "title": "AllowlistEntry"
       },
       "Any": {
-        "description": "`Any` contains an arbitrary serialized protocol buffer message along with a\nURL that describes the type of the serialized message.\n\nProtobuf library provides support to pack/unpack Any values in the form\nof utility functions or additional generated methods of the Any type.\n\nExample 1: Pack and unpack a message in C++.\n\n    Foo foo = ...;\n    Any any;\n    any.PackFrom(foo);\n    ...\n    if (any.UnpackTo(&foo)) {\n      ...\n    }\n\nExample 2: Pack and unpack a message in Java.\n\n    Foo foo = ...;\n    Any any = Any.pack(foo);\n    ...\n    if (any.is(Foo.class)) {\n      foo = any.unpack(Foo.class);\n    }\n    // or ...\n    if (any.isSameTypeAs(Foo.getDefaultInstance())) {\n      foo = any.unpack(Foo.getDefaultInstance());\n    }\n\n Example 3: Pack and unpack a message in Python.\n\n    foo = Foo(...)\n    any = Any()\n    any.Pack(foo)\n    ...\n    if any.Is(Foo.DESCRIPTOR):\n      any.Unpack(foo)\n      ...\n\n Example 4: Pack and unpack a message in Go\n\n     foo := &pb.Foo{...}\n     any, err := anypb.New(foo)\n     if err != nil {\n       ...\n     }\n     ...\n     foo := &pb.Foo{}\n     if err := any.UnmarshalTo(foo); err != nil {\n       ...\n     }\n\nThe pack methods provided by protobuf library will by default use\n'type.googleapis.com/full.type.name' as the type URL and the unpack\nmethods only use the fully qualified type name after the last '/'\nin the type URL, for example \"foo.bar.com/x/y.z\" will yield type\nname \"y.z\".\n\nJSON\n====\nThe JSON representation of an `Any` value uses the regular\nrepresentation of the deserialized, embedded message, with an\nadditional field `@type` which contains the type URL. Example:\n\n    package google.profile;\n    message Person {\n      string first_name = 1;\n      string last_name = 2;\n    }\n\n    {\n      \"@type\": \"type.googleapis.com/google.profile.Person\",\n      \"firstName\": <string>,\n      \"lastName\": <string>\n    }\n\nIf the embedded message type is well-known and has a custom JSON\nrepresentation, that representation will be embedded adding a field\n`value` which holds the custom JSON in addition to the `@type`\nfield. Example (for message [google.protobuf.Duration][]):\n\n    {\n      \"@type\": \"type.googleapis.com/google.protobuf.Duration\",\n      \"value\": \"1.212s\"\n    }",
+        "description": "`Any` contains an arbitrary serialized protocol buffer message along with a\nURL that describes the type of the serialized message.\n\nProtobuf library provides support to pack/unpack Any values in the form\nof utility functions or additional generated methods of the Any type.\n\nExample 1: Pack and unpack a message in C++.\n\n    Foo foo = ...;\n    Any any;\n    any.PackFrom(foo);\n    ...\n    if (any.UnpackTo(&foo)) {\n      ...\n    }\n\nExample 2: Pack and unpack a message in Java.\n\n    Foo foo = ...;\n    Any any = Any.pack(foo);\n    ...\n    if (any.is(Foo.class)) {\n      foo = any.unpack(Foo.class);\n    }\n\nExample 3: Pack and unpack a message in Python.\n\n    foo = Foo(...)\n    any = Any()\n    any.Pack(foo)\n    ...\n    if any.Is(Foo.DESCRIPTOR):\n      any.Unpack(foo)\n      ...\n\nExample 4: Pack and unpack a message in Go\n\n     foo := &pb.Foo{...}\n     any, err := anypb.New(foo)\n     if err != nil {\n       ...\n     }\n     ...\n     foo := &pb.Foo{}\n     if err := any.UnmarshalTo(foo); err != nil {\n       ...\n     }\n\nThe pack methods provided by protobuf library will by default use\n'type.googleapis.com/full.type.name' as the type URL and the unpack\nmethods only use the fully qualified type name after the last '/'\nin the type URL, for example \"foo.bar.com/x/y.z\" will yield type\nname \"y.z\".\n\n\nJSON\n\nThe JSON representation of an `Any` value uses the regular\nrepresentation of the deserialized, embedded message, with an\nadditional field `@type` which contains the type URL. Example:\n\n    package google.profile;\n    message Person {\n      string first_name = 1;\n      string last_name = 2;\n    }\n\n    {\n      \"@type\": \"type.googleapis.com/google.profile.Person\",\n      \"firstName\": <string>,\n      \"lastName\": <string>\n    }\n\nIf the embedded message type is well-known and has a custom JSON\nrepresentation, that representation will be embedded adding a field\n`value` which holds the custom JSON in addition to the `@type`\nfield. Example (for message [google.protobuf.Duration][]):\n\n    {\n      \"@type\": \"type.googleapis.com/google.protobuf.Duration\",\n      \"value\": \"1.212s\"\n    }",
         "type": "object",
         "properties": {
           "@type": {
@@ -10729,7 +10743,10 @@
             "type": "string"
           },
           "identity_map": {
-            "type": "string"
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApiOidcIdentityMapEntry"
+            }
           },
           "issuer": {
             "type": "string"
@@ -10741,7 +10758,18 @@
         "example": {
           "audience": "542c6390-bf38-4912-856b-8f31480e978b",
           "claim": "sub",
-          "identity_map": "sso_(.*) \\1\ngcp_(.*) \\2",
+          "identity_map": [
+            {
+              "cc_identity": "\\1",
+              "is_regex": true,
+              "token_identity": "sso_(.*)"
+            },
+            {
+              "cc_identity": "\\1",
+              "is_regex": true,
+              "token_identity": "gcp_(.*)"
+            }
+          ],
           "jwks": "{\"keys\":[{\"e\":\"AQAB\",\"use\":\"sig\",\"kty\":\"RSA\",\"alg\":\"RS256\",\"n\":\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\",\"kid\":\"9341dedeee2d1869b657fa930300082fe26b3d92\"}]}"
         },
         "required": [
@@ -10751,6 +10779,20 @@
           "jwks"
         ],
         "title": "ApiOidcConfig"
+      },
+      "ApiOidcIdentityMapEntry": {
+        "type": "object",
+        "properties": {
+          "cc_identity": {
+            "type": "string"
+          },
+          "is_regex": {
+            "type": "boolean"
+          },
+          "token_identity": {
+            "type": "string"
+          }
+        }
       },
       "AuditLogAction": {
         "type": "string",
@@ -11418,7 +11460,10 @@
             "type": "string"
           },
           "identity_map": {
-            "type": "string"
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApiOidcIdentityMapEntry"
+            }
           },
           "issuer": {
             "type": "string"
@@ -11430,7 +11475,18 @@
         "example": {
           "audience": "542c6390-bf38-4912-856b-8f31480e978b",
           "claim": "sub",
-          "identity_map": "sso_(.*) \\1\ngcp_(.*) \\2",
+          "identity_map": [
+            {
+              "cc_identity": "\\1",
+              "is_regex": true,
+              "token_identity": "sso_(.*)"
+            },
+            {
+              "cc_identity": "\\1",
+              "is_regex": true,
+              "token_identity": "gcp_(.*)"
+            }
+          ],
           "jwks": "{\"keys\":[{\"e\":\"AQAB\",\"use\":\"sig\",\"kty\":\"RSA\",\"alg\":\"RS256\",\"n\":\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\",\"kid\":\"9341dedeee2d1869b657fa930300082fe26b3d92\"}]}"
         },
         "required": [
@@ -12868,7 +12924,7 @@
         ]
       },
       "NullValue": {
-        "description": "`NullValue` is a singleton enumeration to represent the null value for the\n`Value` type union.\n\nThe JSON representation for `NullValue` is JSON `null`.\n\n - NULL_VALUE: Null value.",
+        "description": "`NullValue` is a singleton enumeration to represent the null value for the\n`Value` type union.\n\n The JSON representation for `NullValue` is JSON `null`.\n\n - NULL_VALUE: Null value.",
         "type": "string"
       },
       "OperatingSystem.Type": {

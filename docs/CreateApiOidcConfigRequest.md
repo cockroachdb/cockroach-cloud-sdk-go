@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Audience** | **string** |  | 
 **Claim** | Pointer to **string** |  | [optional] 
-**IdentityMap** | Pointer to **string** |  | [optional] 
+**IdentityMap** | Pointer to [**[]ApiOidcIdentityMapEntry**](ApiOidcIdentityMapEntry.md) |  | [optional] 
 **Issuer** | **string** |  | 
 **Jwks** | **string** |  | 
 
@@ -55,13 +55,13 @@ SetClaim sets Claim field to given value.
 
 ### GetIdentityMap
 
-`func (o *CreateApiOidcConfigRequest) GetIdentityMap() string`
+`func (o *CreateApiOidcConfigRequest) GetIdentityMap() []ApiOidcIdentityMapEntry`
 
 GetIdentityMap returns the IdentityMap field if non-nil, zero value otherwise.
 
 ### SetIdentityMap
 
-`func (o *CreateApiOidcConfigRequest) SetIdentityMap(v string)`
+`func (o *CreateApiOidcConfigRequest) SetIdentityMap(v []ApiOidcIdentityMapEntry)`
 
 SetIdentityMap sets IdentityMap field to given value.
 

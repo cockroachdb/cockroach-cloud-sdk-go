@@ -14,6 +14,7 @@ docs/ApiDatabase.md
 docs/ApiListDatabasesResponse.md
 docs/ApiOidcConfig.md
 docs/ApiOidcConfig1.md
+docs/ApiOidcIdentityMapEntry.md
 docs/AuditLogAction.md
 docs/AuditLogEntry.md
 docs/AuditLogMetadata.md
@@ -202,6 +203,7 @@ model_api_database.go
 model_api_list_databases_response.go
 model_api_oidc_config.go
 model_api_oidc_config_1.go
+model_api_oidc_identity_map_entry.go
 model_audit_log_action.go
 model_audit_log_entry.go
 model_audit_log_metadata.go
