@@ -6,7 +6,7 @@ info:
     url: https://support.cockroachlabs.com
   description: An API for managing CockroachDB Cloud resources
   title: CockroachDB Cloud API
-  version: 2023-04-10
+  version: development
 externalDocs:
   description: Use the CockroachDB Cloud API
   url: https://www.cockroachlabs.com/docs/cockroachcloud/cloud-api.html
@@ -14,6 +14,29 @@ servers:
 - url: https://cockroachlabs.cloud
 security:
 - Bearer: []
+tags:
+- name: SCIM
+- name: Organizations
+- name: Clusters
+- name: SQL Users
+- name: SQL Privilege Grants
+- name: Databases
+- name: Customer-managed Encryption Keys
+- name: Client CA Certificates
+- name: Cluster SSO
+- name: Log Export
+- name: Metric Export
+- name: Audit Logs
+- name: IP Allowlists
+- name: Egress Rules
+- name: Billing
+- name: Maintenance Windows
+- name: Role Management
+- name: Folders
+- name: Version Deferral
+- name: OpenID Connect Configuration
+- name: Private Endpoint Services
+- name: PCI
 paths:
   /api/scim/v2/Groups:
     get:
@@ -556,6 +579,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
+      summary: List the SCIM resource types
       tags:
       - SCIM
       x-badges:
@@ -632,6 +656,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
+      summary: Get a SCIM resource type by ID
       tags:
       - SCIM
       x-badges:
@@ -701,6 +726,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
+      summary: List the SCIM schemas
       tags:
       - SCIM
       x-badges:
@@ -777,6 +803,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
+      summary: Get a SCIM schema by ID
       tags:
       - SCIM
       x-badges:
@@ -831,7 +858,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
-      summary: Return our SCIM configuration
+      summary: Return the SCIM Service Provider configuration
       tags:
       - SCIM
       x-badges:
@@ -1413,6 +1440,8 @@ paths:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
       summary: List all API OIDC configurations
+      tags:
+      - OpenID Connect Configuration
       x-badges:
       - color: red
         label: LIMITED ACCESS
@@ -1470,6 +1499,8 @@ paths:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
       summary: Create an API OIDC configuration
+      tags:
+      - OpenID Connect Configuration
       x-badges:
       - color: red
         label: LIMITED ACCESS
@@ -1532,6 +1563,8 @@ paths:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
       summary: Delete an API OIDC configuration
+      tags:
+      - OpenID Connect Configuration
       x-badges:
       - color: red
         label: LIMITED ACCESS
@@ -1591,6 +1624,8 @@ paths:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
       summary: Get an API OIDC configuration
+      tags:
+      - OpenID Connect Configuration
       x-badges:
       - color: red
         label: LIMITED ACCESS
@@ -1656,6 +1691,8 @@ paths:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
       summary: Update an API OIDC configuration
+      tags:
+      - OpenID Connect Configuration
       x-badges:
       - color: red
         label: LIMITED ACCESS
@@ -3623,6 +3660,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
+      summary: Delete the maintenance window for a cluster
       tags:
       - Maintenance Windows
       x-badges:
@@ -3683,6 +3721,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
+      summary: Get the maintenance window for a cluster
       tags:
       - Maintenance Windows
       x-badges:
@@ -3749,6 +3788,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
+      summary: Set the maintenance window for a cluster
       tags:
       - Maintenance Windows
       x-badges:
@@ -4170,6 +4210,199 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
             --header 'content-type: application/json' \
             --data '{"api_key":"datadog_api_key","site":"US1"}'
+  /api/v1/clusters/{cluster_id}/metricexport/prometheus:
+    delete:
+      operationId: CockroachCloud_DeletePrometheusMetricExport
+      parameters:
+      - explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteMetricExportResponse'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Delete the Prometheus Metric Export configuration for a cluster
+      tags:
+      - Metric Export
+      x-badges:
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request DELETE \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/metricexport/prometheus \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+    get:
+      operationId: CockroachCloud_GetPrometheusMetricExportInfo
+      parameters:
+      - explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PrometheusMetricExportInfo'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Get the Prometheus Metric Export configuration for a cluster
+      tags:
+      - Metric Export
+      x-badges:
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request GET \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/metricexport/prometheus \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+    post:
+      operationId: CockroachCloud_EnablePrometheusMetricExport
+      parameters:
+      - explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              example: {}
+              type: object
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PrometheusMetricExportInfo'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Create or update the Prometheus Metric Export configuration for a cluster
+      tags:
+      - Metric Export
+      x-badges:
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request POST \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/metricexport/prometheus \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
+            --header 'content-type: application/json' \
+            --data '{}'
   /api/v1/clusters/{cluster_id}/networking/allowlist:
     get:
       description: |
@@ -4834,7 +5067,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
-      summary: List all egress rules associates with a cluster
+      summary: List all egress rules associated with a cluster
       tags:
       - Egress Rules
       x-badges:
@@ -6141,6 +6374,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
+      summary: Get the version upgrade deferral policy for a cluster.
+      tags:
+      - Version Deferral
       x-badges:
       - color: blue
         label: PREVIEW
@@ -6205,6 +6441,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
+      summary: Set the version upgrade deferral policy for a cluster
+      tags:
+      - Version Deferral
       x-badges:
       - color: blue
         label: PREVIEW
@@ -6472,7 +6711,8 @@ paths:
             --data '{"name":"folder_name","parent_id":"12345678-1234-1234-1234-123456789012"}'
   /api/v1/folders/{folder_id}/contents:
     get:
-      description: Set `folder_id` to 'root' to list root level contents.
+      description: "Set `folder_id` to 'root' to list root level contents.  Sort order:\
+        \ Folders sorted by name, followed by Clusters sorted by name."
       operationId: CockroachCloud_ListFolderContents
       parameters:
       - explode: false
@@ -6834,9 +7074,6 @@ paths:
       summary: List all RoleGrants
       tags:
       - Role Management
-      x-badges:
-      - color: blue
-        label: PREVIEW
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -6900,9 +7137,6 @@ paths:
       summary: Get all Role Grants for a user
       tags:
       - Role Management
-      x-badges:
-      - color: blue
-        label: PREVIEW
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -6970,9 +7204,6 @@ paths:
       summary: Make a user's roles exactly those provided
       tags:
       - Role Management
-      x-badges:
-      - color: blue
-        label: PREVIEW
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -7074,9 +7305,6 @@ paths:
       summary: Remove the user from the given role
       tags:
       - Role Management
-      x-badges:
-      - color: blue
-        label: PREVIEW
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -7175,9 +7403,6 @@ paths:
       summary: Add the user to the given role
       tags:
       - Role Management
-      x-badges:
-      - color: blue
-        label: PREVIEW
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -7242,9 +7467,6 @@ paths:
       summary: Search person users by email address
       tags:
       - Role Management
-      x-badges:
-      - color: blue
-        label: PREVIEW
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -7620,6 +7842,31 @@ components:
       - AUDIT_LOG_ACTION_UPDATE_FOLDER
       - AUDIT_LOG_ACTION_ADD_PRIVATE_ENDPOINT_TRUSTED_OWNER
       - AUDIT_LOG_ACTION_REMOVE_PRIVATE_ENDPOINT_TRUSTED_OWNER
+      - AUDIT_LOG_ACTION_ADD_ALERT_RECIPIENT
+      - AUDIT_LOG_ACTION_REMOVE_ALERT_RECIPIENT
+      - AUDIT_LOG_ACTION_TOGGLE_ALERTS
+      - AUDIT_LOG_ACTION_TEST_ALERT_EMAIL
+      - AUDIT_LOG_ACTION_UPDATE_CMEK
+      - AUDIT_LOG_ACTION_REVOKE_CMEK
+      - AUDIT_LOG_ACTION_UPDATE_CLUSTER_LOG_EXPORT
+      - AUDIT_LOG_ACTION_DELETE_CLUSTER_LOG_EXPORT
+      - AUDIT_LOG_ACTION_UPDATE_CLUSTER_METRIC_EXPORT
+      - AUDIT_LOG_ACTION_DELETE_CLUSTER_METRIC_EXPORT
+      - AUDIT_LOG_ACTION_RESTORE_CLUSTER
+      - AUDIT_LOG_ACTION_UPDATE_CLUSTER_MAJOR_VERSION
+      - AUDIT_LOG_ACTION_ROLLBACK_CLUSTER_MAJOR_VERSION_UPDATE
+      - AUDIT_LOG_ACTION_FINALIZE_CLUSTER_MAJOR_VERSION_UPDATE
+      - AUDIT_LOG_ACTION_UPDATE_CLUSTER_VERSION_UPGRADE_DEFERRAL
+      - AUDIT_LOG_ACTION_SET_CLUSTER_MAINTENANCE_WINDOW
+      - AUDIT_LOG_ACTION_DELETE_CLUSTER_MAINTENANCE_WINDOW
+      - AUDIT_LOG_ACTION_SET_EGRESS_TRAFFIC_POLICY
+      - AUDIT_LOG_ACTION_ADD_EGRESS_RULE
+      - AUDIT_LOG_ACTION_EDIT_EGRESS_RULE
+      - AUDIT_LOG_ACTION_DELETE_EGRESS_RULE
+      - AUDIT_LOG_ACTION_ENABLE_CLOUD_ORG_SSO
+      - AUDIT_LOG_ACTION_ADD_AUTHENTICATION_METHOD
+      - AUDIT_LOG_ACTION_UPDATE_AUTHENTICATION_METHOD
+      - AUDIT_LOG_ACTION_DELETE_AUTHENTICATION_METHOD
       type: string
     AuditLogEntry:
       description: |-
@@ -8182,8 +8429,8 @@ components:
       properties:
         dedicated:
           $ref: '#/components/schemas/DedicatedHardwareConfig'
-        serverless:
-          $ref: '#/components/schemas/ServerlessClusterConfig'
+        shared:
+          $ref: '#/components/schemas/SharedClusterConfig'
       type: object
     ClusterMajorVersion:
       description: "For more information about CockroachDB cluster version support,\
@@ -8369,8 +8616,8 @@ components:
             Limited Access: The parent ID is a folder ID. An empty string or "root"
             will create a cluster at the root level.
           type: string
-        serverless:
-          $ref: '#/components/schemas/ServerlessClusterCreateSpecification'
+        shared:
+          $ref: '#/components/schemas/SharedClusterCreateSpecification'
       type: object
     CreateFolderRequest:
       example:
@@ -8380,8 +8627,9 @@ components:
         name:
           type: string
         parent_id:
-          description: "The parent ID is a folder ID. An empty string or \"root\"\
-            \ \nwill create a folder at the root level."
+          description: |-
+            The parent ID is a folder ID. An empty string or "root"
+            will create a folder at the root level.
           type: string
       required:
       - name
@@ -8392,49 +8640,7 @@ components:
         displayName: Test SCIM
         members: []
         schemas:
-        - "0": u
-          "1": r
-          "2": "n"
-          "3": ':'
-          "4": i
-          "5": e
-          "6": t
-          "7": f
-          "8": ':'
-          "9": p
-          "10": a
-          "11": r
-          "12": a
-          "13": m
-          "14": s
-          "15": ':'
-          "16": s
-          "17": c
-          "18": i
-          "19": m
-          "20": ':'
-          "21": s
-          "22": c
-          "23": h
-          "24": e
-          "25": m
-          "26": a
-          "27": s
-          "28": ':'
-          "29": c
-          "30": o
-          "31": r
-          "32": e
-          "33": ':'
-          "34": "2"
-          "35": "."
-          "36": "0"
-          "37": ':'
-          "38": G
-          "39": r
-          "40": o
-          "41": u
-          "42": p
+        - urn:ietf:params:scim:schemas:core:2.0:Group
       properties:
         displayName:
           type: string
@@ -8465,48 +8671,7 @@ components:
           familyName: Roach
           givenName: Carl
         schemas:
-        - "0": u
-          "1": r
-          "2": "n"
-          "3": ':'
-          "4": i
-          "5": e
-          "6": t
-          "7": f
-          "8": ':'
-          "9": p
-          "10": a
-          "11": r
-          "12": a
-          "13": m
-          "14": s
-          "15": ':'
-          "16": s
-          "17": c
-          "18": i
-          "19": m
-          "20": ':'
-          "21": s
-          "22": c
-          "23": h
-          "24": e
-          "25": m
-          "26": a
-          "27": s
-          "28": ':'
-          "29": c
-          "30": o
-          "31": r
-          "32": e
-          "33": ':'
-          "34": "2"
-          "35": "."
-          "36": "0"
-          "37": ':'
-          "38": U
-          "39": s
-          "40": e
-          "41": r
+        - urn:ietf:params:scim:schemas:core:2.0:User
         userName: croach@example.com
       properties:
         active:
@@ -8910,8 +9075,9 @@ components:
             belongs to.
           type: string
         parent_id:
-          description: "parent_id is the id of the resource's parent folder. \n\"\
-            root\" represents a root level resource."
+          description: |-
+            parent_id is the id of the resource's parent folder.
+            "root" represents a root level resource.
           type: string
         path:
           description: path contains the ids and names of ancestors that make up the
@@ -10886,6 +11052,29 @@ components:
       enum:
       - AWS_ACCOUNT_ID
       type: string
+    PrometheusMetricExportInfo:
+      example:
+        cluster_id: cluster_id
+        user_message: user_message
+        targets:
+          key: targets
+        status: null
+      properties:
+        cluster_id:
+          type: string
+        status:
+          $ref: '#/components/schemas/MetricExportStatus.Type'
+        targets:
+          additionalProperties:
+            type: string
+          description: targets is a map of ports exposing metrics to regions.
+          type: object
+        user_message:
+          type: string
+      required:
+      - cluster_id
+      title: PrometheusMetricExportInfo
+      type: object
     QuantityUnit.Type:
       enum:
       - HOURS
@@ -11355,87 +11544,6 @@ components:
         userName:
           type: string
       type: object
-    ServerlessClusterConfig:
-      properties:
-        routing_id:
-          description: routing_id is used to identify the cluster in a connection
-            string.
-          type: string
-        spend_limit:
-          description: |-
-            spend_limit is the maximum monthly charge for a cluster, in US cents. We
-            recommend using usage_limits instead, since spend_limit will be deprecated
-            in the future.
-          format: int32
-          type: integer
-        usage_limits:
-          $ref: '#/components/schemas/UsageLimits'
-      required:
-      - routing_id
-      type: object
-    ServerlessClusterCreateSpecification:
-      properties:
-        primary_region:
-          description: |-
-            Preview: Specify which region should be made the primary region.
-            This is only applicable to multi-region Serverless clusters.
-            This field is required if you create the cluster in more than
-            one region.
-          type: string
-        regions:
-          description: |-
-            Region values should match the cloud provider's zone code.
-            For example, for Oregon, set region_name to "us-west2" for
-            GCP and "us-west-2" for AWS.
-          items:
-            type: string
-          type: array
-        spend_limit:
-          description: |-
-            spend_limit is the maximum monthly charge for a cluster, in US cents. We
-            recommend using usage_limits instead, since spend_limit will be deprecated
-            in the future.
-          format: int32
-          type: integer
-        usage_limits:
-          $ref: '#/components/schemas/UsageLimits'
-        with_empty_ip_allowlist:
-          description: |-
-            WithEmptyIPAllowlist creates a cluster with no entries in the IP Allowlist.
-            By default, Serverless clusters have one IP allowlist entry that opens the cluster to any IP.
-            Set this property to true to ensure the cluster is closed to public traffic by default.
-          type: boolean
-      required:
-      - regions
-      type: object
-    ServerlessClusterUpdateSpecification:
-      properties:
-        primary_region:
-          description: |-
-            Preview: Specify which region should be made the primary region.
-            This is only applicable to multi-region Serverless clusters.
-            This field is required if the regions field contains more than one region.
-          type: string
-        regions:
-          description: |-
-            Region values should match the cloud provider's zone code.
-            For example, for Oregon, set region_name to "us-west2" for
-            GCP and "us-west-2" for AWS. If this field is provided, the cluster's
-            regions will be changed to match this list.
-            Regions cannot currently be removed.
-          items:
-            type: string
-          type: array
-        spend_limit:
-          description: |-
-            spend_limit is the maximum monthly charge for a cluster, in US cents. We
-            recommend using usage_limits instead, since spend_limit will be deprecated
-            in the future.
-          format: int32
-          type: integer
-        usage_limits:
-          $ref: '#/components/schemas/UsageLimits'
-      type: object
     SetAWSEndpointConnectionStatus.Type:
       description: |2-
          - AVAILABLE: accept/verify the connection on the service side.
@@ -11444,6 +11552,64 @@ components:
       - AVAILABLE
       - REJECTED
       type: string
+    SharedClusterConfig:
+      properties:
+        routing_id:
+          description: routing_id is used to identify the cluster in a connection
+            string.
+          type: string
+        usage_limits:
+          $ref: '#/components/schemas/UsageLimits'
+      required:
+      - routing_id
+      type: object
+    SharedClusterCreateSpecification:
+      properties:
+        primary_region:
+          description: |-
+            Specify which region should be made the primary region. This is only
+            applicable to multi-region shared clusters. This field is required if
+            you create the cluster in more than one region.
+          type: string
+        regions:
+          description: |-
+            Region values should match the cloud provider's zone code. For example, for
+            Oregon, set region_name to "us-west2" for GCP and "us-west-2" for AWS.
+          items:
+            type: string
+          type: array
+        usage_limits:
+          $ref: '#/components/schemas/UsageLimits'
+        with_empty_ip_allowlist:
+          description: |-
+            WithEmptyIPAllowlist creates a cluster with no entries in the IP Allowlist.
+            By default, shared clusters have one IP allowlist entry that opens the
+            cluster to any IP. Set this property to true to ensure the cluster is
+            closed to public traffic by default.
+          type: boolean
+      required:
+      - regions
+      type: object
+    SharedClusterUpdateSpecification:
+      properties:
+        primary_region:
+          description: |-
+            Specify which region should be made the primary region. This is only
+            applicable to multi-region shared clusters. This field is required if the
+            regions field contains more than one region.
+          type: string
+        regions:
+          description: |-
+            Region values should match the cloud provider's zone code. For example, for
+            Oregon, set region_name to "us-west2" for GCP and "us-west-2" for AWS. If
+            this field is provided, the cluster's regions will be changed to match this
+            list. Regions cannot currently be removed.
+          items:
+            type: string
+          type: array
+        usage_limits:
+          $ref: '#/components/schemas/UsageLimits'
+      type: object
     SortOrder:
       description: |2-
          - ASC: Sort in ascending order. This is the default unless otherwise specified.
@@ -11490,8 +11656,8 @@ components:
             Limited Access: The parent ID is a folder ID. An empty string or "root"
             represents the root level.
           type: string
-        serverless:
-          $ref: '#/components/schemas/ServerlessClusterUpdateSpecification'
+        shared:
+          $ref: '#/components/schemas/SharedClusterUpdateSpecification'
         upgrade_status:
           $ref: '#/components/schemas/ClusterUpgradeStatus.Type'
       type: object
@@ -11516,6 +11682,17 @@ components:
             is disabled until the limit is increased, or until the beginning of the
             next month when more free request units are granted. It is an error for
             this to be zero.
+          format: int64
+          type: integer
+        request_unit_rate_limit:
+          description: |-
+            request_unit_rate_limit is the maximum number of request units that the
+            cluster can consume per second.
+
+            NOTE: In the current CLOUD_2_0_INCLUDE state, callers *must* pass zero for
+            the other two limits when passing a positive provisioned RUs amount. When
+            the CLOUD_2_0_INCLUDE tag is removed we should loosen the required field
+            constraints.
           format: int64
           type: integer
         storage_mib_limit:

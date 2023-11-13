@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Dedicated** | Pointer to [**DedicatedHardwareConfig**](DedicatedHardwareConfig.md) |  | [optional] 
-**Serverless** | Pointer to [**ServerlessClusterConfig**](ServerlessClusterConfig.md) |  | [optional] 
+**Shared** | Pointer to [**SharedClusterConfig**](SharedClusterConfig.md) |  | [optional] 
 
 ## Methods
 
@@ -30,17 +30,17 @@ GetDedicated returns the Dedicated field if non-nil, zero value otherwise.
 
 SetDedicated sets Dedicated field to given value.
 
-### GetServerless
+### GetShared
 
-`func (o *ClusterConfig) GetServerless() ServerlessClusterConfig`
+`func (o *ClusterConfig) GetShared() SharedClusterConfig`
 
-GetServerless returns the Serverless field if non-nil, zero value otherwise.
+GetShared returns the Shared field if non-nil, zero value otherwise.
 
-### SetServerless
+### SetShared
 
-`func (o *ClusterConfig) SetServerless(v ServerlessClusterConfig)`
+`func (o *ClusterConfig) SetShared(v SharedClusterConfig)`
 
-SetServerless sets Serverless field to given value.
+SetShared sets Shared field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

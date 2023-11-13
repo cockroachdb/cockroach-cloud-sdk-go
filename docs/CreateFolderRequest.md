@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** |  | 
-**ParentId** | Pointer to **string** | The parent ID is a folder ID. An empty string or \&quot;root\&quot;  will create a folder at the root level. | [optional] 
+**ParentId** | Pointer to **string** | The parent ID is a folder ID. An empty string or \&quot;root\&quot; will create a folder at the root level. | [optional] 
 
 ## Methods
 

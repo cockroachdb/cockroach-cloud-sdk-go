@@ -1,16 +1,14 @@
-# Default
+# OpenIDConnectConfiguration
 
 All URIs are relative to *https://cockroachlabs.cloud*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateApiOidcConfig**](DefaultApi.md#CreateApiOidcConfig) | **Post** /api/v1/api_oidc | Create an API OIDC configuration
-[**DeleteApiOidcConfig**](DefaultApi.md#DeleteApiOidcConfig) | **Delete** /api/v1/api_oidc/{id} | Delete an API OIDC configuration
-[**GetApiOidcConfig**](DefaultApi.md#GetApiOidcConfig) | **Get** /api/v1/api_oidc/{id} | Get an API OIDC configuration
-[**GetClusterVersionDeferral**](DefaultApi.md#GetClusterVersionDeferral) | **Get** /api/v1/clusters/{cluster_id}/version-deferral | 
-[**ListApiOidcConfig**](DefaultApi.md#ListApiOidcConfig) | **Get** /api/v1/api_oidc | List all API OIDC configurations
-[**SetClusterVersionDeferral**](DefaultApi.md#SetClusterVersionDeferral) | **Put** /api/v1/clusters/{cluster_id}/version-deferral | 
-[**UpdateApiOidcConfig**](DefaultApi.md#UpdateApiOidcConfig) | **Put** /api/v1/api_oidc/{id} | Update an API OIDC configuration
+[**CreateApiOidcConfig**](OpenIDConnectConfigurationApi.md#CreateApiOidcConfig) | **Post** /api/v1/api_oidc | Create an API OIDC configuration
+[**DeleteApiOidcConfig**](OpenIDConnectConfigurationApi.md#DeleteApiOidcConfig) | **Delete** /api/v1/api_oidc/{id} | Delete an API OIDC configuration
+[**GetApiOidcConfig**](OpenIDConnectConfigurationApi.md#GetApiOidcConfig) | **Get** /api/v1/api_oidc/{id} | Get an API OIDC configuration
+[**ListApiOidcConfig**](OpenIDConnectConfigurationApi.md#ListApiOidcConfig) | **Get** /api/v1/api_oidc | List all API OIDC configurations
+[**UpdateApiOidcConfig**](OpenIDConnectConfigurationApi.md#UpdateApiOidcConfig) | **Put** /api/v1/api_oidc/{id} | Update an API OIDC configuration
 
 
 
@@ -37,13 +35,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
-    resp, r, err := api_client.DefaultApi.CreateApiOidcConfig(context.Background()).CreateApiOidcConfigRequest(createApiOidcConfigRequest).Execute()
+    resp, r, err := api_client.OpenIDConnectConfigurationApi.CreateApiOidcConfig(context.Background()).CreateApiOidcConfigRequest(createApiOidcConfigRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.CreateApiOidcConfig``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `OpenIDConnectConfigurationApi.CreateApiOidcConfig``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateApiOidcConfig`: ApiOidcConfig
-    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.CreateApiOidcConfig`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `OpenIDConnectConfigurationApi.CreateApiOidcConfig`: %v\n", resp)
 }
 ```
 
@@ -100,13 +98,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
-    resp, r, err := api_client.DefaultApi.DeleteApiOidcConfig(context.Background(), id).Execute()
+    resp, r, err := api_client.OpenIDConnectConfigurationApi.DeleteApiOidcConfig(context.Background(), id).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.DeleteApiOidcConfig``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `OpenIDConnectConfigurationApi.DeleteApiOidcConfig``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `DeleteApiOidcConfig`: ApiOidcConfig
-    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.DeleteApiOidcConfig`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `OpenIDConnectConfigurationApi.DeleteApiOidcConfig`: %v\n", resp)
 }
 ```
 
@@ -167,13 +165,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
-    resp, r, err := api_client.DefaultApi.GetApiOidcConfig(context.Background(), id).Execute()
+    resp, r, err := api_client.OpenIDConnectConfigurationApi.GetApiOidcConfig(context.Background(), id).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.GetApiOidcConfig``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `OpenIDConnectConfigurationApi.GetApiOidcConfig``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetApiOidcConfig`: ApiOidcConfig
-    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.GetApiOidcConfig`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `OpenIDConnectConfigurationApi.GetApiOidcConfig`: %v\n", resp)
 }
 ```
 
@@ -197,73 +195,6 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ApiOidcConfig**](ApiOidcConfig.md)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to README]](../README.md)
-
-
-## GetClusterVersionDeferral
-
-> ClusterVersionDeferral GetClusterVersionDeferral(ctx, clusterId).Execute()
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-    clusterId := "clusterId_example" // string | 
-
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewClient(configuration)
-    resp, r, err := api_client.DefaultApi.GetClusterVersionDeferral(context.Background(), clusterId).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.GetClusterVersionDeferral``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `GetClusterVersionDeferral`: ClusterVersionDeferral
-    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.GetClusterVersionDeferral`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**clusterId** | **string** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetClusterVersionDeferral struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
-### Return type
-
-[**ClusterVersionDeferral**](ClusterVersionDeferral.md)
 
 ### Authorization
 
@@ -305,13 +236,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
-    resp, r, err := api_client.DefaultApi.ListApiOidcConfig(context.Background()).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).Execute()
+    resp, r, err := api_client.OpenIDConnectConfigurationApi.ListApiOidcConfig(context.Background()).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.ListApiOidcConfig``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `OpenIDConnectConfigurationApi.ListApiOidcConfig``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListApiOidcConfig`: ListApiOidcConfigResponse
-    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.ListApiOidcConfig`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `OpenIDConnectConfigurationApi.ListApiOidcConfig`: %v\n", resp)
 }
 ```
 
@@ -348,75 +279,6 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## SetClusterVersionDeferral
-
-> ClusterVersionDeferral SetClusterVersionDeferral(ctx, clusterId).ClusterVersionDeferral(clusterVersionDeferral).Execute()
-
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-    clusterId := "clusterId_example" // string | 
-    clusterVersionDeferral := *openapiclient.NewClusterVersionDeferral(openapiclient.ClusterVersionDeferralPolicy.Type("NOT_DEFERRED")) // ClusterVersionDeferral | 
-
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewClient(configuration)
-    resp, r, err := api_client.DefaultApi.SetClusterVersionDeferral(context.Background(), clusterId).ClusterVersionDeferral(clusterVersionDeferral).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.SetClusterVersionDeferral``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `SetClusterVersionDeferral`: ClusterVersionDeferral
-    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.SetClusterVersionDeferral`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**clusterId** | **string** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiSetClusterVersionDeferral struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **clusterVersionDeferral** | [**ClusterVersionDeferral**](ClusterVersionDeferral.md) |  | 
-
-### Return type
-
-[**ClusterVersionDeferral**](ClusterVersionDeferral.md)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to README]](../README.md)
-
-
 ## UpdateApiOidcConfig
 
 > ApiOidcConfig UpdateApiOidcConfig(ctx, id).ApiOidcConfig1(apiOidcConfig1).Execute()
@@ -441,13 +303,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
-    resp, r, err := api_client.DefaultApi.UpdateApiOidcConfig(context.Background(), id).ApiOidcConfig1(apiOidcConfig1).Execute()
+    resp, r, err := api_client.OpenIDConnectConfigurationApi.UpdateApiOidcConfig(context.Background(), id).ApiOidcConfig1(apiOidcConfig1).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `DefaultApi.UpdateApiOidcConfig``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `OpenIDConnectConfigurationApi.UpdateApiOidcConfig``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateApiOidcConfig`: ApiOidcConfig
-    fmt.Fprintf(os.Stdout, "Response from `DefaultApi.UpdateApiOidcConfig`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `OpenIDConnectConfigurationApi.UpdateApiOidcConfig`: %v\n", resp)
 }
 ```
 

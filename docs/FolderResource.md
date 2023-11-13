@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** | name is the resource&#39;s name. | 
 **OrganizationId** | **string** | organization_id is the id of the organization this resource belongs to. | 
-**ParentId** | **string** | parent_id is the id of the resource&#39;s parent folder.  \&quot;root\&quot; represents a root level resource. | 
+**ParentId** | **string** | parent_id is the id of the resource&#39;s parent folder. \&quot;root\&quot; represents a root level resource. | 
 **Path** | [**[]PathSegment**](PathSegment.md) | path contains the ids and names of ancestors that make up the resource&#39;s lineage. | 
 **ResourceId** | **string** | resource_id is the resource&#39;s id. | 
 **ResourceType** | [**FolderResourceTypeType**](FolderResourceTypeType.md) |  | 
