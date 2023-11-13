@@ -8,7 +8,7 @@
     },
     "description": "An API for managing CockroachDB Cloud resources",
     "title": "CockroachDB Cloud API",
-    "version": "2023-04-10"
+    "version": "development"
   },
   "servers": [
     {
@@ -789,6 +789,7 @@
     "/api/scim/v2/ResourceTypes": {
       "get": {
         "operationId": "CockroachCloud_GetResourceTypes",
+        "summary": "List the SCIM resource types",
         "description": "This endpoint may be used by any member of the organization.",
         "parameters": [
           {
@@ -888,6 +889,7 @@
     "/api/scim/v2/ResourceTypes/{resourceId}": {
       "get": {
         "operationId": "CockroachCloud_GetResourceType",
+        "summary": "Get a SCIM resource type by ID",
         "description": "This endpoint may be used by any member of the organization.",
         "parameters": [
           {
@@ -995,6 +997,7 @@
     "/api/scim/v2/Schemas": {
       "get": {
         "operationId": "CockroachCloud_GetSchemas",
+        "summary": "List the SCIM schemas",
         "description": "This endpoint may be used by any member of the organization.",
         "parameters": [
           {
@@ -1094,6 +1097,7 @@
     "/api/scim/v2/Schemas/{schemaId}": {
       "get": {
         "operationId": "CockroachCloud_GetSchema",
+        "summary": "Get a SCIM schema by ID",
         "description": "This endpoint may be used by any member of the organization.",
         "parameters": [
           {
@@ -1201,7 +1205,7 @@
     "/api/scim/v2/ServiceProviderConfig": {
       "get": {
         "operationId": "CockroachCloud_GetServiceProviderConfig",
-        "summary": "Return our SCIM configuration",
+        "summary": "Return the SCIM Service Provider configuration",
         "description": "This endpoint may be used by any member of the organization.",
         "responses": {
           "200": {
@@ -2175,6 +2179,9 @@
             }
           }
         },
+        "tags": [
+          "OpenID Connect Configuration"
+        ],
         "x-badges": [
           {
             "color": "red",
@@ -2263,6 +2270,9 @@
             }
           }
         },
+        "tags": [
+          "OpenID Connect Configuration"
+        ],
         "x-badges": [
           {
             "color": "red",
@@ -2353,6 +2363,9 @@
             }
           }
         },
+        "tags": [
+          "OpenID Connect Configuration"
+        ],
         "x-badges": [
           {
             "color": "red",
@@ -2441,6 +2454,9 @@
             }
           }
         },
+        "tags": [
+          "OpenID Connect Configuration"
+        ],
         "x-badges": [
           {
             "color": "red",
@@ -2583,6 +2599,9 @@
             }
           }
         },
+        "tags": [
+          "OpenID Connect Configuration"
+        ],
         "x-badges": [
           {
             "color": "red",
@@ -5311,6 +5330,7 @@
     "/api/v1/clusters/{cluster_id}/maintenance-window": {
       "delete": {
         "operationId": "CockroachCloud_DeleteMaintenanceWindow",
+        "summary": "Delete the maintenance window for a cluster",
         "parameters": [
           {
             "name": "cluster_id",
@@ -5401,6 +5421,7 @@
       },
       "get": {
         "operationId": "CockroachCloud_GetMaintenanceWindow",
+        "summary": "Get the maintenance window for a cluster",
         "parameters": [
           {
             "name": "cluster_id",
@@ -5491,6 +5512,7 @@
       },
       "put": {
         "operationId": "CockroachCloud_SetMaintenanceWindow",
+        "summary": "Set the maintenance window for a cluster",
         "parameters": [
           {
             "name": "cluster_id",
@@ -6203,6 +6225,292 @@
           {
             "lang": "Shell + Curl",
             "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/metricexport/datadog \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"api_key\":\"datadog_api_key\",\"site\":\"US1\"}'"
+          }
+        ]
+      }
+    },
+    "/api/v1/clusters/{cluster_id}/metricexport/prometheus": {
+      "delete": {
+        "operationId": "CockroachCloud_DeletePrometheusMetricExport",
+        "summary": "Delete the Prometheus Metric Export configuration for a cluster",
+        "parameters": [
+          {
+            "name": "cluster_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteMetricExportResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Metric Export"
+        ],
+        "x-badges": [
+          {
+            "color": "blue",
+            "label": "PREVIEW"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request DELETE \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/metricexport/prometheus \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+          }
+        ]
+      },
+      "get": {
+        "operationId": "CockroachCloud_GetPrometheusMetricExportInfo",
+        "summary": "Get the Prometheus Metric Export configuration for a cluster",
+        "parameters": [
+          {
+            "name": "cluster_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PrometheusMetricExportInfo"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Metric Export"
+        ],
+        "x-badges": [
+          {
+            "color": "blue",
+            "label": "PREVIEW"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request GET \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/metricexport/prometheus \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+          }
+        ]
+      },
+      "post": {
+        "operationId": "CockroachCloud_EnablePrometheusMetricExport",
+        "summary": "Create or update the Prometheus Metric Export configuration for a cluster",
+        "parameters": [
+          {
+            "name": "cluster_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {}
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PrometheusMetricExportInfo"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Metric Export"
+        ],
+        "x-badges": [
+          {
+            "color": "blue",
+            "label": "PREVIEW"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/metricexport/prometheus \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{}'"
           }
         ]
       }
@@ -7019,7 +7327,7 @@
     "/api/v1/clusters/{cluster_id}/networking/egress-rules": {
       "get": {
         "operationId": "CockroachCloud_ListEgressRules",
-        "summary": "List all egress rules associates with a cluster",
+        "summary": "List all egress rules associated with a cluster",
         "description": "Sort order: Name\n\nCan be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
@@ -8979,6 +9287,7 @@
     "/api/v1/clusters/{cluster_id}/version-deferral": {
       "get": {
         "operationId": "CockroachCloud_GetClusterVersionDeferral",
+        "summary": "Get the version upgrade deferral policy for a cluster.",
         "parameters": [
           {
             "name": "cluster_id",
@@ -9051,6 +9360,9 @@
             }
           }
         },
+        "tags": [
+          "Version Deferral"
+        ],
         "x-badges": [
           {
             "color": "blue",
@@ -9066,6 +9378,7 @@
       },
       "put": {
         "operationId": "CockroachCloud_SetClusterVersionDeferral",
+        "summary": "Set the version upgrade deferral policy for a cluster",
         "parameters": [
           {
             "name": "cluster_id",
@@ -9148,6 +9461,9 @@
             }
           }
         },
+        "tags": [
+          "Version Deferral"
+        ],
         "x-badges": [
           {
             "color": "blue",
@@ -9544,7 +9860,7 @@
       "get": {
         "operationId": "CockroachCloud_ListFolderContents",
         "summary": "List contents of a folder",
-        "description": "Set `folder_id` to 'root' to list root level contents.",
+        "description": "Set `folder_id` to 'root' to list root level contents.  Sort order: Folders sorted by name, followed by Clusters sorted by name.",
         "parameters": [
           {
             "name": "folder_id",
@@ -10021,12 +10337,6 @@
         "tags": [
           "Role Management"
         ],
-        "x-badges": [
-          {
-            "color": "blue",
-            "label": "PREVIEW"
-          }
-        ],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -10114,12 +10424,6 @@
         },
         "tags": [
           "Role Management"
-        ],
-        "x-badges": [
-          {
-            "color": "blue",
-            "label": "PREVIEW"
-          }
         ],
         "x-codeSamples": [
           {
@@ -10238,12 +10542,6 @@
         },
         "tags": [
           "Role Management"
-        ],
-        "x-badges": [
-          {
-            "color": "blue",
-            "label": "PREVIEW"
-          }
         ],
         "x-codeSamples": [
           {
@@ -10375,12 +10673,6 @@
         "tags": [
           "Role Management"
         ],
-        "x-badges": [
-          {
-            "color": "blue",
-            "label": "PREVIEW"
-          }
-        ],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -10509,12 +10801,6 @@
         "tags": [
           "Role Management"
         ],
-        "x-badges": [
-          {
-            "color": "blue",
-            "label": "PREVIEW"
-          }
-        ],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -10603,12 +10889,6 @@
         },
         "tags": [
           "Role Management"
-        ],
-        "x-badges": [
-          {
-            "color": "blue",
-            "label": "PREVIEW"
-          }
         ],
         "x-codeSamples": [
           {
@@ -10842,7 +11122,32 @@
           "AUDIT_LOG_ACTION_DELETE_FOLDER",
           "AUDIT_LOG_ACTION_UPDATE_FOLDER",
           "AUDIT_LOG_ACTION_ADD_PRIVATE_ENDPOINT_TRUSTED_OWNER",
-          "AUDIT_LOG_ACTION_REMOVE_PRIVATE_ENDPOINT_TRUSTED_OWNER"
+          "AUDIT_LOG_ACTION_REMOVE_PRIVATE_ENDPOINT_TRUSTED_OWNER",
+          "AUDIT_LOG_ACTION_ADD_ALERT_RECIPIENT",
+          "AUDIT_LOG_ACTION_REMOVE_ALERT_RECIPIENT",
+          "AUDIT_LOG_ACTION_TOGGLE_ALERTS",
+          "AUDIT_LOG_ACTION_TEST_ALERT_EMAIL",
+          "AUDIT_LOG_ACTION_UPDATE_CMEK",
+          "AUDIT_LOG_ACTION_REVOKE_CMEK",
+          "AUDIT_LOG_ACTION_UPDATE_CLUSTER_LOG_EXPORT",
+          "AUDIT_LOG_ACTION_DELETE_CLUSTER_LOG_EXPORT",
+          "AUDIT_LOG_ACTION_UPDATE_CLUSTER_METRIC_EXPORT",
+          "AUDIT_LOG_ACTION_DELETE_CLUSTER_METRIC_EXPORT",
+          "AUDIT_LOG_ACTION_RESTORE_CLUSTER",
+          "AUDIT_LOG_ACTION_UPDATE_CLUSTER_MAJOR_VERSION",
+          "AUDIT_LOG_ACTION_ROLLBACK_CLUSTER_MAJOR_VERSION_UPDATE",
+          "AUDIT_LOG_ACTION_FINALIZE_CLUSTER_MAJOR_VERSION_UPDATE",
+          "AUDIT_LOG_ACTION_UPDATE_CLUSTER_VERSION_UPGRADE_DEFERRAL",
+          "AUDIT_LOG_ACTION_SET_CLUSTER_MAINTENANCE_WINDOW",
+          "AUDIT_LOG_ACTION_DELETE_CLUSTER_MAINTENANCE_WINDOW",
+          "AUDIT_LOG_ACTION_SET_EGRESS_TRAFFIC_POLICY",
+          "AUDIT_LOG_ACTION_ADD_EGRESS_RULE",
+          "AUDIT_LOG_ACTION_EDIT_EGRESS_RULE",
+          "AUDIT_LOG_ACTION_DELETE_EGRESS_RULE",
+          "AUDIT_LOG_ACTION_ENABLE_CLOUD_ORG_SSO",
+          "AUDIT_LOG_ACTION_ADD_AUTHENTICATION_METHOD",
+          "AUDIT_LOG_ACTION_UPDATE_AUTHENTICATION_METHOD",
+          "AUDIT_LOG_ACTION_DELETE_AUTHENTICATION_METHOD"
         ]
       },
       "AuditLogEntry": {
@@ -11320,8 +11625,8 @@
           "dedicated": {
             "$ref": "#/components/schemas/DedicatedHardwareConfig"
           },
-          "serverless": {
-            "$ref": "#/components/schemas/ServerlessClusterConfig"
+          "shared": {
+            "$ref": "#/components/schemas/SharedClusterConfig"
           }
         }
       },
@@ -11539,8 +11844,8 @@
             "description": "Limited Access: The parent ID is a folder ID. An empty string or \"root\"\nwill create a cluster at the root level.",
             "type": "string"
           },
-          "serverless": {
-            "$ref": "#/components/schemas/ServerlessClusterCreateSpecification"
+          "shared": {
+            "$ref": "#/components/schemas/SharedClusterCreateSpecification"
           }
         }
       },
@@ -11551,7 +11856,7 @@
             "type": "string"
           },
           "parent_id": {
-            "description": "The parent ID is a folder ID. An empty string or \"root\" \nwill create a folder at the root level.",
+            "description": "The parent ID is a folder ID. An empty string or \"root\"\nwill create a folder at the root level.",
             "type": "string"
           }
         },
@@ -11590,51 +11895,7 @@
           "displayName": "Test SCIM",
           "members": [],
           "schemas": [
-            {
-              "0": "u",
-              "1": "r",
-              "2": "n",
-              "3": ":",
-              "4": "i",
-              "5": "e",
-              "6": "t",
-              "7": "f",
-              "8": ":",
-              "9": "p",
-              "10": "a",
-              "11": "r",
-              "12": "a",
-              "13": "m",
-              "14": "s",
-              "15": ":",
-              "16": "s",
-              "17": "c",
-              "18": "i",
-              "19": "m",
-              "20": ":",
-              "21": "s",
-              "22": "c",
-              "23": "h",
-              "24": "e",
-              "25": "m",
-              "26": "a",
-              "27": "s",
-              "28": ":",
-              "29": "c",
-              "30": "o",
-              "31": "r",
-              "32": "e",
-              "33": ":",
-              "34": "2",
-              "35": ".",
-              "36": "0",
-              "37": ":",
-              "38": "G",
-              "39": "r",
-              "40": "o",
-              "41": "u",
-              "42": "p"
-            }
+            "urn:ietf:params:scim:schemas:core:2.0:Group"
           ]
         },
         "required": [
@@ -11689,50 +11950,7 @@
             "givenName": "Carl"
           },
           "schemas": [
-            {
-              "0": "u",
-              "1": "r",
-              "2": "n",
-              "3": ":",
-              "4": "i",
-              "5": "e",
-              "6": "t",
-              "7": "f",
-              "8": ":",
-              "9": "p",
-              "10": "a",
-              "11": "r",
-              "12": "a",
-              "13": "m",
-              "14": "s",
-              "15": ":",
-              "16": "s",
-              "17": "c",
-              "18": "i",
-              "19": "m",
-              "20": ":",
-              "21": "s",
-              "22": "c",
-              "23": "h",
-              "24": "e",
-              "25": "m",
-              "26": "a",
-              "27": "s",
-              "28": ":",
-              "29": "c",
-              "30": "o",
-              "31": "r",
-              "32": "e",
-              "33": ":",
-              "34": "2",
-              "35": ".",
-              "36": "0",
-              "37": ":",
-              "38": "U",
-              "39": "s",
-              "40": "e",
-              "41": "r"
-            }
+            "urn:ietf:params:scim:schemas:core:2.0:User"
           ],
           "userName": "croach@example.com"
         },
@@ -12078,7 +12296,7 @@
             "type": "string"
           },
           "parent_id": {
-            "description": "parent_id is the id of the resource's parent folder. \n\"root\" represents a root level resource.",
+            "description": "parent_id is the id of the resource's parent folder.\n\"root\" represents a root level resource.",
             "type": "string"
           },
           "path": {
@@ -13105,6 +13323,31 @@
           "AWS_ACCOUNT_ID"
         ]
       },
+      "PrometheusMetricExportInfo": {
+        "type": "object",
+        "properties": {
+          "cluster_id": {
+            "type": "string"
+          },
+          "status": {
+            "$ref": "#/components/schemas/MetricExportStatus.Type"
+          },
+          "targets": {
+            "description": "targets is a map of ports exposing metrics to regions.",
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "user_message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "cluster_id"
+        ],
+        "title": "PrometheusMetricExportInfo"
+      },
       "QuantityUnit.Type": {
         "type": "string",
         "enum": [
@@ -13516,17 +13759,20 @@
           }
         }
       },
-      "ServerlessClusterConfig": {
+      "SetAWSEndpointConnectionStatus.Type": {
+        "description": " - AVAILABLE: accept/verify the connection on the service side.\n - REJECTED: reject the connection on the service side.",
+        "type": "string",
+        "enum": [
+          "AVAILABLE",
+          "REJECTED"
+        ]
+      },
+      "SharedClusterConfig": {
         "type": "object",
         "properties": {
           "routing_id": {
             "description": "routing_id is used to identify the cluster in a connection string.",
             "type": "string"
-          },
-          "spend_limit": {
-            "description": "spend_limit is the maximum monthly charge for a cluster, in US cents. We\nrecommend using usage_limits instead, since spend_limit will be deprecated\nin the future.",
-            "type": "integer",
-            "format": "int32"
           },
           "usage_limits": {
             "$ref": "#/components/schemas/UsageLimits"
@@ -13536,30 +13782,25 @@
           "routing_id"
         ]
       },
-      "ServerlessClusterCreateSpecification": {
+      "SharedClusterCreateSpecification": {
         "type": "object",
         "properties": {
           "primary_region": {
-            "description": "Preview: Specify which region should be made the primary region.\nThis is only applicable to multi-region Serverless clusters.\nThis field is required if you create the cluster in more than\none region.",
+            "description": "Specify which region should be made the primary region. This is only\napplicable to multi-region shared clusters. This field is required if\nyou create the cluster in more than one region.",
             "type": "string"
           },
           "regions": {
-            "description": "Region values should match the cloud provider's zone code.\nFor example, for Oregon, set region_name to \"us-west2\" for\nGCP and \"us-west-2\" for AWS.",
+            "description": "Region values should match the cloud provider's zone code. For example, for\nOregon, set region_name to \"us-west2\" for GCP and \"us-west-2\" for AWS.",
             "type": "array",
             "items": {
               "type": "string"
             }
           },
-          "spend_limit": {
-            "description": "spend_limit is the maximum monthly charge for a cluster, in US cents. We\nrecommend using usage_limits instead, since spend_limit will be deprecated\nin the future.",
-            "type": "integer",
-            "format": "int32"
-          },
           "usage_limits": {
             "$ref": "#/components/schemas/UsageLimits"
           },
           "with_empty_ip_allowlist": {
-            "description": "WithEmptyIPAllowlist creates a cluster with no entries in the IP Allowlist.\nBy default, Serverless clusters have one IP allowlist entry that opens the cluster to any IP.\nSet this property to true to ensure the cluster is closed to public traffic by default.",
+            "description": "WithEmptyIPAllowlist creates a cluster with no entries in the IP Allowlist.\nBy default, shared clusters have one IP allowlist entry that opens the\ncluster to any IP. Set this property to true to ensure the cluster is\nclosed to public traffic by default.",
             "type": "boolean"
           }
         },
@@ -13567,37 +13808,24 @@
           "regions"
         ]
       },
-      "ServerlessClusterUpdateSpecification": {
+      "SharedClusterUpdateSpecification": {
         "type": "object",
         "properties": {
           "primary_region": {
-            "description": "Preview: Specify which region should be made the primary region.\nThis is only applicable to multi-region Serverless clusters.\nThis field is required if the regions field contains more than one region.",
+            "description": "Specify which region should be made the primary region. This is only\napplicable to multi-region shared clusters. This field is required if the\nregions field contains more than one region.",
             "type": "string"
           },
           "regions": {
-            "description": "Region values should match the cloud provider's zone code.\nFor example, for Oregon, set region_name to \"us-west2\" for\nGCP and \"us-west-2\" for AWS. If this field is provided, the cluster's\nregions will be changed to match this list.\nRegions cannot currently be removed.",
+            "description": "Region values should match the cloud provider's zone code. For example, for\nOregon, set region_name to \"us-west2\" for GCP and \"us-west-2\" for AWS. If\nthis field is provided, the cluster's regions will be changed to match this\nlist. Regions cannot currently be removed.",
             "type": "array",
             "items": {
               "type": "string"
             }
           },
-          "spend_limit": {
-            "description": "spend_limit is the maximum monthly charge for a cluster, in US cents. We\nrecommend using usage_limits instead, since spend_limit will be deprecated\nin the future.",
-            "type": "integer",
-            "format": "int32"
-          },
           "usage_limits": {
             "$ref": "#/components/schemas/UsageLimits"
           }
         }
-      },
-      "SetAWSEndpointConnectionStatus.Type": {
-        "description": " - AVAILABLE: accept/verify the connection on the service side.\n - REJECTED: reject the connection on the service side.",
-        "type": "string",
-        "enum": [
-          "AVAILABLE",
-          "REJECTED"
-        ]
       },
       "SortOrder": {
         "description": " - ASC: Sort in ascending order. This is the default unless otherwise specified.\n - DESC: Sort in descending order.",
@@ -13636,8 +13864,8 @@
             "description": "Limited Access: The parent ID is a folder ID. An empty string or \"root\"\nrepresents the root level.",
             "type": "string"
           },
-          "serverless": {
-            "$ref": "#/components/schemas/ServerlessClusterUpdateSpecification"
+          "shared": {
+            "$ref": "#/components/schemas/SharedClusterUpdateSpecification"
           },
           "upgrade_status": {
             "$ref": "#/components/schemas/ClusterUpgradeStatus.Type"
@@ -13679,6 +13907,11 @@
         "properties": {
           "request_unit_limit": {
             "description": "request_unit_limit is the maximum number of request units that the cluster\ncan consume during the month. If this limit is exceeded, then the cluster\nis disabled until the limit is increased, or until the beginning of the\nnext month when more free request units are granted. It is an error for\nthis to be zero.",
+            "type": "integer",
+            "format": "int64"
+          },
+          "request_unit_rate_limit": {
+            "description": "request_unit_rate_limit is the maximum number of request units that the\ncluster can consume per second.\n\nNOTE: In the current CLOUD_2_0_INCLUDE state, callers *must* pass zero for\nthe other two limits when passing a positive provisioned RUs amount. When\nthe CLOUD_2_0_INCLUDE tag is removed we should loosen the required field\nconstraints.",
             "type": "integer",
             "format": "int64"
           },
@@ -13848,6 +14081,74 @@
       }
     }
   },
+  "tags": [
+    {
+      "name": "SCIM"
+    },
+    {
+      "name": "Organizations"
+    },
+    {
+      "name": "Clusters"
+    },
+    {
+      "name": "SQL Users"
+    },
+    {
+      "name": "SQL Privilege Grants"
+    },
+    {
+      "name": "Databases"
+    },
+    {
+      "name": "Customer-managed Encryption Keys"
+    },
+    {
+      "name": "Client CA Certificates"
+    },
+    {
+      "name": "Cluster SSO"
+    },
+    {
+      "name": "Log Export"
+    },
+    {
+      "name": "Metric Export"
+    },
+    {
+      "name": "Audit Logs"
+    },
+    {
+      "name": "IP Allowlists"
+    },
+    {
+      "name": "Egress Rules"
+    },
+    {
+      "name": "Billing"
+    },
+    {
+      "name": "Maintenance Windows"
+    },
+    {
+      "name": "Role Management"
+    },
+    {
+      "name": "Folders"
+    },
+    {
+      "name": "Version Deferral"
+    },
+    {
+      "name": "OpenID Connect Configuration"
+    },
+    {
+      "name": "Private Endpoint Services"
+    },
+    {
+      "name": "PCI"
+    }
+  ],
   "externalDocs": {
     "description": "Use the CockroachDB Cloud API",
     "url": "https://www.cockroachlabs.com/docs/cockroachcloud/cloud-api.html"

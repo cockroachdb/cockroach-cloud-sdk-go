@@ -4,9 +4,9 @@ All URIs are relative to *https://cockroachlabs.cloud*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DeleteMaintenanceWindow**](MaintenanceWindowsApi.md#DeleteMaintenanceWindow) | **Delete** /api/v1/clusters/{cluster_id}/maintenance-window | 
-[**GetMaintenanceWindow**](MaintenanceWindowsApi.md#GetMaintenanceWindow) | **Get** /api/v1/clusters/{cluster_id}/maintenance-window | 
-[**SetMaintenanceWindow**](MaintenanceWindowsApi.md#SetMaintenanceWindow) | **Put** /api/v1/clusters/{cluster_id}/maintenance-window | 
+[**DeleteMaintenanceWindow**](MaintenanceWindowsApi.md#DeleteMaintenanceWindow) | **Delete** /api/v1/clusters/{cluster_id}/maintenance-window | Delete the maintenance window for a cluster
+[**GetMaintenanceWindow**](MaintenanceWindowsApi.md#GetMaintenanceWindow) | **Get** /api/v1/clusters/{cluster_id}/maintenance-window | Get the maintenance window for a cluster
+[**SetMaintenanceWindow**](MaintenanceWindowsApi.md#SetMaintenanceWindow) | **Put** /api/v1/clusters/{cluster_id}/maintenance-window | Set the maintenance window for a cluster
 
 
 
@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 > MaintenanceWindow DeleteMaintenanceWindow(ctx, clusterId).Execute()
 
-
+Delete the maintenance window for a cluster
 
 ### Example
 
@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 > MaintenanceWindow GetMaintenanceWindow(ctx, clusterId).Execute()
 
-
+Get the maintenance window for a cluster
 
 ### Example
 
@@ -148,7 +148,7 @@ Name | Type | Description  | Notes
 
 > MaintenanceWindow SetMaintenanceWindow(ctx, clusterId).MaintenanceWindow(maintenanceWindow).Execute()
 
-
+Set the maintenance window for a cluster
 
 ### Example
 

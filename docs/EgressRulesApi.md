@@ -8,7 +8,7 @@ Method | HTTP request | Description
 [**DeleteEgressRule**](EgressRulesApi.md#DeleteEgressRule) | **Delete** /api/v1/clusters/{cluster_id}/networking/egress-rules/{rule_id} | Delete an existing egress rule
 [**EditEgressRule**](EgressRulesApi.md#EditEgressRule) | **Patch** /api/v1/clusters/{cluster_id}/networking/egress-rules/{rule_id} | Edit an existing egress rule
 [**GetEgressRule**](EgressRulesApi.md#GetEgressRule) | **Get** /api/v1/clusters/{cluster_id}/networking/egress-rules/{rule_id} | Get an existing egress rule
-[**ListEgressRules**](EgressRulesApi.md#ListEgressRules) | **Get** /api/v1/clusters/{cluster_id}/networking/egress-rules | List all egress rules associates with a cluster
+[**ListEgressRules**](EgressRulesApi.md#ListEgressRules) | **Get** /api/v1/clusters/{cluster_id}/networking/egress-rules | List all egress rules associated with a cluster
 [**SetEgressTrafficPolicy**](EgressRulesApi.md#SetEgressTrafficPolicy) | **Post** /api/v1/clusters/{cluster_id}/networking/egress-rules/egress-traffic-policy | Outbound traffic management
 
 
@@ -320,7 +320,7 @@ Name | Type | Description  | Notes
 
 > ListEgressRulesResponse ListEgressRules(ctx, clusterId).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).Execute()
 
-List all egress rules associates with a cluster
+List all egress rules associated with a cluster
 
 Sort order: Name
 

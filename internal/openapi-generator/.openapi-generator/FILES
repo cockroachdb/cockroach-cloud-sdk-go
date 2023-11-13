@@ -73,7 +73,6 @@ docs/DedicatedHardwareConfig.md
 docs/DedicatedHardwareCreateSpecification.md
 docs/DedicatedHardwareUpdateSpecification.md
 docs/DedicatedMachineTypeSpecification.md
-docs/DefaultApi.md
 docs/DeleteEgressRuleResponse.md
 docs/DeleteMetricExportResponse.md
 docs/EditEgressRuleRequest.md
@@ -135,6 +134,7 @@ docs/MetricExportStatusType.md
 docs/NetworkVisibilityType.md
 docs/Node.md
 docs/NodeStatusType.md
+docs/OpenIDConnectConfigurationApi.md
 docs/OperatingSystemType.md
 docs/Organization.md
 docs/OrganizationUserRoleType.md
@@ -148,6 +148,7 @@ docs/PrivateEndpointServices.md
 docs/PrivateEndpointServicesApi.md
 docs/PrivateEndpointTrustedOwner.md
 docs/PrivateEndpointTrustedOwnerTypeType.md
+docs/PrometheusMetricExportInfo.md
 docs/QuantityUnitType.md
 docs/Region.md
 docs/RemovePrivateEndpointTrustedOwnerResponse.md
@@ -172,13 +173,13 @@ docs/ScimSchema.md
 docs/ScimSchemaAttribute.md
 docs/ScimSortSupport.md
 docs/ScimUser.md
-docs/ServerlessClusterConfig.md
-docs/ServerlessClusterCreateSpecification.md
-docs/ServerlessClusterUpdateSpecification.md
 docs/SetAWSEndpointConnectionStatusType.md
 docs/SetAwsEndpointConnectionStateRequest.md
 docs/SetClientCACertRequest.md
 docs/SetEgressTrafficPolicyRequest.md
+docs/SharedClusterConfig.md
+docs/SharedClusterCreateSpecification.md
+docs/SharedClusterUpdateSpecification.md
 docs/SortOrder.md
 docs/Status.md
 docs/UpdateCMEKStatusRequest.md
@@ -193,6 +194,7 @@ docs/UpdateUserRequest.md
 docs/UsageLimits.md
 docs/UserGroupRoleGrant.md
 docs/UserRoleGrants.md
+docs/VersionDeferralApi.md
 model_add_egress_rule_request.go
 model_add_egress_rule_response.go
 model_add_private_endpoint_trusted_owner_response.go
@@ -324,6 +326,7 @@ model_private_endpoint_service_status_type.go
 model_private_endpoint_services.go
 model_private_endpoint_trusted_owner.go
 model_private_endpoint_trusted_owner_type_type.go
+model_prometheus_metric_export_info.go
 model_quantity_unit_type.go
 model_region.go
 model_remove_private_endpoint_trusted_owner_response.go
@@ -344,13 +347,13 @@ model_scim_schema.go
 model_scim_schema_attribute.go
 model_scim_sort_support.go
 model_scim_user.go
-model_serverless_cluster_config.go
-model_serverless_cluster_create_specification.go
-model_serverless_cluster_update_specification.go
 model_set_aws_endpoint_connection_state_request.go
 model_set_aws_endpoint_connection_status_type.go
 model_set_client_ca_cert_request.go
 model_set_egress_traffic_policy_request.go
+model_shared_cluster_config.go
+model_shared_cluster_create_specification.go
+model_shared_cluster_update_specification.go
 model_sort_order.go
 model_sql_user.go
 model_status.go
