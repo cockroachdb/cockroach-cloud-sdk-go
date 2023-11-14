@@ -311,7 +311,7 @@ Name | Type | Description  | Notes
 
 ## ListAvailableRegions
 
-> ListAvailableRegionsResponse ListAvailableRegions(ctx).Provider(provider).Serverless(serverless).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).Execute()
+> ListAvailableRegionsResponse ListAvailableRegions(ctx).Provider(provider).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).Shared(shared).Execute()
 
 List the regions available for new clusters and nodes
 
@@ -334,15 +334,15 @@ import (
 
 func main() {
     provider := "provider_example" // string | Optional CloudProvider for filtering.   - GCP: The Google Cloud Platform cloud provider.  - AWS: The Amazon Web Services cloud provider.  - AZURE: Limited Access: The Azure cloud provider. (optional)
-    serverless := true // bool | Optional filter to only show regions available for serverless clusters. (optional) (default to false)
     paginationPage := "paginationPage_example" // string |  (optional)
     paginationLimit := int32(56) // int32 |  (optional)
     paginationAsOfTime := time.Now() // time.Time |  (optional)
     paginationSortOrder := "paginationSortOrder_example" // string |  - ASC: Sort in ascending order. This is the default unless otherwise specified.  - DESC: Sort in descending order. (optional)
+    shared := true // bool | Optional filter to only show regions available for shared clusters. (optional) (default to false)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
-    resp, r, err := api_client.ClustersApi.ListAvailableRegions(context.Background()).Provider(provider).Serverless(serverless).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).Execute()
+    resp, r, err := api_client.ClustersApi.ListAvailableRegions(context.Background()).Provider(provider).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).Shared(shared).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ClustersApi.ListAvailableRegions``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -364,11 +364,11 @@ Other parameters are passed through a pointer to a apiListAvailableRegions struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **provider** | **string** | Optional CloudProvider for filtering.   - GCP: The Google Cloud Platform cloud provider.  - AWS: The Amazon Web Services cloud provider.  - AZURE: Limited Access: The Azure cloud provider. | 
- **serverless** | **bool** | Optional filter to only show regions available for serverless clusters. | [default to false]
  **paginationPage** | **string** |  | 
  **paginationLimit** | **int32** |  | 
  **paginationAsOfTime** | **time.Time** |  | 
  **paginationSortOrder** | **string** |  - ASC: Sort in ascending order. This is the default unless otherwise specified.  - DESC: Sort in descending order. | 
+ **shared** | **bool** | Optional filter to only show regions available for shared clusters. | [default to false]
 
 ### Return type
 

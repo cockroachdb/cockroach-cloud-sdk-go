@@ -1681,9 +1681,6 @@ type ListAvailableRegionsOptions struct {
 	// Optional CloudProvider for filtering.   - GCP: The Google Cloud Platform cloud provider.  - AWS: The Amazon Web Services cloud provider.  - AZURE: Limited Access: The Azure cloud provider.
 	Provider *string
 
-	// Optional filter to only show regions available for serverless clusters.
-	Serverless *bool
-
 	PaginationPage *string
 
 	PaginationLimit *int32
@@ -1692,6 +1689,9 @@ type ListAvailableRegionsOptions struct {
 
 	//  - ASC: Sort in ascending order. This is the default unless otherwise specified.  - DESC: Sort in descending order.
 	PaginationSortOrder *string
+
+	// Optional filter to only show regions available for shared clusters.
+	Shared *bool
 }
 
 // ListAvailableRegions executes the request.
@@ -1717,9 +1717,6 @@ func (a *ServiceImpl) ListAvailableRegions(
 	if options.Provider != nil {
 		localVarQueryParams.Add("provider", parameterToString(*options.Provider, ""))
 	}
-	if options.Serverless != nil {
-		localVarQueryParams.Add("serverless", parameterToString(*options.Serverless, ""))
-	}
 	if options.PaginationPage != nil {
 		localVarQueryParams.Add("pagination.page", parameterToString(*options.PaginationPage, ""))
 	}
@@ -1731,6 +1728,9 @@ func (a *ServiceImpl) ListAvailableRegions(
 	}
 	if options.PaginationSortOrder != nil {
 		localVarQueryParams.Add("pagination.sort_order", parameterToString(*options.PaginationSortOrder, ""))
+	}
+	if options.Shared != nil {
+		localVarQueryParams.Add("shared", parameterToString(*options.Shared, ""))
 	}
 	// Determine the Content-Type header.
 	localVarHTTPContentTypes := []string{}
