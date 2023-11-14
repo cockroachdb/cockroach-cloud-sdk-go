@@ -3071,15 +3071,6 @@
             }
           },
           {
-            "name": "serverless",
-            "in": "query",
-            "description": "Optional filter to only show regions available for serverless clusters.",
-            "schema": {
-              "type": "boolean",
-              "default": "false"
-            }
-          },
-          {
             "name": "pagination.page",
             "in": "query",
             "schema": {
@@ -3112,6 +3103,15 @@
                 "ASC",
                 "DESC"
               ]
+            }
+          },
+          {
+            "name": "shared",
+            "in": "query",
+            "description": "Optional filter to only show regions available for shared clusters.",
+            "schema": {
+              "type": "boolean",
+              "default": "false"
             }
           }
         ],
@@ -3183,7 +3183,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request GET \\\n  --url 'https://cockroachlabs.cloud/api/v1/clusters/available-regions?provider=SOME_STRING_VALUE&serverless=SOME_BOOLEAN_VALUE&pagination.page=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.as_of_time=SOME_STRING_VALUE&pagination.sort_order=SOME_STRING_VALUE' \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+            "source": "curl --request GET \\\n  --url 'https://cockroachlabs.cloud/api/v1/clusters/available-regions?provider=SOME_STRING_VALUE&pagination.page=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.as_of_time=SOME_STRING_VALUE&pagination.sort_order=SOME_STRING_VALUE&shared=SOME_BOOLEAN_VALUE' \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
           }
         ]
       }
@@ -11464,7 +11464,7 @@
           "provider": {
             "$ref": "#/components/schemas/CloudProvider.Type"
           },
-          "serverless": {
+          "shared": {
             "type": "boolean"
           }
         },
@@ -11473,7 +11473,8 @@
           "location",
           "provider",
           "serverless",
-          "distance"
+          "distance",
+          "shared"
         ]
       },
       "CloudWatchMetricExportInfo": {
@@ -13225,12 +13226,12 @@
         "title": "person_user_info contains information about a person"
       },
       "Plan.Type": {
-        "description": " - DEDICATED: A paid plan that offers dedicated hardware in any location.\n - CUSTOM: A plan option that is used for clusters whose machine configs are not\nsupported in self-service. All INVOICE clusters are under this plan option.\n - SERVERLESS: A paid plan that runs on shared hardware and caps the users'\nmaximum monthly spending to a user-specified (possibly 0) amount.",
+        "description": " - BASIC: The Basic plan includes essential operational features, is available in\nselect regions, and offers on-demand capacity, making it ideal for small\nteams with unpredictable workloads.\n - STANDARD: The Standard plan includes standard enterprise security and monitoring\nfeatures, is available in all supported regions, and offers provisioned\npricing, making it the default choice for most CockroachDB production\nworkloads.\n - ADVANCED: The Advanced plan is ideal for workloads with stringent isolation,\ncompliance, and security requirements such as CMEK, PCI and HIPAA-readiness,\nand support for dedicated hardware. Customers are advised to have their\naccount team and/or Cockroach Labs Support <support@cockroachlabs.com>\ninvolved when provisioning Advanced clusters.",
         "type": "string",
         "enum": [
-          "DEDICATED",
-          "CUSTOM",
-          "SERVERLESS"
+          "BASIC",
+          "STANDARD",
+          "ADVANCED"
         ]
       },
       "PrivateEndpointService": {

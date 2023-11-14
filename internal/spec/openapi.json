@@ -99,9 +99,7 @@
             }
           }
         },
-        "tags": [
-          "SCIM"
-        ],
+        "tags": ["SCIM"],
         "x-badges": [
           {
             "color": "blue",
@@ -191,9 +189,7 @@
             }
           }
         },
-        "tags": [
-          "SCIM"
-        ],
+        "tags": ["SCIM"],
         "x-badges": [
           {
             "color": "blue",
@@ -285,9 +281,7 @@
             }
           }
         },
-        "tags": [
-          "SCIM"
-        ],
+        "tags": ["SCIM"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -373,9 +367,7 @@
             }
           }
         },
-        "tags": [
-          "SCIM"
-        ],
+        "tags": ["SCIM"],
         "x-badges": [
           {
             "color": "blue",
@@ -479,9 +471,7 @@
             }
           }
         },
-        "tags": [
-          "SCIM"
-        ],
+        "tags": ["SCIM"],
         "x-badges": [
           {
             "color": "blue",
@@ -592,9 +582,7 @@
                     }
                   ]
                 },
-                "required": [
-                  "displayName"
-                ],
+                "required": ["displayName"],
                 "title": "UpdateGroupRequest"
               }
             }
@@ -662,9 +650,7 @@
             }
           }
         },
-        "tags": [
-          "SCIM"
-        ],
+        "tags": ["SCIM"],
         "x-badges": [
           {
             "color": "blue",
@@ -775,9 +761,7 @@
             }
           }
         },
-        "tags": [
-          "SCIM"
-        ],
+        "tags": ["SCIM"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -869,9 +853,7 @@
             }
           }
         },
-        "tags": [
-          "SCIM"
-        ],
+        "tags": ["SCIM"],
         "x-badges": [
           {
             "color": "blue",
@@ -977,9 +959,7 @@
             }
           }
         },
-        "tags": [
-          "SCIM"
-        ],
+        "tags": ["SCIM"],
         "x-badges": [
           {
             "color": "blue",
@@ -1077,9 +1057,7 @@
             }
           }
         },
-        "tags": [
-          "SCIM"
-        ],
+        "tags": ["SCIM"],
         "x-badges": [
           {
             "color": "blue",
@@ -1185,9 +1163,7 @@
             }
           }
         },
-        "tags": [
-          "SCIM"
-        ],
+        "tags": ["SCIM"],
         "x-badges": [
           {
             "color": "blue",
@@ -1269,9 +1245,7 @@
             }
           }
         },
-        "tags": [
-          "SCIM"
-        ],
+        "tags": ["SCIM"],
         "x-badges": [
           {
             "color": "blue",
@@ -1376,9 +1350,7 @@
             }
           }
         },
-        "tags": [
-          "SCIM"
-        ],
+        "tags": ["SCIM"],
         "x-badges": [
           {
             "color": "blue",
@@ -1468,9 +1440,7 @@
             }
           }
         },
-        "tags": [
-          "SCIM"
-        ],
+        "tags": ["SCIM"],
         "x-badges": [
           {
             "color": "blue",
@@ -1562,9 +1532,7 @@
             }
           }
         },
-        "tags": [
-          "SCIM"
-        ],
+        "tags": ["SCIM"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -1650,9 +1618,7 @@
             }
           }
         },
-        "tags": [
-          "SCIM"
-        ],
+        "tags": ["SCIM"],
         "x-badges": [
           {
             "color": "blue",
@@ -1756,9 +1722,7 @@
             }
           }
         },
-        "tags": [
-          "SCIM"
-        ],
+        "tags": ["SCIM"],
         "x-badges": [
           {
             "color": "blue",
@@ -1882,9 +1846,7 @@
                     }
                   ]
                 },
-                "required": [
-                  "active"
-                ],
+                "required": ["active"],
                 "title": "UpdateUserRequest"
               }
             }
@@ -1952,9 +1914,7 @@
             }
           }
         },
-        "tags": [
-          "SCIM"
-        ],
+        "tags": ["SCIM"],
         "x-badges": [
           {
             "color": "blue",
@@ -2065,9 +2025,7 @@
             }
           }
         },
-        "tags": [
-          "SCIM"
-        ],
+        "tags": ["SCIM"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -2110,10 +2068,7 @@
             "description": " - ASC: Sort in ascending order. This is the default unless otherwise specified.\n - DESC: Sort in descending order.",
             "schema": {
               "type": "string",
-              "enum": [
-                "ASC",
-                "DESC"
-              ]
+              "enum": ["ASC", "DESC"]
             }
           }
         ],
@@ -2179,9 +2134,7 @@
             }
           }
         },
-        "tags": [
-          "OpenID Connect Configuration"
-        ],
+        "tags": ["OpenID Connect Configuration"],
         "x-badges": [
           {
             "color": "red",
@@ -2270,9 +2223,7 @@
             }
           }
         },
-        "tags": [
-          "OpenID Connect Configuration"
-        ],
+        "tags": ["OpenID Connect Configuration"],
         "x-badges": [
           {
             "color": "red",
@@ -2363,9 +2314,7 @@
             }
           }
         },
-        "tags": [
-          "OpenID Connect Configuration"
-        ],
+        "tags": ["OpenID Connect Configuration"],
         "x-badges": [
           {
             "color": "red",
@@ -2454,9 +2403,7 @@
             }
           }
         },
-        "tags": [
-          "OpenID Connect Configuration"
-        ],
+        "tags": ["OpenID Connect Configuration"],
         "x-badges": [
           {
             "color": "red",
@@ -2527,11 +2474,7 @@
                   ],
                   "jwks": "{\"keys\":[{\"e\":\"AQAB\",\"use\":\"sig\",\"kty\":\"RSA\",\"alg\":\"RS256\",\"n\":\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\",\"kid\":\"9341dedeee2d1869b657fa930300082fe26b3d92\"}]}"
                 },
-                "required": [
-                  "issuer",
-                  "audience",
-                  "jwks"
-                ],
+                "required": ["issuer", "audience", "jwks"],
                 "title": "ApiOidcConfig"
               }
             }
@@ -2599,9 +2542,7 @@
             }
           }
         },
-        "tags": [
-          "OpenID Connect Configuration"
-        ],
+        "tags": ["OpenID Connect Configuration"],
         "x-badges": [
           {
             "color": "red",
@@ -2637,10 +2578,7 @@
             "description": "sort_order is the direction of pagination, with starting_from as the\nstart point. If unset, the default is ascending order.\n\n - ASC: Sort in ascending order. This is the default unless otherwise specified.\n - DESC: Sort in descending order.",
             "schema": {
               "type": "string",
-              "enum": [
-                "ASC",
-                "DESC"
-              ]
+              "enum": ["ASC", "DESC"]
             }
           },
           {
@@ -2715,9 +2653,7 @@
             }
           }
         },
-        "tags": [
-          "Audit Logs"
-        ],
+        "tags": ["Audit Logs"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -2761,10 +2697,7 @@
             "description": " - ASC: Sort in ascending order. This is the default unless otherwise specified.\n - DESC: Sort in descending order.",
             "schema": {
               "type": "string",
-              "enum": [
-                "ASC",
-                "DESC"
-              ]
+              "enum": ["ASC", "DESC"]
             }
           }
         ],
@@ -2830,9 +2763,7 @@
             }
           }
         },
-        "tags": [
-          "Clusters"
-        ],
+        "tags": ["Clusters"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -2885,10 +2816,7 @@
             "description": " - ASC: Sort in ascending order. This is the default unless otherwise specified.\n - DESC: Sort in descending order.",
             "schema": {
               "type": "string",
-              "enum": [
-                "ASC",
-                "DESC"
-              ]
+              "enum": ["ASC", "DESC"]
             }
           }
         ],
@@ -2954,9 +2882,7 @@
             }
           }
         },
-        "tags": [
-          "Clusters"
-        ],
+        "tags": ["Clusters"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -3040,9 +2966,7 @@
             }
           }
         },
-        "tags": [
-          "Clusters"
-        ],
+        "tags": ["Clusters"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -3063,20 +2987,7 @@
             "description": "Optional CloudProvider for filtering.\n\n - GCP: The Google Cloud Platform cloud provider.\n - AWS: The Amazon Web Services cloud provider.\n - AZURE: Limited Access: The Azure cloud provider.",
             "schema": {
               "type": "string",
-              "enum": [
-                "GCP",
-                "AWS",
-                "AZURE"
-              ]
-            }
-          },
-          {
-            "name": "serverless",
-            "in": "query",
-            "description": "Optional filter to only show regions available for serverless clusters.",
-            "schema": {
-              "type": "boolean",
-              "default": "false"
+              "enum": ["GCP", "AWS", "AZURE"]
             }
           },
           {
@@ -3108,10 +3019,16 @@
             "description": " - ASC: Sort in ascending order. This is the default unless otherwise specified.\n - DESC: Sort in descending order.",
             "schema": {
               "type": "string",
-              "enum": [
-                "ASC",
-                "DESC"
-              ]
+              "enum": ["ASC", "DESC"]
+            }
+          },
+          {
+            "name": "shared",
+            "in": "query",
+            "description": "Optional filter to only show regions available for shared clusters.",
+            "schema": {
+              "type": "boolean",
+              "default": "false"
             }
           }
         ],
@@ -3177,13 +3094,11 @@
             }
           }
         },
-        "tags": [
-          "Clusters"
-        ],
+        "tags": ["Clusters"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request GET \\\n  --url 'https://cockroachlabs.cloud/api/v1/clusters/available-regions?provider=SOME_STRING_VALUE&serverless=SOME_BOOLEAN_VALUE&pagination.page=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.as_of_time=SOME_STRING_VALUE&pagination.sort_order=SOME_STRING_VALUE' \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+            "source": "curl --request GET \\\n  --url 'https://cockroachlabs.cloud/api/v1/clusters/available-regions?provider=SOME_STRING_VALUE&pagination.page=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.as_of_time=SOME_STRING_VALUE&pagination.sort_order=SOME_STRING_VALUE&shared=SOME_BOOLEAN_VALUE' \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
           }
         ]
       }
@@ -3265,9 +3180,7 @@
             }
           }
         },
-        "tags": [
-          "Clusters"
-        ],
+        "tags": ["Clusters"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -3351,9 +3264,7 @@
             }
           }
         },
-        "tags": [
-          "Clusters"
-        ],
+        "tags": ["Clusters"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -3447,9 +3358,7 @@
             }
           }
         },
-        "tags": [
-          "Clusters"
-        ],
+        "tags": ["Clusters"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -3535,9 +3444,7 @@
             }
           }
         },
-        "tags": [
-          "Client CA Certificates"
-        ],
+        "tags": ["Client CA Certificates"],
         "x-badges": [
           {
             "color": "blue",
@@ -3627,9 +3534,7 @@
             }
           }
         },
-        "tags": [
-          "Client CA Certificates"
-        ],
+        "tags": ["Client CA Certificates"],
         "x-badges": [
           {
             "color": "blue",
@@ -3738,9 +3643,7 @@
             }
           }
         },
-        "tags": [
-          "Client CA Certificates"
-        ],
+        "tags": ["Client CA Certificates"],
         "x-badges": [
           {
             "color": "blue",
@@ -3782,9 +3685,7 @@
                 "example": {
                   "x509_pem_cert": "-----BEGIN CERTIFICATE-----..."
                 },
-                "required": [
-                  "x509_pem_cert"
-                ],
+                "required": ["x509_pem_cert"],
                 "title": "SetClientCACertRequest"
               }
             }
@@ -3852,9 +3753,7 @@
             }
           }
         },
-        "tags": [
-          "Client CA Certificates"
-        ],
+        "tags": ["Client CA Certificates"],
         "x-badges": [
           {
             "color": "blue",
@@ -3946,9 +3845,7 @@
             }
           }
         },
-        "tags": [
-          "Customer-managed Encryption Keys"
-        ],
+        "tags": ["Customer-managed Encryption Keys"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -3984,9 +3881,7 @@
                 "example": {
                   "action": "REVOKE"
                 },
-                "required": [
-                  "action"
-                ],
+                "required": ["action"],
                 "title": "UpdateCMEKStatusRequest"
               }
             }
@@ -4054,9 +3949,7 @@
             }
           }
         },
-        "tags": [
-          "Customer-managed Encryption Keys"
-        ],
+        "tags": ["Customer-managed Encryption Keys"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -4104,9 +3997,7 @@
                     }
                   ]
                 },
-                "required": [
-                  "region_specs"
-                ],
+                "required": ["region_specs"],
                 "title": "CMEKClusterSpecification"
               }
             }
@@ -4174,9 +4065,7 @@
             }
           }
         },
-        "tags": [
-          "Customer-managed Encryption Keys"
-        ],
+        "tags": ["Customer-managed Encryption Keys"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -4224,9 +4113,7 @@
                     }
                   ]
                 },
-                "required": [
-                  "region_specs"
-                ],
+                "required": ["region_specs"],
                 "title": "CMEKClusterSpecification"
               }
             }
@@ -4294,9 +4181,7 @@
             }
           }
         },
-        "tags": [
-          "Customer-managed Encryption Keys"
-        ],
+        "tags": ["Customer-managed Encryption Keys"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -4340,11 +4225,7 @@
             "description": "os indicates the target operating system, used with formatting the default SSL certificate path.\nRequired only for dedicated clusters.",
             "schema": {
               "type": "string",
-              "enum": [
-                "MAC",
-                "LINUX",
-                "WINDOWS"
-              ]
+              "enum": ["MAC", "LINUX", "WINDOWS"]
             }
           }
         ],
@@ -4410,9 +4291,7 @@
             }
           }
         },
-        "tags": [
-          "Clusters"
-        ],
+        "tags": ["Clusters"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -4464,10 +4343,7 @@
             "description": " - ASC: Sort in ascending order. This is the default unless otherwise specified.\n - DESC: Sort in descending order.",
             "schema": {
               "type": "string",
-              "enum": [
-                "ASC",
-                "DESC"
-              ]
+              "enum": ["ASC", "DESC"]
             }
           }
         ],
@@ -4533,9 +4409,7 @@
             }
           }
         },
-        "tags": [
-          "Databases"
-        ],
+        "tags": ["Databases"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -4575,10 +4449,7 @@
                   "name": "example_database_name",
                   "new_name": "example_new_database_name"
                 },
-                "required": [
-                  "new_name",
-                  "name"
-                ],
+                "required": ["new_name", "name"],
                 "title": "UpdateDatabaseRequest"
               }
             }
@@ -4646,9 +4517,7 @@
             }
           }
         },
-        "tags": [
-          "Databases"
-        ],
+        "tags": ["Databases"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -4684,9 +4553,7 @@
                 "example": {
                   "name": "example_database_name"
                 },
-                "required": [
-                  "name"
-                ],
+                "required": ["name"],
                 "title": "CreateDatabaseRequest"
               }
             }
@@ -4754,9 +4621,7 @@
             }
           }
         },
-        "tags": [
-          "Databases"
-        ],
+        "tags": ["Databases"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -4850,9 +4715,7 @@
             }
           }
         },
-        "tags": [
-          "Databases"
-        ],
+        "tags": ["Databases"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -4897,9 +4760,7 @@
                   "name": "example_database_name",
                   "new_name": "example_new_database_name"
                 },
-                "required": [
-                  "new_name"
-                ],
+                "required": ["new_name"],
                 "title": "UpdateDatabaseRequest"
               }
             }
@@ -4967,9 +4828,7 @@
             }
           }
         },
-        "tags": [
-          "Databases"
-        ],
+        "tags": ["Databases"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -5055,9 +4914,7 @@
             }
           }
         },
-        "tags": [
-          "Log Export"
-        ],
+        "tags": ["Log Export"],
         "x-badges": [
           {
             "color": "blue",
@@ -5147,9 +5004,7 @@
             }
           }
         },
-        "tags": [
-          "Log Export"
-        ],
+        "tags": ["Log Export"],
         "x-badges": [
           {
             "color": "blue",
@@ -5222,27 +5077,17 @@
                   "auth_principal": "my-gcp-project-id",
                   "groups": [
                     {
-                      "channels": [
-                        "OPS",
-                        "HEALTH"
-                      ],
+                      "channels": ["OPS", "HEALTH"],
                       "log_name": "devops",
                       "min_level": "WARNING"
                     }
                   ],
                   "log_name": "default",
-                  "omitted_channels": [
-                    "SESSIONS",
-                    "SQL_PERF"
-                  ],
+                  "omitted_channels": ["SESSIONS", "SQL_PERF"],
                   "redact": true,
                   "type": "GCP_CLOUD_LOGGING"
                 },
-                "required": [
-                  "type",
-                  "log_name",
-                  "auth_principal"
-                ],
+                "required": ["type", "log_name", "auth_principal"],
                 "title": "EnableLogExportRequest"
               }
             }
@@ -5310,9 +5155,7 @@
             }
           }
         },
-        "tags": [
-          "Log Export"
-        ],
+        "tags": ["Log Export"],
         "x-badges": [
           {
             "color": "blue",
@@ -5403,9 +5246,7 @@
             }
           }
         },
-        "tags": [
-          "Maintenance Windows"
-        ],
+        "tags": ["Maintenance Windows"],
         "x-badges": [
           {
             "color": "blue",
@@ -5494,9 +5335,7 @@
             }
           }
         },
-        "tags": [
-          "Maintenance Windows"
-        ],
+        "tags": ["Maintenance Windows"],
         "x-badges": [
           {
             "color": "blue",
@@ -5595,9 +5434,7 @@
             }
           }
         },
-        "tags": [
-          "Maintenance Windows"
-        ],
+        "tags": ["Maintenance Windows"],
         "x-badges": [
           {
             "color": "blue",
@@ -5689,9 +5526,7 @@
             }
           }
         },
-        "tags": [
-          "Metric Export"
-        ],
+        "tags": ["Metric Export"],
         "x-badges": [
           {
             "color": "blue",
@@ -5781,9 +5616,7 @@
             }
           }
         },
-        "tags": [
-          "Metric Export"
-        ],
+        "tags": ["Metric Export"],
         "x-badges": [
           {
             "color": "blue",
@@ -5836,9 +5669,7 @@
                   "role_arn": "arn:aws:iam::account:role/ExampleRole",
                   "target_region": "us-east-1"
                 },
-                "required": [
-                  "role_arn"
-                ],
+                "required": ["role_arn"],
                 "title": "EnableCloudWatchMetricExportRequest"
               }
             }
@@ -5906,9 +5737,7 @@
             }
           }
         },
-        "tags": [
-          "Metric Export"
-        ],
+        "tags": ["Metric Export"],
         "x-badges": [
           {
             "color": "blue",
@@ -6000,9 +5829,7 @@
             }
           }
         },
-        "tags": [
-          "Metric Export"
-        ],
+        "tags": ["Metric Export"],
         "x-badges": [
           {
             "color": "blue",
@@ -6092,9 +5919,7 @@
             }
           }
         },
-        "tags": [
-          "Metric Export"
-        ],
+        "tags": ["Metric Export"],
         "x-badges": [
           {
             "color": "blue",
@@ -6141,10 +5966,7 @@
                   "api_key": "datadog_api_key",
                   "site": "US1"
                 },
-                "required": [
-                  "site",
-                  "api_key"
-                ],
+                "required": ["site", "api_key"],
                 "title": "EnableDatadogMetricExportRequest"
               }
             }
@@ -6212,9 +6034,7 @@
             }
           }
         },
-        "tags": [
-          "Metric Export"
-        ],
+        "tags": ["Metric Export"],
         "x-badges": [
           {
             "color": "blue",
@@ -6305,9 +6125,7 @@
             }
           }
         },
-        "tags": [
-          "Metric Export"
-        ],
+        "tags": ["Metric Export"],
         "x-badges": [
           {
             "color": "blue",
@@ -6396,9 +6214,7 @@
             }
           }
         },
-        "tags": [
-          "Metric Export"
-        ],
+        "tags": ["Metric Export"],
         "x-badges": [
           {
             "color": "blue",
@@ -6498,9 +6314,7 @@
             }
           }
         },
-        "tags": [
-          "Metric Export"
-        ],
+        "tags": ["Metric Export"],
         "x-badges": [
           {
             "color": "blue",
@@ -6558,10 +6372,7 @@
             "description": " - ASC: Sort in ascending order. This is the default unless otherwise specified.\n - DESC: Sort in descending order.",
             "schema": {
               "type": "string",
-              "enum": [
-                "ASC",
-                "DESC"
-              ]
+              "enum": ["ASC", "DESC"]
             }
           }
         ],
@@ -6627,9 +6438,7 @@
             }
           }
         },
-        "tags": [
-          "IP Allowlists"
-        ],
+        "tags": ["IP Allowlists"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -6723,9 +6532,7 @@
             }
           }
         },
-        "tags": [
-          "IP Allowlists"
-        ],
+        "tags": ["IP Allowlists"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -6828,9 +6635,7 @@
             }
           }
         },
-        "tags": [
-          "IP Allowlists"
-        ],
+        "tags": ["IP Allowlists"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -6896,10 +6701,7 @@
                   "sql": true,
                   "ui": true
                 },
-                "required": [
-                  "ui",
-                  "sql"
-                ],
+                "required": ["ui", "sql"],
                 "title": "AllowlistEntry"
               }
             }
@@ -6967,9 +6769,7 @@
             }
           }
         },
-        "tags": [
-          "IP Allowlists"
-        ],
+        "tags": ["IP Allowlists"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -7033,10 +6833,7 @@
                   "sql": true,
                   "ui": true
                 },
-                "required": [
-                  "ui",
-                  "sql"
-                ],
+                "required": ["ui", "sql"],
                 "title": "AllowlistEntry"
               }
             }
@@ -7104,9 +6901,7 @@
             }
           }
         },
-        "tags": [
-          "IP Allowlists"
-        ],
+        "tags": ["IP Allowlists"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -7193,9 +6988,7 @@
             }
           }
         },
-        "tags": [
-          "Private Endpoint Services"
-        ],
+        "tags": ["Private Endpoint Services"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -7243,9 +7036,7 @@
                 "example": {
                   "status": "AVAILABLE"
                 },
-                "required": [
-                  "status"
-                ],
+                "required": ["status"],
                 "title": "SetAwsEndpointConnectionStateRequest"
               }
             }
@@ -7313,9 +7104,7 @@
             }
           }
         },
-        "tags": [
-          "Private Endpoint Services"
-        ],
+        "tags": ["Private Endpoint Services"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -7368,10 +7157,7 @@
             "description": " - ASC: Sort in ascending order. This is the default unless otherwise specified.\n - DESC: Sort in descending order.",
             "schema": {
               "type": "string",
-              "enum": [
-                "ASC",
-                "DESC"
-              ]
+              "enum": ["ASC", "DESC"]
             }
           }
         ],
@@ -7437,9 +7223,7 @@
             }
           }
         },
-        "tags": [
-          "Egress Rules"
-        ],
+        "tags": ["Egress Rules"],
         "x-badges": [
           {
             "color": "blue",
@@ -7521,18 +7305,10 @@
                     "/customer-managed-bucket-1/*",
                     "/customer-managed-bucket-2/*"
                   ],
-                  "ports": [
-                    443,
-                    80
-                  ],
+                  "ports": [443, 80],
                   "type": "FQDN"
                 },
-                "required": [
-                  "name",
-                  "type",
-                  "destination",
-                  "description"
-                ],
+                "required": ["name", "type", "destination", "description"],
                 "title": "AddEgressRuleRequest"
               }
             }
@@ -7600,9 +7376,7 @@
             }
           }
         },
-        "tags": [
-          "Egress Rules"
-        ],
+        "tags": ["Egress Rules"],
         "x-badges": [
           {
             "color": "blue",
@@ -7650,9 +7424,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "allow_all"
-                ],
+                "required": ["allow_all"],
                 "title": "SetEgressTrafficPolicyRequest"
               }
             }
@@ -7720,9 +7492,7 @@
             }
           }
         },
-        "tags": [
-          "Egress Rules"
-        ],
+        "tags": ["Egress Rules"],
         "x-badges": [
           {
             "color": "blue",
@@ -7832,9 +7602,7 @@
             }
           }
         },
-        "tags": [
-          "Egress Rules"
-        ],
+        "tags": ["Egress Rules"],
         "x-badges": [
           {
             "color": "blue",
@@ -7934,9 +7702,7 @@
             }
           }
         },
-        "tags": [
-          "Egress Rules"
-        ],
+        "tags": ["Egress Rules"],
         "x-badges": [
           {
             "color": "blue",
@@ -8016,10 +7782,7 @@
                 },
                 "example": {
                   "cluster_id": "35c4abb2-bb66-46d7-afed-25ebef5ed100",
-                  "ports": [
-                    443,
-                    80
-                  ],
+                  "ports": [443, 80],
                   "rule_id": "35c4abb2-bb66-46d7-afed-25ebef5ed2aa"
                 },
                 "title": "EditEgressRuleRequest"
@@ -8089,9 +7852,7 @@
             }
           }
         },
-        "tags": [
-          "Egress Rules"
-        ],
+        "tags": ["Egress Rules"],
         "x-badges": [
           {
             "color": "blue",
@@ -8184,9 +7945,7 @@
             }
           }
         },
-        "tags": [
-          "Private Endpoint Services"
-        ],
+        "tags": ["Private Endpoint Services"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -8271,9 +8030,7 @@
             }
           }
         },
-        "tags": [
-          "Private Endpoint Services"
-        ],
+        "tags": ["Private Endpoint Services"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -8360,9 +8117,7 @@
             }
           }
         },
-        "tags": [
-          "Private Endpoint Services"
-        ],
+        "tags": ["Private Endpoint Services"],
         "x-badges": [
           {
             "color": "red",
@@ -8410,10 +8165,7 @@
                   "external_owner_id": "012345678901",
                   "type": "AWS_ACCOUNT_ID"
                 },
-                "required": [
-                  "type",
-                  "external_owner_id"
-                ]
+                "required": ["type", "external_owner_id"]
               }
             }
           }
@@ -8480,9 +8232,7 @@
             }
           }
         },
-        "tags": [
-          "Private Endpoint Services"
-        ],
+        "tags": ["Private Endpoint Services"],
         "x-badges": [
           {
             "color": "red",
@@ -8584,9 +8334,7 @@
             }
           }
         },
-        "tags": [
-          "Private Endpoint Services"
-        ],
+        "tags": ["Private Endpoint Services"],
         "x-badges": [
           {
             "color": "red",
@@ -8686,9 +8434,7 @@
             }
           }
         },
-        "tags": [
-          "Private Endpoint Services"
-        ],
+        "tags": ["Private Endpoint Services"],
         "x-badges": [
           {
             "color": "red",
@@ -8754,10 +8500,7 @@
             "description": " - ASC: Sort in ascending order. This is the default unless otherwise specified.\n - DESC: Sort in descending order.",
             "schema": {
               "type": "string",
-              "enum": [
-                "ASC",
-                "DESC"
-              ]
+              "enum": ["ASC", "DESC"]
             }
           }
         ],
@@ -8823,9 +8566,7 @@
             }
           }
         },
-        "tags": [
-          "Clusters"
-        ],
+        "tags": ["Clusters"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -8877,10 +8618,7 @@
             "description": " - ASC: Sort in ascending order. This is the default unless otherwise specified.\n - DESC: Sort in descending order.",
             "schema": {
               "type": "string",
-              "enum": [
-                "ASC",
-                "DESC"
-              ]
+              "enum": ["ASC", "DESC"]
             }
           }
         ],
@@ -8946,9 +8684,7 @@
             }
           }
         },
-        "tags": [
-          "SQL Users"
-        ],
+        "tags": ["SQL Users"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -8988,10 +8724,7 @@
                   "name": "example_username",
                   "password": "example_password"
                 },
-                "required": [
-                  "name",
-                  "password"
-                ],
+                "required": ["name", "password"],
                 "title": "CreateSQLUserRequest"
               }
             }
@@ -9059,9 +8792,7 @@
             }
           }
         },
-        "tags": [
-          "SQL Users"
-        ],
+        "tags": ["SQL Users"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -9155,9 +8886,7 @@
             }
           }
         },
-        "tags": [
-          "SQL Users"
-        ],
+        "tags": ["SQL Users"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -9203,9 +8932,7 @@
                 "example": {
                   "password": "example_new_password"
                 },
-                "required": [
-                  "password"
-                ],
+                "required": ["password"],
                 "title": "UpdateSQLUserPasswordRequest"
               }
             }
@@ -9273,9 +9000,7 @@
             }
           }
         },
-        "tags": [
-          "SQL Users"
-        ],
+        "tags": ["SQL Users"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -9360,9 +9085,7 @@
             }
           }
         },
-        "tags": [
-          "Version Deferral"
-        ],
+        "tags": ["Version Deferral"],
         "x-badges": [
           {
             "color": "blue",
@@ -9461,9 +9184,7 @@
             }
           }
         },
-        "tags": [
-          "Version Deferral"
-        ],
+        "tags": ["Version Deferral"],
         "x-badges": [
           {
             "color": "blue",
@@ -9554,9 +9275,7 @@
             }
           }
         },
-        "tags": [
-          "Folders"
-        ],
+        "tags": ["Folders"],
         "x-badges": [
           {
             "color": "red",
@@ -9647,9 +9366,7 @@
             }
           }
         },
-        "tags": [
-          "Folders"
-        ],
+        "tags": ["Folders"],
         "x-badges": [
           {
             "color": "red",
@@ -9738,9 +9455,7 @@
             }
           }
         },
-        "tags": [
-          "Folders"
-        ],
+        "tags": ["Folders"],
         "x-badges": [
           {
             "color": "red",
@@ -9839,9 +9554,7 @@
             }
           }
         },
-        "tags": [
-          "Folders"
-        ],
+        "tags": ["Folders"],
         "x-badges": [
           {
             "color": "red",
@@ -9899,10 +9612,7 @@
             "description": " - ASC: Sort in ascending order. This is the default unless otherwise specified.\n - DESC: Sort in descending order.",
             "schema": {
               "type": "string",
-              "enum": [
-                "ASC",
-                "DESC"
-              ]
+              "enum": ["ASC", "DESC"]
             }
           }
         ],
@@ -9968,9 +9678,7 @@
             }
           }
         },
-        "tags": [
-          "Folders"
-        ],
+        "tags": ["Folders"],
         "x-badges": [
           {
             "color": "red",
@@ -10052,9 +9760,7 @@
             }
           }
         },
-        "tags": [
-          "Billing"
-        ],
+        "tags": ["Billing"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -10141,9 +9847,7 @@
             }
           }
         },
-        "tags": [
-          "Billing"
-        ],
+        "tags": ["Billing"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -10219,9 +9923,7 @@
             }
           }
         },
-        "tags": [
-          "Organizations"
-        ],
+        "tags": ["Organizations"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -10265,10 +9967,7 @@
             "description": " - ASC: Sort in ascending order. This is the default unless otherwise specified.\n - DESC: Sort in descending order.",
             "schema": {
               "type": "string",
-              "enum": [
-                "ASC",
-                "DESC"
-              ]
+              "enum": ["ASC", "DESC"]
             }
           }
         ],
@@ -10334,9 +10033,7 @@
             }
           }
         },
-        "tags": [
-          "Role Management"
-        ],
+        "tags": ["Role Management"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -10422,9 +10119,7 @@
             }
           }
         },
-        "tags": [
-          "Role Management"
-        ],
+        "tags": ["Role Management"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -10471,9 +10166,7 @@
                     }
                   ]
                 },
-                "required": [
-                  "roles"
-                ]
+                "required": ["roles"]
               }
             }
           }
@@ -10540,9 +10233,7 @@
             }
           }
         },
-        "tags": [
-          "Role Management"
-        ],
+        "tags": ["Role Management"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -10571,11 +10262,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "ORGANIZATION",
-                "CLUSTER",
-                "FOLDER"
-              ]
+              "enum": ["ORGANIZATION", "CLUSTER", "FOLDER"]
             }
           },
           {
@@ -10670,9 +10357,7 @@
             }
           }
         },
-        "tags": [
-          "Role Management"
-        ],
+        "tags": ["Role Management"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -10699,11 +10384,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "ORGANIZATION",
-                "CLUSTER",
-                "FOLDER"
-              ]
+              "enum": ["ORGANIZATION", "CLUSTER", "FOLDER"]
             }
           },
           {
@@ -10798,9 +10479,7 @@
             }
           }
         },
-        "tags": [
-          "Role Management"
-        ],
+        "tags": ["Role Management"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -10887,9 +10566,7 @@
             }
           }
         },
-        "tags": [
-          "Role Management"
-        ],
+        "tags": ["Role Management"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -10933,11 +10610,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "service_name",
-          "service_id",
-          "availability_zone_ids"
-        ]
+        "required": ["service_name", "service_id", "availability_zone_ids"]
       },
       "AddEgressRuleResponse": {
         "description": "AddEgressRuleResponse is the response message of the AddEgressRule RPC.",
@@ -10947,9 +10620,7 @@
             "$ref": "#/components/schemas/EgressRule"
           }
         },
-        "required": [
-          "rule"
-        ],
+        "required": ["rule"],
         "title": "AddEgressRuleResponse"
       },
       "AddPrivateEndpointTrustedOwnerResponse": {
@@ -10959,9 +10630,7 @@
             "$ref": "#/components/schemas/PrivateEndpointTrustedOwner"
           }
         },
-        "required": [
-          "trusted_owner"
-        ]
+        "required": ["trusted_owner"]
       },
       "AllowlistEntry": {
         "type": "object",
@@ -10990,12 +10659,7 @@
           "sql": true,
           "ui": true
         },
-        "required": [
-          "cidr_ip",
-          "cidr_mask",
-          "ui",
-          "sql"
-        ],
+        "required": ["cidr_ip", "cidr_mask", "ui", "sql"],
         "title": "AllowlistEntry"
       },
       "Any": {
@@ -11052,12 +10716,7 @@
           ],
           "jwks": "{\"keys\":[{\"e\":\"AQAB\",\"use\":\"sig\",\"kty\":\"RSA\",\"alg\":\"RS256\",\"n\":\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\",\"kid\":\"9341dedeee2d1869b657fa930300082fe26b3d92\"}]}"
         },
-        "required": [
-          "id",
-          "issuer",
-          "audience",
-          "jwks"
-        ],
+        "required": ["id", "issuer", "audience", "jwks"],
         "title": "ApiOidcConfig"
       },
       "ApiOidcIdentityMapEntry": {
@@ -11268,9 +10927,7 @@
             }
           }
         },
-        "required": [
-          "connections"
-        ]
+        "required": ["connections"]
       },
       "BuiltInFromGroups": {
         "type": "object",
@@ -11296,10 +10953,7 @@
             "$ref": "#/components/schemas/Resource"
           }
         },
-        "required": [
-          "name",
-          "resource"
-        ]
+        "required": ["name", "resource"]
       },
       "CMEKClusterInfo": {
         "description": "CMEKClusterInfo contains the status of CMEK across an entire cluster,\nincluding within each one its regions.",
@@ -11319,9 +10973,7 @@
       "CMEKCustomerAction": {
         "description": "CMEKCustomerAction enumerates the actions a customer can take on a cluster\nthat has been enabled for CMEK.",
         "type": "string",
-        "enum": [
-          "REVOKE"
-        ]
+        "enum": ["REVOKE"]
       },
       "CMEKKeyInfo": {
         "description": "CMEKKeyInfo contains the status of a customer-provided key alongside the\nspecification.",
@@ -11363,11 +11015,7 @@
       },
       "CMEKKeyType": {
         "type": "string",
-        "enum": [
-          "AWS_KMS",
-          "GCP_CLOUD_KMS",
-          "NULL_KMS"
-        ],
+        "enum": ["AWS_KMS", "GCP_CLOUD_KMS", "NULL_KMS"],
         "title": "CMEKKeyType enumerates types of customer-managed keys"
       },
       "CMEKRegionInfo": {
@@ -11431,21 +11079,12 @@
       "ClientCACertStatus": {
         "description": " - NOT_SET: NOT_SET indicates a client CA cert is not set on the cluster.\nNew clusters won't have a client CA cert set.\n - IS_SET: IS_SET indicates a client CA cert is set on the cluster.\n - PENDING: PENDING indicates a client CA cert update is in flight on the cluster.\n - FAILED: FAILED indicates a client CA cert update was attempted, but failed.",
         "type": "string",
-        "enum": [
-          "NOT_SET",
-          "IS_SET",
-          "PENDING",
-          "FAILED"
-        ]
+        "enum": ["NOT_SET", "IS_SET", "PENDING", "FAILED"]
       },
       "CloudProvider.Type": {
         "description": " - GCP: The Google Cloud Platform cloud provider.\n - AWS: The Amazon Web Services cloud provider.\n - AZURE: Limited Access: The Azure cloud provider.",
         "type": "string",
-        "enum": [
-          "GCP",
-          "AWS",
-          "AZURE"
-        ]
+        "enum": ["GCP", "AWS", "AZURE"]
       },
       "CloudProviderRegion": {
         "type": "object",
@@ -11464,7 +11103,7 @@
           "provider": {
             "$ref": "#/components/schemas/CloudProvider.Type"
           },
-          "serverless": {
+          "shared": {
             "type": "boolean"
           }
         },
@@ -11473,7 +11112,8 @@
           "location",
           "provider",
           "serverless",
-          "distance"
+          "distance",
+          "shared"
         ]
       },
       "CloudWatchMetricExportInfo": {
@@ -11501,10 +11141,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "cluster_id",
-          "role_arn"
-        ],
+        "required": ["cluster_id", "role_arn"],
         "title": "CloudWatchMetricExportInfo"
       },
       "Cluster": {
@@ -11641,29 +11278,16 @@
             "type": "string"
           }
         },
-        "required": [
-          "version",
-          "support_status"
-        ]
+        "required": ["version", "support_status"]
       },
       "ClusterMajorVersionSupportStatus.Type": {
         "type": "string",
-        "enum": [
-          "UNSUPPORTED",
-          "SUPPORTED",
-          "PREVIEW"
-        ]
+        "enum": ["UNSUPPORTED", "SUPPORTED", "PREVIEW"]
       },
       "ClusterState.Type": {
         "description": " - LOCKED: An exclusive operation is being performed on this cluster.\nOther operations should not proceed if they did not set a cluster into the LOCKED state.",
         "type": "string",
-        "enum": [
-          "CREATING",
-          "CREATED",
-          "CREATION_FAILED",
-          "DELETED",
-          "LOCKED"
-        ]
+        "enum": ["CREATING", "CREATED", "CREATION_FAILED", "DELETED", "LOCKED"]
       },
       "ClusterStatus.Type": {
         "type": "string",
@@ -11720,17 +11344,12 @@
         "example": {
           "deferral_policy": "FIXED_DEFERRAL"
         },
-        "required": [
-          "deferral_policy"
-        ],
+        "required": ["deferral_policy"],
         "title": "ClusterVersionDeferral"
       },
       "ClusterVersionDeferralPolicy.Type": {
         "type": "string",
-        "enum": [
-          "NOT_DEFERRED",
-          "FIXED_DEFERRAL"
-        ]
+        "enum": ["NOT_DEFERRED", "FIXED_DEFERRAL"]
       },
       "ConnectionStringParameters": {
         "description": "Individual parameters used to create a connection string.",
@@ -11749,11 +11368,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "Host",
-          "Port",
-          "Database"
-        ]
+        "required": ["Host", "Port", "Database"]
       },
       "CreateApiOidcConfigRequest": {
         "type": "object",
@@ -11794,11 +11409,7 @@
           ],
           "jwks": "{\"keys\":[{\"e\":\"AQAB\",\"use\":\"sig\",\"kty\":\"RSA\",\"alg\":\"RS256\",\"n\":\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\",\"kid\":\"9341dedeee2d1869b657fa930300082fe26b3d92\"}]}"
         },
-        "required": [
-          "issuer",
-          "audience",
-          "jwks"
-        ],
+        "required": ["issuer", "audience", "jwks"],
         "title": "CreateApiOidcConfigRequest"
       },
       "CreateClusterRequest": {
@@ -11820,18 +11431,12 @@
           "provider": "GCP",
           "spec": {
             "serverless": {
-              "regions": [
-                "us-central1"
-              ],
+              "regions": ["us-central1"],
               "spend_limit": 0
             }
           }
         },
-        "required": [
-          "name",
-          "provider",
-          "spec"
-        ],
+        "required": ["name", "provider", "spec"],
         "title": "CreateClusterRequest"
       },
       "CreateClusterSpecification": {
@@ -11864,9 +11469,7 @@
           "name": "folder_name",
           "parent_id": "12345678-1234-1234-1234-123456789012"
         },
-        "required": [
-          "name"
-        ],
+        "required": ["name"],
         "title": "CreateFolderRequest"
       },
       "CreateGroupRequest": {
@@ -11894,13 +11497,9 @@
         "example": {
           "displayName": "Test SCIM",
           "members": [],
-          "schemas": [
-            "urn:ietf:params:scim:schemas:core:2.0:Group"
-          ]
+          "schemas": ["urn:ietf:params:scim:schemas:core:2.0:Group"]
         },
-        "required": [
-          "displayName"
-        ],
+        "required": ["displayName"],
         "title": "CreateGroupRequest"
       },
       "CreateUserRequest": {
@@ -11949,25 +11548,15 @@
             "familyName": "Roach",
             "givenName": "Carl"
           },
-          "schemas": [
-            "urn:ietf:params:scim:schemas:core:2.0:User"
-          ],
+          "schemas": ["urn:ietf:params:scim:schemas:core:2.0:User"],
           "userName": "croach@example.com"
         },
-        "required": [
-          "name",
-          "displayName",
-          "emails",
-          "active"
-        ],
+        "required": ["name", "displayName", "emails", "active"],
         "title": "CreateUserRequest"
       },
       "Currency.Type": {
         "type": "string",
-        "enum": [
-          "USD",
-          "CRDB_CLOUD_CREDITS"
-        ]
+        "enum": ["USD", "CRDB_CLOUD_CREDITS"]
       },
       "CurrencyAmount": {
         "type": "object",
@@ -12002,21 +11591,12 @@
             "type": "string"
           }
         },
-        "required": [
-          "cluster_id",
-          "site"
-        ],
+        "required": ["cluster_id", "site"],
         "title": "DatadogMetricExportInfo"
       },
       "DatadogSite.Type": {
         "type": "string",
-        "enum": [
-          "US1",
-          "US3",
-          "US5",
-          "US1_GOV",
-          "EU1"
-        ]
+        "enum": ["US1", "US3", "US5", "US1_GOV", "EU1"]
       },
       "DedicatedClusterCreateSpecification": {
         "type": "object",
@@ -12044,10 +11624,7 @@
             "type": "boolean"
           }
         },
-        "required": [
-          "region_nodes",
-          "hardware"
-        ]
+        "required": ["region_nodes", "hardware"]
       },
       "DedicatedClusterUpdateSpecification": {
         "type": "object",
@@ -12125,10 +11702,7 @@
             "format": "int32"
           }
         },
-        "required": [
-          "machine_spec",
-          "storage_gib"
-        ]
+        "required": ["machine_spec", "storage_gib"]
       },
       "DedicatedHardwareUpdateSpecification": {
         "type": "object",
@@ -12170,9 +11744,7 @@
             "$ref": "#/components/schemas/EgressRule"
           }
         },
-        "required": [
-          "rule"
-        ],
+        "required": ["rule"],
         "title": "DeleteEgressRuleResponse"
       },
       "DeleteMetricExportResponse": {
@@ -12185,9 +11757,7 @@
             "$ref": "#/components/schemas/MetricExportStatus.Type"
           }
         },
-        "required": [
-          "cluster_id"
-        ],
+        "required": ["cluster_id"],
         "title": "DeleteMetricExportResponse"
       },
       "EditEgressRuleResponse": {
@@ -12198,9 +11768,7 @@
             "$ref": "#/components/schemas/EgressRule"
           }
         },
-        "required": [
-          "rule"
-        ],
+        "required": ["rule"],
         "title": "EditEgressRuleResponse"
       },
       "EgressRule": {
@@ -12341,10 +11909,7 @@
       },
       "FolderResourceType.Type": {
         "type": "string",
-        "enum": [
-          "FOLDER",
-          "CLUSTER"
-        ]
+        "enum": ["FOLDER", "CLUSTER"]
       },
       "GetAllRolesForUserResponse": {
         "type": "object",
@@ -12375,10 +11940,7 @@
             "$ref": "#/components/schemas/ConnectionStringParameters"
           }
         },
-        "required": [
-          "connection_string",
-          "params"
-        ]
+        "required": ["connection_string", "params"]
       },
       "GetEgressRuleResponse": {
         "description": "GetEgressRuleResponse is the response message to the GetEgressRule RPC.",
@@ -12388,9 +11950,7 @@
             "$ref": "#/components/schemas/EgressRule"
           }
         },
-        "required": [
-          "rule"
-        ],
+        "required": ["rule"],
         "title": "GetEgressRuleResponse"
       },
       "GetGroupsRequest": {
@@ -12438,9 +11998,7 @@
             "$ref": "#/components/schemas/PersonUserInfo"
           }
         },
-        "required": [
-          "users"
-        ]
+        "required": ["users"]
       },
       "GetPrivateEndpointTrustedOwnerResponse": {
         "type": "object",
@@ -12449,9 +12007,7 @@
             "$ref": "#/components/schemas/PrivateEndpointTrustedOwner"
           }
         },
-        "required": [
-          "trusted_owner"
-        ]
+        "required": ["trusted_owner"]
       },
       "GetResourceTypesResponse": {
         "type": "object",
@@ -12653,10 +12209,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "name",
-          "amount"
-        ]
+        "required": ["name", "amount"]
       },
       "InvoiceItem": {
         "type": "object",
@@ -12679,11 +12232,7 @@
             }
           }
         },
-        "required": [
-          "cluster",
-          "totals",
-          "line_items"
-        ]
+        "required": ["cluster", "totals", "line_items"]
       },
       "KeysetPaginationRequest": {
         "type": "object",
@@ -12763,10 +12312,7 @@
             "type": "boolean"
           }
         },
-        "required": [
-          "allowlist",
-          "propagating"
-        ],
+        "required": ["allowlist", "propagating"],
         "title": "ListAllowlistEntriesResponse"
       },
       "ListApiOidcConfigResponse": {
@@ -12815,9 +12361,7 @@
             }
           }
         },
-        "required": [
-          "regions"
-        ]
+        "required": ["regions"]
       },
       "ListClusterNodesResponse": {
         "type": "object",
@@ -12832,9 +12376,7 @@
             "$ref": "#/components/schemas/KeysetPaginationResponse"
           }
         },
-        "required": [
-          "nodes"
-        ]
+        "required": ["nodes"]
       },
       "ListClustersResponse": {
         "type": "object",
@@ -12849,9 +12391,7 @@
             "$ref": "#/components/schemas/KeysetPaginationResponse"
           }
         },
-        "required": [
-          "clusters"
-        ]
+        "required": ["clusters"]
       },
       "ListEgressRulesResponse": {
         "description": "ListEgressRulesResponse is the output for the ListEgressRules RPC.",
@@ -12881,9 +12421,7 @@
             }
           }
         },
-        "required": [
-          "invoices"
-        ]
+        "required": ["invoices"]
       },
       "ListMajorClusterVersionsResponse": {
         "type": "object",
@@ -12898,9 +12436,7 @@
             }
           }
         },
-        "required": [
-          "versions"
-        ]
+        "required": ["versions"]
       },
       "ListPrivateEndpointTrustedOwnersResponse": {
         "type": "object",
@@ -12948,9 +12484,7 @@
             }
           }
         },
-        "required": [
-          "users"
-        ]
+        "required": ["users"]
       },
       "LogExportClusterInfo": {
         "description": "LogExportClusterInfo contains a package of information that fully\ndescribes both the intended state of the log export configuration for\na specific cluster but also some metadata around its deployment\nstatus, any error messages, and some timestamps.",
@@ -13040,10 +12574,7 @@
             "type": "boolean"
           }
         },
-        "required": [
-          "log_name",
-          "channels"
-        ]
+        "required": ["log_name", "channels"]
       },
       "LogExportStatus": {
         "description": "LogExportStatus encodes the possible states that a configuration can\nbe in as it is created, deployed, and disabled.",
@@ -13060,20 +12591,12 @@
       "LogExportType": {
         "description": "LogExportType encodes the cloud selection that we're exporting to\nalong with the cloud logging platform.\n\nCurrently, each cloud has a single logging platform.",
         "type": "string",
-        "enum": [
-          "AWS_CLOUDWATCH",
-          "GCP_CLOUD_LOGGING"
-        ]
+        "enum": ["AWS_CLOUDWATCH", "GCP_CLOUD_LOGGING"]
       },
       "LogLevel.Type": {
         "description": " - UNSPECIFIED: The unspecified log level includes all logs.\n - WARNING: The WARNING severity is used for situations which may require\nspecial handling, where normal operation is expected to resume\nautomatically.\n - ERROR: The ERROR severity is used for situations that require special\nhandling, where normal operation could not proceed as expected.\nOther operations can continue mostly unaffected.\n - FATAL: The FATAL severity is used for situations that require an\nimmediate, hard server shutdown. A report is also sent to\ntelemetry if telemetry is enabled.",
         "type": "string",
-        "enum": [
-          "UNSPECIFIED",
-          "WARNING",
-          "ERROR",
-          "FATAL"
-        ]
+        "enum": ["UNSPECIFIED", "WARNING", "ERROR", "FATAL"]
       },
       "MaintenanceWindow": {
         "description": "MaintenanceWindowSpec specifies a weekly recurring maintenance window for a\ncluster.",
@@ -13092,28 +12615,16 @@
           "offset_duration": "172800s",
           "window_duration": "21600s"
         },
-        "required": [
-          "offset_duration",
-          "window_duration"
-        ],
+        "required": ["offset_duration", "window_duration"],
         "title": "MaintenanceWindow"
       },
       "MetricExportStatus.Type": {
         "type": "string",
-        "enum": [
-          "NOT_DEPLOYED",
-          "DISABLING",
-          "ENABLING",
-          "ENABLED",
-          "ERROR"
-        ]
+        "enum": ["NOT_DEPLOYED", "DISABLING", "ENABLING", "ENABLED", "ERROR"]
       },
       "NetworkVisibility.Type": {
         "type": "string",
-        "enum": [
-          "PUBLIC",
-          "PRIVATE"
-        ]
+        "enum": ["PUBLIC", "PRIVATE"]
       },
       "Node": {
         "type": "object",
@@ -13128,18 +12639,11 @@
             "$ref": "#/components/schemas/NodeStatus.Type"
           }
         },
-        "required": [
-          "name",
-          "region_name",
-          "status"
-        ]
+        "required": ["name", "region_name", "status"]
       },
       "NodeStatus.Type": {
         "type": "string",
-        "enum": [
-          "LIVE",
-          "NOT_READY"
-        ]
+        "enum": ["LIVE", "NOT_READY"]
       },
       "NullValue": {
         "description": "`NullValue` is a singleton enumeration to represent the null value for the\n`Value` type union.\n\n The JSON representation for `NullValue` is JSON `null`.\n\n - NULL_VALUE: Null value.",
@@ -13147,11 +12651,7 @@
       },
       "OperatingSystem.Type": {
         "type": "string",
-        "enum": [
-          "MAC",
-          "LINUX",
-          "WINDOWS"
-        ]
+        "enum": ["MAC", "LINUX", "WINDOWS"]
       },
       "Organization": {
         "type": "object",
@@ -13170,12 +12670,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "id",
-          "label",
-          "name",
-          "created_at"
-        ]
+        "required": ["id", "label", "name", "created_at"]
       },
       "OrganizationUserRole.Type": {
         "description": " - DEVELOPER: To be deprecated\n - ADMIN: To be deprecated\n - FOLDER_ADMIN: Limited Access: A folder admin role.\n - FOLDER_MOVER: Limited Access: A folder mover role.",
@@ -13219,19 +12714,13 @@
             "type": "string"
           }
         },
-        "required": [
-          "id"
-        ],
+        "required": ["id"],
         "title": "person_user_info contains information about a person"
       },
       "Plan.Type": {
-        "description": " - DEDICATED: A paid plan that offers dedicated hardware in any location.\n - CUSTOM: A plan option that is used for clusters whose machine configs are not\nsupported in self-service. All INVOICE clusters are under this plan option.\n - SERVERLESS: A paid plan that runs on shared hardware and caps the users'\nmaximum monthly spending to a user-specified (possibly 0) amount.",
+        "description": " - BASIC: The Basic plan includes essential operational features, is available in\nselect regions, and offers on-demand capacity, making it ideal for small\nteams with unpredictable workloads.\n - STANDARD: The Standard plan includes standard enterprise security and monitoring\nfeatures, is available in all supported regions, and offers provisioned\npricing, making it the default choice for most CockroachDB production\nworkloads.\n - ADVANCED: The Advanced plan is ideal for workloads with stringent isolation,\ncompliance, and security requirements such as CMEK, PCI and HIPAA-readiness,\nand support for dedicated hardware. Customers are advised to have their\naccount team and/or Cockroach Labs Support <support@cockroachlabs.com>\ninvolved when provisioning Advanced clusters.",
         "type": "string",
-        "enum": [
-          "DEDICATED",
-          "CUSTOM",
-          "SERVERLESS"
-        ]
+        "enum": ["BASIC", "STANDARD", "ADVANCED"]
       },
       "PrivateEndpointService": {
         "type": "object",
@@ -13250,12 +12739,7 @@
             "$ref": "#/components/schemas/PrivateEndpointServiceStatus.Type"
           }
         },
-        "required": [
-          "region_name",
-          "cloud_provider",
-          "status",
-          "aws"
-        ]
+        "required": ["region_name", "cloud_provider", "status", "aws"]
       },
       "PrivateEndpointServiceStatus.Type": {
         "type": "string",
@@ -13278,9 +12762,7 @@
             }
           }
         },
-        "required": [
-          "services"
-        ]
+        "required": ["services"]
       },
       "PrivateEndpointTrustedOwner": {
         "description": "PrivateEndpointTrustedOwner represents a trusted owner entry for private\nendpoint connections.",
@@ -13319,9 +12801,7 @@
       "PrivateEndpointTrustedOwnerType.Type": {
         "description": " - AWS_ACCOUNT_ID: AWS_ACCOUNT_ID represents the 12-digit AWS account number.",
         "type": "string",
-        "enum": [
-          "AWS_ACCOUNT_ID"
-        ]
+        "enum": ["AWS_ACCOUNT_ID"]
       },
       "PrometheusMetricExportInfo": {
         "type": "object",
@@ -13343,17 +12823,12 @@
             "type": "string"
           }
         },
-        "required": [
-          "cluster_id"
-        ],
+        "required": ["cluster_id"],
         "title": "PrometheusMetricExportInfo"
       },
       "QuantityUnit.Type": {
         "type": "string",
-        "enum": [
-          "HOURS",
-          "REQUEST_UNITS"
-        ]
+        "enum": ["HOURS", "REQUEST_UNITS"]
       },
       "Region": {
         "type": "object",
@@ -13383,13 +12858,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "name",
-          "sql_dns",
-          "ui_dns",
-          "node_count",
-          "internal_dns"
-        ]
+        "required": ["name", "sql_dns", "ui_dns", "node_count", "internal_dns"]
       },
       "RemovePrivateEndpointTrustedOwnerResponse": {
         "type": "object",
@@ -13398,9 +12867,7 @@
             "$ref": "#/components/schemas/PrivateEndpointTrustedOwner"
           }
         },
-        "required": [
-          "trusted_owner"
-        ]
+        "required": ["trusted_owner"]
       },
       "Resource": {
         "type": "object",
@@ -13412,18 +12879,12 @@
             "$ref": "#/components/schemas/ResourceType.Type"
           }
         },
-        "required": [
-          "type"
-        ]
+        "required": ["type"]
       },
       "ResourceType.Type": {
         "description": " - ORGANIZATION: An organization.\n - CLUSTER: A cluster resource.\n - FOLDER: Limited Access: A folder resource.",
         "type": "string",
-        "enum": [
-          "ORGANIZATION",
-          "CLUSTER",
-          "FOLDER"
-        ]
+        "enum": ["ORGANIZATION", "CLUSTER", "FOLDER"]
       },
       "SQLUser": {
         "type": "object",
@@ -13432,9 +12893,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "name"
-        ]
+        "required": ["name"]
       },
       "ScimAuthenticationScheme": {
         "type": "object",
@@ -13499,10 +12958,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "value",
-          "primary"
-        ]
+        "required": ["value", "primary"]
       },
       "ScimEtagSupport": {
         "type": "object",
@@ -13762,10 +13218,7 @@
       "SetAWSEndpointConnectionStatus.Type": {
         "description": " - AVAILABLE: accept/verify the connection on the service side.\n - REJECTED: reject the connection on the service side.",
         "type": "string",
-        "enum": [
-          "AVAILABLE",
-          "REJECTED"
-        ]
+        "enum": ["AVAILABLE", "REJECTED"]
       },
       "SharedClusterConfig": {
         "type": "object",
@@ -13778,9 +13231,7 @@
             "$ref": "#/components/schemas/UsageLimits"
           }
         },
-        "required": [
-          "routing_id"
-        ]
+        "required": ["routing_id"]
       },
       "SharedClusterCreateSpecification": {
         "type": "object",
@@ -13804,9 +13255,7 @@
             "type": "boolean"
           }
         },
-        "required": [
-          "regions"
-        ]
+        "required": ["regions"]
       },
       "SharedClusterUpdateSpecification": {
         "type": "object",
@@ -13830,10 +13279,7 @@
       "SortOrder": {
         "description": " - ASC: Sort in ascending order. This is the default unless otherwise specified.\n - DESC: Sort in descending order.",
         "type": "string",
-        "enum": [
-          "ASC",
-          "DESC"
-        ]
+        "enum": ["ASC", "DESC"]
       },
       "Status": {
         "type": "object",
@@ -13921,10 +13367,7 @@
             "format": "int64"
           }
         },
-        "required": [
-          "request_unit_limit",
-          "storage_mib_limit"
-        ]
+        "required": ["request_unit_limit", "storage_mib_limit"]
       },
       "UserGroupRoleGrant": {
         "type": "object",
@@ -13964,10 +13407,7 @@
             }
           ]
         },
-        "required": [
-          "roles",
-          "user_id"
-        ]
+        "required": ["roles", "user_id"]
       },
       "api.Database": {
         "type": "object",
@@ -13980,9 +13420,7 @@
             "format": "int64"
           }
         },
-        "required": [
-          "name"
-        ],
+        "required": ["name"],
         "title": "Database"
       },
       "api.ListDatabasesResponse": {
@@ -13998,9 +13436,7 @@
             "$ref": "#/components/schemas/KeysetPaginationResponse"
           }
         },
-        "required": [
-          "databases"
-        ],
+        "required": ["databases"],
         "title": "ListDatabasesResponse"
       }
     },
@@ -14028,10 +13464,7 @@
                 "sql": true,
                 "ui": true
               },
-              "required": [
-                "ui",
-                "sql"
-              ],
+              "required": ["ui", "sql"],
               "title": "AllowlistEntry"
             }
           }
@@ -14064,9 +13497,7 @@
                   }
                 ]
               },
-              "required": [
-                "region_specs"
-              ],
+              "required": ["region_specs"],
               "title": "CMEKClusterSpecification"
             }
           }
