@@ -4,28 +4,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**RequestUnitLimit** | **int64** | request_unit_limit is the maximum number of request units that the cluster can consume during the month. If this limit is exceeded, then the cluster is disabled until the limit is increased, or until the beginning of the next month when more free request units are granted. It is an error for this to be zero. | 
-**RequestUnitRateLimit** | Pointer to **int64** | request_unit_rate_limit is the maximum number of request units that the cluster can consume per second.  NOTE: In the current CLOUD_2_0_INCLUDE state, callers *must* pass zero for the other two limits when passing a positive provisioned RUs amount. When the CLOUD_2_0_INCLUDE tag is removed we should loosen the required field constraints. | [optional] 
-**StorageMibLimit** | **int64** | storage_mib_limit is the maximum number of Mebibytes of storage that the cluster can have at any time during the month. If this limit is exceeded, then the cluster is throttled; only one SQL connection is allowed at a time, with the expectation that it is used to delete data to reduce storage usage. It is an error for this to be zero. | 
+**RequestUnitLimit** | Pointer to **int64** | request_unit_limit is the maximum number of request units that the cluster can consume during the month. If this limit is exceeded, then the cluster is disabled until the limit is increased, or until the beginning of the next month when more free request units are granted. It is an error for this to be zero. | [optional] 
+**RequestUnitRateLimit** | Pointer to **int64** | request_unit_rate_limit is the maximum number of request units that the cluster can consume per second. Once this limit is reached, operation latency may increase due to throttling. It is an error for this to be zero. | [optional] 
+**StorageMibLimit** | Pointer to **int64** | storage_mib_limit is the maximum number of Mebibytes of storage that the cluster can have at any time during the month. If this limit is exceeded, then the cluster is throttled; only one SQL connection is allowed at a time, with the expectation that it is used to delete data to reduce storage usage. It is an error for this to be zero. | [optional] 
 
 ## Methods
 
 ### NewUsageLimits
 
-`func NewUsageLimits(requestUnitLimit int64, storageMibLimit int64, ) *UsageLimits`
+`func NewUsageLimits() *UsageLimits`
 
 NewUsageLimits instantiates a new UsageLimits object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed.
-
-### NewUsageLimitsWithDefaults
-
-`func NewUsageLimitsWithDefaults() *UsageLimits`
-
-NewUsageLimitsWithDefaults instantiates a new UsageLimits object.
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set.
 
 ### GetRequestUnitLimit
 
