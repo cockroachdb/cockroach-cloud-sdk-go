@@ -102,12 +102,6 @@
         "tags": [
           "SCIM"
         ],
-        "x-badges": [
-          {
-            "color": "blue",
-            "label": "PREVIEW"
-          }
-        ],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -193,12 +187,6 @@
         },
         "tags": [
           "SCIM"
-        ],
-        "x-badges": [
-          {
-            "color": "blue",
-            "label": "PREVIEW"
-          }
         ],
         "x-codeSamples": [
           {
@@ -376,12 +364,6 @@
         "tags": [
           "SCIM"
         ],
-        "x-badges": [
-          {
-            "color": "blue",
-            "label": "PREVIEW"
-          }
-        ],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -481,12 +463,6 @@
         },
         "tags": [
           "SCIM"
-        ],
-        "x-badges": [
-          {
-            "color": "blue",
-            "label": "PREVIEW"
-          }
         ],
         "x-codeSamples": [
           {
@@ -664,12 +640,6 @@
         },
         "tags": [
           "SCIM"
-        ],
-        "x-badges": [
-          {
-            "color": "blue",
-            "label": "PREVIEW"
-          }
         ],
         "x-codeSamples": [
           {
@@ -872,12 +842,6 @@
         "tags": [
           "SCIM"
         ],
-        "x-badges": [
-          {
-            "color": "blue",
-            "label": "PREVIEW"
-          }
-        ],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -980,12 +944,6 @@
         "tags": [
           "SCIM"
         ],
-        "x-badges": [
-          {
-            "color": "blue",
-            "label": "PREVIEW"
-          }
-        ],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -1079,12 +1037,6 @@
         },
         "tags": [
           "SCIM"
-        ],
-        "x-badges": [
-          {
-            "color": "blue",
-            "label": "PREVIEW"
-          }
         ],
         "x-codeSamples": [
           {
@@ -1188,12 +1140,6 @@
         "tags": [
           "SCIM"
         ],
-        "x-badges": [
-          {
-            "color": "blue",
-            "label": "PREVIEW"
-          }
-        ],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -1271,12 +1217,6 @@
         },
         "tags": [
           "SCIM"
-        ],
-        "x-badges": [
-          {
-            "color": "blue",
-            "label": "PREVIEW"
-          }
         ],
         "x-codeSamples": [
           {
@@ -1379,12 +1319,6 @@
         "tags": [
           "SCIM"
         ],
-        "x-badges": [
-          {
-            "color": "blue",
-            "label": "PREVIEW"
-          }
-        ],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -1470,12 +1404,6 @@
         },
         "tags": [
           "SCIM"
-        ],
-        "x-badges": [
-          {
-            "color": "blue",
-            "label": "PREVIEW"
-          }
         ],
         "x-codeSamples": [
           {
@@ -1653,12 +1581,6 @@
         "tags": [
           "SCIM"
         ],
-        "x-badges": [
-          {
-            "color": "blue",
-            "label": "PREVIEW"
-          }
-        ],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -1758,12 +1680,6 @@
         },
         "tags": [
           "SCIM"
-        ],
-        "x-badges": [
-          {
-            "color": "blue",
-            "label": "PREVIEW"
-          }
         ],
         "x-codeSamples": [
           {
@@ -1954,12 +1870,6 @@
         },
         "tags": [
           "SCIM"
-        ],
-        "x-badges": [
-          {
-            "color": "blue",
-            "label": "PREVIEW"
-          }
         ],
         "x-codeSamples": [
           {
@@ -3538,12 +3448,6 @@
         "tags": [
           "Client CA Certificates"
         ],
-        "x-badges": [
-          {
-            "color": "blue",
-            "label": "PREVIEW"
-          }
-        ],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -3629,12 +3533,6 @@
         },
         "tags": [
           "Client CA Certificates"
-        ],
-        "x-badges": [
-          {
-            "color": "blue",
-            "label": "PREVIEW"
-          }
         ],
         "x-codeSamples": [
           {
@@ -3740,12 +3638,6 @@
         },
         "tags": [
           "Client CA Certificates"
-        ],
-        "x-badges": [
-          {
-            "color": "blue",
-            "label": "PREVIEW"
-          }
         ],
         "x-codeSamples": [
           {
@@ -3854,12 +3746,6 @@
         },
         "tags": [
           "Client CA Certificates"
-        ],
-        "x-badges": [
-          {
-            "color": "blue",
-            "label": "PREVIEW"
-          }
         ],
         "x-codeSamples": [
           {
@@ -13912,7 +13798,7 @@
             "format": "int64"
           },
           "request_unit_rate_limit": {
-            "description": "request_unit_rate_limit is the maximum number of request units that the\ncluster can consume per second.\n\nNOTE: In the current CLOUD_2_0_INCLUDE state, callers *must* pass zero for\nthe other two limits when passing a positive provisioned RUs amount. When\nthe CLOUD_2_0_INCLUDE tag is removed we should loosen the required field\nconstraints.",
+            "description": "request_unit_rate_limit is the maximum number of request units that the\ncluster can consume per second. Once this limit is reached, operation\nlatency may increase due to throttling. It is an error for this to be zero.",
             "type": "integer",
             "format": "int64"
           },
@@ -13921,11 +13807,7 @@
             "type": "integer",
             "format": "int64"
           }
-        },
-        "required": [
-          "request_unit_limit",
-          "storage_mib_limit"
-        ]
+        }
       },
       "UserGroupRoleGrant": {
         "type": "object",

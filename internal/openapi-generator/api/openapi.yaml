@@ -101,9 +101,6 @@ paths:
       summary: Get groups based on query parameters
       tags:
       - SCIM
-      x-badges:
-      - color: blue
-        label: PREVIEW
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -163,9 +160,6 @@ paths:
       summary: Create a group
       tags:
       - SCIM
-      x-badges:
-      - color: blue
-        label: PREVIEW
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -292,9 +286,6 @@ paths:
       summary: Delete a group based on ID
       tags:
       - SCIM
-      x-badges:
-      - color: blue
-        label: PREVIEW
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -370,9 +361,6 @@ paths:
       summary: Get a group based on ID
       tags:
       - SCIM
-      x-badges:
-      - color: blue
-        label: PREVIEW
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -440,9 +428,6 @@ paths:
       summary: Update a group by supplying all values of the user object
       tags:
       - SCIM
-      x-badges:
-      - color: blue
-        label: PREVIEW
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -582,9 +567,6 @@ paths:
       summary: List the SCIM resource types
       tags:
       - SCIM
-      x-badges:
-      - color: blue
-        label: PREVIEW
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -659,9 +641,6 @@ paths:
       summary: Get a SCIM resource type by ID
       tags:
       - SCIM
-      x-badges:
-      - color: blue
-        label: PREVIEW
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -729,9 +708,6 @@ paths:
       summary: List the SCIM schemas
       tags:
       - SCIM
-      x-badges:
-      - color: blue
-        label: PREVIEW
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -806,9 +782,6 @@ paths:
       summary: Get a SCIM schema by ID
       tags:
       - SCIM
-      x-badges:
-      - color: blue
-        label: PREVIEW
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -861,9 +834,6 @@ paths:
       summary: Return the SCIM Service Provider configuration
       tags:
       - SCIM
-      x-badges:
-      - color: blue
-        label: PREVIEW
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -940,9 +910,6 @@ paths:
       summary: Get Users based on query parameters
       tags:
       - SCIM
-      x-badges:
-      - color: blue
-        label: PREVIEW
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -1002,9 +969,6 @@ paths:
       summary: Create a user
       tags:
       - SCIM
-      x-badges:
-      - color: blue
-        label: PREVIEW
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -1131,9 +1095,6 @@ paths:
       summary: Delete a user based on ID
       tags:
       - SCIM
-      x-badges:
-      - color: blue
-        label: PREVIEW
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -1209,9 +1170,6 @@ paths:
       summary: Get a user based on ID
       tags:
       - SCIM
-      x-badges:
-      - color: blue
-        label: PREVIEW
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -1279,9 +1237,6 @@ paths:
       summary: Update a user by supplying all values of the user object
       tags:
       - SCIM
-      x-badges:
-      - color: blue
-        label: PREVIEW
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -2428,9 +2383,6 @@ paths:
       summary: Delete Client CA Cert for a cluster
       tags:
       - Client CA Certificates
-      x-badges:
-      - color: blue
-        label: PREVIEW
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -2493,9 +2445,6 @@ paths:
       summary: Get Client CA Cert information for a cluster
       tags:
       - Client CA Certificates
-      x-badges:
-      - color: blue
-        label: PREVIEW
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -2564,9 +2513,6 @@ paths:
       summary: Update Client CA Cert for a cluster
       tags:
       - Client CA Certificates
-      x-badges:
-      - color: blue
-        label: PREVIEW
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -2637,9 +2583,6 @@ paths:
       summary: Set Client CA Cert for a cluster
       tags:
       - Client CA Certificates
-      x-badges:
-      - color: blue
-        label: PREVIEW
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -11694,12 +11637,8 @@ components:
         request_unit_rate_limit:
           description: |-
             request_unit_rate_limit is the maximum number of request units that the
-            cluster can consume per second.
-
-            NOTE: In the current CLOUD_2_0_INCLUDE state, callers *must* pass zero for
-            the other two limits when passing a positive provisioned RUs amount. When
-            the CLOUD_2_0_INCLUDE tag is removed we should loosen the required field
-            constraints.
+            cluster can consume per second. Once this limit is reached, operation
+            latency may increase due to throttling. It is an error for this to be zero.
           format: int64
           type: integer
         storage_mib_limit:
@@ -11711,9 +11650,6 @@ components:
             usage. It is an error for this to be zero.
           format: int64
           type: integer
-      required:
-      - request_unit_limit
-      - storage_mib_limit
       type: object
     UserGroupRoleGrant:
       example:

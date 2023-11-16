@@ -21,45 +21,34 @@ package client
 // UsageLimits struct for UsageLimits.
 type UsageLimits struct {
 	// request_unit_limit is the maximum number of request units that the cluster can consume during the month. If this limit is exceeded, then the cluster is disabled until the limit is increased, or until the beginning of the next month when more free request units are granted. It is an error for this to be zero.
-	RequestUnitLimit int64 `json:"request_unit_limit,string"`
-	// request_unit_rate_limit is the maximum number of request units that the cluster can consume per second.  NOTE: In the current CLOUD_2_0_INCLUDE state, callers *must* pass zero for the other two limits when passing a positive provisioned RUs amount. When the CLOUD_2_0_INCLUDE tag is removed we should loosen the required field constraints.
+	RequestUnitLimit *int64 `json:"request_unit_limit,omitempty,string"`
+	// request_unit_rate_limit is the maximum number of request units that the cluster can consume per second. Once this limit is reached, operation latency may increase due to throttling. It is an error for this to be zero.
 	RequestUnitRateLimit *int64 `json:"request_unit_rate_limit,omitempty,string"`
 	// storage_mib_limit is the maximum number of Mebibytes of storage that the cluster can have at any time during the month. If this limit is exceeded, then the cluster is throttled; only one SQL connection is allowed at a time, with the expectation that it is used to delete data to reduce storage usage. It is an error for this to be zero.
-	StorageMibLimit int64 `json:"storage_mib_limit,string"`
+	StorageMibLimit *int64 `json:"storage_mib_limit,omitempty,string"`
 }
 
 // NewUsageLimits instantiates a new UsageLimits object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUsageLimits(requestUnitLimit int64, storageMibLimit int64) *UsageLimits {
-	p := UsageLimits{}
-	p.RequestUnitLimit = requestUnitLimit
-	p.StorageMibLimit = storageMibLimit
-	return &p
-}
-
-// NewUsageLimitsWithDefaults instantiates a new UsageLimits object.
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewUsageLimitsWithDefaults() *UsageLimits {
+func NewUsageLimits() *UsageLimits {
 	p := UsageLimits{}
 	return &p
 }
 
-// GetRequestUnitLimit returns the RequestUnitLimit field value.
+// GetRequestUnitLimit returns the RequestUnitLimit field value if set, zero value otherwise.
 func (o *UsageLimits) GetRequestUnitLimit() int64 {
-	if o == nil {
+	if o == nil || o.RequestUnitLimit == nil {
 		var ret int64
 		return ret
 	}
-
-	return o.RequestUnitLimit
+	return *o.RequestUnitLimit
 }
 
-// SetRequestUnitLimit sets field value.
+// SetRequestUnitLimit gets a reference to the given int64 and assigns it to the RequestUnitLimit field.
 func (o *UsageLimits) SetRequestUnitLimit(v int64) {
-	o.RequestUnitLimit = v
+	o.RequestUnitLimit = &v
 }
 
 // GetRequestUnitRateLimit returns the RequestUnitRateLimit field value if set, zero value otherwise.
@@ -76,17 +65,16 @@ func (o *UsageLimits) SetRequestUnitRateLimit(v int64) {
 	o.RequestUnitRateLimit = &v
 }
 
-// GetStorageMibLimit returns the StorageMibLimit field value.
+// GetStorageMibLimit returns the StorageMibLimit field value if set, zero value otherwise.
 func (o *UsageLimits) GetStorageMibLimit() int64 {
-	if o == nil {
+	if o == nil || o.StorageMibLimit == nil {
 		var ret int64
 		return ret
 	}
-
-	return o.StorageMibLimit
+	return *o.StorageMibLimit
 }
 
-// SetStorageMibLimit sets field value.
+// SetStorageMibLimit gets a reference to the given int64 and assigns it to the StorageMibLimit field.
 func (o *UsageLimits) SetStorageMibLimit(v int64) {
-	o.StorageMibLimit = v
+	o.StorageMibLimit = &v
 }
