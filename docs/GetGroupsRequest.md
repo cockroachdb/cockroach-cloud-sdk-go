@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Attributes** | Pointer to **string** |  | [optional] 
 **ExcludedAttributes** | Pointer to **string** |  | [optional] 
+**Filter** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -41,6 +42,18 @@ GetExcludedAttributes returns the ExcludedAttributes field if non-nil, zero valu
 `func (o *GetGroupsRequest) SetExcludedAttributes(v string)`
 
 SetExcludedAttributes sets ExcludedAttributes field to given value.
+
+### GetFilter
+
+`func (o *GetGroupsRequest) GetFilter() string`
+
+GetFilter returns the Filter field if non-nil, zero value otherwise.
+
+### SetFilter
+
+`func (o *GetGroupsRequest) SetFilter(v string)`
+
+SetFilter sets Filter field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

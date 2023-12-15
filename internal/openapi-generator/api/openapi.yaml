@@ -59,6 +59,13 @@ paths:
         schema:
           type: string
         style: form
+      - explode: true
+        in: query
+        name: filter
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -105,7 +112,7 @@ paths:
       - lang: Shell + Curl
         source: |-
           curl --request GET \
-            --url 'https://cockroachlabs.cloud/api/scim/v2/Groups?attributes=SOME_STRING_VALUE&excludedAttributes=SOME_STRING_VALUE' \
+            --url 'https://cockroachlabs.cloud/api/scim/v2/Groups?attributes=SOME_STRING_VALUE&excludedAttributes=SOME_STRING_VALUE&filter=SOME_STRING_VALUE' \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     post:
       description: |
@@ -229,7 +236,7 @@ paths:
             --url https://cockroachlabs.cloud/api/scim/v2/Groups/.search \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
             --header 'content-type: application/json' \
-            --data '{"attributes":"string","excludedAttributes":"string"}'
+            --data '{"attributes":"string","excludedAttributes":"string","filter":"string"}'
   /api/scim/v2/Groups/{id}:
     delete:
       description: |
@@ -2037,6 +2044,16 @@ paths:
           - AZURE
           type: string
         style: form
+      - description: Optional filter to only show regions available for serverless
+          clusters.
+        explode: true
+        in: query
+        name: serverless
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
       - explode: true
         in: query
         name: pagination.page
@@ -2072,15 +2089,6 @@ paths:
           - ASC
           - DESC
           type: string
-        style: form
-      - description: Optional filter to only show regions available for shared clusters.
-        explode: true
-        in: query
-        name: shared
-        required: false
-        schema:
-          default: false
-          type: boolean
         style: form
       responses:
         "200":
@@ -2128,7 +2136,7 @@ paths:
       - lang: Shell + Curl
         source: |-
           curl --request GET \
-            --url 'https://cockroachlabs.cloud/api/v1/clusters/available-regions?provider=SOME_STRING_VALUE&pagination.page=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.as_of_time=SOME_STRING_VALUE&pagination.sort_order=SOME_STRING_VALUE&shared=SOME_BOOLEAN_VALUE' \
+            --url 'https://cockroachlabs.cloud/api/v1/clusters/available-regions?provider=SOME_STRING_VALUE&serverless=SOME_BOOLEAN_VALUE&pagination.page=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.as_of_time=SOME_STRING_VALUE&pagination.sort_order=SOME_STRING_VALUE' \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
   /api/v1/clusters/{cluster_id}:
     delete:
@@ -2258,6 +2266,8 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     patch:
       description: |
+        In addition to adding nodes and changing cluster fields, the PATCH Cluster endpoint can be used to upgrade the cluster version. A cluster can be upgraded when its `upgrade_status` field is equal to `UPGRADE_AVAILABLE`. To begin the upgrade, PATCH `{"upgrade_status": "MAJOR_UPGRADE_RUNNING"}` to this endpoint. Multi-node clusters will undergo a rolling upgrade and will remain available, but single-node clusters will be briefly unavailable while the upgrade takes place. Upgrades will be finalized automatically after 72 hours but can be manually finalized by sending a PATCH containing `{"upgrade_status": "FINALIZED"}` to this endpoint. Before the cluster is finalized, it can be rolled back by sending a PATCH containing `{"upgrade_status": "ROLLBACK_RUNNING"}`. Version upgrade operations cannot be performed simultaneously with other update operations.
+
         Can be used by the following roles assigned at the organization or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
@@ -2315,7 +2325,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
-      summary: Scale or edit a cluster
+      summary: "Scale, edit or upgrade a cluster"
       tags:
       - Clusters
       x-codeSamples:
@@ -2325,7 +2335,7 @@ paths:
             --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id} \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
             --header 'content-type: application/json' \
-            --data '{"dedicated":{"hardware":{"machine_spec":{"machine_type":"n2-standard-8"}},"region_nodes":{"us-central1":5,"us-west1":3}},"upgrade_status":"UPGRADE_RUNNING"}'
+            --data '{"dedicated":{"hardware":{"machine_spec":{"machine_type":"n2-standard-8"}},"region_nodes":{"us-central1":5,"us-west1":3}}}'
   /api/v1/clusters/{cluster_id}/client-ca-cert:
     delete:
       description: |
@@ -8225,10 +8235,10 @@ components:
       type: string
     CloudProviderRegion:
       example:
-        shared: true
         distance: 0.8008282
         provider: null
         name: name
+        serverless: true
         location: location
       properties:
         distance:
@@ -8241,7 +8251,7 @@ components:
           type: string
         provider:
           $ref: '#/components/schemas/CloudProvider.Type'
-        shared:
+        serverless:
           type: boolean
       required:
       - distance
@@ -8249,7 +8259,6 @@ components:
       - name
       - provider
       - serverless
-      - shared
       type: object
     CloudWatchMetricExportInfo:
       example:
@@ -8372,8 +8381,8 @@ components:
       properties:
         dedicated:
           $ref: '#/components/schemas/DedicatedHardwareConfig'
-        shared:
-          $ref: '#/components/schemas/SharedClusterConfig'
+        serverless:
+          $ref: '#/components/schemas/ServerlessClusterConfig'
       type: object
     ClusterMajorVersion:
       description: "For more information about CockroachDB cluster version support,\
@@ -8559,8 +8568,8 @@ components:
             Limited Access: The parent ID is a folder ID. An empty string or "root"
             will create a cluster at the root level.
           type: string
-        shared:
-          $ref: '#/components/schemas/SharedClusterCreateSpecification'
+        serverless:
+          $ref: '#/components/schemas/ServerlessClusterCreateSpecification'
       type: object
     CreateFolderRequest:
       example:
@@ -9170,12 +9179,15 @@ components:
       type: object
     GetGroupsRequest:
       example:
+        filter: filter
         attributes: attributes
         excludedAttributes: excludedAttributes
       properties:
         attributes:
           type: string
         excludedAttributes:
+          type: string
+        filter:
           type: string
       title: GetGroupsRequest
       type: object
@@ -10030,15 +10042,15 @@ components:
           next_page: next_page
           previous_page: previous_page
         regions:
-        - shared: true
-          distance: 0.8008282
+        - distance: 0.8008282
           provider: null
           name: name
+          serverless: true
           location: location
-        - shared: true
-          distance: 0.8008282
+        - distance: 0.8008282
           provider: null
           name: name
+          serverless: true
           location: location
       properties:
         pagination:
@@ -11494,15 +11506,7 @@ components:
         userName:
           type: string
       type: object
-    SetAWSEndpointConnectionStatus.Type:
-      description: |2-
-         - AVAILABLE: accept/verify the connection on the service side.
-         - REJECTED: reject the connection on the service side.
-      enum:
-      - AVAILABLE
-      - REJECTED
-      type: string
-    SharedClusterConfig:
+    ServerlessClusterConfig:
       properties:
         routing_id:
           description: routing_id is used to identify the cluster in a connection
@@ -11513,18 +11517,20 @@ components:
       required:
       - routing_id
       type: object
-    SharedClusterCreateSpecification:
+    ServerlessClusterCreateSpecification:
       properties:
         primary_region:
           description: |-
-            Specify which region should be made the primary region. This is only
-            applicable to multi-region shared clusters. This field is required if
-            you create the cluster in more than one region.
+            Preview: Specify which region should be made the primary region.
+            This is only applicable to multi-region Serverless clusters.
+            This field is required if you create the cluster in more than
+            one region.
           type: string
         regions:
           description: |-
-            Region values should match the cloud provider's zone code. For example, for
-            Oregon, set region_name to "us-west2" for GCP and "us-west-2" for AWS.
+            Region values should match the cloud provider's zone code.
+            For example, for Oregon, set region_name to "us-west2" for
+            GCP and "us-west-2" for AWS.
           items:
             type: string
           type: array
@@ -11533,33 +11539,41 @@ components:
         with_empty_ip_allowlist:
           description: |-
             WithEmptyIPAllowlist creates a cluster with no entries in the IP Allowlist.
-            By default, shared clusters have one IP allowlist entry that opens the
-            cluster to any IP. Set this property to true to ensure the cluster is
-            closed to public traffic by default.
+            By default, Serverless clusters have one IP allowlist entry that opens the cluster to any IP.
+            Set this property to true to ensure the cluster is closed to public traffic by default.
           type: boolean
       required:
       - regions
       type: object
-    SharedClusterUpdateSpecification:
+    ServerlessClusterUpdateSpecification:
       properties:
         primary_region:
           description: |-
-            Specify which region should be made the primary region. This is only
-            applicable to multi-region shared clusters. This field is required if the
-            regions field contains more than one region.
+            Specify which region should be made the primary region.
+            This is only applicable to multi-region Serverless clusters.
+            This field is required if the regions field contains more than one region.
           type: string
         regions:
           description: |-
-            Region values should match the cloud provider's zone code. For example, for
-            Oregon, set region_name to "us-west2" for GCP and "us-west-2" for AWS. If
-            this field is provided, the cluster's regions will be changed to match this
-            list. Regions cannot currently be removed.
+            Region values should match the cloud provider's zone code.
+            For example, for Oregon, set region_name to "us-west2" for
+            GCP and "us-west-2" for AWS. If this field is provided, the cluster's
+            regions will be changed to match this list.
+            Regions cannot currently be removed.
           items:
             type: string
           type: array
         usage_limits:
           $ref: '#/components/schemas/UsageLimits'
       type: object
+    SetAWSEndpointConnectionStatus.Type:
+      description: |2-
+         - AVAILABLE: accept/verify the connection on the service side.
+         - REJECTED: reject the connection on the service side.
+      enum:
+      - AVAILABLE
+      - REJECTED
+      type: string
     SortOrder:
       description: |2-
          - ASC: Sort in ascending order. This is the default unless otherwise specified.
@@ -11581,14 +11595,6 @@ components:
           type: string
       type: object
     UpdateClusterSpecification:
-      description: "Set `upgrade_status` to 'UPGRADE_RUNNING' to start an upgrade.\
-        \ Multi-node clusters will undergo a rolling upgrade and will remain available,\
-        \ but single-node clusters will be briefly unavailable while the upgrade takes\
-        \ place. Upgrades will be finalized automatically after 72 hours, or can be\
-        \ manually finalized by setting the value to 'FINALIZED'. Before the cluster\
-        \ is finalized, it can be rolled back by setting the value to 'ROLLBACK_RUNNING'.\
-        \ Version upgrade operations cannot be performed simultaneously with other\
-        \ update operations."
       example:
         dedicated:
           hardware:
@@ -11597,7 +11603,6 @@ components:
           region_nodes:
             us-central1: 5
             us-west1: 3
-        upgrade_status: UPGRADE_RUNNING
       properties:
         dedicated:
           $ref: '#/components/schemas/DedicatedClusterUpdateSpecification'
@@ -11606,8 +11611,8 @@ components:
             Limited Access: The parent ID is a folder ID. An empty string or "root"
             represents the root level.
           type: string
-        shared:
-          $ref: '#/components/schemas/SharedClusterUpdateSpecification'
+        serverless:
+          $ref: '#/components/schemas/ServerlessClusterUpdateSpecification'
         upgrade_status:
           $ref: '#/components/schemas/ClusterUpgradeStatus.Type'
       type: object
@@ -11625,6 +11630,13 @@ components:
       type: object
     UsageLimits:
       properties:
+        provisioned_capacity:
+          description: |-
+            provisioned_capacity is the maximum number of request units that the cluster
+            can consume per second. Once this limit is reached, operation latency may
+            increase due to throttling. It is an error for this to be zero.
+          format: int64
+          type: integer
         request_unit_limit:
           description: |-
             request_unit_limit is the maximum number of request units that the cluster
@@ -11632,13 +11644,6 @@ components:
             is disabled until the limit is increased, or until the beginning of the
             next month when more free request units are granted. It is an error for
             this to be zero.
-          format: int64
-          type: integer
-        request_unit_rate_limit:
-          description: |-
-            request_unit_rate_limit is the maximum number of request units that the
-            cluster can consume per second. Once this limit is reached, operation
-            latency may increase due to throttling. It is an error for this to be zero.
           format: int64
           type: integer
         storage_mib_limit:

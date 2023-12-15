@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Dedicated** | Pointer to [**DedicatedClusterUpdateSpecification**](DedicatedClusterUpdateSpecification.md) |  | [optional] 
 **ParentId** | Pointer to **string** | Limited Access: The parent ID is a folder ID. An empty string or \&quot;root\&quot; represents the root level. | [optional] 
-**Shared** | Pointer to [**SharedClusterUpdateSpecification**](SharedClusterUpdateSpecification.md) |  | [optional] 
+**Serverless** | Pointer to [**ServerlessClusterUpdateSpecification**](ServerlessClusterUpdateSpecification.md) |  | [optional] 
 **UpgradeStatus** | Pointer to [**ClusterUpgradeStatusType**](ClusterUpgradeStatusType.md) |  | [optional] 
 
 ## Methods
@@ -44,17 +44,17 @@ GetParentId returns the ParentId field if non-nil, zero value otherwise.
 
 SetParentId sets ParentId field to given value.
 
-### GetShared
+### GetServerless
 
-`func (o *UpdateClusterSpecification) GetShared() SharedClusterUpdateSpecification`
+`func (o *UpdateClusterSpecification) GetServerless() ServerlessClusterUpdateSpecification`
 
-GetShared returns the Shared field if non-nil, zero value otherwise.
+GetServerless returns the Serverless field if non-nil, zero value otherwise.
 
-### SetShared
+### SetServerless
 
-`func (o *UpdateClusterSpecification) SetShared(v SharedClusterUpdateSpecification)`
+`func (o *UpdateClusterSpecification) SetServerless(v ServerlessClusterUpdateSpecification)`
 
-SetShared sets Shared field to given value.
+SetServerless sets Serverless field to given value.
 
 ### GetUpgradeStatus
 

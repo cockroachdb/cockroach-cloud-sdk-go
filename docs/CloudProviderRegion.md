@@ -8,13 +8,13 @@ Name | Type | Description | Notes
 **Location** | **string** |  | 
 **Name** | **string** |  | 
 **Provider** | [**CloudProviderType**](CloudProviderType.md) |  | 
-**Shared** | **bool** |  | 
+**Serverless** | **bool** |  | 
 
 ## Methods
 
 ### NewCloudProviderRegion
 
-`func NewCloudProviderRegion(distance float32, location string, name string, provider CloudProviderType, shared bool, ) *CloudProviderRegion`
+`func NewCloudProviderRegion(distance float32, location string, name string, provider CloudProviderType, serverless bool, ) *CloudProviderRegion`
 
 NewCloudProviderRegion instantiates a new CloudProviderRegion object.
 This constructor will assign default values to properties that have it defined,
@@ -77,17 +77,17 @@ GetProvider returns the Provider field if non-nil, zero value otherwise.
 
 SetProvider sets Provider field to given value.
 
-### GetShared
+### GetServerless
 
-`func (o *CloudProviderRegion) GetShared() bool`
+`func (o *CloudProviderRegion) GetServerless() bool`
 
-GetShared returns the Shared field if non-nil, zero value otherwise.
+GetServerless returns the Serverless field if non-nil, zero value otherwise.
 
-### SetShared
+### SetServerless
 
-`func (o *CloudProviderRegion) SetShared(v bool)`
+`func (o *CloudProviderRegion) SetServerless(v bool)`
 
-SetShared sets Shared field to given value.
+SetServerless sets Serverless field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

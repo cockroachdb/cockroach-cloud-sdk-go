@@ -35,6 +35,13 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -105,7 +112,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request GET \\\n  --url 'https://cockroachlabs.cloud/api/scim/v2/Groups?attributes=SOME_STRING_VALUE&excludedAttributes=SOME_STRING_VALUE' \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+            "source": "curl --request GET \\\n  --url 'https://cockroachlabs.cloud/api/scim/v2/Groups?attributes=SOME_STRING_VALUE&excludedAttributes=SOME_STRING_VALUE&filter=SOME_STRING_VALUE' \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
           }
         ]
       },
@@ -279,7 +286,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/scim/v2/Groups/.search \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"attributes\":\"string\",\"excludedAttributes\":\"string\"}'"
+            "source": "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/scim/v2/Groups/.search \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"attributes\":\"string\",\"excludedAttributes\":\"string\",\"filter\":\"string\"}'"
           }
         ]
       }
@@ -2981,6 +2988,15 @@
             }
           },
           {
+            "name": "serverless",
+            "in": "query",
+            "description": "Optional filter to only show regions available for serverless clusters.",
+            "schema": {
+              "type": "boolean",
+              "default": "false"
+            }
+          },
+          {
             "name": "pagination.page",
             "in": "query",
             "schema": {
@@ -3013,15 +3029,6 @@
                 "ASC",
                 "DESC"
               ]
-            }
-          },
-          {
-            "name": "shared",
-            "in": "query",
-            "description": "Optional filter to only show regions available for shared clusters.",
-            "schema": {
-              "type": "boolean",
-              "default": "false"
             }
           }
         ],
@@ -3093,7 +3100,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request GET \\\n  --url 'https://cockroachlabs.cloud/api/v1/clusters/available-regions?provider=SOME_STRING_VALUE&pagination.page=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.as_of_time=SOME_STRING_VALUE&pagination.sort_order=SOME_STRING_VALUE&shared=SOME_BOOLEAN_VALUE' \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+            "source": "curl --request GET \\\n  --url 'https://cockroachlabs.cloud/api/v1/clusters/available-regions?provider=SOME_STRING_VALUE&serverless=SOME_BOOLEAN_VALUE&pagination.page=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.as_of_time=SOME_STRING_VALUE&pagination.sort_order=SOME_STRING_VALUE' \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
           }
         ]
       }
@@ -3273,8 +3280,8 @@
       },
       "patch": {
         "operationId": "CockroachCloud_UpdateCluster",
-        "summary": "Scale or edit a cluster",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "summary": "Scale, edit or upgrade a cluster",
+        "description": "In addition to adding nodes and changing cluster fields, the PATCH Cluster endpoint can be used to upgrade the cluster version. A cluster can be upgraded when its `upgrade_status` field is equal to `UPGRADE_AVAILABLE`. To begin the upgrade, PATCH `{\"upgrade_status\": \"MAJOR_UPGRADE_RUNNING\"}` to this endpoint. Multi-node clusters will undergo a rolling upgrade and will remain available, but single-node clusters will be briefly unavailable while the upgrade takes place. Upgrades will be finalized automatically after 72 hours but can be manually finalized by sending a PATCH containing `{\"upgrade_status\": \"FINALIZED\"}` to this endpoint. Before the cluster is finalized, it can be rolled back by sending a PATCH containing `{\"upgrade_status\": \"ROLLBACK_RUNNING\"}`. Version upgrade operations cannot be performed simultaneously with other update operations.\n\nCan be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -3363,7 +3370,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PATCH \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"dedicated\":{\"hardware\":{\"machine_spec\":{\"machine_type\":\"n2-standard-8\"}},\"region_nodes\":{\"us-central1\":5,\"us-west1\":3}},\"upgrade_status\":\"UPGRADE_RUNNING\"}'"
+            "source": "curl --request PATCH \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"dedicated\":{\"hardware\":{\"machine_spec\":{\"machine_type\":\"n2-standard-8\"}},\"region_nodes\":{\"us-central1\":5,\"us-west1\":3}}}'"
           }
         ]
       }
@@ -11350,7 +11357,7 @@
           "provider": {
             "$ref": "#/components/schemas/CloudProvider.Type"
           },
-          "shared": {
+          "serverless": {
             "type": "boolean"
           }
         },
@@ -11359,8 +11366,7 @@
           "location",
           "provider",
           "serverless",
-          "distance",
-          "shared"
+          "distance"
         ]
       },
       "CloudWatchMetricExportInfo": {
@@ -11512,8 +11518,8 @@
           "dedicated": {
             "$ref": "#/components/schemas/DedicatedHardwareConfig"
           },
-          "shared": {
-            "$ref": "#/components/schemas/SharedClusterConfig"
+          "serverless": {
+            "$ref": "#/components/schemas/ServerlessClusterConfig"
           }
         }
       },
@@ -11731,8 +11737,8 @@
             "description": "Limited Access: The parent ID is a folder ID. An empty string or \"root\"\nwill create a cluster at the root level.",
             "type": "string"
           },
-          "shared": {
-            "$ref": "#/components/schemas/SharedClusterCreateSpecification"
+          "serverless": {
+            "$ref": "#/components/schemas/ServerlessClusterCreateSpecification"
           }
         }
       },
@@ -12287,6 +12293,9 @@
             "type": "string"
           },
           "excludedAttributes": {
+            "type": "string"
+          },
+          "filter": {
             "type": "string"
           }
         },
@@ -13646,15 +13655,7 @@
           }
         }
       },
-      "SetAWSEndpointConnectionStatus.Type": {
-        "description": " - AVAILABLE: accept/verify the connection on the service side.\n - REJECTED: reject the connection on the service side.",
-        "type": "string",
-        "enum": [
-          "AVAILABLE",
-          "REJECTED"
-        ]
-      },
-      "SharedClusterConfig": {
+      "ServerlessClusterConfig": {
         "type": "object",
         "properties": {
           "routing_id": {
@@ -13669,15 +13670,15 @@
           "routing_id"
         ]
       },
-      "SharedClusterCreateSpecification": {
+      "ServerlessClusterCreateSpecification": {
         "type": "object",
         "properties": {
           "primary_region": {
-            "description": "Specify which region should be made the primary region. This is only\napplicable to multi-region shared clusters. This field is required if\nyou create the cluster in more than one region.",
+            "description": "Preview: Specify which region should be made the primary region.\nThis is only applicable to multi-region Serverless clusters.\nThis field is required if you create the cluster in more than\none region.",
             "type": "string"
           },
           "regions": {
-            "description": "Region values should match the cloud provider's zone code. For example, for\nOregon, set region_name to \"us-west2\" for GCP and \"us-west-2\" for AWS.",
+            "description": "Region values should match the cloud provider's zone code.\nFor example, for Oregon, set region_name to \"us-west2\" for\nGCP and \"us-west-2\" for AWS.",
             "type": "array",
             "items": {
               "type": "string"
@@ -13687,7 +13688,7 @@
             "$ref": "#/components/schemas/UsageLimits"
           },
           "with_empty_ip_allowlist": {
-            "description": "WithEmptyIPAllowlist creates a cluster with no entries in the IP Allowlist.\nBy default, shared clusters have one IP allowlist entry that opens the\ncluster to any IP. Set this property to true to ensure the cluster is\nclosed to public traffic by default.",
+            "description": "WithEmptyIPAllowlist creates a cluster with no entries in the IP Allowlist.\nBy default, Serverless clusters have one IP allowlist entry that opens the cluster to any IP.\nSet this property to true to ensure the cluster is closed to public traffic by default.",
             "type": "boolean"
           }
         },
@@ -13695,15 +13696,15 @@
           "regions"
         ]
       },
-      "SharedClusterUpdateSpecification": {
+      "ServerlessClusterUpdateSpecification": {
         "type": "object",
         "properties": {
           "primary_region": {
-            "description": "Specify which region should be made the primary region. This is only\napplicable to multi-region shared clusters. This field is required if the\nregions field contains more than one region.",
+            "description": "Specify which region should be made the primary region.\nThis is only applicable to multi-region Serverless clusters.\nThis field is required if the regions field contains more than one region.",
             "type": "string"
           },
           "regions": {
-            "description": "Region values should match the cloud provider's zone code. For example, for\nOregon, set region_name to \"us-west2\" for GCP and \"us-west-2\" for AWS. If\nthis field is provided, the cluster's regions will be changed to match this\nlist. Regions cannot currently be removed.",
+            "description": "Region values should match the cloud provider's zone code.\nFor example, for Oregon, set region_name to \"us-west2\" for\nGCP and \"us-west-2\" for AWS. If this field is provided, the cluster's\nregions will be changed to match this list.\nRegions cannot currently be removed.",
             "type": "array",
             "items": {
               "type": "string"
@@ -13713,6 +13714,14 @@
             "$ref": "#/components/schemas/UsageLimits"
           }
         }
+      },
+      "SetAWSEndpointConnectionStatus.Type": {
+        "description": " - AVAILABLE: accept/verify the connection on the service side.\n - REJECTED: reject the connection on the service side.",
+        "type": "string",
+        "enum": [
+          "AVAILABLE",
+          "REJECTED"
+        ]
       },
       "SortOrder": {
         "description": " - ASC: Sort in ascending order. This is the default unless otherwise specified.\n - DESC: Sort in descending order.",
@@ -13741,7 +13750,6 @@
         }
       },
       "UpdateClusterSpecification": {
-        "description": "Set `upgrade_status` to 'UPGRADE_RUNNING' to start an upgrade. Multi-node clusters will undergo a rolling upgrade and will remain available, but single-node clusters will be briefly unavailable while the upgrade takes place. Upgrades will be finalized automatically after 72 hours, or can be manually finalized by setting the value to 'FINALIZED'. Before the cluster is finalized, it can be rolled back by setting the value to 'ROLLBACK_RUNNING'. Version upgrade operations cannot be performed simultaneously with other update operations.",
         "type": "object",
         "properties": {
           "dedicated": {
@@ -13751,8 +13759,8 @@
             "description": "Limited Access: The parent ID is a folder ID. An empty string or \"root\"\nrepresents the root level.",
             "type": "string"
           },
-          "shared": {
-            "$ref": "#/components/schemas/SharedClusterUpdateSpecification"
+          "serverless": {
+            "$ref": "#/components/schemas/ServerlessClusterUpdateSpecification"
           },
           "upgrade_status": {
             "$ref": "#/components/schemas/ClusterUpgradeStatus.Type"
@@ -13769,8 +13777,7 @@
               "us-central1": 5,
               "us-west1": 3
             }
-          },
-          "upgrade_status": "UPGRADE_RUNNING"
+          }
         }
       },
       "UpdateFolderSpecification": {
@@ -13792,13 +13799,13 @@
       "UsageLimits": {
         "type": "object",
         "properties": {
-          "request_unit_limit": {
-            "description": "request_unit_limit is the maximum number of request units that the cluster\ncan consume during the month. If this limit is exceeded, then the cluster\nis disabled until the limit is increased, or until the beginning of the\nnext month when more free request units are granted. It is an error for\nthis to be zero.",
+          "provisioned_capacity": {
+            "description": "provisioned_capacity is the maximum number of request units that the cluster\ncan consume per second. Once this limit is reached, operation latency may\nincrease due to throttling. It is an error for this to be zero.",
             "type": "string",
             "format": "int64"
           },
-          "request_unit_rate_limit": {
-            "description": "request_unit_rate_limit is the maximum number of request units that the\ncluster can consume per second. Once this limit is reached, operation\nlatency may increase due to throttling. It is an error for this to be zero.",
+          "request_unit_limit": {
+            "description": "request_unit_limit is the maximum number of request units that the cluster\ncan consume during the month. If this limit is exceeded, then the cluster\nis disabled until the limit is increased, or until the beginning of the\nnext month when more free request units are granted. It is an error for\nthis to be zero.",
             "type": "string",
             "format": "int64"
           },

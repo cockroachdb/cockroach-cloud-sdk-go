@@ -452,7 +452,7 @@ Name | Type | Description  | Notes
 
 ## GetGroups
 
-> GetGroupsResponse GetGroups(ctx).Attributes(attributes).ExcludedAttributes(excludedAttributes).Execute()
+> GetGroupsResponse GetGroups(ctx).Attributes(attributes).ExcludedAttributes(excludedAttributes).Filter(filter).Execute()
 
 Get groups based on query parameters
 
@@ -475,10 +475,11 @@ import (
 func main() {
     attributes := "attributes_example" // string |  (optional)
     excludedAttributes := "excludedAttributes_example" // string |  (optional)
+    filter := "filter_example" // string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
-    resp, r, err := api_client.SCIMApi.GetGroups(context.Background()).Attributes(attributes).ExcludedAttributes(excludedAttributes).Execute()
+    resp, r, err := api_client.SCIMApi.GetGroups(context.Background()).Attributes(attributes).ExcludedAttributes(excludedAttributes).Filter(filter).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SCIMApi.GetGroups``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -501,6 +502,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **attributes** | **string** |  | 
  **excludedAttributes** | **string** |  | 
+ **filter** | **string** |  | 
 
 ### Return type
 
