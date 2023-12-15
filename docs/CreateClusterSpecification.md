@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Dedicated** | Pointer to [**DedicatedClusterCreateSpecification**](DedicatedClusterCreateSpecification.md) |  | [optional] 
 **ParentId** | Pointer to **string** | Limited Access: The parent ID is a folder ID. An empty string or \&quot;root\&quot; will create a cluster at the root level. | [optional] 
-**Shared** | Pointer to [**SharedClusterCreateSpecification**](SharedClusterCreateSpecification.md) |  | [optional] 
+**Serverless** | Pointer to [**ServerlessClusterCreateSpecification**](ServerlessClusterCreateSpecification.md) |  | [optional] 
 
 ## Methods
 
@@ -43,17 +43,17 @@ GetParentId returns the ParentId field if non-nil, zero value otherwise.
 
 SetParentId sets ParentId field to given value.
 
-### GetShared
+### GetServerless
 
-`func (o *CreateClusterSpecification) GetShared() SharedClusterCreateSpecification`
+`func (o *CreateClusterSpecification) GetServerless() ServerlessClusterCreateSpecification`
 
-GetShared returns the Shared field if non-nil, zero value otherwise.
+GetServerless returns the Serverless field if non-nil, zero value otherwise.
 
-### SetShared
+### SetServerless
 
-`func (o *CreateClusterSpecification) SetShared(v SharedClusterCreateSpecification)`
+`func (o *CreateClusterSpecification) SetServerless(v ServerlessClusterCreateSpecification)`
 
-SetShared sets Shared field to given value.
+SetServerless sets Serverless field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

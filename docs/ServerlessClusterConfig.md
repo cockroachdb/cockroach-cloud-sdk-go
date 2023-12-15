@@ -1,4 +1,4 @@
-# SharedClusterConfig
+# ServerlessClusterConfig
 
 ## Properties
 
@@ -9,44 +9,44 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewSharedClusterConfig
+### NewServerlessClusterConfig
 
-`func NewSharedClusterConfig(routingId string, ) *SharedClusterConfig`
+`func NewServerlessClusterConfig(routingId string, ) *ServerlessClusterConfig`
 
-NewSharedClusterConfig instantiates a new SharedClusterConfig object.
+NewServerlessClusterConfig instantiates a new ServerlessClusterConfig object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed.
 
-### NewSharedClusterConfigWithDefaults
+### NewServerlessClusterConfigWithDefaults
 
-`func NewSharedClusterConfigWithDefaults() *SharedClusterConfig`
+`func NewServerlessClusterConfigWithDefaults() *ServerlessClusterConfig`
 
-NewSharedClusterConfigWithDefaults instantiates a new SharedClusterConfig object.
+NewServerlessClusterConfigWithDefaults instantiates a new ServerlessClusterConfig object.
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set.
 
 ### GetRoutingId
 
-`func (o *SharedClusterConfig) GetRoutingId() string`
+`func (o *ServerlessClusterConfig) GetRoutingId() string`
 
 GetRoutingId returns the RoutingId field if non-nil, zero value otherwise.
 
 ### SetRoutingId
 
-`func (o *SharedClusterConfig) SetRoutingId(v string)`
+`func (o *ServerlessClusterConfig) SetRoutingId(v string)`
 
 SetRoutingId sets RoutingId field to given value.
 
 ### GetUsageLimits
 
-`func (o *SharedClusterConfig) GetUsageLimits() UsageLimits`
+`func (o *ServerlessClusterConfig) GetUsageLimits() UsageLimits`
 
 GetUsageLimits returns the UsageLimits field if non-nil, zero value otherwise.
 
 ### SetUsageLimits
 
-`func (o *SharedClusterConfig) SetUsageLimits(v UsageLimits)`
+`func (o *ServerlessClusterConfig) SetUsageLimits(v UsageLimits)`
 
 SetUsageLimits sets UsageLimits field to given value.
 

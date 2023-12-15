@@ -79,7 +79,7 @@ API | Method | HTTP request | Description
 [ClustersApi](docs/ClustersApi.md) | **ListClusterNodes** | **Get** /api/v1/clusters/{cluster_id}/nodes | List nodes for a cluster
 [ClustersApi](docs/ClustersApi.md) | **ListClusters** | **Get** /api/v1/clusters | List clusters owned by an organization
 [ClustersApi](docs/ClustersApi.md) | **ListMajorClusterVersions** | **Get** /api/v1/cluster-versions | List available major cluster versions
-[ClustersApi](docs/ClustersApi.md) | **UpdateCluster** | **Patch** /api/v1/clusters/{cluster_id} | Scale or edit a cluster
+[ClustersApi](docs/ClustersApi.md) | **UpdateCluster** | **Patch** /api/v1/clusters/{cluster_id} | Scale, edit or upgrade a cluster
 [CustomerManagedEncryptionKeysApi](docs/CustomerManagedEncryptionKeysApi.md) | **EnableCMEKSpec** | **Post** /api/v1/clusters/{cluster_id}/cmek | Enable CMEK for a cluster
 [CustomerManagedEncryptionKeysApi](docs/CustomerManagedEncryptionKeysApi.md) | **GetCMEKClusterInfo** | **Get** /api/v1/clusters/{cluster_id}/cmek | Get CMEK-related information for a cluster
 [CustomerManagedEncryptionKeysApi](docs/CustomerManagedEncryptionKeysApi.md) | **UpdateCMEKSpec** | **Put** /api/v1/clusters/{cluster_id}/cmek | Enable or update the CMEK spec for a cluster
