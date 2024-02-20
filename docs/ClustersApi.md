@@ -12,7 +12,7 @@ Method | HTTP request | Description
 [**ListClusterNodes**](ClustersApi.md#ListClusterNodes) | **Get** /api/v1/clusters/{cluster_id}/nodes | List nodes for a cluster
 [**ListClusters**](ClustersApi.md#ListClusters) | **Get** /api/v1/clusters | List clusters owned by an organization
 [**ListMajorClusterVersions**](ClustersApi.md#ListMajorClusterVersions) | **Get** /api/v1/cluster-versions | List available major cluster versions
-[**UpdateCluster**](ClustersApi.md#UpdateCluster) | **Patch** /api/v1/clusters/{cluster_id} | Scale or edit a cluster
+[**UpdateCluster**](ClustersApi.md#UpdateCluster) | **Patch** /api/v1/clusters/{cluster_id} | Scale, edit or upgrade a cluster
 
 
 
@@ -498,7 +498,7 @@ import (
 )
 
 func main() {
-    showInactive := true // bool | If `true`, show clusters that have been deleted or failed to initialize. (optional) (default to false)
+    showInactive := true // bool | If `true`, show clusters that have been deleted or failed to initialize. Note that inactive clusters will only be included if the requesting user has organization-scoped cluster read permissions. (optional) (default to false)
     paginationPage := "paginationPage_example" // string |  (optional)
     paginationLimit := int32(56) // int32 |  (optional)
     paginationAsOfTime := time.Now() // time.Time |  (optional)
@@ -527,7 +527,7 @@ Other parameters are passed through a pointer to a apiListClusters struct via th
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **showInactive** | **bool** | If &#x60;true&#x60;, show clusters that have been deleted or failed to initialize. | [default to false]
+ **showInactive** | **bool** | If &#x60;true&#x60;, show clusters that have been deleted or failed to initialize. Note that inactive clusters will only be included if the requesting user has organization-scoped cluster read permissions. | [default to false]
  **paginationPage** | **string** |  | 
  **paginationLimit** | **int32** |  | 
  **paginationAsOfTime** | **time.Time** |  | 
@@ -628,7 +628,9 @@ Name | Type | Description  | Notes
 
 > Cluster UpdateCluster(ctx, clusterId).UpdateClusterSpecification(updateClusterSpecification).Execute()
 
-Scale or edit a cluster
+Scale, edit or upgrade a cluster
+
+In addition to adding nodes and changing cluster fields, the PATCH Cluster endpoint can be used to upgrade the cluster version. A cluster can be upgraded when its `upgrade_status` field is equal to `UPGRADE_AVAILABLE`. To begin the upgrade, PATCH `{"upgrade_status": "MAJOR_UPGRADE_RUNNING"}` to this endpoint. Multi-node clusters will undergo a rolling upgrade and will remain available, but single-node clusters will be briefly unavailable while the upgrade takes place. Upgrades will be finalized automatically after 72 hours but can be manually finalized by sending a PATCH containing `{"upgrade_status": "FINALIZED"}` to this endpoint. Before the cluster is finalized, it can be rolled back by sending a PATCH containing `{"upgrade_status": "ROLLBACK_RUNNING"}`. Version upgrade operations cannot be performed simultaneously with other update operations.
 
 Can be used by the following roles assigned at the organization or cluster scope:
 - CLUSTER_ADMIN

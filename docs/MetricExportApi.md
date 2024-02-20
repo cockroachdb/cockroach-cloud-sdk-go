@@ -6,10 +6,13 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**DeleteCloudWatchMetricExport**](MetricExportApi.md#DeleteCloudWatchMetricExport) | **Delete** /api/v1/clusters/{cluster_id}/metricexport/cloudwatch | Delete the CloudWatch Metric Export configuration for a cluster
 [**DeleteDatadogMetricExport**](MetricExportApi.md#DeleteDatadogMetricExport) | **Delete** /api/v1/clusters/{cluster_id}/metricexport/datadog | Delete the Datadog Metric Export configuration for a cluster
+[**DeletePrometheusMetricExport**](MetricExportApi.md#DeletePrometheusMetricExport) | **Delete** /api/v1/clusters/{cluster_id}/metricexport/prometheus | Delete the Prometheus Metric Export configuration for a cluster
 [**EnableCloudWatchMetricExport**](MetricExportApi.md#EnableCloudWatchMetricExport) | **Post** /api/v1/clusters/{cluster_id}/metricexport/cloudwatch | Create or update the CloudWatch Metric Export configuration for a cluster
 [**EnableDatadogMetricExport**](MetricExportApi.md#EnableDatadogMetricExport) | **Post** /api/v1/clusters/{cluster_id}/metricexport/datadog | Create or update the Datadog Metric Export configuration for a cluster
+[**EnablePrometheusMetricExport**](MetricExportApi.md#EnablePrometheusMetricExport) | **Post** /api/v1/clusters/{cluster_id}/metricexport/prometheus | Create or update the Prometheus Metric Export configuration for a cluster
 [**GetCloudWatchMetricExportInfo**](MetricExportApi.md#GetCloudWatchMetricExportInfo) | **Get** /api/v1/clusters/{cluster_id}/metricexport/cloudwatch | Get the CloudWatch Metric Export configuration for a cluster
 [**GetDatadogMetricExportInfo**](MetricExportApi.md#GetDatadogMetricExportInfo) | **Get** /api/v1/clusters/{cluster_id}/metricexport/datadog | Get the Datadog Metric Export configuration for a cluster
+[**GetPrometheusMetricExportInfo**](MetricExportApi.md#GetPrometheusMetricExportInfo) | **Get** /api/v1/clusters/{cluster_id}/metricexport/prometheus | Get the Prometheus Metric Export configuration for a cluster
 
 
 
@@ -134,6 +137,73 @@ Name | Type | Description  | Notes
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiDeleteDatadogMetricExport struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**DeleteMetricExportResponse**](DeleteMetricExportResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## DeletePrometheusMetricExport
+
+> DeleteMetricExportResponse DeletePrometheusMetricExport(ctx, clusterId).Execute()
+
+Delete the Prometheus Metric Export configuration for a cluster
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    clusterId := "clusterId_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.MetricExportApi.DeletePrometheusMetricExport(context.Background(), clusterId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `MetricExportApi.DeletePrometheusMetricExport``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DeletePrometheusMetricExport`: DeleteMetricExportResponse
+    fmt.Fprintf(os.Stdout, "Response from `MetricExportApi.DeletePrometheusMetricExport`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**clusterId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeletePrometheusMetricExport struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -305,6 +375,75 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## EnablePrometheusMetricExport
+
+> PrometheusMetricExportInfo EnablePrometheusMetricExport(ctx, clusterId).Body(body).Execute()
+
+Create or update the Prometheus Metric Export configuration for a cluster
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    clusterId := "clusterId_example" // string | 
+    body := map[string]interface{}{ ... } // map[string]interface{} | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.MetricExportApi.EnablePrometheusMetricExport(context.Background(), clusterId).Body(body).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `MetricExportApi.EnablePrometheusMetricExport``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `EnablePrometheusMetricExport`: PrometheusMetricExportInfo
+    fmt.Fprintf(os.Stdout, "Response from `MetricExportApi.EnablePrometheusMetricExport`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**clusterId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiEnablePrometheusMetricExport struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **body** | **map[string]interface{}** |  | 
+
+### Return type
+
+[**PrometheusMetricExportInfo**](PrometheusMetricExportInfo.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## GetCloudWatchMetricExportInfo
 
 > CloudWatchMetricExportInfo GetCloudWatchMetricExportInfo(ctx, clusterId).Execute()
@@ -435,6 +574,73 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**DatadogMetricExportInfo**](DatadogMetricExportInfo.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetPrometheusMetricExportInfo
+
+> PrometheusMetricExportInfo GetPrometheusMetricExportInfo(ctx, clusterId).Execute()
+
+Get the Prometheus Metric Export configuration for a cluster
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    clusterId := "clusterId_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.MetricExportApi.GetPrometheusMetricExportInfo(context.Background(), clusterId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `MetricExportApi.GetPrometheusMetricExportInfo``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetPrometheusMetricExportInfo`: PrometheusMetricExportInfo
+    fmt.Fprintf(os.Stdout, "Response from `MetricExportApi.GetPrometheusMetricExportInfo`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**clusterId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetPrometheusMetricExportInfo struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**PrometheusMetricExportInfo**](PrometheusMetricExportInfo.md)
 
 ### Authorization
 

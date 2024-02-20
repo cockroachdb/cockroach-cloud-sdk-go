@@ -1,4 +1,4 @@
-# ApiDatabase
+# Database
 
 ## Properties
 
@@ -9,44 +9,44 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewApiDatabase
+### NewDatabase
 
-`func NewApiDatabase(name string, ) *ApiDatabase`
+`func NewDatabase(name string, ) *Database`
 
-NewApiDatabase instantiates a new ApiDatabase object.
+NewDatabase instantiates a new Database object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed.
 
-### NewApiDatabaseWithDefaults
+### NewDatabaseWithDefaults
 
-`func NewApiDatabaseWithDefaults() *ApiDatabase`
+`func NewDatabaseWithDefaults() *Database`
 
-NewApiDatabaseWithDefaults instantiates a new ApiDatabase object.
+NewDatabaseWithDefaults instantiates a new Database object.
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set.
 
 ### GetName
 
-`func (o *ApiDatabase) GetName() string`
+`func (o *Database) GetName() string`
 
 GetName returns the Name field if non-nil, zero value otherwise.
 
 ### SetName
 
-`func (o *ApiDatabase) SetName(v string)`
+`func (o *Database) SetName(v string)`
 
 SetName sets Name field to given value.
 
 ### GetTableCount
 
-`func (o *ApiDatabase) GetTableCount() int64`
+`func (o *Database) GetTableCount() int64`
 
 GetTableCount returns the TableCount field if non-nil, zero value otherwise.
 
 ### SetTableCount
 
-`func (o *ApiDatabase) SetTableCount(v int64)`
+`func (o *Database) SetTableCount(v int64)`
 
 SetTableCount sets TableCount field to given value.
 

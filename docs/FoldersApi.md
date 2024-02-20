@@ -215,7 +215,7 @@ Name | Type | Description  | Notes
 
 List contents of a folder
 
-Set `folder_id` to 'root' to list root level contents.
+Set `folder_id` to 'root' to list root level contents.  Sort order: Folders sorted by name, followed by Clusters sorted by name.
 
 ### Example
 

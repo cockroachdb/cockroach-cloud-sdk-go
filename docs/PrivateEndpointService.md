@@ -4,16 +4,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Aws** | [**AWSPrivateLinkServiceDetail**](AWSPrivateLinkServiceDetail.md) |  | 
+**AvailabilityZoneIds** | **[]string** | availability_zone_ids are the unique identifiers for the availability zones in which this service is available. Note these identifiers are unique even across typical cloud provider boundaries, for example AWS accounts or organizations. In AWS, availability zone ids for us-east-1 are use1-az1, use1-az2, use1-az3. | 
+**Aws** | Pointer to [**AWSPrivateLinkServiceDetail**](AWSPrivateLinkServiceDetail.md) |  | [optional] 
 **CloudProvider** | [**CloudProviderType**](CloudProviderType.md) |  | 
-**RegionName** | **string** | region_name is the cloud provider region name (i.e. us-east-1). | 
+**EndpointServiceId** | **string** | endpoint_service_id uniquely identifies this private endpoint service. This is the cloud provider generated id for the service. | 
+**Name** | **string** | name is the name of the private endpoints service. | 
+**RegionName** | **string** | region_name is the cloud provider region name (e.g. us-east-1). | 
 **Status** | [**PrivateEndpointServiceStatusType**](PrivateEndpointServiceStatusType.md) |  | 
 
 ## Methods
 
 ### NewPrivateEndpointService
 
-`func NewPrivateEndpointService(aws AWSPrivateLinkServiceDetail, cloudProvider CloudProviderType, regionName string, status PrivateEndpointServiceStatusType, ) *PrivateEndpointService`
+`func NewPrivateEndpointService(availabilityZoneIds []string, cloudProvider CloudProviderType, endpointServiceId string, name string, regionName string, status PrivateEndpointServiceStatusType, ) *PrivateEndpointService`
 
 NewPrivateEndpointService instantiates a new PrivateEndpointService object.
 This constructor will assign default values to properties that have it defined,
@@ -27,6 +30,18 @@ will change when the set of required properties is changed.
 NewPrivateEndpointServiceWithDefaults instantiates a new PrivateEndpointService object.
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set.
+
+### GetAvailabilityZoneIds
+
+`func (o *PrivateEndpointService) GetAvailabilityZoneIds() []string`
+
+GetAvailabilityZoneIds returns the AvailabilityZoneIds field if non-nil, zero value otherwise.
+
+### SetAvailabilityZoneIds
+
+`func (o *PrivateEndpointService) SetAvailabilityZoneIds(v []string)`
+
+SetAvailabilityZoneIds sets AvailabilityZoneIds field to given value.
 
 ### GetAws
 
@@ -51,6 +66,30 @@ GetCloudProvider returns the CloudProvider field if non-nil, zero value otherwis
 `func (o *PrivateEndpointService) SetCloudProvider(v CloudProviderType)`
 
 SetCloudProvider sets CloudProvider field to given value.
+
+### GetEndpointServiceId
+
+`func (o *PrivateEndpointService) GetEndpointServiceId() string`
+
+GetEndpointServiceId returns the EndpointServiceId field if non-nil, zero value otherwise.
+
+### SetEndpointServiceId
+
+`func (o *PrivateEndpointService) SetEndpointServiceId(v string)`
+
+SetEndpointServiceId sets EndpointServiceId field to given value.
+
+### GetName
+
+`func (o *PrivateEndpointService) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### SetName
+
+`func (o *PrivateEndpointService) SetName(v string)`
+
+SetName sets Name field to given value.
 
 ### GetRegionName
 

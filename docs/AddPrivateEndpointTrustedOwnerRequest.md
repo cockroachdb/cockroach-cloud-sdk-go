@@ -1,4 +1,4 @@
-# CockroachCloudAddPrivateEndpointTrustedOwnerRequest
+# AddPrivateEndpointTrustedOwnerRequest
 
 ## Properties
 
@@ -9,44 +9,44 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewCockroachCloudAddPrivateEndpointTrustedOwnerRequest
+### NewAddPrivateEndpointTrustedOwnerRequest
 
-`func NewCockroachCloudAddPrivateEndpointTrustedOwnerRequest(externalOwnerId string, type_ PrivateEndpointTrustedOwnerTypeType, ) *CockroachCloudAddPrivateEndpointTrustedOwnerRequest`
+`func NewAddPrivateEndpointTrustedOwnerRequest(externalOwnerId string, type_ PrivateEndpointTrustedOwnerTypeType, ) *AddPrivateEndpointTrustedOwnerRequest`
 
-NewCockroachCloudAddPrivateEndpointTrustedOwnerRequest instantiates a new CockroachCloudAddPrivateEndpointTrustedOwnerRequest object.
+NewAddPrivateEndpointTrustedOwnerRequest instantiates a new AddPrivateEndpointTrustedOwnerRequest object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed.
 
-### NewCockroachCloudAddPrivateEndpointTrustedOwnerRequestWithDefaults
+### NewAddPrivateEndpointTrustedOwnerRequestWithDefaults
 
-`func NewCockroachCloudAddPrivateEndpointTrustedOwnerRequestWithDefaults() *CockroachCloudAddPrivateEndpointTrustedOwnerRequest`
+`func NewAddPrivateEndpointTrustedOwnerRequestWithDefaults() *AddPrivateEndpointTrustedOwnerRequest`
 
-NewCockroachCloudAddPrivateEndpointTrustedOwnerRequestWithDefaults instantiates a new CockroachCloudAddPrivateEndpointTrustedOwnerRequest object.
+NewAddPrivateEndpointTrustedOwnerRequestWithDefaults instantiates a new AddPrivateEndpointTrustedOwnerRequest object.
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set.
 
 ### GetExternalOwnerId
 
-`func (o *CockroachCloudAddPrivateEndpointTrustedOwnerRequest) GetExternalOwnerId() string`
+`func (o *AddPrivateEndpointTrustedOwnerRequest) GetExternalOwnerId() string`
 
 GetExternalOwnerId returns the ExternalOwnerId field if non-nil, zero value otherwise.
 
 ### SetExternalOwnerId
 
-`func (o *CockroachCloudAddPrivateEndpointTrustedOwnerRequest) SetExternalOwnerId(v string)`
+`func (o *AddPrivateEndpointTrustedOwnerRequest) SetExternalOwnerId(v string)`
 
 SetExternalOwnerId sets ExternalOwnerId field to given value.
 
 ### GetType
 
-`func (o *CockroachCloudAddPrivateEndpointTrustedOwnerRequest) GetType() PrivateEndpointTrustedOwnerTypeType`
+`func (o *AddPrivateEndpointTrustedOwnerRequest) GetType() PrivateEndpointTrustedOwnerTypeType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### SetType
 
-`func (o *CockroachCloudAddPrivateEndpointTrustedOwnerRequest) SetType(v PrivateEndpointTrustedOwnerTypeType)`
+`func (o *AddPrivateEndpointTrustedOwnerRequest) SetType(v PrivateEndpointTrustedOwnerTypeType)`
 
 SetType sets Type field to given value.
 

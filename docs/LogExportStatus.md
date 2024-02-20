@@ -15,6 +15,8 @@
 
 * `ENABLE_FAILED` (value: `"ENABLE_FAILED"`)
 
+* `CREDENTIALS_ERROR` (value: `"CREDENTIALS_ERROR"`)
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
