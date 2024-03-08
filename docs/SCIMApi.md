@@ -12,11 +12,11 @@ Method | HTTP request | Description
 [**GetGroup2**](SCIMApi.md#GetGroup2) | **Put** /api/scim/v2/Groups/{id}/.search | Get a group based on ID
 [**GetGroups**](SCIMApi.md#GetGroups) | **Get** /api/scim/v2/Groups | Get groups based on query parameters
 [**GetGroups2**](SCIMApi.md#GetGroups2) | **Put** /api/scim/v2/Groups/.search | Get groups based on query parameters
-[**GetResourceType**](SCIMApi.md#GetResourceType) | **Get** /api/scim/v2/ResourceTypes/{resourceId} | 
-[**GetResourceTypes**](SCIMApi.md#GetResourceTypes) | **Get** /api/scim/v2/ResourceTypes | 
-[**GetSchema**](SCIMApi.md#GetSchema) | **Get** /api/scim/v2/Schemas/{schemaId} | 
-[**GetSchemas**](SCIMApi.md#GetSchemas) | **Get** /api/scim/v2/Schemas | 
-[**GetServiceProviderConfig**](SCIMApi.md#GetServiceProviderConfig) | **Get** /api/scim/v2/ServiceProviderConfig | Return our SCIM configuration
+[**GetResourceType**](SCIMApi.md#GetResourceType) | **Get** /api/scim/v2/ResourceTypes/{resourceId} | Get a SCIM resource type by ID
+[**GetResourceTypes**](SCIMApi.md#GetResourceTypes) | **Get** /api/scim/v2/ResourceTypes | List the SCIM resource types
+[**GetSchema**](SCIMApi.md#GetSchema) | **Get** /api/scim/v2/Schemas/{schemaId} | Get a SCIM schema by ID
+[**GetSchemas**](SCIMApi.md#GetSchemas) | **Get** /api/scim/v2/Schemas | List the SCIM schemas
+[**GetServiceProviderConfig**](SCIMApi.md#GetServiceProviderConfig) | **Get** /api/scim/v2/ServiceProviderConfig | Return the SCIM Service Provider configuration
 [**GetUser**](SCIMApi.md#GetUser) | **Get** /api/scim/v2/Users/{id} | Get a user based on ID
 [**GetUser2**](SCIMApi.md#GetUser2) | **Put** /api/scim/v2/Users/{id}/.search | Get a user based on ID
 [**GetUsers**](SCIMApi.md#GetUsers) | **Get** /api/scim/v2/Users | Get Users based on query parameters
@@ -452,7 +452,7 @@ Name | Type | Description  | Notes
 
 ## GetGroups
 
-> GetGroupsResponse GetGroups(ctx).Attributes(attributes).ExcludedAttributes(excludedAttributes).Execute()
+> GetGroupsResponse GetGroups(ctx).Attributes(attributes).ExcludedAttributes(excludedAttributes).Filter(filter).Execute()
 
 Get groups based on query parameters
 
@@ -475,10 +475,11 @@ import (
 func main() {
     attributes := "attributes_example" // string |  (optional)
     excludedAttributes := "excludedAttributes_example" // string |  (optional)
+    filter := "filter_example" // string |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
-    resp, r, err := api_client.SCIMApi.GetGroups(context.Background()).Attributes(attributes).ExcludedAttributes(excludedAttributes).Execute()
+    resp, r, err := api_client.SCIMApi.GetGroups(context.Background()).Attributes(attributes).ExcludedAttributes(excludedAttributes).Filter(filter).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SCIMApi.GetGroups``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -501,6 +502,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **attributes** | **string** |  | 
  **excludedAttributes** | **string** |  | 
+ **filter** | **string** |  | 
 
 ### Return type
 
@@ -590,7 +592,7 @@ Name | Type | Description  | Notes
 
 > ScimResourceType GetResourceType(ctx, resourceId).Attributes(attributes).ExcludedAttributes(excludedAttributes).Execute()
 
-
+Get a SCIM resource type by ID
 
 This endpoint may be used by any member of the organization.
 
@@ -663,7 +665,7 @@ Name | Type | Description  | Notes
 
 > GetResourceTypesResponse GetResourceTypes(ctx).Attributes(attributes).ExcludedAttributes(excludedAttributes).Execute()
 
-
+List the SCIM resource types
 
 This endpoint may be used by any member of the organization.
 
@@ -730,7 +732,7 @@ Name | Type | Description  | Notes
 
 > ScimSchema GetSchema(ctx, schemaId).Attributes(attributes).ExcludedAttributes(excludedAttributes).Execute()
 
-
+Get a SCIM schema by ID
 
 This endpoint may be used by any member of the organization.
 
@@ -803,7 +805,7 @@ Name | Type | Description  | Notes
 
 > GetSchemasResponse GetSchemas(ctx).Attributes(attributes).ExcludedAttributes(excludedAttributes).Execute()
 
-
+List the SCIM schemas
 
 This endpoint may be used by any member of the organization.
 
@@ -870,7 +872,7 @@ Name | Type | Description  | Notes
 
 > GetServiceProviderConfigResponse GetServiceProviderConfig(ctx).Execute()
 
-Return our SCIM configuration
+Return the SCIM Service Provider configuration
 
 This endpoint may be used by any member of the organization.
 

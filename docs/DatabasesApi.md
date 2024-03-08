@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## CreateDatabase
 
-> ApiDatabase CreateDatabase(ctx, clusterId).CreateDatabaseRequest(createDatabaseRequest).Execute()
+> Database CreateDatabase(ctx, clusterId).CreateDatabaseRequest(createDatabaseRequest).Execute()
 
 Create a new database
 
@@ -46,7 +46,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `DatabasesApi.CreateDatabase``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateDatabase`: ApiDatabase
+    // response from `CreateDatabase`: Database
     fmt.Fprintf(os.Stdout, "Response from `DatabasesApi.CreateDatabase`: %v\n", resp)
 }
 ```
@@ -71,7 +71,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApiDatabase**](ApiDatabase.md)
+[**Database**](Database.md)
 
 ### Authorization
 
@@ -88,7 +88,7 @@ Name | Type | Description  | Notes
 
 ## DeleteDatabase
 
-> ApiDatabase DeleteDatabase(ctx, clusterId, name).Execute()
+> Database DeleteDatabase(ctx, clusterId, name).Execute()
 
 Delete a database
 
@@ -120,7 +120,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `DatabasesApi.DeleteDatabase``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `DeleteDatabase`: ApiDatabase
+    // response from `DeleteDatabase`: Database
     fmt.Fprintf(os.Stdout, "Response from `DatabasesApi.DeleteDatabase`: %v\n", resp)
 }
 ```
@@ -146,7 +146,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApiDatabase**](ApiDatabase.md)
+[**Database**](Database.md)
 
 ### Authorization
 
@@ -163,7 +163,7 @@ Name | Type | Description  | Notes
 
 ## EditDatabase
 
-> ApiDatabase EditDatabase(ctx, clusterId, name).UpdateDatabaseRequest1(updateDatabaseRequest1).Execute()
+> Database EditDatabase(ctx, clusterId, name).UpdateDatabaseRequest1(updateDatabaseRequest1).Execute()
 
 Update a database
 
@@ -196,7 +196,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `DatabasesApi.EditDatabase``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `EditDatabase`: ApiDatabase
+    // response from `EditDatabase`: Database
     fmt.Fprintf(os.Stdout, "Response from `DatabasesApi.EditDatabase`: %v\n", resp)
 }
 ```
@@ -223,7 +223,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApiDatabase**](ApiDatabase.md)
+[**Database**](Database.md)
 
 ### Authorization
 
@@ -240,7 +240,7 @@ Name | Type | Description  | Notes
 
 ## EditDatabase2
 
-> ApiDatabase EditDatabase2(ctx, clusterId).UpdateDatabaseRequest(updateDatabaseRequest).Execute()
+> Database EditDatabase2(ctx, clusterId).UpdateDatabaseRequest(updateDatabaseRequest).Execute()
 
 Update a database
 
@@ -272,7 +272,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `DatabasesApi.EditDatabase2``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `EditDatabase2`: ApiDatabase
+    // response from `EditDatabase2`: Database
     fmt.Fprintf(os.Stdout, "Response from `DatabasesApi.EditDatabase2`: %v\n", resp)
 }
 ```
@@ -297,7 +297,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApiDatabase**](ApiDatabase.md)
+[**Database**](Database.md)
 
 ### Authorization
 
@@ -314,7 +314,7 @@ Name | Type | Description  | Notes
 
 ## ListDatabases
 
-> ApiListDatabasesResponse ListDatabases(ctx, clusterId).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).Execute()
+> ListDatabasesResponse ListDatabases(ctx, clusterId).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).Execute()
 
 List databases for a cluster
 
@@ -353,7 +353,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `DatabasesApi.ListDatabases``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ListDatabases`: ApiListDatabasesResponse
+    // response from `ListDatabases`: ListDatabasesResponse
     fmt.Fprintf(os.Stdout, "Response from `DatabasesApi.ListDatabases`: %v\n", resp)
 }
 ```
@@ -381,7 +381,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApiListDatabasesResponse**](ApiListDatabasesResponse.md)
+[**ListDatabasesResponse**](ListDatabasesResponse.md)
 
 ### Authorization
 

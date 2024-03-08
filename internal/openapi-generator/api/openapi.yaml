@@ -14,6 +14,29 @@ servers:
 - url: https://cockroachlabs.cloud
 security:
 - Bearer: []
+tags:
+- name: SCIM
+- name: Organizations
+- name: Clusters
+- name: SQL Users
+- name: SQL Privilege Grants
+- name: Databases
+- name: Customer-managed Encryption Keys
+- name: Client CA Certificates
+- name: Cluster SSO
+- name: Log Export
+- name: Metric Export
+- name: Audit Logs
+- name: IP Allowlists
+- name: Egress Rules
+- name: Billing
+- name: Maintenance Windows
+- name: Role Management
+- name: Folders
+- name: Version Deferral
+- name: OpenID Connect Configuration
+- name: Private Endpoint Services
+- name: PCI
 paths:
   /api/scim/v2/Groups:
     get:
@@ -32,6 +55,13 @@ paths:
       - explode: true
         in: query
         name: excludedAttributes
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: filter
         required: false
         schema:
           type: string
@@ -78,14 +108,11 @@ paths:
       summary: Get groups based on query parameters
       tags:
       - SCIM
-      x-badges:
-      - color: blue
-        label: PREVIEW
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
           curl --request GET \
-            --url 'https://cockroachlabs.cloud/api/scim/v2/Groups?attributes=SOME_STRING_VALUE&excludedAttributes=SOME_STRING_VALUE' \
+            --url 'https://cockroachlabs.cloud/api/scim/v2/Groups?attributes=SOME_STRING_VALUE&excludedAttributes=SOME_STRING_VALUE&filter=SOME_STRING_VALUE' \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     post:
       description: |
@@ -140,9 +167,6 @@ paths:
       summary: Create a group
       tags:
       - SCIM
-      x-badges:
-      - color: blue
-        label: PREVIEW
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -212,7 +236,7 @@ paths:
             --url https://cockroachlabs.cloud/api/scim/v2/Groups/.search \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
             --header 'content-type: application/json' \
-            --data '{"attributes":"string","excludedAttributes":"string"}'
+            --data '{"attributes":"string","excludedAttributes":"string","filter":"string"}'
   /api/scim/v2/Groups/{id}:
     delete:
       description: |
@@ -269,9 +293,6 @@ paths:
       summary: Delete a group based on ID
       tags:
       - SCIM
-      x-badges:
-      - color: blue
-        label: PREVIEW
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -347,9 +368,6 @@ paths:
       summary: Get a group based on ID
       tags:
       - SCIM
-      x-badges:
-      - color: blue
-        label: PREVIEW
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -417,9 +435,6 @@ paths:
       summary: Update a group by supplying all values of the user object
       tags:
       - SCIM
-      x-badges:
-      - color: blue
-        label: PREVIEW
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -556,11 +571,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
+      summary: List the SCIM resource types
       tags:
       - SCIM
-      x-badges:
-      - color: blue
-        label: PREVIEW
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -632,11 +645,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
+      summary: Get a SCIM resource type by ID
       tags:
       - SCIM
-      x-badges:
-      - color: blue
-        label: PREVIEW
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -701,11 +712,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
+      summary: List the SCIM schemas
       tags:
       - SCIM
-      x-badges:
-      - color: blue
-        label: PREVIEW
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -777,11 +786,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
+      summary: Get a SCIM schema by ID
       tags:
       - SCIM
-      x-badges:
-      - color: blue
-        label: PREVIEW
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -831,12 +838,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
-      summary: Return our SCIM configuration
+      summary: Return the SCIM Service Provider configuration
       tags:
       - SCIM
-      x-badges:
-      - color: blue
-        label: PREVIEW
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -913,9 +917,6 @@ paths:
       summary: Get Users based on query parameters
       tags:
       - SCIM
-      x-badges:
-      - color: blue
-        label: PREVIEW
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -975,9 +976,6 @@ paths:
       summary: Create a user
       tags:
       - SCIM
-      x-badges:
-      - color: blue
-        label: PREVIEW
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -1104,9 +1102,6 @@ paths:
       summary: Delete a user based on ID
       tags:
       - SCIM
-      x-badges:
-      - color: blue
-        label: PREVIEW
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -1182,9 +1177,6 @@ paths:
       summary: Get a user based on ID
       tags:
       - SCIM
-      x-badges:
-      - color: blue
-        label: PREVIEW
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -1252,9 +1244,6 @@ paths:
       summary: Update a user by supplying all values of the user object
       tags:
       - SCIM
-      x-badges:
-      - color: blue
-        label: PREVIEW
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -1413,6 +1402,8 @@ paths:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
       summary: List all API OIDC configurations
+      tags:
+      - OpenID Connect Configuration
       x-badges:
       - color: red
         label: LIMITED ACCESS
@@ -1470,6 +1461,8 @@ paths:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
       summary: Create an API OIDC configuration
+      tags:
+      - OpenID Connect Configuration
       x-badges:
       - color: red
         label: LIMITED ACCESS
@@ -1532,6 +1525,8 @@ paths:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
       summary: Delete an API OIDC configuration
+      tags:
+      - OpenID Connect Configuration
       x-badges:
       - color: red
         label: LIMITED ACCESS
@@ -1591,6 +1586,8 @@ paths:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
       summary: Get an API OIDC configuration
+      tags:
+      - OpenID Connect Configuration
       x-badges:
       - color: red
         label: LIMITED ACCESS
@@ -1656,6 +1653,8 @@ paths:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
       summary: Update an API OIDC configuration
+      tags:
+      - OpenID Connect Configuration
       x-badges:
       - color: red
         label: LIMITED ACCESS
@@ -1864,8 +1863,10 @@ paths:
         Returns all clusters that the user has read access over
       operationId: CockroachCloud_ListClusters
       parameters:
-      - description: "If `true`, show clusters that have been deleted or failed to\
-          \ initialize."
+      - description: |-
+          If `true`, show clusters that have been deleted or failed to initialize.
+          Note that inactive clusters will only be included if the requesting user
+          has organization-scoped cluster read permissions.
         explode: true
         in: query
         name: show_inactive
@@ -2267,6 +2268,8 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     patch:
       description: |
+        In addition to adding nodes and changing cluster fields, the PATCH Cluster endpoint can be used to upgrade the cluster version. A cluster can be upgraded when its `upgrade_status` field is equal to `UPGRADE_AVAILABLE`. To begin the upgrade, PATCH `{"upgrade_status": "MAJOR_UPGRADE_RUNNING"}` to this endpoint. Multi-node clusters will undergo a rolling upgrade and will remain available, but single-node clusters will be briefly unavailable while the upgrade takes place. Upgrades will be finalized automatically after 72 hours but can be manually finalized by sending a PATCH containing `{"upgrade_status": "FINALIZED"}` to this endpoint. Before the cluster is finalized, it can be rolled back by sending a PATCH containing `{"upgrade_status": "ROLLBACK_RUNNING"}`. Version upgrade operations cannot be performed simultaneously with other update operations.
+
         Can be used by the following roles assigned at the organization or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
@@ -2324,7 +2327,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
-      summary: Scale or edit a cluster
+      summary: "Scale, edit or upgrade a cluster"
       tags:
       - Clusters
       x-codeSamples:
@@ -2334,7 +2337,7 @@ paths:
             --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id} \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
             --header 'content-type: application/json' \
-            --data '{"dedicated":{"hardware":{"machine_spec":{"machine_type":"n2-standard-8"}},"region_nodes":{"us-central1":5,"us-west1":3}},"upgrade_status":"UPGRADE_RUNNING"}'
+            --data '{"dedicated":{"hardware":{"machine_spec":{"machine_type":"n2-standard-8"}},"region_nodes":{"us-central1":5,"us-west1":3}}}'
   /api/v1/clusters/{cluster_id}/client-ca-cert:
     delete:
       description: |
@@ -2392,9 +2395,6 @@ paths:
       summary: Delete Client CA Cert for a cluster
       tags:
       - Client CA Certificates
-      x-badges:
-      - color: blue
-        label: PREVIEW
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -2457,9 +2457,6 @@ paths:
       summary: Get Client CA Cert information for a cluster
       tags:
       - Client CA Certificates
-      x-badges:
-      - color: blue
-        label: PREVIEW
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -2528,9 +2525,6 @@ paths:
       summary: Update Client CA Cert for a cluster
       tags:
       - Client CA Certificates
-      x-badges:
-      - color: blue
-        label: PREVIEW
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -2601,9 +2595,6 @@ paths:
       summary: Set Client CA Cert for a cluster
       tags:
       - Client CA Certificates
-      x-badges:
-      - color: blue
-        label: PREVIEW
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -3036,7 +3027,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/api.ListDatabasesResponse'
+                $ref: '#/components/schemas/ListDatabasesResponse'
           description: A successful response.
         "400":
           content:
@@ -3104,7 +3095,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/api.Database'
+                $ref: '#/components/schemas/Database'
           description: A successful response.
         "400":
           content:
@@ -3174,7 +3165,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/api.Database'
+                $ref: '#/components/schemas/Database'
           description: A successful response.
         "400":
           content:
@@ -3246,7 +3237,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/api.Database'
+                $ref: '#/components/schemas/Database'
           description: A successful response.
         "400":
           content:
@@ -3321,7 +3312,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/api.Database'
+                $ref: '#/components/schemas/Database'
           description: A successful response.
         "400":
           content:
@@ -3623,6 +3614,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
+      summary: Delete the maintenance window for a cluster
       tags:
       - Maintenance Windows
       x-badges:
@@ -3683,6 +3675,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
+      summary: Get the maintenance window for a cluster
       tags:
       - Maintenance Windows
       x-badges:
@@ -3749,6 +3742,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
+      summary: Set the maintenance window for a cluster
       tags:
       - Maintenance Windows
       x-badges:
@@ -4170,6 +4164,199 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
             --header 'content-type: application/json' \
             --data '{"api_key":"datadog_api_key","site":"US1"}'
+  /api/v1/clusters/{cluster_id}/metricexport/prometheus:
+    delete:
+      operationId: CockroachCloud_DeletePrometheusMetricExport
+      parameters:
+      - explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteMetricExportResponse'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Delete the Prometheus Metric Export configuration for a cluster
+      tags:
+      - Metric Export
+      x-badges:
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request DELETE \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/metricexport/prometheus \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+    get:
+      operationId: CockroachCloud_GetPrometheusMetricExportInfo
+      parameters:
+      - explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PrometheusMetricExportInfo'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Get the Prometheus Metric Export configuration for a cluster
+      tags:
+      - Metric Export
+      x-badges:
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request GET \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/metricexport/prometheus \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+    post:
+      operationId: CockroachCloud_EnablePrometheusMetricExport
+      parameters:
+      - explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              example: {}
+              type: object
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PrometheusMetricExportInfo'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Create or update the Prometheus Metric Export configuration for a cluster
+      tags:
+      - Metric Export
+      x-badges:
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request POST \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/metricexport/prometheus \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
+            --header 'content-type: application/json' \
+            --data '{}'
   /api/v1/clusters/{cluster_id}/networking/allowlist:
     get:
       description: |
@@ -4834,7 +5021,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
-      summary: List all egress rules associates with a cluster
+      summary: List all egress rules associated with a cluster
       tags:
       - Egress Rules
       x-badges:
@@ -5242,6 +5429,219 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
             --header 'content-type: application/json' \
             --data '{"cluster_id":"35c4abb2-bb66-46d7-afed-25ebef5ed100","ports":[443,80],"rule_id":"35c4abb2-bb66-46d7-afed-25ebef5ed2aa"}'
+  /api/v1/clusters/{cluster_id}/networking/private-endpoint-connections:
+    get:
+      operationId: CockroachCloud_ListPrivateEndpointConnections
+      parameters:
+      - description: cluster_id is the ID for the cluster.
+        explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PrivateEndpointConnections'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: List all connections to a cluster's private endpoint service.
+      tags:
+      - Private Endpoint Services
+      x-badges:
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request GET \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/private-endpoint-connections \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+    post:
+      operationId: CockroachCloud_AddPrivateEndpointConnection
+      parameters:
+      - description: |-
+          cluster_id is the id of the cluster to which the private endpoint
+          connection will be added.
+        explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddPrivateEndpointConnectionRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PrivateEndpointConnection'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Add a connection to a cluster's private endpoint service.
+      tags:
+      - Private Endpoint Services
+      x-badges:
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request POST \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/private-endpoint-connections \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
+            --header 'content-type: application/json' \
+            --data '{"cluster_id":"35c4abb2-bb66-46d7-afed-25ebef5ed2aa","endpoint_id":"e-65de2gf3"}'
+  /api/v1/clusters/{cluster_id}/networking/private-endpoint-connections/{endpoint_id}:
+    delete:
+      description: Remove a private endpoint from a service's trusted endpoints list.
+        Caller should make sure to URL encode the endpoint_id before calling this
+        method.
+      operationId: CockroachCloud_DeletePrivateEndpointConnection
+      parameters:
+      - description: |-
+          cluster_id is the id of the cluster from which the private endpoint
+          connection will be removed.
+        explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: |-
+          endpoint_id is the id of the private endpoint associated with a cluster's
+          private endpoint service.
+        explode: false
+        in: path
+        name: endpoint_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Delete a connection from a cluster's private endpoint service.
+      tags:
+      - Private Endpoint Services
+      x-badges:
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request DELETE \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/private-endpoint-connections/{endpoint_id} \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
   /api/v1/clusters/{cluster_id}/networking/private-endpoint-services:
     get:
       description: |
@@ -5456,7 +5856,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CockroachCloud_AddPrivateEndpointTrustedOwner_request'
+              $ref: '#/components/schemas/AddPrivateEndpointTrustedOwnerRequest'
         required: true
       responses:
         "200":
@@ -6141,6 +6541,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
+      summary: Get the version upgrade deferral policy for a cluster.
+      tags:
+      - Version Deferral
       x-badges:
       - color: blue
         label: PREVIEW
@@ -6205,6 +6608,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
+      summary: Set the version upgrade deferral policy for a cluster
+      tags:
+      - Version Deferral
       x-badges:
       - color: blue
         label: PREVIEW
@@ -6472,7 +6878,8 @@ paths:
             --data '{"name":"folder_name","parent_id":"12345678-1234-1234-1234-123456789012"}'
   /api/v1/folders/{folder_id}/contents:
     get:
-      description: Set `folder_id` to 'root' to list root level contents.
+      description: "Set `folder_id` to 'root' to list root level contents.  Sort order:\
+        \ Folders sorted by name, followed by Clusters sorted by name."
       operationId: CockroachCloud_ListFolderContents
       parameters:
       - explode: false
@@ -6834,9 +7241,6 @@ paths:
       summary: List all RoleGrants
       tags:
       - Role Management
-      x-badges:
-      - color: blue
-        label: PREVIEW
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -6900,9 +7304,6 @@ paths:
       summary: Get all Role Grants for a user
       tags:
       - Role Management
-      x-badges:
-      - color: blue
-        label: PREVIEW
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -6970,9 +7371,6 @@ paths:
       summary: Make a user's roles exactly those provided
       tags:
       - Role Management
-      x-badges:
-      - color: blue
-        label: PREVIEW
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -7074,9 +7472,6 @@ paths:
       summary: Remove the user from the given role
       tags:
       - Role Management
-      x-badges:
-      - color: blue
-        label: PREVIEW
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -7175,9 +7570,6 @@ paths:
       summary: Add the user to the given role
       tags:
       - Role Management
-      x-badges:
-      - color: blue
-        label: PREVIEW
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -7242,9 +7634,6 @@ paths:
       summary: Search person users by email address
       tags:
       - Role Management
-      x-badges:
-      - color: blue
-        label: PREVIEW
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -7435,7 +7824,7 @@ components:
               foo = any.unpack(Foo.class);
             }
 
-        Example 3: Pack and unpack a message in Python.
+         Example 3: Pack and unpack a message in Python.
 
             foo = Foo(...)
             any = Any()
@@ -7445,7 +7834,7 @@ components:
               any.Unpack(foo)
               ...
 
-        Example 4: Pack and unpack a message in Go
+         Example 4: Pack and unpack a message in Go
 
              foo := &pb.Foo{...}
              any, err := anypb.New(foo)
@@ -7466,7 +7855,7 @@ components:
 
 
         JSON
-
+        ====
         The JSON representation of an `Any` value uses the regular
         representation of the deserialized, embedded message, with an
         additional field `@type` which contains the type URL. Example:
@@ -7620,6 +8009,31 @@ components:
       - AUDIT_LOG_ACTION_UPDATE_FOLDER
       - AUDIT_LOG_ACTION_ADD_PRIVATE_ENDPOINT_TRUSTED_OWNER
       - AUDIT_LOG_ACTION_REMOVE_PRIVATE_ENDPOINT_TRUSTED_OWNER
+      - AUDIT_LOG_ACTION_ADD_ALERT_RECIPIENT
+      - AUDIT_LOG_ACTION_REMOVE_ALERT_RECIPIENT
+      - AUDIT_LOG_ACTION_TOGGLE_ALERTS
+      - AUDIT_LOG_ACTION_TEST_ALERT_EMAIL
+      - AUDIT_LOG_ACTION_UPDATE_CMEK
+      - AUDIT_LOG_ACTION_REVOKE_CMEK
+      - AUDIT_LOG_ACTION_UPDATE_CLUSTER_LOG_EXPORT
+      - AUDIT_LOG_ACTION_DELETE_CLUSTER_LOG_EXPORT
+      - AUDIT_LOG_ACTION_UPDATE_CLUSTER_METRIC_EXPORT
+      - AUDIT_LOG_ACTION_DELETE_CLUSTER_METRIC_EXPORT
+      - AUDIT_LOG_ACTION_RESTORE_CLUSTER
+      - AUDIT_LOG_ACTION_UPDATE_CLUSTER_MAJOR_VERSION
+      - AUDIT_LOG_ACTION_ROLLBACK_CLUSTER_MAJOR_VERSION_UPDATE
+      - AUDIT_LOG_ACTION_FINALIZE_CLUSTER_MAJOR_VERSION_UPDATE
+      - AUDIT_LOG_ACTION_UPDATE_CLUSTER_VERSION_UPGRADE_DEFERRAL
+      - AUDIT_LOG_ACTION_SET_CLUSTER_MAINTENANCE_WINDOW
+      - AUDIT_LOG_ACTION_DELETE_CLUSTER_MAINTENANCE_WINDOW
+      - AUDIT_LOG_ACTION_SET_EGRESS_TRAFFIC_POLICY
+      - AUDIT_LOG_ACTION_ADD_EGRESS_RULE
+      - AUDIT_LOG_ACTION_EDIT_EGRESS_RULE
+      - AUDIT_LOG_ACTION_DELETE_EGRESS_RULE
+      - AUDIT_LOG_ACTION_ENABLE_CLOUD_ORG_SSO
+      - AUDIT_LOG_ACTION_ADD_AUTHENTICATION_METHOD
+      - AUDIT_LOG_ACTION_UPDATE_AUTHENTICATION_METHOD
+      - AUDIT_LOG_ACTION_DELETE_AUTHENTICATION_METHOD
       type: string
     AuditLogEntry:
       description: |-
@@ -8380,8 +8794,9 @@ components:
         name:
           type: string
         parent_id:
-          description: "The parent ID is a folder ID. An empty string or \"root\"\
-            \ \nwill create a folder at the root level."
+          description: |-
+            The parent ID is a folder ID. An empty string or "root"
+            will create a folder at the root level.
           type: string
       required:
       - name
@@ -8392,49 +8807,7 @@ components:
         displayName: Test SCIM
         members: []
         schemas:
-        - "0": u
-          "1": r
-          "2": "n"
-          "3": ':'
-          "4": i
-          "5": e
-          "6": t
-          "7": f
-          "8": ':'
-          "9": p
-          "10": a
-          "11": r
-          "12": a
-          "13": m
-          "14": s
-          "15": ':'
-          "16": s
-          "17": c
-          "18": i
-          "19": m
-          "20": ':'
-          "21": s
-          "22": c
-          "23": h
-          "24": e
-          "25": m
-          "26": a
-          "27": s
-          "28": ':'
-          "29": c
-          "30": o
-          "31": r
-          "32": e
-          "33": ':'
-          "34": "2"
-          "35": "."
-          "36": "0"
-          "37": ':'
-          "38": G
-          "39": r
-          "40": o
-          "41": u
-          "42": p
+        - urn:ietf:params:scim:schemas:core:2.0:Group
       properties:
         displayName:
           type: string
@@ -8465,48 +8838,7 @@ components:
           familyName: Roach
           givenName: Carl
         schemas:
-        - "0": u
-          "1": r
-          "2": "n"
-          "3": ':'
-          "4": i
-          "5": e
-          "6": t
-          "7": f
-          "8": ':'
-          "9": p
-          "10": a
-          "11": r
-          "12": a
-          "13": m
-          "14": s
-          "15": ':'
-          "16": s
-          "17": c
-          "18": i
-          "19": m
-          "20": ':'
-          "21": s
-          "22": c
-          "23": h
-          "24": e
-          "25": m
-          "26": a
-          "27": s
-          "28": ':'
-          "29": c
-          "30": o
-          "31": r
-          "32": e
-          "33": ':'
-          "34": "2"
-          "35": "."
-          "36": "0"
-          "37": ':'
-          "38": U
-          "39": s
-          "40": e
-          "41": r
+        - urn:ietf:params:scim:schemas:core:2.0:User
         userName: croach@example.com
       properties:
         active:
@@ -8554,6 +8886,20 @@ components:
           type: number
         currency:
           $ref: '#/components/schemas/Currency.Type'
+      type: object
+    Database:
+      example:
+        table_count: 0
+        name: name
+      properties:
+        name:
+          type: string
+        table_count:
+          format: int64
+          type: integer
+      required:
+      - name
+      title: Database
       type: object
     DatadogMetricExportInfo:
       example:
@@ -8910,8 +9256,9 @@ components:
             belongs to.
           type: string
         parent_id:
-          description: "parent_id is the id of the resource's parent folder. \n\"\
-            root\" represents a root level resource."
+          description: |-
+            parent_id is the id of the resource's parent folder.
+            "root" represents a root level resource.
           type: string
         path:
           description: path contains the ids and names of ancestors that make up the
@@ -9061,12 +9408,15 @@ components:
       type: object
     GetGroupsRequest:
       example:
+        filter: filter
         attributes: attributes
         excludedAttributes: excludedAttributes
       properties:
         attributes:
           type: string
         excludedAttributes:
+          type: string
+        filter:
           type: string
       title: GetGroupsRequest
       type: object
@@ -9608,6 +9958,27 @@ components:
           - amount: 0.8008281904610115
             currency: null
         period_start: 2000-01-23T04:56:07.000+00:00
+        folder_resources:
+        - path:
+          - name: name
+            id: id
+          - name: name
+            id: id
+          parent_id: parent_id
+          organization_id: organization_id
+          name: name
+          resource_type: null
+          resource_id: resource_id
+        - path:
+          - name: name
+            id: id
+          - name: name
+            id: id
+          parent_id: parent_id
+          organization_id: organization_id
+          name: name
+          resource_type: null
+          resource_id: resource_id
         invoice_id: invoice_id
         totals:
         - amount: 0.8008281904610115
@@ -9628,6 +9999,13 @@ components:
             invoice.
           items:
             $ref: '#/components/schemas/CurrencyAmount'
+          type: array
+        folder_resources:
+          description: |-
+            FolderResources is a list of resources in the organization and their folder
+            paths.
+          items:
+            $ref: '#/components/schemas/FolderResource'
           type: array
         invoice_id:
           description: invoice_id is the unique ID representing the invoice.
@@ -10023,6 +10401,27 @@ components:
       required:
       - clusters
       type: object
+    ListDatabasesResponse:
+      example:
+        databases:
+        - table_count: 0
+          name: name
+        - table_count: 0
+          name: name
+        pagination:
+          next_page: next_page
+          previous_page: previous_page
+      properties:
+        databases:
+          items:
+            $ref: '#/components/schemas/Database'
+          type: array
+        pagination:
+          $ref: '#/components/schemas/KeysetPaginationResponse'
+      required:
+      - databases
+      title: ListDatabasesResponse
+      type: object
     ListEgressRulesResponse:
       description: ListEgressRulesResponse is the output for the ListEgressRules RPC.
       example:
@@ -10177,6 +10576,27 @@ components:
             - amount: 0.8008281904610115
               currency: null
           period_start: 2000-01-23T04:56:07.000+00:00
+          folder_resources:
+          - path:
+            - name: name
+              id: id
+            - name: name
+              id: id
+            parent_id: parent_id
+            organization_id: organization_id
+            name: name
+            resource_type: null
+            resource_id: resource_id
+          - path:
+            - name: name
+              id: id
+            - name: name
+              id: id
+            parent_id: parent_id
+            organization_id: organization_id
+            name: name
+            resource_type: null
+            resource_id: resource_id
           invoice_id: invoice_id
           totals:
           - amount: 0.8008281904610115
@@ -10286,6 +10706,27 @@ components:
             - amount: 0.8008281904610115
               currency: null
           period_start: 2000-01-23T04:56:07.000+00:00
+          folder_resources:
+          - path:
+            - name: name
+              id: id
+            - name: name
+              id: id
+            parent_id: parent_id
+            organization_id: organization_id
+            name: name
+            resource_type: null
+            resource_id: resource_id
+          - path:
+            - name: name
+              id: id
+            - name: name
+              id: id
+            parent_id: parent_id
+            organization_id: organization_id
+            name: name
+            resource_type: null
+            resource_id: resource_id
           invoice_id: invoice_id
           totals:
           - amount: 0.8008281904610115
@@ -10592,6 +11033,7 @@ components:
       - ENABLED
       - ENABLING
       - ENABLE_FAILED
+      - CREDENTIALS_ERROR
       type: string
     LogExportType:
       description: |-
@@ -10777,8 +11219,88 @@ components:
       - CUSTOM
       - SERVERLESS
       type: string
+    PrivateEndpointConnection:
+      example:
+        cloud: AWS
+        endpoint_id: 2w543-45643-323fd
+        endpoint_service_id: 34t-4t446-876bm
+        region: us-east-1
+        status: AVAILABLE
+      properties:
+        cloud_provider:
+          $ref: '#/components/schemas/CloudProvider.Type'
+        endpoint_id:
+          description: |-
+            endpoint_id is the id of the private endpoint associated with this
+            connection. The private endpoint is customer-created and its id is
+            generated by the cloud provider at endpoint creation time.
+          type: string
+        endpoint_service_id:
+          description: |-
+            endpoint_service_id is the id of the private endpoint service associated
+            with this connection.
+          type: string
+        external_owner_id:
+          description: |-
+            external_owner_id uniquely identifies the owner of the private endpoint
+            connection cloud resource. This idenfier is the AWS account id
+            owning the PrivateLink connection. This field is only valid on AWS clusters.
+          type: string
+        region_name:
+          description: region_name is the cloud provider region name (e.g. us-east-1).
+          type: string
+        status:
+          $ref: '#/components/schemas/PrivateEndpointConnectionStatus'
+      required:
+      - cloud_provider
+      - endpoint_id
+      - endpoint_service_id
+      - region
+      - status
+      type: object
+    PrivateEndpointConnectionStatus:
+      description: |-
+        PrivateEndpointConnectionStatus enumerates the possible statuses
+        for the private endpoints connection.
+      enum:
+      - STATUS_PENDING
+      - STATUS_PENDING_ACCEPTANCE
+      - STATUS_AVAILABLE
+      - STATUS_DELETING
+      - STATUS_DELETED
+      - STATUS_REJECTED
+      - STATUS_FAILED
+      - STATUS_EXPIRED
+      type: string
+    PrivateEndpointConnections:
+      example:
+        connections:
+        - cloud: AWS
+          endpoint_id: 2w543-45643-323fd
+          endpoint_service_id: 34t-4t446-876bm
+          region: us-east-1
+          status: AVAILABLE
+        - cloud: AWS
+          endpoint_id: 2w543-45643-323fd
+          endpoint_service_id: 34t-4t446-876bm
+          region: us-east-1
+          status: AVAILABLE
+      properties:
+        connections:
+          description: Connections is a list of private endpoints.
+          items:
+            $ref: '#/components/schemas/PrivateEndpointConnection'
+          type: array
+      required:
+      - connections
+      type: object
     PrivateEndpointService:
       example:
+        availability_zone_ids:
+        - availability_zone_ids
+        - availability_zone_ids
+        endpoint_service_id: endpoint_service_id
+        name: name
         cloud_provider: null
         region_name: region_name
         aws:
@@ -10789,18 +11311,38 @@ components:
           service_id: service_id
         status: null
       properties:
+        availability_zone_ids:
+          description: |-
+            availability_zone_ids are the unique identifiers for the availability
+            zones in which this service is available. Note these identifiers
+            are unique even across typical cloud provider boundaries, for example
+            AWS accounts or organizations. In AWS, availability zone ids for us-east-1
+            are use1-az1, use1-az2, use1-az3.
+          items:
+            type: string
+          type: array
         aws:
           $ref: '#/components/schemas/AWSPrivateLinkServiceDetail'
         cloud_provider:
           $ref: '#/components/schemas/CloudProvider.Type'
+        endpoint_service_id:
+          description: |-
+            endpoint_service_id uniquely identifies this private endpoint service. This
+            is the cloud provider generated id for the service.
+          type: string
+        name:
+          description: name is the name of the private endpoints service.
+          type: string
         region_name:
-          description: region_name is the cloud provider region name (i.e. us-east-1).
+          description: region_name is the cloud provider region name (e.g. us-east-1).
           type: string
         status:
           $ref: '#/components/schemas/PrivateEndpointServiceStatus.Type'
       required:
-      - aws
+      - availability_zone_ids
       - cloud_provider
+      - endpoint_service_id
+      - name
       - region_name
       - status
       type: object
@@ -10815,7 +11357,12 @@ components:
     PrivateEndpointServices:
       example:
         services:
-        - cloud_provider: null
+        - availability_zone_ids:
+          - availability_zone_ids
+          - availability_zone_ids
+          endpoint_service_id: endpoint_service_id
+          name: name
+          cloud_provider: null
           region_name: region_name
           aws:
             availability_zone_ids:
@@ -10824,7 +11371,12 @@ components:
             service_name: service_name
             service_id: service_id
           status: null
-        - cloud_provider: null
+        - availability_zone_ids:
+          - availability_zone_ids
+          - availability_zone_ids
+          endpoint_service_id: endpoint_service_id
+          name: name
+          cloud_provider: null
           region_name: region_name
           aws:
             availability_zone_ids:
@@ -10886,6 +11438,29 @@ components:
       enum:
       - AWS_ACCOUNT_ID
       type: string
+    PrometheusMetricExportInfo:
+      example:
+        cluster_id: cluster_id
+        user_message: user_message
+        targets:
+          key: targets
+        status: null
+      properties:
+        cluster_id:
+          type: string
+        status:
+          $ref: '#/components/schemas/MetricExportStatus.Type'
+        targets:
+          additionalProperties:
+            type: string
+          description: targets is a map of ports exposing metrics to regions.
+          type: object
+        user_message:
+          type: string
+      required:
+      - cluster_id
+      title: PrometheusMetricExportInfo
+      type: object
     QuantityUnit.Type:
       enum:
       - HOURS
@@ -11412,7 +11987,7 @@ components:
       properties:
         primary_region:
           description: |-
-            Preview: Specify which region should be made the primary region.
+            Specify which region should be made the primary region.
             This is only applicable to multi-region Serverless clusters.
             This field is required if the regions field contains more than one region.
           type: string
@@ -11465,14 +12040,6 @@ components:
           type: string
       type: object
     UpdateClusterSpecification:
-      description: "Set `upgrade_status` to 'UPGRADE_RUNNING' to start an upgrade.\
-        \ Multi-node clusters will undergo a rolling upgrade and will remain available,\
-        \ but single-node clusters will be briefly unavailable while the upgrade takes\
-        \ place. Upgrades will be finalized automatically after 72 hours, or can be\
-        \ manually finalized by setting the value to 'FINALIZED'. Before the cluster\
-        \ is finalized, it can be rolled back by setting the value to 'ROLLBACK_RUNNING'.\
-        \ Version upgrade operations cannot be performed simultaneously with other\
-        \ update operations."
       example:
         dedicated:
           hardware:
@@ -11481,7 +12048,6 @@ components:
           region_nodes:
             us-central1: 5
             us-west1: 3
-        upgrade_status: UPGRADE_RUNNING
       properties:
         dedicated:
           $ref: '#/components/schemas/DedicatedClusterUpdateSpecification'
@@ -11576,41 +12142,6 @@ components:
       required:
       - roles
       - user_id
-      type: object
-    api.Database:
-      example:
-        table_count: 0
-        name: name
-      properties:
-        name:
-          type: string
-        table_count:
-          format: int64
-          type: integer
-      required:
-      - name
-      title: Database
-      type: object
-    api.ListDatabasesResponse:
-      example:
-        databases:
-        - table_count: 0
-          name: name
-        - table_count: 0
-          name: name
-        pagination:
-          next_page: next_page
-          previous_page: previous_page
-      properties:
-        databases:
-          items:
-            $ref: '#/components/schemas/api.Database'
-          type: array
-        pagination:
-          $ref: '#/components/schemas/KeysetPaginationResponse'
-      required:
-      - databases
-      title: ListDatabasesResponse
       type: object
     UpdateGroupRequest:
       example:
@@ -12149,7 +12680,22 @@ components:
           type: string
       title: EditEgressRuleRequest
       type: object
-    CockroachCloud_AddPrivateEndpointTrustedOwner_request:
+    AddPrivateEndpointConnectionRequest:
+      example:
+        cluster_id: 35c4abb2-bb66-46d7-afed-25ebef5ed2aa
+        endpoint_id: e-65de2gf3
+      properties:
+        endpoint_id:
+          description: |-
+            endpoint_id is the id of the private endpoint associated with a cluster's
+            private endpoint service. The private endpoint is customer-created and
+            its id is generated by the cloud provider at endpoint creation time.
+          type: string
+      required:
+      - endpoint_id
+      title: AddPrivateEndpointConnectionRequest
+      type: object
+    AddPrivateEndpointTrustedOwnerRequest:
       example:
         external_owner_id: "012345678901"
         type: AWS_ACCOUNT_ID
@@ -12165,6 +12711,7 @@ components:
       required:
       - external_owner_id
       - type
+      title: AddPrivateEndpointTrustedOwnerRequest
       type: object
     CreateSQLUserRequest:
       example:
