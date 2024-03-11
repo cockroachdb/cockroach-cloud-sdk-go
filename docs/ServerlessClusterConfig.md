@@ -5,7 +5,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **RoutingId** | **string** | routing_id is used to identify the cluster in a connection string. | 
-**SpendLimit** | Pointer to **int32** | spend_limit is the maximum monthly charge for a cluster, in US cents. We recommend using usage_limits instead, since spend_limit will be deprecated in the future. | [optional] 
 **UsageLimits** | Pointer to [**UsageLimits**](UsageLimits.md) |  | [optional] 
 
 ## Methods
@@ -38,18 +37,6 @@ GetRoutingId returns the RoutingId field if non-nil, zero value otherwise.
 `func (o *ServerlessClusterConfig) SetRoutingId(v string)`
 
 SetRoutingId sets RoutingId field to given value.
-
-### GetSpendLimit
-
-`func (o *ServerlessClusterConfig) GetSpendLimit() int32`
-
-GetSpendLimit returns the SpendLimit field if non-nil, zero value otherwise.
-
-### SetSpendLimit
-
-`func (o *ServerlessClusterConfig) SetSpendLimit(v int32)`
-
-SetSpendLimit sets SpendLimit field to given value.
 
 ### GetUsageLimits
 

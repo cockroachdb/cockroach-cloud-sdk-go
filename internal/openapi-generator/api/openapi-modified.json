@@ -8,7 +8,7 @@
     },
     "description": "An API for managing CockroachDB Cloud resources",
     "title": "CockroachDB Cloud API",
-    "version": "2023-04-10"
+    "version": "development"
   },
   "servers": [
     {
@@ -2977,7 +2977,7 @@
           {
             "name": "provider",
             "in": "query",
-            "description": "Optional CloudProvider for filtering.\n\n - GCP: The Google Cloud Platform cloud provider.\n - AWS: The Amazon Web Services cloud provider.\n - AZURE: Limited Access: The Azure cloud provider.",
+            "description": "Optional CloudProvider for filtering.\n\n - GCP: The Google Cloud Platform cloud provider.\n - AWS: The Amazon Web Services cloud provider.\n - AZURE: The Azure cloud provider.",
             "schema": {
               "type": "string",
               "enum": [
@@ -11207,7 +11207,7 @@
         "title": "AllowlistEntry"
       },
       "Any": {
-        "description": "`Any` contains an arbitrary serialized protocol buffer message along with a\nURL that describes the type of the serialized message.\n\nProtobuf library provides support to pack/unpack Any values in the form\nof utility functions or additional generated methods of the Any type.\n\nExample 1: Pack and unpack a message in C++.\n\n    Foo foo = ...;\n    Any any;\n    any.PackFrom(foo);\n    ...\n    if (any.UnpackTo(&foo)) {\n      ...\n    }\n\nExample 2: Pack and unpack a message in Java.\n\n    Foo foo = ...;\n    Any any = Any.pack(foo);\n    ...\n    if (any.is(Foo.class)) {\n      foo = any.unpack(Foo.class);\n    }\n\n Example 3: Pack and unpack a message in Python.\n\n    foo = Foo(...)\n    any = Any()\n    any.Pack(foo)\n    ...\n    if any.Is(Foo.DESCRIPTOR):\n      any.Unpack(foo)\n      ...\n\n Example 4: Pack and unpack a message in Go\n\n     foo := &pb.Foo{...}\n     any, err := anypb.New(foo)\n     if err != nil {\n       ...\n     }\n     ...\n     foo := &pb.Foo{}\n     if err := any.UnmarshalTo(foo); err != nil {\n       ...\n     }\n\nThe pack methods provided by protobuf library will by default use\n'type.googleapis.com/full.type.name' as the type URL and the unpack\nmethods only use the fully qualified type name after the last '/'\nin the type URL, for example \"foo.bar.com/x/y.z\" will yield type\nname \"y.z\".\n\n\nJSON\n====\nThe JSON representation of an `Any` value uses the regular\nrepresentation of the deserialized, embedded message, with an\nadditional field `@type` which contains the type URL. Example:\n\n    package google.profile;\n    message Person {\n      string first_name = 1;\n      string last_name = 2;\n    }\n\n    {\n      \"@type\": \"type.googleapis.com/google.profile.Person\",\n      \"firstName\": <string>,\n      \"lastName\": <string>\n    }\n\nIf the embedded message type is well-known and has a custom JSON\nrepresentation, that representation will be embedded adding a field\n`value` which holds the custom JSON in addition to the `@type`\nfield. Example (for message [google.protobuf.Duration][]):\n\n    {\n      \"@type\": \"type.googleapis.com/google.protobuf.Duration\",\n      \"value\": \"1.212s\"\n    }",
+        "description": "`Any` contains an arbitrary serialized protocol buffer message along with a\nURL that describes the type of the serialized message.\n\nProtobuf library provides support to pack/unpack Any values in the form\nof utility functions or additional generated methods of the Any type.\n\nExample 1: Pack and unpack a message in C++.\n\n    Foo foo = ...;\n    Any any;\n    any.PackFrom(foo);\n    ...\n    if (any.UnpackTo(&foo)) {\n      ...\n    }\n\nExample 2: Pack and unpack a message in Java.\n\n    Foo foo = ...;\n    Any any = Any.pack(foo);\n    ...\n    if (any.is(Foo.class)) {\n      foo = any.unpack(Foo.class);\n    }\n\nExample 3: Pack and unpack a message in Python.\n\n    foo = Foo(...)\n    any = Any()\n    any.Pack(foo)\n    ...\n    if any.Is(Foo.DESCRIPTOR):\n      any.Unpack(foo)\n      ...\n\nExample 4: Pack and unpack a message in Go\n\n     foo := &pb.Foo{...}\n     any, err := anypb.New(foo)\n     if err != nil {\n       ...\n     }\n     ...\n     foo := &pb.Foo{}\n     if err := any.UnmarshalTo(foo); err != nil {\n       ...\n     }\n\nThe pack methods provided by protobuf library will by default use\n'type.googleapis.com/full.type.name' as the type URL and the unpack\nmethods only use the fully qualified type name after the last '/'\nin the type URL, for example \"foo.bar.com/x/y.z\" will yield type\nname \"y.z\".\n\n\nJSON\n\nThe JSON representation of an `Any` value uses the regular\nrepresentation of the deserialized, embedded message, with an\nadditional field `@type` which contains the type URL. Example:\n\n    package google.profile;\n    message Person {\n      string first_name = 1;\n      string last_name = 2;\n    }\n\n    {\n      \"@type\": \"type.googleapis.com/google.profile.Person\",\n      \"firstName\": <string>,\n      \"lastName\": <string>\n    }\n\nIf the embedded message type is well-known and has a custom JSON\nrepresentation, that representation will be embedded adding a field\n`value` which holds the custom JSON in addition to the `@type`\nfield. Example (for message [google.protobuf.Duration][]):\n\n    {\n      \"@type\": \"type.googleapis.com/google.protobuf.Duration\",\n      \"value\": \"1.212s\"\n    }",
         "type": "object",
         "properties": {
           "@type": {
@@ -11647,7 +11647,7 @@
         ]
       },
       "CloudProvider.Type": {
-        "description": " - GCP: The Google Cloud Platform cloud provider.\n - AWS: The Amazon Web Services cloud provider.\n - AZURE: Limited Access: The Azure cloud provider.",
+        "description": " - GCP: The Google Cloud Platform cloud provider.\n - AWS: The Amazon Web Services cloud provider.\n - AZURE: The Azure cloud provider.",
         "type": "string",
         "enum": [
           "GCP",
@@ -12051,6 +12051,9 @@
           "parent_id": {
             "description": "Limited Access: The parent ID is a folder ID. An empty string or \"root\"\nwill create a cluster at the root level.",
             "type": "string"
+          },
+          "plan": {
+            "$ref": "#/components/schemas/Plan.Type"
           },
           "serverless": {
             "$ref": "#/components/schemas/ServerlessClusterCreateSpecification"
@@ -13478,12 +13481,12 @@
         "title": "person_user_info contains information about a person"
       },
       "Plan.Type": {
-        "description": " - DEDICATED: A paid plan that offers dedicated hardware in any location.\n - CUSTOM: A plan option that is used for clusters whose machine configs are not\nsupported in self-service. All INVOICE clusters are under this plan option.\n - SERVERLESS: A paid plan that runs on shared hardware and caps the users'\nmaximum monthly spending to a user-specified (possibly 0) amount.",
+        "description": " - BASIC: The Basic plan includes essential operational features, is available in\nselect regions, and offers on-demand capacity, making it ideal for small\nteams with unpredictable workloads.\n - STANDARD: The Standard plan includes standard enterprise security and monitoring\nfeatures, is available in all supported regions, and offers provisioned\npricing, making it the default choice for most CockroachDB production\nworkloads.\n - ADVANCED: The Advanced plan is ideal for workloads with stringent isolation,\ncompliance, and security requirements such as CMEK, PCI and HIPAA-readiness,\nand support for dedicated hardware. Customers are advised to have their\naccount team and/or Cockroach Labs Support <support@cockroachlabs.com>\ninvolved when provisioning Advanced clusters.",
         "type": "string",
         "enum": [
-          "DEDICATED",
-          "CUSTOM",
-          "SERVERLESS"
+          "BASIC",
+          "STANDARD",
+          "ADVANCED"
         ]
       },
       "PrivateEndpointConnection": {
@@ -14106,11 +14109,6 @@
             "description": "routing_id is used to identify the cluster in a connection string.",
             "type": "string"
           },
-          "spend_limit": {
-            "description": "spend_limit is the maximum monthly charge for a cluster, in US cents. We\nrecommend using usage_limits instead, since spend_limit will be deprecated\nin the future.",
-            "type": "integer",
-            "format": "int32"
-          },
           "usage_limits": {
             "$ref": "#/components/schemas/UsageLimits"
           }
@@ -14132,11 +14130,6 @@
             "items": {
               "type": "string"
             }
-          },
-          "spend_limit": {
-            "description": "spend_limit is the maximum monthly charge for a cluster, in US cents. We\nrecommend using usage_limits instead, since spend_limit will be deprecated\nin the future.",
-            "type": "integer",
-            "format": "int32"
           },
           "usage_limits": {
             "$ref": "#/components/schemas/UsageLimits"
@@ -14163,11 +14156,6 @@
             "items": {
               "type": "string"
             }
-          },
-          "spend_limit": {
-            "description": "spend_limit is the maximum monthly charge for a cluster, in US cents. We\nrecommend using usage_limits instead, since spend_limit will be deprecated\nin the future.",
-            "type": "integer",
-            "format": "int32"
           },
           "usage_limits": {
             "$ref": "#/components/schemas/UsageLimits"
@@ -14218,6 +14206,9 @@
             "description": "Limited Access: The parent ID is a folder ID. An empty string or \"root\"\nrepresents the root level.",
             "type": "string"
           },
+          "plan": {
+            "$ref": "#/components/schemas/Plan.Type"
+          },
           "serverless": {
             "$ref": "#/components/schemas/ServerlessClusterUpdateSpecification"
           },
@@ -14258,6 +14249,11 @@
       "UsageLimits": {
         "type": "object",
         "properties": {
+          "provisioned_capacity": {
+            "description": "provisioned_capacity is the maximum number of request units that the cluster\ncan consume per second. Once this limit is reached, operation latency may\nincrease due to throttling. It is an error for this to be zero.",
+            "type": "integer",
+            "format": "int64"
+          },
           "request_unit_limit": {
             "description": "request_unit_limit is the maximum number of request units that the cluster\ncan consume during the month. If this limit is exceeded, then the cluster\nis disabled until the limit is increased, or until the beginning of the\nnext month when more free request units are granted. It is an error for\nthis to be zero.",
             "type": "integer",
@@ -14268,11 +14264,7 @@
             "type": "integer",
             "format": "int64"
           }
-        },
-        "required": [
-          "request_unit_limit",
-          "storage_mib_limit"
-        ]
+        }
       },
       "UserGroupRoleGrant": {
         "type": "object",
