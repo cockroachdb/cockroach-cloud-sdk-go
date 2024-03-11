@@ -4,10 +4,13 @@ All URIs are relative to *https://cockroachlabs.cloud*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**AddPrivateEndpointConnection**](PrivateEndpointServicesApi.md#AddPrivateEndpointConnection) | **Post** /api/v1/clusters/{cluster_id}/networking/private-endpoint-connections | Add a connection to a cluster&#39;s private endpoint service.
 [**AddPrivateEndpointTrustedOwner**](PrivateEndpointServicesApi.md#AddPrivateEndpointTrustedOwner) | **Post** /api/v1/clusters/{cluster_id}/networking/private-endpoint-trusted-owners | Add a private endpoint trusted owner to a cluster
 [**CreatePrivateEndpointServices**](PrivateEndpointServicesApi.md#CreatePrivateEndpointServices) | **Post** /api/v1/clusters/{cluster_id}/networking/private-endpoint-services | Create all PrivateEndpointServices for a cluster
+[**DeletePrivateEndpointConnection**](PrivateEndpointServicesApi.md#DeletePrivateEndpointConnection) | **Delete** /api/v1/clusters/{cluster_id}/networking/private-endpoint-connections/{endpoint_id} | Delete a connection from a cluster&#39;s private endpoint service.
 [**GetPrivateEndpointTrustedOwner**](PrivateEndpointServicesApi.md#GetPrivateEndpointTrustedOwner) | **Get** /api/v1/clusters/{cluster_id}/networking/private-endpoint-trusted-owners/{owner_id} | Get a private endpoint trusted owner entry for a cluster
 [**ListAwsEndpointConnections**](PrivateEndpointServicesApi.md#ListAwsEndpointConnections) | **Get** /api/v1/clusters/{cluster_id}/networking/aws-endpoint-connections | List all AwsEndpointConnections for a cluster
+[**ListPrivateEndpointConnections**](PrivateEndpointServicesApi.md#ListPrivateEndpointConnections) | **Get** /api/v1/clusters/{cluster_id}/networking/private-endpoint-connections | List all connections to a cluster&#39;s private endpoint service.
 [**ListPrivateEndpointServices**](PrivateEndpointServicesApi.md#ListPrivateEndpointServices) | **Get** /api/v1/clusters/{cluster_id}/networking/private-endpoint-services | List all PrivateEndpointServices for a cluster
 [**ListPrivateEndpointTrustedOwners**](PrivateEndpointServicesApi.md#ListPrivateEndpointTrustedOwners) | **Get** /api/v1/clusters/{cluster_id}/networking/private-endpoint-trusted-owners | List all private endpoint trusted owners for a cluster
 [**RemovePrivateEndpointTrustedOwner**](PrivateEndpointServicesApi.md#RemovePrivateEndpointTrustedOwner) | **Delete** /api/v1/clusters/{cluster_id}/networking/private-endpoint-trusted-owners/{owner_id} | Remove a private endpoint trusted owner from a cluster
@@ -15,9 +18,78 @@ Method | HTTP request | Description
 
 
 
+## AddPrivateEndpointConnection
+
+> PrivateEndpointConnection AddPrivateEndpointConnection(ctx, clusterId).AddPrivateEndpointConnectionRequest(addPrivateEndpointConnectionRequest).Execute()
+
+Add a connection to a cluster's private endpoint service.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    clusterId := "clusterId_example" // string | cluster_id is the id of the cluster to which the private endpoint connection will be added.
+    addPrivateEndpointConnectionRequest := *openapiclient.NewAddPrivateEndpointConnectionRequest("EndpointId_example") // AddPrivateEndpointConnectionRequest | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.PrivateEndpointServicesApi.AddPrivateEndpointConnection(context.Background(), clusterId).AddPrivateEndpointConnectionRequest(addPrivateEndpointConnectionRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `PrivateEndpointServicesApi.AddPrivateEndpointConnection``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `AddPrivateEndpointConnection`: PrivateEndpointConnection
+    fmt.Fprintf(os.Stdout, "Response from `PrivateEndpointServicesApi.AddPrivateEndpointConnection`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**clusterId** | **string** | cluster_id is the id of the cluster to which the private endpoint connection will be added. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAddPrivateEndpointConnection struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **addPrivateEndpointConnectionRequest** | [**AddPrivateEndpointConnectionRequest**](AddPrivateEndpointConnectionRequest.md) |  | 
+
+### Return type
+
+[**PrivateEndpointConnection**](PrivateEndpointConnection.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## AddPrivateEndpointTrustedOwner
 
-> AddPrivateEndpointTrustedOwnerResponse AddPrivateEndpointTrustedOwner(ctx, clusterId).CockroachCloudAddPrivateEndpointTrustedOwnerRequest(cockroachCloudAddPrivateEndpointTrustedOwnerRequest).Execute()
+> AddPrivateEndpointTrustedOwnerResponse AddPrivateEndpointTrustedOwner(ctx, clusterId).AddPrivateEndpointTrustedOwnerRequest(addPrivateEndpointTrustedOwnerRequest).Execute()
 
 Add a private endpoint trusted owner to a cluster
 
@@ -39,11 +111,11 @@ import (
 
 func main() {
     clusterId := "clusterId_example" // string | cluster_id is the ID for the cluster.
-    cockroachCloudAddPrivateEndpointTrustedOwnerRequest := *openapiclient.NewCockroachCloudAddPrivateEndpointTrustedOwnerRequest("ExternalOwnerId_example", openapiclient.PrivateEndpointTrustedOwnerType.Type("AWS_ACCOUNT_ID")) // CockroachCloudAddPrivateEndpointTrustedOwnerRequest | 
+    addPrivateEndpointTrustedOwnerRequest := *openapiclient.NewAddPrivateEndpointTrustedOwnerRequest("ExternalOwnerId_example", openapiclient.PrivateEndpointTrustedOwnerType.Type("AWS_ACCOUNT_ID")) // AddPrivateEndpointTrustedOwnerRequest | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
-    resp, r, err := api_client.PrivateEndpointServicesApi.AddPrivateEndpointTrustedOwner(context.Background(), clusterId).CockroachCloudAddPrivateEndpointTrustedOwnerRequest(cockroachCloudAddPrivateEndpointTrustedOwnerRequest).Execute()
+    resp, r, err := api_client.PrivateEndpointServicesApi.AddPrivateEndpointTrustedOwner(context.Background(), clusterId).AddPrivateEndpointTrustedOwnerRequest(addPrivateEndpointTrustedOwnerRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `PrivateEndpointServicesApi.AddPrivateEndpointTrustedOwner``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -69,7 +141,7 @@ Other parameters are passed through a pointer to a apiAddPrivateEndpointTrustedO
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **cockroachCloudAddPrivateEndpointTrustedOwnerRequest** | [**CockroachCloudAddPrivateEndpointTrustedOwnerRequest**](CockroachCloudAddPrivateEndpointTrustedOwnerRequest.md) |  | 
+ **addPrivateEndpointTrustedOwnerRequest** | [**AddPrivateEndpointTrustedOwnerRequest**](AddPrivateEndpointTrustedOwnerRequest.md) |  | 
 
 ### Return type
 
@@ -146,6 +218,78 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**PrivateEndpointServices**](PrivateEndpointServices.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## DeletePrivateEndpointConnection
+
+> map[string]interface{} DeletePrivateEndpointConnection(ctx, clusterId, endpointId).Execute()
+
+Delete a connection from a cluster's private endpoint service.
+
+Remove a private endpoint from a service's trusted endpoints list. Caller should make sure to URL encode the endpoint_id before calling this method.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    clusterId := "clusterId_example" // string | cluster_id is the id of the cluster from which the private endpoint connection will be removed.
+    endpointId := "endpointId_example" // string | endpoint_id is the id of the private endpoint associated with a cluster's private endpoint service.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.PrivateEndpointServicesApi.DeletePrivateEndpointConnection(context.Background(), clusterId, endpointId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `PrivateEndpointServicesApi.DeletePrivateEndpointConnection``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DeletePrivateEndpointConnection`: map[string]interface{}
+    fmt.Fprintf(os.Stdout, "Response from `PrivateEndpointServicesApi.DeletePrivateEndpointConnection`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**clusterId** | **string** | cluster_id is the id of the cluster from which the private endpoint connection will be removed. | 
+**endpointId** | **string** | endpoint_id is the id of the private endpoint associated with a cluster&#39;s private endpoint service. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeletePrivateEndpointConnection struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+**map[string]interface{}**
 
 ### Authorization
 
@@ -293,6 +437,73 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**AwsEndpointConnections**](AwsEndpointConnections.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListPrivateEndpointConnections
+
+> PrivateEndpointConnections ListPrivateEndpointConnections(ctx, clusterId).Execute()
+
+List all connections to a cluster's private endpoint service.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    clusterId := "clusterId_example" // string | cluster_id is the ID for the cluster.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.PrivateEndpointServicesApi.ListPrivateEndpointConnections(context.Background(), clusterId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `PrivateEndpointServicesApi.ListPrivateEndpointConnections``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListPrivateEndpointConnections`: PrivateEndpointConnections
+    fmt.Fprintf(os.Stdout, "Response from `PrivateEndpointServicesApi.ListPrivateEndpointConnections`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**clusterId** | **string** | cluster_id is the ID for the cluster. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListPrivateEndpointConnections struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**PrivateEndpointConnections**](PrivateEndpointConnections.md)
 
 ### Authorization
 

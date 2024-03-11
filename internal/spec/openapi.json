@@ -2767,7 +2767,7 @@
           {
             "name": "show_inactive",
             "in": "query",
-            "description": "If `true`, show clusters that have been deleted or failed to initialize.",
+            "description": "If `true`, show clusters that have been deleted or failed to initialize.\nNote that inactive clusters will only be included if the requesting user\nhas organization-scoped cluster read permissions.",
             "schema": {
               "type": "boolean",
               "default": "false"
@@ -2977,7 +2977,7 @@
           {
             "name": "provider",
             "in": "query",
-            "description": "Optional CloudProvider for filtering.\n\n - GCP: The Google Cloud Platform cloud provider.\n - AWS: The Amazon Web Services cloud provider.\n - AZURE: Limited Access: The Azure cloud provider.",
+            "description": "Optional CloudProvider for filtering.\n\n - GCP: The Google Cloud Platform cloud provider.\n - AWS: The Amazon Web Services cloud provider.\n - AZURE: The Azure cloud provider.",
             "schema": {
               "type": "string",
               "enum": [
@@ -4370,7 +4370,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/api.ListDatabasesResponse"
+                  "$ref": "#/components/schemas/ListDatabasesResponse"
                 }
               }
             }
@@ -4483,7 +4483,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/api.Database"
+                  "$ref": "#/components/schemas/Database"
                 }
               }
             }
@@ -4591,7 +4591,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/api.Database"
+                  "$ref": "#/components/schemas/Database"
                 }
               }
             }
@@ -4687,7 +4687,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/api.Database"
+                  "$ref": "#/components/schemas/Database"
                 }
               }
             }
@@ -4804,7 +4804,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/api.Database"
+                  "$ref": "#/components/schemas/Database"
                 }
               }
             }
@@ -7999,6 +7999,320 @@
         ]
       }
     },
+    "/api/v1/clusters/{cluster_id}/networking/private-endpoint-connections": {
+      "get": {
+        "operationId": "CockroachCloud_ListPrivateEndpointConnections",
+        "summary": "List all connections to a cluster's private endpoint service.",
+        "parameters": [
+          {
+            "name": "cluster_id",
+            "in": "path",
+            "description": "cluster_id is the ID for the cluster.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PrivateEndpointConnections"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Private Endpoint Services"
+        ],
+        "x-badges": [
+          {
+            "color": "blue",
+            "label": "PREVIEW"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request GET \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/private-endpoint-connections \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+          }
+        ]
+      },
+      "post": {
+        "operationId": "CockroachCloud_AddPrivateEndpointConnection",
+        "summary": "Add a connection to a cluster's private endpoint service.",
+        "parameters": [
+          {
+            "name": "cluster_id",
+            "in": "path",
+            "description": "cluster_id is the id of the cluster to which the private endpoint\nconnection will be added.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "endpoint_id": {
+                    "description": "endpoint_id is the id of the private endpoint associated with a cluster's\nprivate endpoint service. The private endpoint is customer-created and\nits id is generated by the cloud provider at endpoint creation time.",
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "cluster_id": "35c4abb2-bb66-46d7-afed-25ebef5ed2aa",
+                  "endpoint_id": "e-65de2gf3"
+                },
+                "required": [
+                  "endpoint_id"
+                ],
+                "title": "AddPrivateEndpointConnectionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PrivateEndpointConnection"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Private Endpoint Services"
+        ],
+        "x-badges": [
+          {
+            "color": "blue",
+            "label": "PREVIEW"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/private-endpoint-connections \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"cluster_id\":\"35c4abb2-bb66-46d7-afed-25ebef5ed2aa\",\"endpoint_id\":\"e-65de2gf3\"}'"
+          }
+        ]
+      }
+    },
+    "/api/v1/clusters/{cluster_id}/networking/private-endpoint-connections/{endpoint_id}": {
+      "delete": {
+        "operationId": "CockroachCloud_DeletePrivateEndpointConnection",
+        "summary": "Delete a connection from a cluster's private endpoint service.",
+        "description": "Remove a private endpoint from a service's trusted endpoints list. Caller should make sure to URL encode the endpoint_id before calling this method.",
+        "parameters": [
+          {
+            "name": "cluster_id",
+            "in": "path",
+            "description": "cluster_id is the id of the cluster from which the private endpoint\nconnection will be removed.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "endpoint_id",
+            "in": "path",
+            "description": "endpoint_id is the id of the private endpoint associated with a cluster's\nprivate endpoint service.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Private Endpoint Services"
+        ],
+        "x-badges": [
+          {
+            "color": "blue",
+            "label": "PREVIEW"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request DELETE \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/private-endpoint-connections/{endpoint_id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+          }
+        ]
+      }
+    },
     "/api/v1/clusters/{cluster_id}/networking/private-endpoint-services": {
       "get": {
         "operationId": "CockroachCloud_ListPrivateEndpointServices",
@@ -8306,7 +8620,8 @@
                 "required": [
                   "type",
                   "external_owner_id"
-                ]
+                ],
+                "title": "AddPrivateEndpointTrustedOwnerRequest"
               }
             }
           }
@@ -10892,7 +11207,7 @@
         "title": "AllowlistEntry"
       },
       "Any": {
-        "description": "`Any` contains an arbitrary serialized protocol buffer message along with a\nURL that describes the type of the serialized message.\n\nProtobuf library provides support to pack/unpack Any values in the form\nof utility functions or additional generated methods of the Any type.\n\nExample 1: Pack and unpack a message in C++.\n\n    Foo foo = ...;\n    Any any;\n    any.PackFrom(foo);\n    ...\n    if (any.UnpackTo(&foo)) {\n      ...\n    }\n\nExample 2: Pack and unpack a message in Java.\n\n    Foo foo = ...;\n    Any any = Any.pack(foo);\n    ...\n    if (any.is(Foo.class)) {\n      foo = any.unpack(Foo.class);\n    }\n\nExample 3: Pack and unpack a message in Python.\n\n    foo = Foo(...)\n    any = Any()\n    any.Pack(foo)\n    ...\n    if any.Is(Foo.DESCRIPTOR):\n      any.Unpack(foo)\n      ...\n\nExample 4: Pack and unpack a message in Go\n\n     foo := &pb.Foo{...}\n     any, err := anypb.New(foo)\n     if err != nil {\n       ...\n     }\n     ...\n     foo := &pb.Foo{}\n     if err := any.UnmarshalTo(foo); err != nil {\n       ...\n     }\n\nThe pack methods provided by protobuf library will by default use\n'type.googleapis.com/full.type.name' as the type URL and the unpack\nmethods only use the fully qualified type name after the last '/'\nin the type URL, for example \"foo.bar.com/x/y.z\" will yield type\nname \"y.z\".\n\n\nJSON\n\nThe JSON representation of an `Any` value uses the regular\nrepresentation of the deserialized, embedded message, with an\nadditional field `@type` which contains the type URL. Example:\n\n    package google.profile;\n    message Person {\n      string first_name = 1;\n      string last_name = 2;\n    }\n\n    {\n      \"@type\": \"type.googleapis.com/google.profile.Person\",\n      \"firstName\": <string>,\n      \"lastName\": <string>\n    }\n\nIf the embedded message type is well-known and has a custom JSON\nrepresentation, that representation will be embedded adding a field\n`value` which holds the custom JSON in addition to the `@type`\nfield. Example (for message [google.protobuf.Duration][]):\n\n    {\n      \"@type\": \"type.googleapis.com/google.protobuf.Duration\",\n      \"value\": \"1.212s\"\n    }",
+        "description": "`Any` contains an arbitrary serialized protocol buffer message along with a\nURL that describes the type of the serialized message.\n\nProtobuf library provides support to pack/unpack Any values in the form\nof utility functions or additional generated methods of the Any type.\n\nExample 1: Pack and unpack a message in C++.\n\n    Foo foo = ...;\n    Any any;\n    any.PackFrom(foo);\n    ...\n    if (any.UnpackTo(&foo)) {\n      ...\n    }\n\nExample 2: Pack and unpack a message in Java.\n\n    Foo foo = ...;\n    Any any = Any.pack(foo);\n    ...\n    if (any.is(Foo.class)) {\n      foo = any.unpack(Foo.class);\n    }\n\n Example 3: Pack and unpack a message in Python.\n\n    foo = Foo(...)\n    any = Any()\n    any.Pack(foo)\n    ...\n    if any.Is(Foo.DESCRIPTOR):\n      any.Unpack(foo)\n      ...\n\n Example 4: Pack and unpack a message in Go\n\n     foo := &pb.Foo{...}\n     any, err := anypb.New(foo)\n     if err != nil {\n       ...\n     }\n     ...\n     foo := &pb.Foo{}\n     if err := any.UnmarshalTo(foo); err != nil {\n       ...\n     }\n\nThe pack methods provided by protobuf library will by default use\n'type.googleapis.com/full.type.name' as the type URL and the unpack\nmethods only use the fully qualified type name after the last '/'\nin the type URL, for example \"foo.bar.com/x/y.z\" will yield type\nname \"y.z\".\n\n\nJSON\n====\nThe JSON representation of an `Any` value uses the regular\nrepresentation of the deserialized, embedded message, with an\nadditional field `@type` which contains the type URL. Example:\n\n    package google.profile;\n    message Person {\n      string first_name = 1;\n      string last_name = 2;\n    }\n\n    {\n      \"@type\": \"type.googleapis.com/google.profile.Person\",\n      \"firstName\": <string>,\n      \"lastName\": <string>\n    }\n\nIf the embedded message type is well-known and has a custom JSON\nrepresentation, that representation will be embedded adding a field\n`value` which holds the custom JSON in addition to the `@type`\nfield. Example (for message [google.protobuf.Duration][]):\n\n    {\n      \"@type\": \"type.googleapis.com/google.protobuf.Duration\",\n      \"value\": \"1.212s\"\n    }",
         "type": "object",
         "properties": {
           "@type": {
@@ -11332,7 +11647,7 @@
         ]
       },
       "CloudProvider.Type": {
-        "description": " - GCP: The Google Cloud Platform cloud provider.\n - AWS: The Amazon Web Services cloud provider.\n - AZURE: Limited Access: The Azure cloud provider.",
+        "description": " - GCP: The Google Cloud Platform cloud provider.\n - AWS: The Amazon Web Services cloud provider.\n - AZURE: The Azure cloud provider.",
         "type": "string",
         "enum": [
           "GCP",
@@ -11874,6 +12189,22 @@
             "$ref": "#/components/schemas/Currency.Type"
           }
         }
+      },
+      "Database": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "table_count": {
+            "type": "string",
+            "format": "int64"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "title": "Database"
       },
       "DatadogMetricExportInfo": {
         "type": "object",
@@ -12500,6 +12831,13 @@
               "$ref": "#/components/schemas/CurrencyAmount"
             }
           },
+          "folder_resources": {
+            "description": "FolderResources is a list of resources in the organization and their folder\npaths.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FolderResource"
+            }
+          },
           "invoice_id": {
             "description": "invoice_id is the unique ID representing the invoice.",
             "type": "string"
@@ -12749,6 +13087,24 @@
           "clusters"
         ]
       },
+      "ListDatabasesResponse": {
+        "type": "object",
+        "properties": {
+          "databases": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Database"
+            }
+          },
+          "pagination": {
+            "$ref": "#/components/schemas/KeysetPaginationResponse"
+          }
+        },
+        "required": [
+          "databases"
+        ],
+        "title": "ListDatabasesResponse"
+      },
       "ListEgressRulesResponse": {
         "description": "ListEgressRulesResponse is the output for the ListEgressRules RPC.",
         "type": "object",
@@ -12950,7 +13306,8 @@
           "DISABLE_FAILED",
           "ENABLED",
           "ENABLING",
-          "ENABLE_FAILED"
+          "ENABLE_FAILED",
+          "CREDENTIALS_ERROR"
         ]
       },
       "LogExportType": {
@@ -13129,17 +13486,102 @@
           "ADVANCED"
         ]
       },
+      "PrivateEndpointConnection": {
+        "type": "object",
+        "properties": {
+          "cloud_provider": {
+            "$ref": "#/components/schemas/CloudProvider.Type"
+          },
+          "endpoint_id": {
+            "description": "endpoint_id is the id of the private endpoint associated with this\nconnection. The private endpoint is customer-created and its id is\ngenerated by the cloud provider at endpoint creation time.",
+            "type": "string"
+          },
+          "endpoint_service_id": {
+            "description": "endpoint_service_id is the id of the private endpoint service associated\nwith this connection.",
+            "type": "string"
+          },
+          "external_owner_id": {
+            "description": "external_owner_id uniquely identifies the owner of the private endpoint\nconnection cloud resource. This idenfier is the AWS account id\nowning the PrivateLink connection. This field is only valid on AWS clusters.",
+            "type": "string"
+          },
+          "region_name": {
+            "description": "region_name is the cloud provider region name (e.g. us-east-1).",
+            "type": "string"
+          },
+          "status": {
+            "$ref": "#/components/schemas/PrivateEndpointConnectionStatus"
+          }
+        },
+        "example": {
+          "cloud": "AWS",
+          "endpoint_id": "2w543-45643-323fd",
+          "endpoint_service_id": "34t-4t446-876bm",
+          "region": "us-east-1",
+          "status": "AVAILABLE"
+        },
+        "required": [
+          "region",
+          "cloud_provider",
+          "status",
+          "endpoint_id",
+          "endpoint_service_id"
+        ]
+      },
+      "PrivateEndpointConnectionStatus": {
+        "description": "PrivateEndpointConnectionStatus enumerates the possible statuses\nfor the private endpoints connection.",
+        "type": "string",
+        "enum": [
+          "STATUS_PENDING",
+          "STATUS_PENDING_ACCEPTANCE",
+          "STATUS_AVAILABLE",
+          "STATUS_DELETING",
+          "STATUS_DELETED",
+          "STATUS_REJECTED",
+          "STATUS_FAILED",
+          "STATUS_EXPIRED"
+        ]
+      },
+      "PrivateEndpointConnections": {
+        "type": "object",
+        "properties": {
+          "connections": {
+            "description": "Connections is a list of private endpoints.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PrivateEndpointConnection"
+            }
+          }
+        },
+        "required": [
+          "connections"
+        ]
+      },
       "PrivateEndpointService": {
         "type": "object",
         "properties": {
+          "availability_zone_ids": {
+            "description": "availability_zone_ids are the unique identifiers for the availability\nzones in which this service is available. Note these identifiers\nare unique even across typical cloud provider boundaries, for example\nAWS accounts or organizations. In AWS, availability zone ids for us-east-1\nare use1-az1, use1-az2, use1-az3.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
           "aws": {
             "$ref": "#/components/schemas/AWSPrivateLinkServiceDetail"
           },
           "cloud_provider": {
             "$ref": "#/components/schemas/CloudProvider.Type"
           },
+          "endpoint_service_id": {
+            "description": "endpoint_service_id uniquely identifies this private endpoint service. This\nis the cloud provider generated id for the service.",
+            "type": "string"
+          },
+          "name": {
+            "description": "name is the name of the private endpoints service.",
+            "type": "string"
+          },
           "region_name": {
-            "description": "region_name is the cloud provider region name (i.e. us-east-1).",
+            "description": "region_name is the cloud provider region name (e.g. us-east-1).",
             "type": "string"
           },
           "status": {
@@ -13150,7 +13592,9 @@
           "region_name",
           "cloud_provider",
           "status",
-          "aws"
+          "name",
+          "endpoint_service_id",
+          "availability_zone_ids"
         ]
       },
       "PrivateEndpointServiceStatus.Type": {
@@ -13858,40 +14302,6 @@
           "roles",
           "user_id"
         ]
-      },
-      "api.Database": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string"
-          },
-          "table_count": {
-            "type": "string",
-            "format": "int64"
-          }
-        },
-        "required": [
-          "name"
-        ],
-        "title": "Database"
-      },
-      "api.ListDatabasesResponse": {
-        "type": "object",
-        "properties": {
-          "databases": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/api.Database"
-            }
-          },
-          "pagination": {
-            "$ref": "#/components/schemas/KeysetPaginationResponse"
-          }
-        },
-        "required": [
-          "databases"
-        ],
-        "title": "ListDatabasesResponse"
       }
     },
     "requestBodies": {

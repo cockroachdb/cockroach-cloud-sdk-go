@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Adjustments** | Pointer to [**[]InvoiceAdjustment**](InvoiceAdjustment.md) | adjustments is a list of credits or costs that adjust the value of the invoice (e.g. a Serverless Free Credit or Premium Support adjustment). Unlike line items, adjustments are not tied to a particular cluster. | [optional] 
 **Balances** | [**[]CurrencyAmount**](CurrencyAmount.md) | balances are the amounts of currency left at the time of the invoice. | 
+**FolderResources** | Pointer to [**[]FolderResource**](FolderResource.md) | FolderResources is a list of resources in the organization and their folder paths. | [optional] 
 **InvoiceId** | **string** | invoice_id is the unique ID representing the invoice. | 
 **InvoiceItems** | [**[]InvoiceItem**](InvoiceItem.md) | invoice_items are sorted by the cluster name. | 
 **PeriodEnd** | **time.Time** | period_end is the end of the billing period (exclusive). | 
@@ -54,6 +55,18 @@ GetBalances returns the Balances field if non-nil, zero value otherwise.
 `func (o *Invoice) SetBalances(v []CurrencyAmount)`
 
 SetBalances sets Balances field to given value.
+
+### GetFolderResources
+
+`func (o *Invoice) GetFolderResources() []FolderResource`
+
+GetFolderResources returns the FolderResources field if non-nil, zero value otherwise.
+
+### SetFolderResources
+
+`func (o *Invoice) SetFolderResources(v []FolderResource)`
+
+SetFolderResources sets FolderResources field to given value.
 
 ### GetInvoiceId
 

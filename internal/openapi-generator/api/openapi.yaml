@@ -1863,8 +1863,10 @@ paths:
         Returns all clusters that the user has read access over
       operationId: CockroachCloud_ListClusters
       parameters:
-      - description: "If `true`, show clusters that have been deleted or failed to\
-          \ initialize."
+      - description: |-
+          If `true`, show clusters that have been deleted or failed to initialize.
+          Note that inactive clusters will only be included if the requesting user
+          has organization-scoped cluster read permissions.
         explode: true
         in: query
         name: show_inactive
@@ -2032,7 +2034,7 @@ paths:
 
            - GCP: The Google Cloud Platform cloud provider.
            - AWS: The Amazon Web Services cloud provider.
-           - AZURE: Limited Access: The Azure cloud provider.
+           - AZURE: The Azure cloud provider.
         explode: true
         in: query
         name: provider
@@ -3025,7 +3027,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/api.ListDatabasesResponse'
+                $ref: '#/components/schemas/ListDatabasesResponse'
           description: A successful response.
         "400":
           content:
@@ -3093,7 +3095,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/api.Database'
+                $ref: '#/components/schemas/Database'
           description: A successful response.
         "400":
           content:
@@ -3163,7 +3165,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/api.Database'
+                $ref: '#/components/schemas/Database'
           description: A successful response.
         "400":
           content:
@@ -3235,7 +3237,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/api.Database'
+                $ref: '#/components/schemas/Database'
           description: A successful response.
         "400":
           content:
@@ -3310,7 +3312,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/api.Database'
+                $ref: '#/components/schemas/Database'
           description: A successful response.
         "400":
           content:
@@ -5427,6 +5429,219 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
             --header 'content-type: application/json' \
             --data '{"cluster_id":"35c4abb2-bb66-46d7-afed-25ebef5ed100","ports":[443,80],"rule_id":"35c4abb2-bb66-46d7-afed-25ebef5ed2aa"}'
+  /api/v1/clusters/{cluster_id}/networking/private-endpoint-connections:
+    get:
+      operationId: CockroachCloud_ListPrivateEndpointConnections
+      parameters:
+      - description: cluster_id is the ID for the cluster.
+        explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PrivateEndpointConnections'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: List all connections to a cluster's private endpoint service.
+      tags:
+      - Private Endpoint Services
+      x-badges:
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request GET \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/private-endpoint-connections \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+    post:
+      operationId: CockroachCloud_AddPrivateEndpointConnection
+      parameters:
+      - description: |-
+          cluster_id is the id of the cluster to which the private endpoint
+          connection will be added.
+        explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddPrivateEndpointConnectionRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PrivateEndpointConnection'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Add a connection to a cluster's private endpoint service.
+      tags:
+      - Private Endpoint Services
+      x-badges:
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request POST \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/private-endpoint-connections \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
+            --header 'content-type: application/json' \
+            --data '{"cluster_id":"35c4abb2-bb66-46d7-afed-25ebef5ed2aa","endpoint_id":"e-65de2gf3"}'
+  /api/v1/clusters/{cluster_id}/networking/private-endpoint-connections/{endpoint_id}:
+    delete:
+      description: Remove a private endpoint from a service's trusted endpoints list.
+        Caller should make sure to URL encode the endpoint_id before calling this
+        method.
+      operationId: CockroachCloud_DeletePrivateEndpointConnection
+      parameters:
+      - description: |-
+          cluster_id is the id of the cluster from which the private endpoint
+          connection will be removed.
+        explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: |-
+          endpoint_id is the id of the private endpoint associated with a cluster's
+          private endpoint service.
+        explode: false
+        in: path
+        name: endpoint_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Delete a connection from a cluster's private endpoint service.
+      tags:
+      - Private Endpoint Services
+      x-badges:
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request DELETE \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/private-endpoint-connections/{endpoint_id} \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
   /api/v1/clusters/{cluster_id}/networking/private-endpoint-services:
     get:
       description: |
@@ -5641,7 +5856,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CockroachCloud_AddPrivateEndpointTrustedOwner_request'
+              $ref: '#/components/schemas/AddPrivateEndpointTrustedOwnerRequest'
         required: true
       responses:
         "200":
@@ -7609,7 +7824,7 @@ components:
               foo = any.unpack(Foo.class);
             }
 
-        Example 3: Pack and unpack a message in Python.
+         Example 3: Pack and unpack a message in Python.
 
             foo = Foo(...)
             any = Any()
@@ -7619,7 +7834,7 @@ components:
               any.Unpack(foo)
               ...
 
-        Example 4: Pack and unpack a message in Go
+         Example 4: Pack and unpack a message in Go
 
              foo := &pb.Foo{...}
              any, err := anypb.New(foo)
@@ -7640,7 +7855,7 @@ components:
 
 
         JSON
-
+        ====
         The JSON representation of an `Any` value uses the regular
         representation of the deserialized, embedded message, with an
         additional field `@type` which contains the type URL. Example:
@@ -8227,7 +8442,7 @@ components:
       description: |2-
          - GCP: The Google Cloud Platform cloud provider.
          - AWS: The Amazon Web Services cloud provider.
-         - AZURE: Limited Access: The Azure cloud provider.
+         - AZURE: The Azure cloud provider.
       enum:
       - GCP
       - AWS
@@ -8671,6 +8886,20 @@ components:
           type: number
         currency:
           $ref: '#/components/schemas/Currency.Type'
+      type: object
+    Database:
+      example:
+        table_count: 0
+        name: name
+      properties:
+        name:
+          type: string
+        table_count:
+          format: int64
+          type: integer
+      required:
+      - name
+      title: Database
       type: object
     DatadogMetricExportInfo:
       example:
@@ -9729,6 +9958,27 @@ components:
           - amount: 0.8008281904610115
             currency: null
         period_start: 2000-01-23T04:56:07.000+00:00
+        folder_resources:
+        - path:
+          - name: name
+            id: id
+          - name: name
+            id: id
+          parent_id: parent_id
+          organization_id: organization_id
+          name: name
+          resource_type: null
+          resource_id: resource_id
+        - path:
+          - name: name
+            id: id
+          - name: name
+            id: id
+          parent_id: parent_id
+          organization_id: organization_id
+          name: name
+          resource_type: null
+          resource_id: resource_id
         invoice_id: invoice_id
         totals:
         - amount: 0.8008281904610115
@@ -9749,6 +9999,13 @@ components:
             invoice.
           items:
             $ref: '#/components/schemas/CurrencyAmount'
+          type: array
+        folder_resources:
+          description: |-
+            FolderResources is a list of resources in the organization and their folder
+            paths.
+          items:
+            $ref: '#/components/schemas/FolderResource'
           type: array
         invoice_id:
           description: invoice_id is the unique ID representing the invoice.
@@ -10144,6 +10401,27 @@ components:
       required:
       - clusters
       type: object
+    ListDatabasesResponse:
+      example:
+        databases:
+        - table_count: 0
+          name: name
+        - table_count: 0
+          name: name
+        pagination:
+          next_page: next_page
+          previous_page: previous_page
+      properties:
+        databases:
+          items:
+            $ref: '#/components/schemas/Database'
+          type: array
+        pagination:
+          $ref: '#/components/schemas/KeysetPaginationResponse'
+      required:
+      - databases
+      title: ListDatabasesResponse
+      type: object
     ListEgressRulesResponse:
       description: ListEgressRulesResponse is the output for the ListEgressRules RPC.
       example:
@@ -10298,6 +10576,27 @@ components:
             - amount: 0.8008281904610115
               currency: null
           period_start: 2000-01-23T04:56:07.000+00:00
+          folder_resources:
+          - path:
+            - name: name
+              id: id
+            - name: name
+              id: id
+            parent_id: parent_id
+            organization_id: organization_id
+            name: name
+            resource_type: null
+            resource_id: resource_id
+          - path:
+            - name: name
+              id: id
+            - name: name
+              id: id
+            parent_id: parent_id
+            organization_id: organization_id
+            name: name
+            resource_type: null
+            resource_id: resource_id
           invoice_id: invoice_id
           totals:
           - amount: 0.8008281904610115
@@ -10407,6 +10706,27 @@ components:
             - amount: 0.8008281904610115
               currency: null
           period_start: 2000-01-23T04:56:07.000+00:00
+          folder_resources:
+          - path:
+            - name: name
+              id: id
+            - name: name
+              id: id
+            parent_id: parent_id
+            organization_id: organization_id
+            name: name
+            resource_type: null
+            resource_id: resource_id
+          - path:
+            - name: name
+              id: id
+            - name: name
+              id: id
+            parent_id: parent_id
+            organization_id: organization_id
+            name: name
+            resource_type: null
+            resource_id: resource_id
           invoice_id: invoice_id
           totals:
           - amount: 0.8008281904610115
@@ -10713,6 +11033,7 @@ components:
       - ENABLED
       - ENABLING
       - ENABLE_FAILED
+      - CREDENTIALS_ERROR
       type: string
     LogExportType:
       description: |-
@@ -10905,8 +11226,88 @@ components:
       - STANDARD
       - ADVANCED
       type: string
+    PrivateEndpointConnection:
+      example:
+        cloud: AWS
+        endpoint_id: 2w543-45643-323fd
+        endpoint_service_id: 34t-4t446-876bm
+        region: us-east-1
+        status: AVAILABLE
+      properties:
+        cloud_provider:
+          $ref: '#/components/schemas/CloudProvider.Type'
+        endpoint_id:
+          description: |-
+            endpoint_id is the id of the private endpoint associated with this
+            connection. The private endpoint is customer-created and its id is
+            generated by the cloud provider at endpoint creation time.
+          type: string
+        endpoint_service_id:
+          description: |-
+            endpoint_service_id is the id of the private endpoint service associated
+            with this connection.
+          type: string
+        external_owner_id:
+          description: |-
+            external_owner_id uniquely identifies the owner of the private endpoint
+            connection cloud resource. This idenfier is the AWS account id
+            owning the PrivateLink connection. This field is only valid on AWS clusters.
+          type: string
+        region_name:
+          description: region_name is the cloud provider region name (e.g. us-east-1).
+          type: string
+        status:
+          $ref: '#/components/schemas/PrivateEndpointConnectionStatus'
+      required:
+      - cloud_provider
+      - endpoint_id
+      - endpoint_service_id
+      - region
+      - status
+      type: object
+    PrivateEndpointConnectionStatus:
+      description: |-
+        PrivateEndpointConnectionStatus enumerates the possible statuses
+        for the private endpoints connection.
+      enum:
+      - STATUS_PENDING
+      - STATUS_PENDING_ACCEPTANCE
+      - STATUS_AVAILABLE
+      - STATUS_DELETING
+      - STATUS_DELETED
+      - STATUS_REJECTED
+      - STATUS_FAILED
+      - STATUS_EXPIRED
+      type: string
+    PrivateEndpointConnections:
+      example:
+        connections:
+        - cloud: AWS
+          endpoint_id: 2w543-45643-323fd
+          endpoint_service_id: 34t-4t446-876bm
+          region: us-east-1
+          status: AVAILABLE
+        - cloud: AWS
+          endpoint_id: 2w543-45643-323fd
+          endpoint_service_id: 34t-4t446-876bm
+          region: us-east-1
+          status: AVAILABLE
+      properties:
+        connections:
+          description: Connections is a list of private endpoints.
+          items:
+            $ref: '#/components/schemas/PrivateEndpointConnection'
+          type: array
+      required:
+      - connections
+      type: object
     PrivateEndpointService:
       example:
+        availability_zone_ids:
+        - availability_zone_ids
+        - availability_zone_ids
+        endpoint_service_id: endpoint_service_id
+        name: name
         cloud_provider: null
         region_name: region_name
         aws:
@@ -10917,18 +11318,38 @@ components:
           service_id: service_id
         status: null
       properties:
+        availability_zone_ids:
+          description: |-
+            availability_zone_ids are the unique identifiers for the availability
+            zones in which this service is available. Note these identifiers
+            are unique even across typical cloud provider boundaries, for example
+            AWS accounts or organizations. In AWS, availability zone ids for us-east-1
+            are use1-az1, use1-az2, use1-az3.
+          items:
+            type: string
+          type: array
         aws:
           $ref: '#/components/schemas/AWSPrivateLinkServiceDetail'
         cloud_provider:
           $ref: '#/components/schemas/CloudProvider.Type'
+        endpoint_service_id:
+          description: |-
+            endpoint_service_id uniquely identifies this private endpoint service. This
+            is the cloud provider generated id for the service.
+          type: string
+        name:
+          description: name is the name of the private endpoints service.
+          type: string
         region_name:
-          description: region_name is the cloud provider region name (i.e. us-east-1).
+          description: region_name is the cloud provider region name (e.g. us-east-1).
           type: string
         status:
           $ref: '#/components/schemas/PrivateEndpointServiceStatus.Type'
       required:
-      - aws
+      - availability_zone_ids
       - cloud_provider
+      - endpoint_service_id
+      - name
       - region_name
       - status
       type: object
@@ -10943,7 +11364,12 @@ components:
     PrivateEndpointServices:
       example:
         services:
-        - cloud_provider: null
+        - availability_zone_ids:
+          - availability_zone_ids
+          - availability_zone_ids
+          endpoint_service_id: endpoint_service_id
+          name: name
+          cloud_provider: null
           region_name: region_name
           aws:
             availability_zone_ids:
@@ -10952,7 +11378,12 @@ components:
             service_name: service_name
             service_id: service_id
           status: null
-        - cloud_provider: null
+        - availability_zone_ids:
+          - availability_zone_ids
+          - availability_zone_ids
+          endpoint_service_id: endpoint_service_id
+          name: name
+          cloud_provider: null
           region_name: region_name
           aws:
             availability_zone_ids:
@@ -11702,41 +12133,6 @@ components:
       - roles
       - user_id
       type: object
-    api.Database:
-      example:
-        table_count: 0
-        name: name
-      properties:
-        name:
-          type: string
-        table_count:
-          format: int64
-          type: integer
-      required:
-      - name
-      title: Database
-      type: object
-    api.ListDatabasesResponse:
-      example:
-        databases:
-        - table_count: 0
-          name: name
-        - table_count: 0
-          name: name
-        pagination:
-          next_page: next_page
-          previous_page: previous_page
-      properties:
-        databases:
-          items:
-            $ref: '#/components/schemas/api.Database'
-          type: array
-        pagination:
-          $ref: '#/components/schemas/KeysetPaginationResponse'
-      required:
-      - databases
-      title: ListDatabasesResponse
-      type: object
     UpdateGroupRequest:
       example:
         displayName: Test SCIM
@@ -12274,7 +12670,22 @@ components:
           type: string
       title: EditEgressRuleRequest
       type: object
-    CockroachCloud_AddPrivateEndpointTrustedOwner_request:
+    AddPrivateEndpointConnectionRequest:
+      example:
+        cluster_id: 35c4abb2-bb66-46d7-afed-25ebef5ed2aa
+        endpoint_id: e-65de2gf3
+      properties:
+        endpoint_id:
+          description: |-
+            endpoint_id is the id of the private endpoint associated with a cluster's
+            private endpoint service. The private endpoint is customer-created and
+            its id is generated by the cloud provider at endpoint creation time.
+          type: string
+      required:
+      - endpoint_id
+      title: AddPrivateEndpointConnectionRequest
+      type: object
+    AddPrivateEndpointTrustedOwnerRequest:
       example:
         external_owner_id: "012345678901"
         type: AWS_ACCOUNT_ID
@@ -12290,6 +12701,7 @@ components:
       required:
       - external_owner_id
       - type
+      title: AddPrivateEndpointTrustedOwnerRequest
       type: object
     CreateSQLUserRequest:
       example:

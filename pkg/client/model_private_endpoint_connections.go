@@ -18,55 +18,41 @@
 
 package client
 
-// ApiDatabase struct for ApiDatabase.
-type ApiDatabase struct {
-	Name       string `json:"name"`
-	TableCount *int64 `json:"table_count,omitempty,string"`
+// PrivateEndpointConnections struct for PrivateEndpointConnections.
+type PrivateEndpointConnections struct {
+	// Connections is a list of private endpoints.
+	Connections []PrivateEndpointConnection `json:"connections"`
 }
 
-// NewApiDatabase instantiates a new ApiDatabase object.
+// NewPrivateEndpointConnections instantiates a new PrivateEndpointConnections object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewApiDatabase(name string) *ApiDatabase {
-	p := ApiDatabase{}
-	p.Name = name
+func NewPrivateEndpointConnections(connections []PrivateEndpointConnection) *PrivateEndpointConnections {
+	p := PrivateEndpointConnections{}
+	p.Connections = connections
 	return &p
 }
 
-// NewApiDatabaseWithDefaults instantiates a new ApiDatabase object.
+// NewPrivateEndpointConnectionsWithDefaults instantiates a new PrivateEndpointConnections object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewApiDatabaseWithDefaults() *ApiDatabase {
-	p := ApiDatabase{}
+func NewPrivateEndpointConnectionsWithDefaults() *PrivateEndpointConnections {
+	p := PrivateEndpointConnections{}
 	return &p
 }
 
-// GetName returns the Name field value.
-func (o *ApiDatabase) GetName() string {
+// GetConnections returns the Connections field value.
+func (o *PrivateEndpointConnections) GetConnections() []PrivateEndpointConnection {
 	if o == nil {
-		var ret string
+		var ret []PrivateEndpointConnection
 		return ret
 	}
 
-	return o.Name
+	return o.Connections
 }
 
-// SetName sets field value.
-func (o *ApiDatabase) SetName(v string) {
-	o.Name = v
-}
-
-// GetTableCount returns the TableCount field value if set, zero value otherwise.
-func (o *ApiDatabase) GetTableCount() int64 {
-	if o == nil || o.TableCount == nil {
-		var ret int64
-		return ret
-	}
-	return *o.TableCount
-}
-
-// SetTableCount gets a reference to the given int64 and assigns it to the TableCount field.
-func (o *ApiDatabase) SetTableCount(v int64) {
-	o.TableCount = &v
+// SetConnections sets field value.
+func (o *PrivateEndpointConnections) SetConnections(v []PrivateEndpointConnection) {
+	o.Connections = v
 }

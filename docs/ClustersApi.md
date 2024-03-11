@@ -333,7 +333,7 @@ import (
 )
 
 func main() {
-    provider := "provider_example" // string | Optional CloudProvider for filtering.   - GCP: The Google Cloud Platform cloud provider.  - AWS: The Amazon Web Services cloud provider.  - AZURE: Limited Access: The Azure cloud provider. (optional)
+    provider := "provider_example" // string | Optional CloudProvider for filtering.   - GCP: The Google Cloud Platform cloud provider.  - AWS: The Amazon Web Services cloud provider.  - AZURE: The Azure cloud provider. (optional)
     serverless := true // bool | Optional filter to only show regions available for serverless clusters. (optional) (default to false)
     paginationPage := "paginationPage_example" // string |  (optional)
     paginationLimit := int32(56) // int32 |  (optional)
@@ -363,7 +363,7 @@ Other parameters are passed through a pointer to a apiListAvailableRegions struc
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **provider** | **string** | Optional CloudProvider for filtering.   - GCP: The Google Cloud Platform cloud provider.  - AWS: The Amazon Web Services cloud provider.  - AZURE: Limited Access: The Azure cloud provider. | 
+ **provider** | **string** | Optional CloudProvider for filtering.   - GCP: The Google Cloud Platform cloud provider.  - AWS: The Amazon Web Services cloud provider.  - AZURE: The Azure cloud provider. | 
  **serverless** | **bool** | Optional filter to only show regions available for serverless clusters. | [default to false]
  **paginationPage** | **string** |  | 
  **paginationLimit** | **int32** |  | 
@@ -498,7 +498,7 @@ import (
 )
 
 func main() {
-    showInactive := true // bool | If `true`, show clusters that have been deleted or failed to initialize. (optional) (default to false)
+    showInactive := true // bool | If `true`, show clusters that have been deleted or failed to initialize. Note that inactive clusters will only be included if the requesting user has organization-scoped cluster read permissions. (optional) (default to false)
     paginationPage := "paginationPage_example" // string |  (optional)
     paginationLimit := int32(56) // int32 |  (optional)
     paginationAsOfTime := time.Now() // time.Time |  (optional)
@@ -527,7 +527,7 @@ Other parameters are passed through a pointer to a apiListClusters struct via th
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **showInactive** | **bool** | If &#x60;true&#x60;, show clusters that have been deleted or failed to initialize. | [default to false]
+ **showInactive** | **bool** | If &#x60;true&#x60;, show clusters that have been deleted or failed to initialize. Note that inactive clusters will only be included if the requesting user has organization-scoped cluster read permissions. | [default to false]
  **paginationPage** | **string** |  | 
  **paginationLimit** | **int32** |  | 
  **paginationAsOfTime** | **time.Time** |  | 
