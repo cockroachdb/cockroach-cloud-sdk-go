@@ -7824,7 +7824,7 @@ components:
               foo = any.unpack(Foo.class);
             }
 
-         Example 3: Pack and unpack a message in Python.
+        Example 3: Pack and unpack a message in Python.
 
             foo = Foo(...)
             any = Any()
@@ -7834,7 +7834,7 @@ components:
               any.Unpack(foo)
               ...
 
-         Example 4: Pack and unpack a message in Go
+        Example 4: Pack and unpack a message in Go
 
              foo := &pb.Foo{...}
              any, err := anypb.New(foo)
@@ -7855,7 +7855,7 @@ components:
 
 
         JSON
-        ====
+
         The JSON representation of an `Any` value uses the regular
         representation of the deserialized, embedded message, with an
         additional field `@type` which contains the type URL. Example:
@@ -8783,6 +8783,8 @@ components:
             Limited Access: The parent ID is a folder ID. An empty string or "root"
             will create a cluster at the root level.
           type: string
+        plan:
+          $ref: '#/components/schemas/Plan.Type'
         serverless:
           $ref: '#/components/schemas/ServerlessClusterCreateSpecification'
       type: object
@@ -12042,6 +12044,8 @@ components:
             Limited Access: The parent ID is a folder ID. An empty string or "root"
             represents the root level.
           type: string
+        plan:
+          $ref: '#/components/schemas/Plan.Type'
         serverless:
           $ref: '#/components/schemas/ServerlessClusterUpdateSpecification'
         upgrade_status:
