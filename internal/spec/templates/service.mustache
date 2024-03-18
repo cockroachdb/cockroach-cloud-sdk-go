@@ -12,7 +12,13 @@ import (
 )
 
 type Service interface {
-    {{#apiInfo}}{{#apis}}// {{{baseName}}}{{#operations}}{{#operation}}
+    {{#apiInfo}}{{#apis}}
+	//
+	// {{{baseName}}}
+	//
+
+	{{#operations}}{{#operation}}
+		{{#isDeprecated}}// Deprecated: {{summary}}{{/isDeprecated}}{{^isDeprecated}}// {{summary}}{{/isDeprecated}}
         {{nickname}}(ctx _context.Context{{#allParams}}{{#required}}, {{paramName}} {{^isPathParam}}*{{/isPathParam}}{{{dataType}}}{{/required}}{{/allParams}}{{#hasOptionalParams}}, options *{{nickname}}Options{{/hasOptionalParams}}) ({{^returnTypeIsPrimitive}}{{#returnType}}*{{{.}}}, {{/returnType}}{{/returnTypeIsPrimitive}}*_nethttp.Response, error){{/operation}}
 	{{/operations}}{{/apis}}{{/apiInfo}}
 }
