@@ -1,3 +1,11 @@
+
+BUG FIXES:
+
+* Updated templates to include the deprecation notice in the service interface
+  docs.
+
+## 1.8.0
+
 ## 1.7.0 (September 6, 2023)
 
 NEW FEATURES:
