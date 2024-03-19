@@ -116,6 +116,7 @@ docs/ListClusterNodesResponse.md
 docs/ListClustersResponse.md
 docs/ListDatabasesResponse.md
 docs/ListEgressRulesResponse.md
+docs/ListFoldersResponse.md
 docs/ListInvoicesResponse.md
 docs/ListMajorClusterVersionsResponse.md
 docs/ListPrivateEndpointTrustedOwnersResponse.md
@@ -304,6 +305,7 @@ model_list_cluster_nodes_response.go
 model_list_clusters_response.go
 model_list_databases_response.go
 model_list_egress_rules_response.go
+model_list_folders_response.go
 model_list_invoices_response.go
 model_list_major_cluster_versions_response.go
 model_list_private_endpoint_trusted_owners_response.go

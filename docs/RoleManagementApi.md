@@ -409,7 +409,7 @@ import (
 
 func main() {
     userId := "userId_example" // string | 
-    cockroachCloudSetRolesForUserRequest := *openapiclient.NewCockroachCloudSetRolesForUserRequest([]openapiclient.BuiltInRole{*openapiclient.NewBuiltInRole(openapiclient.OrganizationUserRole.Type("DEVELOPER"), *openapiclient.NewResource(openapiclient.ResourceType.Type("ORGANIZATION")))}) // CockroachCloudSetRolesForUserRequest | 
+    cockroachCloudSetRolesForUserRequest := *openapiclient.NewCockroachCloudSetRolesForUserRequest([]openapiclient.BuiltInRole{*openapiclient.NewBuiltInRole(openapiclient.OrganizationUserRole.Type("BILLING_COORDINATOR"), *openapiclient.NewResource(openapiclient.ResourceType.Type("ORGANIZATION")))}) // CockroachCloudSetRolesForUserRequest | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)

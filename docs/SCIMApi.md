@@ -8,19 +8,23 @@ Method | HTTP request | Description
 [**CreateUser**](SCIMApi.md#CreateUser) | **Post** /api/scim/v2/Users | Create a user
 [**DeleteGroup**](SCIMApi.md#DeleteGroup) | **Delete** /api/scim/v2/Groups/{id} | Delete a group based on ID
 [**DeleteUser**](SCIMApi.md#DeleteUser) | **Delete** /api/scim/v2/Users/{id} | Delete a user based on ID
-[**GetGroup**](SCIMApi.md#GetGroup) | **Get** /api/scim/v2/Groups/{id} | Get a group based on ID
-[**GetGroup2**](SCIMApi.md#GetGroup2) | **Put** /api/scim/v2/Groups/{id}/.search | Get a group based on ID
-[**GetGroups**](SCIMApi.md#GetGroups) | **Get** /api/scim/v2/Groups | Get groups based on query parameters
-[**GetGroups2**](SCIMApi.md#GetGroups2) | **Put** /api/scim/v2/Groups/.search | Get groups based on query parameters
+[**GetGroup**](SCIMApi.md#GetGroup) | **Get** /api/scim/v2/Groups/{id} | Get a group by ID
+[**GetGroup2**](SCIMApi.md#GetGroup2) | **Put** /api/scim/v2/Groups/{id}/.search | Search a group by ID (Deprecated)
+[**GetGroups**](SCIMApi.md#GetGroups) | **Get** /api/scim/v2/Groups | List groups
+[**GetGroups2**](SCIMApi.md#GetGroups2) | **Put** /api/scim/v2/Groups/.search | Search groups (Deprecated)
 [**GetResourceType**](SCIMApi.md#GetResourceType) | **Get** /api/scim/v2/ResourceTypes/{resourceId} | Get a SCIM resource type by ID
 [**GetResourceTypes**](SCIMApi.md#GetResourceTypes) | **Get** /api/scim/v2/ResourceTypes | List the SCIM resource types
 [**GetSchema**](SCIMApi.md#GetSchema) | **Get** /api/scim/v2/Schemas/{schemaId} | Get a SCIM schema by ID
 [**GetSchemas**](SCIMApi.md#GetSchemas) | **Get** /api/scim/v2/Schemas | List the SCIM schemas
 [**GetServiceProviderConfig**](SCIMApi.md#GetServiceProviderConfig) | **Get** /api/scim/v2/ServiceProviderConfig | Return the SCIM Service Provider configuration
-[**GetUser**](SCIMApi.md#GetUser) | **Get** /api/scim/v2/Users/{id} | Get a user based on ID
-[**GetUser2**](SCIMApi.md#GetUser2) | **Put** /api/scim/v2/Users/{id}/.search | Get a user based on ID
-[**GetUsers**](SCIMApi.md#GetUsers) | **Get** /api/scim/v2/Users | Get Users based on query parameters
-[**GetUsers2**](SCIMApi.md#GetUsers2) | **Put** /api/scim/v2/Users/.search | Get Users based on query parameters
+[**GetUser**](SCIMApi.md#GetUser) | **Get** /api/scim/v2/Users/{id} | Get a user by ID
+[**GetUser2**](SCIMApi.md#GetUser2) | **Put** /api/scim/v2/Users/{id}/.search | Search for a user by ID (Deprecated)
+[**GetUsers**](SCIMApi.md#GetUsers) | **Get** /api/scim/v2/Users | List Users
+[**GetUsers2**](SCIMApi.md#GetUsers2) | **Put** /api/scim/v2/Users/.search | Search User (Deprecated)
+[**SearchGroup**](SCIMApi.md#SearchGroup) | **Post** /api/scim/v2/Groups/{id}/.search | Search a group by ID
+[**SearchGroups**](SCIMApi.md#SearchGroups) | **Post** /api/scim/v2/Groups/.search | Search groups
+[**SearchUser**](SCIMApi.md#SearchUser) | **Post** /api/scim/v2/Users/{id}/.search | Search for a user by ID
+[**SearchUsers**](SCIMApi.md#SearchUsers) | **Post** /api/scim/v2/Users/.search | Search Users
 [**UpdateGroup**](SCIMApi.md#UpdateGroup) | **Put** /api/scim/v2/Groups/{id} | Update a group by supplying all values of the user object
 [**UpdateUser**](SCIMApi.md#UpdateUser) | **Put** /api/scim/v2/Users/{id} | Update a user by supplying all values of the user object
 
@@ -306,7 +310,7 @@ Name | Type | Description  | Notes
 
 > ScimGroup GetGroup(ctx, id).Attributes(attributes).ExcludedAttributes(excludedAttributes).Execute()
 
-Get a group based on ID
+Get a group by ID
 
 Can be used by the following roles assigned at the organization scope:
 - ORG_ADMIN
@@ -381,7 +385,7 @@ Name | Type | Description  | Notes
 
 > ScimGroup GetGroup2(ctx, id).GetGroupRequest(getGroupRequest).Execute()
 
-Get a group based on ID
+Search a group by ID (Deprecated)
 
 Can be used by the following roles assigned at the organization scope:
 - ORG_ADMIN
@@ -454,7 +458,7 @@ Name | Type | Description  | Notes
 
 > GetGroupsResponse GetGroups(ctx).Attributes(attributes).ExcludedAttributes(excludedAttributes).Filter(filter).Execute()
 
-Get groups based on query parameters
+List groups
 
 Can be used by the following roles assigned at the organization scope:
 - ORG_ADMIN
@@ -525,7 +529,7 @@ Name | Type | Description  | Notes
 
 > GetGroupsResponse GetGroups2(ctx).GetGroupsRequest(getGroupsRequest).Execute()
 
-Get groups based on query parameters
+Search groups (Deprecated)
 
 Can be used by the following roles assigned at the organization scope:
 - ORG_ADMIN
@@ -932,7 +936,7 @@ Other parameters are passed through a pointer to a apiGetServiceProviderConfig s
 
 > ScimUser GetUser(ctx, id).Attributes(attributes).ExcludedAttributes(excludedAttributes).Execute()
 
-Get a user based on ID
+Get a user by ID
 
 Can be used by the following roles assigned at the organization scope:
 - ORG_ADMIN
@@ -1007,7 +1011,7 @@ Name | Type | Description  | Notes
 
 > ScimUser GetUser2(ctx, id).GetUserRequest(getUserRequest).Execute()
 
-Get a user based on ID
+Search for a user by ID (Deprecated)
 
 Can be used by the following roles assigned at the organization scope:
 - ORG_ADMIN
@@ -1080,7 +1084,7 @@ Name | Type | Description  | Notes
 
 > GetUsersResponse GetUsers(ctx).Filter(filter).Attributes(attributes).ExcludedAttributes(excludedAttributes).Execute()
 
-Get Users based on query parameters
+List Users
 
 Can be used by the following roles assigned at the organization scope:
 - ORG_ADMIN
@@ -1151,7 +1155,7 @@ Name | Type | Description  | Notes
 
 > GetUsersResponse GetUsers2(ctx).GetUsersRequest(getUsersRequest).Execute()
 
-Get Users based on query parameters
+Search User (Deprecated)
 
 Can be used by the following roles assigned at the organization scope:
 - ORG_ADMIN
@@ -1191,6 +1195,278 @@ func main() {
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiGetUsers2 struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **getUsersRequest** | [**GetUsersRequest**](GetUsersRequest.md) |  | 
+
+### Return type
+
+[**GetUsersResponse**](GetUsersResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## SearchGroup
+
+> ScimGroup SearchGroup(ctx, id).GetGroupRequest(getGroupRequest).Execute()
+
+Search a group by ID
+
+Similar to GetGroup however search parameters are passed via the POST body. See https://www.rfc-editor.org/rfc/rfc7644.html#section-3.4.3 for more details.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+    getGroupRequest := *openapiclient.NewGetGroupRequest() // GetGroupRequest | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.SCIMApi.SearchGroup(context.Background(), id).GetGroupRequest(getGroupRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `SCIMApi.SearchGroup``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `SearchGroup`: ScimGroup
+    fmt.Fprintf(os.Stdout, "Response from `SCIMApi.SearchGroup`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiSearchGroup struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **getGroupRequest** | [**GetGroupRequest**](GetGroupRequest.md) |  | 
+
+### Return type
+
+[**ScimGroup**](ScimGroup.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## SearchGroups
+
+> GetGroupsResponse SearchGroups(ctx).GetGroupsRequest(getGroupsRequest).Execute()
+
+Search groups
+
+Similar to GetGroups however search parameters are passed via the POST body. See https://www.rfc-editor.org/rfc/rfc7644.html#section-3.4.3 for more details.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    getGroupsRequest := *openapiclient.NewGetGroupsRequest() // GetGroupsRequest | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.SCIMApi.SearchGroups(context.Background()).GetGroupsRequest(getGroupsRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `SCIMApi.SearchGroups``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `SearchGroups`: GetGroupsResponse
+    fmt.Fprintf(os.Stdout, "Response from `SCIMApi.SearchGroups`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiSearchGroups struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **getGroupsRequest** | [**GetGroupsRequest**](GetGroupsRequest.md) |  | 
+
+### Return type
+
+[**GetGroupsResponse**](GetGroupsResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## SearchUser
+
+> ScimUser SearchUser(ctx, id).GetUserRequest(getUserRequest).Execute()
+
+Search for a user by ID
+
+Similar to GetUser however search parameters are passed via the POST body. See https://www.rfc-editor.org/rfc/rfc7644.html#section-3.4.3 for more details.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+    getUserRequest := *openapiclient.NewGetUserRequest() // GetUserRequest | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.SCIMApi.SearchUser(context.Background(), id).GetUserRequest(getUserRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `SCIMApi.SearchUser``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `SearchUser`: ScimUser
+    fmt.Fprintf(os.Stdout, "Response from `SCIMApi.SearchUser`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiSearchUser struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **getUserRequest** | [**GetUserRequest**](GetUserRequest.md) |  | 
+
+### Return type
+
+[**ScimUser**](ScimUser.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## SearchUsers
+
+> GetUsersResponse SearchUsers(ctx).GetUsersRequest(getUsersRequest).Execute()
+
+Search Users
+
+Similar to GetUsers however search parameters are passed via the POST body. See https://www.rfc-editor.org/rfc/rfc7644.html#section-3.4.3 for more details.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    getUsersRequest := *openapiclient.NewGetUsersRequest() // GetUsersRequest | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.SCIMApi.SearchUsers(context.Background()).GetUsersRequest(getUsersRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `SCIMApi.SearchUsers``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `SearchUsers`: GetUsersResponse
+    fmt.Fprintf(os.Stdout, "Response from `SCIMApi.SearchUsers`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiSearchUsers struct via the builder pattern
 
 
 Name | Type | Description  | Notes
