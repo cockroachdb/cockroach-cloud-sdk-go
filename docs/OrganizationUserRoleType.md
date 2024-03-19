@@ -1,11 +1,7 @@
 # OrganizationUserRoleType
 
 ## Enum
->  - DEVELOPER: To be deprecated  - ADMIN: To be deprecated  - FOLDER_ADMIN: Limited Access: A folder admin role.  - FOLDER_MOVER: Limited Access: A folder mover role.
-
-* `DEVELOPER` (value: `"DEVELOPER"`)
-
-* `ADMIN` (value: `"ADMIN"`)
+>  - FOLDER_ADMIN: Limited Access: A folder admin role.  - FOLDER_MOVER: Limited Access: A folder mover role.
 
 * `BILLING_COORDINATOR` (value: `"BILLING_COORDINATOR"`)
 

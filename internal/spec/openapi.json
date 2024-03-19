@@ -19,7 +19,7 @@
     "/api/scim/v2/Groups": {
       "get": {
         "operationId": "CockroachCloud_GetGroups",
-        "summary": "Get groups based on query parameters",
+        "summary": "List groups",
         "description": "Can be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
         "parameters": [
           {
@@ -204,10 +204,10 @@
       }
     },
     "/api/scim/v2/Groups/.search": {
-      "put": {
-        "operationId": "CockroachCloud_GetGroups2",
-        "summary": "Get groups based on query parameters",
-        "description": "Can be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
+      "post": {
+        "operationId": "CockroachCloud_SearchGroups",
+        "summary": "Search groups",
+        "description": "Similar to GetGroups however search parameters are passed via the POST body. See https://www.rfc-editor.org/rfc/rfc7644.html#section-3.4.3 for more details.",
         "requestBody": {
           "required": true,
           "content": {
@@ -286,7 +286,94 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/scim/v2/Groups/.search \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"attributes\":\"string\",\"excludedAttributes\":\"string\",\"filter\":\"string\"}'"
+            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/scim/v2/Groups/.search \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --data '{\"attributes\":\"string\",\"excludedAttributes\":\"string\",\"filter\":\"string\"}'"
+          }
+        ]
+      },
+      "put": {
+        "operationId": "CockroachCloud_GetGroups2",
+        "summary": "Search groups (Deprecated)",
+        "description": "Can be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetGroupsRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetGroupsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": true,
+        "tags": [
+          "SCIM"
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/scim/v2/Groups/.search \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --data '{\"attributes\":\"string\",\"excludedAttributes\":\"string\",\"filter\":\"string\"}'"
           }
         ]
       }
@@ -380,7 +467,7 @@
       },
       "get": {
         "operationId": "CockroachCloud_GetGroup",
-        "summary": "Get a group based on ID",
+        "summary": "Get a group by ID",
         "description": "Can be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
         "parameters": [
           {
@@ -657,10 +744,10 @@
       }
     },
     "/api/scim/v2/Groups/{id}/.search": {
-      "put": {
-        "operationId": "CockroachCloud_GetGroup2",
-        "summary": "Get a group based on ID",
-        "description": "Can be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
+      "post": {
+        "operationId": "CockroachCloud_SearchGroup",
+        "summary": "Search a group by ID",
+        "description": "Similar to GetGroup however search parameters are passed via the POST body. See https://www.rfc-editor.org/rfc/rfc7644.html#section-3.4.3 for more details.",
         "parameters": [
           {
             "name": "id",
@@ -758,7 +845,113 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/scim/v2/Groups/{id}/.search \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"attributes\":\"string\",\"excludedAttributes\":\"string\"}'"
+            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/scim/v2/Groups/{id}/.search \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --data '{\"attributes\":\"string\",\"excludedAttributes\":\"string\"}'"
+          }
+        ]
+      },
+      "put": {
+        "operationId": "CockroachCloud_GetGroup2",
+        "summary": "Search a group by ID (Deprecated)",
+        "description": "Can be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "attributes": {
+                    "type": "string"
+                  },
+                  "excludedAttributes": {
+                    "type": "string"
+                  }
+                },
+                "title": "GetGroupRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScimGroup"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": true,
+        "tags": [
+          "SCIM"
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/scim/v2/Groups/{id}/.search \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --data '{\"attributes\":\"string\",\"excludedAttributes\":\"string\"}'"
           }
         ]
       }
@@ -1236,7 +1429,7 @@
     "/api/scim/v2/Users": {
       "get": {
         "operationId": "CockroachCloud_GetUsers",
-        "summary": "Get Users based on query parameters",
+        "summary": "List Users",
         "description": "Can be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
         "parameters": [
           {
@@ -1421,10 +1614,10 @@
       }
     },
     "/api/scim/v2/Users/.search": {
-      "put": {
-        "operationId": "CockroachCloud_GetUsers2",
-        "summary": "Get Users based on query parameters",
-        "description": "Can be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
+      "post": {
+        "operationId": "CockroachCloud_SearchUsers",
+        "summary": "Search Users",
+        "description": "Similar to GetUsers however search parameters are passed via the POST body. See https://www.rfc-editor.org/rfc/rfc7644.html#section-3.4.3 for more details.",
         "requestBody": {
           "required": true,
           "content": {
@@ -1503,7 +1696,94 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/scim/v2/Users/.search \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"attributes\":\"string\",\"excludedAttributes\":\"string\",\"filter\":\"string\"}'"
+            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/scim/v2/Users/.search \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --data '{\"attributes\":\"string\",\"excludedAttributes\":\"string\",\"filter\":\"string\"}'"
+          }
+        ]
+      },
+      "put": {
+        "operationId": "CockroachCloud_GetUsers2",
+        "summary": "Search User (Deprecated)",
+        "description": "Can be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetUsersRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetUsersResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": true,
+        "tags": [
+          "SCIM"
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/scim/v2/Users/.search \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --data '{\"attributes\":\"string\",\"excludedAttributes\":\"string\",\"filter\":\"string\"}'"
           }
         ]
       }
@@ -1597,7 +1877,7 @@
       },
       "get": {
         "operationId": "CockroachCloud_GetUser",
-        "summary": "Get a user based on ID",
+        "summary": "Get a user by ID",
         "description": "Can be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
         "parameters": [
           {
@@ -1887,10 +2167,10 @@
       }
     },
     "/api/scim/v2/Users/{id}/.search": {
-      "put": {
-        "operationId": "CockroachCloud_GetUser2",
-        "summary": "Get a user based on ID",
-        "description": "Can be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
+      "post": {
+        "operationId": "CockroachCloud_SearchUser",
+        "summary": "Search for a user by ID",
+        "description": "Similar to GetUser however search parameters are passed via the POST body. See https://www.rfc-editor.org/rfc/rfc7644.html#section-3.4.3 for more details.",
         "parameters": [
           {
             "name": "id",
@@ -1988,7 +2268,113 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/scim/v2/Users/{id}/.search \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"attributes\":\"string\",\"excludedAttributes\":\"string\"}'"
+            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/scim/v2/Users/{id}/.search \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --data '{\"attributes\":\"string\",\"excludedAttributes\":\"string\"}'"
+          }
+        ]
+      },
+      "put": {
+        "operationId": "CockroachCloud_GetUser2",
+        "summary": "Search for a user by ID (Deprecated)",
+        "description": "Can be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "attributes": {
+                    "type": "string"
+                  },
+                  "excludedAttributes": {
+                    "type": "string"
+                  }
+                },
+                "title": "GetUserRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScimUser"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": true,
+        "tags": [
+          "SCIM"
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/scim/v2/Users/{id}/.search \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --data '{\"attributes\":\"string\",\"excludedAttributes\":\"string\"}'"
           }
         ]
       }
@@ -2977,7 +3363,7 @@
           {
             "name": "provider",
             "in": "query",
-            "description": "Optional CloudProvider for filtering.\n\n - GCP: The Google Cloud Platform cloud provider.\n - AWS: The Amazon Web Services cloud provider.\n - AZURE: Limited Access: The Azure cloud provider.",
+            "description": "Optional CloudProvider for filtering.\n\n - GCP: The Google Cloud Platform cloud provider.\n - AWS: The Amazon Web Services cloud provider.\n - AZURE: The Azure cloud provider.",
             "schema": {
               "type": "string",
               "enum": [
@@ -9687,6 +10073,133 @@
       }
     },
     "/api/v1/folders": {
+      "get": {
+        "operationId": "CockroachCloud_ListFolders",
+        "summary": "List folders owned by an organization",
+        "description": "Sort order: Folder name",
+        "parameters": [
+          {
+            "name": "path",
+            "in": "query",
+            "description": "Optional filter to limit the response to include only results that match\nthe given absolute path to that folder. Preceding and ending \"/\" are optional.\nFor example /folder1/folder2, /folder1/folder2/, folder1/folder2, and\nfolder1/folder2/ are all equivalent. If no matching folder is found, an\nempty list is returned. Because folder paths are passed via the query\nparameters, they must be URL-encoded.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pagination.page",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pagination.limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pagination.as_of_time",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "pagination.sort_order",
+            "in": "query",
+            "description": " - ASC: Sort in ascending order. This is the default unless otherwise specified.\n - DESC: Sort in descending order.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "ASC",
+                "DESC"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListFoldersResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Folders"
+        ],
+        "x-badges": [
+          {
+            "color": "red",
+            "label": "LIMITED ACCESS"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request GET \\\n  --url 'https://cockroachlabs.cloud/api/v1/folders?path=SOME_STRING_VALUE&pagination.page=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.as_of_time=SOME_STRING_VALUE&pagination.sort_order=SOME_STRING_VALUE' \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+          }
+        ]
+      },
       "post": {
         "operationId": "CockroachCloud_CreateFolder",
         "summary": "Create a folder",
@@ -10801,8 +11314,6 @@
             "schema": {
               "type": "string",
               "enum": [
-                "DEVELOPER",
-                "ADMIN",
                 "BILLING_COORDINATOR",
                 "ORG_ADMIN",
                 "ORG_MEMBER",
@@ -10929,8 +11440,6 @@
             "schema": {
               "type": "string",
               "enum": [
-                "DEVELOPER",
-                "ADMIN",
                 "BILLING_COORDINATOR",
                 "ORG_ADMIN",
                 "ORG_MEMBER",
@@ -11207,7 +11716,7 @@
         "title": "AllowlistEntry"
       },
       "Any": {
-        "description": "`Any` contains an arbitrary serialized protocol buffer message along with a\nURL that describes the type of the serialized message.\n\nProtobuf library provides support to pack/unpack Any values in the form\nof utility functions or additional generated methods of the Any type.\n\nExample 1: Pack and unpack a message in C++.\n\n    Foo foo = ...;\n    Any any;\n    any.PackFrom(foo);\n    ...\n    if (any.UnpackTo(&foo)) {\n      ...\n    }\n\nExample 2: Pack and unpack a message in Java.\n\n    Foo foo = ...;\n    Any any = Any.pack(foo);\n    ...\n    if (any.is(Foo.class)) {\n      foo = any.unpack(Foo.class);\n    }\n\n Example 3: Pack and unpack a message in Python.\n\n    foo = Foo(...)\n    any = Any()\n    any.Pack(foo)\n    ...\n    if any.Is(Foo.DESCRIPTOR):\n      any.Unpack(foo)\n      ...\n\n Example 4: Pack and unpack a message in Go\n\n     foo := &pb.Foo{...}\n     any, err := anypb.New(foo)\n     if err != nil {\n       ...\n     }\n     ...\n     foo := &pb.Foo{}\n     if err := any.UnmarshalTo(foo); err != nil {\n       ...\n     }\n\nThe pack methods provided by protobuf library will by default use\n'type.googleapis.com/full.type.name' as the type URL and the unpack\nmethods only use the fully qualified type name after the last '/'\nin the type URL, for example \"foo.bar.com/x/y.z\" will yield type\nname \"y.z\".\n\n\nJSON\n====\nThe JSON representation of an `Any` value uses the regular\nrepresentation of the deserialized, embedded message, with an\nadditional field `@type` which contains the type URL. Example:\n\n    package google.profile;\n    message Person {\n      string first_name = 1;\n      string last_name = 2;\n    }\n\n    {\n      \"@type\": \"type.googleapis.com/google.profile.Person\",\n      \"firstName\": <string>,\n      \"lastName\": <string>\n    }\n\nIf the embedded message type is well-known and has a custom JSON\nrepresentation, that representation will be embedded adding a field\n`value` which holds the custom JSON in addition to the `@type`\nfield. Example (for message [google.protobuf.Duration][]):\n\n    {\n      \"@type\": \"type.googleapis.com/google.protobuf.Duration\",\n      \"value\": \"1.212s\"\n    }",
+        "description": "`Any` contains an arbitrary serialized protocol buffer message along with a\nURL that describes the type of the serialized message.\n\nProtobuf library provides support to pack/unpack Any values in the form\nof utility functions or additional generated methods of the Any type.\n\nExample 1: Pack and unpack a message in C++.\n\n    Foo foo = ...;\n    Any any;\n    any.PackFrom(foo);\n    ...\n    if (any.UnpackTo(&foo)) {\n      ...\n    }\n\nExample 2: Pack and unpack a message in Java.\n\n    Foo foo = ...;\n    Any any = Any.pack(foo);\n    ...\n    if (any.is(Foo.class)) {\n      foo = any.unpack(Foo.class);\n    }\n\nExample 3: Pack and unpack a message in Python.\n\n    foo = Foo(...)\n    any = Any()\n    any.Pack(foo)\n    ...\n    if any.Is(Foo.DESCRIPTOR):\n      any.Unpack(foo)\n      ...\n\nExample 4: Pack and unpack a message in Go\n\n     foo := &pb.Foo{...}\n     any, err := anypb.New(foo)\n     if err != nil {\n       ...\n     }\n     ...\n     foo := &pb.Foo{}\n     if err := any.UnmarshalTo(foo); err != nil {\n       ...\n     }\n\nThe pack methods provided by protobuf library will by default use\n'type.googleapis.com/full.type.name' as the type URL and the unpack\nmethods only use the fully qualified type name after the last '/'\nin the type URL, for example \"foo.bar.com/x/y.z\" will yield type\nname \"y.z\".\n\n\nJSON\n\nThe JSON representation of an `Any` value uses the regular\nrepresentation of the deserialized, embedded message, with an\nadditional field `@type` which contains the type URL. Example:\n\n    package google.profile;\n    message Person {\n      string first_name = 1;\n      string last_name = 2;\n    }\n\n    {\n      \"@type\": \"type.googleapis.com/google.profile.Person\",\n      \"firstName\": <string>,\n      \"lastName\": <string>\n    }\n\nIf the embedded message type is well-known and has a custom JSON\nrepresentation, that representation will be embedded adding a field\n`value` which holds the custom JSON in addition to the `@type`\nfield. Example (for message [google.protobuf.Duration][]):\n\n    {\n      \"@type\": \"type.googleapis.com/google.protobuf.Duration\",\n      \"value\": \"1.212s\"\n    }",
         "type": "object",
         "properties": {
           "@type": {
@@ -11647,7 +12156,7 @@
         ]
       },
       "CloudProvider.Type": {
-        "description": " - GCP: The Google Cloud Platform cloud provider.\n - AWS: The Amazon Web Services cloud provider.\n - AZURE: Limited Access: The Azure cloud provider.",
+        "description": " - GCP: The Google Cloud Platform cloud provider.\n - AWS: The Amazon Web Services cloud provider.\n - AZURE: The Azure cloud provider.",
         "type": "string",
         "enum": [
           "GCP",
@@ -13122,6 +13631,23 @@
         },
         "title": "ListEgressRulesResponse"
       },
+      "ListFoldersResponse": {
+        "type": "object",
+        "properties": {
+          "folders": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FolderResource"
+            }
+          },
+          "pagination": {
+            "$ref": "#/components/schemas/KeysetPaginationResponse"
+          }
+        },
+        "required": [
+          "folders"
+        ]
+      },
       "ListInvoicesResponse": {
         "type": "object",
         "properties": {
@@ -13431,11 +13957,9 @@
         ]
       },
       "OrganizationUserRole.Type": {
-        "description": " - DEVELOPER: To be deprecated\n - ADMIN: To be deprecated\n - FOLDER_ADMIN: Limited Access: A folder admin role.\n - FOLDER_MOVER: Limited Access: A folder mover role.",
+        "description": " - FOLDER_ADMIN: Limited Access: A folder admin role.\n - FOLDER_MOVER: Limited Access: A folder mover role.",
         "type": "string",
         "enum": [
-          "DEVELOPER",
-          "ADMIN",
           "BILLING_COORDINATOR",
           "ORG_ADMIN",
           "ORG_MEMBER",
@@ -14382,6 +14906,64 @@
                 "region_specs"
               ],
               "title": "CMEKClusterSpecification"
+            }
+          }
+        },
+        "required": true
+      },
+      "CockroachCloud_SearchGroupBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "attributes": {
+                  "type": "string"
+                },
+                "excludedAttributes": {
+                  "type": "string"
+                }
+              },
+              "title": "GetGroupRequest"
+            }
+          }
+        },
+        "required": true
+      },
+      "CockroachCloud_SearchUserBody": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "attributes": {
+                  "type": "string"
+                },
+                "excludedAttributes": {
+                  "type": "string"
+                }
+              },
+              "title": "GetUserRequest"
+            }
+          }
+        },
+        "required": true
+      },
+      "GetGroupsRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/GetGroupsRequest"
+            }
+          }
+        },
+        "required": true
+      },
+      "GetUsersRequest": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/GetUsersRequest"
             }
           }
         },

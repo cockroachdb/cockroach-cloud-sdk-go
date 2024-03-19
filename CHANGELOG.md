@@ -1,5 +1,24 @@
 
+## 1.9.0
+
+BREAKING CHANGES:
+
+* DEVELOPER and ADMIN were removed from the list of allowed roles. These roles
+  have not been allowed since the release of fine grained access controls and
+  now they are formally removed from the generated client.
+
+NEW FEATURES:
+
+* The ListFolders endpoint was added.  ListFolders can be used to fetch all
+  folders or folders filtered by the path for an organization.
+
 BUG FIXES:
+
+* SCIM search endpoints are now available using POST.  The previous version
+  erroneously exposed them via PUT. See
+  (Querying Resources Using HTTP POST)[https://www.rfc-editor.org/rfc/rfc7644.html#section-3.4.3]
+  for more info. The PUT based methods are kept for backwards compatibility but
+  marked deprecated and will be removed in a future version.
 
 * Updated templates to include the deprecation notice in the service interface
   docs.

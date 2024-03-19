@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**DeleteFolder**](FoldersApi.md#DeleteFolder) | **Delete** /api/v1/folders/{folder_id} | Delete a folder
 [**GetFolder**](FoldersApi.md#GetFolder) | **Get** /api/v1/folders/{folder_id} | Get folder info for a folder
 [**ListFolderContents**](FoldersApi.md#ListFolderContents) | **Get** /api/v1/folders/{folder_id}/contents | List contents of a folder
+[**ListFolders**](FoldersApi.md#ListFolders) | **Get** /api/v1/folders | List folders owned by an organization
 [**UpdateFolder**](FoldersApi.md#UpdateFolder) | **Patch** /api/v1/folders/{folder_id} | Update a folder
 
 
@@ -273,6 +274,80 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**FolderResourceList**](FolderResourceList.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListFolders
+
+> ListFoldersResponse ListFolders(ctx).Path(path).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).Execute()
+
+List folders owned by an organization
+
+Sort order: Folder name
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    "time"
+    openapiclient "./openapi"
+)
+
+func main() {
+    path := "path_example" // string | Optional filter to limit the response to include only results that match the given absolute path to that folder. Preceding and ending \"/\" are optional. For example /folder1/folder2, /folder1/folder2/, folder1/folder2, and folder1/folder2/ are all equivalent. If no matching folder is found, an empty list is returned. Because folder paths are passed via the query parameters, they must be URL-encoded. (optional)
+    paginationPage := "paginationPage_example" // string |  (optional)
+    paginationLimit := int32(56) // int32 |  (optional)
+    paginationAsOfTime := time.Now() // time.Time |  (optional)
+    paginationSortOrder := "paginationSortOrder_example" // string |  - ASC: Sort in ascending order. This is the default unless otherwise specified.  - DESC: Sort in descending order. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.FoldersApi.ListFolders(context.Background()).Path(path).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `FoldersApi.ListFolders``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListFolders`: ListFoldersResponse
+    fmt.Fprintf(os.Stdout, "Response from `FoldersApi.ListFolders`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiListFolders struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **path** | **string** | Optional filter to limit the response to include only results that match the given absolute path to that folder. Preceding and ending \&quot;/\&quot; are optional. For example /folder1/folder2, /folder1/folder2/, folder1/folder2, and folder1/folder2/ are all equivalent. If no matching folder is found, an empty list is returned. Because folder paths are passed via the query parameters, they must be URL-encoded. | 
+ **paginationPage** | **string** |  | 
+ **paginationLimit** | **int32** |  | 
+ **paginationAsOfTime** | **time.Time** |  | 
+ **paginationSortOrder** | **string** |  - ASC: Sort in ascending order. This is the default unless otherwise specified.  - DESC: Sort in descending order. | 
+
+### Return type
+
+[**ListFoldersResponse**](ListFoldersResponse.md)
 
 ### Authorization
 
