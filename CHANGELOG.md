@@ -6,6 +6,24 @@ BUG FIXES:
 
 ## 1.8.0
 
+NEW FEATURES:
+
+* The private endpoint connections API is now cloud neutral.
+
+* Various Audit Log Actions have been added.  See [AuditLogActions](docs/AuditLogAction)
+  for more details.
+
+* various documentation fixes since the last version have been included.
+
+BREAKING CHANGES:
+
+* various schema model names have been changed to remove unintentional
+  prefixing. For example NewCockroachCloudAddPrivateEndpointTrustedOwnerRequest
+  has become NewAddPrivateEndpointTrustedOwnerRequest. In general,
+  CockroachCloud has been removed from method names where it was unnecessary.
+  Similar changes were made to methods and models prefixed with the word Api.
+  For example, ApiDatabase was changed to Database.
+
 ## 1.7.0 (September 6, 2023)
 
 NEW FEATURES:
