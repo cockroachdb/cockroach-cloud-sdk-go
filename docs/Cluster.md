@@ -10,13 +10,14 @@ Name | Type | Description | Notes
 **Config** | [**ClusterConfig**](ClusterConfig.md) |  | 
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
 **CreatorId** | **string** |  | 
+**DeleteProtection** | Pointer to [**DeleteProtectionStateType**](DeleteProtectionStateType.md) |  | [optional] 
 **DeletedAt** | Pointer to **time.Time** |  | [optional] 
 **EgressTrafficPolicy** | Pointer to [**EgressTrafficPolicyType**](EgressTrafficPolicyType.md) |  | [optional] 
 **Id** | **string** |  | 
 **Name** | **string** |  | 
 **NetworkVisibility** | Pointer to [**NetworkVisibilityType**](NetworkVisibilityType.md) |  | [optional] 
 **OperationStatus** | [**ClusterStatusType**](ClusterStatusType.md) |  | 
-**ParentId** | Pointer to **string** | Limited Access: The parent ID is a folder ID. A \&quot;root\&quot; valued parent ID  refers to a cluster at the root level. | [optional] 
+**ParentId** | Pointer to **string** | Limited Access: The parent ID is a folder ID. A \&quot;root\&quot; valued parent ID refers to a cluster at the root level. | [optional] 
 **Plan** | [**PlanType**](PlanType.md) |  | 
 **Regions** | [**[]Region**](Region.md) |  | 
 **SqlDns** | Pointer to **string** | sql_dns is the DNS name of SQL interface of the cluster. | [optional] 
@@ -114,6 +115,18 @@ GetCreatorId returns the CreatorId field if non-nil, zero value otherwise.
 `func (o *Cluster) SetCreatorId(v string)`
 
 SetCreatorId sets CreatorId field to given value.
+
+### GetDeleteProtection
+
+`func (o *Cluster) GetDeleteProtection() DeleteProtectionStateType`
+
+GetDeleteProtection returns the DeleteProtection field if non-nil, zero value otherwise.
+
+### SetDeleteProtection
+
+`func (o *Cluster) SetDeleteProtection(v DeleteProtectionStateType)`
+
+SetDeleteProtection sets DeleteProtection field to given value.
 
 ### GetDeletedAt
 
