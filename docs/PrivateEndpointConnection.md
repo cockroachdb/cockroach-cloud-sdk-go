@@ -9,13 +9,14 @@ Name | Type | Description | Notes
 **EndpointServiceId** | **string** | endpoint_service_id is the id of the private endpoint service associated with this connection. | 
 **ExternalOwnerId** | Pointer to **string** | external_owner_id uniquely identifies the owner of the private endpoint connection cloud resource. This idenfier is the AWS account id owning the PrivateLink connection. This field is only valid on AWS clusters. | [optional] 
 **RegionName** | Pointer to **string** | region_name is the cloud provider region name (e.g. us-east-1). | [optional] 
+**ServiceName** | **string** | service_name is the name of the private endpoints service that this connection corresponds to. | 
 **Status** | [**PrivateEndpointConnectionStatus**](PrivateEndpointConnectionStatus.md) |  | 
 
 ## Methods
 
 ### NewPrivateEndpointConnection
 
-`func NewPrivateEndpointConnection(cloudProvider CloudProviderType, endpointId string, endpointServiceId string, status PrivateEndpointConnectionStatus, ) *PrivateEndpointConnection`
+`func NewPrivateEndpointConnection(cloudProvider CloudProviderType, endpointId string, endpointServiceId string, serviceName string, status PrivateEndpointConnectionStatus, ) *PrivateEndpointConnection`
 
 NewPrivateEndpointConnection instantiates a new PrivateEndpointConnection object.
 This constructor will assign default values to properties that have it defined,
@@ -89,6 +90,18 @@ GetRegionName returns the RegionName field if non-nil, zero value otherwise.
 `func (o *PrivateEndpointConnection) SetRegionName(v string)`
 
 SetRegionName sets RegionName field to given value.
+
+### GetServiceName
+
+`func (o *PrivateEndpointConnection) GetServiceName() string`
+
+GetServiceName returns the ServiceName field if non-nil, zero value otherwise.
+
+### SetServiceName
+
+`func (o *PrivateEndpointConnection) SetServiceName(v string)`
+
+SetServiceName sets ServiceName field to given value.
 
 ### GetStatus
 

@@ -1,4 +1,19 @@
 
+## 1.10.0
+
+NEW FEATURES:
+
+* A ServiceName field was added to the PrivateEndpointConnection model.
+* A DeleteProtection field was added to the Cluster model. This field can be
+  set during cluster creation and updated with the UpdateCluster method.
+  Requests to delete a cluster with DeleteProtection enabled will fail.
+  Disablingthis field to false will allow the cluster to be deleted.
+
+DEPRECATIONS:
+
+* The Paths field on EgressRule has been deprecated. It will be removed in a
+  future version.
+
 ## 1.9.0
 
 BREAKING CHANGES:

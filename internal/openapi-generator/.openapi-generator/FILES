@@ -75,6 +75,7 @@ docs/DedicatedHardwareUpdateSpecification.md
 docs/DedicatedMachineTypeSpecification.md
 docs/DeleteEgressRuleResponse.md
 docs/DeleteMetricExportResponse.md
+docs/DeleteProtectionStateType.md
 docs/EditEgressRuleRequest.md
 docs/EditEgressRuleResponse.md
 docs/EgressRule.md
@@ -267,6 +268,7 @@ model_dedicated_hardware_update_specification.go
 model_dedicated_machine_type_specification.go
 model_delete_egress_rule_response.go
 model_delete_metric_export_response.go
+model_delete_protection_state_type.go
 model_edit_egress_rule_request.go
 model_edit_egress_rule_response.go
 model_egress_rule.go

@@ -5362,7 +5362,7 @@ paths:
             --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/egress-rules \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
             --header 'content-type: application/json' \
-            --data '{"cluster_id":"35c4abb2-bb66-46d7-afed-25ebef5ed100","description":"egress for GCP storage buckets","destination":"storage.googleapis.com","name":"roach-buckets","paths":["/customer-managed-bucket-1/*","/customer-managed-bucket-2/*"],"ports":[443,80],"type":"FQDN"}'
+            --data '{"cluster_id":"35c4abb2-bb66-46d7-afed-25ebef5ed100","description":"egress for GCP storage buckets","destination":"storage.googleapis.com","name":"roach-buckets","ports":[443,80],"type":"FQDN"}'
   /api/v1/clusters/{cluster_id}/networking/egress-rules/egress-traffic-policy:
     post:
       description: |
@@ -8216,8 +8216,12 @@ components:
             if (any.is(Foo.class)) {
               foo = any.unpack(Foo.class);
             }
+            // or ...
+            if (any.isSameTypeAs(Foo.getDefaultInstance())) {
+              foo = any.unpack(Foo.getDefaultInstance());
+            }
 
-        Example 3: Pack and unpack a message in Python.
+         Example 3: Pack and unpack a message in Python.
 
             foo = Foo(...)
             any = Any()
@@ -8227,7 +8231,7 @@ components:
               any.Unpack(foo)
               ...
 
-        Example 4: Pack and unpack a message in Go
+         Example 4: Pack and unpack a message in Go
 
              foo := &pb.Foo{...}
              any, err := anypb.New(foo)
@@ -8246,9 +8250,8 @@ components:
         in the type URL, for example "foo.bar.com/x/y.z" will yield type
         name "y.z".
 
-
         JSON
-
+        ====
         The JSON representation of an `Any` value uses the regular
         representation of the deserialized, embedded message, with an
         additional field `@type` which contains the type URL. Example:
@@ -8300,7 +8303,8 @@ components:
 
             Note: this functionality is not currently available in the official
             protobuf release, and it is not used for type URLs beginning with
-            type.googleapis.com.
+            type.googleapis.com. As of May 2023, there are no widely used type server
+            implementations and no plans to implement one.
 
             Schemes other than `http`, `https` (or the empty scheme) might be
             used with implementation specific semantics.
@@ -8939,6 +8943,8 @@ components:
           type: string
         creator_id:
           type: string
+        delete_protection:
+          $ref: '#/components/schemas/DeleteProtectionState.Type'
         deleted_at:
           format: date-time
           type: string
@@ -8953,8 +8959,9 @@ components:
         operation_status:
           $ref: '#/components/schemas/ClusterStatus.Type'
         parent_id:
-          description: "Limited Access: The parent ID is a folder ID. A \"root\" valued\
-            \ parent ID \nrefers to a cluster at the root level."
+          description: |-
+            Limited Access: The parent ID is a folder ID. A "root" valued parent ID
+            refers to a cluster at the root level.
           type: string
         plan:
           $ref: '#/components/schemas/Plan.Type'
@@ -9502,6 +9509,11 @@ components:
       - cluster_id
       title: DeleteMetricExportResponse
       type: object
+    DeleteProtectionState.Type:
+      enum:
+      - ENABLED
+      - DISABLED
+      type: string
     EditEgressRuleResponse:
       description: EditEgressRuleResponse is the output message to the EditEgressRule
         RPC.
@@ -9578,7 +9590,9 @@ components:
           description: name is the name of the egress rule.
           type: string
         paths:
-          description: paths are the allowed URL paths. Only valid if Type="FQDN".
+          description: |-
+            Deprecated: This field is ignored and will be removed in the next version.
+            paths are the allowed URL paths. Only valid if Type="FQDN".
           items:
             type: string
           type: array
@@ -11558,7 +11572,7 @@ components:
         `NullValue` is a singleton enumeration to represent the null value for the
         `Value` type union.
 
-         The JSON representation for `NullValue` is JSON `null`.
+        The JSON representation for `NullValue` is JSON `null`.
 
          - NULL_VALUE: Null value.
       type: string
@@ -11650,6 +11664,7 @@ components:
         endpoint_id: 2w543-45643-323fd
         endpoint_service_id: 34t-4t446-876bm
         region: us-east-1
+        service_name: com.vpc-serv1
         status: AVAILABLE
       properties:
         cloud_provider:
@@ -11674,6 +11689,11 @@ components:
         region_name:
           description: region_name is the cloud provider region name (e.g. us-east-1).
           type: string
+        service_name:
+          description: |-
+            service_name is the name of the private endpoints service that this connection
+            corresponds to.
+          type: string
         status:
           $ref: '#/components/schemas/PrivateEndpointConnectionStatus'
       required:
@@ -11681,6 +11701,7 @@ components:
       - endpoint_id
       - endpoint_service_id
       - region
+      - service_name
       - status
       type: object
     PrivateEndpointConnectionStatus:
@@ -11704,11 +11725,13 @@ components:
           endpoint_id: 2w543-45643-323fd
           endpoint_service_id: 34t-4t446-876bm
           region: us-east-1
+          service_name: com.vpc-serv1
           status: AVAILABLE
         - cloud: AWS
           endpoint_id: 2w543-45643-323fd
           endpoint_service_id: 34t-4t446-876bm
           region: us-east-1
+          service_name: com.vpc-serv1
           status: AVAILABLE
       properties:
         connections:
@@ -12476,6 +12499,8 @@ components:
       properties:
         dedicated:
           $ref: '#/components/schemas/DedicatedClusterUpdateSpecification'
+        delete_protection:
+          $ref: '#/components/schemas/DeleteProtectionState.Type'
         parent_id:
           description: |-
             Limited Access: The parent ID is a folder ID. An empty string or "root"
@@ -12987,9 +13012,6 @@ components:
         description: egress for GCP storage buckets
         destination: storage.googleapis.com
         name: roach-buckets
-        paths:
-        - /customer-managed-bucket-1/*
-        - /customer-managed-bucket-2/*
         ports:
         - 443
         - 80
@@ -13013,6 +13035,7 @@ components:
           type: string
         paths:
           description: |-
+            Deprecated: This field is ignored and will be removed in the next version.
             paths are the allowed URL paths. If empty, all paths are allowed. Only
             valid if Type="FQDN".
           items:
@@ -13085,6 +13108,7 @@ components:
           type: string
         paths:
           description: |-
+            Deprecated: This field is ignored and will be removed in the next version.
             paths are the allowed URL paths. If empty, all paths are allowed. Only
             valid if Type="FQDN".
           items:

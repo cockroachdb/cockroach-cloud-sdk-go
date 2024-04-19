@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Dedicated** | Pointer to [**DedicatedClusterUpdateSpecification**](DedicatedClusterUpdateSpecification.md) |  | [optional] 
+**DeleteProtection** | Pointer to [**DeleteProtectionStateType**](DeleteProtectionStateType.md) |  | [optional] 
 **ParentId** | Pointer to **string** | Limited Access: The parent ID is a folder ID. An empty string or \&quot;root\&quot; represents the root level. | [optional] 
 **Serverless** | Pointer to [**ServerlessClusterUpdateSpecification**](ServerlessClusterUpdateSpecification.md) |  | [optional] 
 **UpgradeStatus** | Pointer to [**ClusterUpgradeStatusType**](ClusterUpgradeStatusType.md) |  | [optional] 
@@ -31,6 +32,18 @@ GetDedicated returns the Dedicated field if non-nil, zero value otherwise.
 `func (o *UpdateClusterSpecification) SetDedicated(v DedicatedClusterUpdateSpecification)`
 
 SetDedicated sets Dedicated field to given value.
+
+### GetDeleteProtection
+
+`func (o *UpdateClusterSpecification) GetDeleteProtection() DeleteProtectionStateType`
+
+GetDeleteProtection returns the DeleteProtection field if non-nil, zero value otherwise.
+
+### SetDeleteProtection
+
+`func (o *UpdateClusterSpecification) SetDeleteProtection(v DeleteProtectionStateType)`
+
+SetDeleteProtection sets DeleteProtection field to given value.
 
 ### GetParentId
 

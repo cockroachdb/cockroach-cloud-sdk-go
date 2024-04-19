@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **Destination** | **string** | destination is the endpoint (or subnetwork if CIDR) to which traffic is allowed. | 
 **Id** | **string** | id uniquely identifies this egress rule. | 
 **Name** | **string** | name is the name of the egress rule. | 
-**Paths** | Pointer to **[]string** | paths are the allowed URL paths. Only valid if Type&#x3D;\&quot;FQDN\&quot;. | [optional] 
+**Paths** | Pointer to **[]string** | Deprecated: This field is ignored and will be removed in the next version. paths are the allowed URL paths. Only valid if Type&#x3D;\&quot;FQDN\&quot;. | [optional] 
 **Ports** | Pointer to **[]int32** | ports are the allowed ports for TCP protocol. If Empty, all ports are allowed. | [optional] 
 **State** | **string** | state indicates the state of the egress rule. | 
 **Type** | **string** | type classifies the destination field. Valid types include: \&quot;FQDN\&quot;, \&quot;CIDR\&quot;. | 
