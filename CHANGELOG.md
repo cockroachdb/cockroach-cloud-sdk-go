@@ -1,4 +1,11 @@
 
+## 1.11.0
+
+NEW FEATURES:
+
+* New apis for managing service accounts and api keys.
+* Setting DeleteProtection is now supported on Cluster Creation.
+
 ## 1.10.0
 
 NEW FEATURES:

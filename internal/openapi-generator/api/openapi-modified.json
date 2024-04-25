@@ -2379,6 +2379,514 @@
         ]
       }
     },
+    "/api/v1/api-keys": {
+      "get": {
+        "operationId": "CockroachCloud_ListApiKeys",
+        "summary": "List API Keys",
+        "description": "Sort order: created_at",
+        "parameters": [
+          {
+            "name": "service_account_id",
+            "in": "query",
+            "description": "Optional filter to limit the response to include only api keys for a specific\nservice account.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pagination.page",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pagination.limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pagination.as_of_time",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "pagination.sort_order",
+            "in": "query",
+            "description": " - ASC: Sort in ascending order. This is the default unless otherwise specified.\n - DESC: Sort in descending order.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "ASC",
+                "DESC"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListApiKeysResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "API Keys"
+        ],
+        "x-badges": [
+          {
+            "color": "blue",
+            "label": "PREVIEW"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request GET \\\n  --url 'https://cockroachlabs.cloud/api/v1/api-keys?service_account_id=SOME_STRING_VALUE&pagination.page=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.as_of_time=SOME_STRING_VALUE&pagination.sort_order=SOME_STRING_VALUE' \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+          }
+        ]
+      },
+      "post": {
+        "operationId": "CockroachCloud_CreateApiKey",
+        "summary": "Create a new API Key",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateApiKeyRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateApiKeyResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "API Keys"
+        ],
+        "x-badges": [
+          {
+            "color": "blue",
+            "label": "PREVIEW"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/api-keys \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"name\":\"example name\",\"service_account_id\":\"1234abcd-1234-1234-abcd-12345678abcd\"}'"
+          }
+        ]
+      }
+    },
+    "/api/v1/api-keys/{id}": {
+      "delete": {
+        "operationId": "CockroachCloud_DeleteApiKey",
+        "summary": "Delete an API Key",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the api key.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiKey"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "API Keys"
+        ],
+        "x-badges": [
+          {
+            "color": "blue",
+            "label": "PREVIEW"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request DELETE \\\n  --url https://cockroachlabs.cloud/api/v1/api-keys/{id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+          }
+        ]
+      },
+      "get": {
+        "operationId": "CockroachCloud_GetApiKey",
+        "summary": "Get an API Key by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "the ID of the api key.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiKey"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "API Keys"
+        ],
+        "x-badges": [
+          {
+            "color": "blue",
+            "label": "PREVIEW"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request GET \\\n  --url https://cockroachlabs.cloud/api/v1/api-keys/{id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+          }
+        ]
+      },
+      "patch": {
+        "operationId": "CockroachCloud_UpdateApiKey",
+        "summary": "Update an API Key",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the api key.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateApiKeySpecification"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApiKey"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "API Keys"
+        ],
+        "x-badges": [
+          {
+            "color": "blue",
+            "label": "PREVIEW"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request PATCH \\\n  --url https://cockroachlabs.cloud/api/v1/api-keys/{id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"name\":\"new name\"}'"
+          }
+        ]
+      }
+    },
     "/api/v1/api_oidc": {
       "get": {
         "operationId": "CockroachCloud_ListApiOidcConfig",
@@ -11151,8 +11659,8 @@
       },
       "put": {
         "operationId": "CockroachCloud_SetRolesForUser",
-        "summary": "Make a user's roles exactly those provided",
-        "description": "Roles that will be removed or added as a result of this call must follow the CC rules for role assignment:\nhttps://www.cockroachlabs.com/docs/cockroachcloud/authorization#which-roles-grant-the-ability-to-add-remove-and-manage-members-in-in-a-cockroachdb-cloud-organization",
+        "summary": "Replace the roles for a user or service account with exactly those provided",
+        "description": "Replace the entire role set for a user or service account by providing its user_id or service_account_id.\n\nRoles that will be removed or added as a result of this call must follow the CC rules for role assignment:\nhttps://www.cockroachlabs.com/docs/cockroachcloud/authorization#which-roles-grant-the-ability-to-add-remove-and-manage-members-in-in-a-cockroachdb-cloud-organization",
         "parameters": [
           {
             "name": "user_id",
@@ -11271,8 +11779,8 @@
     "/api/v1/roles/{user_id}/{resource_type}/{resource_id}/{role_name}": {
       "delete": {
         "operationId": "CockroachCloud_RemoveUserFromRole",
-        "summary": "Remove the user from the given role",
-        "description": "Roles that will be removed as a result of this call must follow the CC rules for role assignment:\nhttps://www.cockroachlabs.com/docs/cockroachcloud/authorization#which-roles-grant-the-ability-to-add-remove-and-manage-members-in-in-a-cockroachdb-cloud-organization",
+        "summary": "Remove a role from a user or service account",
+        "description": "Remove a single role from a user or service account by providing its user_id or service_account_id.\n\nRoles that will be removed as a result of this call must follow the CC rules for role assignment:\nhttps://www.cockroachlabs.com/docs/cockroachcloud/authorization#which-roles-grant-the-ability-to-add-remove-and-manage-members-in-in-a-cockroachdb-cloud-organization",
         "parameters": [
           {
             "name": "user_id",
@@ -11397,8 +11905,8 @@
       },
       "post": {
         "operationId": "CockroachCloud_AddUserToRole",
-        "summary": "Add the user to the given role",
-        "description": "Roles that will be added as a result of this call must follow the CC rules for role assignment:\nhttps://www.cockroachlabs.com/docs/cockroachcloud/authorization#which-roles-grant-the-ability-to-add-remove-and-manage-members-in-in-a-cockroachdb-cloud-organization",
+        "summary": "Add a role to a user or service account",
+        "description": "Add a single role to a user or service account by providing its user_id or service_account_id.\n\nRoles that will be added as a result of this call must follow the CC rules for role assignment:\nhttps://www.cockroachlabs.com/docs/cockroachcloud/authorization#which-roles-grant-the-ability-to-add-remove-and-manage-members-in-in-a-cockroachdb-cloud-organization",
         "parameters": [
           {
             "name": "user_id",
@@ -11518,6 +12026,506 @@
           {
             "lang": "Shell + Curl",
             "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/roles/{user_id}/{resource_type}/{resource_id}/{role_name} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+          }
+        ]
+      }
+    },
+    "/api/v1/service-accounts": {
+      "get": {
+        "operationId": "CockroachCloud_ListServiceAccounts",
+        "summary": "List service accounts for an organization",
+        "description": "Sort order: Service account name",
+        "parameters": [
+          {
+            "name": "pagination.page",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pagination.limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pagination.as_of_time",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "pagination.sort_order",
+            "in": "query",
+            "description": " - ASC: Sort in ascending order. This is the default unless otherwise specified.\n - DESC: Sort in descending order.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "ASC",
+                "DESC"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListServiceAccountsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Service Accounts"
+        ],
+        "x-badges": [
+          {
+            "color": "blue",
+            "label": "PREVIEW"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request GET \\\n  --url 'https://cockroachlabs.cloud/api/v1/service-accounts?pagination.page=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.as_of_time=SOME_STRING_VALUE&pagination.sort_order=SOME_STRING_VALUE' \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+          }
+        ]
+      },
+      "post": {
+        "operationId": "CockroachCloud_CreateServiceAccount",
+        "summary": "Create a service account",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateServiceAccountRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceAccount"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Service Accounts"
+        ],
+        "x-badges": [
+          {
+            "color": "blue",
+            "label": "PREVIEW"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/service-accounts \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"name\":\"new name\",\"roles\":[{\"name\":\"CLUSTER_ADMIN\",\"resource\":{\"type\":\"ORGANIZATION\"}}]}'"
+          }
+        ]
+      }
+    },
+    "/api/v1/service-accounts/{id}": {
+      "delete": {
+        "operationId": "CockroachCloud_DeleteServiceAccount",
+        "summary": "Delete a service account",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "the ID of the service account.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceAccount"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Service Accounts"
+        ],
+        "x-badges": [
+          {
+            "color": "blue",
+            "label": "PREVIEW"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request DELETE \\\n  --url https://cockroachlabs.cloud/api/v1/service-accounts/{id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+          }
+        ]
+      },
+      "get": {
+        "operationId": "CockroachCloud_GetServiceAccount",
+        "summary": "Get a service account by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the service account.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceAccount"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Service Accounts"
+        ],
+        "x-badges": [
+          {
+            "color": "blue",
+            "label": "PREVIEW"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request GET \\\n  --url https://cockroachlabs.cloud/api/v1/service-accounts/{id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+          }
+        ]
+      },
+      "patch": {
+        "operationId": "CockroachCloud_UpdateServiceAccount",
+        "summary": "Update a service account",
+        "description": "To manage roles associated with a service account after creation, pass the service_account_id instead of a user_id to any [Role Management endpoint](#tag--Role-Management).",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateServiceAccountSpecification"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceAccount"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Service Accounts"
+        ],
+        "x-badges": [
+          {
+            "color": "blue",
+            "label": "PREVIEW"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request PATCH \\\n  --url https://cockroachlabs.cloud/api/v1/service-accounts/{id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"description\":\"new description\",\"name\":\"new name\"}'"
           }
         ]
       }
@@ -11721,6 +12729,45 @@
           }
         },
         "additionalProperties": {}
+      },
+      "ApiKey": {
+        "type": "object",
+        "properties": {
+          "created_at": {
+            "description": "the creation time of the api key.",
+            "type": "string",
+            "format": "date-time",
+            "example": "2022-03-22T20:23:11.285067Z"
+          },
+          "id": {
+            "description": "the ID of the api key.",
+            "type": "string",
+            "example": "CCDB1_12345abcdefGHIJKLMnopq"
+          },
+          "name": {
+            "type": "string",
+            "example": "api key name",
+            "title": "the name of the api key"
+          },
+          "service_account_id": {
+            "description": "the ID of the service account the api key references.",
+            "type": "string",
+            "format": "uuid",
+            "example": "1234abcd-1234-1234-abcd-12345678abcd"
+          }
+        },
+        "example": {
+          "created_at": "2022-03-22T20:23:11.285067Z",
+          "id": "CCDB1_12345abcdefGHIJKLMnopq",
+          "name": "example name",
+          "service_account_id": "1234abcd-1234-1234-abcd-12345678abcd"
+        },
+        "required": [
+          "id",
+          "service_account_id",
+          "name",
+          "created_at"
+        ]
       },
       "ApiOidcConfig": {
         "description": "api_oidc_config contains information about an OIDC provider that can generate JWT tokens\nthat can be used for authentication with the Cockroach Cloud API.",
@@ -12471,6 +13518,48 @@
           "Database"
         ]
       },
+      "CreateApiKeyRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "The name of the api key.",
+            "type": "string",
+            "example": "example name"
+          },
+          "service_account_id": {
+            "description": "The ID of the service account to create the api key for.",
+            "type": "string",
+            "format": "uuid",
+            "example": "1234abcd-1234-1234-abcd-12345678abcd"
+          }
+        },
+        "example": {
+          "name": "example name",
+          "service_account_id": "1234abcd-1234-1234-abcd-12345678abcd"
+        },
+        "required": [
+          "name",
+          "service_account_id"
+        ]
+      },
+      "CreateApiKeyResponse": {
+        "type": "object",
+        "properties": {
+          "api_key": {
+            "$ref": "#/components/schemas/ApiKey"
+          },
+          "secret": {
+            "description": "The full api key. This is the value that would be passed in the\nAuthorization header. It is not stored by the backend and is therefore not\nrecoverable if lost.",
+            "type": "string",
+            "format": "password",
+            "example": "CCDB1_12345abcdefGHIJKLMnopq_NkdXLI9d81Mnx3djs45iwPfgtnaRv0XCh0Z9047K"
+          }
+        },
+        "required": [
+          "api_key",
+          "secret"
+        ]
+      },
       "CreateApiOidcConfigRequest": {
         "type": "object",
         "properties": {
@@ -12556,6 +13645,9 @@
           "dedicated": {
             "$ref": "#/components/schemas/DedicatedClusterCreateSpecification"
           },
+          "delete_protection": {
+            "$ref": "#/components/schemas/DeleteProtectionState.Type"
+          },
           "parent_id": {
             "description": "Limited Access: The parent ID is a folder ID. An empty string or \"root\"\nwill create a cluster at the root level.",
             "type": "string"
@@ -12618,6 +13710,42 @@
           "displayName"
         ],
         "title": "CreateGroupRequest"
+      },
+      "CreateServiceAccountRequest": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "description": "description of the service account.",
+            "type": "string"
+          },
+          "name": {
+            "description": "name of the service account.",
+            "type": "string"
+          },
+          "roles": {
+            "description": "roles that are assigned to the service account.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BuiltInRole"
+            }
+          }
+        },
+        "example": {
+          "name": "new name",
+          "roles": [
+            {
+              "name": "CLUSTER_ADMIN",
+              "resource": {
+                "type": "ORGANIZATION"
+              }
+            }
+          ]
+        },
+        "required": [
+          "name",
+          "description",
+          "roles"
+        ]
       },
       "CreateUserRequest": {
         "type": "object",
@@ -13518,6 +14646,23 @@
         ],
         "title": "ListAllowlistEntriesResponse"
       },
+      "ListApiKeysResponse": {
+        "type": "object",
+        "properties": {
+          "api_keys": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ApiKey"
+            }
+          },
+          "pagination": {
+            "$ref": "#/components/schemas/KeysetPaginationResponse"
+          }
+        },
+        "required": [
+          "api_keys"
+        ]
+      },
       "ListApiOidcConfigResponse": {
         "description": "list_api_oidc_config_response contains information about all the OIDC providers that can generate\nJWT tokens that can be used for authentication with the Cockroach Cloud API.",
         "type": "object",
@@ -13734,6 +14879,23 @@
         },
         "required": [
           "users"
+        ]
+      },
+      "ListServiceAccountsResponse": {
+        "type": "object",
+        "properties": {
+          "pagination": {
+            "$ref": "#/components/schemas/KeysetPaginationResponse"
+          },
+          "service_accounts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ServiceAccount"
+            }
+          }
+        },
+        "required": [
+          "service_accounts"
         ]
       },
       "LogExportClusterInfo": {
@@ -14710,6 +15872,73 @@
           }
         }
       },
+      "ServiceAccount": {
+        "description": "A service account is an identity scoped to an organization that\nrepresents a non-human user.",
+        "type": "object",
+        "properties": {
+          "created_at": {
+            "description": "created_at represents the creation time of the service account.",
+            "type": "string",
+            "format": "date-time"
+          },
+          "creator_name": {
+            "description": "creator_name is the name of user that created the service account.",
+            "type": "string"
+          },
+          "description": {
+            "description": "description of the service account.",
+            "type": "string"
+          },
+          "group_roles": {
+            "description": "roles that the service account has inherited via a group.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BuiltInFromGroups"
+            }
+          },
+          "id": {
+            "description": "The ID of the service account.",
+            "type": "string"
+          },
+          "name": {
+            "description": "name of the service account.",
+            "type": "string"
+          },
+          "roles": {
+            "description": "roles that are assigned to the service account.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BuiltInRole"
+            }
+          }
+        },
+        "example": {
+          "created_at": "2022-03-22T20:23:11.285067Z",
+          "creator_name": "creator",
+          "description": "",
+          "group_roles": [],
+          "id": "12345678-1234-1234-1234-123456789012",
+          "name": "SA Name",
+          "roles": [
+            {
+              "name": "CLUSTER_ADMIN",
+              "resource": {
+                "type": "ORGANIZATION"
+              }
+            }
+          ]
+        },
+        "required": [
+          "id",
+          "name",
+          "description",
+          "creator_name",
+          "created_at",
+          "roles",
+          "group_roles"
+        ],
+        "title": "ServiceAccount"
+      },
       "SetAWSEndpointConnectionStatus.Type": {
         "description": " - AVAILABLE: accept/verify the connection on the service side.\n - REJECTED: reject the connection on the service side.",
         "type": "string",
@@ -14742,6 +15971,19 @@
           "message": {
             "type": "string"
           }
+        }
+      },
+      "UpdateApiKeySpecification": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "name of the api key.",
+            "type": "string",
+            "example": "new name"
+          }
+        },
+        "example": {
+          "name": "new name"
         }
       },
       "UpdateClusterSpecification": {
@@ -14792,6 +16034,23 @@
         "example": {
           "name": "folder_name",
           "parent_id": "12345678-1234-1234-1234-123456789012"
+        }
+      },
+      "UpdateServiceAccountSpecification": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "description": "description of the service account.",
+            "type": "string"
+          },
+          "name": {
+            "description": "name of the service account.",
+            "type": "string"
+          }
+        },
+        "example": {
+          "description": "new description",
+          "name": "new name"
         }
       },
       "UsageLimits": {
@@ -15043,6 +16302,12 @@
     },
     {
       "name": "Role Management"
+    },
+    {
+      "name": "Service Accounts"
+    },
+    {
+      "name": "API Keys"
     },
     {
       "name": "Folders"

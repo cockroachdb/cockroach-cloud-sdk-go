@@ -4,12 +4,12 @@ All URIs are relative to *https://cockroachlabs.cloud*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**AddUserToRole**](RoleManagementApi.md#AddUserToRole) | **Post** /api/v1/roles/{user_id}/{resource_type}/{resource_id}/{role_name} | Add the user to the given role
+[**AddUserToRole**](RoleManagementApi.md#AddUserToRole) | **Post** /api/v1/roles/{user_id}/{resource_type}/{resource_id}/{role_name} | Add a role to a user or service account
 [**GetAllRolesForUser**](RoleManagementApi.md#GetAllRolesForUser) | **Get** /api/v1/roles/{user_id} | Get all Role Grants for a user
 [**GetPersonUsersByEmail**](RoleManagementApi.md#GetPersonUsersByEmail) | **Get** /api/v1/users/persons-by-email | Search person users by email address
 [**ListRoleGrants**](RoleManagementApi.md#ListRoleGrants) | **Get** /api/v1/roles | List all RoleGrants
-[**RemoveUserFromRole**](RoleManagementApi.md#RemoveUserFromRole) | **Delete** /api/v1/roles/{user_id}/{resource_type}/{resource_id}/{role_name} | Remove the user from the given role
-[**SetRolesForUser**](RoleManagementApi.md#SetRolesForUser) | **Put** /api/v1/roles/{user_id} | Make a user&#39;s roles exactly those provided
+[**RemoveUserFromRole**](RoleManagementApi.md#RemoveUserFromRole) | **Delete** /api/v1/roles/{user_id}/{resource_type}/{resource_id}/{role_name} | Remove a role from a user or service account
+[**SetRolesForUser**](RoleManagementApi.md#SetRolesForUser) | **Put** /api/v1/roles/{user_id} | Replace the roles for a user or service account with exactly those provided
 
 
 
@@ -17,7 +17,9 @@ Method | HTTP request | Description
 
 > GetAllRolesForUserResponse AddUserToRole(ctx, userId, resourceType, resourceId, roleName).Execute()
 
-Add the user to the given role
+Add a role to a user or service account
+
+Add a single role to a user or service account by providing its user_id or service_account_id.
 
 Roles that will be added as a result of this call must follow the CC rules for role assignment:
 https://www.cockroachlabs.com/docs/cockroachcloud/authorization#which-roles-grant-the-ability-to-add-remove-and-manage-members-in-in-a-cockroachdb-cloud-organization
@@ -311,7 +313,9 @@ Name | Type | Description  | Notes
 
 > GetAllRolesForUserResponse RemoveUserFromRole(ctx, userId, resourceType, resourceId, roleName).Execute()
 
-Remove the user from the given role
+Remove a role from a user or service account
+
+Remove a single role from a user or service account by providing its user_id or service_account_id.
 
 Roles that will be removed as a result of this call must follow the CC rules for role assignment:
 https://www.cockroachlabs.com/docs/cockroachcloud/authorization#which-roles-grant-the-ability-to-add-remove-and-manage-members-in-in-a-cockroachdb-cloud-organization
@@ -390,7 +394,9 @@ Name | Type | Description  | Notes
 
 > GetAllRolesForUserResponse SetRolesForUser(ctx, userId).CockroachCloudSetRolesForUserRequest(cockroachCloudSetRolesForUserRequest).Execute()
 
-Make a user's roles exactly those provided
+Replace the roles for a user or service account with exactly those provided
+
+Replace the entire role set for a user or service account by providing its user_id or service_account_id.
 
 Roles that will be removed or added as a result of this call must follow the CC rules for role assignment:
 https://www.cockroachlabs.com/docs/cockroachcloud/authorization#which-roles-grant-the-ability-to-add-remove-and-manage-members-in-in-a-cockroachdb-cloud-organization
