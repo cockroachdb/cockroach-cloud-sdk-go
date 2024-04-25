@@ -2,6 +2,7 @@ README.md
 api/openapi.yaml
 client.go
 configuration.go
+docs/APIKeysApi.md
 docs/AWSEndpointConnectionStatusType.md
 docs/AWSPrivateLinkServiceDetail.md
 docs/AddEgressRuleRequest.md
@@ -12,6 +13,7 @@ docs/AddPrivateEndpointTrustedOwnerResponse.md
 docs/AllowlistEntry.md
 docs/AllowlistEntry1.md
 docs/Any.md
+docs/ApiKey.md
 docs/ApiOidcConfig.md
 docs/ApiOidcConfig1.md
 docs/ApiOidcIdentityMapEntry.md
@@ -52,6 +54,8 @@ docs/ClusterVersionDeferralPolicyType.md
 docs/ClustersApi.md
 docs/CockroachCloudSetRolesForUserRequest.md
 docs/ConnectionStringParameters.md
+docs/CreateApiKeyRequest.md
+docs/CreateApiKeyResponse.md
 docs/CreateApiOidcConfigRequest.md
 docs/CreateClusterRequest.md
 docs/CreateClusterSpecification.md
@@ -59,6 +63,7 @@ docs/CreateDatabaseRequest.md
 docs/CreateFolderRequest.md
 docs/CreateGroupRequest.md
 docs/CreateSQLUserRequest.md
+docs/CreateServiceAccountRequest.md
 docs/CreateUserRequest.md
 docs/CurrencyAmount.md
 docs/CurrencyType.md
@@ -110,6 +115,7 @@ docs/KeysetPaginationRequest.md
 docs/KeysetPaginationResponse.md
 docs/LineItem.md
 docs/ListAllowlistEntriesResponse.md
+docs/ListApiKeysResponse.md
 docs/ListApiOidcConfigResponse.md
 docs/ListAuditLogsResponse.md
 docs/ListAvailableRegionsResponse.md
@@ -123,6 +129,7 @@ docs/ListMajorClusterVersionsResponse.md
 docs/ListPrivateEndpointTrustedOwnersResponse.md
 docs/ListRoleGrantsResponse.md
 docs/ListSQLUsersResponse.md
+docs/ListServiceAccountsResponse.md
 docs/LogExportApi.md
 docs/LogExportClusterInfo.md
 docs/LogExportClusterSpecification.md
@@ -182,12 +189,15 @@ docs/ScimUser.md
 docs/ServerlessClusterConfig.md
 docs/ServerlessClusterCreateSpecification.md
 docs/ServerlessClusterUpdateSpecification.md
+docs/ServiceAccount.md
+docs/ServiceAccountsApi.md
 docs/SetAWSEndpointConnectionStatusType.md
 docs/SetAwsEndpointConnectionStateRequest.md
 docs/SetClientCACertRequest.md
 docs/SetEgressTrafficPolicyRequest.md
 docs/SortOrder.md
 docs/Status.md
+docs/UpdateApiKeySpecification.md
 docs/UpdateCMEKStatusRequest.md
 docs/UpdateClientCACertRequest.md
 docs/UpdateClusterSpecification.md
@@ -196,6 +206,7 @@ docs/UpdateDatabaseRequest1.md
 docs/UpdateFolderSpecification.md
 docs/UpdateGroupRequest.md
 docs/UpdateSQLUserPasswordRequest.md
+docs/UpdateServiceAccountSpecification.md
 docs/UpdateUserRequest.md
 docs/UsageLimits.md
 docs/UserGroupRoleGrant.md
@@ -209,6 +220,7 @@ model_add_private_endpoint_trusted_owner_response.go
 model_allowlist_entry.go
 model_allowlist_entry_1.go
 model_any.go
+model_api_key.go
 model_api_oidc_config.go
 model_api_oidc_config_1.go
 model_api_oidc_identity_map_entry.go
@@ -247,12 +259,15 @@ model_cmek_region_specification.go
 model_cmek_status.go
 model_cockroach_cloud_set_roles_for_user_request.go
 model_connection_string_parameters.go
+model_create_api_key_request.go
+model_create_api_key_response.go
 model_create_api_oidc_config_request.go
 model_create_cluster_request.go
 model_create_cluster_specification.go
 model_create_database_request.go
 model_create_folder_request.go
 model_create_group_request.go
+model_create_service_account_request.go
 model_create_sql_user_request.go
 model_create_user_request.go
 model_currency_amount.go
@@ -300,6 +315,7 @@ model_keyset_pagination_request.go
 model_keyset_pagination_response.go
 model_line_item.go
 model_list_allowlist_entries_response.go
+model_list_api_keys_response.go
 model_list_api_oidc_config_response.go
 model_list_audit_logs_response.go
 model_list_available_regions_response.go
@@ -312,6 +328,7 @@ model_list_invoices_response.go
 model_list_major_cluster_versions_response.go
 model_list_private_endpoint_trusted_owners_response.go
 model_list_role_grants_response.go
+model_list_service_accounts_response.go
 model_list_sql_users_response.go
 model_log_export_cluster_info.go
 model_log_export_cluster_specification.go
@@ -362,6 +379,7 @@ model_scim_user.go
 model_serverless_cluster_config.go
 model_serverless_cluster_create_specification.go
 model_serverless_cluster_update_specification.go
+model_service_account.go
 model_set_aws_endpoint_connection_state_request.go
 model_set_aws_endpoint_connection_status_type.go
 model_set_client_ca_cert_request.go
@@ -369,6 +387,7 @@ model_set_egress_traffic_policy_request.go
 model_sort_order.go
 model_sql_user.go
 model_status.go
+model_update_api_key_specification.go
 model_update_client_ca_cert_request.go
 model_update_cluster_specification.go
 model_update_cmek_status_request.go
@@ -376,6 +395,7 @@ model_update_database_request.go
 model_update_database_request_1.go
 model_update_folder_specification.go
 model_update_group_request.go
+model_update_service_account_specification.go
 model_update_sql_user_password_request.go
 model_update_user_request.go
 model_usage_limits.go

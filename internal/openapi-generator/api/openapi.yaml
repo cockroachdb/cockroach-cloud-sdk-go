@@ -32,6 +32,8 @@ tags:
 - name: Billing
 - name: Maintenance Windows
 - name: Role Management
+- name: Service Accounts
+- name: API Keys
 - name: Folders
 - name: Version Deferral
 - name: OpenID Connect Configuration
@@ -1578,6 +1580,364 @@ paths:
             --url https://cockroachlabs.cloud/api/scim/v2/Users/{id}/.search \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
             --data '{"attributes":"string","excludedAttributes":"string"}'
+  /api/v1/api-keys:
+    get:
+      description: "Sort order: created_at"
+      operationId: CockroachCloud_ListApiKeys
+      parameters:
+      - description: |-
+          Optional filter to limit the response to include only api keys for a specific
+          service account.
+        explode: true
+        in: query
+        name: service_account_id
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: pagination.page
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: pagination.limit
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: pagination.as_of_time
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: |2-
+           - ASC: Sort in ascending order. This is the default unless otherwise specified.
+           - DESC: Sort in descending order.
+        explode: true
+        in: query
+        name: pagination.sort_order
+        required: false
+        schema:
+          enum:
+          - ASC
+          - DESC
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListApiKeysResponse'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: List API Keys
+      tags:
+      - API Keys
+      x-badges:
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request GET \
+            --url 'https://cockroachlabs.cloud/api/v1/api-keys?service_account_id=SOME_STRING_VALUE&pagination.page=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.as_of_time=SOME_STRING_VALUE&pagination.sort_order=SOME_STRING_VALUE' \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+    post:
+      operationId: CockroachCloud_CreateApiKey
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateApiKeyRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateApiKeyResponse'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Create a new API Key
+      tags:
+      - API Keys
+      x-badges:
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request POST \
+            --url https://cockroachlabs.cloud/api/v1/api-keys \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
+            --header 'content-type: application/json' \
+            --data '{"name":"example name","service_account_id":"1234abcd-1234-1234-abcd-12345678abcd"}'
+  /api/v1/api-keys/{id}:
+    delete:
+      operationId: CockroachCloud_DeleteApiKey
+      parameters:
+      - description: The ID of the api key.
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiKey'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Delete an API Key
+      tags:
+      - API Keys
+      x-badges:
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request DELETE \
+            --url https://cockroachlabs.cloud/api/v1/api-keys/{id} \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+    get:
+      operationId: CockroachCloud_GetApiKey
+      parameters:
+      - description: the ID of the api key.
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiKey'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Get an API Key by ID
+      tags:
+      - API Keys
+      x-badges:
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request GET \
+            --url https://cockroachlabs.cloud/api/v1/api-keys/{id} \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+    patch:
+      operationId: CockroachCloud_UpdateApiKey
+      parameters:
+      - description: The ID of the api key.
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateApiKeySpecification'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiKey'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Update an API Key
+      tags:
+      - API Keys
+      x-badges:
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request PATCH \
+            --url https://cockroachlabs.cloud/api/v1/api-keys/{id} \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
+            --header 'content-type: application/json' \
+            --data '{"name":"new name"}'
   /api/v1/api_oidc:
     get:
       operationId: CockroachCloud_ListApiOidcConfig
@@ -7673,6 +8033,8 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     put:
       description: |-
+        Replace the entire role set for a user or service account by providing its user_id or service_account_id.
+
         Roles that will be removed or added as a result of this call must follow the CC rules for role assignment:
         https://www.cockroachlabs.com/docs/cockroachcloud/authorization#which-roles-grant-the-ability-to-add-remove-and-manage-members-in-in-a-cockroachdb-cloud-organization
       operationId: CockroachCloud_SetRolesForUser
@@ -7729,7 +8091,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
-      summary: Make a user's roles exactly those provided
+      summary: Replace the roles for a user or service account with exactly those
+        provided
       tags:
       - Role Management
       x-codeSamples:
@@ -7743,6 +8106,8 @@ paths:
   /api/v1/roles/{user_id}/{resource_type}/{resource_id}/{role_name}:
     delete:
       description: |-
+        Remove a single role from a user or service account by providing its user_id or service_account_id.
+
         Roles that will be removed as a result of this call must follow the CC rules for role assignment:
         https://www.cockroachlabs.com/docs/cockroachcloud/authorization#which-roles-grant-the-ability-to-add-remove-and-manage-members-in-in-a-cockroachdb-cloud-organization
       operationId: CockroachCloud_RemoveUserFromRole
@@ -7828,7 +8193,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
-      summary: Remove the user from the given role
+      summary: Remove a role from a user or service account
       tags:
       - Role Management
       x-codeSamples:
@@ -7839,6 +8204,8 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     post:
       description: |-
+        Add a single role to a user or service account by providing its user_id or service_account_id.
+
         Roles that will be added as a result of this call must follow the CC rules for role assignment:
         https://www.cockroachlabs.com/docs/cockroachcloud/authorization#which-roles-grant-the-ability-to-add-remove-and-manage-members-in-in-a-cockroachdb-cloud-organization
       operationId: CockroachCloud_AddUserToRole
@@ -7924,7 +8291,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
-      summary: Add the user to the given role
+      summary: Add a role to a user or service account
       tags:
       - Role Management
       x-codeSamples:
@@ -7933,6 +8300,356 @@ paths:
           curl --request POST \
             --url https://cockroachlabs.cloud/api/v1/roles/{user_id}/{resource_type}/{resource_id}/{role_name} \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+  /api/v1/service-accounts:
+    get:
+      description: "Sort order: Service account name"
+      operationId: CockroachCloud_ListServiceAccounts
+      parameters:
+      - explode: true
+        in: query
+        name: pagination.page
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: pagination.limit
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: pagination.as_of_time
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: |2-
+           - ASC: Sort in ascending order. This is the default unless otherwise specified.
+           - DESC: Sort in descending order.
+        explode: true
+        in: query
+        name: pagination.sort_order
+        required: false
+        schema:
+          enum:
+          - ASC
+          - DESC
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListServiceAccountsResponse'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: List service accounts for an organization
+      tags:
+      - Service Accounts
+      x-badges:
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request GET \
+            --url 'https://cockroachlabs.cloud/api/v1/service-accounts?pagination.page=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.as_of_time=SOME_STRING_VALUE&pagination.sort_order=SOME_STRING_VALUE' \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+    post:
+      operationId: CockroachCloud_CreateServiceAccount
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateServiceAccountRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceAccount'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Create a service account
+      tags:
+      - Service Accounts
+      x-badges:
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request POST \
+            --url https://cockroachlabs.cloud/api/v1/service-accounts \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
+            --header 'content-type: application/json' \
+            --data '{"name":"new name","roles":[{"name":"CLUSTER_ADMIN","resource":{"type":"ORGANIZATION"}}]}'
+  /api/v1/service-accounts/{id}:
+    delete:
+      operationId: CockroachCloud_DeleteServiceAccount
+      parameters:
+      - description: the ID of the service account.
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceAccount'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Delete a service account
+      tags:
+      - Service Accounts
+      x-badges:
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request DELETE \
+            --url https://cockroachlabs.cloud/api/v1/service-accounts/{id} \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+    get:
+      operationId: CockroachCloud_GetServiceAccount
+      parameters:
+      - description: The ID of the service account.
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceAccount'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Get a service account by ID
+      tags:
+      - Service Accounts
+      x-badges:
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request GET \
+            --url https://cockroachlabs.cloud/api/v1/service-accounts/{id} \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+    patch:
+      description: "To manage roles associated with a service account after creation,\
+        \ pass the service_account_id instead of a user_id to any [Role Management\
+        \ endpoint](#tag--Role-Management)."
+      operationId: CockroachCloud_UpdateServiceAccount
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateServiceAccountSpecification'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceAccount'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Update a service account
+      tags:
+      - Service Accounts
+      x-badges:
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request PATCH \
+            --url https://cockroachlabs.cloud/api/v1/service-accounts/{id} \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
+            --header 'content-type: application/json' \
+            --data '{"description":"new description","name":"new name"}'
   /api/v1/users/persons-by-email:
     get:
       description: |
@@ -8309,6 +9026,37 @@ components:
             Schemes other than `http`, `https` (or the empty scheme) might be
             used with implementation specific semantics.
           type: string
+      type: object
+    ApiKey:
+      example:
+        created_at: 2022-03-22T20:23:11.285067Z
+        id: CCDB1_12345abcdefGHIJKLMnopq
+        name: example name
+        service_account_id: 1234abcd-1234-1234-abcd-12345678abcd
+      properties:
+        created_at:
+          description: the creation time of the api key.
+          example: 2022-03-22T20:23:11.285067Z
+          format: date-time
+          type: string
+        id:
+          description: the ID of the api key.
+          example: CCDB1_12345abcdefGHIJKLMnopq
+          type: string
+        name:
+          example: api key name
+          title: the name of the api key
+          type: string
+        service_account_id:
+          description: the ID of the service account the api key references.
+          example: 1234abcd-1234-1234-abcd-12345678abcd
+          format: uuid
+          type: string
+      required:
+      - created_at
+      - id
+      - name
+      - service_account_id
       type: object
     ApiOidcConfig:
       description: |-
@@ -9116,6 +9864,47 @@ components:
       - Host
       - Port
       type: object
+    CreateApiKeyRequest:
+      example:
+        name: example name
+        service_account_id: 1234abcd-1234-1234-abcd-12345678abcd
+      properties:
+        name:
+          description: The name of the api key.
+          example: example name
+          type: string
+        service_account_id:
+          description: The ID of the service account to create the api key for.
+          example: 1234abcd-1234-1234-abcd-12345678abcd
+          format: uuid
+          type: string
+      required:
+      - name
+      - service_account_id
+      type: object
+    CreateApiKeyResponse:
+      example:
+        api_key:
+          created_at: 2022-03-22T20:23:11.285067Z
+          id: CCDB1_12345abcdefGHIJKLMnopq
+          name: example name
+          service_account_id: 1234abcd-1234-1234-abcd-12345678abcd
+        secret: CCDB1_12345abcdefGHIJKLMnopq_NkdXLI9d81Mnx3djs45iwPfgtnaRv0XCh0Z9047K
+      properties:
+        api_key:
+          $ref: '#/components/schemas/ApiKey'
+        secret:
+          description: |-
+            The full api key. This is the value that would be passed in the
+            Authorization header. It is not stored by the backend and is therefore not
+            recoverable if lost.
+          example: CCDB1_12345abcdefGHIJKLMnopq_NkdXLI9d81Mnx3djs45iwPfgtnaRv0XCh0Z9047K
+          format: password
+          type: string
+      required:
+      - api_key
+      - secret
+      type: object
     CreateApiOidcConfigRequest:
       example:
         audience: 542c6390-bf38-4912-856b-8f31480e978b
@@ -9178,6 +9967,8 @@ components:
       properties:
         dedicated:
           $ref: '#/components/schemas/DedicatedClusterCreateSpecification'
+        delete_protection:
+          $ref: '#/components/schemas/DeleteProtectionState.Type'
         parent_id:
           description: |-
             Limited Access: The parent ID is a folder ID. An empty string or "root"
@@ -9224,6 +10015,30 @@ components:
       required:
       - displayName
       title: CreateGroupRequest
+      type: object
+    CreateServiceAccountRequest:
+      example:
+        name: new name
+        roles:
+        - name: CLUSTER_ADMIN
+          resource:
+            type: ORGANIZATION
+      properties:
+        description:
+          description: description of the service account.
+          type: string
+        name:
+          description: name of the service account.
+          type: string
+        roles:
+          description: roles that are assigned to the service account.
+          items:
+            $ref: '#/components/schemas/BuiltInRole'
+          type: array
+      required:
+      - description
+      - name
+      - roles
       type: object
     CreateUserRequest:
       example:
@@ -10609,6 +11424,30 @@ components:
       - propagating
       title: ListAllowlistEntriesResponse
       type: object
+    ListApiKeysResponse:
+      example:
+        pagination:
+          next_page: next_page
+          previous_page: previous_page
+        api_keys:
+        - created_at: 2022-03-22T20:23:11.285067Z
+          id: CCDB1_12345abcdefGHIJKLMnopq
+          name: example name
+          service_account_id: 1234abcd-1234-1234-abcd-12345678abcd
+        - created_at: 2022-03-22T20:23:11.285067Z
+          id: CCDB1_12345abcdefGHIJKLMnopq
+          name: example name
+          service_account_id: 1234abcd-1234-1234-abcd-12345678abcd
+      properties:
+        api_keys:
+          items:
+            $ref: '#/components/schemas/ApiKey'
+          type: array
+        pagination:
+          $ref: '#/components/schemas/KeysetPaginationResponse'
+      required:
+      - api_keys
+      type: object
     ListApiOidcConfigResponse:
       description: |-
         list_api_oidc_config_response contains information about all the OIDC providers that can generate
@@ -11310,6 +12149,42 @@ components:
           type: array
       required:
       - users
+      type: object
+    ListServiceAccountsResponse:
+      example:
+        pagination:
+          next_page: next_page
+          previous_page: previous_page
+        service_accounts:
+        - created_at: 2022-03-22T20:23:11.285067Z
+          creator_name: creator
+          description: ""
+          group_roles: []
+          id: 12345678-1234-1234-1234-123456789012
+          name: SA Name
+          roles:
+          - name: CLUSTER_ADMIN
+            resource:
+              type: ORGANIZATION
+        - created_at: 2022-03-22T20:23:11.285067Z
+          creator_name: creator
+          description: ""
+          group_roles: []
+          id: 12345678-1234-1234-1234-123456789012
+          name: SA Name
+          roles:
+          - name: CLUSTER_ADMIN
+            resource:
+              type: ORGANIZATION
+      properties:
+        pagination:
+          $ref: '#/components/schemas/KeysetPaginationResponse'
+        service_accounts:
+          items:
+            $ref: '#/components/schemas/ServiceAccount'
+          type: array
+      required:
+      - service_accounts
       type: object
     LogExportClusterInfo:
       description: |-
@@ -12459,6 +13334,58 @@ components:
         usage_limits:
           $ref: '#/components/schemas/UsageLimits'
       type: object
+    ServiceAccount:
+      description: |-
+        A service account is an identity scoped to an organization that
+        represents a non-human user.
+      example:
+        created_at: 2022-03-22T20:23:11.285067Z
+        creator_name: creator
+        description: ""
+        group_roles: []
+        id: 12345678-1234-1234-1234-123456789012
+        name: SA Name
+        roles:
+        - name: CLUSTER_ADMIN
+          resource:
+            type: ORGANIZATION
+      properties:
+        created_at:
+          description: created_at represents the creation time of the service account.
+          format: date-time
+          type: string
+        creator_name:
+          description: creator_name is the name of user that created the service account.
+          type: string
+        description:
+          description: description of the service account.
+          type: string
+        group_roles:
+          description: roles that the service account has inherited via a group.
+          items:
+            $ref: '#/components/schemas/BuiltInFromGroups'
+          type: array
+        id:
+          description: The ID of the service account.
+          type: string
+        name:
+          description: name of the service account.
+          type: string
+        roles:
+          description: roles that are assigned to the service account.
+          items:
+            $ref: '#/components/schemas/BuiltInRole'
+          type: array
+      required:
+      - created_at
+      - creator_name
+      - description
+      - group_roles
+      - id
+      - name
+      - roles
+      title: ServiceAccount
+      type: object
     SetAWSEndpointConnectionStatus.Type:
       description: |2-
          - AVAILABLE: accept/verify the connection on the service side.
@@ -12485,6 +13412,15 @@ components:
             $ref: '#/components/schemas/Any'
           type: array
         message:
+          type: string
+      type: object
+    UpdateApiKeySpecification:
+      example:
+        name: new name
+      properties:
+        name:
+          description: name of the api key.
+          example: new name
           type: string
       type: object
     UpdateClusterSpecification:
@@ -12521,6 +13457,18 @@ components:
         name:
           type: string
         parent_id:
+          type: string
+      type: object
+    UpdateServiceAccountSpecification:
+      example:
+        description: new description
+        name: new name
+      properties:
+        description:
+          description: description of the service account.
+          type: string
+        name:
+          description: name of the service account.
           type: string
       type: object
     UsageLimits:
