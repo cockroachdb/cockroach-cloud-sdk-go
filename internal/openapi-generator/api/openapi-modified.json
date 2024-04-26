@@ -5972,7 +5972,11 @@
                 "type": "object",
                 "properties": {
                   "auth_principal": {
-                    "description": "auth_principal is either the AWS Role ARN that identifies a role\nthat the cluster account can assume to write to CloudWatch or the\nGCP Project ID that the cluster service account has permissions to\nwrite to for cloud logging.",
+                    "type": "string",
+                    "title": "auth_principal is used in different contexts based on integration.\nCloudWatch: AWS Role ARN that identifies a role\nthat the cluster account can assume to write to CloudWatch\nGCP Cloud Logging: GCP Project ID that the cluster service account\nhas permissions to write to for cloud logging.\nAzure Log Analytics: CustomerID or WorkspaceID"
+                  },
+                  "azure_shared_key": {
+                    "description": "The primary or the secondary connected sources client authentication key.\nThis is used to export logs to Azure Log Analytics.",
                     "type": "string"
                   },
                   "groups": {
@@ -6023,6 +6027,7 @@
                     "SQL_PERF"
                   ],
                   "redact": true,
+                  "shared_key": "shared-key",
                   "type": "GCP_CLOUD_LOGGING"
                 },
                 "required": [
@@ -6109,7 +6114,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/logexport \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"auth_principal\":\"my-gcp-project-id\",\"groups\":[{\"channels\":[\"OPS\",\"HEALTH\"],\"log_name\":\"devops\",\"min_level\":\"WARNING\"}],\"log_name\":\"default\",\"omitted_channels\":[\"SESSIONS\",\"SQL_PERF\"],\"redact\":true,\"type\":\"GCP_CLOUD_LOGGING\"}'"
+            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/logexport \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"auth_principal\":\"my-gcp-project-id\",\"groups\":[{\"channels\":[\"OPS\",\"HEALTH\"],\"log_name\":\"devops\",\"min_level\":\"WARNING\"}],\"log_name\":\"default\",\"omitted_channels\":[\"SESSIONS\",\"SQL_PERF\"],\"redact\":true,\"shared_key\":\"shared-key\",\"type\":\"GCP_CLOUD_LOGGING\"}'"
           }
         ]
       }
@@ -14932,6 +14937,10 @@
             "description": "auth_principal is either the AWS Role ARN that identifies a role\nthat the cluster account can assume to write to CloudWatch or the\nGCP Project ID that the cluster service account has permissions to\nwrite to for cloud logging.",
             "type": "string"
           },
+          "azure_shared_key": {
+            "description": "The primary or the secondary connected sources client authentication key.\nThis is used to export logs to Azure Log Analytics.",
+            "type": "string"
+          },
           "groups": {
             "description": "groups is a collection of log group configurations to customize\nwhich CRDB channels get aggregated into different groups at the\ntarget sink. Unconfigured channels will be sent to the default\nlocations via the settings above.",
             "type": "array",
@@ -15009,7 +15018,8 @@
         "type": "string",
         "enum": [
           "AWS_CLOUDWATCH",
-          "GCP_CLOUD_LOGGING"
+          "GCP_CLOUD_LOGGING",
+          "AZURE_LOG_ANALYTICS"
         ]
       },
       "LogLevel.Type": {

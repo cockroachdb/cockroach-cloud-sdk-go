@@ -4179,7 +4179,7 @@ paths:
             --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/logexport \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
             --header 'content-type: application/json' \
-            --data '{"auth_principal":"my-gcp-project-id","groups":[{"channels":["OPS","HEALTH"],"log_name":"devops","min_level":"WARNING"}],"log_name":"default","omitted_channels":["SESSIONS","SQL_PERF"],"redact":true,"type":"GCP_CLOUD_LOGGING"}'
+            --data '{"auth_principal":"my-gcp-project-id","groups":[{"channels":["OPS","HEALTH"],"log_name":"devops","min_level":"WARNING"}],"log_name":"default","omitted_channels":["SESSIONS","SQL_PERF"],"redact":true,"shared_key":"shared-key","type":"GCP_CLOUD_LOGGING"}'
   /api/v1/clusters/{cluster_id}/maintenance-window:
     delete:
       operationId: CockroachCloud_DeleteMaintenanceWindow
@@ -12219,6 +12219,7 @@ components:
             min_level: null
           region: region
           type: null
+          azure_shared_key: azure_shared_key
         status: null
       properties:
         cluster_id:
@@ -12264,6 +12265,7 @@ components:
           min_level: null
         region: region
         type: null
+        azure_shared_key: azure_shared_key
       properties:
         auth_principal:
           description: |-
@@ -12271,6 +12273,11 @@ components:
             that the cluster account can assume to write to CloudWatch or the
             GCP Project ID that the cluster service account has permissions to
             write to for cloud logging.
+          type: string
+        azure_shared_key:
+          description: |-
+            The primary or the secondary connected sources client authentication key.
+            This is used to export logs to Azure Log Analytics.
           type: string
         groups:
           description: |-
@@ -12362,6 +12369,7 @@ components:
       enum:
       - AWS_CLOUDWATCH
       - GCP_CLOUD_LOGGING
+      - AZURE_LOG_ANALYTICS
       type: string
     LogLevel.Type:
       description: |2-
@@ -13838,14 +13846,22 @@ components:
         - SESSIONS
         - SQL_PERF
         redact: true
+        shared_key: shared-key
         type: GCP_CLOUD_LOGGING
       properties:
         auth_principal:
+          title: |-
+            auth_principal is used in different contexts based on integration.
+            CloudWatch: AWS Role ARN that identifies a role
+            that the cluster account can assume to write to CloudWatch
+            GCP Cloud Logging: GCP Project ID that the cluster service account
+            has permissions to write to for cloud logging.
+            Azure Log Analytics: CustomerID or WorkspaceID
+          type: string
+        azure_shared_key:
           description: |-
-            auth_principal is either the AWS Role ARN that identifies a role
-            that the cluster account can assume to write to CloudWatch or the
-            GCP Project ID that the cluster service account has permissions to
-            write to for cloud logging.
+            The primary or the secondary connected sources client authentication key.
+            This is used to export logs to Azure Log Analytics.
           type: string
         groups:
           description: |-
