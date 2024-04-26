@@ -62,6 +62,7 @@ docs/CreateClusterSpecification.md
 docs/CreateDatabaseRequest.md
 docs/CreateFolderRequest.md
 docs/CreateGroupRequest.md
+docs/CreateReplicationStreamRequest.md
 docs/CreateSQLUserRequest.md
 docs/CreateServiceAccountRequest.md
 docs/CreateUserRequest.md
@@ -151,6 +152,7 @@ docs/OrganizationUserRoleType.md
 docs/OrganizationsApi.md
 docs/PathSegment.md
 docs/PersonUserInfo.md
+docs/PhysicalClusterReplicationApi.md
 docs/PlanType.md
 docs/PrivateEndpointConnection.md
 docs/PrivateEndpointConnectionStatus.md
@@ -165,6 +167,9 @@ docs/PrometheusMetricExportInfo.md
 docs/QuantityUnitType.md
 docs/Region.md
 docs/RemovePrivateEndpointTrustedOwnerResponse.md
+docs/ReplicationStream.md
+docs/ReplicationStreamList.md
+docs/ReplicationStreamStatusType.md
 docs/Resource.md
 docs/ResourceTypeType.md
 docs/RoleManagementApi.md
@@ -205,6 +210,7 @@ docs/UpdateDatabaseRequest.md
 docs/UpdateDatabaseRequest1.md
 docs/UpdateFolderSpecification.md
 docs/UpdateGroupRequest.md
+docs/UpdateReplicationStreamSpec.md
 docs/UpdateSQLUserPasswordRequest.md
 docs/UpdateServiceAccountSpecification.md
 docs/UpdateUserRequest.md
@@ -267,6 +273,7 @@ model_create_cluster_specification.go
 model_create_database_request.go
 model_create_folder_request.go
 model_create_group_request.go
+model_create_replication_stream_request.go
 model_create_service_account_request.go
 model_create_sql_user_request.go
 model_create_user_request.go
@@ -359,6 +366,9 @@ model_prometheus_metric_export_info.go
 model_quantity_unit_type.go
 model_region.go
 model_remove_private_endpoint_trusted_owner_response.go
+model_replication_stream.go
+model_replication_stream_list.go
+model_replication_stream_status_type.go
 model_resource.go
 model_resource_type_type.go
 model_scim_authentication_scheme.go
@@ -395,6 +405,7 @@ model_update_database_request.go
 model_update_database_request_1.go
 model_update_folder_specification.go
 model_update_group_request.go
+model_update_replication_stream_spec.go
 model_update_service_account_specification.go
 model_update_sql_user_password_request.go
 model_update_user_request.go

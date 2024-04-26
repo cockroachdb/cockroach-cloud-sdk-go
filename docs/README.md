@@ -132,6 +132,10 @@ API | Method | HTTP request | Description
 [OpenIDConnectConfigurationApi](docs/OpenIDConnectConfigurationApi.md) | **ListApiOidcConfig** | **Get** /api/v1/api_oidc | List all API OIDC configurations
 [OpenIDConnectConfigurationApi](docs/OpenIDConnectConfigurationApi.md) | **UpdateApiOidcConfig** | **Put** /api/v1/api_oidc/{id} | Update an API OIDC configuration
 [OrganizationsApi](docs/OrganizationsApi.md) | **GetOrganizationInfo** | **Get** /api/v1/organization | Get information about the caller&#39;s organization
+[PhysicalClusterReplicationApi](docs/PhysicalClusterReplicationApi.md) | **CreateReplicationStream** | **Post** /api/v1/replication-streams | Create a replication stream
+[PhysicalClusterReplicationApi](docs/PhysicalClusterReplicationApi.md) | **GetReplicationStream** | **Get** /api/v1/replication-streams/{id} | Get a replication stream
+[PhysicalClusterReplicationApi](docs/PhysicalClusterReplicationApi.md) | **ListReplicationStreams** | **Get** /api/v1/replication-streams | List replication streams
+[PhysicalClusterReplicationApi](docs/PhysicalClusterReplicationApi.md) | **UpdateReplicationStream** | **Patch** /api/v1/replication-streams/{id} | Update a replication stream
 [PrivateEndpointServicesApi](docs/PrivateEndpointServicesApi.md) | **AddPrivateEndpointConnection** | **Post** /api/v1/clusters/{cluster_id}/networking/private-endpoint-connections | Add a connection to a cluster&#39;s private endpoint service.
 [PrivateEndpointServicesApi](docs/PrivateEndpointServicesApi.md) | **AddPrivateEndpointTrustedOwner** | **Post** /api/v1/clusters/{cluster_id}/networking/private-endpoint-trusted-owners | Add a private endpoint trusted owner to a cluster
 [PrivateEndpointServicesApi](docs/PrivateEndpointServicesApi.md) | **CreatePrivateEndpointServices** | **Post** /api/v1/clusters/{cluster_id}/networking/private-endpoint-services | Create all PrivateEndpointServices for a cluster
