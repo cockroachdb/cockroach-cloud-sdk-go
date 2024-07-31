@@ -18,6 +18,10 @@ Method | HTTP request | Description
 
 Create a new API Key
 
+Can be used by the following roles assigned at the organization scope:
+- ORG_ADMIN
+
+
 ### Example
 
 ```go
@@ -80,6 +84,10 @@ Name | Type | Description  | Notes
 > ApiKey DeleteApiKey(ctx, id).Execute()
 
 Delete an API Key
+
+Can be used by the following roles assigned at the organization scope:
+- ORG_ADMIN
+
 
 ### Example
 
@@ -147,6 +155,11 @@ Name | Type | Description  | Notes
 > ApiKey GetApiKey(ctx, id).Execute()
 
 Get an API Key by ID
+
+Can be used by the following roles assigned at the organization scope:
+- ORG_ADMIN
+- CLUSTER_ADMIN
+
 
 ### Example
 
@@ -216,6 +229,11 @@ Name | Type | Description  | Notes
 List API Keys
 
 Sort order: created_at
+
+Can be used by the following roles assigned at the organization scope:
+- ORG_ADMIN
+- CLUSTER_ADMIN
+
 
 ### Example
 
@@ -288,6 +306,10 @@ Name | Type | Description  | Notes
 > ApiKey UpdateApiKey(ctx, id).UpdateApiKeySpecification(updateApiKeySpecification).Execute()
 
 Update an API Key
+
+Can be used by the following roles assigned at the organization scope:
+- ORG_ADMIN
+
 
 ### Example
 

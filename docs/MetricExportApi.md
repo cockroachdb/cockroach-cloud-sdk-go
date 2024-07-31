@@ -6,10 +6,10 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**DeleteCloudWatchMetricExport**](MetricExportApi.md#DeleteCloudWatchMetricExport) | **Delete** /api/v1/clusters/{cluster_id}/metricexport/cloudwatch | Delete the CloudWatch Metric Export configuration for a cluster
 [**DeleteDatadogMetricExport**](MetricExportApi.md#DeleteDatadogMetricExport) | **Delete** /api/v1/clusters/{cluster_id}/metricexport/datadog | Delete the Datadog Metric Export configuration for a cluster
-[**DeletePrometheusMetricExport**](MetricExportApi.md#DeletePrometheusMetricExport) | **Delete** /api/v1/clusters/{cluster_id}/metricexport/prometheus | Delete the Prometheus Metric Export configuration for a cluster
+[**DeletePrometheusMetricExport**](MetricExportApi.md#DeletePrometheusMetricExport) | **Delete** /api/v1/clusters/{cluster_id}/metricexport/prometheus | Disable Prometheus Metric Export for a cluster
 [**EnableCloudWatchMetricExport**](MetricExportApi.md#EnableCloudWatchMetricExport) | **Post** /api/v1/clusters/{cluster_id}/metricexport/cloudwatch | Create or update the CloudWatch Metric Export configuration for a cluster
 [**EnableDatadogMetricExport**](MetricExportApi.md#EnableDatadogMetricExport) | **Post** /api/v1/clusters/{cluster_id}/metricexport/datadog | Create or update the Datadog Metric Export configuration for a cluster
-[**EnablePrometheusMetricExport**](MetricExportApi.md#EnablePrometheusMetricExport) | **Post** /api/v1/clusters/{cluster_id}/metricexport/prometheus | Create or update the Prometheus Metric Export configuration for a cluster
+[**EnablePrometheusMetricExport**](MetricExportApi.md#EnablePrometheusMetricExport) | **Post** /api/v1/clusters/{cluster_id}/metricexport/prometheus | Enable Prometheus Metric Export for a cluster
 [**GetCloudWatchMetricExportInfo**](MetricExportApi.md#GetCloudWatchMetricExportInfo) | **Get** /api/v1/clusters/{cluster_id}/metricexport/cloudwatch | Get the CloudWatch Metric Export configuration for a cluster
 [**GetDatadogMetricExportInfo**](MetricExportApi.md#GetDatadogMetricExportInfo) | **Get** /api/v1/clusters/{cluster_id}/metricexport/datadog | Get the Datadog Metric Export configuration for a cluster
 [**GetPrometheusMetricExportInfo**](MetricExportApi.md#GetPrometheusMetricExportInfo) | **Get** /api/v1/clusters/{cluster_id}/metricexport/prometheus | Get the Prometheus Metric Export configuration for a cluster
@@ -164,7 +164,12 @@ Name | Type | Description  | Notes
 
 > DeleteMetricExportResponse DeletePrometheusMetricExport(ctx, clusterId).Execute()
 
-Delete the Prometheus Metric Export configuration for a cluster
+Disable Prometheus Metric Export for a cluster
+
+Can be used by the following roles assigned at the organization or cluster scope:
+- CLUSTER_ADMIN
+- CLUSTER_OPERATOR_WRITER
+
 
 ### Example
 
@@ -377,9 +382,14 @@ Name | Type | Description  | Notes
 
 ## EnablePrometheusMetricExport
 
-> PrometheusMetricExportInfo EnablePrometheusMetricExport(ctx, clusterId).Body(body).Execute()
+> PrometheusMetricExportInfo EnablePrometheusMetricExport(ctx, clusterId).Execute()
 
-Create or update the Prometheus Metric Export configuration for a cluster
+Enable Prometheus Metric Export for a cluster
+
+Can be used by the following roles assigned at the organization or cluster scope:
+- CLUSTER_ADMIN
+- CLUSTER_OPERATOR_WRITER
+
 
 ### Example
 
@@ -395,11 +405,10 @@ import (
 
 func main() {
     clusterId := "clusterId_example" // string | 
-    body := map[string]interface{}{ ... } // map[string]interface{} | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
-    resp, r, err := api_client.MetricExportApi.EnablePrometheusMetricExport(context.Background(), clusterId).Body(body).Execute()
+    resp, r, err := api_client.MetricExportApi.EnablePrometheusMetricExport(context.Background(), clusterId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `MetricExportApi.EnablePrometheusMetricExport``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -425,7 +434,6 @@ Other parameters are passed through a pointer to a apiEnablePrometheusMetricExpo
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **body** | **map[string]interface{}** |  | 
 
 ### Return type
 
@@ -437,7 +445,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -593,6 +601,11 @@ Name | Type | Description  | Notes
 > PrometheusMetricExportInfo GetPrometheusMetricExportInfo(ctx, clusterId).Execute()
 
 Get the Prometheus Metric Export configuration for a cluster
+
+Can be used by the following roles assigned at the organization or cluster scope:
+- CLUSTER_ADMIN
+- CLUSTER_OPERATOR_WRITER
+
 
 ### Example
 

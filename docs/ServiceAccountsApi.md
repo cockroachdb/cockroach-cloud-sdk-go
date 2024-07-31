@@ -18,6 +18,11 @@ Method | HTTP request | Description
 
 Create a service account
 
+Can be used by the following roles assigned at the organization scope:
+- ORG_ADMIN
+- CLUSTER_ADMIN
+
+
 ### Example
 
 ```go
@@ -80,6 +85,10 @@ Name | Type | Description  | Notes
 > ServiceAccount DeleteServiceAccount(ctx, id).Execute()
 
 Delete a service account
+
+Can be used by the following roles assigned at the organization scope:
+- ORG_ADMIN
+
 
 ### Example
 
@@ -147,6 +156,11 @@ Name | Type | Description  | Notes
 > ServiceAccount GetServiceAccount(ctx, id).Execute()
 
 Get a service account by ID
+
+Can be used by the following roles assigned at the organization scope:
+- ORG_ADMIN
+- CLUSTER_ADMIN
+
 
 ### Example
 
@@ -216,6 +230,11 @@ Name | Type | Description  | Notes
 List service accounts for an organization
 
 Sort order: Service account name
+
+Can be used by the following roles assigned at the organization scope:
+- ORG_ADMIN
+- CLUSTER_ADMIN
+
 
 ### Example
 
@@ -288,6 +307,10 @@ Name | Type | Description  | Notes
 Update a service account
 
 To manage roles associated with a service account after creation, pass the service_account_id instead of a user_id to any [Role Management endpoint](#tag--Role-Management).
+
+Can be used by the following roles assigned at the organization scope:
+- ORG_ADMIN
+
 
 ### Example
 

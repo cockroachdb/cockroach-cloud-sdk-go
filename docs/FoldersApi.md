@@ -218,6 +218,15 @@ List contents of a folder
 
 Set `folder_id` to 'root' to list root level contents.  Sort order: Folders sorted by name, followed by Clusters sorted by name.
 
+Can be used by the following roles assigned at the organization or cluster scope:
+- ORG_ADMIN
+- CLUSTER_ADMIN
+- CLUSTER_OPERATOR_WRITER
+- CLUSTER_DEVELOPER
+- FOLDER_ADMIN
+- FOLDER_MOVER
+
+
 ### Example
 
 ```go
@@ -295,6 +304,8 @@ Name | Type | Description  | Notes
 List folders owned by an organization
 
 Sort order: Folder name
+
+
 
 ### Example
 

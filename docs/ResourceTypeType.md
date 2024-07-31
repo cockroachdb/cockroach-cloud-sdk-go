@@ -1,7 +1,7 @@
 # ResourceTypeType
 
 ## Enum
->  - ORGANIZATION: An organization.  - CLUSTER: A cluster resource.  - FOLDER: Limited Access: A folder resource.
+>  - ORGANIZATION: An organization.  - CLUSTER: A cluster resource.  - FOLDER: Preview: A folder resource.
 
 * `ORGANIZATION` (value: `"ORGANIZATION"`)
 
