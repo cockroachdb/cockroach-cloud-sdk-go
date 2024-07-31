@@ -15,6 +15,11 @@ Method | HTTP request | Description
 
 Get the version upgrade deferral policy for a cluster.
 
+Can be used by the following roles assigned at the organization or cluster scope:
+- CLUSTER_ADMIN
+- CLUSTER_OPERATOR_WRITER
+
+
 ### Example
 
 ```go
@@ -81,6 +86,11 @@ Name | Type | Description  | Notes
 > ClusterVersionDeferral SetClusterVersionDeferral(ctx, clusterId).ClusterVersionDeferral(clusterVersionDeferral).Execute()
 
 Set the version upgrade deferral policy for a cluster
+
+Can be used by the following roles assigned at the organization or cluster scope:
+- CLUSTER_ADMIN
+- CLUSTER_OPERATOR_WRITER
+
 
 ### Example
 

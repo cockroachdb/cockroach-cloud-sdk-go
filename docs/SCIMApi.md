@@ -1226,6 +1226,10 @@ Search a group by ID
 
 Similar to GetGroup however search parameters are passed via the POST body. See https://www.rfc-editor.org/rfc/rfc7644.html#section-3.4.3 for more details.
 
+Can be used by the following roles assigned at the organization scope:
+- ORG_ADMIN
+
+
 ### Example
 
 ```go
@@ -1297,6 +1301,10 @@ Search groups
 
 Similar to GetGroups however search parameters are passed via the POST body. See https://www.rfc-editor.org/rfc/rfc7644.html#section-3.4.3 for more details.
 
+Can be used by the following roles assigned at the organization scope:
+- ORG_ADMIN
+
+
 ### Example
 
 ```go
@@ -1361,6 +1369,10 @@ Name | Type | Description  | Notes
 Search for a user by ID
 
 Similar to GetUser however search parameters are passed via the POST body. See https://www.rfc-editor.org/rfc/rfc7644.html#section-3.4.3 for more details.
+
+Can be used by the following roles assigned at the organization scope:
+- ORG_ADMIN
+
 
 ### Example
 
@@ -1432,6 +1444,10 @@ Name | Type | Description  | Notes
 Search Users
 
 Similar to GetUsers however search parameters are passed via the POST body. See https://www.rfc-editor.org/rfc/rfc7644.html#section-3.4.3 for more details.
+
+Can be used by the following roles assigned at the organization scope:
+- ORG_ADMIN
+
 
 ### Example
 

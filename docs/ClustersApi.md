@@ -166,6 +166,8 @@ Can be used by the following roles assigned at the organization or cluster scope
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
 - CLUSTER_DEVELOPER
+- FOLDER_ADMIN
+- FOLDER_MOVER
 
 
 ### Example
@@ -240,6 +242,8 @@ Can be used by the following roles assigned at the organization or cluster scope
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
 - CLUSTER_DEVELOPER
+- FOLDER_ADMIN
+- FOLDER_MOVER
 
 
 ### Example

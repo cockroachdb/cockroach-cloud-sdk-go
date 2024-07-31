@@ -24,6 +24,11 @@ Method | HTTP request | Description
 
 Add a connection to a cluster's private endpoint service.
 
+Can be used by the following roles assigned at the organization or cluster scope:
+- CLUSTER_ADMIN
+- CLUSTER_OPERATOR_WRITER
+
+
 ### Example
 
 ```go
@@ -239,6 +244,11 @@ Name | Type | Description  | Notes
 Delete a connection from a cluster's private endpoint service.
 
 Remove a private endpoint from a service's trusted endpoints list. Caller should make sure to URL encode the endpoint_id before calling this method.
+
+Can be used by the following roles assigned at the organization or cluster scope:
+- CLUSTER_ADMIN
+- CLUSTER_OPERATOR_WRITER
+
 
 ### Example
 
@@ -456,6 +466,11 @@ Name | Type | Description  | Notes
 > PrivateEndpointConnections ListPrivateEndpointConnections(ctx, clusterId).Execute()
 
 List all connections to a cluster's private endpoint service.
+
+Can be used by the following roles assigned at the organization or cluster scope:
+- CLUSTER_ADMIN
+- CLUSTER_OPERATOR_WRITER
+
 
 ### Example
 

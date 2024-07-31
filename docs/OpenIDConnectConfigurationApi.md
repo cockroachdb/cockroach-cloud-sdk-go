@@ -18,6 +18,10 @@ Method | HTTP request | Description
 
 Create an API OIDC configuration
 
+Can be used by the following roles assigned at the organization scope:
+- ORG_ADMIN
+
+
 ### Example
 
 ```go
@@ -80,6 +84,10 @@ Name | Type | Description  | Notes
 > ApiOidcConfig DeleteApiOidcConfig(ctx, id).Execute()
 
 Delete an API OIDC configuration
+
+Can be used by the following roles assigned at the organization scope:
+- ORG_ADMIN
+
 
 ### Example
 
@@ -148,6 +156,10 @@ Name | Type | Description  | Notes
 
 Get an API OIDC configuration
 
+Can be used by the following roles assigned at the organization scope:
+- ORG_ADMIN
+
+
 ### Example
 
 ```go
@@ -214,6 +226,10 @@ Name | Type | Description  | Notes
 > ListApiOidcConfigResponse ListApiOidcConfig(ctx).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).Execute()
 
 List all API OIDC configurations
+
+Can be used by the following roles assigned at the organization scope:
+- ORG_ADMIN
+
 
 ### Example
 
@@ -284,6 +300,10 @@ Name | Type | Description  | Notes
 > ApiOidcConfig UpdateApiOidcConfig(ctx, id).ApiOidcConfig1(apiOidcConfig1).Execute()
 
 Update an API OIDC configuration
+
+Can be used by the following roles assigned at the organization scope:
+- ORG_ADMIN
+
 
 ### Example
 
