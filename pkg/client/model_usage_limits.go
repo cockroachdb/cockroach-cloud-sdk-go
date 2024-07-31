@@ -22,6 +22,8 @@ package client
 type UsageLimits struct {
 	// provisioned_capacity is the maximum number of request units that the cluster can consume per second. Once this limit is reached, operation latency may increase due to throttling. It is an error for this to be zero.
 	ProvisionedCapacity *int64 `json:"provisioned_capacity,omitempty,string"`
+	// provisioned_vcpus is the maximum number of vCPUs that the cluster can use. Once this limit is reached, operation latency may increase due to throttling. It is an error for this to be zero.
+	ProvisionedVcpus *int64 `json:"provisioned_vcpus,omitempty,string"`
 	// request_unit_limit is the maximum number of request units that the cluster can consume during the month. If this limit is exceeded, then the cluster is disabled until the limit is increased, or until the beginning of the next month when more free request units are granted. It is an error for this to be zero.
 	RequestUnitLimit *int64 `json:"request_unit_limit,omitempty,string"`
 	// storage_mib_limit is the maximum number of Mebibytes of storage that the cluster can have at any time during the month. If this limit is exceeded, then the cluster is throttled; only one SQL connection is allowed at a time, with the expectation that it is used to delete data to reduce storage usage. It is an error for this to be zero.
@@ -49,6 +51,20 @@ func (o *UsageLimits) GetProvisionedCapacity() int64 {
 // SetProvisionedCapacity gets a reference to the given int64 and assigns it to the ProvisionedCapacity field.
 func (o *UsageLimits) SetProvisionedCapacity(v int64) {
 	o.ProvisionedCapacity = &v
+}
+
+// GetProvisionedVcpus returns the ProvisionedVcpus field value if set, zero value otherwise.
+func (o *UsageLimits) GetProvisionedVcpus() int64 {
+	if o == nil || o.ProvisionedVcpus == nil {
+		var ret int64
+		return ret
+	}
+	return *o.ProvisionedVcpus
+}
+
+// SetProvisionedVcpus gets a reference to the given int64 and assigns it to the ProvisionedVcpus field.
+func (o *UsageLimits) SetProvisionedVcpus(v int64) {
+	o.ProvisionedVcpus = &v
 }
 
 // GetRequestUnitLimit returns the RequestUnitLimit field value if set, zero value otherwise.

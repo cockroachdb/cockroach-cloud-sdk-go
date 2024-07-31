@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ProvisionedCapacity** | Pointer to **int64** | provisioned_capacity is the maximum number of request units that the cluster can consume per second. Once this limit is reached, operation latency may increase due to throttling. It is an error for this to be zero. | [optional] 
+**ProvisionedVcpus** | Pointer to **int64** | provisioned_vcpus is the maximum number of vCPUs that the cluster can use. Once this limit is reached, operation latency may increase due to throttling. It is an error for this to be zero. | [optional] 
 **RequestUnitLimit** | Pointer to **int64** | request_unit_limit is the maximum number of request units that the cluster can consume during the month. If this limit is exceeded, then the cluster is disabled until the limit is increased, or until the beginning of the next month when more free request units are granted. It is an error for this to be zero. | [optional] 
 **StorageMibLimit** | Pointer to **int64** | storage_mib_limit is the maximum number of Mebibytes of storage that the cluster can have at any time during the month. If this limit is exceeded, then the cluster is throttled; only one SQL connection is allowed at a time, with the expectation that it is used to delete data to reduce storage usage. It is an error for this to be zero. | [optional] 
 
@@ -30,6 +31,18 @@ GetProvisionedCapacity returns the ProvisionedCapacity field if non-nil, zero va
 `func (o *UsageLimits) SetProvisionedCapacity(v int64)`
 
 SetProvisionedCapacity sets ProvisionedCapacity field to given value.
+
+### GetProvisionedVcpus
+
+`func (o *UsageLimits) GetProvisionedVcpus() int64`
+
+GetProvisionedVcpus returns the ProvisionedVcpus field if non-nil, zero value otherwise.
+
+### SetProvisionedVcpus
+
+`func (o *UsageLimits) SetProvisionedVcpus(v int64)`
+
+SetProvisionedVcpus sets ProvisionedVcpus field to given value.
 
 ### GetRequestUnitLimit
 
