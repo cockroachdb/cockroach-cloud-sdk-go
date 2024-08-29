@@ -7,6 +7,7 @@ docs/AWSEndpointConnectionStatusType.md
 docs/AWSPrivateLinkServiceDetail.md
 docs/AddEgressRuleRequest.md
 docs/AddEgressRuleResponse.md
+docs/AddJWTIssuerRequest.md
 docs/AddPrivateEndpointConnectionRequest.md
 docs/AddPrivateEndpointTrustedOwnerRequest.md
 docs/AddPrivateEndpointTrustedOwnerResponse.md
@@ -111,7 +112,9 @@ docs/IPAllowlistsApi.md
 docs/Invoice.md
 docs/InvoiceAdjustment.md
 docs/InvoiceItem.md
-docs/KeysetPaginationRequest.md
+docs/JWTIssuer.md
+docs/JWTIssuerIdentityMapEntry.md
+docs/JWTIssuersApi.md
 docs/KeysetPaginationResponse.md
 docs/LineItem.md
 docs/ListAllowlistEntriesResponse.md
@@ -125,6 +128,7 @@ docs/ListDatabasesResponse.md
 docs/ListEgressRulesResponse.md
 docs/ListFoldersResponse.md
 docs/ListInvoicesResponse.md
+docs/ListJWTIssuersResponse.md
 docs/ListMajorClusterVersionsResponse.md
 docs/ListPrivateEndpointTrustedOwnersResponse.md
 docs/ListRoleGrantsResponse.md
@@ -195,7 +199,6 @@ docs/SetAWSEndpointConnectionStatusType.md
 docs/SetAwsEndpointConnectionStateRequest.md
 docs/SetClientCACertRequest.md
 docs/SetEgressTrafficPolicyRequest.md
-docs/SortOrder.md
 docs/Status.md
 docs/UpdateApiKeySpecification.md
 docs/UpdateCMEKStatusRequest.md
@@ -205,6 +208,7 @@ docs/UpdateDatabaseRequest.md
 docs/UpdateDatabaseRequest1.md
 docs/UpdateFolderSpecification.md
 docs/UpdateGroupRequest.md
+docs/UpdateJWTIssuerRequest.md
 docs/UpdateSQLUserPasswordRequest.md
 docs/UpdateServiceAccountSpecification.md
 docs/UpdateUserRequest.md
@@ -214,6 +218,7 @@ docs/UserRoleGrants.md
 docs/VersionDeferralApi.md
 model_add_egress_rule_request.go
 model_add_egress_rule_response.go
+model_add_jwt_issuer_request.go
 model_add_private_endpoint_connection_request.go
 model_add_private_endpoint_trusted_owner_request.go
 model_add_private_endpoint_trusted_owner_response.go
@@ -311,7 +316,8 @@ model_get_users_response.go
 model_invoice.go
 model_invoice_adjustment.go
 model_invoice_item.go
-model_keyset_pagination_request.go
+model_jwt_issuer.go
+model_jwt_issuer_identity_map_entry.go
 model_keyset_pagination_response.go
 model_line_item.go
 model_list_allowlist_entries_response.go
@@ -325,6 +331,7 @@ model_list_databases_response.go
 model_list_egress_rules_response.go
 model_list_folders_response.go
 model_list_invoices_response.go
+model_list_jwt_issuers_response.go
 model_list_major_cluster_versions_response.go
 model_list_private_endpoint_trusted_owners_response.go
 model_list_role_grants_response.go
@@ -384,7 +391,6 @@ model_set_aws_endpoint_connection_state_request.go
 model_set_aws_endpoint_connection_status_type.go
 model_set_client_ca_cert_request.go
 model_set_egress_traffic_policy_request.go
-model_sort_order.go
 model_sql_user.go
 model_status.go
 model_update_api_key_specification.go
@@ -395,6 +401,7 @@ model_update_database_request.go
 model_update_database_request_1.go
 model_update_folder_specification.go
 model_update_group_request.go
+model_update_jwt_issuer_request.go
 model_update_service_account_specification.go
 model_update_sql_user_password_request.go
 model_update_user_request.go

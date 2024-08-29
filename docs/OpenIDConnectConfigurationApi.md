@@ -4,11 +4,11 @@ All URIs are relative to *https://cockroachlabs.cloud*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateApiOidcConfig**](OpenIDConnectConfigurationApi.md#CreateApiOidcConfig) | **Post** /api/v1/api_oidc | Create an API OIDC configuration
-[**DeleteApiOidcConfig**](OpenIDConnectConfigurationApi.md#DeleteApiOidcConfig) | **Delete** /api/v1/api_oidc/{id} | Delete an API OIDC configuration
-[**GetApiOidcConfig**](OpenIDConnectConfigurationApi.md#GetApiOidcConfig) | **Get** /api/v1/api_oidc/{id} | Get an API OIDC configuration
-[**ListApiOidcConfig**](OpenIDConnectConfigurationApi.md#ListApiOidcConfig) | **Get** /api/v1/api_oidc | List all API OIDC configurations
-[**UpdateApiOidcConfig**](OpenIDConnectConfigurationApi.md#UpdateApiOidcConfig) | **Put** /api/v1/api_oidc/{id} | Update an API OIDC configuration
+[**CreateApiOidcConfig**](OpenIDConnectConfigurationApi.md#CreateApiOidcConfig) | **Post** /api/v1/api_oidc | Create an API OIDC configuration (Deprecated)
+[**DeleteApiOidcConfig**](OpenIDConnectConfigurationApi.md#DeleteApiOidcConfig) | **Delete** /api/v1/api_oidc/{id} | Delete an API OIDC configuration (Deprecated)
+[**GetApiOidcConfig**](OpenIDConnectConfigurationApi.md#GetApiOidcConfig) | **Get** /api/v1/api_oidc/{id} | Get an API OIDC configuration (Deprecated)
+[**ListApiOidcConfig**](OpenIDConnectConfigurationApi.md#ListApiOidcConfig) | **Get** /api/v1/api_oidc | List all API OIDC configurations (Deprecated)
+[**UpdateApiOidcConfig**](OpenIDConnectConfigurationApi.md#UpdateApiOidcConfig) | **Put** /api/v1/api_oidc/{id} | Update an API OIDC configuration (Deprecated)
 
 
 
@@ -16,7 +16,13 @@ Method | HTTP request | Description
 
 > ApiOidcConfig CreateApiOidcConfig(ctx).CreateApiOidcConfigRequest(createApiOidcConfigRequest).Execute()
 
-Create an API OIDC configuration
+Create an API OIDC configuration (Deprecated)
+
+This endpoint has been deprecated in favor of /jwt-issuers
+
+Can be used by the following roles assigned at the organization scope:
+- ORG_ADMIN
+
 
 ### Example
 
@@ -79,7 +85,13 @@ Name | Type | Description  | Notes
 
 > ApiOidcConfig DeleteApiOidcConfig(ctx, id).Execute()
 
-Delete an API OIDC configuration
+Delete an API OIDC configuration (Deprecated)
+
+This endpoint has been deprecated in favor of /jwt-issuers
+
+Can be used by the following roles assigned at the organization scope:
+- ORG_ADMIN
+
 
 ### Example
 
@@ -143,7 +155,13 @@ Name | Type | Description  | Notes
 
 > ApiOidcConfig GetApiOidcConfig(ctx, id).Execute()
 
-Get an API OIDC configuration
+Get an API OIDC configuration (Deprecated)
+
+This endpoint has been deprecated in favor of /jwt-issuers
+
+Can be used by the following roles assigned at the organization scope:
+- ORG_ADMIN
+
 
 ### Example
 
@@ -207,7 +225,13 @@ Name | Type | Description  | Notes
 
 > ListApiOidcConfigResponse ListApiOidcConfig(ctx).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).Execute()
 
-List all API OIDC configurations
+List all API OIDC configurations (Deprecated)
+
+This endpoint has been deprecated in favor of /jwt-issuers
+
+Can be used by the following roles assigned at the organization scope:
+- ORG_ADMIN
+
 
 ### Example
 
@@ -278,7 +302,13 @@ Name | Type | Description  | Notes
 
 > ApiOidcConfig UpdateApiOidcConfig(ctx, id).ApiOidcConfig1(apiOidcConfig1).Execute()
 
-Update an API OIDC configuration
+Update an API OIDC configuration (Deprecated)
+
+This endpoint has been deprecated in favor of /jwt-issuers
+
+Can be used by the following roles assigned at the organization scope:
+- ORG_ADMIN
+
 
 ### Example
 

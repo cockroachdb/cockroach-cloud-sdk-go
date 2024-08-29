@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AuthPrincipal** | Pointer to **string** | auth_principal is either the AWS Role ARN that identifies a role that the cluster account can assume to write to CloudWatch or the GCP Project ID that the cluster service account has permissions to write to for cloud logging. | [optional] 
+**AzureSharedKey** | Pointer to **string** | The primary or the secondary connected sources client authentication key. This is used to export logs to Azure Log Analytics. | [optional] 
 **Groups** | Pointer to [**[]LogExportGroup**](LogExportGroup.md) | groups is a collection of log group configurations to customize which CRDB channels get aggregated into different groups at the target sink. Unconfigured channels will be sent to the default locations via the settings above. | [optional] 
 **LogName** | Pointer to **string** | log_name is an identifier for the logs in the customer&#39;s log sink. | [optional] 
 **OmittedChannels** | Pointer to **[]string** | omitted_channels is a list of channels that the user does not want to export logs for. | [optional] 
@@ -34,6 +35,18 @@ GetAuthPrincipal returns the AuthPrincipal field if non-nil, zero value otherwis
 `func (o *LogExportClusterSpecification) SetAuthPrincipal(v string)`
 
 SetAuthPrincipal sets AuthPrincipal field to given value.
+
+### GetAzureSharedKey
+
+`func (o *LogExportClusterSpecification) GetAzureSharedKey() string`
+
+GetAzureSharedKey returns the AzureSharedKey field if non-nil, zero value otherwise.
+
+### SetAzureSharedKey
+
+`func (o *LogExportClusterSpecification) SetAzureSharedKey(v string)`
+
+SetAzureSharedKey sets AzureSharedKey field to given value.
 
 ### GetGroups
 

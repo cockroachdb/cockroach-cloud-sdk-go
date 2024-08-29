@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 **Name** | **string** |  | 
 **NetworkVisibility** | Pointer to [**NetworkVisibilityType**](NetworkVisibilityType.md) |  | [optional] 
 **OperationStatus** | [**ClusterStatusType**](ClusterStatusType.md) |  | 
-**ParentId** | Pointer to **string** | Limited Access: The parent ID is a folder ID. A \&quot;root\&quot; valued parent ID refers to a cluster at the root level. | [optional] 
+**ParentId** | Pointer to **string** | Preview: The parent ID is a folder ID. A \&quot;root\&quot; valued parent ID refers to a cluster at the root level. | [optional] 
 **Plan** | [**PlanType**](PlanType.md) |  | 
 **Regions** | [**[]Region**](Region.md) |  | 
 **SqlDns** | Pointer to **string** | sql_dns is the DNS name of SQL interface of the cluster. | [optional] 

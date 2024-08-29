@@ -4,10 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**InternalDns** | **string** | internal_dns is the internal DNS name of the cluster within the cloud provider&#39;s network. It is used to connect to the cluster with PrivateLink or VPC peering. | 
+**InternalDns** | **string** | internal_dns is the internal DNS name of the cluster within the cloud provider&#39;s network. It is used to connect to the cluster with AWS PrivateLink, Azure Private Link, and GCP VPC Peering, but not GCP Private Service Connect. | 
 **Name** | **string** |  | 
 **NodeCount** | **int32** | node_count will be 0 for Serverless clusters. | 
 **Primary** | Pointer to **bool** | primary is true only for the primary region in a Multi Region Serverless cluster. | [optional] 
+**PrivateEndpointDns** | **string** | private_endpoint_dns is the DNS name of the cluster which is used to connect to the cluster with GCP Private Service Connect. | 
 **SqlDns** | **string** | sql_dns is the DNS name of SQL interface of the cluster. It is used to connect to the cluster with IP allowlisting. | 
 **UiDns** | **string** | ui_dns is the DNS name used when connecting to the DB Console for the cluster. | 
 
@@ -15,7 +16,7 @@ Name | Type | Description | Notes
 
 ### NewRegion
 
-`func NewRegion(internalDns string, name string, nodeCount int32, sqlDns string, uiDns string, ) *Region`
+`func NewRegion(internalDns string, name string, nodeCount int32, privateEndpointDns string, sqlDns string, uiDns string, ) *Region`
 
 NewRegion instantiates a new Region object.
 This constructor will assign default values to properties that have it defined,
@@ -77,6 +78,18 @@ GetPrimary returns the Primary field if non-nil, zero value otherwise.
 `func (o *Region) SetPrimary(v bool)`
 
 SetPrimary sets Primary field to given value.
+
+### GetPrivateEndpointDns
+
+`func (o *Region) GetPrivateEndpointDns() string`
+
+GetPrivateEndpointDns returns the PrivateEndpointDns field if non-nil, zero value otherwise.
+
+### SetPrivateEndpointDns
+
+`func (o *Region) SetPrivateEndpointDns(v string)`
+
+SetPrivateEndpointDns sets PrivateEndpointDns field to given value.
 
 ### GetSqlDns
 

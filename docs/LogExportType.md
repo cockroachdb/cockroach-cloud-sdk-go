@@ -7,6 +7,8 @@
 
 * `GCP_CLOUD_LOGGING` (value: `"GCP_CLOUD_LOGGING"`)
 
+* `AZURE_LOG_ANALYTICS` (value: `"AZURE_LOG_ANALYTICS"`)
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

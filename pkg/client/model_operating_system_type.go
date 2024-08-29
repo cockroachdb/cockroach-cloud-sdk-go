@@ -25,7 +25,7 @@ import (
 // OperatingSystemType the model 'OperatingSystemType'.
 type OperatingSystemType string
 
-// List of OperatingSystem.Type.
+// List of OperatingSystemType.
 const (
 	OPERATINGSYSTEMTYPE_MAC     OperatingSystemType = "MAC"
 	OPERATINGSYSTEMTYPE_LINUX   OperatingSystemType = "LINUX"
@@ -60,7 +60,7 @@ func (v OperatingSystemType) IsValid() bool {
 	return false
 }
 
-// Ptr returns reference to OperatingSystem.Type value.
+// Ptr returns reference to OperatingSystemType value.
 func (v OperatingSystemType) Ptr() *OperatingSystemType {
 	return &v
 }

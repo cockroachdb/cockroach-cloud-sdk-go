@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 Create a new SQL user
 
-Can be used by the following roles assigned at the organization or cluster scope:
+Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN
 
 
@@ -87,7 +87,7 @@ Name | Type | Description  | Notes
 
 Delete a SQL user
 
-Can be used by the following roles assigned at the organization or cluster scope:
+Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN
 
 
@@ -160,7 +160,7 @@ List SQL users for a cluster
 
 Sort order: Username
 
-Can be used by the following roles assigned at the organization or cluster scope:
+Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
 - CLUSTER_DEVELOPER
@@ -240,7 +240,7 @@ Name | Type | Description  | Notes
 
 Update a SQL user's password
 
-Can be used by the following roles assigned at the organization or cluster scope:
+Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN
 
 

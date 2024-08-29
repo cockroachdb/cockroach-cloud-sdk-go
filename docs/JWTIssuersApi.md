@@ -1,22 +1,24 @@
-# APIKeys
+# JWTIssuers
 
 All URIs are relative to *https://cockroachlabs.cloud*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateApiKey**](APIKeysApi.md#CreateApiKey) | **Post** /api/v1/api-keys | Create a new API Key
-[**DeleteApiKey**](APIKeysApi.md#DeleteApiKey) | **Delete** /api/v1/api-keys/{id} | Delete an API Key
-[**GetApiKey**](APIKeysApi.md#GetApiKey) | **Get** /api/v1/api-keys/{id} | Get an API Key by ID
-[**ListApiKeys**](APIKeysApi.md#ListApiKeys) | **Get** /api/v1/api-keys | List API Keys
-[**UpdateApiKey**](APIKeysApi.md#UpdateApiKey) | **Patch** /api/v1/api-keys/{id} | Update an API Key
+[**AddJWTIssuer**](JWTIssuersApi.md#AddJWTIssuer) | **Post** /api/v1/jwt-issuers | Add a JWT Issuer
+[**DeleteJWTIssuer**](JWTIssuersApi.md#DeleteJWTIssuer) | **Delete** /api/v1/jwt-issuers/{id} | Delete a JWT Issuer
+[**GetJWTIssuer**](JWTIssuersApi.md#GetJWTIssuer) | **Get** /api/v1/jwt-issuers/{id} | Get a JWT Issuer
+[**ListJWTIssuers**](JWTIssuersApi.md#ListJWTIssuers) | **Get** /api/v1/jwt-issuers | List all JWT Issuers
+[**UpdateJWTIssuer**](JWTIssuersApi.md#UpdateJWTIssuer) | **Patch** /api/v1/jwt-issuers/{id} | Update a JWT Issuer
 
 
 
-## CreateApiKey
+## AddJWTIssuer
 
-> CreateApiKeyResponse CreateApiKey(ctx).CreateApiKeyRequest(createApiKeyRequest).Execute()
+> JWTIssuer AddJWTIssuer(ctx).AddJWTIssuerRequest(addJWTIssuerRequest).Execute()
 
-Create a new API Key
+Add a JWT Issuer
+
+Registers a JWT Issuer with the CockroachDB Cloud to allow verifying JWTs during API authentication
 
 Can be used by the following roles assigned at the organization scope:
 - ORG_ADMIN
@@ -35,17 +37,17 @@ import (
 )
 
 func main() {
-    createApiKeyRequest := *openapiclient.NewCreateApiKeyRequest("example name", "1234abcd-1234-1234-abcd-12345678abcd") // CreateApiKeyRequest | 
+    addJWTIssuerRequest := *openapiclient.NewAddJWTIssuerRequest("1234567890abcd", "https://jwt-issuer.example.com") // AddJWTIssuerRequest | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
-    resp, r, err := api_client.APIKeysApi.CreateApiKey(context.Background()).CreateApiKeyRequest(createApiKeyRequest).Execute()
+    resp, r, err := api_client.JWTIssuersApi.AddJWTIssuer(context.Background()).AddJWTIssuerRequest(addJWTIssuerRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `APIKeysApi.CreateApiKey``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `JWTIssuersApi.AddJWTIssuer``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateApiKey`: CreateApiKeyResponse
-    fmt.Fprintf(os.Stdout, "Response from `APIKeysApi.CreateApiKey`: %v\n", resp)
+    // response from `AddJWTIssuer`: JWTIssuer
+    fmt.Fprintf(os.Stdout, "Response from `JWTIssuersApi.AddJWTIssuer`: %v\n", resp)
 }
 ```
 
@@ -60,11 +62,11 @@ Name | Type | Description  | Notes
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createApiKeyRequest** | [**CreateApiKeyRequest**](CreateApiKeyRequest.md) |  | 
+ **addJWTIssuerRequest** | [**AddJWTIssuerRequest**](AddJWTIssuerRequest.md) |  | 
 
 ### Return type
 
-[**CreateApiKeyResponse**](CreateApiKeyResponse.md)
+[**JWTIssuer**](JWTIssuer.md)
 
 ### Authorization
 
@@ -79,11 +81,13 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## DeleteApiKey
+## DeleteJWTIssuer
 
-> ApiKey DeleteApiKey(ctx, id).Execute()
+> JWTIssuer DeleteJWTIssuer(ctx, id).Execute()
 
-Delete an API Key
+Delete a JWT Issuer
+
+Deletes the JWT Issuer configuration
 
 Can be used by the following roles assigned at the organization scope:
 - ORG_ADMIN
@@ -102,17 +106,17 @@ import (
 )
 
 func main() {
-    id := "id_example" // string | The ID of the api key.
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | The unique identifier of the JWT Issuer resource
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
-    resp, r, err := api_client.APIKeysApi.DeleteApiKey(context.Background(), id).Execute()
+    resp, r, err := api_client.JWTIssuersApi.DeleteJWTIssuer(context.Background(), id).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `APIKeysApi.DeleteApiKey``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `JWTIssuersApi.DeleteJWTIssuer``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `DeleteApiKey`: ApiKey
-    fmt.Fprintf(os.Stdout, "Response from `APIKeysApi.DeleteApiKey`: %v\n", resp)
+    // response from `DeleteJWTIssuer`: JWTIssuer
+    fmt.Fprintf(os.Stdout, "Response from `JWTIssuersApi.DeleteJWTIssuer`: %v\n", resp)
 }
 ```
 
@@ -121,7 +125,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | The ID of the api key. | 
+**id** | **string** | The unique identifier of the JWT Issuer resource | 
 
 ### Other Parameters
 
@@ -132,7 +136,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApiKey**](ApiKey.md)
+[**JWTIssuer**](JWTIssuer.md)
 
 ### Authorization
 
@@ -147,15 +151,16 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## GetApiKey
+## GetJWTIssuer
 
-> ApiKey GetApiKey(ctx, id).Execute()
+> JWTIssuer GetJWTIssuer(ctx, id).Execute()
 
-Get an API Key by ID
+Get a JWT Issuer
+
+Retrieves the JWT Issuer configuration
 
 Can be used by the following roles assigned at the organization scope:
 - ORG_ADMIN
-- CLUSTER_ADMIN
 
 
 ### Example
@@ -171,17 +176,17 @@ import (
 )
 
 func main() {
-    id := "id_example" // string | the ID of the api key.
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | The unique identifier of the JWT Issuer resource
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
-    resp, r, err := api_client.APIKeysApi.GetApiKey(context.Background(), id).Execute()
+    resp, r, err := api_client.JWTIssuersApi.GetJWTIssuer(context.Background(), id).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `APIKeysApi.GetApiKey``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `JWTIssuersApi.GetJWTIssuer``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetApiKey`: ApiKey
-    fmt.Fprintf(os.Stdout, "Response from `APIKeysApi.GetApiKey`: %v\n", resp)
+    // response from `GetJWTIssuer`: JWTIssuer
+    fmt.Fprintf(os.Stdout, "Response from `JWTIssuersApi.GetJWTIssuer`: %v\n", resp)
 }
 ```
 
@@ -190,7 +195,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | the ID of the api key. | 
+**id** | **string** | The unique identifier of the JWT Issuer resource | 
 
 ### Other Parameters
 
@@ -201,7 +206,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApiKey**](ApiKey.md)
+[**JWTIssuer**](JWTIssuer.md)
 
 ### Authorization
 
@@ -216,17 +221,16 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## ListApiKeys
+## ListJWTIssuers
 
-> ListApiKeysResponse ListApiKeys(ctx).ServiceAccountId(serviceAccountId).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).Execute()
+> ListJWTIssuersResponse ListJWTIssuers(ctx).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).Execute()
 
-List API Keys
+List all JWT Issuers
 
-Sort order: created_at
+Lists all the JWT Issuer configurations registered for the CockroachDB Cloud organization
 
 Can be used by the following roles assigned at the organization scope:
 - ORG_ADMIN
-- CLUSTER_ADMIN
 
 
 ### Example
@@ -243,7 +247,6 @@ import (
 )
 
 func main() {
-    serviceAccountId := "serviceAccountId_example" // string | Optional filter to limit the response to include only api keys for a specific service account. (optional)
     paginationPage := "paginationPage_example" // string |  (optional)
     paginationLimit := int32(56) // int32 |  (optional)
     paginationAsOfTime := time.Now() // time.Time |  (optional)
@@ -251,13 +254,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
-    resp, r, err := api_client.APIKeysApi.ListApiKeys(context.Background()).ServiceAccountId(serviceAccountId).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).Execute()
+    resp, r, err := api_client.JWTIssuersApi.ListJWTIssuers(context.Background()).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `APIKeysApi.ListApiKeys``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `JWTIssuersApi.ListJWTIssuers``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ListApiKeys`: ListApiKeysResponse
-    fmt.Fprintf(os.Stdout, "Response from `APIKeysApi.ListApiKeys`: %v\n", resp)
+    // response from `ListJWTIssuers`: ListJWTIssuersResponse
+    fmt.Fprintf(os.Stdout, "Response from `JWTIssuersApi.ListJWTIssuers`: %v\n", resp)
 }
 ```
 
@@ -269,11 +272,10 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Optional parameters can be passed through a pointer to the ListApiKeysOptions struct.
+Optional parameters can be passed through a pointer to the ListJWTIssuersOptions struct.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **serviceAccountId** | **string** | Optional filter to limit the response to include only api keys for a specific service account. | 
  **paginationPage** | **string** |  | 
  **paginationLimit** | **int32** |  | 
  **paginationAsOfTime** | **time.Time** |  | 
@@ -281,7 +283,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ListApiKeysResponse**](ListApiKeysResponse.md)
+[**ListJWTIssuersResponse**](ListJWTIssuersResponse.md)
 
 ### Authorization
 
@@ -296,11 +298,13 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## UpdateApiKey
+## UpdateJWTIssuer
 
-> ApiKey UpdateApiKey(ctx, id).UpdateApiKeySpecification(updateApiKeySpecification).Execute()
+> JWTIssuer UpdateJWTIssuer(ctx, id).UpdateJWTIssuerRequest(updateJWTIssuerRequest).Execute()
 
-Update an API Key
+Update a JWT Issuer
+
+Updates the JWT Issuer configuration
 
 Can be used by the following roles assigned at the organization scope:
 - ORG_ADMIN
@@ -319,18 +323,18 @@ import (
 )
 
 func main() {
-    id := "id_example" // string | The ID of the api key.
-    updateApiKeySpecification := *openapiclient.NewUpdateApiKeySpecification() // UpdateApiKeySpecification | 
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | The unique identifier of the JWT Issuer resource
+    updateJWTIssuerRequest := *openapiclient.NewUpdateJWTIssuerRequest() // UpdateJWTIssuerRequest | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
-    resp, r, err := api_client.APIKeysApi.UpdateApiKey(context.Background(), id).UpdateApiKeySpecification(updateApiKeySpecification).Execute()
+    resp, r, err := api_client.JWTIssuersApi.UpdateJWTIssuer(context.Background(), id).UpdateJWTIssuerRequest(updateJWTIssuerRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `APIKeysApi.UpdateApiKey``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `JWTIssuersApi.UpdateJWTIssuer``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateApiKey`: ApiKey
-    fmt.Fprintf(os.Stdout, "Response from `APIKeysApi.UpdateApiKey`: %v\n", resp)
+    // response from `UpdateJWTIssuer`: JWTIssuer
+    fmt.Fprintf(os.Stdout, "Response from `JWTIssuersApi.UpdateJWTIssuer`: %v\n", resp)
 }
 ```
 
@@ -339,7 +343,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | The ID of the api key. | 
+**id** | **string** | The unique identifier of the JWT Issuer resource | 
 
 ### Other Parameters
 
@@ -347,11 +351,11 @@ Name | Type | Description  | Notes
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateApiKeySpecification** | [**UpdateApiKeySpecification**](UpdateApiKeySpecification.md) |  | 
+ **updateJWTIssuerRequest** | [**UpdateJWTIssuerRequest**](UpdateJWTIssuerRequest.md) |  | 
 
 ### Return type
 
-[**ApiKey**](ApiKey.md)
+[**JWTIssuer**](JWTIssuer.md)
 
 ### Authorization
 
