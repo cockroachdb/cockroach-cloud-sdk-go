@@ -53,15 +53,12 @@ func main() {
 
 ### Path Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **clusterId** | **string** |  | 
 
 ### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateDatabase struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -127,7 +124,6 @@ func main() {
 
 ### Path Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
@@ -135,8 +131,6 @@ Name | Type | Description  | Notes
 **name** | **string** |  | 
 
 ### Other Parameters
-
-Other parameters are passed through a pointer to a apiDeleteDatabase struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -203,7 +197,6 @@ func main() {
 
 ### Path Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
@@ -211,8 +204,6 @@ Name | Type | Description  | Notes
 **name** | **string** |  | 
 
 ### Other Parameters
-
-Other parameters are passed through a pointer to a apiEditDatabase struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -279,15 +270,12 @@ func main() {
 
 ### Path Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **clusterId** | **string** |  | 
 
 ### Other Parameters
-
-Other parameters are passed through a pointer to a apiEditDatabase2 struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -360,7 +348,6 @@ func main() {
 
 ### Path Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
@@ -368,8 +355,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListDatabases struct via the builder pattern
-
+Optional parameters can be passed through a pointer to the ListDatabasesOptions struct.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------

@@ -50,12 +50,13 @@ func main() {
 
 ### Path Parameters
 
-
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListAuditLogs struct via the builder pattern
-
+Optional parameters can be passed through a pointer to the ListAuditLogsOptions struct.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------

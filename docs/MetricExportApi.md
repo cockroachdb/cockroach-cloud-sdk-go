@@ -56,15 +56,12 @@ func main() {
 
 ### Path Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **clusterId** | **string** |  | 
 
 ### Other Parameters
-
-Other parameters are passed through a pointer to a apiDeleteCloudWatchMetricExport struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -128,15 +125,12 @@ func main() {
 
 ### Path Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **clusterId** | **string** |  | 
 
 ### Other Parameters
-
-Other parameters are passed through a pointer to a apiDeleteDatadogMetricExport struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -195,15 +189,12 @@ func main() {
 
 ### Path Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **clusterId** | **string** |  | 
 
 ### Other Parameters
-
-Other parameters are passed through a pointer to a apiDeletePrometheusMetricExport struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -268,15 +259,12 @@ func main() {
 
 ### Path Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **clusterId** | **string** |  | 
 
 ### Other Parameters
-
-Other parameters are passed through a pointer to a apiEnableCloudWatchMetricExport struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -342,15 +330,12 @@ func main() {
 
 ### Path Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **clusterId** | **string** |  | 
 
 ### Other Parameters
-
-Other parameters are passed through a pointer to a apiEnableDatadogMetricExport struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -411,15 +396,12 @@ func main() {
 
 ### Path Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **clusterId** | **string** |  | 
 
 ### Other Parameters
-
-Other parameters are passed through a pointer to a apiEnablePrometheusMetricExport struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -484,15 +466,12 @@ func main() {
 
 ### Path Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **clusterId** | **string** |  | 
 
 ### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetCloudWatchMetricExportInfo struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -556,15 +535,12 @@ func main() {
 
 ### Path Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **clusterId** | **string** |  | 
 
 ### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetDatadogMetricExportInfo struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -623,15 +599,12 @@ func main() {
 
 ### Path Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **clusterId** | **string** |  | 
 
 ### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetPrometheusMetricExportInfo struct via the builder pattern
 
 
 Name | Type | Description  | Notes

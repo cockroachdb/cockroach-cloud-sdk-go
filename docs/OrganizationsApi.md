@@ -47,11 +47,11 @@ func main() {
 
 ### Path Parameters
 
-This endpoint does not need any parameter.
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 
 ### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetOrganizationInfo struct via the builder pattern
 
 
 ### Return type

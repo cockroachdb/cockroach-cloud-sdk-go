@@ -53,15 +53,12 @@ func main() {
 
 ### Path Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **clusterId** | **string** |  | 
 
 ### Other Parameters
-
-Other parameters are passed through a pointer to a apiAddAllowlistEntry struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -129,7 +126,6 @@ func main() {
 
 ### Path Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
@@ -138,8 +134,6 @@ Name | Type | Description  | Notes
 **entryCidrMask** | **int32** |  | 
 
 ### Other Parameters
-
-Other parameters are passed through a pointer to a apiAddAllowlistEntry2 struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -208,7 +202,6 @@ func main() {
 
 ### Path Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
@@ -217,8 +210,6 @@ Name | Type | Description  | Notes
 **cidrMask** | **int32** |  | 
 
 ### Other Parameters
-
-Other parameters are passed through a pointer to a apiDeleteAllowlistEntry struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -292,7 +283,6 @@ func main() {
 
 ### Path Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
@@ -300,8 +290,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListAllowlistEntries struct via the builder pattern
-
+Optional parameters can be passed through a pointer to the ListAllowlistEntriesOptions struct.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -371,7 +360,6 @@ func main() {
 
 ### Path Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
@@ -380,8 +368,6 @@ Name | Type | Description  | Notes
 **entryCidrMask** | **int32** |  | 
 
 ### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateAllowlistEntry struct via the builder pattern
 
 
 Name | Type | Description  | Notes

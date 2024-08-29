@@ -51,15 +51,12 @@ func main() {
 
 ### Path Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **clusterId** | **string** |  | 
 
 ### Other Parameters
-
-Other parameters are passed through a pointer to a apiDeleteClientCACert struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -123,15 +120,12 @@ func main() {
 
 ### Path Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **clusterId** | **string** |  | 
 
 ### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetClientCACert struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -196,15 +190,12 @@ func main() {
 
 ### Path Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **clusterId** | **string** |  | 
 
 ### Other Parameters
-
-Other parameters are passed through a pointer to a apiSetClientCACert struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -270,15 +261,12 @@ func main() {
 
 ### Path Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **clusterId** | **string** |  | 
 
 ### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateClientCACert struct via the builder pattern
 
 
 Name | Type | Description  | Notes

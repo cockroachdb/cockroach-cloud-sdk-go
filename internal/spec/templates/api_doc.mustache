@@ -56,16 +56,15 @@ func main() {
 
 ### Path Parameters
 
-{{^allParams}}This endpoint does not need any parameter.{{/allParams}}{{#pathParams}}{{#-last}}
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.{{/-last}}{{/pathParams}}{{#pathParams}}
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.{{#pathParams}}
 **{{paramName}}** | {{^isPrimitiveType}}{{^isFile}}[{{/isFile}}{{/isPrimitiveType}}**{{dataType}}**{{^isPrimitiveType}}{{^isFile}}]({{baseType}}.md){{/isFile}}{{/isPrimitiveType}} | {{description}} | {{#defaultValue}}[default to {{.}}]{{/defaultValue}}{{/pathParams}}
 
 ### Other Parameters
+{{#hasOptionalParams}}
 
-Other parameters are passed through a pointer to a api{{{nickname}}} struct via the builder pattern
-{{#allParams}}{{#-last}}
+Optional parameters can be passed through a pointer to the {{{nickname}}}Options struct.{{/hasOptionalParams}}{{#allParams}}{{#-last}}
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------{{/-last}}{{/allParams}}{{#allParams}}

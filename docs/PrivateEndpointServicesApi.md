@@ -54,15 +54,12 @@ func main() {
 
 ### Path Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **clusterId** | **string** | cluster_id is the id of the cluster to which the private endpoint connection will be added. | 
 
 ### Other Parameters
-
-Other parameters are passed through a pointer to a apiAddPrivateEndpointConnection struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -127,15 +124,12 @@ func main() {
 
 ### Path Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **clusterId** | **string** | cluster_id is the ID for the cluster. | 
 
 ### Other Parameters
-
-Other parameters are passed through a pointer to a apiAddPrivateEndpointTrustedOwner struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -200,15 +194,12 @@ func main() {
 
 ### Path Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **clusterId** | **string** | cluster_id is the ID for the cluster. | 
 
 ### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreatePrivateEndpointServices struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -270,7 +261,6 @@ func main() {
 
 ### Path Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
@@ -278,8 +268,6 @@ Name | Type | Description  | Notes
 **endpointId** | **string** | endpoint_id is the id of the private endpoint associated with a cluster&#39;s private endpoint service. | 
 
 ### Other Parameters
-
-Other parameters are passed through a pointer to a apiDeletePrivateEndpointConnection struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -345,7 +333,6 @@ func main() {
 
 ### Path Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
@@ -353,8 +340,6 @@ Name | Type | Description  | Notes
 **ownerId** | **string** | owner_id corresponds to the UUID of the private endpoint trusted owner entry. | 
 
 ### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetPrivateEndpointTrustedOwner struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -419,15 +404,12 @@ func main() {
 
 ### Path Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **clusterId** | **string** | cluster_id is the ID for the cluster. | 
 
 ### Other Parameters
-
-Other parameters are passed through a pointer to a apiListAwsEndpointConnections struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -486,15 +468,12 @@ func main() {
 
 ### Path Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **clusterId** | **string** | cluster_id is the ID for the cluster. | 
 
 ### Other Parameters
-
-Other parameters are passed through a pointer to a apiListPrivateEndpointConnections struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -560,15 +539,12 @@ func main() {
 
 ### Path Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **clusterId** | **string** | cluster_id is the ID for the cluster. | 
 
 ### Other Parameters
-
-Other parameters are passed through a pointer to a apiListPrivateEndpointServices struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -632,15 +608,12 @@ func main() {
 
 ### Path Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **clusterId** | **string** | cluster_id is the ID for the cluster. | 
 
 ### Other Parameters
-
-Other parameters are passed through a pointer to a apiListPrivateEndpointTrustedOwners struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -704,7 +677,6 @@ func main() {
 
 ### Path Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
@@ -712,8 +684,6 @@ Name | Type | Description  | Notes
 **ownerId** | **string** | owner_id corresponds to the UUID of the private endpoint trusted owner entry. | 
 
 ### Other Parameters
-
-Other parameters are passed through a pointer to a apiRemovePrivateEndpointTrustedOwner struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -783,7 +753,6 @@ func main() {
 
 ### Path Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
@@ -791,8 +760,6 @@ Name | Type | Description  | Notes
 **endpointId** | **string** | endpoint_id is the ID for the VPC endpoint on the customer&#39;s side. | 
 
 ### Other Parameters
-
-Other parameters are passed through a pointer to a apiSetAwsEndpointConnectionState struct via the builder pattern
 
 
 Name | Type | Description  | Notes
