@@ -1,3 +1,9 @@
+## 2.0.1
+
+BUG FIXES:
+
+* Update module name for v2 rev
+
 ## 2.0.0
 
 BREAKING CHANGES:
