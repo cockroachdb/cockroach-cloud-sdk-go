@@ -1,7 +1,7 @@
 # OrganizationUserRoleType
 
 ## Enum
->  - FOLDER_ADMIN: Limited Access: A folder admin role.  - FOLDER_MOVER: Limited Access: A folder mover role.
+>  - FOLDER_ADMIN: Preview: A folder admin role.  - FOLDER_MOVER: Preview: A folder mover role.
 
 * `BILLING_COORDINATOR` (value: `"BILLING_COORDINATOR"`)
 

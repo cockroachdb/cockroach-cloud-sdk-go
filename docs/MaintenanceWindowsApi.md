@@ -16,6 +16,11 @@ Method | HTTP request | Description
 
 Delete the maintenance window for a cluster
 
+Can be used by the following roles assigned at the organization, folder or cluster scope:
+- CLUSTER_ADMIN
+- CLUSTER_OPERATOR_WRITER
+
+
 ### Example
 
 ```go
@@ -80,6 +85,11 @@ Name | Type | Description  | Notes
 
 Get the maintenance window for a cluster
 
+Can be used by the following roles assigned at the organization, folder or cluster scope:
+- CLUSTER_ADMIN
+- CLUSTER_OPERATOR_WRITER
+
+
 ### Example
 
 ```go
@@ -143,6 +153,11 @@ Name | Type | Description  | Notes
 > MaintenanceWindow SetMaintenanceWindow(ctx, clusterId).MaintenanceWindow(maintenanceWindow).Execute()
 
 Set the maintenance window for a cluster
+
+Can be used by the following roles assigned at the organization, folder or cluster scope:
+- CLUSTER_ADMIN
+- CLUSTER_OPERATOR_WRITER
+
 
 ### Example
 

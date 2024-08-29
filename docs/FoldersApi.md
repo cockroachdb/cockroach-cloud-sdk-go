@@ -19,6 +19,10 @@ Method | HTTP request | Description
 
 Create a folder
 
+Can be used by the following roles assigned at the organization or folder scope:
+- FOLDER_ADMIN
+
+
 ### Example
 
 ```go
@@ -81,6 +85,10 @@ Name | Type | Description  | Notes
 > map[string]interface{} DeleteFolder(ctx, folderId).Execute()
 
 Delete a folder
+
+Can be used by the following roles assigned at the organization or folder scope:
+- FOLDER_ADMIN
+
 
 ### Example
 
@@ -145,6 +153,16 @@ Name | Type | Description  | Notes
 > FolderResource GetFolder(ctx, folderId).Execute()
 
 Get folder info for a folder
+
+Can be used by the following roles assigned at the organization or folder scope:
+- ORG_ADMIN
+- CLUSTER_ADMIN
+- CLUSTER_OPERATOR_WRITER
+- CLUSTER_DEVELOPER
+- CLUSTER_CREATOR
+- FOLDER_ADMIN
+- FOLDER_MOVER
+
 
 ### Example
 
@@ -211,6 +229,15 @@ Name | Type | Description  | Notes
 List contents of a folder
 
 Set `folder_id` to 'root' to list root level contents.  Sort order: Folders sorted by name, followed by Clusters sorted by name.
+
+Can be used by the following roles assigned at the organization, folder or cluster scope:
+- ORG_ADMIN
+- CLUSTER_ADMIN
+- CLUSTER_OPERATOR_WRITER
+- CLUSTER_DEVELOPER
+- FOLDER_ADMIN
+- FOLDER_MOVER
+
 
 ### Example
 
@@ -288,6 +315,16 @@ List folders owned by an organization
 
 Sort order: Folder name
 
+Can be used by the following roles assigned at the organization or folder scope:
+- ORG_ADMIN
+- CLUSTER_ADMIN
+- CLUSTER_OPERATOR_WRITER
+- CLUSTER_DEVELOPER
+- CLUSTER_CREATOR
+- FOLDER_ADMIN
+- FOLDER_MOVER
+
+
 ### Example
 
 ```go
@@ -360,6 +397,11 @@ Name | Type | Description  | Notes
 > FolderResource UpdateFolder(ctx, folderId).UpdateFolderSpecification(updateFolderSpecification).Execute()
 
 Update a folder
+
+Can be used by the following roles assigned at the organization or folder scope:
+- FOLDER_ADMIN
+- FOLDER_MOVER
+
 
 ### Example
 

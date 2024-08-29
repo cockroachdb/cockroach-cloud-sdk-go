@@ -22,7 +22,7 @@ import (
 	"fmt"
 )
 
-// ResourceTypeType  - ORGANIZATION: An organization.  - CLUSTER: A cluster resource.  - FOLDER: Limited Access: A folder resource.
+// ResourceTypeType  - ORGANIZATION: An organization.  - CLUSTER: A cluster resource.  - FOLDER: Preview: A folder resource.
 type ResourceTypeType string
 
 // List of ResourceType.Type.

@@ -1,5 +1,30 @@
+## 2.0.0
+
+BREAKING CHANGES:
+
+* EnablePrometheusMetricExport no longer accepts a map as the 3rd parameter.
+  From now on, an attempt will be made to rev the major version whenever
+  known breaking changes to the client are introduced.
+
+NEW FEATURES:
+
+* The private endpoint DNS url has been added to the Cluster resource.
+
+* The LogExport endpoints now support Azure.
+
+* Folders endpoints have moved from LIMITED ACCESS to PREVIEW.
+
+* New audit log actions were added.
+
+* Added new JWT Issuers resource.
+
+DEPRECATIONS:
+
+* ApiOidcConfig resource is deprecated and replaced with JWTIssuers resource.
 
 BUG FIXES:
+
+* various docs and example fixes were brought in from the openapi spec.
 
 * various api documentation template improvements including always showing ctx as a
   path param, fixing the name of the options struct, not showing an options

@@ -198,7 +198,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/scim/v2/Groups \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"displayName\":\"Test SCIM\",\"members\":[],\"schemas\":[\"urn:ietf:params:scim:schemas:core:2.0:Group\"]}'"
+            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/scim/v2/Groups \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"displayName\":\"Test SCIM\",\"members\":[],\"schemas\":[\"urn:ietf:params:scim:schemas:core:2.0:Group\"]}'"
           }
         ]
       }
@@ -207,7 +207,7 @@
       "post": {
         "operationId": "CockroachCloud_SearchGroups",
         "summary": "Search groups",
-        "description": "Similar to GetGroups however search parameters are passed via the POST body. See https://www.rfc-editor.org/rfc/rfc7644.html#section-3.4.3 for more details.",
+        "description": "Similar to GetGroups however search parameters are passed via the POST body. See https://www.rfc-editor.org/rfc/rfc7644.html#section-3.4.3 for more details.\n\nCan be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
         "requestBody": {
           "required": true,
           "content": {
@@ -286,7 +286,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/scim/v2/Groups/.search \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --data '{\"attributes\":\"string\",\"excludedAttributes\":\"string\",\"filter\":\"string\"}'"
+            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/scim/v2/Groups/.search \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"attributes\":\"string\",\"excludedAttributes\":\"string\",\"filter\":\"string\"}'"
           }
         ]
       },
@@ -373,7 +373,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/scim/v2/Groups/.search \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --data '{\"attributes\":\"string\",\"excludedAttributes\":\"string\",\"filter\":\"string\"}'"
+            "source": "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/scim/v2/Groups/.search \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"attributes\":\"string\",\"excludedAttributes\":\"string\",\"filter\":\"string\"}'"
           }
         ]
       }
@@ -615,51 +615,7 @@
                     }
                   ],
                   "schemas": [
-                    {
-                      "0": "u",
-                      "1": "r",
-                      "2": "n",
-                      "3": ":",
-                      "4": "i",
-                      "5": "e",
-                      "6": "t",
-                      "7": "f",
-                      "8": ":",
-                      "9": "p",
-                      "10": "a",
-                      "11": "r",
-                      "12": "a",
-                      "13": "m",
-                      "14": "s",
-                      "15": ":",
-                      "16": "s",
-                      "17": "c",
-                      "18": "i",
-                      "19": "m",
-                      "20": ":",
-                      "21": "s",
-                      "22": "c",
-                      "23": "h",
-                      "24": "e",
-                      "25": "m",
-                      "26": "a",
-                      "27": "s",
-                      "28": ":",
-                      "29": "c",
-                      "30": "o",
-                      "31": "r",
-                      "32": "e",
-                      "33": ":",
-                      "34": "2",
-                      "35": ".",
-                      "36": "0",
-                      "37": ":",
-                      "38": "G",
-                      "39": "r",
-                      "40": "o",
-                      "41": "u",
-                      "42": "p"
-                    }
+                    "urn:ietf:params:scim:schemas:core:2.0:Group"
                   ]
                 },
                 "required": [
@@ -738,7 +694,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/scim/v2/Groups/{id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"displayName\":\"Test SCIM\",\"id\":\"23a35c27-23d3-4c03-b4c5-6443c09e7173\",\"members\":[{\"display\":\"croach@example.com\",\"value\":\"45a35c27-23d3-4d03-c4c5-9043c09e7175\"}],\"schemas\":[\"urn:ietf:params:scim:schemas:core:2.0:Group\"]}'"
+            "source": "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/scim/v2/Groups/{id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"displayName\":\"Test SCIM\",\"id\":\"23a35c27-23d3-4c03-b4c5-6443c09e7173\",\"members\":[{\"display\":\"croach@example.com\",\"value\":\"45a35c27-23d3-4d03-c4c5-9043c09e7175\"}],\"schemas\":[\"urn:ietf:params:scim:schemas:core:2.0:Group\"]}'"
           }
         ]
       }
@@ -747,7 +703,7 @@
       "post": {
         "operationId": "CockroachCloud_SearchGroup",
         "summary": "Search a group by ID",
-        "description": "Similar to GetGroup however search parameters are passed via the POST body. See https://www.rfc-editor.org/rfc/rfc7644.html#section-3.4.3 for more details.",
+        "description": "Similar to GetGroup however search parameters are passed via the POST body. See https://www.rfc-editor.org/rfc/rfc7644.html#section-3.4.3 for more details.\n\nCan be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
         "parameters": [
           {
             "name": "id",
@@ -845,7 +801,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/scim/v2/Groups/{id}/.search \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --data '{\"attributes\":\"string\",\"excludedAttributes\":\"string\"}'"
+            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/scim/v2/Groups/{id}/.search \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"attributes\":\"string\",\"excludedAttributes\":\"string\"}'"
           }
         ]
       },
@@ -951,7 +907,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/scim/v2/Groups/{id}/.search \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --data '{\"attributes\":\"string\",\"excludedAttributes\":\"string\"}'"
+            "source": "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/scim/v2/Groups/{id}/.search \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"attributes\":\"string\",\"excludedAttributes\":\"string\"}'"
           }
         ]
       }
@@ -1608,7 +1564,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/scim/v2/Users \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"active\":true,\"displayName\":\"Carl Roach\",\"emails\":[{\"primary\":true,\"type\":\"work\",\"value\":\"croach@example.com\"}],\"externalId\":\"11ujl29u0le5T6Aj10h9\",\"name\":{\"familyName\":\"Roach\",\"givenName\":\"Carl\"},\"schemas\":[\"urn:ietf:params:scim:schemas:core:2.0:User\"],\"userName\":\"croach@example.com\"}'"
+            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/scim/v2/Users \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"active\":true,\"displayName\":\"Carl Roach\",\"emails\":[{\"primary\":true,\"type\":\"work\",\"value\":\"croach@example.com\"}],\"externalId\":\"11ujl29u0le5T6Aj10h9\",\"name\":{\"familyName\":\"Roach\",\"givenName\":\"Carl\"},\"schemas\":[\"urn:ietf:params:scim:schemas:core:2.0:User\"],\"userName\":\"croach@example.com\"}'"
           }
         ]
       }
@@ -1617,7 +1573,7 @@
       "post": {
         "operationId": "CockroachCloud_SearchUsers",
         "summary": "Search Users",
-        "description": "Similar to GetUsers however search parameters are passed via the POST body. See https://www.rfc-editor.org/rfc/rfc7644.html#section-3.4.3 for more details.",
+        "description": "Similar to GetUsers however search parameters are passed via the POST body. See https://www.rfc-editor.org/rfc/rfc7644.html#section-3.4.3 for more details.\n\nCan be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
         "requestBody": {
           "required": true,
           "content": {
@@ -1696,7 +1652,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/scim/v2/Users/.search \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --data '{\"attributes\":\"string\",\"excludedAttributes\":\"string\",\"filter\":\"string\"}'"
+            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/scim/v2/Users/.search \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"attributes\":\"string\",\"excludedAttributes\":\"string\",\"filter\":\"string\"}'"
           }
         ]
       },
@@ -1783,7 +1739,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/scim/v2/Users/.search \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --data '{\"attributes\":\"string\",\"excludedAttributes\":\"string\",\"filter\":\"string\"}'"
+            "source": "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/scim/v2/Users/.search \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"attributes\":\"string\",\"excludedAttributes\":\"string\",\"filter\":\"string\"}'"
           }
         ]
       }
@@ -2039,50 +1995,7 @@
                     "givenName": "Carl"
                   },
                   "schemas": [
-                    {
-                      "0": "u",
-                      "1": "r",
-                      "2": "n",
-                      "3": ":",
-                      "4": "i",
-                      "5": "e",
-                      "6": "t",
-                      "7": "f",
-                      "8": ":",
-                      "9": "p",
-                      "10": "a",
-                      "11": "r",
-                      "12": "a",
-                      "13": "m",
-                      "14": "s",
-                      "15": ":",
-                      "16": "s",
-                      "17": "c",
-                      "18": "i",
-                      "19": "m",
-                      "20": ":",
-                      "21": "s",
-                      "22": "c",
-                      "23": "h",
-                      "24": "e",
-                      "25": "m",
-                      "26": "a",
-                      "27": "s",
-                      "28": ":",
-                      "29": "c",
-                      "30": "o",
-                      "31": "r",
-                      "32": "e",
-                      "33": ":",
-                      "34": "2",
-                      "35": ".",
-                      "36": "0",
-                      "37": ":",
-                      "38": "U",
-                      "39": "s",
-                      "40": "e",
-                      "41": "r"
-                    }
+                    "urn:ietf:params:scim:schemas:core:2.0:User"
                   ]
                 },
                 "required": [
@@ -2161,7 +2074,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/scim/v2/Users/{id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"active\":true,\"emails\":[{\"display\":\"croach@example.com\",\"primary\":true,\"type\":\"work\",\"value\":\"croach@example.com\"}],\"name\":{\"familyName\":\"Roach\",\"givenName\":\"Carl\"},\"schemas\":[\"urn:ietf:params:scim:schemas:core:2.0:User\"]}'"
+            "source": "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/scim/v2/Users/{id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"active\":true,\"emails\":[{\"display\":\"croach@example.com\",\"primary\":true,\"type\":\"work\",\"value\":\"croach@example.com\"}],\"name\":{\"familyName\":\"Roach\",\"givenName\":\"Carl\"},\"schemas\":[\"urn:ietf:params:scim:schemas:core:2.0:User\"]}'"
           }
         ]
       }
@@ -2170,7 +2083,7 @@
       "post": {
         "operationId": "CockroachCloud_SearchUser",
         "summary": "Search for a user by ID",
-        "description": "Similar to GetUser however search parameters are passed via the POST body. See https://www.rfc-editor.org/rfc/rfc7644.html#section-3.4.3 for more details.",
+        "description": "Similar to GetUser however search parameters are passed via the POST body. See https://www.rfc-editor.org/rfc/rfc7644.html#section-3.4.3 for more details.\n\nCan be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
         "parameters": [
           {
             "name": "id",
@@ -2268,7 +2181,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/scim/v2/Users/{id}/.search \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --data '{\"attributes\":\"string\",\"excludedAttributes\":\"string\"}'"
+            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/scim/v2/Users/{id}/.search \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"attributes\":\"string\",\"excludedAttributes\":\"string\"}'"
           }
         ]
       },
@@ -2374,7 +2287,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/scim/v2/Users/{id}/.search \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --data '{\"attributes\":\"string\",\"excludedAttributes\":\"string\"}'"
+            "source": "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/scim/v2/Users/{id}/.search \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"attributes\":\"string\",\"excludedAttributes\":\"string\"}'"
           }
         ]
       }
@@ -2383,7 +2296,7 @@
       "get": {
         "operationId": "CockroachCloud_ListApiKeys",
         "summary": "List API Keys",
-        "description": "Sort order: created_at",
+        "description": "Sort order: created_at\n\nCan be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n- CLUSTER_ADMIN\n",
         "parameters": [
           {
             "name": "service_account_id",
@@ -2510,6 +2423,7 @@
       "post": {
         "operationId": "CockroachCloud_CreateApiKey",
         "summary": "Create a new API Key",
+        "description": "Can be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
         "requestBody": {
           "required": true,
           "content": {
@@ -2594,7 +2508,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/api-keys \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"name\":\"example name\",\"service_account_id\":\"1234abcd-1234-1234-abcd-12345678abcd\"}'"
+            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/api-keys \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"name\":\"example name\",\"service_account_id\":\"1234abcd-1234-1234-abcd-12345678abcd\"}'"
           }
         ]
       }
@@ -2603,6 +2517,7 @@
       "delete": {
         "operationId": "CockroachCloud_DeleteApiKey",
         "summary": "Delete an API Key",
+        "description": "Can be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
         "parameters": [
           {
             "name": "id",
@@ -2695,6 +2610,7 @@
       "get": {
         "operationId": "CockroachCloud_GetApiKey",
         "summary": "Get an API Key by ID",
+        "description": "Can be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n- CLUSTER_ADMIN\n",
         "parameters": [
           {
             "name": "id",
@@ -2787,6 +2703,7 @@
       "patch": {
         "operationId": "CockroachCloud_UpdateApiKey",
         "summary": "Update an API Key",
+        "description": "Can be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
         "parameters": [
           {
             "name": "id",
@@ -2882,7 +2799,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PATCH \\\n  --url https://cockroachlabs.cloud/api/v1/api-keys/{id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"name\":\"new name\"}'"
+            "source": "curl --request PATCH \\\n  --url https://cockroachlabs.cloud/api/v1/api-keys/{id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"name\":\"new name\"}'"
           }
         ]
       }
@@ -2890,7 +2807,8 @@
     "/api/v1/api_oidc": {
       "get": {
         "operationId": "CockroachCloud_ListApiOidcConfig",
-        "summary": "List all API OIDC configurations",
+        "summary": "List all API OIDC configurations (Deprecated)",
+        "description": "This endpoint has been deprecated in favor of /jwt-issuers\n\nCan be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
         "parameters": [
           {
             "name": "pagination.page",
@@ -2990,6 +2908,7 @@
             }
           }
         },
+        "deprecated": true,
         "tags": [
           "OpenID Connect Configuration"
         ],
@@ -3008,7 +2927,8 @@
       },
       "post": {
         "operationId": "CockroachCloud_CreateApiOidcConfig",
-        "summary": "Create an API OIDC configuration",
+        "summary": "Create an API OIDC configuration (Deprecated)",
+        "description": "This endpoint has been deprecated in favor of /jwt-issuers\n\nCan be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
         "requestBody": {
           "required": true,
           "content": {
@@ -3081,6 +3001,7 @@
             }
           }
         },
+        "deprecated": true,
         "tags": [
           "OpenID Connect Configuration"
         ],
@@ -3093,7 +3014,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/api_oidc \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"audience\":\"542c6390-bf38-4912-856b-8f31480e978b\",\"claim\":\"sub\",\"identity_map\":[{\"cc_identity\":\"\\\\1\",\"is_regex\":true,\"token_identity\":\"sso_(.*)\"},{\"cc_identity\":\"\\\\1\",\"is_regex\":true,\"token_identity\":\"gcp_(.*)\"}],\"jwks\":\"{\\\"keys\\\":[{\\\"e\\\":\\\"AQAB\\\",\\\"use\\\":\\\"sig\\\",\\\"kty\\\":\\\"RSA\\\",\\\"alg\\\":\\\"RS256\\\",\\\"n\\\":\\\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\\\",\\\"kid\\\":\\\"9341dedeee2d1869b657fa930300082fe26b3d92\\\"}]}\"}'"
+            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/api_oidc \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"audience\":\"542c6390-bf38-4912-856b-8f31480e978b\",\"claim\":\"sub\",\"identity_map\":[{\"cc_identity\":\"\\\\1\",\"is_regex\":true,\"token_identity\":\"sso_(.*)\"},{\"cc_identity\":\"\\\\1\",\"is_regex\":true,\"token_identity\":\"gcp_(.*)\"}],\"issuer\":\"theissuer\",\"jwks\":\"{\\\"keys\\\":[{\\\"e\\\":\\\"AQAB\\\",\\\"use\\\":\\\"sig\\\",\\\"kty\\\":\\\"RSA\\\",\\\"alg\\\":\\\"RS256\\\",\\\"n\\\":\\\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\\\",\\\"kid\\\":\\\"9341dedeee2d1869b657fa930300082fe26b3d92\\\"}]}\"}'"
           }
         ]
       }
@@ -3101,7 +3022,8 @@
     "/api/v1/api_oidc/{id}": {
       "delete": {
         "operationId": "CockroachCloud_DeleteApiOidcConfig",
-        "summary": "Delete an API OIDC configuration",
+        "summary": "Delete an API OIDC configuration (Deprecated)",
+        "description": "This endpoint has been deprecated in favor of /jwt-issuers\n\nCan be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
         "parameters": [
           {
             "name": "id",
@@ -3174,6 +3096,7 @@
             }
           }
         },
+        "deprecated": true,
         "tags": [
           "OpenID Connect Configuration"
         ],
@@ -3192,7 +3115,8 @@
       },
       "get": {
         "operationId": "CockroachCloud_GetApiOidcConfig",
-        "summary": "Get an API OIDC configuration",
+        "summary": "Get an API OIDC configuration (Deprecated)",
+        "description": "This endpoint has been deprecated in favor of /jwt-issuers\n\nCan be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
         "parameters": [
           {
             "name": "id",
@@ -3265,6 +3189,7 @@
             }
           }
         },
+        "deprecated": true,
         "tags": [
           "OpenID Connect Configuration"
         ],
@@ -3283,7 +3208,8 @@
       },
       "put": {
         "operationId": "CockroachCloud_UpdateApiOidcConfig",
-        "summary": "Update an API OIDC configuration",
+        "summary": "Update an API OIDC configuration (Deprecated)",
+        "description": "This endpoint has been deprecated in favor of /jwt-issuers\n\nCan be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
         "parameters": [
           {
             "name": "id",
@@ -3324,6 +3250,7 @@
                 "example": {
                   "audience": "542c6390-bf38-4912-856b-8f31480e978b",
                   "claim": "sub",
+                  "id": "1234abcd-1234-1234-abcd-12345678abcd",
                   "identity_map": [
                     {
                       "cc_identity": "\\1",
@@ -3336,6 +3263,7 @@
                       "token_identity": "gcp_(.*)"
                     }
                   ],
+                  "issuer": "theissuer",
                   "jwks": "{\"keys\":[{\"e\":\"AQAB\",\"use\":\"sig\",\"kty\":\"RSA\",\"alg\":\"RS256\",\"n\":\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\",\"kid\":\"9341dedeee2d1869b657fa930300082fe26b3d92\"}]}"
                 },
                 "required": [
@@ -3410,6 +3338,7 @@
             }
           }
         },
+        "deprecated": true,
         "tags": [
           "OpenID Connect Configuration"
         ],
@@ -3422,7 +3351,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/v1/api_oidc/{id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"audience\":\"542c6390-bf38-4912-856b-8f31480e978b\",\"claim\":\"sub\",\"identity_map\":[{\"cc_identity\":\"\\\\1\",\"is_regex\":true,\"token_identity\":\"sso_(.*)\"},{\"cc_identity\":\"\\\\1\",\"is_regex\":true,\"token_identity\":\"gcp_(.*)\"}],\"jwks\":\"{\\\"keys\\\":[{\\\"e\\\":\\\"AQAB\\\",\\\"use\\\":\\\"sig\\\",\\\"kty\\\":\\\"RSA\\\",\\\"alg\\\":\\\"RS256\\\",\\\"n\\\":\\\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\\\",\\\"kid\\\":\\\"9341dedeee2d1869b657fa930300082fe26b3d92\\\"}]}\"}'"
+            "source": "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/v1/api_oidc/{id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"audience\":\"542c6390-bf38-4912-856b-8f31480e978b\",\"claim\":\"sub\",\"id\":\"1234abcd-1234-1234-abcd-12345678abcd\",\"identity_map\":[{\"cc_identity\":\"\\\\1\",\"is_regex\":true,\"token_identity\":\"sso_(.*)\"},{\"cc_identity\":\"\\\\1\",\"is_regex\":true,\"token_identity\":\"gcp_(.*)\"}],\"issuer\":\"theissuer\",\"jwks\":\"{\\\"keys\\\":[{\\\"e\\\":\\\"AQAB\\\",\\\"use\\\":\\\"sig\\\",\\\"kty\\\":\\\"RSA\\\",\\\"alg\\\":\\\"RS256\\\",\\\"n\\\":\\\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\\\",\\\"kid\\\":\\\"9341dedeee2d1869b657fa930300082fe26b3d92\\\"}]}\"}'"
           }
         ]
       }
@@ -3664,7 +3593,7 @@
             "description": "If `true`, show clusters that have been deleted or failed to initialize.\nNote that inactive clusters will only be included if the requesting user\nhas organization-scoped cluster read permissions.",
             "schema": {
               "type": "boolean",
-              "default": "false"
+              "default": false
             }
           },
           {
@@ -3857,7 +3786,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"name\":\"test-cluster\",\"provider\":\"GCP\",\"spec\":{\"serverless\":{\"regions\":[\"us-central1\"],\"spend_limit\":0}}}'"
+            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"name\":\"test-cluster\",\"provider\":\"GCP\",\"spec\":{\"serverless\":{\"regions\":[\"us-central1\"],\"spend_limit\":0}}}'"
           }
         ]
       }
@@ -3887,7 +3816,7 @@
             "description": "Optional filter to only show regions available for serverless clusters.",
             "schema": {
               "type": "boolean",
-              "default": "false"
+              "default": false
             }
           },
           {
@@ -4003,7 +3932,7 @@
       "delete": {
         "operationId": "CockroachCloud_DeleteCluster",
         "summary": "Delete a cluster and all of its data",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -4089,7 +4018,7 @@
       "get": {
         "operationId": "CockroachCloud_GetCluster",
         "summary": "Get extended information about a cluster",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- ORG_ADMIN\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n- CLUSTER_DEVELOPER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- ORG_ADMIN\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n- CLUSTER_DEVELOPER\n- FOLDER_ADMIN\n- FOLDER_MOVER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -4175,7 +4104,7 @@
       "patch": {
         "operationId": "CockroachCloud_UpdateCluster",
         "summary": "Scale, edit or upgrade a cluster",
-        "description": "In addition to adding nodes and changing cluster fields, the PATCH Cluster endpoint can be used to upgrade the cluster version. A cluster can be upgraded when its `upgrade_status` field is equal to `UPGRADE_AVAILABLE`. To begin the upgrade, PATCH `{\"upgrade_status\": \"MAJOR_UPGRADE_RUNNING\"}` to this endpoint. Multi-node clusters will undergo a rolling upgrade and will remain available, but single-node clusters will be briefly unavailable while the upgrade takes place. Upgrades will be finalized automatically after 72 hours but can be manually finalized by sending a PATCH containing `{\"upgrade_status\": \"FINALIZED\"}` to this endpoint. Before the cluster is finalized, it can be rolled back by sending a PATCH containing `{\"upgrade_status\": \"ROLLBACK_RUNNING\"}`. Version upgrade operations cannot be performed simultaneously with other update operations.\n\nCan be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "In addition to adding nodes and changing cluster fields, the PATCH Cluster endpoint can be used to upgrade the cluster version. A cluster can be upgraded when its `upgrade_status` field is equal to `UPGRADE_AVAILABLE`. To begin the upgrade, PATCH `{\"upgrade_status\": \"MAJOR_UPGRADE_RUNNING\"}` to this endpoint. Multi-node clusters will undergo a rolling upgrade and will remain available, but single-node clusters will be briefly unavailable while the upgrade takes place. Upgrades will be finalized automatically after 72 hours but can be manually finalized by sending a PATCH containing `{\"upgrade_status\": \"FINALIZED\"}` to this endpoint. Before the cluster is finalized, it can be rolled back by sending a PATCH containing `{\"upgrade_status\": \"ROLLBACK_RUNNING\"}`. Version upgrade operations cannot be performed simultaneously with other update operations.\n\nCan be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -4264,7 +4193,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PATCH \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"dedicated\":{\"hardware\":{\"machine_spec\":{\"machine_type\":\"n2-standard-8\"}},\"region_nodes\":{\"us-central1\":5,\"us-west1\":3}}}'"
+            "source": "curl --request PATCH \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"dedicated\":{\"hardware\":{\"machine_spec\":{\"machine_type\":\"n2-standard-8\"}},\"region_nodes\":{\"us-central1\":5,\"us-west1\":3}}}'"
           }
         ]
       }
@@ -4273,7 +4202,7 @@
       "delete": {
         "operationId": "CockroachCloud_DeleteClientCACert",
         "summary": "Delete Client CA Cert for a cluster",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -4359,7 +4288,7 @@
       "get": {
         "operationId": "CockroachCloud_GetClientCACert",
         "summary": "Get Client CA Cert information for a cluster",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -4445,7 +4374,7 @@
       "patch": {
         "operationId": "CockroachCloud_UpdateClientCACert",
         "summary": "Update Client CA Cert for a cluster",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -4543,14 +4472,14 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PATCH \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/client-ca-cert \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"x509_pem_cert\":\"-----BEGIN CERTIFICATE-----...\"}'"
+            "source": "curl --request PATCH \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/client-ca-cert \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"x509_pem_cert\":\"-----BEGIN CERTIFICATE-----...\"}'"
           }
         ]
       },
       "post": {
         "operationId": "CockroachCloud_SetClientCACert",
         "summary": "Set Client CA Cert for a cluster",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -4651,7 +4580,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/client-ca-cert \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"x509_pem_cert\":\"-----BEGIN CERTIFICATE-----...\"}'"
+            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/client-ca-cert \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"x509_pem_cert\":\"-----BEGIN CERTIFICATE-----...\"}'"
           }
         ]
       }
@@ -4660,7 +4589,7 @@
       "get": {
         "operationId": "CockroachCloud_GetCMEKClusterInfo",
         "summary": "Get CMEK-related information for a cluster",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -4746,7 +4675,7 @@
       "patch": {
         "operationId": "CockroachCloud_UpdateCMEKStatus",
         "summary": "Update the CMEK-related status for a cluster",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -4847,14 +4776,14 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PATCH \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/cmek \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"action\":\"REVOKE\"}'"
+            "source": "curl --request PATCH \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/cmek \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"action\":\"REVOKE\"}'"
           }
         ]
       },
       "post": {
         "operationId": "CockroachCloud_EnableCMEKSpec",
         "summary": "Enable CMEK for a cluster",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -4967,14 +4896,14 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/cmek \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --data '{\"region_specs\":[{\"key_spec\":{\"auth_principal\":\"arn:aws:iam::account:role/role-name-with-path\",\"type\":\"AWS_KMS\",\"uri\":\"arn:aws:kms:us-west-2:111122223333:key/id-of-kms-key\"},\"region\":\"us-central1\"}]}'"
+            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/cmek \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"region_specs\":[{\"key_spec\":{\"auth_principal\":\"arn:aws:iam::account:role/role-name-with-path\",\"type\":\"AWS_KMS\",\"uri\":\"arn:aws:kms:us-west-2:111122223333:key/id-of-kms-key\"},\"region\":\"us-central1\"}]}'"
           }
         ]
       },
       "put": {
         "operationId": "CockroachCloud_UpdateCMEKSpec",
         "summary": "Enable or update the CMEK spec for a cluster",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -5087,7 +5016,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/cmek \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --data '{\"region_specs\":[{\"key_spec\":{\"auth_principal\":\"arn:aws:iam::account:role/role-name-with-path\",\"type\":\"AWS_KMS\",\"uri\":\"arn:aws:kms:us-west-2:111122223333:key/id-of-kms-key\"},\"region\":\"us-central1\"}]}'"
+            "source": "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/cmek \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"region_specs\":[{\"key_spec\":{\"auth_principal\":\"arn:aws:iam::account:role/role-name-with-path\",\"type\":\"AWS_KMS\",\"uri\":\"arn:aws:kms:us-west-2:111122223333:key/id-of-kms-key\"},\"region\":\"us-central1\"}]}'"
           }
         ]
       }
@@ -5096,7 +5025,7 @@
       "get": {
         "operationId": "CockroachCloud_GetConnectionString",
         "summary": "Get a formatted generic connection string for a cluster",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- ORG_ADMIN\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n- CLUSTER_DEVELOPER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- ORG_ADMIN\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n- CLUSTER_DEVELOPER\n- FOLDER_ADMIN\n- FOLDER_MOVER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -5212,7 +5141,7 @@
       "get": {
         "operationId": "CockroachCloud_ListDatabases",
         "summary": "List databases for a cluster",
-        "description": "Sort order: Database name ascending\n\nCan be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n- CLUSTER_DEVELOPER\n",
+        "description": "Sort order: Database name ascending\n\nCan be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n- CLUSTER_DEVELOPER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -5333,7 +5262,7 @@
       "patch": {
         "operationId": "CockroachCloud_EditDatabase2",
         "summary": "Update a database",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -5439,14 +5368,14 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PATCH \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/databases \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"name\":\"example_database_name\",\"new_name\":\"example_new_database_name\"}'"
+            "source": "curl --request PATCH \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/databases \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"name\":\"example_database_name\",\"new_name\":\"example_new_database_name\"}'"
           }
         ]
       },
       "post": {
         "operationId": "CockroachCloud_CreateDatabase",
         "summary": "Create a new database",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -5547,7 +5476,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/databases \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"name\":\"example_database_name\"}'"
+            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/databases \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"name\":\"example_database_name\"}'"
           }
         ]
       }
@@ -5556,7 +5485,7 @@
       "delete": {
         "operationId": "CockroachCloud_DeleteDatabase",
         "summary": "Delete a database",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -5650,7 +5579,7 @@
       "patch": {
         "operationId": "CockroachCloud_EditDatabase",
         "summary": "Update a database",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -5760,7 +5689,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PATCH \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/databases/{name} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"name\":\"example_database_name\",\"new_name\":\"example_new_database_name\"}'"
+            "source": "curl --request PATCH \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/databases/{name} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"name\":\"example_database_name\",\"new_name\":\"example_new_database_name\"}'"
           }
         ]
       }
@@ -5769,7 +5698,7 @@
       "delete": {
         "operationId": "CockroachCloud_DeleteLogExport",
         "summary": "Delete the Log Export configuration for a cluster",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- ORG_ADMIN\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- ORG_ADMIN\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -5861,7 +5790,7 @@
       "get": {
         "operationId": "CockroachCloud_GetLogExportInfo",
         "summary": "Get the Log Export configuration for a cluster",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- ORG_ADMIN\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- ORG_ADMIN\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -5953,7 +5882,7 @@
       "post": {
         "operationId": "CockroachCloud_EnableLogExport",
         "summary": "Create or update the Log Export configuration for a cluster",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- ORG_ADMIN\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- ORG_ADMIN\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -5972,7 +5901,11 @@
                 "type": "object",
                 "properties": {
                   "auth_principal": {
-                    "description": "auth_principal is either the AWS Role ARN that identifies a role\nthat the cluster account can assume to write to CloudWatch or the\nGCP Project ID that the cluster service account has permissions to\nwrite to for cloud logging.",
+                    "type": "string",
+                    "title": "auth_principal is used in different contexts based on integration.\nCloudWatch: AWS Role ARN that identifies a role\nthat the cluster account can assume to write to CloudWatch\nGCP Cloud Logging: GCP Project ID that the cluster service account\nhas permissions to write to for cloud logging.\nAzure Log Analytics: CustomerID or WorkspaceID"
+                  },
+                  "azure_shared_key": {
+                    "description": "The primary or the secondary connected sources client authentication key.\nThis is used to export logs to Azure Log Analytics.",
                     "type": "string"
                   },
                   "groups": {
@@ -6023,6 +5956,7 @@
                     "SQL_PERF"
                   ],
                   "redact": true,
+                  "shared_key": "shared-key",
                   "type": "GCP_CLOUD_LOGGING"
                 },
                 "required": [
@@ -6109,7 +6043,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/logexport \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"auth_principal\":\"my-gcp-project-id\",\"groups\":[{\"channels\":[\"OPS\",\"HEALTH\"],\"log_name\":\"devops\",\"min_level\":\"WARNING\"}],\"log_name\":\"default\",\"omitted_channels\":[\"SESSIONS\",\"SQL_PERF\"],\"redact\":true,\"type\":\"GCP_CLOUD_LOGGING\"}'"
+            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/logexport \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"auth_principal\":\"my-gcp-project-id\",\"groups\":[{\"channels\":[\"OPS\",\"HEALTH\"],\"log_name\":\"devops\",\"min_level\":\"WARNING\"}],\"log_name\":\"default\",\"omitted_channels\":[\"SESSIONS\",\"SQL_PERF\"],\"redact\":true,\"shared_key\":\"shared-key\",\"type\":\"GCP_CLOUD_LOGGING\"}'"
           }
         ]
       }
@@ -6118,6 +6052,7 @@
       "delete": {
         "operationId": "CockroachCloud_DeleteMaintenanceWindow",
         "summary": "Delete the maintenance window for a cluster",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -6209,6 +6144,7 @@
       "get": {
         "operationId": "CockroachCloud_GetMaintenanceWindow",
         "summary": "Get the maintenance window for a cluster",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -6300,6 +6236,7 @@
       "put": {
         "operationId": "CockroachCloud_SetMaintenanceWindow",
         "summary": "Set the maintenance window for a cluster",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -6394,7 +6331,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/maintenance-window \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"offset_duration\":\"172800s\",\"window_duration\":\"21600s\"}'"
+            "source": "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/maintenance-window \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"offset_duration\":\"172800s\",\"window_duration\":\"21600s\"}'"
           }
         ]
       }
@@ -6403,7 +6340,7 @@
       "delete": {
         "operationId": "CockroachCloud_DeleteCloudWatchMetricExport",
         "summary": "Delete the CloudWatch Metric Export configuration for a cluster",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -6495,7 +6432,7 @@
       "get": {
         "operationId": "CockroachCloud_GetCloudWatchMetricExportInfo",
         "summary": "Get the CloudWatch Metric Export configuration for a cluster",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -6587,7 +6524,7 @@
       "post": {
         "operationId": "CockroachCloud_EnableCloudWatchMetricExport",
         "summary": "Create or update the CloudWatch Metric Export configuration for a cluster",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -6705,7 +6642,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/metricexport/cloudwatch \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"log_group_name\":\"example\",\"role_arn\":\"arn:aws:iam::account:role/ExampleRole\",\"target_region\":\"us-east-1\"}'"
+            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/metricexport/cloudwatch \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"log_group_name\":\"example\",\"role_arn\":\"arn:aws:iam::account:role/ExampleRole\",\"target_region\":\"us-east-1\"}'"
           }
         ]
       }
@@ -6714,7 +6651,7 @@
       "delete": {
         "operationId": "CockroachCloud_DeleteDatadogMetricExport",
         "summary": "Delete the Datadog Metric Export configuration for a cluster",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -6806,7 +6743,7 @@
       "get": {
         "operationId": "CockroachCloud_GetDatadogMetricExportInfo",
         "summary": "Get the Datadog Metric Export configuration for a cluster",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -6898,7 +6835,7 @@
       "post": {
         "operationId": "CockroachCloud_EnableDatadogMetricExport",
         "summary": "Create or update the Datadog Metric Export configuration for a cluster",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -7011,7 +6948,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/metricexport/datadog \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"api_key\":\"datadog_api_key\",\"site\":\"US1\"}'"
+            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/metricexport/datadog \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"api_key\":\"datadog_api_key\",\"site\":\"US1\"}'"
           }
         ]
       }
@@ -7019,7 +6956,8 @@
     "/api/v1/clusters/{cluster_id}/metricexport/prometheus": {
       "delete": {
         "operationId": "CockroachCloud_DeletePrometheusMetricExport",
-        "summary": "Delete the Prometheus Metric Export configuration for a cluster",
+        "summary": "Disable Prometheus Metric Export for a cluster",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -7111,6 +7049,7 @@
       "get": {
         "operationId": "CockroachCloud_GetPrometheusMetricExportInfo",
         "summary": "Get the Prometheus Metric Export configuration for a cluster",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -7201,7 +7140,8 @@
       },
       "post": {
         "operationId": "CockroachCloud_EnablePrometheusMetricExport",
-        "summary": "Create or update the Prometheus Metric Export configuration for a cluster",
+        "summary": "Enable Prometheus Metric Export for a cluster",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -7212,17 +7152,6 @@
             }
           }
         ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "example": {}
-              }
-            }
-          }
-        },
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -7297,7 +7226,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/metricexport/prometheus \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{}'"
+            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/metricexport/prometheus \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
           }
         ]
       }
@@ -7306,7 +7235,7 @@
       "get": {
         "operationId": "CockroachCloud_ListAllowlistEntries",
         "summary": "Get the IP allowlist and propagation status for a cluster",
-        "description": "Sort order: CIDR address\n\nCan be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n- CLUSTER_DEVELOPER\n",
+        "description": "Sort order: CIDR address\n\nCan be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n- CLUSTER_DEVELOPER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -7427,7 +7356,7 @@
       "post": {
         "operationId": "CockroachCloud_AddAllowlistEntry",
         "summary": "Add a new CIDR address to the IP allowlist",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -7516,7 +7445,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/allowlist \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"cidr_ip\":\"192.168.1.1\",\"cidr_mask\":32,\"name\":\"Example\",\"sql\":true,\"ui\":true}'"
+            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/allowlist \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"cidr_ip\":\"192.168.1.1\",\"cidr_mask\":32,\"name\":\"Example\",\"sql\":true,\"ui\":true}'"
           }
         ]
       }
@@ -7525,7 +7454,7 @@
       "delete": {
         "operationId": "CockroachCloud_DeleteAllowlistEntry",
         "summary": "Delete an IP allowlist entry",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -7624,13 +7553,11 @@
             "source": "curl --request DELETE \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/allowlist/{cidr_ip}/{cidr_mask} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
           }
         ]
-      }
-    },
-    "/api/v1/clusters/{cluster_id}/networking/allowlist/{entry.cidr_ip}/{entry.cidr_mask}": {
+      },
       "patch": {
         "operationId": "CockroachCloud_UpdateAllowlistEntry",
         "summary": "Update an IP allowlist entry",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -7641,7 +7568,7 @@
             }
           },
           {
-            "name": "entry.cidr_ip",
+            "name": "cidr_ip",
             "in": "path",
             "required": true,
             "schema": {
@@ -7649,7 +7576,7 @@
             }
           },
           {
-            "name": "entry.cidr_mask",
+            "name": "cidr_mask",
             "in": "path",
             "required": true,
             "schema": {
@@ -7760,14 +7687,14 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PATCH \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/allowlist/{entry.cidr_ip}/{entry.cidr_mask} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --data '{\"cidr_ip\":\"192.168.1.1\",\"cidr_mask\":32,\"name\":\"Example\",\"sql\":true,\"ui\":true}'"
+            "source": "curl --request PATCH \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/allowlist/{cidr_ip}/{cidr_mask} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"cidr_ip\":\"192.168.1.1\",\"cidr_mask\":32,\"name\":\"Example\",\"sql\":true,\"ui\":true}'"
           }
         ]
       },
       "put": {
         "operationId": "CockroachCloud_AddAllowlistEntry2",
         "summary": "Add a new CIDR address to the IP allowlist",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -7778,7 +7705,7 @@
             }
           },
           {
-            "name": "entry.cidr_ip",
+            "name": "cidr_ip",
             "in": "path",
             "required": true,
             "schema": {
@@ -7786,7 +7713,7 @@
             }
           },
           {
-            "name": "entry.cidr_mask",
+            "name": "cidr_mask",
             "in": "path",
             "required": true,
             "schema": {
@@ -7897,7 +7824,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/allowlist/{entry.cidr_ip}/{entry.cidr_mask} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --data '{\"cidr_ip\":\"192.168.1.1\",\"cidr_mask\":32,\"name\":\"Example\",\"sql\":true,\"ui\":true}'"
+            "source": "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/allowlist/{cidr_ip}/{cidr_mask} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"cidr_ip\":\"192.168.1.1\",\"cidr_mask\":32,\"name\":\"Example\",\"sql\":true,\"ui\":true}'"
           }
         ]
       }
@@ -7906,7 +7833,7 @@
       "get": {
         "operationId": "CockroachCloud_ListAwsEndpointConnections",
         "summary": "List all AwsEndpointConnections for a cluster",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -7995,7 +7922,7 @@
       "patch": {
         "operationId": "CockroachCloud_SetAwsEndpointConnectionState",
         "summary": "Set the AWS Endpoint Connection state",
-        "description": "The \"status\" in the response does not reflect the latest post-update\nstatus, but rather the status before the state is transitioned.\n\nCan be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "The \"status\" in the response does not reflect the latest post-update\nstatus, but rather the status before the state is transitioned.\n\nCan be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -8106,7 +8033,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PATCH \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/aws-endpoint-connections/{endpoint_id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"status\":\"AVAILABLE\"}'"
+            "source": "curl --request PATCH \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/aws-endpoint-connections/{endpoint_id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"status\":\"AVAILABLE\"}'"
           }
         ]
       }
@@ -8115,7 +8042,7 @@
       "get": {
         "operationId": "CockroachCloud_ListEgressRules",
         "summary": "List all egress rules associated with a cluster",
-        "description": "Sort order: Name\n\nCan be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Sort order: Name\n\nCan be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -8243,7 +8170,7 @@
       "post": {
         "operationId": "CockroachCloud_AddEgressRule",
         "summary": "Add an egress rule",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -8395,7 +8322,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/egress-rules \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"cluster_id\":\"35c4abb2-bb66-46d7-afed-25ebef5ed100\",\"description\":\"egress for GCP storage buckets\",\"destination\":\"storage.googleapis.com\",\"name\":\"roach-buckets\",\"ports\":[443,80],\"type\":\"FQDN\"}'"
+            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/egress-rules \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"cluster_id\":\"35c4abb2-bb66-46d7-afed-25ebef5ed100\",\"description\":\"egress for GCP storage buckets\",\"destination\":\"storage.googleapis.com\",\"name\":\"roach-buckets\",\"ports\":[443,80],\"type\":\"FQDN\"}'"
           }
         ]
       }
@@ -8404,7 +8331,7 @@
       "post": {
         "operationId": "CockroachCloud_SetEgressTrafficPolicy",
         "summary": "Outbound traffic management",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -8515,7 +8442,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/egress-rules/egress-traffic-policy \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"allow_all\":true,\"idempotency_key\":\"string\"}'"
+            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/egress-rules/egress-traffic-policy \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"allow_all\":true,\"idempotency_key\":\"string\"}'"
           }
         ]
       }
@@ -8524,7 +8451,7 @@
       "delete": {
         "operationId": "CockroachCloud_DeleteEgressRule",
         "summary": "Delete an existing egress rule",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -8634,7 +8561,7 @@
       "get": {
         "operationId": "CockroachCloud_GetEgressRule",
         "summary": "Get an existing egress rule",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -8736,7 +8663,7 @@
       "patch": {
         "operationId": "CockroachCloud_EditEgressRule",
         "summary": "Edit an existing egress rule",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -8884,7 +8811,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PATCH \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/egress-rules/{rule_id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"cluster_id\":\"35c4abb2-bb66-46d7-afed-25ebef5ed100\",\"ports\":[443,80],\"rule_id\":\"35c4abb2-bb66-46d7-afed-25ebef5ed2aa\"}'"
+            "source": "curl --request PATCH \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/egress-rules/{rule_id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"cluster_id\":\"35c4abb2-bb66-46d7-afed-25ebef5ed100\",\"ports\":[443,80],\"rule_id\":\"35c4abb2-bb66-46d7-afed-25ebef5ed2aa\"}'"
           }
         ]
       }
@@ -8893,6 +8820,7 @@
       "get": {
         "operationId": "CockroachCloud_ListPrivateEndpointConnections",
         "summary": "List all connections to a cluster's private endpoint service.",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -8985,6 +8913,7 @@
       "post": {
         "operationId": "CockroachCloud_AddPrivateEndpointConnection",
         "summary": "Add a connection to a cluster's private endpoint service.",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -9094,7 +9023,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/private-endpoint-connections \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"cluster_id\":\"35c4abb2-bb66-46d7-afed-25ebef5ed2aa\",\"endpoint_id\":\"e-65de2gf3\"}'"
+            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/private-endpoint-connections \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"cluster_id\":\"35c4abb2-bb66-46d7-afed-25ebef5ed2aa\",\"endpoint_id\":\"e-65de2gf3\"}'"
           }
         ]
       }
@@ -9103,7 +9032,7 @@
       "delete": {
         "operationId": "CockroachCloud_DeletePrivateEndpointConnection",
         "summary": "Delete a connection from a cluster's private endpoint service.",
-        "description": "Remove a private endpoint from a service's trusted endpoints list. Caller should make sure to URL encode the endpoint_id before calling this method.",
+        "description": "Remove a private endpoint from a service's trusted endpoints list. Caller should make sure to URL encode the endpoint_id before calling this method.\n\nCan be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -9207,7 +9136,7 @@
       "get": {
         "operationId": "CockroachCloud_ListPrivateEndpointServices",
         "summary": "List all PrivateEndpointServices for a cluster",
-        "description": "The internal_dns property from the regions field in the ListClusters response can be used to connect to PrivateEndpointServices.\n\nCan be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "The internal_dns property from the regions field in the ListClusters response can be used to connect to PrivateEndpointServices.\n\nCan be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -9294,7 +9223,7 @@
       "post": {
         "operationId": "CockroachCloud_CreatePrivateEndpointServices",
         "summary": "Create all PrivateEndpointServices for a cluster",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -9383,7 +9312,7 @@
       "get": {
         "operationId": "CockroachCloud_ListPrivateEndpointTrustedOwners",
         "summary": "List all private endpoint trusted owners for a cluster",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -9476,7 +9405,7 @@
       "post": {
         "operationId": "CockroachCloud_AddPrivateEndpointTrustedOwner",
         "summary": "Add a private endpoint trusted owner to a cluster",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -9590,7 +9519,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/private-endpoint-trusted-owners \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"external_owner_id\":\"012345678901\",\"type\":\"AWS_ACCOUNT_ID\"}'"
+            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/private-endpoint-trusted-owners \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"external_owner_id\":\"012345678901\",\"type\":\"AWS_ACCOUNT_ID\"}'"
           }
         ]
       }
@@ -9599,7 +9528,7 @@
       "delete": {
         "operationId": "CockroachCloud_RemovePrivateEndpointTrustedOwner",
         "summary": "Remove a private endpoint trusted owner from a cluster",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -9701,7 +9630,7 @@
       "get": {
         "operationId": "CockroachCloud_GetPrivateEndpointTrustedOwner",
         "summary": "Get a private endpoint trusted owner entry for a cluster",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -9805,7 +9734,7 @@
       "get": {
         "operationId": "CockroachCloud_ListClusterNodes",
         "summary": "List nodes for a cluster",
-        "description": "Sort order: Region name, node name\n\nCan be used by the following roles assigned at the organization or cluster scope:\n- ORG_ADMIN\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n- CLUSTER_DEVELOPER\n",
+        "description": "Sort order: Region name, node name\n\nCan be used by the following roles assigned at the organization, folder or cluster scope:\n- ORG_ADMIN\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n- CLUSTER_DEVELOPER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -9936,7 +9865,7 @@
       "get": {
         "operationId": "CockroachCloud_ListSQLUsers",
         "summary": "List SQL users for a cluster",
-        "description": "Sort order: Username\n\nCan be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n- CLUSTER_DEVELOPER\n",
+        "description": "Sort order: Username\n\nCan be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n- CLUSTER_DEVELOPER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -10057,7 +9986,7 @@
       "post": {
         "operationId": "CockroachCloud_CreateSQLUser",
         "summary": "Create a new SQL user",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -10163,7 +10092,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/sql-users \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"name\":\"example_username\",\"password\":\"example_password\"}'"
+            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/sql-users \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"name\":\"example_username\",\"password\":\"example_password\"}'"
           }
         ]
       }
@@ -10172,7 +10101,7 @@
       "delete": {
         "operationId": "CockroachCloud_DeleteSQLUser",
         "summary": "Delete a SQL user",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -10268,7 +10197,7 @@
       "put": {
         "operationId": "CockroachCloud_UpdateSQLUserPassword",
         "summary": "Update a SQL user's password",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -10377,7 +10306,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/sql-users/{name}/password \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"password\":\"example_new_password\"}'"
+            "source": "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/sql-users/{name}/password \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"password\":\"example_new_password\"}'"
           }
         ]
       }
@@ -10386,6 +10315,7 @@
       "get": {
         "operationId": "CockroachCloud_GetClusterVersionDeferral",
         "summary": "Get the version upgrade deferral policy for a cluster.",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -10477,6 +10407,7 @@
       "put": {
         "operationId": "CockroachCloud_SetClusterVersionDeferral",
         "summary": "Set the version upgrade deferral policy for a cluster",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -10571,7 +10502,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/version-deferral \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"deferral_policy\":\"FIXED_DEFERRAL\"}'"
+            "source": "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/version-deferral \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"deferral_policy\":\"FIXED_DEFERRAL\"}'"
           }
         ]
       }
@@ -10580,7 +10511,7 @@
       "get": {
         "operationId": "CockroachCloud_ListFolders",
         "summary": "List folders owned by an organization",
-        "description": "Sort order: Folder name",
+        "description": "Sort order: Folder name\n\nCan be used by the following roles assigned at the organization or folder scope:\n- ORG_ADMIN\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n- CLUSTER_DEVELOPER\n- CLUSTER_CREATOR\n- FOLDER_ADMIN\n- FOLDER_MOVER\n",
         "parameters": [
           {
             "name": "path",
@@ -10693,8 +10624,8 @@
         ],
         "x-badges": [
           {
-            "color": "red",
-            "label": "LIMITED ACCESS"
+            "color": "blue",
+            "label": "PREVIEW"
           }
         ],
         "x-codeSamples": [
@@ -10707,6 +10638,7 @@
       "post": {
         "operationId": "CockroachCloud_CreateFolder",
         "summary": "Create a folder",
+        "description": "Can be used by the following roles assigned at the organization or folder scope:\n- FOLDER_ADMIN\n",
         "requestBody": {
           "required": true,
           "content": {
@@ -10784,14 +10716,14 @@
         ],
         "x-badges": [
           {
-            "color": "red",
-            "label": "LIMITED ACCESS"
+            "color": "blue",
+            "label": "PREVIEW"
           }
         ],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/folders \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"name\":\"folder_name\",\"parent_id\":\"12345678-1234-1234-1234-123456789012\"}'"
+            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/folders \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"name\":\"folder_name\",\"parent_id\":\"12345678-1234-1234-1234-123456789012\"}'"
           }
         ]
       }
@@ -10800,6 +10732,7 @@
       "delete": {
         "operationId": "CockroachCloud_DeleteFolder",
         "summary": "Delete a folder",
+        "description": "Can be used by the following roles assigned at the organization or folder scope:\n- FOLDER_ADMIN\n",
         "parameters": [
           {
             "name": "folder_id",
@@ -10877,8 +10810,8 @@
         ],
         "x-badges": [
           {
-            "color": "red",
-            "label": "LIMITED ACCESS"
+            "color": "blue",
+            "label": "PREVIEW"
           }
         ],
         "x-codeSamples": [
@@ -10891,6 +10824,7 @@
       "get": {
         "operationId": "CockroachCloud_GetFolder",
         "summary": "Get folder info for a folder",
+        "description": "Can be used by the following roles assigned at the organization or folder scope:\n- ORG_ADMIN\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n- CLUSTER_DEVELOPER\n- CLUSTER_CREATOR\n- FOLDER_ADMIN\n- FOLDER_MOVER\n",
         "parameters": [
           {
             "name": "folder_id",
@@ -10968,8 +10902,8 @@
         ],
         "x-badges": [
           {
-            "color": "red",
-            "label": "LIMITED ACCESS"
+            "color": "blue",
+            "label": "PREVIEW"
           }
         ],
         "x-codeSamples": [
@@ -10982,6 +10916,7 @@
       "patch": {
         "operationId": "CockroachCloud_UpdateFolder",
         "summary": "Update a folder",
+        "description": "Can be used by the following roles assigned at the organization or folder scope:\n- FOLDER_ADMIN\n- FOLDER_MOVER\n",
         "parameters": [
           {
             "name": "folder_id",
@@ -11069,14 +11004,14 @@
         ],
         "x-badges": [
           {
-            "color": "red",
-            "label": "LIMITED ACCESS"
+            "color": "blue",
+            "label": "PREVIEW"
           }
         ],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PATCH \\\n  --url https://cockroachlabs.cloud/api/v1/folders/{folder_id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"name\":\"folder_name\",\"parent_id\":\"12345678-1234-1234-1234-123456789012\"}'"
+            "source": "curl --request PATCH \\\n  --url https://cockroachlabs.cloud/api/v1/folders/{folder_id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"name\":\"folder_name\",\"parent_id\":\"12345678-1234-1234-1234-123456789012\"}'"
           }
         ]
       }
@@ -11085,7 +11020,7 @@
       "get": {
         "operationId": "CockroachCloud_ListFolderContents",
         "summary": "List contents of a folder",
-        "description": "Set `folder_id` to 'root' to list root level contents.  Sort order: Folders sorted by name, followed by Clusters sorted by name.",
+        "description": "Set `folder_id` to 'root' to list root level contents.  Sort order: Folders sorted by name, followed by Clusters sorted by name.\n\nCan be used by the following roles assigned at the organization, folder or cluster scope:\n- ORG_ADMIN\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n- CLUSTER_DEVELOPER\n- FOLDER_ADMIN\n- FOLDER_MOVER\n",
         "parameters": [
           {
             "name": "folder_id",
@@ -11198,8 +11133,8 @@
         ],
         "x-badges": [
           {
-            "color": "red",
-            "label": "LIMITED ACCESS"
+            "color": "blue",
+            "label": "PREVIEW"
           }
         ],
         "x-codeSamples": [
@@ -11377,6 +11312,543 @@
         ]
       }
     },
+    "/api/v1/jwt-issuers": {
+      "get": {
+        "operationId": "CockroachCloud_ListJWTIssuers",
+        "summary": "List all JWT Issuers",
+        "description": "Lists all the JWT Issuer configurations registered for the CockroachDB Cloud organization\n\nCan be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
+        "parameters": [
+          {
+            "name": "pagination.page",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pagination.limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pagination.as_of_time",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "pagination.sort_order",
+            "in": "query",
+            "description": " - ASC: Sort in ascending order. This is the default unless otherwise specified.\n - DESC: Sort in descending order.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "ASC",
+                "DESC"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListJWTIssuersResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "JWT Issuers"
+        ],
+        "x-badges": [
+          {
+            "color": "red",
+            "label": "LIMITED ACCESS"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request GET \\\n  --url 'https://cockroachlabs.cloud/api/v1/jwt-issuers?pagination.page=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.as_of_time=SOME_STRING_VALUE&pagination.sort_order=SOME_STRING_VALUE' \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+          }
+        ]
+      },
+      "post": {
+        "operationId": "CockroachCloud_AddJWTIssuer",
+        "summary": "Add a JWT Issuer",
+        "description": "Registers a JWT Issuer with the CockroachDB Cloud to allow verifying JWTs during API authentication\n\nCan be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddJWTIssuerRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JWTIssuer"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "JWT Issuers"
+        ],
+        "x-badges": [
+          {
+            "color": "red",
+            "label": "LIMITED ACCESS"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/jwt-issuers \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"audience\":\"1234567890abcd\",\"claim\":\"email\",\"identity_map\":[{\"cc_identity\":\"\\\\1\",\"is_regex\":true,\"token_identity\":\"sso_(.*)\"}],\"issuer_url\":\"https://jwt-issuer.example.com\",\"jwks\":\"{\\\"keys\\\":[{\\\"e\\\":\\\"AQAB\\\",\\\"use\\\":\\\"sig\\\",\\\"kty\\\":\\\"RSA\\\",\\\"alg\\\":\\\"RS256\\\",\\\"n\\\":\\\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\\\",\\\"kid\\\":\\\"9341dedeee2d1869b657fa930300082fe26b3d92\\\"}]}\"}'"
+          }
+        ]
+      }
+    },
+    "/api/v1/jwt-issuers/{id}": {
+      "delete": {
+        "operationId": "CockroachCloud_DeleteJWTIssuer",
+        "summary": "Delete a JWT Issuer",
+        "description": "Deletes the JWT Issuer configuration\n\nCan be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The unique identifier of the JWT Issuer resource",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JWTIssuer"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "JWT Issuers"
+        ],
+        "x-badges": [
+          {
+            "color": "red",
+            "label": "LIMITED ACCESS"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request DELETE \\\n  --url https://cockroachlabs.cloud/api/v1/jwt-issuers/{id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+          }
+        ]
+      },
+      "get": {
+        "operationId": "CockroachCloud_GetJWTIssuer",
+        "summary": "Get a JWT Issuer",
+        "description": "Retrieves the JWT Issuer configuration\n\nCan be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The unique identifier of the JWT Issuer resource",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JWTIssuer"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "JWT Issuers"
+        ],
+        "x-badges": [
+          {
+            "color": "red",
+            "label": "LIMITED ACCESS"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request GET \\\n  --url https://cockroachlabs.cloud/api/v1/jwt-issuers/{id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+          }
+        ]
+      },
+      "patch": {
+        "operationId": "CockroachCloud_UpdateJWTIssuer",
+        "summary": "Update a JWT Issuer",
+        "description": "Updates the JWT Issuer configuration\n\nCan be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The unique identifier of the JWT Issuer resource",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "audience": {
+                    "type": "string",
+                    "example": "1234567890abcd",
+                    "title": "The intended audience for consuming the JWT"
+                  },
+                  "claim": {
+                    "type": "string",
+                    "example": "email",
+                    "title": "Used to identify the user from the external Identity Provider. Defaults to \"sub\""
+                  },
+                  "identity_map": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/JWTIssuerIdentityMapEntry"
+                    },
+                    "title": "A list of mappings to map the external token identity into CockroachDB Cloud"
+                  },
+                  "issuer_url": {
+                    "type": "string",
+                    "example": "https://jwt-issuer.example.com",
+                    "title": "The URL of the server issuing JWTs"
+                  },
+                  "jwks": {
+                    "type": "string",
+                    "example": "{\"keys\":[{\"e\":\"AQAB\",\"use\":\"sig\",\"kty\":\"RSA\",\"alg\":\"RS256\",\"n\":\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\",\"kid\":\"9341dedeee2d1869b657fa930300082fe26b3d92\"}]}",
+                    "title": "A set of public keys (JWKS) used to verify a JWT"
+                  }
+                },
+                "title": "UpdateJWTIssuerRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JWTIssuer"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "JWT Issuers"
+        ],
+        "x-badges": [
+          {
+            "color": "red",
+            "label": "LIMITED ACCESS"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request PATCH \\\n  --url https://cockroachlabs.cloud/api/v1/jwt-issuers/{id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"audience\":\"1234567890abcd\",\"claim\":\"email\",\"identity_map\":[{\"cc_identity\":\"\\\\1\",\"is_regex\":true,\"token_identity\":\"sso_(.*)\"}],\"issuer_url\":\"https://jwt-issuer.example.com\",\"jwks\":\"{\\\"keys\\\":[{\\\"e\\\":\\\"AQAB\\\",\\\"use\\\":\\\"sig\\\",\\\"kty\\\":\\\"RSA\\\",\\\"alg\\\":\\\"RS256\\\",\\\"n\\\":\\\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\\\",\\\"kid\\\":\\\"9341dedeee2d1869b657fa930300082fe26b3d92\\\"}]}\"}'"
+          }
+        ]
+      }
+    },
     "/api/v1/organization": {
       "get": {
         "operationId": "CockroachCloud_GetOrganizationInfo",
@@ -11459,7 +11931,7 @@
       "get": {
         "operationId": "CockroachCloud_ListRoleGrants",
         "summary": "List all RoleGrants",
-        "description": "Can be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n- CLUSTER_ADMIN\n",
+        "description": "Can be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n- CLUSTER_ADMIN\n- FOLDER_ADMIN\n",
         "parameters": [
           {
             "name": "pagination.page",
@@ -11574,7 +12046,7 @@
       "get": {
         "operationId": "CockroachCloud_GetAllRolesForUser",
         "summary": "Get all Role Grants for a user",
-        "description": "Can be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n- CLUSTER_ADMIN\n",
+        "description": "Can be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n- CLUSTER_ADMIN\n- FOLDER_ADMIN\n",
         "parameters": [
           {
             "name": "user_id",
@@ -11694,7 +12166,8 @@
                         "type": "CLUSTER"
                       }
                     }
-                  ]
+                  ],
+                  "user_id": "12345678-1234-1234-1234-123456789012"
                 },
                 "required": [
                   "roles"
@@ -11771,7 +12244,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/v1/roles/{user_id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"roles\":[{\"name\":\"CLUSTER_ADMIN\",\"resource\":{\"id\":\"example_cluster_id\",\"type\":\"CLUSTER\"}}]}'"
+            "source": "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/v1/roles/{user_id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"roles\":[{\"name\":\"CLUSTER_ADMIN\",\"resource\":{\"id\":\"example_cluster_id\",\"type\":\"CLUSTER\"}}],\"user_id\":\"12345678-1234-1234-1234-123456789012\"}'"
           }
         ]
       }
@@ -12034,7 +12507,7 @@
       "get": {
         "operationId": "CockroachCloud_ListServiceAccounts",
         "summary": "List service accounts for an organization",
-        "description": "Sort order: Service account name",
+        "description": "Sort order: Service account name\n\nCan be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n- CLUSTER_ADMIN\n",
         "parameters": [
           {
             "name": "pagination.page",
@@ -12153,6 +12626,7 @@
       "post": {
         "operationId": "CockroachCloud_CreateServiceAccount",
         "summary": "Create a service account",
+        "description": "Can be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n- CLUSTER_ADMIN\n",
         "requestBody": {
           "required": true,
           "content": {
@@ -12237,7 +12711,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/service-accounts \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"name\":\"new name\",\"roles\":[{\"name\":\"CLUSTER_ADMIN\",\"resource\":{\"type\":\"ORGANIZATION\"}}]}'"
+            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/service-accounts \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"description\":\"\",\"name\":\"new name\",\"roles\":[{\"name\":\"CLUSTER_ADMIN\",\"resource\":{\"type\":\"ORGANIZATION\"}}]}'"
           }
         ]
       }
@@ -12246,6 +12720,7 @@
       "delete": {
         "operationId": "CockroachCloud_DeleteServiceAccount",
         "summary": "Delete a service account",
+        "description": "Can be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
         "parameters": [
           {
             "name": "id",
@@ -12338,6 +12813,7 @@
       "get": {
         "operationId": "CockroachCloud_GetServiceAccount",
         "summary": "Get a service account by ID",
+        "description": "Can be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n- CLUSTER_ADMIN\n",
         "parameters": [
           {
             "name": "id",
@@ -12430,7 +12906,7 @@
       "patch": {
         "operationId": "CockroachCloud_UpdateServiceAccount",
         "summary": "Update a service account",
-        "description": "To manage roles associated with a service account after creation, pass the service_account_id instead of a user_id to any [Role Management endpoint](#tag--Role-Management).",
+        "description": "To manage roles associated with a service account after creation, pass the service_account_id instead of a user_id to any [Role Management endpoint](#tag--Role-Management).\n\nCan be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
         "parameters": [
           {
             "name": "id",
@@ -12525,7 +13001,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PATCH \\\n  --url https://cockroachlabs.cloud/api/v1/service-accounts/{id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --header 'content-type: application/json' \\\n  --data '{\"description\":\"new description\",\"name\":\"new name\"}'"
+            "source": "curl --request PATCH \\\n  --url https://cockroachlabs.cloud/api/v1/service-accounts/{id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"description\":\"new description\",\"name\":\"new name\"}'"
           }
         ]
       }
@@ -12534,7 +13010,7 @@
       "get": {
         "operationId": "CockroachCloud_GetPersonUsersByEmail",
         "summary": "Search person users by email address",
-        "description": "Can be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n- CLUSTER_ADMIN\n",
+        "description": "Can be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n- CLUSTER_ADMIN\n- FOLDER_ADMIN\n",
         "parameters": [
           {
             "name": "email",
@@ -12673,6 +13149,43 @@
         ],
         "title": "AddEgressRuleResponse"
       },
+      "AddJWTIssuerRequest": {
+        "type": "object",
+        "properties": {
+          "audience": {
+            "type": "string",
+            "example": "1234567890abcd",
+            "title": "The intended audience for consuming the JWT"
+          },
+          "claim": {
+            "type": "string",
+            "example": "email",
+            "title": "Used to identify the user from the external Identity Provider. Defaults to \"sub\""
+          },
+          "identity_map": {
+            "description": "A list of mappings to map the external token identity into CockroachDB Cloud.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JWTIssuerIdentityMapEntry"
+            }
+          },
+          "issuer_url": {
+            "type": "string",
+            "example": "https://jwt-issuer.example.com",
+            "title": "The URL of the server issuing JWTs"
+          },
+          "jwks": {
+            "type": "string",
+            "example": "{\"keys\":[{\"e\":\"AQAB\",\"use\":\"sig\",\"kty\":\"RSA\",\"alg\":\"RS256\",\"n\":\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\",\"kid\":\"9341dedeee2d1869b657fa930300082fe26b3d92\"}]}",
+            "title": "A set of public keys (JWKS) used to verify a JWT"
+          }
+        },
+        "required": [
+          "issuer_url",
+          "audience"
+        ],
+        "title": "AddJWTIssuerRequest"
+      },
       "AddPrivateEndpointTrustedOwnerResponse": {
         "type": "object",
         "properties": {
@@ -12798,6 +13311,7 @@
         "example": {
           "audience": "542c6390-bf38-4912-856b-8f31480e978b",
           "claim": "sub",
+          "id": "1234abcd-1234-1234-abcd-12345678abcd",
           "identity_map": [
             {
               "cc_identity": "\\1",
@@ -12810,6 +13324,7 @@
               "token_identity": "gcp_(.*)"
             }
           ],
+          "issuer": "theissuer",
           "jwks": "{\"keys\":[{\"e\":\"AQAB\",\"use\":\"sig\",\"kty\":\"RSA\",\"alg\":\"RS256\",\"n\":\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\",\"kid\":\"9341dedeee2d1869b657fa930300082fe26b3d92\"}]}"
         },
         "required": [
@@ -12907,7 +13422,13 @@
           "AUDIT_LOG_ACTION_ENABLE_CLOUD_ORG_SSO",
           "AUDIT_LOG_ACTION_ADD_AUTHENTICATION_METHOD",
           "AUDIT_LOG_ACTION_UPDATE_AUTHENTICATION_METHOD",
-          "AUDIT_LOG_ACTION_DELETE_AUTHENTICATION_METHOD"
+          "AUDIT_LOG_ACTION_DELETE_AUTHENTICATION_METHOD",
+          "AUDIT_LOG_ACTION_SET_DELETE_PROTECTION",
+          "AUDIT_LOG_ACTION_MARKETPLACE_CREATE_SUBSCRIPTION",
+          "AUDIT_LOG_ACTION_MARKETPLACE_CANCEL_SUBSCRIPTION",
+          "AUDIT_LOG_ACTION_ADD_JWT_ISSUER",
+          "AUDIT_LOG_ACTION_DELETE_JWT_ISSUER",
+          "AUDIT_LOG_ACTION_UPDATE_JWT_ISSUER"
         ]
       },
       "AuditLogEntry": {
@@ -13312,7 +13833,7 @@
             "$ref": "#/components/schemas/ClusterStatus.Type"
           },
           "parent_id": {
-            "description": "Limited Access: The parent ID is a folder ID. A \"root\" valued parent ID\nrefers to a cluster at the root level.",
+            "description": "Preview: The parent ID is a folder ID. A \"root\" valued parent ID\nrefers to a cluster at the root level.",
             "type": "string"
           },
           "plan": {
@@ -13351,22 +13872,23 @@
           },
           "created_at": "2022-03-22T20:23:11.285067Z",
           "creator_id": "7cde0cd9-0d8a-4008-8f90-45092ce8afc1",
-          "deleted_at": null,
           "id": "35c4abb2-bb66-46d7-afed-25ebef5ed2aa",
           "name": "example-cluster",
-          "operation_status": "CLUSTER_STATUS_UNSPECIFIED",
+          "operation_status": "UNSPECIFIED",
           "plan": "SERVERLESS",
           "regions": [
             {
+              "internal_dns": "internal-free-tier7.gcp-us-central1.crdb.io",
               "name": "us-central1",
               "node_count": 0,
+              "private_endpoint_dns": "private-free-tier7.gcp-us-central1.crdb.io",
               "sql_dns": "free-tier7.gcp-us-central1.crdb.io",
               "ui_dns": ""
             }
           ],
           "state": "CREATED",
           "updated_at": "2022-03-22T20:23:11.879593Z",
-          "upgrade_status": "USING_LATEST"
+          "upgrade_status": "UPGRADE_AVAILABLE"
         },
         "required": [
           "id",
@@ -13597,6 +14119,7 @@
               "token_identity": "gcp_(.*)"
             }
           ],
+          "issuer": "theissuer",
           "jwks": "{\"keys\":[{\"e\":\"AQAB\",\"use\":\"sig\",\"kty\":\"RSA\",\"alg\":\"RS256\",\"n\":\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\",\"kid\":\"9341dedeee2d1869b657fa930300082fe26b3d92\"}]}"
         },
         "required": [
@@ -13649,7 +14172,7 @@
             "$ref": "#/components/schemas/DeleteProtectionState.Type"
           },
           "parent_id": {
-            "description": "Limited Access: The parent ID is a folder ID. An empty string or \"root\"\nwill create a cluster at the root level.",
+            "description": "Preview: The parent ID is a folder ID. An empty string or \"root\"\nwill create a cluster at the root level.",
             "type": "string"
           },
           "serverless": {
@@ -13731,6 +14254,7 @@
           }
         },
         "example": {
+          "description": "",
           "name": "new name",
           "roles": [
             {
@@ -14475,7 +14999,7 @@
             }
           },
           "folder_resources": {
-            "description": "FolderResources is a list of resources in the organization and their folder\npaths.",
+            "description": "Preview: FolderResources is a list of resources in the organization and their folder\npaths.",
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/FolderResource"
@@ -14562,22 +15086,67 @@
           "line_items"
         ]
       },
-      "KeysetPaginationRequest": {
+      "JWTIssuer": {
         "type": "object",
         "properties": {
-          "as_of_time": {
+          "audience": {
             "type": "string",
-            "format": "date-time"
+            "example": "1234567890abcd",
+            "title": "The intended audience for consuming the JWT"
           },
-          "limit": {
-            "type": "integer",
-            "format": "int32"
+          "claim": {
+            "type": "string",
+            "example": "email",
+            "title": "Used to identify the user from the external Identity Provider. Defaults to \"sub\""
           },
-          "page": {
-            "type": "string"
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "example": "1234abcd-1234-1234-abcd-12345678abcd",
+            "title": "The unique identifier of the JWT Issuer resource"
           },
-          "sort_order": {
-            "$ref": "#/components/schemas/SortOrder"
+          "identity_map": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JWTIssuerIdentityMapEntry"
+            },
+            "title": "A list of mappings to map the external token identity into CockroachDB Cloud"
+          },
+          "issuer_url": {
+            "type": "string",
+            "example": "https://jwt-issuer.example.com",
+            "title": "The URL of the server issuing JWTs"
+          },
+          "jwks": {
+            "type": "string",
+            "example": "{\"keys\":[{\"e\":\"AQAB\",\"use\":\"sig\",\"kty\":\"RSA\",\"alg\":\"RS256\",\"n\":\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\",\"kid\":\"9341dedeee2d1869b657fa930300082fe26b3d92\"}]}",
+            "title": "A set of public keys (JWKS) used to verify a JWT"
+          }
+        },
+        "required": [
+          "id",
+          "issuer_url",
+          "audience"
+        ],
+        "title": "JWTIssuer"
+      },
+      "JWTIssuerIdentityMapEntry": {
+        "type": "object",
+        "properties": {
+          "cc_identity": {
+            "type": "string",
+            "example": "\\1",
+            "title": "Specifies how to map the fetched token identity into CockroachDB Cloud"
+          },
+          "is_regex": {
+            "type": "boolean",
+            "example": true,
+            "title": "Specifies whether the token_identity and cc_identity configurations are in regex format"
+          },
+          "token_identity": {
+            "type": "string",
+            "example": "sso_(.*)",
+            "title": "Specifies how to fetch external identity from the token claim"
           }
         }
       },
@@ -14814,6 +15383,22 @@
           "invoices"
         ]
       },
+      "ListJWTIssuersResponse": {
+        "type": "object",
+        "properties": {
+          "jwt_issuers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JWTIssuer"
+            },
+            "title": "The list of JWT Issuer resources"
+          },
+          "pagination": {
+            "$ref": "#/components/schemas/KeysetPaginationResponse"
+          }
+        },
+        "title": "ListJWTIssuersResponse"
+      },
       "ListMajorClusterVersionsResponse": {
         "type": "object",
         "properties": {
@@ -14932,6 +15517,10 @@
             "description": "auth_principal is either the AWS Role ARN that identifies a role\nthat the cluster account can assume to write to CloudWatch or the\nGCP Project ID that the cluster service account has permissions to\nwrite to for cloud logging.",
             "type": "string"
           },
+          "azure_shared_key": {
+            "description": "The primary or the secondary connected sources client authentication key.\nThis is used to export logs to Azure Log Analytics.",
+            "type": "string"
+          },
           "groups": {
             "description": "groups is a collection of log group configurations to customize\nwhich CRDB channels get aggregated into different groups at the\ntarget sink. Unconfigured channels will be sent to the default\nlocations via the settings above.",
             "type": "array",
@@ -15009,7 +15598,8 @@
         "type": "string",
         "enum": [
           "AWS_CLOUDWATCH",
-          "GCP_CLOUD_LOGGING"
+          "GCP_CLOUD_LOGGING",
+          "AZURE_LOG_ANALYTICS"
         ]
       },
       "LogLevel.Type": {
@@ -15088,11 +15678,7 @@
           "NOT_READY"
         ]
       },
-      "NullValue": {
-        "description": "`NullValue` is a singleton enumeration to represent the null value for the\n`Value` type union.\n\nThe JSON representation for `NullValue` is JSON `null`.\n\n - NULL_VALUE: Null value.",
-        "type": "string"
-      },
-      "OperatingSystem.Type": {
+      "OperatingSystemType": {
         "type": "string",
         "enum": [
           "MAC",
@@ -15125,7 +15711,7 @@
         ]
       },
       "OrganizationUserRole.Type": {
-        "description": " - FOLDER_ADMIN: Limited Access: A folder admin role.\n - FOLDER_MOVER: Limited Access: A folder mover role.",
+        "description": " - FOLDER_ADMIN: Preview: A folder admin role.\n - FOLDER_MOVER: Preview: A folder mover role.",
         "type": "string",
         "enum": [
           "BILLING_COORDINATOR",
@@ -15210,11 +15796,12 @@
         },
         "example": {
           "cloud": "AWS",
+          "cloud_provider": "AWS",
           "endpoint_id": "2w543-45643-323fd",
           "endpoint_service_id": "34t-4t446-876bm",
           "region": "us-east-1",
           "service_name": "com.vpc-serv1",
-          "status": "AVAILABLE"
+          "status": "STATUS_AVAILABLE"
         },
         "required": [
           "region",
@@ -15397,7 +15984,7 @@
         "type": "object",
         "properties": {
           "internal_dns": {
-            "description": "internal_dns is the internal DNS name of the cluster within the cloud provider's network. It is used to connect to the cluster with PrivateLink or VPC peering.",
+            "description": "internal_dns is the internal DNS name of the cluster within the cloud\nprovider's network. It is used to connect to the cluster with AWS\nPrivateLink, Azure Private Link, and GCP VPC Peering, but not GCP Private\nService Connect.",
             "type": "string"
           },
           "name": {
@@ -15411,6 +15998,10 @@
           "primary": {
             "description": "primary is true only for the primary region in a Multi Region Serverless cluster.",
             "type": "boolean"
+          },
+          "private_endpoint_dns": {
+            "description": "private_endpoint_dns is the DNS name of the cluster which is used to\nconnect to the cluster with GCP Private Service Connect.",
+            "type": "string"
           },
           "sql_dns": {
             "description": "sql_dns is the DNS name of SQL interface of the cluster. It is used to connect to the cluster with IP allowlisting.",
@@ -15426,7 +16017,8 @@
           "sql_dns",
           "ui_dns",
           "node_count",
-          "internal_dns"
+          "internal_dns",
+          "private_endpoint_dns"
         ]
       },
       "RemovePrivateEndpointTrustedOwnerResponse": {
@@ -15455,7 +16047,7 @@
         ]
       },
       "ResourceType.Type": {
-        "description": " - ORGANIZATION: An organization.\n - CLUSTER: A cluster resource.\n - FOLDER: Limited Access: A folder resource.",
+        "description": " - ORGANIZATION: An organization.\n - CLUSTER: A cluster resource.\n - FOLDER: Preview: A folder resource.",
         "type": "string",
         "enum": [
           "ORGANIZATION",
@@ -15947,14 +16539,6 @@
           "REJECTED"
         ]
       },
-      "SortOrder": {
-        "description": " - ASC: Sort in ascending order. This is the default unless otherwise specified.\n - DESC: Sort in descending order.",
-        "type": "string",
-        "enum": [
-          "ASC",
-          "DESC"
-        ]
-      },
       "Status": {
         "type": "object",
         "properties": {
@@ -15996,7 +16580,7 @@
             "$ref": "#/components/schemas/DeleteProtectionState.Type"
           },
           "parent_id": {
-            "description": "Limited Access: The parent ID is a folder ID. An empty string or \"root\"\nrepresents the root level.",
+            "description": "Preview: The parent ID is a folder ID. An empty string or \"root\"\nrepresents the root level.",
             "type": "string"
           },
           "serverless": {
@@ -16108,142 +16692,16 @@
                 "type": "CLUSTER"
               }
             }
-          ]
+          ],
+          "user_id": "12345678-1234-1234-1234-123456789012"
         },
         "required": [
-          "roles",
-          "user_id"
+          "user_id",
+          "roles"
         ]
       }
     },
-    "requestBodies": {
-      "CockroachCloud_AddAllowlistEntry2Entry": {
-        "content": {
-          "application/json": {
-            "schema": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "type": "string"
-                },
-                "sql": {
-                  "type": "boolean"
-                },
-                "ui": {
-                  "type": "boolean"
-                }
-              },
-              "example": {
-                "cidr_ip": "192.168.1.1",
-                "cidr_mask": 32,
-                "name": "Example",
-                "sql": true,
-                "ui": true
-              },
-              "required": [
-                "ui",
-                "sql"
-              ],
-              "title": "AllowlistEntry"
-            }
-          }
-        },
-        "description": "AllowlistEntry",
-        "required": true
-      },
-      "CockroachCloud_EnableCMEKSpecBody": {
-        "content": {
-          "application/json": {
-            "schema": {
-              "type": "object",
-              "properties": {
-                "region_specs": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/CMEKRegionSpecification"
-                  }
-                }
-              },
-              "example": {
-                "region_specs": [
-                  {
-                    "key_spec": {
-                      "auth_principal": "arn:aws:iam::account:role/role-name-with-path",
-                      "type": "AWS_KMS",
-                      "uri": "arn:aws:kms:us-west-2:111122223333:key/id-of-kms-key"
-                    },
-                    "region": "us-central1"
-                  }
-                ]
-              },
-              "required": [
-                "region_specs"
-              ],
-              "title": "CMEKClusterSpecification"
-            }
-          }
-        },
-        "required": true
-      },
-      "CockroachCloud_SearchGroupBody": {
-        "content": {
-          "application/json": {
-            "schema": {
-              "type": "object",
-              "properties": {
-                "attributes": {
-                  "type": "string"
-                },
-                "excludedAttributes": {
-                  "type": "string"
-                }
-              },
-              "title": "GetGroupRequest"
-            }
-          }
-        },
-        "required": true
-      },
-      "CockroachCloud_SearchUserBody": {
-        "content": {
-          "application/json": {
-            "schema": {
-              "type": "object",
-              "properties": {
-                "attributes": {
-                  "type": "string"
-                },
-                "excludedAttributes": {
-                  "type": "string"
-                }
-              },
-              "title": "GetUserRequest"
-            }
-          }
-        },
-        "required": true
-      },
-      "GetGroupsRequest": {
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/GetGroupsRequest"
-            }
-          }
-        },
-        "required": true
-      },
-      "GetUsersRequest": {
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/GetUsersRequest"
-            }
-          }
-        },
-        "required": true
-      }
-    },
+    "requestBodies": {},
     "securitySchemes": {
       "Bearer": {
         "type": "http",
@@ -16316,6 +16774,9 @@
       "name": "Version Deferral"
     },
     {
+      "name": "JWT Issuers"
+    },
+    {
       "name": "OpenID Connect Configuration"
     },
     {
@@ -16323,6 +16784,12 @@
     },
     {
       "name": "PCI"
+    },
+    {
+      "name": "Physical Cluster Replication"
+    },
+    {
+      "name": "Backup/Restore"
     }
   ],
   "externalDocs": {

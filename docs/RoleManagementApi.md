@@ -100,6 +100,7 @@ Get all Role Grants for a user
 Can be used by the following roles assigned at the organization scope:
 - ORG_ADMIN
 - CLUSTER_ADMIN
+- FOLDER_ADMIN
 
 
 ### Example
@@ -169,6 +170,7 @@ Search person users by email address
 Can be used by the following roles assigned at the organization scope:
 - ORG_ADMIN
 - CLUSTER_ADMIN
+- FOLDER_ADMIN
 
 
 ### Example
@@ -237,6 +239,7 @@ List all RoleGrants
 Can be used by the following roles assigned at the organization scope:
 - ORG_ADMIN
 - CLUSTER_ADMIN
+- FOLDER_ADMIN
 
 
 ### Example

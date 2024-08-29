@@ -24,6 +24,11 @@ Method | HTTP request | Description
 
 Add a connection to a cluster's private endpoint service.
 
+Can be used by the following roles assigned at the organization, folder or cluster scope:
+- CLUSTER_ADMIN
+- CLUSTER_OPERATOR_WRITER
+
+
 ### Example
 
 ```go
@@ -90,7 +95,7 @@ Name | Type | Description  | Notes
 
 Add a private endpoint trusted owner to a cluster
 
-Can be used by the following roles assigned at the organization or cluster scope:
+Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN
 
 
@@ -160,7 +165,7 @@ Name | Type | Description  | Notes
 
 Create all PrivateEndpointServices for a cluster
 
-Can be used by the following roles assigned at the organization or cluster scope:
+Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
 
@@ -231,6 +236,11 @@ Delete a connection from a cluster's private endpoint service.
 
 Remove a private endpoint from a service's trusted endpoints list. Caller should make sure to URL encode the endpoint_id before calling this method.
 
+Can be used by the following roles assigned at the organization, folder or cluster scope:
+- CLUSTER_ADMIN
+- CLUSTER_OPERATOR_WRITER
+
+
 ### Example
 
 ```go
@@ -298,7 +308,7 @@ Name | Type | Description  | Notes
 
 Get a private endpoint trusted owner entry for a cluster
 
-Can be used by the following roles assigned at the organization or cluster scope:
+Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
 
@@ -370,7 +380,7 @@ Name | Type | Description  | Notes
 
 List all AwsEndpointConnections for a cluster
 
-Can be used by the following roles assigned at the organization or cluster scope:
+Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
 
@@ -439,6 +449,11 @@ Name | Type | Description  | Notes
 
 List all connections to a cluster's private endpoint service.
 
+Can be used by the following roles assigned at the organization, folder or cluster scope:
+- CLUSTER_ADMIN
+- CLUSTER_OPERATOR_WRITER
+
+
 ### Example
 
 ```go
@@ -505,7 +520,7 @@ List all PrivateEndpointServices for a cluster
 
 The internal_dns property from the regions field in the ListClusters response can be used to connect to PrivateEndpointServices.
 
-Can be used by the following roles assigned at the organization or cluster scope:
+Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
 
@@ -574,7 +589,7 @@ Name | Type | Description  | Notes
 
 List all private endpoint trusted owners for a cluster
 
-Can be used by the following roles assigned at the organization or cluster scope:
+Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
 
@@ -643,7 +658,7 @@ Name | Type | Description  | Notes
 
 Remove a private endpoint trusted owner from a cluster
 
-Can be used by the following roles assigned at the organization or cluster scope:
+Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN
 
 
@@ -717,7 +732,7 @@ Set the AWS Endpoint Connection state
 The "status" in the response does not reflect the latest post-update
 status, but rather the status before the state is transitioned.
 
-Can be used by the following roles assigned at the organization or cluster scope:
+Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
 

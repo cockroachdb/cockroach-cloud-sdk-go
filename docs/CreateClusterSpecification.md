@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Dedicated** | Pointer to [**DedicatedClusterCreateSpecification**](DedicatedClusterCreateSpecification.md) |  | [optional] 
 **DeleteProtection** | Pointer to [**DeleteProtectionStateType**](DeleteProtectionStateType.md) |  | [optional] 
-**ParentId** | Pointer to **string** | Limited Access: The parent ID is a folder ID. An empty string or \&quot;root\&quot; will create a cluster at the root level. | [optional] 
+**ParentId** | Pointer to **string** | Preview: The parent ID is a folder ID. An empty string or \&quot;root\&quot; will create a cluster at the root level. | [optional] 
 **Serverless** | Pointer to [**ServerlessClusterCreateSpecification**](ServerlessClusterCreateSpecification.md) |  | [optional] 
 
 ## Methods
