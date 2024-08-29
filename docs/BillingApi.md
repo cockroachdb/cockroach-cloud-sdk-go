@@ -49,15 +49,12 @@ func main() {
 
 ### Path Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **invoiceId** | **string** | invoice_id is the unique ID representing the invoice. invoice_id is used to retrieve a specific billing period&#39;s invoice. | 
 
 ### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetInvoice struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -122,11 +119,11 @@ func main() {
 
 ### Path Parameters
 
-This endpoint does not need any parameter.
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 
 ### Other Parameters
-
-Other parameters are passed through a pointer to a apiListInvoices struct via the builder pattern
 
 
 ### Return type

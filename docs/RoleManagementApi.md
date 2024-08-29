@@ -56,7 +56,6 @@ func main() {
 
 ### Path Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
@@ -66,8 +65,6 @@ Name | Type | Description  | Notes
 **roleName** | **string** |  | 
 
 ### Other Parameters
-
-Other parameters are passed through a pointer to a apiAddUserToRole struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -134,15 +131,12 @@ func main() {
 
 ### Path Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **userId** | **string** |  | 
 
 ### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetAllRolesForUser struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -206,11 +200,11 @@ func main() {
 
 ### Path Parameters
 
-
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 
 ### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetPersonUsersByEmail struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -278,12 +272,13 @@ func main() {
 
 ### Path Parameters
 
-
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListRoleGrants struct via the builder pattern
-
+Optional parameters can be passed through a pointer to the ListRoleGrantsOptions struct.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -352,7 +347,6 @@ func main() {
 
 ### Path Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
@@ -362,8 +356,6 @@ Name | Type | Description  | Notes
 **roleName** | **string** |  | 
 
 ### Other Parameters
-
-Other parameters are passed through a pointer to a apiRemoveUserFromRole struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -431,15 +423,12 @@ func main() {
 
 ### Path Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **userId** | **string** |  | 
 
 ### Other Parameters
-
-Other parameters are passed through a pointer to a apiSetRolesForUser struct via the builder pattern
 
 
 Name | Type | Description  | Notes

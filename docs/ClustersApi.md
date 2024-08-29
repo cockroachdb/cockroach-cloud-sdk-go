@@ -56,11 +56,11 @@ func main() {
 
 ### Path Parameters
 
-
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 
 ### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateCluster struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -123,15 +123,12 @@ func main() {
 
 ### Path Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **clusterId** | **string** |  | 
 
 ### Other Parameters
-
-Other parameters are passed through a pointer to a apiDeleteCluster struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -197,15 +194,12 @@ func main() {
 
 ### Path Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **clusterId** | **string** |  | 
 
 ### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetCluster struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -274,7 +268,6 @@ func main() {
 
 ### Path Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
@@ -282,8 +275,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetConnectionString struct via the builder pattern
-
+Optional parameters can be passed through a pointer to the GetConnectionStringOptions struct.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -354,12 +346,13 @@ func main() {
 
 ### Path Parameters
 
-
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListAvailableRegions struct via the builder pattern
-
+Optional parameters can be passed through a pointer to the ListAvailableRegionsOptions struct.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -437,7 +430,6 @@ func main() {
 
 ### Path Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
@@ -445,8 +437,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListClusterNodes struct via the builder pattern
-
+Optional parameters can be passed through a pointer to the ListClusterNodesOptions struct.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -518,12 +509,13 @@ func main() {
 
 ### Path Parameters
 
-
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListClusters struct via the builder pattern
-
+Optional parameters can be passed through a pointer to the ListClustersOptions struct.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -593,12 +585,13 @@ func main() {
 
 ### Path Parameters
 
-
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListMajorClusterVersions struct via the builder pattern
-
+Optional parameters can be passed through a pointer to the ListMajorClusterVersionsOptions struct.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -667,15 +660,12 @@ func main() {
 
 ### Path Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **clusterId** | **string** |  | 
 
 ### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateCluster struct via the builder pattern
 
 
 Name | Type | Description  | Notes

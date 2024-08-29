@@ -54,15 +54,12 @@ func main() {
 
 ### Path Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **clusterId** | **string** | cluster_id identifies the cluster to which this egress rule applies. | 
 
 ### Other Parameters
-
-Other parameters are passed through a pointer to a apiAddEgressRule struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -129,7 +126,6 @@ func main() {
 
 ### Path Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
@@ -138,8 +134,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiDeleteEgressRule struct via the builder pattern
-
+Optional parameters can be passed through a pointer to the DeleteEgressRuleOptions struct.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -206,7 +201,6 @@ func main() {
 
 ### Path Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
@@ -214,8 +208,6 @@ Name | Type | Description  | Notes
 **ruleId** | **string** | rule_id is the UUID of an existing egress rule. This field is required. | 
 
 ### Other Parameters
-
-Other parameters are passed through a pointer to a apiEditEgressRule struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -282,7 +274,6 @@ func main() {
 
 ### Path Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
@@ -290,8 +281,6 @@ Name | Type | Description  | Notes
 **ruleId** | **string** | rule_id is the UUID of an existing egress rule. | 
 
 ### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetEgressRule struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -363,7 +352,6 @@ func main() {
 
 ### Path Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
@@ -371,8 +359,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListEgressRules struct via the builder pattern
-
+Optional parameters can be passed through a pointer to the ListEgressRulesOptions struct.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -440,15 +427,12 @@ func main() {
 
 ### Path Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **clusterId** | **string** | cluster_id identifies the cluster whose egress policy will be updated. | 
 
 ### Other Parameters
-
-Other parameters are passed through a pointer to a apiSetEgressTrafficPolicy struct via the builder pattern
 
 
 Name | Type | Description  | Notes

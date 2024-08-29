@@ -47,11 +47,11 @@ func main() {
 
 ### Path Parameters
 
-
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 
 ### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateApiKey struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -110,15 +110,12 @@ func main() {
 
 ### Path Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **id** | **string** | The ID of the api key. | 
 
 ### Other Parameters
-
-Other parameters are passed through a pointer to a apiDeleteApiKey struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -177,15 +174,12 @@ func main() {
 
 ### Path Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **id** | **string** | the ID of the api key. | 
 
 ### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetApiKey struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -251,12 +245,13 @@ func main() {
 
 ### Path Parameters
 
-
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListApiKeys struct via the builder pattern
-
+Optional parameters can be passed through a pointer to the ListApiKeysOptions struct.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -319,15 +314,12 @@ func main() {
 
 ### Path Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **id** | **string** | The ID of the api key. | 
 
 ### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateApiKey struct via the builder pattern
 
 
 Name | Type | Description  | Notes

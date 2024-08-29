@@ -47,11 +47,11 @@ func main() {
 
 ### Path Parameters
 
-
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 
 ### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateServiceAccount struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -110,15 +110,12 @@ func main() {
 
 ### Path Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **id** | **string** | the ID of the service account. | 
 
 ### Other Parameters
-
-Other parameters are passed through a pointer to a apiDeleteServiceAccount struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -177,15 +174,12 @@ func main() {
 
 ### Path Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **id** | **string** | The ID of the service account. | 
 
 ### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetServiceAccount struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -250,12 +244,13 @@ func main() {
 
 ### Path Parameters
 
-
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListServiceAccounts struct via the builder pattern
-
+Optional parameters can be passed through a pointer to the ListServiceAccountsOptions struct.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -319,15 +314,12 @@ func main() {
 
 ### Path Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **id** | **string** |  | 
 
 ### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateServiceAccount struct via the builder pattern
 
 
 Name | Type | Description  | Notes

@@ -48,11 +48,11 @@ func main() {
 
 ### Path Parameters
 
-
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 
 ### Other Parameters
-
-Other parameters are passed through a pointer to a apiCreateFolder struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -111,15 +111,12 @@ func main() {
 
 ### Path Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **folderId** | **string** |  | 
 
 ### Other Parameters
-
-Other parameters are passed through a pointer to a apiDeleteFolder struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -178,15 +175,12 @@ func main() {
 
 ### Path Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **folderId** | **string** |  | 
 
 ### Other Parameters
-
-Other parameters are passed through a pointer to a apiGetFolder struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -252,7 +246,6 @@ func main() {
 
 ### Path Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
@@ -260,8 +253,7 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListFolderContents struct via the builder pattern
-
+Optional parameters can be passed through a pointer to the ListFolderContentsOptions struct.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -330,12 +322,13 @@ func main() {
 
 ### Path Parameters
 
-
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListFolders struct via the builder pattern
-
+Optional parameters can be passed through a pointer to the ListFoldersOptions struct.
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -398,15 +391,12 @@ func main() {
 
 ### Path Parameters
 
-
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **folderId** | **string** |  | 
 
 ### Other Parameters
-
-Other parameters are passed through a pointer to a apiUpdateFolder struct via the builder pattern
 
 
 Name | Type | Description  | Notes

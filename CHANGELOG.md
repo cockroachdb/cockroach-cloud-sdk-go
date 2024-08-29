@@ -1,4 +1,10 @@
 
+BUG FIXES:
+
+* various api documentation template improvements including always showing ctx as a
+  path param, fixing the name of the options struct, not showing an options
+  struct when it doesn't exist.
+
 ## 1.11.0
 
 NEW FEATURES:
