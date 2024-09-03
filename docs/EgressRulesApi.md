@@ -19,7 +19,7 @@ Method | HTTP request | Description
 
 Add an egress rule
 
-Can be used by the following roles assigned at the organization or cluster scope:
+Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
 
@@ -93,7 +93,7 @@ Name | Type | Description  | Notes
 
 Delete an existing egress rule
 
-Can be used by the following roles assigned at the organization or cluster scope:
+Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
 
@@ -170,7 +170,7 @@ Name | Type | Description  | Notes
 
 Edit an existing egress rule
 
-Can be used by the following roles assigned at the organization or cluster scope:
+Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
 
@@ -247,7 +247,7 @@ Name | Type | Description  | Notes
 
 Get an existing egress rule
 
-Can be used by the following roles assigned at the organization or cluster scope:
+Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
 
@@ -324,7 +324,7 @@ List all egress rules associated with a cluster
 
 Sort order: Name
 
-Can be used by the following roles assigned at the organization or cluster scope:
+Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
 
@@ -405,7 +405,7 @@ Name | Type | Description  | Notes
 
 Outbound traffic management
 
-Can be used by the following roles assigned at the organization or cluster scope:
+Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
 

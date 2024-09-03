@@ -1,12 +1,10 @@
-# QuantityUnitType
+# UpgradeTypeType
 
 ## Enum
 
-* `HOURS` (value: `"HOURS"`)
+* `MANUAL` (value: `"MANUAL"`)
 
-* `REQUEST_UNITS` (value: `"REQUEST_UNITS"`)
-
-* `GIB` (value: `"GIB"`)
+* `AUTOMATIC` (value: `"AUTOMATIC"`)
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

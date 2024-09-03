@@ -23,8 +23,9 @@ type ServerlessClusterUpdateSpecification struct {
 	// Specify which region should be made the primary region. This is only applicable to multi-region Serverless clusters. This field is required if the regions field contains more than one region.
 	PrimaryRegion *string `json:"primary_region,omitempty"`
 	// Region values should match the cloud provider's zone code. For example, for Oregon, set region_name to \"us-west2\" for GCP and \"us-west-2\" for AWS. If this field is provided, the cluster's regions will be changed to match this list. Regions cannot currently be removed.
-	Regions     *[]string    `json:"regions,omitempty"`
-	UsageLimits *UsageLimits `json:"usage_limits,omitempty"`
+	Regions     *[]string        `json:"regions,omitempty"`
+	UpgradeType *UpgradeTypeType `json:"upgrade_type,omitempty"`
+	UsageLimits *UsageLimits     `json:"usage_limits,omitempty"`
 }
 
 // NewServerlessClusterUpdateSpecification instantiates a new ServerlessClusterUpdateSpecification object.
@@ -62,6 +63,20 @@ func (o *ServerlessClusterUpdateSpecification) GetRegions() []string {
 // SetRegions gets a reference to the given []string and assigns it to the Regions field.
 func (o *ServerlessClusterUpdateSpecification) SetRegions(v []string) {
 	o.Regions = &v
+}
+
+// GetUpgradeType returns the UpgradeType field value if set, zero value otherwise.
+func (o *ServerlessClusterUpdateSpecification) GetUpgradeType() UpgradeTypeType {
+	if o == nil || o.UpgradeType == nil {
+		var ret UpgradeTypeType
+		return ret
+	}
+	return *o.UpgradeType
+}
+
+// SetUpgradeType gets a reference to the given UpgradeTypeType and assigns it to the UpgradeType field.
+func (o *ServerlessClusterUpdateSpecification) SetUpgradeType(v UpgradeTypeType) {
+	o.UpgradeType = &v
 }
 
 // GetUsageLimits returns the UsageLimits field value if set, zero value otherwise.

@@ -36,10 +36,12 @@ tags:
 - name: API Keys
 - name: Folders
 - name: Version Deferral
+- name: JWT Issuers
 - name: OpenID Connect Configuration
 - name: Private Endpoint Services
 - name: PCI
 - name: Physical Cluster Replication
+- name: Backup/Restore
 paths:
   /api/scim/v2/Groups:
     get:
@@ -1961,7 +1963,10 @@ paths:
             --json '{"name":"new name"}'
   /api/v1/api_oidc:
     get:
+      deprecated: true
       description: |
+        This endpoint has been deprecated in favor of /jwt-issuers
+
         Can be used by the following roles assigned at the organization scope:
         - ORG_ADMIN
       operationId: CockroachCloud_ListApiOidcConfig
@@ -2041,7 +2046,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
-      summary: List all API OIDC configurations
+      summary: List all API OIDC configurations (Deprecated)
       tags:
       - OpenID Connect Configuration
       x-badges:
@@ -2054,7 +2059,10 @@ paths:
             --url 'https://cockroachlabs.cloud/api/v1/api_oidc?pagination.page=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.as_of_time=SOME_STRING_VALUE&pagination.sort_order=SOME_STRING_VALUE' \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     post:
+      deprecated: true
       description: |
+        This endpoint has been deprecated in favor of /jwt-issuers
+
         Can be used by the following roles assigned at the organization scope:
         - ORG_ADMIN
       operationId: CockroachCloud_CreateApiOidcConfig
@@ -2103,7 +2111,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
-      summary: Create an API OIDC configuration
+      summary: Create an API OIDC configuration (Deprecated)
       tags:
       - OpenID Connect Configuration
       x-badges:
@@ -2115,10 +2123,13 @@ paths:
           curl --request POST \
             --url https://cockroachlabs.cloud/api/v1/api_oidc \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
-            --json '{"audience":"542c6390-bf38-4912-856b-8f31480e978b","claim":"sub","identity_map":[{"cc_identity":"\\1","is_regex":true,"token_identity":"sso_(.*)"},{"cc_identity":"\\1","is_regex":true,"token_identity":"gcp_(.*)"}],"jwks":"{\"keys\":[{\"e\":\"AQAB\",\"use\":\"sig\",\"kty\":\"RSA\",\"alg\":\"RS256\",\"n\":\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\",\"kid\":\"9341dedeee2d1869b657fa930300082fe26b3d92\"}]}"}'
+            --json '{"audience":"542c6390-bf38-4912-856b-8f31480e978b","claim":"sub","identity_map":[{"cc_identity":"\\1","is_regex":true,"token_identity":"sso_(.*)"},{"cc_identity":"\\1","is_regex":true,"token_identity":"gcp_(.*)"}],"issuer":"theissuer","jwks":"{\"keys\":[{\"e\":\"AQAB\",\"use\":\"sig\",\"kty\":\"RSA\",\"alg\":\"RS256\",\"n\":\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\",\"kid\":\"9341dedeee2d1869b657fa930300082fe26b3d92\"}]}"}'
   /api/v1/api_oidc/{id}:
     delete:
+      deprecated: true
       description: |
+        This endpoint has been deprecated in favor of /jwt-issuers
+
         Can be used by the following roles assigned at the organization scope:
         - ORG_ADMIN
       operationId: CockroachCloud_DeleteApiOidcConfig
@@ -2169,7 +2180,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
-      summary: Delete an API OIDC configuration
+      summary: Delete an API OIDC configuration (Deprecated)
       tags:
       - OpenID Connect Configuration
       x-badges:
@@ -2182,7 +2193,10 @@ paths:
             --url https://cockroachlabs.cloud/api/v1/api_oidc/{id} \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     get:
+      deprecated: true
       description: |
+        This endpoint has been deprecated in favor of /jwt-issuers
+
         Can be used by the following roles assigned at the organization scope:
         - ORG_ADMIN
       operationId: CockroachCloud_GetApiOidcConfig
@@ -2233,7 +2247,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
-      summary: Get an API OIDC configuration
+      summary: Get an API OIDC configuration (Deprecated)
       tags:
       - OpenID Connect Configuration
       x-badges:
@@ -2246,7 +2260,10 @@ paths:
             --url https://cockroachlabs.cloud/api/v1/api_oidc/{id} \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     put:
+      deprecated: true
       description: |
+        This endpoint has been deprecated in favor of /jwt-issuers
+
         Can be used by the following roles assigned at the organization scope:
         - ORG_ADMIN
       operationId: CockroachCloud_UpdateApiOidcConfig
@@ -2303,7 +2320,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
-      summary: Update an API OIDC configuration
+      summary: Update an API OIDC configuration (Deprecated)
       tags:
       - OpenID Connect Configuration
       x-badges:
@@ -2315,7 +2332,7 @@ paths:
           curl --request PUT \
             --url https://cockroachlabs.cloud/api/v1/api_oidc/{id} \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
-            --json '{"audience":"542c6390-bf38-4912-856b-8f31480e978b","claim":"sub","identity_map":[{"cc_identity":"\\1","is_regex":true,"token_identity":"sso_(.*)"},{"cc_identity":"\\1","is_regex":true,"token_identity":"gcp_(.*)"}],"jwks":"{\"keys\":[{\"e\":\"AQAB\",\"use\":\"sig\",\"kty\":\"RSA\",\"alg\":\"RS256\",\"n\":\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\",\"kid\":\"9341dedeee2d1869b657fa930300082fe26b3d92\"}]}"}'
+            --json '{"audience":"542c6390-bf38-4912-856b-8f31480e978b","claim":"sub","id":"1234abcd-1234-1234-abcd-12345678abcd","identity_map":[{"cc_identity":"\\1","is_regex":true,"token_identity":"sso_(.*)"},{"cc_identity":"\\1","is_regex":true,"token_identity":"gcp_(.*)"}],"issuer":"theissuer","jwks":"{\"keys\":[{\"e\":\"AQAB\",\"use\":\"sig\",\"kty\":\"RSA\",\"alg\":\"RS256\",\"n\":\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\",\"kid\":\"9341dedeee2d1869b657fa930300082fe26b3d92\"}]}"}'
   /api/v1/auditlogevents:
     get:
       description: |
@@ -2792,7 +2809,7 @@ paths:
   /api/v1/clusters/{cluster_id}:
     delete:
       description: |
-        Can be used by the following roles assigned at the organization or cluster scope:
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
       operationId: CockroachCloud_DeleteCluster
       parameters:
@@ -2853,7 +2870,7 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     get:
       description: |
-        Can be used by the following roles assigned at the organization or cluster scope:
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
         - ORG_ADMIN
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
@@ -2921,7 +2938,7 @@ paths:
       description: |
         In addition to adding nodes and changing cluster fields, the PATCH Cluster endpoint can be used to upgrade the cluster version. A cluster can be upgraded when its `upgrade_status` field is equal to `UPGRADE_AVAILABLE`. To begin the upgrade, PATCH `{"upgrade_status": "MAJOR_UPGRADE_RUNNING"}` to this endpoint. Multi-node clusters will undergo a rolling upgrade and will remain available, but single-node clusters will be briefly unavailable while the upgrade takes place. Upgrades will be finalized automatically after 72 hours but can be manually finalized by sending a PATCH containing `{"upgrade_status": "FINALIZED"}` to this endpoint. Before the cluster is finalized, it can be rolled back by sending a PATCH containing `{"upgrade_status": "ROLLBACK_RUNNING"}`. Version upgrade operations cannot be performed simultaneously with other update operations.
 
-        Can be used by the following roles assigned at the organization or cluster scope:
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_UpdateCluster
@@ -2991,7 +3008,7 @@ paths:
   /api/v1/clusters/{cluster_id}/client-ca-cert:
     delete:
       description: |
-        Can be used by the following roles assigned at the organization or cluster scope:
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_DeleteClientCACert
@@ -3053,7 +3070,7 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     get:
       description: |
-        Can be used by the following roles assigned at the organization or cluster scope:
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_GetClientCACert
@@ -3115,7 +3132,7 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     patch:
       description: |
-        Can be used by the following roles assigned at the organization or cluster scope:
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_UpdateClientCACert
@@ -3184,7 +3201,7 @@ paths:
             --json '{"x509_pem_cert":"-----BEGIN CERTIFICATE-----..."}'
     post:
       description: |
-        Can be used by the following roles assigned at the organization or cluster scope:
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_SetClientCACert
@@ -3254,7 +3271,7 @@ paths:
   /api/v1/clusters/{cluster_id}/cmek:
     get:
       description: |
-        Can be used by the following roles assigned at the organization or cluster scope:
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_GetCMEKClusterInfo
@@ -3316,7 +3333,7 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     patch:
       description: |
-        Can be used by the following roles assigned at the organization or cluster scope:
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_UpdateCMEKStatus
@@ -3385,7 +3402,7 @@ paths:
             --json '{"action":"REVOKE"}'
     post:
       description: |
-        Can be used by the following roles assigned at the organization or cluster scope:
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_EnableCMEKSpec
@@ -3454,7 +3471,7 @@ paths:
             --json '{"region_specs":[{"key_spec":{"auth_principal":"arn:aws:iam::account:role/role-name-with-path","type":"AWS_KMS","uri":"arn:aws:kms:us-west-2:111122223333:key/id-of-kms-key"},"region":"us-central1"}]}'
     put:
       description: |
-        Can be used by the following roles assigned at the organization or cluster scope:
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_UpdateCMEKSpec
@@ -3524,7 +3541,7 @@ paths:
   /api/v1/clusters/{cluster_id}/connection-string:
     get:
       description: |
-        Can be used by the following roles assigned at the organization or cluster scope:
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
         - ORG_ADMIN
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
@@ -3622,7 +3639,7 @@ paths:
       description: |
         Sort order: Database name ascending
 
-        Can be used by the following roles assigned at the organization or cluster scope:
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
         - CLUSTER_DEVELOPER
@@ -3721,7 +3738,7 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     patch:
       description: |
-        Can be used by the following roles assigned at the organization or cluster scope:
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_EditDatabase2
@@ -3790,7 +3807,7 @@ paths:
             --json '{"name":"example_database_name","new_name":"example_new_database_name"}'
     post:
       description: |
-        Can be used by the following roles assigned at the organization or cluster scope:
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_CreateDatabase
@@ -3860,7 +3877,7 @@ paths:
   /api/v1/clusters/{cluster_id}/databases/{name}:
     delete:
       description: |
-        Can be used by the following roles assigned at the organization or cluster scope:
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_DeleteDatabase
@@ -3929,7 +3946,7 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     patch:
       description: |
-        Can be used by the following roles assigned at the organization or cluster scope:
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_EditDatabase
@@ -4006,7 +4023,7 @@ paths:
   /api/v1/clusters/{cluster_id}/logexport:
     delete:
       description: |
-        Can be used by the following roles assigned at the organization or cluster scope:
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
         - ORG_ADMIN
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
@@ -4072,7 +4089,7 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     get:
       description: |
-        Can be used by the following roles assigned at the organization or cluster scope:
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
         - ORG_ADMIN
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
@@ -4138,7 +4155,7 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     post:
       description: |
-        Can be used by the following roles assigned at the organization or cluster scope:
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
         - ORG_ADMIN
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
@@ -4212,7 +4229,7 @@ paths:
   /api/v1/clusters/{cluster_id}/maintenance-window:
     delete:
       description: |
-        Can be used by the following roles assigned at the organization or cluster scope:
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_DeleteMaintenanceWindow
@@ -4277,7 +4294,7 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     get:
       description: |
-        Can be used by the following roles assigned at the organization or cluster scope:
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_GetMaintenanceWindow
@@ -4342,7 +4359,7 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     put:
       description: |
-        Can be used by the following roles assigned at the organization or cluster scope:
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_SetMaintenanceWindow
@@ -4415,7 +4432,7 @@ paths:
   /api/v1/clusters/{cluster_id}/metricexport/cloudwatch:
     delete:
       description: |
-        Can be used by the following roles assigned at the organization or cluster scope:
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_DeleteCloudWatchMetricExport
@@ -4480,7 +4497,7 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     get:
       description: |
-        Can be used by the following roles assigned at the organization or cluster scope:
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_GetCloudWatchMetricExportInfo
@@ -4545,7 +4562,7 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     post:
       description: |
-        Can be used by the following roles assigned at the organization or cluster scope:
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_EnableCloudWatchMetricExport
@@ -4618,7 +4635,7 @@ paths:
   /api/v1/clusters/{cluster_id}/metricexport/datadog:
     delete:
       description: |
-        Can be used by the following roles assigned at the organization or cluster scope:
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_DeleteDatadogMetricExport
@@ -4683,7 +4700,7 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     get:
       description: |
-        Can be used by the following roles assigned at the organization or cluster scope:
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_GetDatadogMetricExportInfo
@@ -4748,7 +4765,7 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     post:
       description: |
-        Can be used by the following roles assigned at the organization or cluster scope:
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_EnableDatadogMetricExport
@@ -4821,7 +4838,7 @@ paths:
   /api/v1/clusters/{cluster_id}/metricexport/prometheus:
     delete:
       description: |
-        Can be used by the following roles assigned at the organization or cluster scope:
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_DeletePrometheusMetricExport
@@ -4886,7 +4903,7 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     get:
       description: |
-        Can be used by the following roles assigned at the organization or cluster scope:
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_GetPrometheusMetricExportInfo
@@ -4951,7 +4968,7 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     post:
       description: |
-        Can be used by the following roles assigned at the organization or cluster scope:
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_EnablePrometheusMetricExport
@@ -5019,7 +5036,7 @@ paths:
       description: |
         Sort order: CIDR address
 
-        Can be used by the following roles assigned at the organization or cluster scope:
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
         - CLUSTER_DEVELOPER
@@ -5118,7 +5135,7 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     post:
       description: |
-        Can be used by the following roles assigned at the organization or cluster scope:
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_AddAllowlistEntry
@@ -5188,7 +5205,7 @@ paths:
   /api/v1/clusters/{cluster_id}/networking/allowlist/{cidr_ip}/{cidr_mask}:
     delete:
       description: |
-        Can be used by the following roles assigned at the organization or cluster scope:
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_DeleteAllowlistEntry
@@ -5263,10 +5280,9 @@ paths:
           curl --request DELETE \
             --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/allowlist/{cidr_ip}/{cidr_mask} \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
-  /api/v1/clusters/{cluster_id}/networking/allowlist/{entry.cidr_ip}/{entry.cidr_mask}:
     patch:
       description: |
-        Can be used by the following roles assigned at the organization or cluster scope:
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_UpdateAllowlistEntry
@@ -5280,14 +5296,14 @@ paths:
         style: simple
       - explode: false
         in: path
-        name: entry.cidr_ip
+        name: cidr_ip
         required: true
         schema:
           type: string
         style: simple
       - explode: false
         in: path
-        name: entry.cidr_mask
+        name: cidr_mask
         required: true
         schema:
           format: int32
@@ -5346,12 +5362,12 @@ paths:
       - lang: Shell + Curl
         source: |-
           curl --request PATCH \
-            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/allowlist/{entry.cidr_ip}/{entry.cidr_mask} \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/allowlist/{cidr_ip}/{cidr_mask} \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
             --json '{"cidr_ip":"192.168.1.1","cidr_mask":32,"name":"Example","sql":true,"ui":true}'
     put:
       description: |
-        Can be used by the following roles assigned at the organization or cluster scope:
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_AddAllowlistEntry2
@@ -5365,14 +5381,14 @@ paths:
         style: simple
       - explode: false
         in: path
-        name: entry.cidr_ip
+        name: cidr_ip
         required: true
         schema:
           type: string
         style: simple
       - explode: false
         in: path
-        name: entry.cidr_mask
+        name: cidr_mask
         required: true
         schema:
           format: int32
@@ -5431,13 +5447,13 @@ paths:
       - lang: Shell + Curl
         source: |-
           curl --request PUT \
-            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/allowlist/{entry.cidr_ip}/{entry.cidr_mask} \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/allowlist/{cidr_ip}/{cidr_mask} \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
             --json '{"cidr_ip":"192.168.1.1","cidr_mask":32,"name":"Example","sql":true,"ui":true}'
   /api/v1/clusters/{cluster_id}/networking/aws-endpoint-connections:
     get:
       description: |
-        Can be used by the following roles assigned at the organization or cluster scope:
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_ListAwsEndpointConnections
@@ -5504,7 +5520,7 @@ paths:
         The "status" in the response does not reflect the latest post-update
         status, but rather the status before the state is transitioned.
 
-        Can be used by the following roles assigned at the organization or cluster scope:
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_SetAwsEndpointConnectionState
@@ -5586,7 +5602,7 @@ paths:
       description: |
         Sort order: Name
 
-        Can be used by the following roles assigned at the organization or cluster scope:
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_ListEgressRules
@@ -5690,7 +5706,7 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     post:
       description: |
-        Can be used by the following roles assigned at the organization or cluster scope:
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_AddEgressRule
@@ -5764,7 +5780,7 @@ paths:
   /api/v1/clusters/{cluster_id}/networking/egress-rules/egress-traffic-policy:
     post:
       description: |
-        Can be used by the following roles assigned at the organization or cluster scope:
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_SetEgressTrafficPolicy
@@ -5839,7 +5855,7 @@ paths:
   /api/v1/clusters/{cluster_id}/networking/egress-rules/{rule_id}:
     delete:
       description: |
-        Can be used by the following roles assigned at the organization or cluster scope:
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_DeleteEgressRule
@@ -5925,7 +5941,7 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     get:
       description: |
-        Can be used by the following roles assigned at the organization or cluster scope:
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_GetEgressRule
@@ -6000,7 +6016,7 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     patch:
       description: |
-        Can be used by the following roles assigned at the organization or cluster scope:
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_EditEgressRule
@@ -6084,7 +6100,7 @@ paths:
   /api/v1/clusters/{cluster_id}/networking/private-endpoint-connections:
     get:
       description: |
-        Can be used by the following roles assigned at the organization or cluster scope:
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_ListPrivateEndpointConnections
@@ -6150,7 +6166,7 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     post:
       description: |
-        Can be used by the following roles assigned at the organization or cluster scope:
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_AddPrivateEndpointConnection
@@ -6228,7 +6244,7 @@ paths:
       description: |
         Remove a private endpoint from a service's trusted endpoints list. Caller should make sure to URL encode the endpoint_id before calling this method.
 
-        Can be used by the following roles assigned at the organization or cluster scope:
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_DeletePrivateEndpointConnection
@@ -6309,7 +6325,7 @@ paths:
       description: |
         The internal_dns property from the regions field in the ListClusters response can be used to connect to PrivateEndpointServices.
 
-        Can be used by the following roles assigned at the organization or cluster scope:
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_ListPrivateEndpointServices
@@ -6372,7 +6388,7 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     post:
       description: |
-        Can be used by the following roles assigned at the organization or cluster scope:
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_CreatePrivateEndpointServices
@@ -6436,7 +6452,7 @@ paths:
   /api/v1/clusters/{cluster_id}/networking/private-endpoint-trusted-owners:
     get:
       description: |
-        Can be used by the following roles assigned at the organization or cluster scope:
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_ListPrivateEndpointTrustedOwners
@@ -6502,7 +6518,7 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     post:
       description: |
-        Can be used by the following roles assigned at the organization or cluster scope:
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
       operationId: CockroachCloud_AddPrivateEndpointTrustedOwner
       parameters:
@@ -6575,7 +6591,7 @@ paths:
   /api/v1/clusters/{cluster_id}/networking/private-endpoint-trusted-owners/{owner_id}:
     delete:
       description: |
-        Can be used by the following roles assigned at the organization or cluster scope:
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
       operationId: CockroachCloud_RemovePrivateEndpointTrustedOwner
       parameters:
@@ -6650,7 +6666,7 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     get:
       description: |
-        Can be used by the following roles assigned at the organization or cluster scope:
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_GetPrivateEndpointTrustedOwner
@@ -6729,7 +6745,7 @@ paths:
       description: |
         Sort order: Region name, node name
 
-        Can be used by the following roles assigned at the organization or cluster scope:
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
         - ORG_ADMIN
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
@@ -6840,7 +6856,7 @@ paths:
       description: |
         Sort order: Username
 
-        Can be used by the following roles assigned at the organization or cluster scope:
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
         - CLUSTER_DEVELOPER
@@ -6939,7 +6955,7 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     post:
       description: |
-        Can be used by the following roles assigned at the organization or cluster scope:
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
       operationId: CockroachCloud_CreateSQLUser
       parameters:
@@ -7008,7 +7024,7 @@ paths:
   /api/v1/clusters/{cluster_id}/sql-users/{name}:
     delete:
       description: |
-        Can be used by the following roles assigned at the organization or cluster scope:
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
       operationId: CockroachCloud_DeleteSQLUser
       parameters:
@@ -7077,7 +7093,7 @@ paths:
   /api/v1/clusters/{cluster_id}/sql-users/{name}/password:
     put:
       description: |
-        Can be used by the following roles assigned at the organization or cluster scope:
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
       operationId: CockroachCloud_UpdateSQLUserPassword
       parameters:
@@ -7153,7 +7169,7 @@ paths:
   /api/v1/clusters/{cluster_id}/version-deferral:
     get:
       description: |
-        Can be used by the following roles assigned at the organization or cluster scope:
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_GetClusterVersionDeferral
@@ -7218,7 +7234,7 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     put:
       description: |
-        Can be used by the following roles assigned at the organization or cluster scope:
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_SetClusterVersionDeferral
@@ -7290,9 +7306,17 @@ paths:
             --json '{"deferral_policy":"FIXED_DEFERRAL"}'
   /api/v1/folders:
     get:
-      description: |+
+      description: |
         Sort order: Folder name
 
+        Can be used by the following roles assigned at the organization or folder scope:
+        - ORG_ADMIN
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
+        - CLUSTER_DEVELOPER
+        - CLUSTER_CREATOR
+        - FOLDER_ADMIN
+        - FOLDER_MOVER
       operationId: CockroachCloud_ListFolders
       parameters:
       - description: |-
@@ -7397,6 +7421,9 @@ paths:
             --url 'https://cockroachlabs.cloud/api/v1/folders?path=SOME_STRING_VALUE&pagination.page=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.as_of_time=SOME_STRING_VALUE&pagination.sort_order=SOME_STRING_VALUE' \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     post:
+      description: |
+        Can be used by the following roles assigned at the organization or folder scope:
+        - FOLDER_ADMIN
       operationId: CockroachCloud_CreateFolder
       requestBody:
         content:
@@ -7458,6 +7485,9 @@ paths:
             --json '{"name":"folder_name","parent_id":"12345678-1234-1234-1234-123456789012"}'
   /api/v1/folders/{folder_id}:
     delete:
+      description: |
+        Can be used by the following roles assigned at the organization or folder scope:
+        - FOLDER_ADMIN
       operationId: CockroachCloud_DeleteFolder
       parameters:
       - explode: false
@@ -7519,6 +7549,15 @@ paths:
             --url https://cockroachlabs.cloud/api/v1/folders/{folder_id} \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     get:
+      description: |
+        Can be used by the following roles assigned at the organization or folder scope:
+        - ORG_ADMIN
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
+        - CLUSTER_DEVELOPER
+        - CLUSTER_CREATOR
+        - FOLDER_ADMIN
+        - FOLDER_MOVER
       operationId: CockroachCloud_GetFolder
       parameters:
       - explode: false
@@ -7580,6 +7619,10 @@ paths:
             --url https://cockroachlabs.cloud/api/v1/folders/{folder_id} \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     patch:
+      description: |
+        Can be used by the following roles assigned at the organization or folder scope:
+        - FOLDER_ADMIN
+        - FOLDER_MOVER
       operationId: CockroachCloud_UpdateFolder
       parameters:
       - explode: false
@@ -7652,7 +7695,7 @@ paths:
       description: |
         Set `folder_id` to 'root' to list root level contents.  Sort order: Folders sorted by name, followed by Clusters sorted by name.
 
-        Can be used by the following roles assigned at the organization or cluster scope:
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
         - ORG_ADMIN
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
@@ -7879,6 +7922,379 @@ paths:
           curl --request GET \
             --url https://cockroachlabs.cloud/api/v1/invoices/{invoice_id} \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+  /api/v1/jwt-issuers:
+    get:
+      description: |
+        Lists all the JWT Issuer configurations registered for the CockroachDB Cloud organization
+
+        Can be used by the following roles assigned at the organization scope:
+        - ORG_ADMIN
+      operationId: CockroachCloud_ListJWTIssuers
+      parameters:
+      - explode: true
+        in: query
+        name: pagination.page
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: pagination.limit
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: pagination.as_of_time
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: |2-
+           - ASC: Sort in ascending order. This is the default unless otherwise specified.
+           - DESC: Sort in descending order.
+        explode: true
+        in: query
+        name: pagination.sort_order
+        required: false
+        schema:
+          enum:
+          - ASC
+          - DESC
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListJWTIssuersResponse'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: List all JWT Issuers
+      tags:
+      - JWT Issuers
+      x-badges:
+      - color: red
+        label: LIMITED ACCESS
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request GET \
+            --url 'https://cockroachlabs.cloud/api/v1/jwt-issuers?pagination.page=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.as_of_time=SOME_STRING_VALUE&pagination.sort_order=SOME_STRING_VALUE' \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+    post:
+      description: |
+        Registers a JWT Issuer with the CockroachDB Cloud to allow verifying JWTs during API authentication
+
+        Can be used by the following roles assigned at the organization scope:
+        - ORG_ADMIN
+      operationId: CockroachCloud_AddJWTIssuer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddJWTIssuerRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JWTIssuer'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Add a JWT Issuer
+      tags:
+      - JWT Issuers
+      x-badges:
+      - color: red
+        label: LIMITED ACCESS
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request POST \
+            --url https://cockroachlabs.cloud/api/v1/jwt-issuers \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
+            --json '{"audience":"1234567890abcd","claim":"email","identity_map":[{"cc_identity":"\\1","is_regex":true,"token_identity":"sso_(.*)"}],"issuer_url":"https://jwt-issuer.example.com","jwks":"{\"keys\":[{\"e\":\"AQAB\",\"use\":\"sig\",\"kty\":\"RSA\",\"alg\":\"RS256\",\"n\":\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\",\"kid\":\"9341dedeee2d1869b657fa930300082fe26b3d92\"}]}"}'
+  /api/v1/jwt-issuers/{id}:
+    delete:
+      description: |
+        Deletes the JWT Issuer configuration
+
+        Can be used by the following roles assigned at the organization scope:
+        - ORG_ADMIN
+      operationId: CockroachCloud_DeleteJWTIssuer
+      parameters:
+      - description: The unique identifier of the JWT Issuer resource
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JWTIssuer'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Delete a JWT Issuer
+      tags:
+      - JWT Issuers
+      x-badges:
+      - color: red
+        label: LIMITED ACCESS
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request DELETE \
+            --url https://cockroachlabs.cloud/api/v1/jwt-issuers/{id} \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+    get:
+      description: |
+        Retrieves the JWT Issuer configuration
+
+        Can be used by the following roles assigned at the organization scope:
+        - ORG_ADMIN
+      operationId: CockroachCloud_GetJWTIssuer
+      parameters:
+      - description: The unique identifier of the JWT Issuer resource
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JWTIssuer'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Get a JWT Issuer
+      tags:
+      - JWT Issuers
+      x-badges:
+      - color: red
+        label: LIMITED ACCESS
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request GET \
+            --url https://cockroachlabs.cloud/api/v1/jwt-issuers/{id} \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+    patch:
+      description: |
+        Updates the JWT Issuer configuration
+
+        Can be used by the following roles assigned at the organization scope:
+        - ORG_ADMIN
+      operationId: CockroachCloud_UpdateJWTIssuer
+      parameters:
+      - description: The unique identifier of the JWT Issuer resource
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateJWTIssuerRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JWTIssuer'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Update a JWT Issuer
+      tags:
+      - JWT Issuers
+      x-badges:
+      - color: red
+        label: LIMITED ACCESS
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request PATCH \
+            --url https://cockroachlabs.cloud/api/v1/jwt-issuers/{id} \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
+            --json '{"audience":"1234567890abcd","claim":"email","identity_map":[{"cc_identity":"\\1","is_regex":true,"token_identity":"sso_(.*)"}],"issuer_url":"https://jwt-issuer.example.com","jwks":"{\"keys\":[{\"e\":\"AQAB\",\"use\":\"sig\",\"kty\":\"RSA\",\"alg\":\"RS256\",\"n\":\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\",\"kid\":\"9341dedeee2d1869b657fa930300082fe26b3d92\"}]}"}'
   /api/v1/organization:
     get:
       description: |
@@ -8161,7 +8577,7 @@ paths:
           curl --request PUT \
             --url https://cockroachlabs.cloud/api/v1/roles/{user_id} \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
-            --json '{"roles":[{"name":"CLUSTER_ADMIN","resource":{"id":"example_cluster_id","type":"CLUSTER"}}]}'
+            --json '{"roles":[{"name":"CLUSTER_ADMIN","resource":{"id":"example_cluster_id","type":"CLUSTER"}}],"user_id":"12345678-1234-1234-1234-123456789012"}'
   /api/v1/roles/{user_id}/{resource_type}/{resource_id}/{role_name}:
     delete:
       description: |-
@@ -8519,7 +8935,7 @@ paths:
           curl --request POST \
             --url https://cockroachlabs.cloud/api/v1/service-accounts \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
-            --json '{"name":"new name","roles":[{"name":"CLUSTER_ADMIN","resource":{"type":"ORGANIZATION"}}]}'
+            --json '{"description":"","name":"new name","roles":[{"name":"CLUSTER_ADMIN","resource":{"type":"ORGANIZATION"}}]}'
   /api/v1/service-accounts/{id}:
     delete:
       description: |
@@ -8791,88 +9207,7 @@ paths:
             --url 'https://cockroachlabs.cloud/api/v1/users/persons-by-email?email=SOME_STRING_VALUE' \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
 components:
-  requestBodies:
-    CockroachCloud_AddAllowlistEntry2Entry:
-      content:
-        application/json:
-          schema:
-            example:
-              cidr_ip: 192.168.1.1
-              cidr_mask: 32
-              name: Example
-              sql: true
-              ui: true
-            properties:
-              name:
-                type: string
-              sql:
-                type: boolean
-              ui:
-                type: boolean
-            required:
-            - sql
-            - ui
-            title: AllowlistEntry
-            type: object
-      description: AllowlistEntry
-      required: true
-    CockroachCloud_EnableCMEKSpecBody:
-      content:
-        application/json:
-          schema:
-            example:
-              region_specs:
-              - key_spec:
-                  auth_principal: arn:aws:iam::account:role/role-name-with-path
-                  type: AWS_KMS
-                  uri: arn:aws:kms:us-west-2:111122223333:key/id-of-kms-key
-                region: us-central1
-            properties:
-              region_specs:
-                items:
-                  $ref: '#/components/schemas/CMEKRegionSpecification'
-                type: array
-            required:
-            - region_specs
-            title: CMEKClusterSpecification
-            type: object
-      required: true
-    CockroachCloud_SearchGroupBody:
-      content:
-        application/json:
-          schema:
-            properties:
-              attributes:
-                type: string
-              excludedAttributes:
-                type: string
-            title: GetGroupRequest
-            type: object
-      required: true
-    CockroachCloud_SearchUserBody:
-      content:
-        application/json:
-          schema:
-            properties:
-              attributes:
-                type: string
-              excludedAttributes:
-                type: string
-            title: GetUserRequest
-            type: object
-      required: true
-    GetGroupsRequest:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/GetGroupsRequest'
-      required: true
-    GetUsersRequest:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/GetUsersRequest'
-      required: true
+  requestBodies: {}
   schemas:
     AWSEndpointConnectionStatus.Type:
       enum:
@@ -8942,6 +9277,52 @@ components:
       - rule
       title: AddEgressRuleResponse
       type: object
+    AddJWTIssuerRequest:
+      example:
+        audience: 1234567890abcd
+        issuer_url: https://jwt-issuer.example.com
+        jwks: "{\"keys\":[{\"e\":\"AQAB\",\"use\":\"sig\",\"kty\":\"RSA\",\"alg\"\
+          :\"RS256\",\"n\":\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\"\
+          ,\"kid\":\"9341dedeee2d1869b657fa930300082fe26b3d92\"}]}"
+        claim: email
+        identity_map:
+        - token_identity: sso_(.*)
+          cc_identity: \1
+          is_regex: true
+        - token_identity: sso_(.*)
+          cc_identity: \1
+          is_regex: true
+      properties:
+        audience:
+          example: 1234567890abcd
+          title: The intended audience for consuming the JWT
+          type: string
+        claim:
+          example: email
+          title: Used to identify the user from the external Identity Provider. Defaults
+            to "sub"
+          type: string
+        identity_map:
+          description: A list of mappings to map the external token identity into
+            CockroachDB Cloud.
+          items:
+            $ref: '#/components/schemas/JWTIssuerIdentityMapEntry'
+          type: array
+        issuer_url:
+          example: https://jwt-issuer.example.com
+          title: The URL of the server issuing JWTs
+          type: string
+        jwks:
+          example: "{\"keys\":[{\"e\":\"AQAB\",\"use\":\"sig\",\"kty\":\"RSA\",\"\
+            alg\":\"RS256\",\"n\":\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\"\
+            ,\"kid\":\"9341dedeee2d1869b657fa930300082fe26b3d92\"}]}"
+          title: A set of public keys (JWKS) used to verify a JWT
+          type: string
+      required:
+      - audience
+      - issuer_url
+      title: AddJWTIssuerRequest
+      type: object
     AddPrivateEndpointTrustedOwnerResponse:
       example:
         trusted_owner:
@@ -9009,8 +9390,12 @@ components:
             if (any.is(Foo.class)) {
               foo = any.unpack(Foo.class);
             }
+            // or ...
+            if (any.isSameTypeAs(Foo.getDefaultInstance())) {
+              foo = any.unpack(Foo.getDefaultInstance());
+            }
 
-        Example 3: Pack and unpack a message in Python.
+         Example 3: Pack and unpack a message in Python.
 
             foo = Foo(...)
             any = Any()
@@ -9020,7 +9405,7 @@ components:
               any.Unpack(foo)
               ...
 
-        Example 4: Pack and unpack a message in Go
+         Example 4: Pack and unpack a message in Go
 
              foo := &pb.Foo{...}
              any, err := anypb.New(foo)
@@ -9039,9 +9424,8 @@ components:
         in the type URL, for example "foo.bar.com/x/y.z" will yield type
         name "y.z".
 
-
         JSON
-
+        ====
         The JSON representation of an `Any` value uses the regular
         representation of the deserialized, embedded message, with an
         additional field `@type` which contains the type URL. Example:
@@ -9093,7 +9477,8 @@ components:
 
             Note: this functionality is not currently available in the official
             protobuf release, and it is not used for type URLs beginning with
-            type.googleapis.com.
+            type.googleapis.com. As of May 2023, there are no widely used type server
+            implementations and no plans to implement one.
 
             Schemes other than `http`, `https` (or the empty scheme) might be
             used with implementation specific semantics.
@@ -9137,6 +9522,7 @@ components:
       example:
         audience: 542c6390-bf38-4912-856b-8f31480e978b
         claim: sub
+        id: 1234abcd-1234-1234-abcd-12345678abcd
         identity_map:
         - cc_identity: \1
           is_regex: true
@@ -9144,6 +9530,7 @@ components:
         - cc_identity: \1
           is_regex: true
           token_identity: gcp_(.*)
+        issuer: theissuer
         jwks: "{\"keys\":[{\"e\":\"AQAB\",\"use\":\"sig\",\"kty\":\"RSA\",\"alg\"\
           :\"RS256\",\"n\":\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\"\
           ,\"kid\":\"9341dedeee2d1869b657fa930300082fe26b3d92\"}]}"
@@ -9254,6 +9641,9 @@ components:
       - AUDIT_LOG_ACTION_SET_DELETE_PROTECTION
       - AUDIT_LOG_ACTION_MARKETPLACE_CREATE_SUBSCRIPTION
       - AUDIT_LOG_ACTION_MARKETPLACE_CANCEL_SUBSCRIPTION
+      - AUDIT_LOG_ACTION_ADD_JWT_ISSUER
+      - AUDIT_LOG_ACTION_DELETE_JWT_ISSUER
+      - AUDIT_LOG_ACTION_UPDATE_JWT_ISSUER
       type: string
     AuditLogEntry:
       description: |-
@@ -9739,19 +10129,20 @@ components:
             spend_limit: 0
         created_at: 2022-03-22T20:23:11.285067Z
         creator_id: 7cde0cd9-0d8a-4008-8f90-45092ce8afc1
-        deleted_at: null
         id: 35c4abb2-bb66-46d7-afed-25ebef5ed2aa
         name: example-cluster
-        operation_status: CLUSTER_STATUS_UNSPECIFIED
+        operation_status: UNSPECIFIED
         plan: SERVERLESS
         regions:
-        - name: us-central1
+        - internal_dns: internal-free-tier7.gcp-us-central1.crdb.io
+          name: us-central1
           node_count: 0
+          private_endpoint_dns: private-free-tier7.gcp-us-central1.crdb.io
           sql_dns: free-tier7.gcp-us-central1.crdb.io
           ui_dns: ""
         state: CREATED
         updated_at: 2022-03-22T20:23:11.879593Z
-        upgrade_status: USING_LATEST
+        upgrade_status: UPGRADE_AVAILABLE
       properties:
         account_id:
           type: string
@@ -9991,6 +10382,7 @@ components:
         - cc_identity: \1
           is_regex: true
           token_identity: gcp_(.*)
+        issuer: theissuer
         jwks: "{\"keys\":[{\"e\":\"AQAB\",\"use\":\"sig\",\"kty\":\"RSA\",\"alg\"\
           :\"RS256\",\"n\":\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\"\
           ,\"kid\":\"9341dedeee2d1869b657fa930300082fe26b3d92\"}]}"
@@ -10095,6 +10487,7 @@ components:
       type: object
     CreateServiceAccountRequest:
       example:
+        description: ""
         name: new name
         roles:
         - name: CLUSTER_ADMIN
@@ -11180,19 +11573,20 @@ components:
                 spend_limit: 0
             created_at: 2022-03-22T20:23:11.285067Z
             creator_id: 7cde0cd9-0d8a-4008-8f90-45092ce8afc1
-            deleted_at: null
             id: 35c4abb2-bb66-46d7-afed-25ebef5ed2aa
             name: example-cluster
-            operation_status: CLUSTER_STATUS_UNSPECIFIED
+            operation_status: UNSPECIFIED
             plan: SERVERLESS
             regions:
-            - name: us-central1
+            - internal_dns: internal-free-tier7.gcp-us-central1.crdb.io
+              name: us-central1
               node_count: 0
+              private_endpoint_dns: private-free-tier7.gcp-us-central1.crdb.io
               sql_dns: free-tier7.gcp-us-central1.crdb.io
               ui_dns: ""
             state: CREATED
             updated_at: 2022-03-22T20:23:11.879593Z
-            upgrade_status: USING_LATEST
+            upgrade_status: UPGRADE_AVAILABLE
           line_items:
           - quantity_unit: null
             total:
@@ -11223,19 +11617,20 @@ components:
                 spend_limit: 0
             created_at: 2022-03-22T20:23:11.285067Z
             creator_id: 7cde0cd9-0d8a-4008-8f90-45092ce8afc1
-            deleted_at: null
             id: 35c4abb2-bb66-46d7-afed-25ebef5ed2aa
             name: example-cluster
-            operation_status: CLUSTER_STATUS_UNSPECIFIED
+            operation_status: UNSPECIFIED
             plan: SERVERLESS
             regions:
-            - name: us-central1
+            - internal_dns: internal-free-tier7.gcp-us-central1.crdb.io
+              name: us-central1
               node_count: 0
+              private_endpoint_dns: private-free-tier7.gcp-us-central1.crdb.io
               sql_dns: free-tier7.gcp-us-central1.crdb.io
               ui_dns: ""
             state: CREATED
             updated_at: 2022-03-22T20:23:11.879593Z
-            upgrade_status: USING_LATEST
+            upgrade_status: UPGRADE_AVAILABLE
           line_items:
           - quantity_unit: null
             total:
@@ -11363,19 +11758,20 @@ components:
               spend_limit: 0
           created_at: 2022-03-22T20:23:11.285067Z
           creator_id: 7cde0cd9-0d8a-4008-8f90-45092ce8afc1
-          deleted_at: null
           id: 35c4abb2-bb66-46d7-afed-25ebef5ed2aa
           name: example-cluster
-          operation_status: CLUSTER_STATUS_UNSPECIFIED
+          operation_status: UNSPECIFIED
           plan: SERVERLESS
           regions:
-          - name: us-central1
+          - internal_dns: internal-free-tier7.gcp-us-central1.crdb.io
+            name: us-central1
             node_count: 0
+            private_endpoint_dns: private-free-tier7.gcp-us-central1.crdb.io
             sql_dns: free-tier7.gcp-us-central1.crdb.io
             ui_dns: ""
           state: CREATED
           updated_at: 2022-03-22T20:23:11.879593Z
-          upgrade_status: USING_LATEST
+          upgrade_status: UPGRADE_AVAILABLE
         line_items:
         - quantity_unit: null
           total:
@@ -11415,18 +11811,79 @@ components:
       - line_items
       - totals
       type: object
-    KeysetPaginationRequest:
+    JWTIssuer:
+      example:
+        audience: 1234567890abcd
+        issuer_url: https://jwt-issuer.example.com
+        jwks: "{\"keys\":[{\"e\":\"AQAB\",\"use\":\"sig\",\"kty\":\"RSA\",\"alg\"\
+          :\"RS256\",\"n\":\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\"\
+          ,\"kid\":\"9341dedeee2d1869b657fa930300082fe26b3d92\"}]}"
+        claim: email
+        identity_map:
+        - token_identity: sso_(.*)
+          cc_identity: \1
+          is_regex: true
+        - token_identity: sso_(.*)
+          cc_identity: \1
+          is_regex: true
+        id: 1234abcd-1234-1234-abcd-12345678abcd
       properties:
-        as_of_time:
-          format: date-time
+        audience:
+          example: 1234567890abcd
+          title: The intended audience for consuming the JWT
           type: string
-        limit:
-          format: int32
-          type: integer
-        page:
+        claim:
+          example: email
+          title: Used to identify the user from the external Identity Provider. Defaults
+            to "sub"
           type: string
-        sort_order:
-          $ref: '#/components/schemas/SortOrder'
+        id:
+          example: 1234abcd-1234-1234-abcd-12345678abcd
+          format: uuid
+          title: The unique identifier of the JWT Issuer resource
+          type: string
+        identity_map:
+          items:
+            $ref: '#/components/schemas/JWTIssuerIdentityMapEntry'
+          title: A list of mappings to map the external token identity into CockroachDB
+            Cloud
+          type: array
+        issuer_url:
+          example: https://jwt-issuer.example.com
+          title: The URL of the server issuing JWTs
+          type: string
+        jwks:
+          example: "{\"keys\":[{\"e\":\"AQAB\",\"use\":\"sig\",\"kty\":\"RSA\",\"\
+            alg\":\"RS256\",\"n\":\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\"\
+            ,\"kid\":\"9341dedeee2d1869b657fa930300082fe26b3d92\"}]}"
+          title: A set of public keys (JWKS) used to verify a JWT
+          type: string
+      required:
+      - audience
+      - id
+      - issuer_url
+      title: JWTIssuer
+      type: object
+    JWTIssuerIdentityMapEntry:
+      example:
+        token_identity: sso_(.*)
+        cc_identity: \1
+        is_regex: true
+      properties:
+        cc_identity:
+          example: \1
+          title: Specifies how to map the fetched token identity into CockroachDB
+            Cloud
+          type: string
+        is_regex:
+          example: true
+          title: Specifies whether the token_identity and cc_identity configurations
+            are in regex format
+          type: boolean
+        token_identity:
+          example: sso_(.*)
+          title: Specifies how to fetch external identity from the token claim
+          type: string
       type: object
     KeysetPaginationResponse:
       example:
@@ -11536,6 +11993,7 @@ components:
         api_oidc_configs:
         - audience: 542c6390-bf38-4912-856b-8f31480e978b
           claim: sub
+          id: 1234abcd-1234-1234-abcd-12345678abcd
           identity_map:
           - cc_identity: \1
             is_regex: true
@@ -11543,11 +12001,13 @@ components:
           - cc_identity: \1
             is_regex: true
             token_identity: gcp_(.*)
+          issuer: theissuer
           jwks: "{\"keys\":[{\"e\":\"AQAB\",\"use\":\"sig\",\"kty\":\"RSA\",\"alg\"\
             :\"RS256\",\"n\":\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\"\
             ,\"kid\":\"9341dedeee2d1869b657fa930300082fe26b3d92\"}]}"
         - audience: 542c6390-bf38-4912-856b-8f31480e978b
           claim: sub
+          id: 1234abcd-1234-1234-abcd-12345678abcd
           identity_map:
           - cc_identity: \1
             is_regex: true
@@ -11555,6 +12015,7 @@ components:
           - cc_identity: \1
             is_regex: true
             token_identity: gcp_(.*)
+          issuer: theissuer
           jwks: "{\"keys\":[{\"e\":\"AQAB\",\"use\":\"sig\",\"kty\":\"RSA\",\"alg\"\
             :\"RS256\",\"n\":\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\"\
             ,\"kid\":\"9341dedeee2d1869b657fa930300082fe26b3d92\"}]}"
@@ -11679,19 +12140,20 @@ components:
               spend_limit: 0
           created_at: 2022-03-22T20:23:11.285067Z
           creator_id: 7cde0cd9-0d8a-4008-8f90-45092ce8afc1
-          deleted_at: null
           id: 35c4abb2-bb66-46d7-afed-25ebef5ed2aa
           name: example-cluster
-          operation_status: CLUSTER_STATUS_UNSPECIFIED
+          operation_status: UNSPECIFIED
           plan: SERVERLESS
           regions:
-          - name: us-central1
+          - internal_dns: internal-free-tier7.gcp-us-central1.crdb.io
+            name: us-central1
             node_count: 0
+            private_endpoint_dns: private-free-tier7.gcp-us-central1.crdb.io
             sql_dns: free-tier7.gcp-us-central1.crdb.io
             ui_dns: ""
           state: CREATED
           updated_at: 2022-03-22T20:23:11.879593Z
-          upgrade_status: USING_LATEST
+          upgrade_status: UPGRADE_AVAILABLE
         - account_id: ""
           cloud_provider: GCP
           cockroach_version: v21.2.4
@@ -11701,19 +12163,20 @@ components:
               spend_limit: 0
           created_at: 2022-03-22T20:23:11.285067Z
           creator_id: 7cde0cd9-0d8a-4008-8f90-45092ce8afc1
-          deleted_at: null
           id: 35c4abb2-bb66-46d7-afed-25ebef5ed2aa
           name: example-cluster
-          operation_status: CLUSTER_STATUS_UNSPECIFIED
+          operation_status: UNSPECIFIED
           plan: SERVERLESS
           regions:
-          - name: us-central1
+          - internal_dns: internal-free-tier7.gcp-us-central1.crdb.io
+            name: us-central1
             node_count: 0
+            private_endpoint_dns: private-free-tier7.gcp-us-central1.crdb.io
             sql_dns: free-tier7.gcp-us-central1.crdb.io
             ui_dns: ""
           state: CREATED
           updated_at: 2022-03-22T20:23:11.879593Z
-          upgrade_status: USING_LATEST
+          upgrade_status: UPGRADE_AVAILABLE
       properties:
         clusters:
           items:
@@ -11858,19 +12321,20 @@ components:
                   spend_limit: 0
               created_at: 2022-03-22T20:23:11.285067Z
               creator_id: 7cde0cd9-0d8a-4008-8f90-45092ce8afc1
-              deleted_at: null
               id: 35c4abb2-bb66-46d7-afed-25ebef5ed2aa
               name: example-cluster
-              operation_status: CLUSTER_STATUS_UNSPECIFIED
+              operation_status: UNSPECIFIED
               plan: SERVERLESS
               regions:
-              - name: us-central1
+              - internal_dns: internal-free-tier7.gcp-us-central1.crdb.io
+                name: us-central1
                 node_count: 0
+                private_endpoint_dns: private-free-tier7.gcp-us-central1.crdb.io
                 sql_dns: free-tier7.gcp-us-central1.crdb.io
                 ui_dns: ""
               state: CREATED
               updated_at: 2022-03-22T20:23:11.879593Z
-              upgrade_status: USING_LATEST
+              upgrade_status: UPGRADE_AVAILABLE
             line_items:
             - quantity_unit: null
               total:
@@ -11901,19 +12365,20 @@ components:
                   spend_limit: 0
               created_at: 2022-03-22T20:23:11.285067Z
               creator_id: 7cde0cd9-0d8a-4008-8f90-45092ce8afc1
-              deleted_at: null
               id: 35c4abb2-bb66-46d7-afed-25ebef5ed2aa
               name: example-cluster
-              operation_status: CLUSTER_STATUS_UNSPECIFIED
+              operation_status: UNSPECIFIED
               plan: SERVERLESS
               regions:
-              - name: us-central1
+              - internal_dns: internal-free-tier7.gcp-us-central1.crdb.io
+                name: us-central1
                 node_count: 0
+                private_endpoint_dns: private-free-tier7.gcp-us-central1.crdb.io
                 sql_dns: free-tier7.gcp-us-central1.crdb.io
                 ui_dns: ""
               state: CREATED
               updated_at: 2022-03-22T20:23:11.879593Z
-              upgrade_status: USING_LATEST
+              upgrade_status: UPGRADE_AVAILABLE
             line_items:
             - quantity_unit: null
               total:
@@ -11988,19 +12453,20 @@ components:
                   spend_limit: 0
               created_at: 2022-03-22T20:23:11.285067Z
               creator_id: 7cde0cd9-0d8a-4008-8f90-45092ce8afc1
-              deleted_at: null
               id: 35c4abb2-bb66-46d7-afed-25ebef5ed2aa
               name: example-cluster
-              operation_status: CLUSTER_STATUS_UNSPECIFIED
+              operation_status: UNSPECIFIED
               plan: SERVERLESS
               regions:
-              - name: us-central1
+              - internal_dns: internal-free-tier7.gcp-us-central1.crdb.io
+                name: us-central1
                 node_count: 0
+                private_endpoint_dns: private-free-tier7.gcp-us-central1.crdb.io
                 sql_dns: free-tier7.gcp-us-central1.crdb.io
                 ui_dns: ""
               state: CREATED
               updated_at: 2022-03-22T20:23:11.879593Z
-              upgrade_status: USING_LATEST
+              upgrade_status: UPGRADE_AVAILABLE
             line_items:
             - quantity_unit: null
               total:
@@ -12031,19 +12497,20 @@ components:
                   spend_limit: 0
               created_at: 2022-03-22T20:23:11.285067Z
               creator_id: 7cde0cd9-0d8a-4008-8f90-45092ce8afc1
-              deleted_at: null
               id: 35c4abb2-bb66-46d7-afed-25ebef5ed2aa
               name: example-cluster
-              operation_status: CLUSTER_STATUS_UNSPECIFIED
+              operation_status: UNSPECIFIED
               plan: SERVERLESS
               regions:
-              - name: us-central1
+              - internal_dns: internal-free-tier7.gcp-us-central1.crdb.io
+                name: us-central1
                 node_count: 0
+                private_endpoint_dns: private-free-tier7.gcp-us-central1.crdb.io
                 sql_dns: free-tier7.gcp-us-central1.crdb.io
                 ui_dns: ""
               state: CREATED
               updated_at: 2022-03-22T20:23:11.879593Z
-              upgrade_status: USING_LATEST
+              upgrade_status: UPGRADE_AVAILABLE
             line_items:
             - quantity_unit: null
               total:
@@ -12101,6 +12568,50 @@ components:
       required:
       - invoices
       type: object
+    ListJWTIssuersResponse:
+      example:
+        pagination:
+          next_page: next_page
+          previous_page: previous_page
+        jwt_issuers:
+        - audience: 1234567890abcd
+          issuer_url: https://jwt-issuer.example.com
+          jwks: "{\"keys\":[{\"e\":\"AQAB\",\"use\":\"sig\",\"kty\":\"RSA\",\"alg\"\
+            :\"RS256\",\"n\":\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\"\
+            ,\"kid\":\"9341dedeee2d1869b657fa930300082fe26b3d92\"}]}"
+          claim: email
+          identity_map:
+          - token_identity: sso_(.*)
+            cc_identity: \1
+            is_regex: true
+          - token_identity: sso_(.*)
+            cc_identity: \1
+            is_regex: true
+          id: 1234abcd-1234-1234-abcd-12345678abcd
+        - audience: 1234567890abcd
+          issuer_url: https://jwt-issuer.example.com
+          jwks: "{\"keys\":[{\"e\":\"AQAB\",\"use\":\"sig\",\"kty\":\"RSA\",\"alg\"\
+            :\"RS256\",\"n\":\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\"\
+            ,\"kid\":\"9341dedeee2d1869b657fa930300082fe26b3d92\"}]}"
+          claim: email
+          identity_map:
+          - token_identity: sso_(.*)
+            cc_identity: \1
+            is_regex: true
+          - token_identity: sso_(.*)
+            cc_identity: \1
+            is_regex: true
+          id: 1234abcd-1234-1234-abcd-12345678abcd
+      properties:
+        jwt_issuers:
+          items:
+            $ref: '#/components/schemas/JWTIssuer'
+          title: The list of JWT Issuer resources
+          type: array
+        pagination:
+          $ref: '#/components/schemas/KeysetPaginationResponse'
+      title: ListJWTIssuersResponse
+      type: object
     ListMajorClusterVersionsResponse:
       example:
         pagination:
@@ -12151,11 +12662,13 @@ components:
             resource:
               id: example_cluster_id
               type: CLUSTER
+          user_id: 12345678-1234-1234-1234-123456789012
         - roles:
           - name: CLUSTER_ADMIN
             resource:
               id: example_cluster_id
               type: CLUSTER
+          user_id: 12345678-1234-1234-1234-123456789012
         pagination:
           next_page: next_page
           previous_page: previous_page
@@ -12527,16 +13040,7 @@ components:
       - LIVE
       - NOT_READY
       type: string
-    NullValue:
-      description: |-
-        `NullValue` is a singleton enumeration to represent the null value for the
-        `Value` type union.
-
-         The JSON representation for `NullValue` is JSON `null`.
-
-         - NULL_VALUE: Null value.
-      type: string
-    OperatingSystem.Type:
+    OperatingSystemType:
       enum:
       - MAC
       - LINUX
@@ -12628,11 +13132,12 @@ components:
     PrivateEndpointConnection:
       example:
         cloud: AWS
+        cloud_provider: AWS
         endpoint_id: 2w543-45643-323fd
         endpoint_service_id: 34t-4t446-876bm
         region: us-east-1
         service_name: com.vpc-serv1
-        status: AVAILABLE
+        status: STATUS_AVAILABLE
       properties:
         cloud_provider:
           $ref: '#/components/schemas/CloudProvider.Type'
@@ -12689,17 +13194,19 @@ components:
       example:
         connections:
         - cloud: AWS
+          cloud_provider: AWS
           endpoint_id: 2w543-45643-323fd
           endpoint_service_id: 34t-4t446-876bm
           region: us-east-1
           service_name: com.vpc-serv1
-          status: AVAILABLE
+          status: STATUS_AVAILABLE
         - cloud: AWS
+          cloud_provider: AWS
           endpoint_id: 2w543-45643-323fd
           endpoint_service_id: 34t-4t446-876bm
           region: us-east-1
           service_name: com.vpc-serv1
-          status: AVAILABLE
+          status: STATUS_AVAILABLE
       properties:
         connections:
           description: Connections is a list of private endpoints.
@@ -12880,6 +13387,7 @@ components:
       enum:
       - HOURS
       - REQUEST_UNITS
+      - GIB
       type: string
     Region:
       properties:
@@ -13359,6 +13867,8 @@ components:
           description: routing_id is used to identify the cluster in a connection
             string.
           type: string
+        upgrade_type:
+          $ref: '#/components/schemas/UpgradeType.Type'
         usage_limits:
           $ref: '#/components/schemas/UsageLimits'
       required:
@@ -13410,6 +13920,8 @@ components:
           items:
             type: string
           type: array
+        upgrade_type:
+          $ref: '#/components/schemas/UpgradeType.Type'
         usage_limits:
           $ref: '#/components/schemas/UsageLimits'
       type: object
@@ -13472,14 +13984,6 @@ components:
       enum:
       - AVAILABLE
       - REJECTED
-      type: string
-    SortOrder:
-      description: |2-
-         - ASC: Sort in ascending order. This is the default unless otherwise specified.
-         - DESC: Sort in descending order.
-      enum:
-      - ASC
-      - DESC
       type: string
     Status:
       properties:
@@ -13552,6 +14056,11 @@ components:
           description: name of the service account.
           type: string
       type: object
+    UpgradeType.Type:
+      enum:
+      - MANUAL
+      - AUTOMATIC
+      type: string
     UsageLimits:
       properties:
         provisioned_capacity:
@@ -13622,6 +14131,7 @@ components:
           resource:
             id: example_cluster_id
             type: CLUSTER
+        user_id: 12345678-1234-1234-1234-123456789012
       properties:
         roles:
           items:
@@ -13641,49 +14151,7 @@ components:
         - display: croach@example.com
           value: 45a35c27-23d3-4d03-c4c5-9043c09e7175
         schemas:
-        - "0": u
-          "1": r
-          "2": "n"
-          "3": ':'
-          "4": i
-          "5": e
-          "6": t
-          "7": f
-          "8": ':'
-          "9": p
-          "10": a
-          "11": r
-          "12": a
-          "13": m
-          "14": s
-          "15": ':'
-          "16": s
-          "17": c
-          "18": i
-          "19": m
-          "20": ':'
-          "21": s
-          "22": c
-          "23": h
-          "24": e
-          "25": m
-          "26": a
-          "27": s
-          "28": ':'
-          "29": c
-          "30": o
-          "31": r
-          "32": e
-          "33": ':'
-          "34": "2"
-          "35": "."
-          "36": "0"
-          "37": ':'
-          "38": G
-          "39": r
-          "40": o
-          "41": u
-          "42": p
+        - urn:ietf:params:scim:schemas:core:2.0:Group
       properties:
         displayName:
           type: string
@@ -13724,48 +14192,7 @@ components:
           familyName: Roach
           givenName: Carl
         schemas:
-        - "0": u
-          "1": r
-          "2": "n"
-          "3": ':'
-          "4": i
-          "5": e
-          "6": t
-          "7": f
-          "8": ':'
-          "9": p
-          "10": a
-          "11": r
-          "12": a
-          "13": m
-          "14": s
-          "15": ':'
-          "16": s
-          "17": c
-          "18": i
-          "19": m
-          "20": ':'
-          "21": s
-          "22": c
-          "23": h
-          "24": e
-          "25": m
-          "26": a
-          "27": s
-          "28": ':'
-          "29": c
-          "30": o
-          "31": r
-          "32": e
-          "33": ':'
-          "34": "2"
-          "35": "."
-          "36": "0"
-          "37": ':'
-          "38": U
-          "39": s
-          "40": e
-          "41": r
+        - urn:ietf:params:scim:schemas:core:2.0:User
       properties:
         active:
           type: boolean
@@ -13807,6 +14234,7 @@ components:
       example:
         audience: 542c6390-bf38-4912-856b-8f31480e978b
         claim: sub
+        id: 1234abcd-1234-1234-abcd-12345678abcd
         identity_map:
         - cc_identity: \1
           is_regex: true
@@ -13814,6 +14242,7 @@ components:
         - cc_identity: \1
           is_regex: true
           token_identity: gcp_(.*)
+        issuer: theissuer
         jwks: "{\"keys\":[{\"e\":\"AQAB\",\"use\":\"sig\",\"kty\":\"RSA\",\"alg\"\
           :\"RS256\",\"n\":\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\"\
           ,\"kid\":\"9341dedeee2d1869b657fa930300082fe26b3d92\"}]}"
@@ -14234,6 +14663,49 @@ components:
       - password
       title: UpdateSQLUserPasswordRequest
       type: object
+    UpdateJWTIssuerRequest:
+      example:
+        audience: 1234567890abcd
+        issuer_url: https://jwt-issuer.example.com
+        jwks: "{\"keys\":[{\"e\":\"AQAB\",\"use\":\"sig\",\"kty\":\"RSA\",\"alg\"\
+          :\"RS256\",\"n\":\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\"\
+          ,\"kid\":\"9341dedeee2d1869b657fa930300082fe26b3d92\"}]}"
+        claim: email
+        identity_map:
+        - token_identity: sso_(.*)
+          cc_identity: \1
+          is_regex: true
+        - token_identity: sso_(.*)
+          cc_identity: \1
+          is_regex: true
+      properties:
+        audience:
+          example: 1234567890abcd
+          title: The intended audience for consuming the JWT
+          type: string
+        claim:
+          example: email
+          title: Used to identify the user from the external Identity Provider. Defaults
+            to "sub"
+          type: string
+        identity_map:
+          items:
+            $ref: '#/components/schemas/JWTIssuerIdentityMapEntry'
+          title: A list of mappings to map the external token identity into CockroachDB
+            Cloud
+          type: array
+        issuer_url:
+          example: https://jwt-issuer.example.com
+          title: The URL of the server issuing JWTs
+          type: string
+        jwks:
+          example: "{\"keys\":[{\"e\":\"AQAB\",\"use\":\"sig\",\"kty\":\"RSA\",\"\
+            alg\":\"RS256\",\"n\":\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\"\
+            ,\"kid\":\"9341dedeee2d1869b657fa930300082fe26b3d92\"}]}"
+          title: A set of public keys (JWKS) used to verify a JWT
+          type: string
+      title: UpdateJWTIssuerRequest
+      type: object
     CockroachCloud_SetRolesForUser_request:
       example:
         roles:
@@ -14241,6 +14713,7 @@ components:
           resource:
             id: example_cluster_id
             type: CLUSTER
+        user_id: 12345678-1234-1234-1234-123456789012
       properties:
         roles:
           items:

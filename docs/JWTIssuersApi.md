@@ -1,24 +1,24 @@
-# OpenIDConnectConfiguration
+# JWTIssuers
 
 All URIs are relative to *https://cockroachlabs.cloud*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateApiOidcConfig**](OpenIDConnectConfigurationApi.md#CreateApiOidcConfig) | **Post** /api/v1/api_oidc | Create an API OIDC configuration (Deprecated)
-[**DeleteApiOidcConfig**](OpenIDConnectConfigurationApi.md#DeleteApiOidcConfig) | **Delete** /api/v1/api_oidc/{id} | Delete an API OIDC configuration (Deprecated)
-[**GetApiOidcConfig**](OpenIDConnectConfigurationApi.md#GetApiOidcConfig) | **Get** /api/v1/api_oidc/{id} | Get an API OIDC configuration (Deprecated)
-[**ListApiOidcConfig**](OpenIDConnectConfigurationApi.md#ListApiOidcConfig) | **Get** /api/v1/api_oidc | List all API OIDC configurations (Deprecated)
-[**UpdateApiOidcConfig**](OpenIDConnectConfigurationApi.md#UpdateApiOidcConfig) | **Put** /api/v1/api_oidc/{id} | Update an API OIDC configuration (Deprecated)
+[**AddJWTIssuer**](JWTIssuersApi.md#AddJWTIssuer) | **Post** /api/v1/jwt-issuers | Add a JWT Issuer
+[**DeleteJWTIssuer**](JWTIssuersApi.md#DeleteJWTIssuer) | **Delete** /api/v1/jwt-issuers/{id} | Delete a JWT Issuer
+[**GetJWTIssuer**](JWTIssuersApi.md#GetJWTIssuer) | **Get** /api/v1/jwt-issuers/{id} | Get a JWT Issuer
+[**ListJWTIssuers**](JWTIssuersApi.md#ListJWTIssuers) | **Get** /api/v1/jwt-issuers | List all JWT Issuers
+[**UpdateJWTIssuer**](JWTIssuersApi.md#UpdateJWTIssuer) | **Patch** /api/v1/jwt-issuers/{id} | Update a JWT Issuer
 
 
 
-## CreateApiOidcConfig
+## AddJWTIssuer
 
-> ApiOidcConfig CreateApiOidcConfig(ctx).CreateApiOidcConfigRequest(createApiOidcConfigRequest).Execute()
+> JWTIssuer AddJWTIssuer(ctx).AddJWTIssuerRequest(addJWTIssuerRequest).Execute()
 
-Create an API OIDC configuration (Deprecated)
+Add a JWT Issuer
 
-This endpoint has been deprecated in favor of /jwt-issuers
+Registers a JWT Issuer with the CockroachDB Cloud to allow verifying JWTs during API authentication
 
 Can be used by the following roles assigned at the organization scope:
 - ORG_ADMIN
@@ -37,17 +37,17 @@ import (
 )
 
 func main() {
-    createApiOidcConfigRequest := *openapiclient.NewCreateApiOidcConfigRequest("Audience_example", "Issuer_example", "Jwks_example") // CreateApiOidcConfigRequest | 
+    addJWTIssuerRequest := *openapiclient.NewAddJWTIssuerRequest("1234567890abcd", "https://jwt-issuer.example.com") // AddJWTIssuerRequest | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
-    resp, r, err := api_client.OpenIDConnectConfigurationApi.CreateApiOidcConfig(context.Background()).CreateApiOidcConfigRequest(createApiOidcConfigRequest).Execute()
+    resp, r, err := api_client.JWTIssuersApi.AddJWTIssuer(context.Background()).AddJWTIssuerRequest(addJWTIssuerRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OpenIDConnectConfigurationApi.CreateApiOidcConfig``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `JWTIssuersApi.AddJWTIssuer``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateApiOidcConfig`: ApiOidcConfig
-    fmt.Fprintf(os.Stdout, "Response from `OpenIDConnectConfigurationApi.CreateApiOidcConfig`: %v\n", resp)
+    // response from `AddJWTIssuer`: JWTIssuer
+    fmt.Fprintf(os.Stdout, "Response from `JWTIssuersApi.AddJWTIssuer`: %v\n", resp)
 }
 ```
 
@@ -57,16 +57,16 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiCreateApiOidcConfig struct via the builder pattern
+Other parameters are passed through a pointer to a apiAddJWTIssuer struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createApiOidcConfigRequest** | [**CreateApiOidcConfigRequest**](CreateApiOidcConfigRequest.md) |  | 
+ **addJWTIssuerRequest** | [**AddJWTIssuerRequest**](AddJWTIssuerRequest.md) |  | 
 
 ### Return type
 
-[**ApiOidcConfig**](ApiOidcConfig.md)
+[**JWTIssuer**](JWTIssuer.md)
 
 ### Authorization
 
@@ -81,86 +81,13 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## DeleteApiOidcConfig
+## DeleteJWTIssuer
 
-> ApiOidcConfig DeleteApiOidcConfig(ctx, id).Execute()
+> JWTIssuer DeleteJWTIssuer(ctx, id).Execute()
 
-Delete an API OIDC configuration (Deprecated)
+Delete a JWT Issuer
 
-This endpoint has been deprecated in favor of /jwt-issuers
-
-Can be used by the following roles assigned at the organization scope:
-- ORG_ADMIN
-
-
-### Example
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    openapiclient "./openapi"
-)
-
-func main() {
-    id := "id_example" // string | 
-
-    configuration := openapiclient.NewConfiguration()
-    api_client := openapiclient.NewClient(configuration)
-    resp, r, err := api_client.OpenIDConnectConfigurationApi.DeleteApiOidcConfig(context.Background(), id).Execute()
-    if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OpenIDConnectConfigurationApi.DeleteApiOidcConfig``: %v\n", err)
-        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-    }
-    // response from `DeleteApiOidcConfig`: ApiOidcConfig
-    fmt.Fprintf(os.Stdout, "Response from `OpenIDConnectConfigurationApi.DeleteApiOidcConfig`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiDeleteApiOidcConfig struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
-### Return type
-
-[**ApiOidcConfig**](ApiOidcConfig.md)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to README]](../README.md)
-
-
-## GetApiOidcConfig
-
-> ApiOidcConfig GetApiOidcConfig(ctx, id).Execute()
-
-Get an API OIDC configuration (Deprecated)
-
-This endpoint has been deprecated in favor of /jwt-issuers
+Deletes the JWT Issuer configuration
 
 Can be used by the following roles assigned at the organization scope:
 - ORG_ADMIN
@@ -179,17 +106,17 @@ import (
 )
 
 func main() {
-    id := "id_example" // string | 
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | The unique identifier of the JWT Issuer resource
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
-    resp, r, err := api_client.OpenIDConnectConfigurationApi.GetApiOidcConfig(context.Background(), id).Execute()
+    resp, r, err := api_client.JWTIssuersApi.DeleteJWTIssuer(context.Background(), id).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OpenIDConnectConfigurationApi.GetApiOidcConfig``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `JWTIssuersApi.DeleteJWTIssuer``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetApiOidcConfig`: ApiOidcConfig
-    fmt.Fprintf(os.Stdout, "Response from `OpenIDConnectConfigurationApi.GetApiOidcConfig`: %v\n", resp)
+    // response from `DeleteJWTIssuer`: JWTIssuer
+    fmt.Fprintf(os.Stdout, "Response from `JWTIssuersApi.DeleteJWTIssuer`: %v\n", resp)
 }
 ```
 
@@ -199,11 +126,11 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
+**id** | **string** | The unique identifier of the JWT Issuer resource | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiGetApiOidcConfig struct via the builder pattern
+Other parameters are passed through a pointer to a apiDeleteJWTIssuer struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -212,7 +139,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ApiOidcConfig**](ApiOidcConfig.md)
+[**JWTIssuer**](JWTIssuer.md)
 
 ### Authorization
 
@@ -227,13 +154,86 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## ListApiOidcConfig
+## GetJWTIssuer
 
-> ListApiOidcConfigResponse ListApiOidcConfig(ctx).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).Execute()
+> JWTIssuer GetJWTIssuer(ctx, id).Execute()
 
-List all API OIDC configurations (Deprecated)
+Get a JWT Issuer
 
-This endpoint has been deprecated in favor of /jwt-issuers
+Retrieves the JWT Issuer configuration
+
+Can be used by the following roles assigned at the organization scope:
+- ORG_ADMIN
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | The unique identifier of the JWT Issuer resource
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.JWTIssuersApi.GetJWTIssuer(context.Background(), id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `JWTIssuersApi.GetJWTIssuer``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetJWTIssuer`: JWTIssuer
+    fmt.Fprintf(os.Stdout, "Response from `JWTIssuersApi.GetJWTIssuer`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | The unique identifier of the JWT Issuer resource | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetJWTIssuer struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**JWTIssuer**](JWTIssuer.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListJWTIssuers
+
+> ListJWTIssuersResponse ListJWTIssuers(ctx).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).Execute()
+
+List all JWT Issuers
+
+Lists all the JWT Issuer configurations registered for the CockroachDB Cloud organization
 
 Can be used by the following roles assigned at the organization scope:
 - ORG_ADMIN
@@ -260,13 +260,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
-    resp, r, err := api_client.OpenIDConnectConfigurationApi.ListApiOidcConfig(context.Background()).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).Execute()
+    resp, r, err := api_client.JWTIssuersApi.ListJWTIssuers(context.Background()).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OpenIDConnectConfigurationApi.ListApiOidcConfig``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `JWTIssuersApi.ListJWTIssuers``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `ListApiOidcConfig`: ListApiOidcConfigResponse
-    fmt.Fprintf(os.Stdout, "Response from `OpenIDConnectConfigurationApi.ListApiOidcConfig`: %v\n", resp)
+    // response from `ListJWTIssuers`: ListJWTIssuersResponse
+    fmt.Fprintf(os.Stdout, "Response from `JWTIssuersApi.ListJWTIssuers`: %v\n", resp)
 }
 ```
 
@@ -276,7 +276,7 @@ func main() {
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiListApiOidcConfig struct via the builder pattern
+Other parameters are passed through a pointer to a apiListJWTIssuers struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -288,7 +288,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ListApiOidcConfigResponse**](ListApiOidcConfigResponse.md)
+[**ListJWTIssuersResponse**](ListJWTIssuersResponse.md)
 
 ### Authorization
 
@@ -303,13 +303,13 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## UpdateApiOidcConfig
+## UpdateJWTIssuer
 
-> ApiOidcConfig UpdateApiOidcConfig(ctx, id).ApiOidcConfig1(apiOidcConfig1).Execute()
+> JWTIssuer UpdateJWTIssuer(ctx, id).UpdateJWTIssuerRequest(updateJWTIssuerRequest).Execute()
 
-Update an API OIDC configuration (Deprecated)
+Update a JWT Issuer
 
-This endpoint has been deprecated in favor of /jwt-issuers
+Updates the JWT Issuer configuration
 
 Can be used by the following roles assigned at the organization scope:
 - ORG_ADMIN
@@ -328,18 +328,18 @@ import (
 )
 
 func main() {
-    id := "id_example" // string | 
-    apiOidcConfig1 := *openapiclient.NewApiOidcConfig1("Audience_example", "Issuer_example", "Jwks_example") // ApiOidcConfig1 | 
+    id := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | The unique identifier of the JWT Issuer resource
+    updateJWTIssuerRequest := *openapiclient.NewUpdateJWTIssuerRequest() // UpdateJWTIssuerRequest | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
-    resp, r, err := api_client.OpenIDConnectConfigurationApi.UpdateApiOidcConfig(context.Background(), id).ApiOidcConfig1(apiOidcConfig1).Execute()
+    resp, r, err := api_client.JWTIssuersApi.UpdateJWTIssuer(context.Background(), id).UpdateJWTIssuerRequest(updateJWTIssuerRequest).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `OpenIDConnectConfigurationApi.UpdateApiOidcConfig``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `JWTIssuersApi.UpdateJWTIssuer``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateApiOidcConfig`: ApiOidcConfig
-    fmt.Fprintf(os.Stdout, "Response from `OpenIDConnectConfigurationApi.UpdateApiOidcConfig`: %v\n", resp)
+    // response from `UpdateJWTIssuer`: JWTIssuer
+    fmt.Fprintf(os.Stdout, "Response from `JWTIssuersApi.UpdateJWTIssuer`: %v\n", resp)
 }
 ```
 
@@ -349,21 +349,21 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** |  | 
+**id** | **string** | The unique identifier of the JWT Issuer resource | 
 
 ### Other Parameters
 
-Other parameters are passed through a pointer to a apiUpdateApiOidcConfig struct via the builder pattern
+Other parameters are passed through a pointer to a apiUpdateJWTIssuer struct via the builder pattern
 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **apiOidcConfig1** | [**ApiOidcConfig1**](ApiOidcConfig1.md) |  | 
+ **updateJWTIssuerRequest** | [**UpdateJWTIssuerRequest**](UpdateJWTIssuerRequest.md) |  | 
 
 ### Return type
 
-[**ApiOidcConfig**](ApiOidcConfig.md)
+[**JWTIssuer**](JWTIssuer.md)
 
 ### Authorization
 

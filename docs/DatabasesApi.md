@@ -18,7 +18,7 @@ Method | HTTP request | Description
 
 Create a new database
 
-Can be used by the following roles assigned at the organization or cluster scope:
+Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
 
@@ -92,7 +92,7 @@ Name | Type | Description  | Notes
 
 Delete a database
 
-Can be used by the following roles assigned at the organization or cluster scope:
+Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
 
@@ -167,7 +167,7 @@ Name | Type | Description  | Notes
 
 Update a database
 
-Can be used by the following roles assigned at the organization or cluster scope:
+Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
 
@@ -244,7 +244,7 @@ Name | Type | Description  | Notes
 
 Update a database
 
-Can be used by the following roles assigned at the organization or cluster scope:
+Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
 
@@ -320,7 +320,7 @@ List databases for a cluster
 
 Sort order: Database name ascending
 
-Can be used by the following roles assigned at the organization or cluster scope:
+Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
 - CLUSTER_DEVELOPER

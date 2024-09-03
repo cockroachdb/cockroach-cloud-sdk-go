@@ -150,6 +150,12 @@
 
 * `MARKETPLACE_CANCEL_SUBSCRIPTION` (value: `"AUDIT_LOG_ACTION_MARKETPLACE_CANCEL_SUBSCRIPTION"`)
 
+* `ADD_JWT_ISSUER` (value: `"AUDIT_LOG_ACTION_ADD_JWT_ISSUER"`)
+
+* `DELETE_JWT_ISSUER` (value: `"AUDIT_LOG_ACTION_DELETE_JWT_ISSUER"`)
+
+* `UPDATE_JWT_ISSUER` (value: `"AUDIT_LOG_ACTION_UPDATE_JWT_ISSUER"`)
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

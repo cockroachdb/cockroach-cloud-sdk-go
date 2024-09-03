@@ -5,10 +5,10 @@ All URIs are relative to *https://cockroachlabs.cloud*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**AddAllowlistEntry**](IPAllowlistsApi.md#AddAllowlistEntry) | **Post** /api/v1/clusters/{cluster_id}/networking/allowlist | Add a new CIDR address to the IP allowlist
-[**AddAllowlistEntry2**](IPAllowlistsApi.md#AddAllowlistEntry2) | **Put** /api/v1/clusters/{cluster_id}/networking/allowlist/{entry.cidr_ip}/{entry.cidr_mask} | Add a new CIDR address to the IP allowlist
+[**AddAllowlistEntry2**](IPAllowlistsApi.md#AddAllowlistEntry2) | **Put** /api/v1/clusters/{cluster_id}/networking/allowlist/{cidr_ip}/{cidr_mask} | Add a new CIDR address to the IP allowlist
 [**DeleteAllowlistEntry**](IPAllowlistsApi.md#DeleteAllowlistEntry) | **Delete** /api/v1/clusters/{cluster_id}/networking/allowlist/{cidr_ip}/{cidr_mask} | Delete an IP allowlist entry
 [**ListAllowlistEntries**](IPAllowlistsApi.md#ListAllowlistEntries) | **Get** /api/v1/clusters/{cluster_id}/networking/allowlist | Get the IP allowlist and propagation status for a cluster
-[**UpdateAllowlistEntry**](IPAllowlistsApi.md#UpdateAllowlistEntry) | **Patch** /api/v1/clusters/{cluster_id}/networking/allowlist/{entry.cidr_ip}/{entry.cidr_mask} | Update an IP allowlist entry
+[**UpdateAllowlistEntry**](IPAllowlistsApi.md#UpdateAllowlistEntry) | **Patch** /api/v1/clusters/{cluster_id}/networking/allowlist/{cidr_ip}/{cidr_mask} | Update an IP allowlist entry
 
 
 
@@ -18,7 +18,7 @@ Method | HTTP request | Description
 
 Add a new CIDR address to the IP allowlist
 
-Can be used by the following roles assigned at the organization or cluster scope:
+Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
 
@@ -88,11 +88,11 @@ Name | Type | Description  | Notes
 
 ## AddAllowlistEntry2
 
-> AllowlistEntry AddAllowlistEntry2(ctx, clusterId, entryCidrIp, entryCidrMask).AllowlistEntry1(allowlistEntry1).Execute()
+> AllowlistEntry AddAllowlistEntry2(ctx, clusterId, cidrIp, cidrMask).AllowlistEntry1(allowlistEntry1).Execute()
 
 Add a new CIDR address to the IP allowlist
 
-Can be used by the following roles assigned at the organization or cluster scope:
+Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
 
@@ -111,13 +111,13 @@ import (
 
 func main() {
     clusterId := "clusterId_example" // string | 
-    entryCidrIp := "entryCidrIp_example" // string | 
-    entryCidrMask := int32(56) // int32 | 
+    cidrIp := "cidrIp_example" // string | 
+    cidrMask := int32(56) // int32 | 
     allowlistEntry1 := *openapiclient.NewAllowlistEntry1(false, false) // AllowlistEntry1 | AllowlistEntry
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
-    resp, r, err := api_client.IPAllowlistsApi.AddAllowlistEntry2(context.Background(), clusterId, entryCidrIp, entryCidrMask).AllowlistEntry1(allowlistEntry1).Execute()
+    resp, r, err := api_client.IPAllowlistsApi.AddAllowlistEntry2(context.Background(), clusterId, cidrIp, cidrMask).AllowlistEntry1(allowlistEntry1).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `IPAllowlistsApi.AddAllowlistEntry2``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -134,8 +134,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **clusterId** | **string** |  | 
-**entryCidrIp** | **string** |  | 
-**entryCidrMask** | **int32** |  | 
+**cidrIp** | **string** |  | 
+**cidrMask** | **int32** |  | 
 
 ### Other Parameters
 
@@ -172,7 +172,7 @@ Name | Type | Description  | Notes
 
 Delete an IP allowlist entry
 
-Can be used by the following roles assigned at the organization or cluster scope:
+Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
 
@@ -252,7 +252,7 @@ Get the IP allowlist and propagation status for a cluster
 
 Sort order: CIDR address
 
-Can be used by the following roles assigned at the organization or cluster scope:
+Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
 - CLUSTER_DEVELOPER
@@ -330,11 +330,11 @@ Name | Type | Description  | Notes
 
 ## UpdateAllowlistEntry
 
-> AllowlistEntry UpdateAllowlistEntry(ctx, clusterId, entryCidrIp, entryCidrMask).AllowlistEntry1(allowlistEntry1).Execute()
+> AllowlistEntry UpdateAllowlistEntry(ctx, clusterId, cidrIp, cidrMask).AllowlistEntry1(allowlistEntry1).Execute()
 
 Update an IP allowlist entry
 
-Can be used by the following roles assigned at the organization or cluster scope:
+Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
 
@@ -353,13 +353,13 @@ import (
 
 func main() {
     clusterId := "clusterId_example" // string | 
-    entryCidrIp := "entryCidrIp_example" // string | 
-    entryCidrMask := int32(56) // int32 | 
+    cidrIp := "cidrIp_example" // string | 
+    cidrMask := int32(56) // int32 | 
     allowlistEntry1 := *openapiclient.NewAllowlistEntry1(false, false) // AllowlistEntry1 | AllowlistEntry
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
-    resp, r, err := api_client.IPAllowlistsApi.UpdateAllowlistEntry(context.Background(), clusterId, entryCidrIp, entryCidrMask).AllowlistEntry1(allowlistEntry1).Execute()
+    resp, r, err := api_client.IPAllowlistsApi.UpdateAllowlistEntry(context.Background(), clusterId, cidrIp, cidrMask).AllowlistEntry1(allowlistEntry1).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `IPAllowlistsApi.UpdateAllowlistEntry``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -376,8 +376,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **clusterId** | **string** |  | 
-**entryCidrIp** | **string** |  | 
-**entryCidrMask** | **int32** |  | 
+**cidrIp** | **string** |  | 
+**cidrMask** | **int32** |  | 
 
 ### Other Parameters
 

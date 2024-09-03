@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 Get the version upgrade deferral policy for a cluster.
 
-Can be used by the following roles assigned at the organization or cluster scope:
+Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
 
@@ -87,7 +87,7 @@ Name | Type | Description  | Notes
 
 Set the version upgrade deferral policy for a cluster
 
-Can be used by the following roles assigned at the organization or cluster scope:
+Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
 

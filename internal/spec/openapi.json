@@ -106,9 +106,7 @@
             }
           }
         },
-        "tags": [
-          "SCIM"
-        ],
+        "tags": ["SCIM"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -192,9 +190,7 @@
             }
           }
         },
-        "tags": [
-          "SCIM"
-        ],
+        "tags": ["SCIM"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -280,9 +276,7 @@
             }
           }
         },
-        "tags": [
-          "SCIM"
-        ],
+        "tags": ["SCIM"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -367,9 +361,7 @@
           }
         },
         "deprecated": true,
-        "tags": [
-          "SCIM"
-        ],
+        "tags": ["SCIM"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -455,9 +447,7 @@
             }
           }
         },
-        "tags": [
-          "SCIM"
-        ],
+        "tags": ["SCIM"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -555,9 +545,7 @@
             }
           }
         },
-        "tags": [
-          "SCIM"
-        ],
+        "tags": ["SCIM"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -614,57 +602,9 @@
                       "value": "45a35c27-23d3-4d03-c4c5-9043c09e7175"
                     }
                   ],
-                  "schemas": [
-                    {
-                      "0": "u",
-                      "1": "r",
-                      "2": "n",
-                      "3": ":",
-                      "4": "i",
-                      "5": "e",
-                      "6": "t",
-                      "7": "f",
-                      "8": ":",
-                      "9": "p",
-                      "10": "a",
-                      "11": "r",
-                      "12": "a",
-                      "13": "m",
-                      "14": "s",
-                      "15": ":",
-                      "16": "s",
-                      "17": "c",
-                      "18": "i",
-                      "19": "m",
-                      "20": ":",
-                      "21": "s",
-                      "22": "c",
-                      "23": "h",
-                      "24": "e",
-                      "25": "m",
-                      "26": "a",
-                      "27": "s",
-                      "28": ":",
-                      "29": "c",
-                      "30": "o",
-                      "31": "r",
-                      "32": "e",
-                      "33": ":",
-                      "34": "2",
-                      "35": ".",
-                      "36": "0",
-                      "37": ":",
-                      "38": "G",
-                      "39": "r",
-                      "40": "o",
-                      "41": "u",
-                      "42": "p"
-                    }
-                  ]
+                  "schemas": ["urn:ietf:params:scim:schemas:core:2.0:Group"]
                 },
-                "required": [
-                  "displayName"
-                ],
+                "required": ["displayName"],
                 "title": "UpdateGroupRequest"
               }
             }
@@ -732,9 +672,7 @@
             }
           }
         },
-        "tags": [
-          "SCIM"
-        ],
+        "tags": ["SCIM"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -839,9 +777,7 @@
             }
           }
         },
-        "tags": [
-          "SCIM"
-        ],
+        "tags": ["SCIM"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -945,9 +881,7 @@
           }
         },
         "deprecated": true,
-        "tags": [
-          "SCIM"
-        ],
+        "tags": ["SCIM"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -1039,9 +973,7 @@
             }
           }
         },
-        "tags": [
-          "SCIM"
-        ],
+        "tags": ["SCIM"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -1141,9 +1073,7 @@
             }
           }
         },
-        "tags": [
-          "SCIM"
-        ],
+        "tags": ["SCIM"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -1235,9 +1165,7 @@
             }
           }
         },
-        "tags": [
-          "SCIM"
-        ],
+        "tags": ["SCIM"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -1337,9 +1265,7 @@
             }
           }
         },
-        "tags": [
-          "SCIM"
-        ],
+        "tags": ["SCIM"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -1415,9 +1341,7 @@
             }
           }
         },
-        "tags": [
-          "SCIM"
-        ],
+        "tags": ["SCIM"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -1516,9 +1440,7 @@
             }
           }
         },
-        "tags": [
-          "SCIM"
-        ],
+        "tags": ["SCIM"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -1602,9 +1524,7 @@
             }
           }
         },
-        "tags": [
-          "SCIM"
-        ],
+        "tags": ["SCIM"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -1690,9 +1610,7 @@
             }
           }
         },
-        "tags": [
-          "SCIM"
-        ],
+        "tags": ["SCIM"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -1777,9 +1695,7 @@
           }
         },
         "deprecated": true,
-        "tags": [
-          "SCIM"
-        ],
+        "tags": ["SCIM"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -1865,9 +1781,7 @@
             }
           }
         },
-        "tags": [
-          "SCIM"
-        ],
+        "tags": ["SCIM"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -1965,9 +1879,7 @@
             }
           }
         },
-        "tags": [
-          "SCIM"
-        ],
+        "tags": ["SCIM"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -2038,56 +1950,9 @@
                     "familyName": "Roach",
                     "givenName": "Carl"
                   },
-                  "schemas": [
-                    {
-                      "0": "u",
-                      "1": "r",
-                      "2": "n",
-                      "3": ":",
-                      "4": "i",
-                      "5": "e",
-                      "6": "t",
-                      "7": "f",
-                      "8": ":",
-                      "9": "p",
-                      "10": "a",
-                      "11": "r",
-                      "12": "a",
-                      "13": "m",
-                      "14": "s",
-                      "15": ":",
-                      "16": "s",
-                      "17": "c",
-                      "18": "i",
-                      "19": "m",
-                      "20": ":",
-                      "21": "s",
-                      "22": "c",
-                      "23": "h",
-                      "24": "e",
-                      "25": "m",
-                      "26": "a",
-                      "27": "s",
-                      "28": ":",
-                      "29": "c",
-                      "30": "o",
-                      "31": "r",
-                      "32": "e",
-                      "33": ":",
-                      "34": "2",
-                      "35": ".",
-                      "36": "0",
-                      "37": ":",
-                      "38": "U",
-                      "39": "s",
-                      "40": "e",
-                      "41": "r"
-                    }
-                  ]
+                  "schemas": ["urn:ietf:params:scim:schemas:core:2.0:User"]
                 },
-                "required": [
-                  "active"
-                ],
+                "required": ["active"],
                 "title": "UpdateUserRequest"
               }
             }
@@ -2155,9 +2020,7 @@
             }
           }
         },
-        "tags": [
-          "SCIM"
-        ],
+        "tags": ["SCIM"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -2262,9 +2125,7 @@
             }
           }
         },
-        "tags": [
-          "SCIM"
-        ],
+        "tags": ["SCIM"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -2368,9 +2229,7 @@
           }
         },
         "deprecated": true,
-        "tags": [
-          "SCIM"
-        ],
+        "tags": ["SCIM"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -2422,10 +2281,7 @@
             "description": " - ASC: Sort in ascending order. This is the default unless otherwise specified.\n - DESC: Sort in descending order.",
             "schema": {
               "type": "string",
-              "enum": [
-                "ASC",
-                "DESC"
-              ]
+              "enum": ["ASC", "DESC"]
             }
           }
         ],
@@ -2491,9 +2347,7 @@
             }
           }
         },
-        "tags": [
-          "API Keys"
-        ],
+        "tags": ["API Keys"],
         "x-badges": [
           {
             "color": "blue",
@@ -2583,9 +2437,7 @@
             }
           }
         },
-        "tags": [
-          "API Keys"
-        ],
+        "tags": ["API Keys"],
         "x-badges": [
           {
             "color": "blue",
@@ -2678,9 +2530,7 @@
             }
           }
         },
-        "tags": [
-          "API Keys"
-        ],
+        "tags": ["API Keys"],
         "x-badges": [
           {
             "color": "blue",
@@ -2771,9 +2621,7 @@
             }
           }
         },
-        "tags": [
-          "API Keys"
-        ],
+        "tags": ["API Keys"],
         "x-badges": [
           {
             "color": "blue",
@@ -2874,9 +2722,7 @@
             }
           }
         },
-        "tags": [
-          "API Keys"
-        ],
+        "tags": ["API Keys"],
         "x-badges": [
           {
             "color": "blue",
@@ -2894,8 +2740,8 @@
     "/api/v1/api_oidc": {
       "get": {
         "operationId": "CockroachCloud_ListApiOidcConfig",
-        "summary": "List all API OIDC configurations",
-        "description": "Can be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
+        "summary": "List all API OIDC configurations (Deprecated)",
+        "description": "This endpoint has been deprecated in favor of /jwt-issuers\n\nCan be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
         "parameters": [
           {
             "name": "pagination.page",
@@ -2926,10 +2772,7 @@
             "description": " - ASC: Sort in ascending order. This is the default unless otherwise specified.\n - DESC: Sort in descending order.",
             "schema": {
               "type": "string",
-              "enum": [
-                "ASC",
-                "DESC"
-              ]
+              "enum": ["ASC", "DESC"]
             }
           }
         ],
@@ -2995,9 +2838,8 @@
             }
           }
         },
-        "tags": [
-          "OpenID Connect Configuration"
-        ],
+        "deprecated": true,
+        "tags": ["OpenID Connect Configuration"],
         "x-badges": [
           {
             "color": "red",
@@ -3013,8 +2855,8 @@
       },
       "post": {
         "operationId": "CockroachCloud_CreateApiOidcConfig",
-        "summary": "Create an API OIDC configuration",
-        "description": "Can be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
+        "summary": "Create an API OIDC configuration (Deprecated)",
+        "description": "This endpoint has been deprecated in favor of /jwt-issuers\n\nCan be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
         "requestBody": {
           "required": true,
           "content": {
@@ -3087,9 +2929,8 @@
             }
           }
         },
-        "tags": [
-          "OpenID Connect Configuration"
-        ],
+        "deprecated": true,
+        "tags": ["OpenID Connect Configuration"],
         "x-badges": [
           {
             "color": "red",
@@ -3099,7 +2940,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/api_oidc \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"audience\":\"542c6390-bf38-4912-856b-8f31480e978b\",\"claim\":\"sub\",\"identity_map\":[{\"cc_identity\":\"\\\\1\",\"is_regex\":true,\"token_identity\":\"sso_(.*)\"},{\"cc_identity\":\"\\\\1\",\"is_regex\":true,\"token_identity\":\"gcp_(.*)\"}],\"jwks\":\"{\\\"keys\\\":[{\\\"e\\\":\\\"AQAB\\\",\\\"use\\\":\\\"sig\\\",\\\"kty\\\":\\\"RSA\\\",\\\"alg\\\":\\\"RS256\\\",\\\"n\\\":\\\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\\\",\\\"kid\\\":\\\"9341dedeee2d1869b657fa930300082fe26b3d92\\\"}]}\"}'"
+            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/api_oidc \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"audience\":\"542c6390-bf38-4912-856b-8f31480e978b\",\"claim\":\"sub\",\"identity_map\":[{\"cc_identity\":\"\\\\1\",\"is_regex\":true,\"token_identity\":\"sso_(.*)\"},{\"cc_identity\":\"\\\\1\",\"is_regex\":true,\"token_identity\":\"gcp_(.*)\"}],\"issuer\":\"theissuer\",\"jwks\":\"{\\\"keys\\\":[{\\\"e\\\":\\\"AQAB\\\",\\\"use\\\":\\\"sig\\\",\\\"kty\\\":\\\"RSA\\\",\\\"alg\\\":\\\"RS256\\\",\\\"n\\\":\\\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\\\",\\\"kid\\\":\\\"9341dedeee2d1869b657fa930300082fe26b3d92\\\"}]}\"}'"
           }
         ]
       }
@@ -3107,8 +2948,8 @@
     "/api/v1/api_oidc/{id}": {
       "delete": {
         "operationId": "CockroachCloud_DeleteApiOidcConfig",
-        "summary": "Delete an API OIDC configuration",
-        "description": "Can be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
+        "summary": "Delete an API OIDC configuration (Deprecated)",
+        "description": "This endpoint has been deprecated in favor of /jwt-issuers\n\nCan be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
         "parameters": [
           {
             "name": "id",
@@ -3181,9 +3022,8 @@
             }
           }
         },
-        "tags": [
-          "OpenID Connect Configuration"
-        ],
+        "deprecated": true,
+        "tags": ["OpenID Connect Configuration"],
         "x-badges": [
           {
             "color": "red",
@@ -3199,8 +3039,8 @@
       },
       "get": {
         "operationId": "CockroachCloud_GetApiOidcConfig",
-        "summary": "Get an API OIDC configuration",
-        "description": "Can be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
+        "summary": "Get an API OIDC configuration (Deprecated)",
+        "description": "This endpoint has been deprecated in favor of /jwt-issuers\n\nCan be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
         "parameters": [
           {
             "name": "id",
@@ -3273,9 +3113,8 @@
             }
           }
         },
-        "tags": [
-          "OpenID Connect Configuration"
-        ],
+        "deprecated": true,
+        "tags": ["OpenID Connect Configuration"],
         "x-badges": [
           {
             "color": "red",
@@ -3291,8 +3130,8 @@
       },
       "put": {
         "operationId": "CockroachCloud_UpdateApiOidcConfig",
-        "summary": "Update an API OIDC configuration",
-        "description": "Can be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
+        "summary": "Update an API OIDC configuration (Deprecated)",
+        "description": "This endpoint has been deprecated in favor of /jwt-issuers\n\nCan be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
         "parameters": [
           {
             "name": "id",
@@ -3333,6 +3172,7 @@
                 "example": {
                   "audience": "542c6390-bf38-4912-856b-8f31480e978b",
                   "claim": "sub",
+                  "id": "1234abcd-1234-1234-abcd-12345678abcd",
                   "identity_map": [
                     {
                       "cc_identity": "\\1",
@@ -3345,13 +3185,10 @@
                       "token_identity": "gcp_(.*)"
                     }
                   ],
+                  "issuer": "theissuer",
                   "jwks": "{\"keys\":[{\"e\":\"AQAB\",\"use\":\"sig\",\"kty\":\"RSA\",\"alg\":\"RS256\",\"n\":\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\",\"kid\":\"9341dedeee2d1869b657fa930300082fe26b3d92\"}]}"
                 },
-                "required": [
-                  "issuer",
-                  "audience",
-                  "jwks"
-                ],
+                "required": ["issuer", "audience", "jwks"],
                 "title": "ApiOidcConfig"
               }
             }
@@ -3419,9 +3256,8 @@
             }
           }
         },
-        "tags": [
-          "OpenID Connect Configuration"
-        ],
+        "deprecated": true,
+        "tags": ["OpenID Connect Configuration"],
         "x-badges": [
           {
             "color": "red",
@@ -3431,7 +3267,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/v1/api_oidc/{id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"audience\":\"542c6390-bf38-4912-856b-8f31480e978b\",\"claim\":\"sub\",\"identity_map\":[{\"cc_identity\":\"\\\\1\",\"is_regex\":true,\"token_identity\":\"sso_(.*)\"},{\"cc_identity\":\"\\\\1\",\"is_regex\":true,\"token_identity\":\"gcp_(.*)\"}],\"jwks\":\"{\\\"keys\\\":[{\\\"e\\\":\\\"AQAB\\\",\\\"use\\\":\\\"sig\\\",\\\"kty\\\":\\\"RSA\\\",\\\"alg\\\":\\\"RS256\\\",\\\"n\\\":\\\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\\\",\\\"kid\\\":\\\"9341dedeee2d1869b657fa930300082fe26b3d92\\\"}]}\"}'"
+            "source": "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/v1/api_oidc/{id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"audience\":\"542c6390-bf38-4912-856b-8f31480e978b\",\"claim\":\"sub\",\"id\":\"1234abcd-1234-1234-abcd-12345678abcd\",\"identity_map\":[{\"cc_identity\":\"\\\\1\",\"is_regex\":true,\"token_identity\":\"sso_(.*)\"},{\"cc_identity\":\"\\\\1\",\"is_regex\":true,\"token_identity\":\"gcp_(.*)\"}],\"issuer\":\"theissuer\",\"jwks\":\"{\\\"keys\\\":[{\\\"e\\\":\\\"AQAB\\\",\\\"use\\\":\\\"sig\\\",\\\"kty\\\":\\\"RSA\\\",\\\"alg\\\":\\\"RS256\\\",\\\"n\\\":\\\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\\\",\\\"kid\\\":\\\"9341dedeee2d1869b657fa930300082fe26b3d92\\\"}]}\"}'"
           }
         ]
       }
@@ -3457,10 +3293,7 @@
             "description": "sort_order is the direction of pagination, with starting_from as the\nstart point. If unset, the default is ascending order.\n\n - ASC: Sort in ascending order. This is the default unless otherwise specified.\n - DESC: Sort in descending order.",
             "schema": {
               "type": "string",
-              "enum": [
-                "ASC",
-                "DESC"
-              ]
+              "enum": ["ASC", "DESC"]
             }
           },
           {
@@ -3535,9 +3368,7 @@
             }
           }
         },
-        "tags": [
-          "Audit Logs"
-        ],
+        "tags": ["Audit Logs"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -3581,10 +3412,7 @@
             "description": " - ASC: Sort in ascending order. This is the default unless otherwise specified.\n - DESC: Sort in descending order.",
             "schema": {
               "type": "string",
-              "enum": [
-                "ASC",
-                "DESC"
-              ]
+              "enum": ["ASC", "DESC"]
             }
           }
         ],
@@ -3650,9 +3478,7 @@
             }
           }
         },
-        "tags": [
-          "Clusters"
-        ],
+        "tags": ["Clusters"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -3673,7 +3499,7 @@
             "description": "If `true`, show clusters that have been deleted or failed to initialize.\nNote that inactive clusters will only be included if the requesting user\nhas organization-scoped cluster read permissions.",
             "schema": {
               "type": "boolean",
-              "default": "false"
+              "default": false
             }
           },
           {
@@ -3705,10 +3531,7 @@
             "description": " - ASC: Sort in ascending order. This is the default unless otherwise specified.\n - DESC: Sort in descending order.",
             "schema": {
               "type": "string",
-              "enum": [
-                "ASC",
-                "DESC"
-              ]
+              "enum": ["ASC", "DESC"]
             }
           }
         ],
@@ -3774,9 +3597,7 @@
             }
           }
         },
-        "tags": [
-          "Clusters"
-        ],
+        "tags": ["Clusters"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -3860,9 +3681,7 @@
             }
           }
         },
-        "tags": [
-          "Clusters"
-        ],
+        "tags": ["Clusters"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -3883,11 +3702,7 @@
             "description": "Optional CloudProvider for filtering.\n\n - GCP: The Google Cloud Platform cloud provider.\n - AWS: The Amazon Web Services cloud provider.\n - AZURE: The Azure cloud provider.",
             "schema": {
               "type": "string",
-              "enum": [
-                "GCP",
-                "AWS",
-                "AZURE"
-              ]
+              "enum": ["GCP", "AWS", "AZURE"]
             }
           },
           {
@@ -3896,7 +3711,7 @@
             "description": "Optional filter to only show regions available for serverless clusters.",
             "schema": {
               "type": "boolean",
-              "default": "false"
+              "default": false
             }
           },
           {
@@ -3928,10 +3743,7 @@
             "description": " - ASC: Sort in ascending order. This is the default unless otherwise specified.\n - DESC: Sort in descending order.",
             "schema": {
               "type": "string",
-              "enum": [
-                "ASC",
-                "DESC"
-              ]
+              "enum": ["ASC", "DESC"]
             }
           }
         ],
@@ -3997,9 +3809,7 @@
             }
           }
         },
-        "tags": [
-          "Clusters"
-        ],
+        "tags": ["Clusters"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -4012,7 +3822,7 @@
       "delete": {
         "operationId": "CockroachCloud_DeleteCluster",
         "summary": "Delete a cluster and all of its data",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -4085,9 +3895,7 @@
             }
           }
         },
-        "tags": [
-          "Clusters"
-        ],
+        "tags": ["Clusters"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -4098,7 +3906,7 @@
       "get": {
         "operationId": "CockroachCloud_GetCluster",
         "summary": "Get extended information about a cluster",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- ORG_ADMIN\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n- CLUSTER_DEVELOPER\n- FOLDER_ADMIN\n- FOLDER_MOVER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- ORG_ADMIN\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n- CLUSTER_DEVELOPER\n- FOLDER_ADMIN\n- FOLDER_MOVER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -4171,9 +3979,7 @@
             }
           }
         },
-        "tags": [
-          "Clusters"
-        ],
+        "tags": ["Clusters"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -4184,7 +3990,7 @@
       "patch": {
         "operationId": "CockroachCloud_UpdateCluster",
         "summary": "Scale, edit or upgrade a cluster",
-        "description": "In addition to adding nodes and changing cluster fields, the PATCH Cluster endpoint can be used to upgrade the cluster version. A cluster can be upgraded when its `upgrade_status` field is equal to `UPGRADE_AVAILABLE`. To begin the upgrade, PATCH `{\"upgrade_status\": \"MAJOR_UPGRADE_RUNNING\"}` to this endpoint. Multi-node clusters will undergo a rolling upgrade and will remain available, but single-node clusters will be briefly unavailable while the upgrade takes place. Upgrades will be finalized automatically after 72 hours but can be manually finalized by sending a PATCH containing `{\"upgrade_status\": \"FINALIZED\"}` to this endpoint. Before the cluster is finalized, it can be rolled back by sending a PATCH containing `{\"upgrade_status\": \"ROLLBACK_RUNNING\"}`. Version upgrade operations cannot be performed simultaneously with other update operations.\n\nCan be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "In addition to adding nodes and changing cluster fields, the PATCH Cluster endpoint can be used to upgrade the cluster version. A cluster can be upgraded when its `upgrade_status` field is equal to `UPGRADE_AVAILABLE`. To begin the upgrade, PATCH `{\"upgrade_status\": \"MAJOR_UPGRADE_RUNNING\"}` to this endpoint. Multi-node clusters will undergo a rolling upgrade and will remain available, but single-node clusters will be briefly unavailable while the upgrade takes place. Upgrades will be finalized automatically after 72 hours but can be manually finalized by sending a PATCH containing `{\"upgrade_status\": \"FINALIZED\"}` to this endpoint. Before the cluster is finalized, it can be rolled back by sending a PATCH containing `{\"upgrade_status\": \"ROLLBACK_RUNNING\"}`. Version upgrade operations cannot be performed simultaneously with other update operations.\n\nCan be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -4267,9 +4073,7 @@
             }
           }
         },
-        "tags": [
-          "Clusters"
-        ],
+        "tags": ["Clusters"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -4282,7 +4086,7 @@
       "delete": {
         "operationId": "CockroachCloud_DeleteClientCACert",
         "summary": "Delete Client CA Cert for a cluster",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -4355,9 +4159,7 @@
             }
           }
         },
-        "tags": [
-          "Client CA Certificates"
-        ],
+        "tags": ["Client CA Certificates"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -4368,7 +4170,7 @@
       "get": {
         "operationId": "CockroachCloud_GetClientCACert",
         "summary": "Get Client CA Cert information for a cluster",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -4441,9 +4243,7 @@
             }
           }
         },
-        "tags": [
-          "Client CA Certificates"
-        ],
+        "tags": ["Client CA Certificates"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -4454,7 +4254,7 @@
       "patch": {
         "operationId": "CockroachCloud_UpdateClientCACert",
         "summary": "Update Client CA Cert for a cluster",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -4546,9 +4346,7 @@
             }
           }
         },
-        "tags": [
-          "Client CA Certificates"
-        ],
+        "tags": ["Client CA Certificates"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -4559,7 +4357,7 @@
       "post": {
         "operationId": "CockroachCloud_SetClientCACert",
         "summary": "Set Client CA Cert for a cluster",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -4584,9 +4382,7 @@
                 "example": {
                   "x509_pem_cert": "-----BEGIN CERTIFICATE-----..."
                 },
-                "required": [
-                  "x509_pem_cert"
-                ],
+                "required": ["x509_pem_cert"],
                 "title": "SetClientCACertRequest"
               }
             }
@@ -4654,9 +4450,7 @@
             }
           }
         },
-        "tags": [
-          "Client CA Certificates"
-        ],
+        "tags": ["Client CA Certificates"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -4669,7 +4463,7 @@
       "get": {
         "operationId": "CockroachCloud_GetCMEKClusterInfo",
         "summary": "Get CMEK-related information for a cluster",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -4742,9 +4536,7 @@
             }
           }
         },
-        "tags": [
-          "Customer-managed Encryption Keys"
-        ],
+        "tags": ["Customer-managed Encryption Keys"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -4755,7 +4547,7 @@
       "patch": {
         "operationId": "CockroachCloud_UpdateCMEKStatus",
         "summary": "Update the CMEK-related status for a cluster",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -4780,9 +4572,7 @@
                 "example": {
                   "action": "REVOKE"
                 },
-                "required": [
-                  "action"
-                ],
+                "required": ["action"],
                 "title": "UpdateCMEKStatusRequest"
               }
             }
@@ -4850,9 +4640,7 @@
             }
           }
         },
-        "tags": [
-          "Customer-managed Encryption Keys"
-        ],
+        "tags": ["Customer-managed Encryption Keys"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -4863,7 +4651,7 @@
       "post": {
         "operationId": "CockroachCloud_EnableCMEKSpec",
         "summary": "Enable CMEK for a cluster",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -4900,9 +4688,7 @@
                     }
                   ]
                 },
-                "required": [
-                  "region_specs"
-                ],
+                "required": ["region_specs"],
                 "title": "CMEKClusterSpecification"
               }
             }
@@ -4970,9 +4756,7 @@
             }
           }
         },
-        "tags": [
-          "Customer-managed Encryption Keys"
-        ],
+        "tags": ["Customer-managed Encryption Keys"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -4983,7 +4767,7 @@
       "put": {
         "operationId": "CockroachCloud_UpdateCMEKSpec",
         "summary": "Enable or update the CMEK spec for a cluster",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -5020,9 +4804,7 @@
                     }
                   ]
                 },
-                "required": [
-                  "region_specs"
-                ],
+                "required": ["region_specs"],
                 "title": "CMEKClusterSpecification"
               }
             }
@@ -5090,9 +4872,7 @@
             }
           }
         },
-        "tags": [
-          "Customer-managed Encryption Keys"
-        ],
+        "tags": ["Customer-managed Encryption Keys"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -5105,7 +4885,7 @@
       "get": {
         "operationId": "CockroachCloud_GetConnectionString",
         "summary": "Get a formatted generic connection string for a cluster",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- ORG_ADMIN\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n- CLUSTER_DEVELOPER\n- FOLDER_ADMIN\n- FOLDER_MOVER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- ORG_ADMIN\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n- CLUSTER_DEVELOPER\n- FOLDER_ADMIN\n- FOLDER_MOVER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -5136,11 +4916,7 @@
             "description": "os indicates the target operating system, used with formatting the default SSL certificate path.\nRequired only for dedicated clusters.",
             "schema": {
               "type": "string",
-              "enum": [
-                "MAC",
-                "LINUX",
-                "WINDOWS"
-              ]
+              "enum": ["MAC", "LINUX", "WINDOWS"]
             }
           }
         ],
@@ -5206,9 +4982,7 @@
             }
           }
         },
-        "tags": [
-          "Clusters"
-        ],
+        "tags": ["Clusters"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -5221,7 +4995,7 @@
       "get": {
         "operationId": "CockroachCloud_ListDatabases",
         "summary": "List databases for a cluster",
-        "description": "Sort order: Database name ascending\n\nCan be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n- CLUSTER_DEVELOPER\n",
+        "description": "Sort order: Database name ascending\n\nCan be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n- CLUSTER_DEVELOPER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -5260,10 +5034,7 @@
             "description": " - ASC: Sort in ascending order. This is the default unless otherwise specified.\n - DESC: Sort in descending order.",
             "schema": {
               "type": "string",
-              "enum": [
-                "ASC",
-                "DESC"
-              ]
+              "enum": ["ASC", "DESC"]
             }
           }
         ],
@@ -5329,9 +5100,7 @@
             }
           }
         },
-        "tags": [
-          "Databases"
-        ],
+        "tags": ["Databases"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -5342,7 +5111,7 @@
       "patch": {
         "operationId": "CockroachCloud_EditDatabase2",
         "summary": "Update a database",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -5371,10 +5140,7 @@
                   "name": "example_database_name",
                   "new_name": "example_new_database_name"
                 },
-                "required": [
-                  "new_name",
-                  "name"
-                ],
+                "required": ["new_name", "name"],
                 "title": "UpdateDatabaseRequest"
               }
             }
@@ -5442,9 +5208,7 @@
             }
           }
         },
-        "tags": [
-          "Databases"
-        ],
+        "tags": ["Databases"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -5455,7 +5219,7 @@
       "post": {
         "operationId": "CockroachCloud_CreateDatabase",
         "summary": "Create a new database",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -5480,9 +5244,7 @@
                 "example": {
                   "name": "example_database_name"
                 },
-                "required": [
-                  "name"
-                ],
+                "required": ["name"],
                 "title": "CreateDatabaseRequest"
               }
             }
@@ -5550,9 +5312,7 @@
             }
           }
         },
-        "tags": [
-          "Databases"
-        ],
+        "tags": ["Databases"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -5565,7 +5325,7 @@
       "delete": {
         "operationId": "CockroachCloud_DeleteDatabase",
         "summary": "Delete a database",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -5646,9 +5406,7 @@
             }
           }
         },
-        "tags": [
-          "Databases"
-        ],
+        "tags": ["Databases"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -5659,7 +5417,7 @@
       "patch": {
         "operationId": "CockroachCloud_EditDatabase",
         "summary": "Update a database",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -5693,9 +5451,7 @@
                   "name": "example_database_name",
                   "new_name": "example_new_database_name"
                 },
-                "required": [
-                  "new_name"
-                ],
+                "required": ["new_name"],
                 "title": "UpdateDatabaseRequest"
               }
             }
@@ -5763,9 +5519,7 @@
             }
           }
         },
-        "tags": [
-          "Databases"
-        ],
+        "tags": ["Databases"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -5778,7 +5532,7 @@
       "delete": {
         "operationId": "CockroachCloud_DeleteLogExport",
         "summary": "Delete the Log Export configuration for a cluster",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- ORG_ADMIN\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- ORG_ADMIN\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -5851,9 +5605,7 @@
             }
           }
         },
-        "tags": [
-          "Log Export"
-        ],
+        "tags": ["Log Export"],
         "x-badges": [
           {
             "color": "blue",
@@ -5870,7 +5622,7 @@
       "get": {
         "operationId": "CockroachCloud_GetLogExportInfo",
         "summary": "Get the Log Export configuration for a cluster",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- ORG_ADMIN\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- ORG_ADMIN\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -5943,9 +5695,7 @@
             }
           }
         },
-        "tags": [
-          "Log Export"
-        ],
+        "tags": ["Log Export"],
         "x-badges": [
           {
             "color": "blue",
@@ -5962,7 +5712,7 @@
       "post": {
         "operationId": "CockroachCloud_EnableLogExport",
         "summary": "Create or update the Log Export configuration for a cluster",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- ORG_ADMIN\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- ORG_ADMIN\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -6022,28 +5772,18 @@
                   "auth_principal": "my-gcp-project-id",
                   "groups": [
                     {
-                      "channels": [
-                        "OPS",
-                        "HEALTH"
-                      ],
+                      "channels": ["OPS", "HEALTH"],
                       "log_name": "devops",
                       "min_level": "WARNING"
                     }
                   ],
                   "log_name": "default",
-                  "omitted_channels": [
-                    "SESSIONS",
-                    "SQL_PERF"
-                  ],
+                  "omitted_channels": ["SESSIONS", "SQL_PERF"],
                   "redact": true,
                   "shared_key": "shared-key",
                   "type": "GCP_CLOUD_LOGGING"
                 },
-                "required": [
-                  "type",
-                  "log_name",
-                  "auth_principal"
-                ],
+                "required": ["type", "log_name", "auth_principal"],
                 "title": "EnableLogExportRequest"
               }
             }
@@ -6111,9 +5851,7 @@
             }
           }
         },
-        "tags": [
-          "Log Export"
-        ],
+        "tags": ["Log Export"],
         "x-badges": [
           {
             "color": "blue",
@@ -6132,7 +5870,7 @@
       "delete": {
         "operationId": "CockroachCloud_DeleteMaintenanceWindow",
         "summary": "Delete the maintenance window for a cluster",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -6205,9 +5943,7 @@
             }
           }
         },
-        "tags": [
-          "Maintenance Windows"
-        ],
+        "tags": ["Maintenance Windows"],
         "x-badges": [
           {
             "color": "blue",
@@ -6224,7 +5960,7 @@
       "get": {
         "operationId": "CockroachCloud_GetMaintenanceWindow",
         "summary": "Get the maintenance window for a cluster",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -6297,9 +6033,7 @@
             }
           }
         },
-        "tags": [
-          "Maintenance Windows"
-        ],
+        "tags": ["Maintenance Windows"],
         "x-badges": [
           {
             "color": "blue",
@@ -6316,7 +6050,7 @@
       "put": {
         "operationId": "CockroachCloud_SetMaintenanceWindow",
         "summary": "Set the maintenance window for a cluster",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -6399,9 +6133,7 @@
             }
           }
         },
-        "tags": [
-          "Maintenance Windows"
-        ],
+        "tags": ["Maintenance Windows"],
         "x-badges": [
           {
             "color": "blue",
@@ -6420,7 +6152,7 @@
       "delete": {
         "operationId": "CockroachCloud_DeleteCloudWatchMetricExport",
         "summary": "Delete the CloudWatch Metric Export configuration for a cluster",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -6493,9 +6225,7 @@
             }
           }
         },
-        "tags": [
-          "Metric Export"
-        ],
+        "tags": ["Metric Export"],
         "x-badges": [
           {
             "color": "blue",
@@ -6512,7 +6242,7 @@
       "get": {
         "operationId": "CockroachCloud_GetCloudWatchMetricExportInfo",
         "summary": "Get the CloudWatch Metric Export configuration for a cluster",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -6585,9 +6315,7 @@
             }
           }
         },
-        "tags": [
-          "Metric Export"
-        ],
+        "tags": ["Metric Export"],
         "x-badges": [
           {
             "color": "blue",
@@ -6604,7 +6332,7 @@
       "post": {
         "operationId": "CockroachCloud_EnableCloudWatchMetricExport",
         "summary": "Create or update the CloudWatch Metric Export configuration for a cluster",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -6640,9 +6368,7 @@
                   "role_arn": "arn:aws:iam::account:role/ExampleRole",
                   "target_region": "us-east-1"
                 },
-                "required": [
-                  "role_arn"
-                ],
+                "required": ["role_arn"],
                 "title": "EnableCloudWatchMetricExportRequest"
               }
             }
@@ -6710,9 +6436,7 @@
             }
           }
         },
-        "tags": [
-          "Metric Export"
-        ],
+        "tags": ["Metric Export"],
         "x-badges": [
           {
             "color": "blue",
@@ -6731,7 +6455,7 @@
       "delete": {
         "operationId": "CockroachCloud_DeleteDatadogMetricExport",
         "summary": "Delete the Datadog Metric Export configuration for a cluster",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -6804,9 +6528,7 @@
             }
           }
         },
-        "tags": [
-          "Metric Export"
-        ],
+        "tags": ["Metric Export"],
         "x-badges": [
           {
             "color": "blue",
@@ -6823,7 +6545,7 @@
       "get": {
         "operationId": "CockroachCloud_GetDatadogMetricExportInfo",
         "summary": "Get the Datadog Metric Export configuration for a cluster",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -6896,9 +6618,7 @@
             }
           }
         },
-        "tags": [
-          "Metric Export"
-        ],
+        "tags": ["Metric Export"],
         "x-badges": [
           {
             "color": "blue",
@@ -6915,7 +6635,7 @@
       "post": {
         "operationId": "CockroachCloud_EnableDatadogMetricExport",
         "summary": "Create or update the Datadog Metric Export configuration for a cluster",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -6945,10 +6665,7 @@
                   "api_key": "datadog_api_key",
                   "site": "US1"
                 },
-                "required": [
-                  "site",
-                  "api_key"
-                ],
+                "required": ["site", "api_key"],
                 "title": "EnableDatadogMetricExportRequest"
               }
             }
@@ -7016,9 +6733,7 @@
             }
           }
         },
-        "tags": [
-          "Metric Export"
-        ],
+        "tags": ["Metric Export"],
         "x-badges": [
           {
             "color": "blue",
@@ -7037,7 +6752,7 @@
       "delete": {
         "operationId": "CockroachCloud_DeletePrometheusMetricExport",
         "summary": "Disable Prometheus Metric Export for a cluster",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -7110,9 +6825,7 @@
             }
           }
         },
-        "tags": [
-          "Metric Export"
-        ],
+        "tags": ["Metric Export"],
         "x-badges": [
           {
             "color": "blue",
@@ -7129,7 +6842,7 @@
       "get": {
         "operationId": "CockroachCloud_GetPrometheusMetricExportInfo",
         "summary": "Get the Prometheus Metric Export configuration for a cluster",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -7202,9 +6915,7 @@
             }
           }
         },
-        "tags": [
-          "Metric Export"
-        ],
+        "tags": ["Metric Export"],
         "x-badges": [
           {
             "color": "blue",
@@ -7221,7 +6932,7 @@
       "post": {
         "operationId": "CockroachCloud_EnablePrometheusMetricExport",
         "summary": "Enable Prometheus Metric Export for a cluster",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -7294,9 +7005,7 @@
             }
           }
         },
-        "tags": [
-          "Metric Export"
-        ],
+        "tags": ["Metric Export"],
         "x-badges": [
           {
             "color": "blue",
@@ -7315,7 +7024,7 @@
       "get": {
         "operationId": "CockroachCloud_ListAllowlistEntries",
         "summary": "Get the IP allowlist and propagation status for a cluster",
-        "description": "Sort order: CIDR address\n\nCan be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n- CLUSTER_DEVELOPER\n",
+        "description": "Sort order: CIDR address\n\nCan be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n- CLUSTER_DEVELOPER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -7354,10 +7063,7 @@
             "description": " - ASC: Sort in ascending order. This is the default unless otherwise specified.\n - DESC: Sort in descending order.",
             "schema": {
               "type": "string",
-              "enum": [
-                "ASC",
-                "DESC"
-              ]
+              "enum": ["ASC", "DESC"]
             }
           }
         ],
@@ -7423,9 +7129,7 @@
             }
           }
         },
-        "tags": [
-          "IP Allowlists"
-        ],
+        "tags": ["IP Allowlists"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -7436,7 +7140,7 @@
       "post": {
         "operationId": "CockroachCloud_AddAllowlistEntry",
         "summary": "Add a new CIDR address to the IP allowlist",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -7519,9 +7223,7 @@
             }
           }
         },
-        "tags": [
-          "IP Allowlists"
-        ],
+        "tags": ["IP Allowlists"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -7534,7 +7236,7 @@
       "delete": {
         "operationId": "CockroachCloud_DeleteAllowlistEntry",
         "summary": "Delete an IP allowlist entry",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -7624,22 +7326,18 @@
             }
           }
         },
-        "tags": [
-          "IP Allowlists"
-        ],
+        "tags": ["IP Allowlists"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
             "source": "curl --request DELETE \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/allowlist/{cidr_ip}/{cidr_mask} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
           }
         ]
-      }
-    },
-    "/api/v1/clusters/{cluster_id}/networking/allowlist/{entry.cidr_ip}/{entry.cidr_mask}": {
+      },
       "patch": {
         "operationId": "CockroachCloud_UpdateAllowlistEntry",
         "summary": "Update an IP allowlist entry",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -7650,7 +7348,7 @@
             }
           },
           {
-            "name": "entry.cidr_ip",
+            "name": "cidr_ip",
             "in": "path",
             "required": true,
             "schema": {
@@ -7658,7 +7356,7 @@
             }
           },
           {
-            "name": "entry.cidr_mask",
+            "name": "cidr_mask",
             "in": "path",
             "required": true,
             "schema": {
@@ -7692,10 +7390,7 @@
                   "sql": true,
                   "ui": true
                 },
-                "required": [
-                  "ui",
-                  "sql"
-                ],
+                "required": ["ui", "sql"],
                 "title": "AllowlistEntry"
               }
             }
@@ -7763,20 +7458,18 @@
             }
           }
         },
-        "tags": [
-          "IP Allowlists"
-        ],
+        "tags": ["IP Allowlists"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PATCH \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/allowlist/{entry.cidr_ip}/{entry.cidr_mask} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"cidr_ip\":\"192.168.1.1\",\"cidr_mask\":32,\"name\":\"Example\",\"sql\":true,\"ui\":true}'"
+            "source": "curl --request PATCH \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/allowlist/{cidr_ip}/{cidr_mask} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"cidr_ip\":\"192.168.1.1\",\"cidr_mask\":32,\"name\":\"Example\",\"sql\":true,\"ui\":true}'"
           }
         ]
       },
       "put": {
         "operationId": "CockroachCloud_AddAllowlistEntry2",
         "summary": "Add a new CIDR address to the IP allowlist",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -7787,7 +7480,7 @@
             }
           },
           {
-            "name": "entry.cidr_ip",
+            "name": "cidr_ip",
             "in": "path",
             "required": true,
             "schema": {
@@ -7795,7 +7488,7 @@
             }
           },
           {
-            "name": "entry.cidr_mask",
+            "name": "cidr_mask",
             "in": "path",
             "required": true,
             "schema": {
@@ -7829,10 +7522,7 @@
                   "sql": true,
                   "ui": true
                 },
-                "required": [
-                  "ui",
-                  "sql"
-                ],
+                "required": ["ui", "sql"],
                 "title": "AllowlistEntry"
               }
             }
@@ -7900,13 +7590,11 @@
             }
           }
         },
-        "tags": [
-          "IP Allowlists"
-        ],
+        "tags": ["IP Allowlists"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/allowlist/{entry.cidr_ip}/{entry.cidr_mask} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"cidr_ip\":\"192.168.1.1\",\"cidr_mask\":32,\"name\":\"Example\",\"sql\":true,\"ui\":true}'"
+            "source": "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/allowlist/{cidr_ip}/{cidr_mask} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"cidr_ip\":\"192.168.1.1\",\"cidr_mask\":32,\"name\":\"Example\",\"sql\":true,\"ui\":true}'"
           }
         ]
       }
@@ -7915,7 +7603,7 @@
       "get": {
         "operationId": "CockroachCloud_ListAwsEndpointConnections",
         "summary": "List all AwsEndpointConnections for a cluster",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -7989,9 +7677,7 @@
             }
           }
         },
-        "tags": [
-          "Private Endpoint Services"
-        ],
+        "tags": ["Private Endpoint Services"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -8004,7 +7690,7 @@
       "patch": {
         "operationId": "CockroachCloud_SetAwsEndpointConnectionState",
         "summary": "Set the AWS Endpoint Connection state",
-        "description": "The \"status\" in the response does not reflect the latest post-update\nstatus, but rather the status before the state is transitioned.\n\nCan be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "The \"status\" in the response does not reflect the latest post-update\nstatus, but rather the status before the state is transitioned.\n\nCan be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -8039,9 +7725,7 @@
                 "example": {
                   "status": "AVAILABLE"
                 },
-                "required": [
-                  "status"
-                ],
+                "required": ["status"],
                 "title": "SetAwsEndpointConnectionStateRequest"
               }
             }
@@ -8109,9 +7793,7 @@
             }
           }
         },
-        "tags": [
-          "Private Endpoint Services"
-        ],
+        "tags": ["Private Endpoint Services"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -8124,7 +7806,7 @@
       "get": {
         "operationId": "CockroachCloud_ListEgressRules",
         "summary": "List all egress rules associated with a cluster",
-        "description": "Sort order: Name\n\nCan be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Sort order: Name\n\nCan be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -8164,10 +7846,7 @@
             "description": " - ASC: Sort in ascending order. This is the default unless otherwise specified.\n - DESC: Sort in descending order.",
             "schema": {
               "type": "string",
-              "enum": [
-                "ASC",
-                "DESC"
-              ]
+              "enum": ["ASC", "DESC"]
             }
           }
         ],
@@ -8233,9 +7912,7 @@
             }
           }
         },
-        "tags": [
-          "Egress Rules"
-        ],
+        "tags": ["Egress Rules"],
         "x-badges": [
           {
             "color": "blue",
@@ -8252,7 +7929,7 @@
       "post": {
         "operationId": "CockroachCloud_AddEgressRule",
         "summary": "Add an egress rule",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -8313,18 +7990,10 @@
                   "description": "egress for GCP storage buckets",
                   "destination": "storage.googleapis.com",
                   "name": "roach-buckets",
-                  "ports": [
-                    443,
-                    80
-                  ],
+                  "ports": [443, 80],
                   "type": "FQDN"
                 },
-                "required": [
-                  "name",
-                  "type",
-                  "destination",
-                  "description"
-                ],
+                "required": ["name", "type", "destination", "description"],
                 "title": "AddEgressRuleRequest"
               }
             }
@@ -8392,9 +8061,7 @@
             }
           }
         },
-        "tags": [
-          "Egress Rules"
-        ],
+        "tags": ["Egress Rules"],
         "x-badges": [
           {
             "color": "blue",
@@ -8413,7 +8080,7 @@
       "post": {
         "operationId": "CockroachCloud_SetEgressTrafficPolicy",
         "summary": "Outbound traffic management",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -8442,9 +8109,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "allow_all"
-                ],
+                "required": ["allow_all"],
                 "title": "SetEgressTrafficPolicyRequest"
               }
             }
@@ -8512,9 +8177,7 @@
             }
           }
         },
-        "tags": [
-          "Egress Rules"
-        ],
+        "tags": ["Egress Rules"],
         "x-badges": [
           {
             "color": "blue",
@@ -8533,7 +8196,7 @@
       "delete": {
         "operationId": "CockroachCloud_DeleteEgressRule",
         "summary": "Delete an existing egress rule",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -8624,9 +8287,7 @@
             }
           }
         },
-        "tags": [
-          "Egress Rules"
-        ],
+        "tags": ["Egress Rules"],
         "x-badges": [
           {
             "color": "blue",
@@ -8643,7 +8304,7 @@
       "get": {
         "operationId": "CockroachCloud_GetEgressRule",
         "summary": "Get an existing egress rule",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -8726,9 +8387,7 @@
             }
           }
         },
-        "tags": [
-          "Egress Rules"
-        ],
+        "tags": ["Egress Rules"],
         "x-badges": [
           {
             "color": "blue",
@@ -8745,7 +8404,7 @@
       "patch": {
         "operationId": "CockroachCloud_EditEgressRule",
         "summary": "Edit an existing egress rule",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -8808,10 +8467,7 @@
                 },
                 "example": {
                   "cluster_id": "35c4abb2-bb66-46d7-afed-25ebef5ed100",
-                  "ports": [
-                    443,
-                    80
-                  ],
+                  "ports": [443, 80],
                   "rule_id": "35c4abb2-bb66-46d7-afed-25ebef5ed2aa"
                 },
                 "title": "EditEgressRuleRequest"
@@ -8881,9 +8537,7 @@
             }
           }
         },
-        "tags": [
-          "Egress Rules"
-        ],
+        "tags": ["Egress Rules"],
         "x-badges": [
           {
             "color": "blue",
@@ -8902,7 +8556,7 @@
       "get": {
         "operationId": "CockroachCloud_ListPrivateEndpointConnections",
         "summary": "List all connections to a cluster's private endpoint service.",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -8976,9 +8630,7 @@
             }
           }
         },
-        "tags": [
-          "Private Endpoint Services"
-        ],
+        "tags": ["Private Endpoint Services"],
         "x-badges": [
           {
             "color": "blue",
@@ -8995,7 +8647,7 @@
       "post": {
         "operationId": "CockroachCloud_AddPrivateEndpointConnection",
         "summary": "Add a connection to a cluster's private endpoint service.",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -9023,9 +8675,7 @@
                   "cluster_id": "35c4abb2-bb66-46d7-afed-25ebef5ed2aa",
                   "endpoint_id": "e-65de2gf3"
                 },
-                "required": [
-                  "endpoint_id"
-                ],
+                "required": ["endpoint_id"],
                 "title": "AddPrivateEndpointConnectionRequest"
               }
             }
@@ -9093,9 +8743,7 @@
             }
           }
         },
-        "tags": [
-          "Private Endpoint Services"
-        ],
+        "tags": ["Private Endpoint Services"],
         "x-badges": [
           {
             "color": "blue",
@@ -9114,7 +8762,7 @@
       "delete": {
         "operationId": "CockroachCloud_DeletePrivateEndpointConnection",
         "summary": "Delete a connection from a cluster's private endpoint service.",
-        "description": "Remove a private endpoint from a service's trusted endpoints list. Caller should make sure to URL encode the endpoint_id before calling this method.\n\nCan be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Remove a private endpoint from a service's trusted endpoints list. Caller should make sure to URL encode the endpoint_id before calling this method.\n\nCan be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -9197,9 +8845,7 @@
             }
           }
         },
-        "tags": [
-          "Private Endpoint Services"
-        ],
+        "tags": ["Private Endpoint Services"],
         "x-badges": [
           {
             "color": "blue",
@@ -9218,7 +8864,7 @@
       "get": {
         "operationId": "CockroachCloud_ListPrivateEndpointServices",
         "summary": "List all PrivateEndpointServices for a cluster",
-        "description": "The internal_dns property from the regions field in the ListClusters response can be used to connect to PrivateEndpointServices.\n\nCan be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "The internal_dns property from the regions field in the ListClusters response can be used to connect to PrivateEndpointServices.\n\nCan be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -9292,9 +8938,7 @@
             }
           }
         },
-        "tags": [
-          "Private Endpoint Services"
-        ],
+        "tags": ["Private Endpoint Services"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -9305,7 +8949,7 @@
       "post": {
         "operationId": "CockroachCloud_CreatePrivateEndpointServices",
         "summary": "Create all PrivateEndpointServices for a cluster",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -9379,9 +9023,7 @@
             }
           }
         },
-        "tags": [
-          "Private Endpoint Services"
-        ],
+        "tags": ["Private Endpoint Services"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -9394,7 +9036,7 @@
       "get": {
         "operationId": "CockroachCloud_ListPrivateEndpointTrustedOwners",
         "summary": "List all private endpoint trusted owners for a cluster",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -9468,9 +9110,7 @@
             }
           }
         },
-        "tags": [
-          "Private Endpoint Services"
-        ],
+        "tags": ["Private Endpoint Services"],
         "x-badges": [
           {
             "color": "red",
@@ -9487,7 +9127,7 @@
       "post": {
         "operationId": "CockroachCloud_AddPrivateEndpointTrustedOwner",
         "summary": "Add a private endpoint trusted owner to a cluster",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -9518,10 +9158,7 @@
                   "external_owner_id": "012345678901",
                   "type": "AWS_ACCOUNT_ID"
                 },
-                "required": [
-                  "type",
-                  "external_owner_id"
-                ],
+                "required": ["type", "external_owner_id"],
                 "title": "AddPrivateEndpointTrustedOwnerRequest"
               }
             }
@@ -9589,9 +9226,7 @@
             }
           }
         },
-        "tags": [
-          "Private Endpoint Services"
-        ],
+        "tags": ["Private Endpoint Services"],
         "x-badges": [
           {
             "color": "red",
@@ -9610,7 +9245,7 @@
       "delete": {
         "operationId": "CockroachCloud_RemovePrivateEndpointTrustedOwner",
         "summary": "Remove a private endpoint trusted owner from a cluster",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -9693,9 +9328,7 @@
             }
           }
         },
-        "tags": [
-          "Private Endpoint Services"
-        ],
+        "tags": ["Private Endpoint Services"],
         "x-badges": [
           {
             "color": "red",
@@ -9712,7 +9345,7 @@
       "get": {
         "operationId": "CockroachCloud_GetPrivateEndpointTrustedOwner",
         "summary": "Get a private endpoint trusted owner entry for a cluster",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -9795,9 +9428,7 @@
             }
           }
         },
-        "tags": [
-          "Private Endpoint Services"
-        ],
+        "tags": ["Private Endpoint Services"],
         "x-badges": [
           {
             "color": "red",
@@ -9816,7 +9447,7 @@
       "get": {
         "operationId": "CockroachCloud_ListClusterNodes",
         "summary": "List nodes for a cluster",
-        "description": "Sort order: Region name, node name\n\nCan be used by the following roles assigned at the organization or cluster scope:\n- ORG_ADMIN\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n- CLUSTER_DEVELOPER\n",
+        "description": "Sort order: Region name, node name\n\nCan be used by the following roles assigned at the organization, folder or cluster scope:\n- ORG_ADMIN\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n- CLUSTER_DEVELOPER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -9863,10 +9494,7 @@
             "description": " - ASC: Sort in ascending order. This is the default unless otherwise specified.\n - DESC: Sort in descending order.",
             "schema": {
               "type": "string",
-              "enum": [
-                "ASC",
-                "DESC"
-              ]
+              "enum": ["ASC", "DESC"]
             }
           }
         ],
@@ -9932,9 +9560,7 @@
             }
           }
         },
-        "tags": [
-          "Clusters"
-        ],
+        "tags": ["Clusters"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -9947,7 +9573,7 @@
       "get": {
         "operationId": "CockroachCloud_ListSQLUsers",
         "summary": "List SQL users for a cluster",
-        "description": "Sort order: Username\n\nCan be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n- CLUSTER_DEVELOPER\n",
+        "description": "Sort order: Username\n\nCan be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n- CLUSTER_DEVELOPER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -9986,10 +9612,7 @@
             "description": " - ASC: Sort in ascending order. This is the default unless otherwise specified.\n - DESC: Sort in descending order.",
             "schema": {
               "type": "string",
-              "enum": [
-                "ASC",
-                "DESC"
-              ]
+              "enum": ["ASC", "DESC"]
             }
           }
         ],
@@ -10055,9 +9678,7 @@
             }
           }
         },
-        "tags": [
-          "SQL Users"
-        ],
+        "tags": ["SQL Users"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -10068,7 +9689,7 @@
       "post": {
         "operationId": "CockroachCloud_CreateSQLUser",
         "summary": "Create a new SQL user",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -10097,10 +9718,7 @@
                   "name": "example_username",
                   "password": "example_password"
                 },
-                "required": [
-                  "name",
-                  "password"
-                ],
+                "required": ["name", "password"],
                 "title": "CreateSQLUserRequest"
               }
             }
@@ -10168,9 +9786,7 @@
             }
           }
         },
-        "tags": [
-          "SQL Users"
-        ],
+        "tags": ["SQL Users"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -10183,7 +9799,7 @@
       "delete": {
         "operationId": "CockroachCloud_DeleteSQLUser",
         "summary": "Delete a SQL user",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -10264,9 +9880,7 @@
             }
           }
         },
-        "tags": [
-          "SQL Users"
-        ],
+        "tags": ["SQL Users"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -10279,7 +9893,7 @@
       "put": {
         "operationId": "CockroachCloud_UpdateSQLUserPassword",
         "summary": "Update a SQL user's password",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -10312,9 +9926,7 @@
                 "example": {
                   "password": "example_new_password"
                 },
-                "required": [
-                  "password"
-                ],
+                "required": ["password"],
                 "title": "UpdateSQLUserPasswordRequest"
               }
             }
@@ -10382,9 +9994,7 @@
             }
           }
         },
-        "tags": [
-          "SQL Users"
-        ],
+        "tags": ["SQL Users"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -10397,7 +10007,7 @@
       "get": {
         "operationId": "CockroachCloud_GetClusterVersionDeferral",
         "summary": "Get the version upgrade deferral policy for a cluster.",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -10470,9 +10080,7 @@
             }
           }
         },
-        "tags": [
-          "Version Deferral"
-        ],
+        "tags": ["Version Deferral"],
         "x-badges": [
           {
             "color": "blue",
@@ -10489,7 +10097,7 @@
       "put": {
         "operationId": "CockroachCloud_SetClusterVersionDeferral",
         "summary": "Set the version upgrade deferral policy for a cluster",
-        "description": "Can be used by the following roles assigned at the organization or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -10572,9 +10180,7 @@
             }
           }
         },
-        "tags": [
-          "Version Deferral"
-        ],
+        "tags": ["Version Deferral"],
         "x-badges": [
           {
             "color": "blue",
@@ -10593,7 +10199,7 @@
       "get": {
         "operationId": "CockroachCloud_ListFolders",
         "summary": "List folders owned by an organization",
-        "description": "Sort order: Folder name\n\n",
+        "description": "Sort order: Folder name\n\nCan be used by the following roles assigned at the organization or folder scope:\n- ORG_ADMIN\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n- CLUSTER_DEVELOPER\n- CLUSTER_CREATOR\n- FOLDER_ADMIN\n- FOLDER_MOVER\n",
         "parameters": [
           {
             "name": "path",
@@ -10632,10 +10238,7 @@
             "description": " - ASC: Sort in ascending order. This is the default unless otherwise specified.\n - DESC: Sort in descending order.",
             "schema": {
               "type": "string",
-              "enum": [
-                "ASC",
-                "DESC"
-              ]
+              "enum": ["ASC", "DESC"]
             }
           }
         ],
@@ -10701,9 +10304,7 @@
             }
           }
         },
-        "tags": [
-          "Folders"
-        ],
+        "tags": ["Folders"],
         "x-badges": [
           {
             "color": "blue",
@@ -10720,6 +10321,7 @@
       "post": {
         "operationId": "CockroachCloud_CreateFolder",
         "summary": "Create a folder",
+        "description": "Can be used by the following roles assigned at the organization or folder scope:\n- FOLDER_ADMIN\n",
         "requestBody": {
           "required": true,
           "content": {
@@ -10792,9 +10394,7 @@
             }
           }
         },
-        "tags": [
-          "Folders"
-        ],
+        "tags": ["Folders"],
         "x-badges": [
           {
             "color": "blue",
@@ -10813,6 +10413,7 @@
       "delete": {
         "operationId": "CockroachCloud_DeleteFolder",
         "summary": "Delete a folder",
+        "description": "Can be used by the following roles assigned at the organization or folder scope:\n- FOLDER_ADMIN\n",
         "parameters": [
           {
             "name": "folder_id",
@@ -10885,9 +10486,7 @@
             }
           }
         },
-        "tags": [
-          "Folders"
-        ],
+        "tags": ["Folders"],
         "x-badges": [
           {
             "color": "blue",
@@ -10904,6 +10503,7 @@
       "get": {
         "operationId": "CockroachCloud_GetFolder",
         "summary": "Get folder info for a folder",
+        "description": "Can be used by the following roles assigned at the organization or folder scope:\n- ORG_ADMIN\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n- CLUSTER_DEVELOPER\n- CLUSTER_CREATOR\n- FOLDER_ADMIN\n- FOLDER_MOVER\n",
         "parameters": [
           {
             "name": "folder_id",
@@ -10976,9 +10576,7 @@
             }
           }
         },
-        "tags": [
-          "Folders"
-        ],
+        "tags": ["Folders"],
         "x-badges": [
           {
             "color": "blue",
@@ -10995,6 +10593,7 @@
       "patch": {
         "operationId": "CockroachCloud_UpdateFolder",
         "summary": "Update a folder",
+        "description": "Can be used by the following roles assigned at the organization or folder scope:\n- FOLDER_ADMIN\n- FOLDER_MOVER\n",
         "parameters": [
           {
             "name": "folder_id",
@@ -11077,9 +10676,7 @@
             }
           }
         },
-        "tags": [
-          "Folders"
-        ],
+        "tags": ["Folders"],
         "x-badges": [
           {
             "color": "blue",
@@ -11098,7 +10695,7 @@
       "get": {
         "operationId": "CockroachCloud_ListFolderContents",
         "summary": "List contents of a folder",
-        "description": "Set `folder_id` to 'root' to list root level contents.  Sort order: Folders sorted by name, followed by Clusters sorted by name.\n\nCan be used by the following roles assigned at the organization or cluster scope:\n- ORG_ADMIN\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n- CLUSTER_DEVELOPER\n- FOLDER_ADMIN\n- FOLDER_MOVER\n",
+        "description": "Set `folder_id` to 'root' to list root level contents.  Sort order: Folders sorted by name, followed by Clusters sorted by name.\n\nCan be used by the following roles assigned at the organization, folder or cluster scope:\n- ORG_ADMIN\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n- CLUSTER_DEVELOPER\n- FOLDER_ADMIN\n- FOLDER_MOVER\n",
         "parameters": [
           {
             "name": "folder_id",
@@ -11137,10 +10734,7 @@
             "description": " - ASC: Sort in ascending order. This is the default unless otherwise specified.\n - DESC: Sort in descending order.",
             "schema": {
               "type": "string",
-              "enum": [
-                "ASC",
-                "DESC"
-              ]
+              "enum": ["ASC", "DESC"]
             }
           }
         ],
@@ -11206,9 +10800,7 @@
             }
           }
         },
-        "tags": [
-          "Folders"
-        ],
+        "tags": ["Folders"],
         "x-badges": [
           {
             "color": "blue",
@@ -11290,9 +10882,7 @@
             }
           }
         },
-        "tags": [
-          "Billing"
-        ],
+        "tags": ["Billing"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -11379,13 +10969,535 @@
             }
           }
         },
-        "tags": [
-          "Billing"
-        ],
+        "tags": ["Billing"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
             "source": "curl --request GET \\\n  --url https://cockroachlabs.cloud/api/v1/invoices/{invoice_id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+          }
+        ]
+      }
+    },
+    "/api/v1/jwt-issuers": {
+      "get": {
+        "operationId": "CockroachCloud_ListJWTIssuers",
+        "summary": "List all JWT Issuers",
+        "description": "Lists all the JWT Issuer configurations registered for the CockroachDB Cloud organization\n\nCan be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
+        "parameters": [
+          {
+            "name": "pagination.page",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pagination.limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pagination.as_of_time",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "pagination.sort_order",
+            "in": "query",
+            "description": " - ASC: Sort in ascending order. This is the default unless otherwise specified.\n - DESC: Sort in descending order.",
+            "schema": {
+              "type": "string",
+              "enum": ["ASC", "DESC"]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListJWTIssuersResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["JWT Issuers"],
+        "x-badges": [
+          {
+            "color": "red",
+            "label": "LIMITED ACCESS"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request GET \\\n  --url 'https://cockroachlabs.cloud/api/v1/jwt-issuers?pagination.page=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.as_of_time=SOME_STRING_VALUE&pagination.sort_order=SOME_STRING_VALUE' \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+          }
+        ]
+      },
+      "post": {
+        "operationId": "CockroachCloud_AddJWTIssuer",
+        "summary": "Add a JWT Issuer",
+        "description": "Registers a JWT Issuer with the CockroachDB Cloud to allow verifying JWTs during API authentication\n\nCan be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddJWTIssuerRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JWTIssuer"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["JWT Issuers"],
+        "x-badges": [
+          {
+            "color": "red",
+            "label": "LIMITED ACCESS"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/jwt-issuers \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"audience\":\"1234567890abcd\",\"claim\":\"email\",\"identity_map\":[{\"cc_identity\":\"\\\\1\",\"is_regex\":true,\"token_identity\":\"sso_(.*)\"}],\"issuer_url\":\"https://jwt-issuer.example.com\",\"jwks\":\"{\\\"keys\\\":[{\\\"e\\\":\\\"AQAB\\\",\\\"use\\\":\\\"sig\\\",\\\"kty\\\":\\\"RSA\\\",\\\"alg\\\":\\\"RS256\\\",\\\"n\\\":\\\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\\\",\\\"kid\\\":\\\"9341dedeee2d1869b657fa930300082fe26b3d92\\\"}]}\"}'"
+          }
+        ]
+      }
+    },
+    "/api/v1/jwt-issuers/{id}": {
+      "delete": {
+        "operationId": "CockroachCloud_DeleteJWTIssuer",
+        "summary": "Delete a JWT Issuer",
+        "description": "Deletes the JWT Issuer configuration\n\nCan be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The unique identifier of the JWT Issuer resource",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JWTIssuer"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["JWT Issuers"],
+        "x-badges": [
+          {
+            "color": "red",
+            "label": "LIMITED ACCESS"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request DELETE \\\n  --url https://cockroachlabs.cloud/api/v1/jwt-issuers/{id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+          }
+        ]
+      },
+      "get": {
+        "operationId": "CockroachCloud_GetJWTIssuer",
+        "summary": "Get a JWT Issuer",
+        "description": "Retrieves the JWT Issuer configuration\n\nCan be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The unique identifier of the JWT Issuer resource",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JWTIssuer"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["JWT Issuers"],
+        "x-badges": [
+          {
+            "color": "red",
+            "label": "LIMITED ACCESS"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request GET \\\n  --url https://cockroachlabs.cloud/api/v1/jwt-issuers/{id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+          }
+        ]
+      },
+      "patch": {
+        "operationId": "CockroachCloud_UpdateJWTIssuer",
+        "summary": "Update a JWT Issuer",
+        "description": "Updates the JWT Issuer configuration\n\nCan be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The unique identifier of the JWT Issuer resource",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "audience": {
+                    "type": "string",
+                    "example": "1234567890abcd",
+                    "title": "The intended audience for consuming the JWT"
+                  },
+                  "claim": {
+                    "type": "string",
+                    "example": "email",
+                    "title": "Used to identify the user from the external Identity Provider. Defaults to \"sub\""
+                  },
+                  "identity_map": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/JWTIssuerIdentityMapEntry"
+                    },
+                    "title": "A list of mappings to map the external token identity into CockroachDB Cloud"
+                  },
+                  "issuer_url": {
+                    "type": "string",
+                    "example": "https://jwt-issuer.example.com",
+                    "title": "The URL of the server issuing JWTs"
+                  },
+                  "jwks": {
+                    "type": "string",
+                    "example": "{\"keys\":[{\"e\":\"AQAB\",\"use\":\"sig\",\"kty\":\"RSA\",\"alg\":\"RS256\",\"n\":\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\",\"kid\":\"9341dedeee2d1869b657fa930300082fe26b3d92\"}]}",
+                    "title": "A set of public keys (JWKS) used to verify a JWT"
+                  }
+                },
+                "title": "UpdateJWTIssuerRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JWTIssuer"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["JWT Issuers"],
+        "x-badges": [
+          {
+            "color": "red",
+            "label": "LIMITED ACCESS"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request PATCH \\\n  --url https://cockroachlabs.cloud/api/v1/jwt-issuers/{id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"audience\":\"1234567890abcd\",\"claim\":\"email\",\"identity_map\":[{\"cc_identity\":\"\\\\1\",\"is_regex\":true,\"token_identity\":\"sso_(.*)\"}],\"issuer_url\":\"https://jwt-issuer.example.com\",\"jwks\":\"{\\\"keys\\\":[{\\\"e\\\":\\\"AQAB\\\",\\\"use\\\":\\\"sig\\\",\\\"kty\\\":\\\"RSA\\\",\\\"alg\\\":\\\"RS256\\\",\\\"n\\\":\\\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\\\",\\\"kid\\\":\\\"9341dedeee2d1869b657fa930300082fe26b3d92\\\"}]}\"}'"
           }
         ]
       }
@@ -11457,9 +11569,7 @@
             }
           }
         },
-        "tags": [
-          "Organizations"
-        ],
+        "tags": ["Organizations"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -11503,10 +11613,7 @@
             "description": " - ASC: Sort in ascending order. This is the default unless otherwise specified.\n - DESC: Sort in descending order.",
             "schema": {
               "type": "string",
-              "enum": [
-                "ASC",
-                "DESC"
-              ]
+              "enum": ["ASC", "DESC"]
             }
           }
         ],
@@ -11572,9 +11679,7 @@
             }
           }
         },
-        "tags": [
-          "Role Management"
-        ],
+        "tags": ["Role Management"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -11660,9 +11765,7 @@
             }
           }
         },
-        "tags": [
-          "Role Management"
-        ],
+        "tags": ["Role Management"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -11707,11 +11810,10 @@
                         "type": "CLUSTER"
                       }
                     }
-                  ]
+                  ],
+                  "user_id": "12345678-1234-1234-1234-123456789012"
                 },
-                "required": [
-                  "roles"
-                ]
+                "required": ["roles"]
               }
             }
           }
@@ -11778,13 +11880,11 @@
             }
           }
         },
-        "tags": [
-          "Role Management"
-        ],
+        "tags": ["Role Management"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/v1/roles/{user_id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"roles\":[{\"name\":\"CLUSTER_ADMIN\",\"resource\":{\"id\":\"example_cluster_id\",\"type\":\"CLUSTER\"}}]}'"
+            "source": "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/v1/roles/{user_id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"roles\":[{\"name\":\"CLUSTER_ADMIN\",\"resource\":{\"id\":\"example_cluster_id\",\"type\":\"CLUSTER\"}}],\"user_id\":\"12345678-1234-1234-1234-123456789012\"}'"
           }
         ]
       }
@@ -11809,11 +11909,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "ORGANIZATION",
-                "CLUSTER",
-                "FOLDER"
-              ]
+              "enum": ["ORGANIZATION", "CLUSTER", "FOLDER"]
             }
           },
           {
@@ -11906,9 +12002,7 @@
             }
           }
         },
-        "tags": [
-          "Role Management"
-        ],
+        "tags": ["Role Management"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -11935,11 +12029,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "enum": [
-                "ORGANIZATION",
-                "CLUSTER",
-                "FOLDER"
-              ]
+              "enum": ["ORGANIZATION", "CLUSTER", "FOLDER"]
             }
           },
           {
@@ -12032,9 +12122,7 @@
             }
           }
         },
-        "tags": [
-          "Role Management"
-        ],
+        "tags": ["Role Management"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -12078,10 +12166,7 @@
             "description": " - ASC: Sort in ascending order. This is the default unless otherwise specified.\n - DESC: Sort in descending order.",
             "schema": {
               "type": "string",
-              "enum": [
-                "ASC",
-                "DESC"
-              ]
+              "enum": ["ASC", "DESC"]
             }
           }
         ],
@@ -12147,9 +12232,7 @@
             }
           }
         },
-        "tags": [
-          "Service Accounts"
-        ],
+        "tags": ["Service Accounts"],
         "x-badges": [
           {
             "color": "blue",
@@ -12239,9 +12322,7 @@
             }
           }
         },
-        "tags": [
-          "Service Accounts"
-        ],
+        "tags": ["Service Accounts"],
         "x-badges": [
           {
             "color": "blue",
@@ -12251,7 +12332,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/service-accounts \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"name\":\"new name\",\"roles\":[{\"name\":\"CLUSTER_ADMIN\",\"resource\":{\"type\":\"ORGANIZATION\"}}]}'"
+            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/service-accounts \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"description\":\"\",\"name\":\"new name\",\"roles\":[{\"name\":\"CLUSTER_ADMIN\",\"resource\":{\"type\":\"ORGANIZATION\"}}]}'"
           }
         ]
       }
@@ -12334,9 +12415,7 @@
             }
           }
         },
-        "tags": [
-          "Service Accounts"
-        ],
+        "tags": ["Service Accounts"],
         "x-badges": [
           {
             "color": "blue",
@@ -12427,9 +12506,7 @@
             }
           }
         },
-        "tags": [
-          "Service Accounts"
-        ],
+        "tags": ["Service Accounts"],
         "x-badges": [
           {
             "color": "blue",
@@ -12529,9 +12606,7 @@
             }
           }
         },
-        "tags": [
-          "Service Accounts"
-        ],
+        "tags": ["Service Accounts"],
         "x-badges": [
           {
             "color": "blue",
@@ -12624,9 +12699,7 @@
             }
           }
         },
-        "tags": [
-          "Role Management"
-        ],
+        "tags": ["Role Management"],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -12670,11 +12743,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "service_name",
-          "service_id",
-          "availability_zone_ids"
-        ]
+        "required": ["service_name", "service_id", "availability_zone_ids"]
       },
       "AddEgressRuleResponse": {
         "description": "AddEgressRuleResponse is the response message of the AddEgressRule RPC.",
@@ -12684,10 +12753,42 @@
             "$ref": "#/components/schemas/EgressRule"
           }
         },
-        "required": [
-          "rule"
-        ],
+        "required": ["rule"],
         "title": "AddEgressRuleResponse"
+      },
+      "AddJWTIssuerRequest": {
+        "type": "object",
+        "properties": {
+          "audience": {
+            "type": "string",
+            "example": "1234567890abcd",
+            "title": "The intended audience for consuming the JWT"
+          },
+          "claim": {
+            "type": "string",
+            "example": "email",
+            "title": "Used to identify the user from the external Identity Provider. Defaults to \"sub\""
+          },
+          "identity_map": {
+            "description": "A list of mappings to map the external token identity into CockroachDB Cloud.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JWTIssuerIdentityMapEntry"
+            }
+          },
+          "issuer_url": {
+            "type": "string",
+            "example": "https://jwt-issuer.example.com",
+            "title": "The URL of the server issuing JWTs"
+          },
+          "jwks": {
+            "type": "string",
+            "example": "{\"keys\":[{\"e\":\"AQAB\",\"use\":\"sig\",\"kty\":\"RSA\",\"alg\":\"RS256\",\"n\":\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\",\"kid\":\"9341dedeee2d1869b657fa930300082fe26b3d92\"}]}",
+            "title": "A set of public keys (JWKS) used to verify a JWT"
+          }
+        },
+        "required": ["issuer_url", "audience"],
+        "title": "AddJWTIssuerRequest"
       },
       "AddPrivateEndpointTrustedOwnerResponse": {
         "type": "object",
@@ -12696,9 +12797,7 @@
             "$ref": "#/components/schemas/PrivateEndpointTrustedOwner"
           }
         },
-        "required": [
-          "trusted_owner"
-        ]
+        "required": ["trusted_owner"]
       },
       "AllowlistEntry": {
         "type": "object",
@@ -12727,20 +12826,15 @@
           "sql": true,
           "ui": true
         },
-        "required": [
-          "cidr_ip",
-          "cidr_mask",
-          "ui",
-          "sql"
-        ],
+        "required": ["cidr_ip", "cidr_mask", "ui", "sql"],
         "title": "AllowlistEntry"
       },
       "Any": {
-        "description": "`Any` contains an arbitrary serialized protocol buffer message along with a\nURL that describes the type of the serialized message.\n\nProtobuf library provides support to pack/unpack Any values in the form\nof utility functions or additional generated methods of the Any type.\n\nExample 1: Pack and unpack a message in C++.\n\n    Foo foo = ...;\n    Any any;\n    any.PackFrom(foo);\n    ...\n    if (any.UnpackTo(&foo)) {\n      ...\n    }\n\nExample 2: Pack and unpack a message in Java.\n\n    Foo foo = ...;\n    Any any = Any.pack(foo);\n    ...\n    if (any.is(Foo.class)) {\n      foo = any.unpack(Foo.class);\n    }\n\nExample 3: Pack and unpack a message in Python.\n\n    foo = Foo(...)\n    any = Any()\n    any.Pack(foo)\n    ...\n    if any.Is(Foo.DESCRIPTOR):\n      any.Unpack(foo)\n      ...\n\nExample 4: Pack and unpack a message in Go\n\n     foo := &pb.Foo{...}\n     any, err := anypb.New(foo)\n     if err != nil {\n       ...\n     }\n     ...\n     foo := &pb.Foo{}\n     if err := any.UnmarshalTo(foo); err != nil {\n       ...\n     }\n\nThe pack methods provided by protobuf library will by default use\n'type.googleapis.com/full.type.name' as the type URL and the unpack\nmethods only use the fully qualified type name after the last '/'\nin the type URL, for example \"foo.bar.com/x/y.z\" will yield type\nname \"y.z\".\n\n\nJSON\n\nThe JSON representation of an `Any` value uses the regular\nrepresentation of the deserialized, embedded message, with an\nadditional field `@type` which contains the type URL. Example:\n\n    package google.profile;\n    message Person {\n      string first_name = 1;\n      string last_name = 2;\n    }\n\n    {\n      \"@type\": \"type.googleapis.com/google.profile.Person\",\n      \"firstName\": <string>,\n      \"lastName\": <string>\n    }\n\nIf the embedded message type is well-known and has a custom JSON\nrepresentation, that representation will be embedded adding a field\n`value` which holds the custom JSON in addition to the `@type`\nfield. Example (for message [google.protobuf.Duration][]):\n\n    {\n      \"@type\": \"type.googleapis.com/google.protobuf.Duration\",\n      \"value\": \"1.212s\"\n    }",
+        "description": "`Any` contains an arbitrary serialized protocol buffer message along with a\nURL that describes the type of the serialized message.\n\nProtobuf library provides support to pack/unpack Any values in the form\nof utility functions or additional generated methods of the Any type.\n\nExample 1: Pack and unpack a message in C++.\n\n    Foo foo = ...;\n    Any any;\n    any.PackFrom(foo);\n    ...\n    if (any.UnpackTo(&foo)) {\n      ...\n    }\n\nExample 2: Pack and unpack a message in Java.\n\n    Foo foo = ...;\n    Any any = Any.pack(foo);\n    ...\n    if (any.is(Foo.class)) {\n      foo = any.unpack(Foo.class);\n    }\n    // or ...\n    if (any.isSameTypeAs(Foo.getDefaultInstance())) {\n      foo = any.unpack(Foo.getDefaultInstance());\n    }\n\n Example 3: Pack and unpack a message in Python.\n\n    foo = Foo(...)\n    any = Any()\n    any.Pack(foo)\n    ...\n    if any.Is(Foo.DESCRIPTOR):\n      any.Unpack(foo)\n      ...\n\n Example 4: Pack and unpack a message in Go\n\n     foo := &pb.Foo{...}\n     any, err := anypb.New(foo)\n     if err != nil {\n       ...\n     }\n     ...\n     foo := &pb.Foo{}\n     if err := any.UnmarshalTo(foo); err != nil {\n       ...\n     }\n\nThe pack methods provided by protobuf library will by default use\n'type.googleapis.com/full.type.name' as the type URL and the unpack\nmethods only use the fully qualified type name after the last '/'\nin the type URL, for example \"foo.bar.com/x/y.z\" will yield type\nname \"y.z\".\n\nJSON\n====\nThe JSON representation of an `Any` value uses the regular\nrepresentation of the deserialized, embedded message, with an\nadditional field `@type` which contains the type URL. Example:\n\n    package google.profile;\n    message Person {\n      string first_name = 1;\n      string last_name = 2;\n    }\n\n    {\n      \"@type\": \"type.googleapis.com/google.profile.Person\",\n      \"firstName\": <string>,\n      \"lastName\": <string>\n    }\n\nIf the embedded message type is well-known and has a custom JSON\nrepresentation, that representation will be embedded adding a field\n`value` which holds the custom JSON in addition to the `@type`\nfield. Example (for message [google.protobuf.Duration][]):\n\n    {\n      \"@type\": \"type.googleapis.com/google.protobuf.Duration\",\n      \"value\": \"1.212s\"\n    }",
         "type": "object",
         "properties": {
           "@type": {
-            "description": "A URL/resource name that uniquely identifies the type of the serialized\nprotocol buffer message. This string must contain at least\none \"/\" character. The last segment of the URL's path must represent\nthe fully qualified name of the type (as in\n`path/google.protobuf.Duration`). The name should be in a canonical form\n(e.g., leading \".\" is not accepted).\n\nIn practice, teams usually precompile into the binary all types that they\nexpect it to use in the context of Any. However, for URLs which use the\nscheme `http`, `https`, or no scheme, one can optionally set up a type\nserver that maps type URLs to message definitions as follows:\n\n* If no scheme is provided, `https` is assumed.\n* An HTTP GET on the URL must yield a [google.protobuf.Type][]\n  value in binary format, or produce an error.\n* Applications are allowed to cache lookup results based on the\n  URL, or have them precompiled into a binary to avoid any\n  lookup. Therefore, binary compatibility needs to be preserved\n  on changes to types. (Use versioned type names to manage\n  breaking changes.)\n\nNote: this functionality is not currently available in the official\nprotobuf release, and it is not used for type URLs beginning with\ntype.googleapis.com.\n\nSchemes other than `http`, `https` (or the empty scheme) might be\nused with implementation specific semantics.",
+            "description": "A URL/resource name that uniquely identifies the type of the serialized\nprotocol buffer message. This string must contain at least\none \"/\" character. The last segment of the URL's path must represent\nthe fully qualified name of the type (as in\n`path/google.protobuf.Duration`). The name should be in a canonical form\n(e.g., leading \".\" is not accepted).\n\nIn practice, teams usually precompile into the binary all types that they\nexpect it to use in the context of Any. However, for URLs which use the\nscheme `http`, `https`, or no scheme, one can optionally set up a type\nserver that maps type URLs to message definitions as follows:\n\n* If no scheme is provided, `https` is assumed.\n* An HTTP GET on the URL must yield a [google.protobuf.Type][]\n  value in binary format, or produce an error.\n* Applications are allowed to cache lookup results based on the\n  URL, or have them precompiled into a binary to avoid any\n  lookup. Therefore, binary compatibility needs to be preserved\n  on changes to types. (Use versioned type names to manage\n  breaking changes.)\n\nNote: this functionality is not currently available in the official\nprotobuf release, and it is not used for type URLs beginning with\ntype.googleapis.com. As of May 2023, there are no widely used type server\nimplementations and no plans to implement one.\n\nSchemes other than `http`, `https` (or the empty scheme) might be\nused with implementation specific semantics.",
             "type": "string"
           }
         },
@@ -12778,12 +12872,7 @@
           "name": "example name",
           "service_account_id": "1234abcd-1234-1234-abcd-12345678abcd"
         },
-        "required": [
-          "id",
-          "service_account_id",
-          "name",
-          "created_at"
-        ]
+        "required": ["id", "service_account_id", "name", "created_at"]
       },
       "ApiOidcConfig": {
         "description": "api_oidc_config contains information about an OIDC provider that can generate JWT tokens\nthat can be used for authentication with the Cockroach Cloud API.",
@@ -12814,6 +12903,7 @@
         "example": {
           "audience": "542c6390-bf38-4912-856b-8f31480e978b",
           "claim": "sub",
+          "id": "1234abcd-1234-1234-abcd-12345678abcd",
           "identity_map": [
             {
               "cc_identity": "\\1",
@@ -12826,14 +12916,10 @@
               "token_identity": "gcp_(.*)"
             }
           ],
+          "issuer": "theissuer",
           "jwks": "{\"keys\":[{\"e\":\"AQAB\",\"use\":\"sig\",\"kty\":\"RSA\",\"alg\":\"RS256\",\"n\":\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\",\"kid\":\"9341dedeee2d1869b657fa930300082fe26b3d92\"}]}"
         },
-        "required": [
-          "id",
-          "issuer",
-          "audience",
-          "jwks"
-        ],
+        "required": ["id", "issuer", "audience", "jwks"],
         "title": "ApiOidcConfig"
       },
       "ApiOidcIdentityMapEntry": {
@@ -12926,7 +13012,10 @@
           "AUDIT_LOG_ACTION_DELETE_AUTHENTICATION_METHOD",
           "AUDIT_LOG_ACTION_SET_DELETE_PROTECTION",
           "AUDIT_LOG_ACTION_MARKETPLACE_CREATE_SUBSCRIPTION",
-          "AUDIT_LOG_ACTION_MARKETPLACE_CANCEL_SUBSCRIPTION"
+          "AUDIT_LOG_ACTION_MARKETPLACE_CANCEL_SUBSCRIPTION",
+          "AUDIT_LOG_ACTION_ADD_JWT_ISSUER",
+          "AUDIT_LOG_ACTION_DELETE_JWT_ISSUER",
+          "AUDIT_LOG_ACTION_UPDATE_JWT_ISSUER"
         ]
       },
       "AuditLogEntry": {
@@ -13047,9 +13136,7 @@
             }
           }
         },
-        "required": [
-          "connections"
-        ]
+        "required": ["connections"]
       },
       "BuiltInFromGroups": {
         "type": "object",
@@ -13075,10 +13162,7 @@
             "$ref": "#/components/schemas/Resource"
           }
         },
-        "required": [
-          "name",
-          "resource"
-        ]
+        "required": ["name", "resource"]
       },
       "CMEKClusterInfo": {
         "description": "CMEKClusterInfo contains the status of CMEK across an entire cluster,\nincluding within each one its regions.",
@@ -13098,9 +13182,7 @@
       "CMEKCustomerAction": {
         "description": "CMEKCustomerAction enumerates the actions a customer can take on a cluster\nthat has been enabled for CMEK.",
         "type": "string",
-        "enum": [
-          "REVOKE"
-        ]
+        "enum": ["REVOKE"]
       },
       "CMEKKeyInfo": {
         "description": "CMEKKeyInfo contains the status of a customer-provided key alongside the\nspecification.",
@@ -13142,11 +13224,7 @@
       },
       "CMEKKeyType": {
         "type": "string",
-        "enum": [
-          "AWS_KMS",
-          "GCP_CLOUD_KMS",
-          "NULL_KMS"
-        ],
+        "enum": ["AWS_KMS", "GCP_CLOUD_KMS", "NULL_KMS"],
         "title": "CMEKKeyType enumerates types of customer-managed keys"
       },
       "CMEKRegionInfo": {
@@ -13210,21 +13288,12 @@
       "ClientCACertStatus": {
         "description": " - NOT_SET: NOT_SET indicates a client CA cert is not set on the cluster.\nNew clusters won't have a client CA cert set.\n - IS_SET: IS_SET indicates a client CA cert is set on the cluster.\n - PENDING: PENDING indicates a client CA cert update is in flight on the cluster.\n - FAILED: FAILED indicates a client CA cert update was attempted, but failed.",
         "type": "string",
-        "enum": [
-          "NOT_SET",
-          "IS_SET",
-          "PENDING",
-          "FAILED"
-        ]
+        "enum": ["NOT_SET", "IS_SET", "PENDING", "FAILED"]
       },
       "CloudProvider.Type": {
         "description": " - GCP: The Google Cloud Platform cloud provider.\n - AWS: The Amazon Web Services cloud provider.\n - AZURE: The Azure cloud provider.",
         "type": "string",
-        "enum": [
-          "GCP",
-          "AWS",
-          "AZURE"
-        ]
+        "enum": ["GCP", "AWS", "AZURE"]
       },
       "CloudProviderRegion": {
         "type": "object",
@@ -13247,13 +13316,7 @@
             "type": "boolean"
           }
         },
-        "required": [
-          "name",
-          "location",
-          "provider",
-          "serverless",
-          "distance"
-        ]
+        "required": ["name", "location", "provider", "serverless", "distance"]
       },
       "CloudWatchMetricExportInfo": {
         "type": "object",
@@ -13280,10 +13343,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "cluster_id",
-          "role_arn"
-        ],
+        "required": ["cluster_id", "role_arn"],
         "title": "CloudWatchMetricExportInfo"
       },
       "Cluster": {
@@ -13370,22 +13430,23 @@
           },
           "created_at": "2022-03-22T20:23:11.285067Z",
           "creator_id": "7cde0cd9-0d8a-4008-8f90-45092ce8afc1",
-          "deleted_at": null,
           "id": "35c4abb2-bb66-46d7-afed-25ebef5ed2aa",
           "name": "example-cluster",
-          "operation_status": "CLUSTER_STATUS_UNSPECIFIED",
+          "operation_status": "UNSPECIFIED",
           "plan": "SERVERLESS",
           "regions": [
             {
+              "internal_dns": "internal-free-tier7.gcp-us-central1.crdb.io",
               "name": "us-central1",
               "node_count": 0,
+              "private_endpoint_dns": "private-free-tier7.gcp-us-central1.crdb.io",
               "sql_dns": "free-tier7.gcp-us-central1.crdb.io",
               "ui_dns": ""
             }
           ],
           "state": "CREATED",
           "updated_at": "2022-03-22T20:23:11.879593Z",
-          "upgrade_status": "USING_LATEST"
+          "upgrade_status": "UPGRADE_AVAILABLE"
         },
         "required": [
           "id",
@@ -13423,29 +13484,16 @@
             "type": "string"
           }
         },
-        "required": [
-          "version",
-          "support_status"
-        ]
+        "required": ["version", "support_status"]
       },
       "ClusterMajorVersionSupportStatus.Type": {
         "type": "string",
-        "enum": [
-          "UNSUPPORTED",
-          "SUPPORTED",
-          "PREVIEW"
-        ]
+        "enum": ["UNSUPPORTED", "SUPPORTED", "PREVIEW"]
       },
       "ClusterState.Type": {
         "description": " - LOCKED: An exclusive operation is being performed on this cluster.\nOther operations should not proceed if they did not set a cluster into the LOCKED state.",
         "type": "string",
-        "enum": [
-          "CREATING",
-          "CREATED",
-          "CREATION_FAILED",
-          "DELETED",
-          "LOCKED"
-        ]
+        "enum": ["CREATING", "CREATED", "CREATION_FAILED", "DELETED", "LOCKED"]
       },
       "ClusterStatus.Type": {
         "type": "string",
@@ -13502,17 +13550,12 @@
         "example": {
           "deferral_policy": "FIXED_DEFERRAL"
         },
-        "required": [
-          "deferral_policy"
-        ],
+        "required": ["deferral_policy"],
         "title": "ClusterVersionDeferral"
       },
       "ClusterVersionDeferralPolicy.Type": {
         "type": "string",
-        "enum": [
-          "NOT_DEFERRED",
-          "FIXED_DEFERRAL"
-        ]
+        "enum": ["NOT_DEFERRED", "FIXED_DEFERRAL"]
       },
       "ConnectionStringParameters": {
         "description": "Individual parameters used to create a connection string.",
@@ -13531,11 +13574,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "Host",
-          "Port",
-          "Database"
-        ]
+        "required": ["Host", "Port", "Database"]
       },
       "CreateApiKeyRequest": {
         "type": "object",
@@ -13556,10 +13595,7 @@
           "name": "example name",
           "service_account_id": "1234abcd-1234-1234-abcd-12345678abcd"
         },
-        "required": [
-          "name",
-          "service_account_id"
-        ]
+        "required": ["name", "service_account_id"]
       },
       "CreateApiKeyResponse": {
         "type": "object",
@@ -13574,10 +13610,7 @@
             "example": "CCDB1_12345abcdefGHIJKLMnopq_NkdXLI9d81Mnx3djs45iwPfgtnaRv0XCh0Z9047K"
           }
         },
-        "required": [
-          "api_key",
-          "secret"
-        ]
+        "required": ["api_key", "secret"]
       },
       "CreateApiOidcConfigRequest": {
         "type": "object",
@@ -13616,13 +13649,10 @@
               "token_identity": "gcp_(.*)"
             }
           ],
+          "issuer": "theissuer",
           "jwks": "{\"keys\":[{\"e\":\"AQAB\",\"use\":\"sig\",\"kty\":\"RSA\",\"alg\":\"RS256\",\"n\":\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\",\"kid\":\"9341dedeee2d1869b657fa930300082fe26b3d92\"}]}"
         },
-        "required": [
-          "issuer",
-          "audience",
-          "jwks"
-        ],
+        "required": ["issuer", "audience", "jwks"],
         "title": "CreateApiOidcConfigRequest"
       },
       "CreateClusterRequest": {
@@ -13644,18 +13674,12 @@
           "provider": "GCP",
           "spec": {
             "serverless": {
-              "regions": [
-                "us-central1"
-              ],
+              "regions": ["us-central1"],
               "spend_limit": 0
             }
           }
         },
-        "required": [
-          "name",
-          "provider",
-          "spec"
-        ],
+        "required": ["name", "provider", "spec"],
         "title": "CreateClusterRequest"
       },
       "CreateClusterSpecification": {
@@ -13694,9 +13718,7 @@
           "name": "folder_name",
           "parent_id": "12345678-1234-1234-1234-123456789012"
         },
-        "required": [
-          "name"
-        ],
+        "required": ["name"],
         "title": "CreateFolderRequest"
       },
       "CreateGroupRequest": {
@@ -13724,13 +13746,9 @@
         "example": {
           "displayName": "Test SCIM",
           "members": [],
-          "schemas": [
-            "urn:ietf:params:scim:schemas:core:2.0:Group"
-          ]
+          "schemas": ["urn:ietf:params:scim:schemas:core:2.0:Group"]
         },
-        "required": [
-          "displayName"
-        ],
+        "required": ["displayName"],
         "title": "CreateGroupRequest"
       },
       "CreateServiceAccountRequest": {
@@ -13753,6 +13771,7 @@
           }
         },
         "example": {
+          "description": "",
           "name": "new name",
           "roles": [
             {
@@ -13763,11 +13782,7 @@
             }
           ]
         },
-        "required": [
-          "name",
-          "description",
-          "roles"
-        ]
+        "required": ["name", "description", "roles"]
       },
       "CreateUserRequest": {
         "type": "object",
@@ -13815,25 +13830,15 @@
             "familyName": "Roach",
             "givenName": "Carl"
           },
-          "schemas": [
-            "urn:ietf:params:scim:schemas:core:2.0:User"
-          ],
+          "schemas": ["urn:ietf:params:scim:schemas:core:2.0:User"],
           "userName": "croach@example.com"
         },
-        "required": [
-          "name",
-          "displayName",
-          "emails",
-          "active"
-        ],
+        "required": ["name", "displayName", "emails", "active"],
         "title": "CreateUserRequest"
       },
       "Currency.Type": {
         "type": "string",
-        "enum": [
-          "USD",
-          "CRDB_CLOUD_CREDITS"
-        ]
+        "enum": ["USD", "CRDB_CLOUD_CREDITS"]
       },
       "CurrencyAmount": {
         "type": "object",
@@ -13859,9 +13864,7 @@
             "format": "int64"
           }
         },
-        "required": [
-          "name"
-        ],
+        "required": ["name"],
         "title": "Database"
       },
       "DatadogMetricExportInfo": {
@@ -13884,21 +13887,12 @@
             "type": "string"
           }
         },
-        "required": [
-          "cluster_id",
-          "site"
-        ],
+        "required": ["cluster_id", "site"],
         "title": "DatadogMetricExportInfo"
       },
       "DatadogSite.Type": {
         "type": "string",
-        "enum": [
-          "US1",
-          "US3",
-          "US5",
-          "US1_GOV",
-          "EU1"
-        ]
+        "enum": ["US1", "US3", "US5", "US1_GOV", "EU1"]
       },
       "DedicatedClusterCreateSpecification": {
         "type": "object",
@@ -13926,10 +13920,7 @@
             "type": "boolean"
           }
         },
-        "required": [
-          "region_nodes",
-          "hardware"
-        ]
+        "required": ["region_nodes", "hardware"]
       },
       "DedicatedClusterUpdateSpecification": {
         "type": "object",
@@ -14007,10 +13998,7 @@
             "format": "int32"
           }
         },
-        "required": [
-          "machine_spec",
-          "storage_gib"
-        ]
+        "required": ["machine_spec", "storage_gib"]
       },
       "DedicatedHardwareUpdateSpecification": {
         "type": "object",
@@ -14052,9 +14040,7 @@
             "$ref": "#/components/schemas/EgressRule"
           }
         },
-        "required": [
-          "rule"
-        ],
+        "required": ["rule"],
         "title": "DeleteEgressRuleResponse"
       },
       "DeleteMetricExportResponse": {
@@ -14067,17 +14053,12 @@
             "$ref": "#/components/schemas/MetricExportStatus.Type"
           }
         },
-        "required": [
-          "cluster_id"
-        ],
+        "required": ["cluster_id"],
         "title": "DeleteMetricExportResponse"
       },
       "DeleteProtectionState.Type": {
         "type": "string",
-        "enum": [
-          "ENABLED",
-          "DISABLED"
-        ]
+        "enum": ["ENABLED", "DISABLED"]
       },
       "EditEgressRuleResponse": {
         "description": "EditEgressRuleResponse is the output message to the EditEgressRule RPC.",
@@ -14087,9 +14068,7 @@
             "$ref": "#/components/schemas/EgressRule"
           }
         },
-        "required": [
-          "rule"
-        ],
+        "required": ["rule"],
         "title": "EditEgressRuleResponse"
       },
       "EgressRule": {
@@ -14230,10 +14209,7 @@
       },
       "FolderResourceType.Type": {
         "type": "string",
-        "enum": [
-          "FOLDER",
-          "CLUSTER"
-        ]
+        "enum": ["FOLDER", "CLUSTER"]
       },
       "GetAllRolesForUserResponse": {
         "type": "object",
@@ -14264,10 +14240,7 @@
             "$ref": "#/components/schemas/ConnectionStringParameters"
           }
         },
-        "required": [
-          "connection_string",
-          "params"
-        ]
+        "required": ["connection_string", "params"]
       },
       "GetEgressRuleResponse": {
         "description": "GetEgressRuleResponse is the response message to the GetEgressRule RPC.",
@@ -14277,9 +14250,7 @@
             "$ref": "#/components/schemas/EgressRule"
           }
         },
-        "required": [
-          "rule"
-        ],
+        "required": ["rule"],
         "title": "GetEgressRuleResponse"
       },
       "GetGroupsRequest": {
@@ -14330,9 +14301,7 @@
             "$ref": "#/components/schemas/PersonUserInfo"
           }
         },
-        "required": [
-          "users"
-        ]
+        "required": ["users"]
       },
       "GetPrivateEndpointTrustedOwnerResponse": {
         "type": "object",
@@ -14341,9 +14310,7 @@
             "$ref": "#/components/schemas/PrivateEndpointTrustedOwner"
           }
         },
-        "required": [
-          "trusted_owner"
-        ]
+        "required": ["trusted_owner"]
       },
       "GetResourceTypesResponse": {
         "type": "object",
@@ -14552,10 +14519,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "name",
-          "amount"
-        ]
+        "required": ["name", "amount"]
       },
       "InvoiceItem": {
         "type": "object",
@@ -14578,28 +14542,65 @@
             }
           }
         },
-        "required": [
-          "cluster",
-          "totals",
-          "line_items"
-        ]
+        "required": ["cluster", "totals", "line_items"]
       },
-      "KeysetPaginationRequest": {
+      "JWTIssuer": {
         "type": "object",
         "properties": {
-          "as_of_time": {
+          "audience": {
             "type": "string",
-            "format": "date-time"
+            "example": "1234567890abcd",
+            "title": "The intended audience for consuming the JWT"
           },
-          "limit": {
-            "type": "integer",
-            "format": "int32"
+          "claim": {
+            "type": "string",
+            "example": "email",
+            "title": "Used to identify the user from the external Identity Provider. Defaults to \"sub\""
           },
-          "page": {
-            "type": "string"
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "example": "1234abcd-1234-1234-abcd-12345678abcd",
+            "title": "The unique identifier of the JWT Issuer resource"
           },
-          "sort_order": {
-            "$ref": "#/components/schemas/SortOrder"
+          "identity_map": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JWTIssuerIdentityMapEntry"
+            },
+            "title": "A list of mappings to map the external token identity into CockroachDB Cloud"
+          },
+          "issuer_url": {
+            "type": "string",
+            "example": "https://jwt-issuer.example.com",
+            "title": "The URL of the server issuing JWTs"
+          },
+          "jwks": {
+            "type": "string",
+            "example": "{\"keys\":[{\"e\":\"AQAB\",\"use\":\"sig\",\"kty\":\"RSA\",\"alg\":\"RS256\",\"n\":\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\",\"kid\":\"9341dedeee2d1869b657fa930300082fe26b3d92\"}]}",
+            "title": "A set of public keys (JWKS) used to verify a JWT"
+          }
+        },
+        "required": ["id", "issuer_url", "audience"],
+        "title": "JWTIssuer"
+      },
+      "JWTIssuerIdentityMapEntry": {
+        "type": "object",
+        "properties": {
+          "cc_identity": {
+            "type": "string",
+            "example": "\\1",
+            "title": "Specifies how to map the fetched token identity into CockroachDB Cloud"
+          },
+          "is_regex": {
+            "type": "boolean",
+            "example": true,
+            "title": "Specifies whether the token_identity and cc_identity configurations are in regex format"
+          },
+          "token_identity": {
+            "type": "string",
+            "example": "sso_(.*)",
+            "title": "Specifies how to fetch external identity from the token claim"
           }
         }
       },
@@ -14662,10 +14663,7 @@
             "type": "boolean"
           }
         },
-        "required": [
-          "allowlist",
-          "propagating"
-        ],
+        "required": ["allowlist", "propagating"],
         "title": "ListAllowlistEntriesResponse"
       },
       "ListApiKeysResponse": {
@@ -14681,9 +14679,7 @@
             "$ref": "#/components/schemas/KeysetPaginationResponse"
           }
         },
-        "required": [
-          "api_keys"
-        ]
+        "required": ["api_keys"]
       },
       "ListApiOidcConfigResponse": {
         "description": "list_api_oidc_config_response contains information about all the OIDC providers that can generate\nJWT tokens that can be used for authentication with the Cockroach Cloud API.",
@@ -14731,9 +14727,7 @@
             }
           }
         },
-        "required": [
-          "regions"
-        ]
+        "required": ["regions"]
       },
       "ListClusterNodesResponse": {
         "type": "object",
@@ -14748,9 +14742,7 @@
             "$ref": "#/components/schemas/KeysetPaginationResponse"
           }
         },
-        "required": [
-          "nodes"
-        ]
+        "required": ["nodes"]
       },
       "ListClustersResponse": {
         "type": "object",
@@ -14765,9 +14757,7 @@
             "$ref": "#/components/schemas/KeysetPaginationResponse"
           }
         },
-        "required": [
-          "clusters"
-        ]
+        "required": ["clusters"]
       },
       "ListDatabasesResponse": {
         "type": "object",
@@ -14782,9 +14772,7 @@
             "$ref": "#/components/schemas/KeysetPaginationResponse"
           }
         },
-        "required": [
-          "databases"
-        ],
+        "required": ["databases"],
         "title": "ListDatabasesResponse"
       },
       "ListEgressRulesResponse": {
@@ -14817,9 +14805,7 @@
             "$ref": "#/components/schemas/KeysetPaginationResponse"
           }
         },
-        "required": [
-          "folders"
-        ]
+        "required": ["folders"]
       },
       "ListInvoicesResponse": {
         "type": "object",
@@ -14832,9 +14818,23 @@
             }
           }
         },
-        "required": [
-          "invoices"
-        ]
+        "required": ["invoices"]
+      },
+      "ListJWTIssuersResponse": {
+        "type": "object",
+        "properties": {
+          "jwt_issuers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JWTIssuer"
+            },
+            "title": "The list of JWT Issuer resources"
+          },
+          "pagination": {
+            "$ref": "#/components/schemas/KeysetPaginationResponse"
+          }
+        },
+        "title": "ListJWTIssuersResponse"
       },
       "ListMajorClusterVersionsResponse": {
         "type": "object",
@@ -14849,9 +14849,7 @@
             }
           }
         },
-        "required": [
-          "versions"
-        ]
+        "required": ["versions"]
       },
       "ListPrivateEndpointTrustedOwnersResponse": {
         "type": "object",
@@ -14899,9 +14897,7 @@
             }
           }
         },
-        "required": [
-          "users"
-        ]
+        "required": ["users"]
       },
       "ListServiceAccountsResponse": {
         "type": "object",
@@ -14916,9 +14912,7 @@
             }
           }
         },
-        "required": [
-          "service_accounts"
-        ]
+        "required": ["service_accounts"]
       },
       "LogExportClusterInfo": {
         "description": "LogExportClusterInfo contains a package of information that fully\ndescribes both the intended state of the log export configuration for\na specific cluster but also some metadata around its deployment\nstatus, any error messages, and some timestamps.",
@@ -15012,10 +15006,7 @@
             "type": "boolean"
           }
         },
-        "required": [
-          "log_name",
-          "channels"
-        ]
+        "required": ["log_name", "channels"]
       },
       "LogExportStatus": {
         "description": "LogExportStatus encodes the possible states that a configuration can\nbe in as it is created, deployed, and disabled.",
@@ -15033,21 +15024,12 @@
       "LogExportType": {
         "description": "LogExportType encodes the cloud selection that we're exporting to\nalong with the cloud logging platform.\n\nCurrently, each cloud has a single logging platform.",
         "type": "string",
-        "enum": [
-          "AWS_CLOUDWATCH",
-          "GCP_CLOUD_LOGGING",
-          "AZURE_LOG_ANALYTICS"
-        ]
+        "enum": ["AWS_CLOUDWATCH", "GCP_CLOUD_LOGGING", "AZURE_LOG_ANALYTICS"]
       },
       "LogLevel.Type": {
         "description": " - UNSPECIFIED: The unspecified log level includes all logs.\n - WARNING: The WARNING severity is used for situations which may require\nspecial handling, where normal operation is expected to resume\nautomatically.\n - ERROR: The ERROR severity is used for situations that require special\nhandling, where normal operation could not proceed as expected.\nOther operations can continue mostly unaffected.\n - FATAL: The FATAL severity is used for situations that require an\nimmediate, hard server shutdown. A report is also sent to\ntelemetry if telemetry is enabled.",
         "type": "string",
-        "enum": [
-          "UNSPECIFIED",
-          "WARNING",
-          "ERROR",
-          "FATAL"
-        ]
+        "enum": ["UNSPECIFIED", "WARNING", "ERROR", "FATAL"]
       },
       "MaintenanceWindow": {
         "description": "MaintenanceWindowSpec specifies a weekly recurring maintenance window for a\ncluster.",
@@ -15066,28 +15048,16 @@
           "offset_duration": "172800s",
           "window_duration": "21600s"
         },
-        "required": [
-          "offset_duration",
-          "window_duration"
-        ],
+        "required": ["offset_duration", "window_duration"],
         "title": "MaintenanceWindow"
       },
       "MetricExportStatus.Type": {
         "type": "string",
-        "enum": [
-          "NOT_DEPLOYED",
-          "DISABLING",
-          "ENABLING",
-          "ENABLED",
-          "ERROR"
-        ]
+        "enum": ["NOT_DEPLOYED", "DISABLING", "ENABLING", "ENABLED", "ERROR"]
       },
       "NetworkVisibility.Type": {
         "type": "string",
-        "enum": [
-          "PUBLIC",
-          "PRIVATE"
-        ]
+        "enum": ["PUBLIC", "PRIVATE"]
       },
       "Node": {
         "type": "object",
@@ -15102,30 +15072,15 @@
             "$ref": "#/components/schemas/NodeStatus.Type"
           }
         },
-        "required": [
-          "name",
-          "region_name",
-          "status"
-        ]
+        "required": ["name", "region_name", "status"]
       },
       "NodeStatus.Type": {
         "type": "string",
-        "enum": [
-          "LIVE",
-          "NOT_READY"
-        ]
+        "enum": ["LIVE", "NOT_READY"]
       },
-      "NullValue": {
-        "description": "`NullValue` is a singleton enumeration to represent the null value for the\n`Value` type union.\n\n The JSON representation for `NullValue` is JSON `null`.\n\n - NULL_VALUE: Null value.",
-        "type": "string"
-      },
-      "OperatingSystem.Type": {
+      "OperatingSystemType": {
         "type": "string",
-        "enum": [
-          "MAC",
-          "LINUX",
-          "WINDOWS"
-        ]
+        "enum": ["MAC", "LINUX", "WINDOWS"]
       },
       "Organization": {
         "type": "object",
@@ -15144,12 +15099,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "id",
-          "label",
-          "name",
-          "created_at"
-        ]
+        "required": ["id", "label", "name", "created_at"]
       },
       "OrganizationUserRole.Type": {
         "description": " - FOLDER_ADMIN: Preview: A folder admin role.\n - FOLDER_MOVER: Preview: A folder mover role.",
@@ -15191,19 +15141,13 @@
             "type": "string"
           }
         },
-        "required": [
-          "id"
-        ],
+        "required": ["id"],
         "title": "person_user_info contains information about a person"
       },
       "Plan.Type": {
         "description": " - BASIC: The Basic plan includes essential operational features, is available in\nselect regions, and offers on-demand capacity, making it ideal for small\nteams with unpredictable workloads.\n - STANDARD: The Standard plan includes standard enterprise security and monitoring\nfeatures, is available in all supported regions, and offers provisioned\npricing, making it the default choice for most CockroachDB production\nworkloads.\n - ADVANCED: The Advanced plan is ideal for workloads with stringent isolation,\ncompliance, and security requirements such as CMEK, PCI and HIPAA-readiness,\nand support for dedicated hardware. Customers are advised to have their\naccount team and/or Cockroach Labs Support <support@cockroachlabs.com>\ninvolved when provisioning Advanced clusters.",
         "type": "string",
-        "enum": [
-          "BASIC",
-          "STANDARD",
-          "ADVANCED"
-        ]
+        "enum": ["BASIC", "STANDARD", "ADVANCED"]
       },
       "PrivateEndpointConnection": {
         "type": "object",
@@ -15237,11 +15181,12 @@
         },
         "example": {
           "cloud": "AWS",
+          "cloud_provider": "AWS",
           "endpoint_id": "2w543-45643-323fd",
           "endpoint_service_id": "34t-4t446-876bm",
           "region": "us-east-1",
           "service_name": "com.vpc-serv1",
-          "status": "AVAILABLE"
+          "status": "STATUS_AVAILABLE"
         },
         "required": [
           "region",
@@ -15277,9 +15222,7 @@
             }
           }
         },
-        "required": [
-          "connections"
-        ]
+        "required": ["connections"]
       },
       "PrivateEndpointService": {
         "type": "object",
@@ -15343,9 +15286,7 @@
             }
           }
         },
-        "required": [
-          "services"
-        ]
+        "required": ["services"]
       },
       "PrivateEndpointTrustedOwner": {
         "description": "PrivateEndpointTrustedOwner represents a trusted owner entry for private\nendpoint connections.",
@@ -15384,9 +15325,7 @@
       "PrivateEndpointTrustedOwnerType.Type": {
         "description": " - AWS_ACCOUNT_ID: AWS_ACCOUNT_ID represents the 12-digit AWS account number.",
         "type": "string",
-        "enum": [
-          "AWS_ACCOUNT_ID"
-        ]
+        "enum": ["AWS_ACCOUNT_ID"]
       },
       "PrometheusMetricExportInfo": {
         "type": "object",
@@ -15408,17 +15347,12 @@
             "type": "string"
           }
         },
-        "required": [
-          "cluster_id"
-        ],
+        "required": ["cluster_id"],
         "title": "PrometheusMetricExportInfo"
       },
       "QuantityUnit.Type": {
         "type": "string",
-        "enum": [
-          "HOURS",
-          "REQUEST_UNITS"
-        ]
+        "enum": ["HOURS", "REQUEST_UNITS", "GIB"]
       },
       "Region": {
         "type": "object",
@@ -15468,9 +15402,7 @@
             "$ref": "#/components/schemas/PrivateEndpointTrustedOwner"
           }
         },
-        "required": [
-          "trusted_owner"
-        ]
+        "required": ["trusted_owner"]
       },
       "Resource": {
         "type": "object",
@@ -15482,18 +15414,12 @@
             "$ref": "#/components/schemas/ResourceType.Type"
           }
         },
-        "required": [
-          "type"
-        ]
+        "required": ["type"]
       },
       "ResourceType.Type": {
         "description": " - ORGANIZATION: An organization.\n - CLUSTER: A cluster resource.\n - FOLDER: Preview: A folder resource.",
         "type": "string",
-        "enum": [
-          "ORGANIZATION",
-          "CLUSTER",
-          "FOLDER"
-        ]
+        "enum": ["ORGANIZATION", "CLUSTER", "FOLDER"]
       },
       "SQLUser": {
         "type": "object",
@@ -15502,9 +15428,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "name"
-        ]
+        "required": ["name"]
       },
       "ScimAuthenticationScheme": {
         "type": "object",
@@ -15569,10 +15493,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "value",
-          "primary"
-        ]
+        "required": ["value", "primary"]
       },
       "ScimEtagSupport": {
         "type": "object",
@@ -15836,13 +15757,14 @@
             "description": "routing_id is used to identify the cluster in a connection string.",
             "type": "string"
           },
+          "upgrade_type": {
+            "$ref": "#/components/schemas/UpgradeType.Type"
+          },
           "usage_limits": {
             "$ref": "#/components/schemas/UsageLimits"
           }
         },
-        "required": [
-          "routing_id"
-        ]
+        "required": ["routing_id"]
       },
       "ServerlessClusterCreateSpecification": {
         "type": "object",
@@ -15866,9 +15788,7 @@
             "type": "boolean"
           }
         },
-        "required": [
-          "regions"
-        ]
+        "required": ["regions"]
       },
       "ServerlessClusterUpdateSpecification": {
         "type": "object",
@@ -15883,6 +15803,9 @@
             "items": {
               "type": "string"
             }
+          },
+          "upgrade_type": {
+            "$ref": "#/components/schemas/UpgradeType.Type"
           },
           "usage_limits": {
             "$ref": "#/components/schemas/UsageLimits"
@@ -15959,18 +15882,7 @@
       "SetAWSEndpointConnectionStatus.Type": {
         "description": " - AVAILABLE: accept/verify the connection on the service side.\n - REJECTED: reject the connection on the service side.",
         "type": "string",
-        "enum": [
-          "AVAILABLE",
-          "REJECTED"
-        ]
-      },
-      "SortOrder": {
-        "description": " - ASC: Sort in ascending order. This is the default unless otherwise specified.\n - DESC: Sort in descending order.",
-        "type": "string",
-        "enum": [
-          "ASC",
-          "DESC"
-        ]
+        "enum": ["AVAILABLE", "REJECTED"]
       },
       "Status": {
         "type": "object",
@@ -16073,6 +15985,10 @@
           "name": "new name"
         }
       },
+      "UpgradeType.Type": {
+        "type": "string",
+        "enum": ["MANUAL", "AUTOMATIC"]
+      },
       "UsageLimits": {
         "type": "object",
         "properties": {
@@ -16134,142 +16050,13 @@
                 "type": "CLUSTER"
               }
             }
-          ]
+          ],
+          "user_id": "12345678-1234-1234-1234-123456789012"
         },
-        "required": [
-          "roles",
-          "user_id"
-        ]
+        "required": ["user_id", "roles"]
       }
     },
-    "requestBodies": {
-      "CockroachCloud_AddAllowlistEntry2Entry": {
-        "content": {
-          "application/json": {
-            "schema": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "type": "string"
-                },
-                "sql": {
-                  "type": "boolean"
-                },
-                "ui": {
-                  "type": "boolean"
-                }
-              },
-              "example": {
-                "cidr_ip": "192.168.1.1",
-                "cidr_mask": 32,
-                "name": "Example",
-                "sql": true,
-                "ui": true
-              },
-              "required": [
-                "ui",
-                "sql"
-              ],
-              "title": "AllowlistEntry"
-            }
-          }
-        },
-        "description": "AllowlistEntry",
-        "required": true
-      },
-      "CockroachCloud_EnableCMEKSpecBody": {
-        "content": {
-          "application/json": {
-            "schema": {
-              "type": "object",
-              "properties": {
-                "region_specs": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/CMEKRegionSpecification"
-                  }
-                }
-              },
-              "example": {
-                "region_specs": [
-                  {
-                    "key_spec": {
-                      "auth_principal": "arn:aws:iam::account:role/role-name-with-path",
-                      "type": "AWS_KMS",
-                      "uri": "arn:aws:kms:us-west-2:111122223333:key/id-of-kms-key"
-                    },
-                    "region": "us-central1"
-                  }
-                ]
-              },
-              "required": [
-                "region_specs"
-              ],
-              "title": "CMEKClusterSpecification"
-            }
-          }
-        },
-        "required": true
-      },
-      "CockroachCloud_SearchGroupBody": {
-        "content": {
-          "application/json": {
-            "schema": {
-              "type": "object",
-              "properties": {
-                "attributes": {
-                  "type": "string"
-                },
-                "excludedAttributes": {
-                  "type": "string"
-                }
-              },
-              "title": "GetGroupRequest"
-            }
-          }
-        },
-        "required": true
-      },
-      "CockroachCloud_SearchUserBody": {
-        "content": {
-          "application/json": {
-            "schema": {
-              "type": "object",
-              "properties": {
-                "attributes": {
-                  "type": "string"
-                },
-                "excludedAttributes": {
-                  "type": "string"
-                }
-              },
-              "title": "GetUserRequest"
-            }
-          }
-        },
-        "required": true
-      },
-      "GetGroupsRequest": {
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/GetGroupsRequest"
-            }
-          }
-        },
-        "required": true
-      },
-      "GetUsersRequest": {
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/GetUsersRequest"
-            }
-          }
-        },
-        "required": true
-      }
-    },
+    "requestBodies": {},
     "securitySchemes": {
       "Bearer": {
         "type": "http",
@@ -16342,6 +16129,9 @@
       "name": "Version Deferral"
     },
     {
+      "name": "JWT Issuers"
+    },
+    {
       "name": "OpenID Connect Configuration"
     },
     {
@@ -16352,6 +16142,9 @@
     },
     {
       "name": "Physical Cluster Replication"
+    },
+    {
+      "name": "Backup/Restore"
     }
   ],
   "externalDocs": {

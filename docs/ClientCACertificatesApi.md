@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 Delete Client CA Cert for a cluster
 
-Can be used by the following roles assigned at the organization or cluster scope:
+Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
 
@@ -89,7 +89,7 @@ Name | Type | Description  | Notes
 
 Get Client CA Cert information for a cluster
 
-Can be used by the following roles assigned at the organization or cluster scope:
+Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
 
@@ -161,7 +161,7 @@ Name | Type | Description  | Notes
 
 Set Client CA Cert for a cluster
 
-Can be used by the following roles assigned at the organization or cluster scope:
+Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
 
@@ -235,7 +235,7 @@ Name | Type | Description  | Notes
 
 Update Client CA Cert for a cluster
 
-Can be used by the following roles assigned at the organization or cluster scope:
+Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
 

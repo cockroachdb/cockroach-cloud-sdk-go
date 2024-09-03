@@ -107,10 +107,15 @@ API | Method | HTTP request | Description
 [FoldersApi](docs/FoldersApi.md) | **ListFolders** | **Get** /api/v1/folders | List folders owned by an organization
 [FoldersApi](docs/FoldersApi.md) | **UpdateFolder** | **Patch** /api/v1/folders/{folder_id} | Update a folder
 [IPAllowlistsApi](docs/IPAllowlistsApi.md) | **AddAllowlistEntry** | **Post** /api/v1/clusters/{cluster_id}/networking/allowlist | Add a new CIDR address to the IP allowlist
-[IPAllowlistsApi](docs/IPAllowlistsApi.md) | **AddAllowlistEntry2** | **Put** /api/v1/clusters/{cluster_id}/networking/allowlist/{entry.cidr_ip}/{entry.cidr_mask} | Add a new CIDR address to the IP allowlist
+[IPAllowlistsApi](docs/IPAllowlistsApi.md) | **AddAllowlistEntry2** | **Put** /api/v1/clusters/{cluster_id}/networking/allowlist/{cidr_ip}/{cidr_mask} | Add a new CIDR address to the IP allowlist
 [IPAllowlistsApi](docs/IPAllowlistsApi.md) | **DeleteAllowlistEntry** | **Delete** /api/v1/clusters/{cluster_id}/networking/allowlist/{cidr_ip}/{cidr_mask} | Delete an IP allowlist entry
 [IPAllowlistsApi](docs/IPAllowlistsApi.md) | **ListAllowlistEntries** | **Get** /api/v1/clusters/{cluster_id}/networking/allowlist | Get the IP allowlist and propagation status for a cluster
-[IPAllowlistsApi](docs/IPAllowlistsApi.md) | **UpdateAllowlistEntry** | **Patch** /api/v1/clusters/{cluster_id}/networking/allowlist/{entry.cidr_ip}/{entry.cidr_mask} | Update an IP allowlist entry
+[IPAllowlistsApi](docs/IPAllowlistsApi.md) | **UpdateAllowlistEntry** | **Patch** /api/v1/clusters/{cluster_id}/networking/allowlist/{cidr_ip}/{cidr_mask} | Update an IP allowlist entry
+[JWTIssuersApi](docs/JWTIssuersApi.md) | **AddJWTIssuer** | **Post** /api/v1/jwt-issuers | Add a JWT Issuer
+[JWTIssuersApi](docs/JWTIssuersApi.md) | **DeleteJWTIssuer** | **Delete** /api/v1/jwt-issuers/{id} | Delete a JWT Issuer
+[JWTIssuersApi](docs/JWTIssuersApi.md) | **GetJWTIssuer** | **Get** /api/v1/jwt-issuers/{id} | Get a JWT Issuer
+[JWTIssuersApi](docs/JWTIssuersApi.md) | **ListJWTIssuers** | **Get** /api/v1/jwt-issuers | List all JWT Issuers
+[JWTIssuersApi](docs/JWTIssuersApi.md) | **UpdateJWTIssuer** | **Patch** /api/v1/jwt-issuers/{id} | Update a JWT Issuer
 [LogExportApi](docs/LogExportApi.md) | **DeleteLogExport** | **Delete** /api/v1/clusters/{cluster_id}/logexport | Delete the Log Export configuration for a cluster
 [LogExportApi](docs/LogExportApi.md) | **EnableLogExport** | **Post** /api/v1/clusters/{cluster_id}/logexport | Create or update the Log Export configuration for a cluster
 [LogExportApi](docs/LogExportApi.md) | **GetLogExportInfo** | **Get** /api/v1/clusters/{cluster_id}/logexport | Get the Log Export configuration for a cluster
@@ -126,11 +131,11 @@ API | Method | HTTP request | Description
 [MetricExportApi](docs/MetricExportApi.md) | **GetCloudWatchMetricExportInfo** | **Get** /api/v1/clusters/{cluster_id}/metricexport/cloudwatch | Get the CloudWatch Metric Export configuration for a cluster
 [MetricExportApi](docs/MetricExportApi.md) | **GetDatadogMetricExportInfo** | **Get** /api/v1/clusters/{cluster_id}/metricexport/datadog | Get the Datadog Metric Export configuration for a cluster
 [MetricExportApi](docs/MetricExportApi.md) | **GetPrometheusMetricExportInfo** | **Get** /api/v1/clusters/{cluster_id}/metricexport/prometheus | Get the Prometheus Metric Export configuration for a cluster
-[OpenIDConnectConfigurationApi](docs/OpenIDConnectConfigurationApi.md) | **CreateApiOidcConfig** | **Post** /api/v1/api_oidc | Create an API OIDC configuration
-[OpenIDConnectConfigurationApi](docs/OpenIDConnectConfigurationApi.md) | **DeleteApiOidcConfig** | **Delete** /api/v1/api_oidc/{id} | Delete an API OIDC configuration
-[OpenIDConnectConfigurationApi](docs/OpenIDConnectConfigurationApi.md) | **GetApiOidcConfig** | **Get** /api/v1/api_oidc/{id} | Get an API OIDC configuration
-[OpenIDConnectConfigurationApi](docs/OpenIDConnectConfigurationApi.md) | **ListApiOidcConfig** | **Get** /api/v1/api_oidc | List all API OIDC configurations
-[OpenIDConnectConfigurationApi](docs/OpenIDConnectConfigurationApi.md) | **UpdateApiOidcConfig** | **Put** /api/v1/api_oidc/{id} | Update an API OIDC configuration
+[OpenIDConnectConfigurationApi](docs/OpenIDConnectConfigurationApi.md) | **CreateApiOidcConfig** | **Post** /api/v1/api_oidc | Create an API OIDC configuration (Deprecated)
+[OpenIDConnectConfigurationApi](docs/OpenIDConnectConfigurationApi.md) | **DeleteApiOidcConfig** | **Delete** /api/v1/api_oidc/{id} | Delete an API OIDC configuration (Deprecated)
+[OpenIDConnectConfigurationApi](docs/OpenIDConnectConfigurationApi.md) | **GetApiOidcConfig** | **Get** /api/v1/api_oidc/{id} | Get an API OIDC configuration (Deprecated)
+[OpenIDConnectConfigurationApi](docs/OpenIDConnectConfigurationApi.md) | **ListApiOidcConfig** | **Get** /api/v1/api_oidc | List all API OIDC configurations (Deprecated)
+[OpenIDConnectConfigurationApi](docs/OpenIDConnectConfigurationApi.md) | **UpdateApiOidcConfig** | **Put** /api/v1/api_oidc/{id} | Update an API OIDC configuration (Deprecated)
 [OrganizationsApi](docs/OrganizationsApi.md) | **GetOrganizationInfo** | **Get** /api/v1/organization | Get information about the caller&#39;s organization
 [PrivateEndpointServicesApi](docs/PrivateEndpointServicesApi.md) | **AddPrivateEndpointConnection** | **Post** /api/v1/clusters/{cluster_id}/networking/private-endpoint-connections | Add a connection to a cluster&#39;s private endpoint service.
 [PrivateEndpointServicesApi](docs/PrivateEndpointServicesApi.md) | **AddPrivateEndpointTrustedOwner** | **Post** /api/v1/clusters/{cluster_id}/networking/private-endpoint-trusted-owners | Add a private endpoint trusted owner to a cluster

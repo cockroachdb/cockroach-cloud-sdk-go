@@ -22,35 +22,35 @@ import (
 	"fmt"
 )
 
-// SortOrder  - ASC: Sort in ascending order. This is the default unless otherwise specified.  - DESC: Sort in descending order.
-type SortOrder string
+// UpgradeTypeType the model 'UpgradeTypeType'.
+type UpgradeTypeType string
 
-// List of SortOrder.
+// List of UpgradeType.Type.
 const (
-	SORTORDER_ASC  SortOrder = "ASC"
-	SORTORDER_DESC SortOrder = "DESC"
+	UPGRADETYPETYPE_MANUAL    UpgradeTypeType = "MANUAL"
+	UPGRADETYPETYPE_AUTOMATIC UpgradeTypeType = "AUTOMATIC"
 )
 
-// All allowed values of SortOrder enum.
-var AllowedSortOrderEnumValues = []SortOrder{
-	"ASC",
-	"DESC",
+// All allowed values of UpgradeTypeType enum.
+var AllowedUpgradeTypeTypeEnumValues = []UpgradeTypeType{
+	"MANUAL",
+	"AUTOMATIC",
 }
 
-// NewSortOrderFromValue returns a pointer to a valid SortOrder
+// NewUpgradeTypeTypeFromValue returns a pointer to a valid UpgradeTypeType
 // for the value passed as argument, or an error if the value passed is not allowed by the enum.
-func NewSortOrderFromValue(v string) (*SortOrder, error) {
-	ev := SortOrder(v)
+func NewUpgradeTypeTypeFromValue(v string) (*UpgradeTypeType, error) {
+	ev := UpgradeTypeType(v)
 	if ev.IsValid() {
 		return &ev, nil
 	} else {
-		return nil, fmt.Errorf("invalid value '%v' for SortOrder: valid values are %v", v, AllowedSortOrderEnumValues)
+		return nil, fmt.Errorf("invalid value '%v' for UpgradeTypeType: valid values are %v", v, AllowedUpgradeTypeTypeEnumValues)
 	}
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise.
-func (v SortOrder) IsValid() bool {
-	for _, existing := range AllowedSortOrderEnumValues {
+func (v UpgradeTypeType) IsValid() bool {
+	for _, existing := range AllowedUpgradeTypeTypeEnumValues {
 		if existing == v {
 			return true
 		}
@@ -58,7 +58,7 @@ func (v SortOrder) IsValid() bool {
 	return false
 }
 
-// Ptr returns reference to SortOrder value.
-func (v SortOrder) Ptr() *SortOrder {
+// Ptr returns reference to UpgradeType.Type value.
+func (v UpgradeTypeType) Ptr() *UpgradeTypeType {
 	return &v
 }

@@ -21,8 +21,9 @@ package client
 // ServerlessClusterConfig struct for ServerlessClusterConfig.
 type ServerlessClusterConfig struct {
 	// routing_id is used to identify the cluster in a connection string.
-	RoutingId   string       `json:"routing_id"`
-	UsageLimits *UsageLimits `json:"usage_limits,omitempty"`
+	RoutingId   string           `json:"routing_id"`
+	UpgradeType *UpgradeTypeType `json:"upgrade_type,omitempty"`
+	UsageLimits *UsageLimits     `json:"usage_limits,omitempty"`
 }
 
 // NewServerlessClusterConfig instantiates a new ServerlessClusterConfig object.
@@ -56,6 +57,20 @@ func (o *ServerlessClusterConfig) GetRoutingId() string {
 // SetRoutingId sets field value.
 func (o *ServerlessClusterConfig) SetRoutingId(v string) {
 	o.RoutingId = v
+}
+
+// GetUpgradeType returns the UpgradeType field value if set, zero value otherwise.
+func (o *ServerlessClusterConfig) GetUpgradeType() UpgradeTypeType {
+	if o == nil || o.UpgradeType == nil {
+		var ret UpgradeTypeType
+		return ret
+	}
+	return *o.UpgradeType
+}
+
+// SetUpgradeType gets a reference to the given UpgradeTypeType and assigns it to the UpgradeType field.
+func (o *ServerlessClusterConfig) SetUpgradeType(v UpgradeTypeType) {
+	o.UpgradeType = &v
 }
 
 // GetUsageLimits returns the UsageLimits field value if set, zero value otherwise.

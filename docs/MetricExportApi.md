@@ -22,7 +22,7 @@ Method | HTTP request | Description
 
 Delete the CloudWatch Metric Export configuration for a cluster
 
-Can be used by the following roles assigned at the organization or cluster scope:
+Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
 
@@ -94,7 +94,7 @@ Name | Type | Description  | Notes
 
 Delete the Datadog Metric Export configuration for a cluster
 
-Can be used by the following roles assigned at the organization or cluster scope:
+Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
 
@@ -166,7 +166,7 @@ Name | Type | Description  | Notes
 
 Disable Prometheus Metric Export for a cluster
 
-Can be used by the following roles assigned at the organization or cluster scope:
+Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
 
@@ -238,7 +238,7 @@ Name | Type | Description  | Notes
 
 Create or update the CloudWatch Metric Export configuration for a cluster
 
-Can be used by the following roles assigned at the organization or cluster scope:
+Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
 
@@ -312,7 +312,7 @@ Name | Type | Description  | Notes
 
 Create or update the Datadog Metric Export configuration for a cluster
 
-Can be used by the following roles assigned at the organization or cluster scope:
+Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
 
@@ -386,7 +386,7 @@ Name | Type | Description  | Notes
 
 Enable Prometheus Metric Export for a cluster
 
-Can be used by the following roles assigned at the organization or cluster scope:
+Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
 
@@ -458,7 +458,7 @@ Name | Type | Description  | Notes
 
 Get the CloudWatch Metric Export configuration for a cluster
 
-Can be used by the following roles assigned at the organization or cluster scope:
+Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
 
@@ -530,7 +530,7 @@ Name | Type | Description  | Notes
 
 Get the Datadog Metric Export configuration for a cluster
 
-Can be used by the following roles assigned at the organization or cluster scope:
+Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
 
@@ -602,7 +602,7 @@ Name | Type | Description  | Notes
 
 Get the Prometheus Metric Export configuration for a cluster
 
-Can be used by the following roles assigned at the organization or cluster scope:
+Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
 

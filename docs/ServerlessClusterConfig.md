@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **RoutingId** | **string** | routing_id is used to identify the cluster in a connection string. | 
+**UpgradeType** | Pointer to [**UpgradeTypeType**](UpgradeTypeType.md) |  | [optional] 
 **UsageLimits** | Pointer to [**UsageLimits**](UsageLimits.md) |  | [optional] 
 
 ## Methods
@@ -37,6 +38,18 @@ GetRoutingId returns the RoutingId field if non-nil, zero value otherwise.
 `func (o *ServerlessClusterConfig) SetRoutingId(v string)`
 
 SetRoutingId sets RoutingId field to given value.
+
+### GetUpgradeType
+
+`func (o *ServerlessClusterConfig) GetUpgradeType() UpgradeTypeType`
+
+GetUpgradeType returns the UpgradeType field if non-nil, zero value otherwise.
+
+### SetUpgradeType
+
+`func (o *ServerlessClusterConfig) SetUpgradeType(v UpgradeTypeType)`
+
+SetUpgradeType sets UpgradeType field to given value.
 
 ### GetUsageLimits
 

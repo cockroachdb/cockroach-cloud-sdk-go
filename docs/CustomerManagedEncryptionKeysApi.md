@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 Enable CMEK for a cluster
 
-Can be used by the following roles assigned at the organization or cluster scope:
+Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
 
@@ -91,7 +91,7 @@ Name | Type | Description  | Notes
 
 Get CMEK-related information for a cluster
 
-Can be used by the following roles assigned at the organization or cluster scope:
+Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
 
@@ -163,7 +163,7 @@ Name | Type | Description  | Notes
 
 Enable or update the CMEK spec for a cluster
 
-Can be used by the following roles assigned at the organization or cluster scope:
+Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
 
@@ -237,7 +237,7 @@ Name | Type | Description  | Notes
 
 Update the CMEK-related status for a cluster
 
-Can be used by the following roles assigned at the organization or cluster scope:
+Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
 
