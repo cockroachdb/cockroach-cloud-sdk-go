@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **PrimaryRegion** | Pointer to **string** | Specify which region should be made the primary region. This is only applicable to multi-region Serverless clusters. This field is required if the regions field contains more than one region. | [optional] 
 **Regions** | Pointer to **[]string** | Region values should match the cloud provider&#39;s zone code. For example, for Oregon, set region_name to \&quot;us-west2\&quot; for GCP and \&quot;us-west-2\&quot; for AWS. If this field is provided, the cluster&#39;s regions will be changed to match this list. Regions cannot currently be removed. | [optional] 
-**SpendLimit** | Pointer to **int32** | spend_limit is the maximum monthly charge for a cluster, in US cents. We recommend using usage_limits instead, since spend_limit will be deprecated in the future. | [optional] 
+**UpgradeType** | Pointer to [**UpgradeTypeType**](UpgradeTypeType.md) |  | [optional] 
 **UsageLimits** | Pointer to [**UsageLimits**](UsageLimits.md) |  | [optional] 
 
 ## Methods
@@ -44,17 +44,17 @@ GetRegions returns the Regions field if non-nil, zero value otherwise.
 
 SetRegions sets Regions field to given value.
 
-### GetSpendLimit
+### GetUpgradeType
 
-`func (o *ServerlessClusterUpdateSpecification) GetSpendLimit() int32`
+`func (o *ServerlessClusterUpdateSpecification) GetUpgradeType() UpgradeTypeType`
 
-GetSpendLimit returns the SpendLimit field if non-nil, zero value otherwise.
+GetUpgradeType returns the UpgradeType field if non-nil, zero value otherwise.
 
-### SetSpendLimit
+### SetUpgradeType
 
-`func (o *ServerlessClusterUpdateSpecification) SetSpendLimit(v int32)`
+`func (o *ServerlessClusterUpdateSpecification) SetUpgradeType(v UpgradeTypeType)`
 
-SetSpendLimit sets SpendLimit field to given value.
+SetUpgradeType sets UpgradeType field to given value.
 
 ### GetUsageLimits
 

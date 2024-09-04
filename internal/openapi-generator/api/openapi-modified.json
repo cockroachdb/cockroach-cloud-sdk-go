@@ -8,7 +8,7 @@
     },
     "description": "An API for managing CockroachDB Cloud resources",
     "title": "CockroachDB Cloud API",
-    "version": "2023-04-10"
+    "version": "development"
   },
   "servers": [
     {
@@ -14175,6 +14175,9 @@
             "description": "Preview: The parent ID is a folder ID. An empty string or \"root\"\nwill create a cluster at the root level.",
             "type": "string"
           },
+          "plan": {
+            "$ref": "#/components/schemas/Plan.Type"
+          },
           "serverless": {
             "$ref": "#/components/schemas/ServerlessClusterCreateSpecification"
           }
@@ -15756,12 +15759,12 @@
         "title": "person_user_info contains information about a person"
       },
       "Plan.Type": {
-        "description": " - DEDICATED: A paid plan that offers dedicated hardware in any location.\n - CUSTOM: A plan option that is used for clusters whose machine configs are not\nsupported in self-service. All INVOICE clusters are under this plan option.\n - SERVERLESS: A paid plan that runs on shared hardware and caps the users'\nmaximum monthly spending to a user-specified (possibly 0) amount.",
+        "description": " - BASIC: The Basic plan includes essential operational features, is available in\nselect regions, and offers on-demand capacity, making it ideal for small\nteams with unpredictable workloads.\n - STANDARD: The Standard plan includes standard enterprise security and monitoring\nfeatures, is available in all supported regions, and offers provisioned\npricing, making it the default choice for most CockroachDB production\nworkloads.\n - ADVANCED: The Advanced plan is ideal for workloads with stringent isolation,\ncompliance, and security requirements such as CMEK, PCI and HIPAA-readiness,\nand support for dedicated hardware. Customers are advised to have their\naccount team and/or Cockroach Labs Support <support@cockroachlabs.com>\ninvolved when provisioning Advanced clusters.",
         "type": "string",
         "enum": [
-          "DEDICATED",
-          "CUSTOM",
-          "SERVERLESS"
+          "BASIC",
+          "STANDARD",
+          "ADVANCED"
         ]
       },
       "PrivateEndpointConnection": {
@@ -15977,7 +15980,8 @@
         "type": "string",
         "enum": [
           "HOURS",
-          "REQUEST_UNITS"
+          "REQUEST_UNITS",
+          "GIB"
         ]
       },
       "Region": {
@@ -16396,10 +16400,8 @@
             "description": "routing_id is used to identify the cluster in a connection string.",
             "type": "string"
           },
-          "spend_limit": {
-            "description": "spend_limit is the maximum monthly charge for a cluster, in US cents. We\nrecommend using usage_limits instead, since spend_limit will be deprecated\nin the future.",
-            "type": "integer",
-            "format": "int32"
+          "upgrade_type": {
+            "$ref": "#/components/schemas/UpgradeType.Type"
           },
           "usage_limits": {
             "$ref": "#/components/schemas/UsageLimits"
@@ -16422,11 +16424,6 @@
             "items": {
               "type": "string"
             }
-          },
-          "spend_limit": {
-            "description": "spend_limit is the maximum monthly charge for a cluster, in US cents. We\nrecommend using usage_limits instead, since spend_limit will be deprecated\nin the future.",
-            "type": "integer",
-            "format": "int32"
           },
           "usage_limits": {
             "$ref": "#/components/schemas/UsageLimits"
@@ -16454,10 +16451,8 @@
               "type": "string"
             }
           },
-          "spend_limit": {
-            "description": "spend_limit is the maximum monthly charge for a cluster, in US cents. We\nrecommend using usage_limits instead, since spend_limit will be deprecated\nin the future.",
-            "type": "integer",
-            "format": "int32"
+          "upgrade_type": {
+            "$ref": "#/components/schemas/UpgradeType.Type"
           },
           "usage_limits": {
             "$ref": "#/components/schemas/UsageLimits"
@@ -16583,6 +16578,9 @@
             "description": "Preview: The parent ID is a folder ID. An empty string or \"root\"\nrepresents the root level.",
             "type": "string"
           },
+          "plan": {
+            "$ref": "#/components/schemas/Plan.Type"
+          },
           "serverless": {
             "$ref": "#/components/schemas/ServerlessClusterUpdateSpecification"
           },
@@ -16637,9 +16635,26 @@
           "name": "new name"
         }
       },
+      "UpgradeType.Type": {
+        "type": "string",
+        "enum": [
+          "MANUAL",
+          "AUTOMATIC"
+        ]
+      },
       "UsageLimits": {
         "type": "object",
         "properties": {
+          "provisioned_capacity": {
+            "description": "provisioned_capacity is the maximum number of request units that the cluster\ncan consume per second. Once this limit is reached, operation latency may\nincrease due to throttling. It is an error for this to be zero.",
+            "type": "integer",
+            "format": "int64"
+          },
+          "provisioned_vcpus": {
+            "description": "provisioned_vcpus is the maximum number of vCPUs that the cluster can use.\nOnce this limit is reached, operation latency may increase due to\nthrottling. It is an error for this to be zero.",
+            "type": "integer",
+            "format": "int64"
+          },
           "request_unit_limit": {
             "description": "request_unit_limit is the maximum number of request units that the cluster\ncan consume during the month. If this limit is exceeded, then the cluster\nis disabled until the limit is increased, or until the beginning of the\nnext month when more free request units are granted. It is an error for\nthis to be zero.",
             "type": "integer",
@@ -16650,11 +16665,7 @@
             "type": "integer",
             "format": "int64"
           }
-        },
-        "required": [
-          "request_unit_limit",
-          "storage_mib_limit"
-        ]
+        }
       },
       "UserGroupRoleGrant": {
         "type": "object",
