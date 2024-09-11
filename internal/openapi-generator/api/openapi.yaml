@@ -6,7 +6,7 @@ info:
     url: https://support.cockroachlabs.com
   description: An API for managing CockroachDB Cloud resources
   title: CockroachDB Cloud API
-  version: 2023-04-10
+  version: development
 externalDocs:
   description: Use the CockroachDB Cloud API
   url: https://www.cockroachlabs.com/docs/cockroachcloud/cloud-api.html
@@ -9251,8 +9251,6 @@ components:
       - service_name
       type: object
     AddEgressRuleResponse:
-      description: AddEgressRuleResponse is the response message of the AddEgressRule
-        RPC.
       example:
         Rule:
           crl_managed: true
@@ -10458,6 +10456,8 @@ components:
             Preview: The parent ID is a folder ID. An empty string or "root"
             will create a cluster at the root level.
           type: string
+        plan:
+          $ref: '#/components/schemas/Plan.Type'
         serverless:
           $ref: '#/components/schemas/ServerlessClusterCreateSpecification'
       type: object
@@ -10770,8 +10770,6 @@ components:
           type: integer
       type: object
     DeleteEgressRuleResponse:
-      description: DeleteEgressRuleResponse is the output for the DeleteEgressRule
-        RPC.
       example:
         Rule:
           crl_managed: true
@@ -10815,8 +10813,6 @@ components:
       - DISABLED
       type: string
     EditEgressRuleResponse:
-      description: EditEgressRuleResponse is the output message to the EditEgressRule
-        RPC.
       example:
         Rule:
           crl_managed: true
@@ -11064,8 +11060,6 @@ components:
           items:
             $ref: '#/components/schemas/BuiltInRole'
           type: array
-      title: get_all_roles_for_user_response contains a representation of all roles
-        a given user has
       type: object
     GetConnectionStringResponse:
       example:
@@ -11087,8 +11081,6 @@ components:
       - params
       type: object
     GetEgressRuleResponse:
-      description: GetEgressRuleResponse is the response message to the GetEgressRule
-        RPC.
       example:
         rule:
           crl_managed: true
@@ -11998,9 +11990,6 @@ components:
       - api_keys
       type: object
     ListApiOidcConfigResponse:
-      description: |-
-        list_api_oidc_config_response contains information about all the OIDC providers that can generate
-        JWT tokens that can be used for authentication with the Cockroach Cloud API.
       example:
         pagination:
           next_page: next_page
@@ -12224,7 +12213,6 @@ components:
       title: ListDatabasesResponse
       type: object
     ListEgressRulesResponse:
-      description: ListEgressRulesResponse is the output for the ListEgressRules RPC.
       example:
         pagination:
           next_page: next_page
@@ -12745,7 +12733,6 @@ components:
           items:
             $ref: '#/components/schemas/UserGroupRoleGrant'
           type: array
-      title: list_role_grants_response contains a representation of all roles
       type: object
     ListSQLUsersResponse:
       example:
@@ -13137,15 +13124,22 @@ components:
       type: object
     Plan.Type:
       description: |2-
-         - DEDICATED: A paid plan that offers dedicated hardware in any location.
-         - CUSTOM: A plan option that is used for clusters whose machine configs are not
-        supported in self-service. All INVOICE clusters are under this plan option.
-         - SERVERLESS: A paid plan that runs on shared hardware and caps the users'
-        maximum monthly spending to a user-specified (possibly 0) amount.
+         - BASIC: The Basic plan includes essential operational features, is available in
+        select regions, and offers on-demand capacity, making it ideal for small
+        teams with unpredictable workloads.
+         - STANDARD: The Standard plan includes standard enterprise security and monitoring
+        features, is available in all supported regions, and offers provisioned
+        pricing, making it the default choice for most CockroachDB production
+        workloads.
+         - ADVANCED: The Advanced plan is ideal for workloads with stringent isolation,
+        compliance, and security requirements such as CMEK, PCI and HIPAA-readiness,
+        and support for dedicated hardware. Customers are advised to have their
+        account team and/or Cockroach Labs Support <support@cockroachlabs.com>
+        involved when provisioning Advanced clusters.
       enum:
-      - DEDICATED
-      - CUSTOM
-      - SERVERLESS
+      - BASIC
+      - STANDARD
+      - ADVANCED
       type: string
     PrivateEndpointConnection:
       example:
@@ -13890,17 +13884,13 @@ components:
           description: routing_id is used to identify the cluster in a connection
             string.
           type: string
-        spend_limit:
-          description: |-
-            spend_limit is the maximum monthly charge for a cluster, in US cents. We
-            recommend using usage_limits instead, since spend_limit will be deprecated
-            in the future.
-          format: int32
-          type: integer
+        upgrade_type:
+          $ref: '#/components/schemas/UpgradeType.Type'
         usage_limits:
           $ref: '#/components/schemas/UsageLimits'
       required:
       - routing_id
+      - upgrade_type
       type: object
     ServerlessClusterCreateSpecification:
       properties:
@@ -13919,13 +13909,8 @@ components:
           items:
             type: string
           type: array
-        spend_limit:
-          description: |-
-            spend_limit is the maximum monthly charge for a cluster, in US cents. We
-            recommend using usage_limits instead, since spend_limit will be deprecated
-            in the future.
-          format: int32
-          type: integer
+        upgrade_type:
+          $ref: '#/components/schemas/UpgradeType.Type'
         usage_limits:
           $ref: '#/components/schemas/UsageLimits'
         with_empty_ip_allowlist:
@@ -13955,13 +13940,8 @@ components:
           items:
             type: string
           type: array
-        spend_limit:
-          description: |-
-            spend_limit is the maximum monthly charge for a cluster, in US cents. We
-            recommend using usage_limits instead, since spend_limit will be deprecated
-            in the future.
-          format: int32
-          type: integer
+        upgrade_type:
+          $ref: '#/components/schemas/UpgradeType.Type'
         usage_limits:
           $ref: '#/components/schemas/UsageLimits'
       type: object
@@ -14065,6 +14045,8 @@ components:
             Preview: The parent ID is a folder ID. An empty string or "root"
             represents the root level.
           type: string
+        plan:
+          $ref: '#/components/schemas/Plan.Type'
         serverless:
           $ref: '#/components/schemas/ServerlessClusterUpdateSpecification'
         upgrade_status:
@@ -14094,8 +14076,27 @@ components:
           description: name of the service account.
           type: string
       type: object
+    UpgradeType.Type:
+      enum:
+      - MANUAL
+      - AUTOMATIC
+      type: string
     UsageLimits:
       properties:
+        provisioned_capacity:
+          description: |-
+            provisioned_capacity is the maximum number of request units that the cluster
+            can consume per second. Once this limit is reached, operation latency may
+            increase due to throttling. It is an error for this to be zero.
+          format: int64
+          type: integer
+        provisioned_vcpus:
+          description: |-
+            provisioned_vcpus is the maximum number of vCPUs that the cluster can use.
+            Once this limit is reached, operation latency may increase due to
+            throttling. It is an error for this to be zero.
+          format: int64
+          type: integer
         request_unit_limit:
           description: |-
             request_unit_limit is the maximum number of request units that the cluster
@@ -14114,9 +14115,6 @@ components:
             usage. It is an error for this to be zero.
           format: int64
           type: integer
-      required:
-      - request_unit_limit
-      - storage_mib_limit
       type: object
     UserGroupRoleGrant:
       example:
@@ -14505,7 +14503,6 @@ components:
       title: SetAwsEndpointConnectionStateRequest
       type: object
     AddEgressRuleRequest:
-      description: AddEgressRuleRequest is the input for the rpc AddEgressRule().
       example:
         cluster_id: 35c4abb2-bb66-46d7-afed-25ebef5ed100
         description: egress for GCP storage buckets
@@ -14561,8 +14558,6 @@ components:
       title: AddEgressRuleRequest
       type: object
     SetEgressTrafficPolicyRequest:
-      description: SetEgressTrafficPolicyRequest is the input for the SetEgressTrafficPolicy
-        RPC.
       example:
         idempotency_key: idempotency_key
         allow_all: true
@@ -14583,8 +14578,6 @@ components:
       title: SetEgressTrafficPolicyRequest
       type: object
     EditEgressRuleRequest:
-      description: EditEgressRuleRequest is the input message to the EditEgressRule
-        RPC.
       example:
         cluster_id: 35c4abb2-bb66-46d7-afed-25ebef5ed100
         ports:

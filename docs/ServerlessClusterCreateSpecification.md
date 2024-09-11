@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **PrimaryRegion** | Pointer to **string** | Preview: Specify which region should be made the primary region. This is only applicable to multi-region Serverless clusters. This field is required if you create the cluster in more than one region. | [optional] 
 **Regions** | **[]string** | Region values should match the cloud provider&#39;s zone code. For example, for Oregon, set region_name to \&quot;us-west2\&quot; for GCP and \&quot;us-west-2\&quot; for AWS. | 
-**SpendLimit** | Pointer to **int32** | spend_limit is the maximum monthly charge for a cluster, in US cents. We recommend using usage_limits instead, since spend_limit will be deprecated in the future. | [optional] 
+**UpgradeType** | Pointer to [**UpgradeTypeType**](UpgradeTypeType.md) |  | [optional] 
 **UsageLimits** | Pointer to [**UsageLimits**](UsageLimits.md) |  | [optional] 
 **WithEmptyIpAllowlist** | Pointer to **bool** | WithEmptyIPAllowlist creates a cluster with no entries in the IP Allowlist. By default, Serverless clusters have one IP allowlist entry that opens the cluster to any IP. Set this property to true to ensure the cluster is closed to public traffic by default. | [optional] 
 
@@ -53,17 +53,17 @@ GetRegions returns the Regions field if non-nil, zero value otherwise.
 
 SetRegions sets Regions field to given value.
 
-### GetSpendLimit
+### GetUpgradeType
 
-`func (o *ServerlessClusterCreateSpecification) GetSpendLimit() int32`
+`func (o *ServerlessClusterCreateSpecification) GetUpgradeType() UpgradeTypeType`
 
-GetSpendLimit returns the SpendLimit field if non-nil, zero value otherwise.
+GetUpgradeType returns the UpgradeType field if non-nil, zero value otherwise.
 
-### SetSpendLimit
+### SetUpgradeType
 
-`func (o *ServerlessClusterCreateSpecification) SetSpendLimit(v int32)`
+`func (o *ServerlessClusterCreateSpecification) SetUpgradeType(v UpgradeTypeType)`
 
-SetSpendLimit sets SpendLimit field to given value.
+SetUpgradeType sets UpgradeType field to given value.
 
 ### GetUsageLimits
 
