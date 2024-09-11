@@ -29,12 +29,14 @@ type QuantityUnitType string
 const (
 	QUANTITYUNITTYPE_HOURS         QuantityUnitType = "HOURS"
 	QUANTITYUNITTYPE_REQUEST_UNITS QuantityUnitType = "REQUEST_UNITS"
+	QUANTITYUNITTYPE_GIB           QuantityUnitType = "GIB"
 )
 
 // All allowed values of QuantityUnitType enum.
 var AllowedQuantityUnitTypeEnumValues = []QuantityUnitType{
 	"HOURS",
 	"REQUEST_UNITS",
+	"GIB",
 }
 
 // NewQuantityUnitTypeFromValue returns a pointer to a valid QuantityUnitType

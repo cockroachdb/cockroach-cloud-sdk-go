@@ -15349,7 +15349,7 @@
       },
       "QuantityUnit.Type": {
         "type": "string",
-        "enum": ["HOURS", "REQUEST_UNITS"]
+        "enum": ["HOURS", "REQUEST_UNITS", "GIB"]
       },
       "Region": {
         "type": "object",

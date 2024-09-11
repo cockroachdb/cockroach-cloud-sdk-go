@@ -1,3 +1,8 @@
+
+NEW FEATURES:
+
+* Add GIB to QuantityUnit enum used in billing line items.
+
 ## 2.0.1
 
 BUG FIXES:
