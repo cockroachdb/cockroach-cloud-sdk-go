@@ -213,6 +213,7 @@ docs/UpdateJWTIssuerRequest.md
 docs/UpdateSQLUserPasswordRequest.md
 docs/UpdateServiceAccountSpecification.md
 docs/UpdateUserRequest.md
+docs/UpgradeTypeType.md
 docs/UsageLimits.md
 docs/UserGroupRoleGrant.md
 docs/UserRoleGrants.md
@@ -407,6 +408,7 @@ model_update_jwt_issuer_request.go
 model_update_service_account_specification.go
 model_update_sql_user_password_request.go
 model_update_user_request.go
+model_upgrade_type_type.go
 model_usage_limits.go
 model_user_group_role_grant.go
 model_user_role_grants.go
