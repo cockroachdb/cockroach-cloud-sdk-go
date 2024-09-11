@@ -5,6 +5,9 @@ BUG FIXES
 
 NEW FEATURES:
 
+* Additions to cluster-versions to show valid upgrade paths taking into account
+  innovation releases.
+
 * Add GIB to QuantityUnit enum used in billing line items.
 
 ## 2.0.1

@@ -10218,13 +10218,30 @@ components:
         \ see https://www.cockroachlabs.com/docs/releases/release-support-policy.html"
       example:
         support_status: null
+        support_end: 2000-01-23T04:56:07.000+00:00
+        release_type: null
+        allowed_upgrades:
+        - allowed_upgrades
+        - allowed_upgrades
         version: version
       properties:
+        allowed_upgrades:
+          items:
+            type: string
+          type: array
+        release_type:
+          $ref: '#/components/schemas/ReleaseType.Type'
+        support_end:
+          format: date-time
+          type: string
         support_status:
           $ref: '#/components/schemas/ClusterMajorVersionSupportStatus.Type'
         version:
           type: string
       required:
+      - allowed_upgrades
+      - release_type
+      - support_end
       - support_status
       - version
       type: object
@@ -12617,8 +12634,18 @@ components:
           previous_page: previous_page
         versions:
         - support_status: null
+          support_end: 2000-01-23T04:56:07.000+00:00
+          release_type: null
+          allowed_upgrades:
+          - allowed_upgrades
+          - allowed_upgrades
           version: version
         - support_status: null
+          support_end: 2000-01-23T04:56:07.000+00:00
+          release_type: null
+          allowed_upgrades:
+          - allowed_upgrades
+          - allowed_upgrades
           version: version
       properties:
         pagination:
@@ -13420,6 +13447,11 @@ components:
       - sql_dns
       - ui_dns
       type: object
+    ReleaseType.Type:
+      enum:
+      - REGULAR
+      - INNOVATION
+      type: string
     RemovePrivateEndpointTrustedOwnerResponse:
       example:
         trusted_owner:

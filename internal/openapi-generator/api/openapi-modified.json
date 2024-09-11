@@ -13919,6 +13919,19 @@
         "description": "For more information about CockroachDB cluster version support, see https://www.cockroachlabs.com/docs/releases/release-support-policy.html",
         "type": "object",
         "properties": {
+          "allowed_upgrades": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "release_type": {
+            "$ref": "#/components/schemas/ReleaseType.Type"
+          },
+          "support_end": {
+            "type": "string",
+            "format": "date-time"
+          },
           "support_status": {
             "$ref": "#/components/schemas/ClusterMajorVersionSupportStatus.Type"
           },
@@ -13928,7 +13941,10 @@
         },
         "required": [
           "version",
-          "support_status"
+          "support_status",
+          "support_end",
+          "release_type",
+          "allowed_upgrades"
         ]
       },
       "ClusterMajorVersionSupportStatus.Type": {
@@ -16020,6 +16036,13 @@
           "node_count",
           "internal_dns",
           "private_endpoint_dns"
+        ]
+      },
+      "ReleaseType.Type": {
+        "type": "string",
+        "enum": [
+          "REGULAR",
+          "INNOVATION"
         ]
       },
       "RemovePrivateEndpointTrustedOwnerResponse": {
