@@ -15977,7 +15977,8 @@
         "type": "string",
         "enum": [
           "HOURS",
-          "REQUEST_UNITS"
+          "REQUEST_UNITS",
+          "GIB"
         ]
       },
       "Region": {

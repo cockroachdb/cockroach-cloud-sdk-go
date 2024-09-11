@@ -13378,6 +13378,7 @@ components:
       enum:
       - HOURS
       - REQUEST_UNITS
+      - GIB
       type: string
     Region:
       properties:
