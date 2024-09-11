@@ -1,4 +1,8 @@
 
+BUG FIXES
+
+* fixed install path examples in README
+
 NEW FEATURES:
 
 * Add GIB to QuantityUnit enum used in billing line items.
