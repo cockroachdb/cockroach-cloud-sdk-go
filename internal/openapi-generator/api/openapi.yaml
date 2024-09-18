@@ -6,7 +6,7 @@ info:
     url: https://support.cockroachlabs.com
   description: An API for managing CockroachDB Cloud resources
   title: CockroachDB Cloud API
-  version: 2023-04-10
+  version: 2024-09-16
 externalDocs:
   description: Use the CockroachDB Cloud API
   url: https://www.cockroachlabs.com/docs/cockroachcloud/cloud-api.html
@@ -2686,7 +2686,7 @@ paths:
           curl --request POST \
             --url https://cockroachlabs.cloud/api/v1/clusters \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
-            --json '{"name":"test-cluster","provider":"GCP","spec":{"serverless":{"regions":["us-central1"],"spend_limit":0}}}'
+            --json '{"name":"test-cluster","plan":"STANDARD","provider":"GCP","spec":{"serverless":{"regions":["us-central1"],"usage_limits":{"provisioned_virtual_cpus":"2"}}}}'
   /api/v1/clusters/available-regions:
     get:
       description: |-
@@ -9251,8 +9251,6 @@ components:
       - service_name
       type: object
     AddEgressRuleResponse:
-      description: AddEgressRuleResponse is the response message of the AddEgressRule
-        RPC.
       example:
         Rule:
           crl_managed: true
@@ -9390,12 +9388,8 @@ components:
             if (any.is(Foo.class)) {
               foo = any.unpack(Foo.class);
             }
-            // or ...
-            if (any.isSameTypeAs(Foo.getDefaultInstance())) {
-              foo = any.unpack(Foo.getDefaultInstance());
-            }
 
-         Example 3: Pack and unpack a message in Python.
+        Example 3: Pack and unpack a message in Python.
 
             foo = Foo(...)
             any = Any()
@@ -9405,7 +9399,7 @@ components:
               any.Unpack(foo)
               ...
 
-         Example 4: Pack and unpack a message in Go
+        Example 4: Pack and unpack a message in Go
 
              foo := &pb.Foo{...}
              any, err := anypb.New(foo)
@@ -9424,8 +9418,9 @@ components:
         in the type URL, for example "foo.bar.com/x/y.z" will yield type
         name "y.z".
 
+
         JSON
-        ====
+
         The JSON representation of an `Any` value uses the regular
         representation of the deserialized, embedded message, with an
         additional field `@type` which contains the type URL. Example:
@@ -9477,8 +9472,7 @@ components:
 
             Note: this functionality is not currently available in the official
             protobuf release, and it is not used for type URLs beginning with
-            type.googleapis.com. As of May 2023, there are no widely used type server
-            implementations and no plans to implement one.
+            type.googleapis.com.
 
             Schemes other than `http`, `https` (or the empty scheme) might be
             used with implementation specific semantics.
@@ -10126,13 +10120,15 @@ components:
         config:
           serverless:
             routing_id: example-cluster-1533
-            spend_limit: 0
+            upgrade_type: AUTOMATIC
+            usage_limits:
+              provisioned_virtual_cpus: "2"
         created_at: 2022-03-22T20:23:11.285067Z
         creator_id: 7cde0cd9-0d8a-4008-8f90-45092ce8afc1
         id: 35c4abb2-bb66-46d7-afed-25ebef5ed2aa
         name: example-cluster
         operation_status: UNSPECIFIED
-        plan: SERVERLESS
+        plan: STANDARD
         regions:
         - internal_dns: internal-free-tier7.gcp-us-central1.crdb.io
           name: us-central1
@@ -10218,13 +10214,30 @@ components:
         \ see https://www.cockroachlabs.com/docs/releases/release-support-policy.html"
       example:
         support_status: null
+        support_end: 2000-01-23T04:56:07.000+00:00
+        release_type: null
+        allowed_upgrades:
+        - allowed_upgrades
+        - allowed_upgrades
         version: version
       properties:
+        allowed_upgrades:
+          items:
+            type: string
+          type: array
+        release_type:
+          $ref: '#/components/schemas/ReleaseType.Type'
+        support_end:
+          format: date-time
+          type: string
         support_status:
           $ref: '#/components/schemas/ClusterMajorVersionSupportStatus.Type'
         version:
           type: string
       required:
+      - allowed_upgrades
+      - release_type
+      - support_end
       - support_status
       - version
       type: object
@@ -10408,12 +10421,14 @@ components:
     CreateClusterRequest:
       example:
         name: test-cluster
+        plan: STANDARD
         provider: GCP
         spec:
           serverless:
             regions:
             - us-central1
-            spend_limit: 0
+            usage_limits:
+              provisioned_virtual_cpus: "2"
       properties:
         name:
           description: |-
@@ -10441,6 +10456,8 @@ components:
             Preview: The parent ID is a folder ID. An empty string or "root"
             will create a cluster at the root level.
           type: string
+        plan:
+          $ref: '#/components/schemas/Plan.Type'
         serverless:
           $ref: '#/components/schemas/ServerlessClusterCreateSpecification'
       type: object
@@ -10753,8 +10770,6 @@ components:
           type: integer
       type: object
     DeleteEgressRuleResponse:
-      description: DeleteEgressRuleResponse is the output for the DeleteEgressRule
-        RPC.
       example:
         Rule:
           crl_managed: true
@@ -10798,8 +10813,6 @@ components:
       - DISABLED
       type: string
     EditEgressRuleResponse:
-      description: EditEgressRuleResponse is the output message to the EditEgressRule
-        RPC.
       example:
         Rule:
           crl_managed: true
@@ -11047,8 +11060,6 @@ components:
           items:
             $ref: '#/components/schemas/BuiltInRole'
           type: array
-      title: get_all_roles_for_user_response contains a representation of all roles
-        a given user has
       type: object
     GetConnectionStringResponse:
       example:
@@ -11070,8 +11081,6 @@ components:
       - params
       type: object
     GetEgressRuleResponse:
-      description: GetEgressRuleResponse is the response message to the GetEgressRule
-        RPC.
       example:
         rule:
           crl_managed: true
@@ -11568,13 +11577,15 @@ components:
             config:
               serverless:
                 routing_id: example-cluster-1533
-                spend_limit: 0
+                upgrade_type: AUTOMATIC
+                usage_limits:
+                  provisioned_virtual_cpus: "2"
             created_at: 2022-03-22T20:23:11.285067Z
             creator_id: 7cde0cd9-0d8a-4008-8f90-45092ce8afc1
             id: 35c4abb2-bb66-46d7-afed-25ebef5ed2aa
             name: example-cluster
             operation_status: UNSPECIFIED
-            plan: SERVERLESS
+            plan: STANDARD
             regions:
             - internal_dns: internal-free-tier7.gcp-us-central1.crdb.io
               name: us-central1
@@ -11612,13 +11623,15 @@ components:
             config:
               serverless:
                 routing_id: example-cluster-1533
-                spend_limit: 0
+                upgrade_type: AUTOMATIC
+                usage_limits:
+                  provisioned_virtual_cpus: "2"
             created_at: 2022-03-22T20:23:11.285067Z
             creator_id: 7cde0cd9-0d8a-4008-8f90-45092ce8afc1
             id: 35c4abb2-bb66-46d7-afed-25ebef5ed2aa
             name: example-cluster
             operation_status: UNSPECIFIED
-            plan: SERVERLESS
+            plan: STANDARD
             regions:
             - internal_dns: internal-free-tier7.gcp-us-central1.crdb.io
               name: us-central1
@@ -11753,13 +11766,15 @@ components:
           config:
             serverless:
               routing_id: example-cluster-1533
-              spend_limit: 0
+              upgrade_type: AUTOMATIC
+              usage_limits:
+                provisioned_virtual_cpus: "2"
           created_at: 2022-03-22T20:23:11.285067Z
           creator_id: 7cde0cd9-0d8a-4008-8f90-45092ce8afc1
           id: 35c4abb2-bb66-46d7-afed-25ebef5ed2aa
           name: example-cluster
           operation_status: UNSPECIFIED
-          plan: SERVERLESS
+          plan: STANDARD
           regions:
           - internal_dns: internal-free-tier7.gcp-us-central1.crdb.io
             name: us-central1
@@ -11981,9 +11996,6 @@ components:
       - api_keys
       type: object
     ListApiOidcConfigResponse:
-      description: |-
-        list_api_oidc_config_response contains information about all the OIDC providers that can generate
-        JWT tokens that can be used for authentication with the Cockroach Cloud API.
       example:
         pagination:
           next_page: next_page
@@ -12135,13 +12147,15 @@ components:
           config:
             serverless:
               routing_id: example-cluster-1533
-              spend_limit: 0
+              upgrade_type: AUTOMATIC
+              usage_limits:
+                provisioned_virtual_cpus: "2"
           created_at: 2022-03-22T20:23:11.285067Z
           creator_id: 7cde0cd9-0d8a-4008-8f90-45092ce8afc1
           id: 35c4abb2-bb66-46d7-afed-25ebef5ed2aa
           name: example-cluster
           operation_status: UNSPECIFIED
-          plan: SERVERLESS
+          plan: STANDARD
           regions:
           - internal_dns: internal-free-tier7.gcp-us-central1.crdb.io
             name: us-central1
@@ -12158,13 +12172,15 @@ components:
           config:
             serverless:
               routing_id: example-cluster-1533
-              spend_limit: 0
+              upgrade_type: AUTOMATIC
+              usage_limits:
+                provisioned_virtual_cpus: "2"
           created_at: 2022-03-22T20:23:11.285067Z
           creator_id: 7cde0cd9-0d8a-4008-8f90-45092ce8afc1
           id: 35c4abb2-bb66-46d7-afed-25ebef5ed2aa
           name: example-cluster
           operation_status: UNSPECIFIED
-          plan: SERVERLESS
+          plan: STANDARD
           regions:
           - internal_dns: internal-free-tier7.gcp-us-central1.crdb.io
             name: us-central1
@@ -12207,7 +12223,6 @@ components:
       title: ListDatabasesResponse
       type: object
     ListEgressRulesResponse:
-      description: ListEgressRulesResponse is the output for the ListEgressRules RPC.
       example:
         pagination:
           next_page: next_page
@@ -12316,13 +12331,15 @@ components:
               config:
                 serverless:
                   routing_id: example-cluster-1533
-                  spend_limit: 0
+                  upgrade_type: AUTOMATIC
+                  usage_limits:
+                    provisioned_virtual_cpus: "2"
               created_at: 2022-03-22T20:23:11.285067Z
               creator_id: 7cde0cd9-0d8a-4008-8f90-45092ce8afc1
               id: 35c4abb2-bb66-46d7-afed-25ebef5ed2aa
               name: example-cluster
               operation_status: UNSPECIFIED
-              plan: SERVERLESS
+              plan: STANDARD
               regions:
               - internal_dns: internal-free-tier7.gcp-us-central1.crdb.io
                 name: us-central1
@@ -12360,13 +12377,15 @@ components:
               config:
                 serverless:
                   routing_id: example-cluster-1533
-                  spend_limit: 0
+                  upgrade_type: AUTOMATIC
+                  usage_limits:
+                    provisioned_virtual_cpus: "2"
               created_at: 2022-03-22T20:23:11.285067Z
               creator_id: 7cde0cd9-0d8a-4008-8f90-45092ce8afc1
               id: 35c4abb2-bb66-46d7-afed-25ebef5ed2aa
               name: example-cluster
               operation_status: UNSPECIFIED
-              plan: SERVERLESS
+              plan: STANDARD
               regions:
               - internal_dns: internal-free-tier7.gcp-us-central1.crdb.io
                 name: us-central1
@@ -12448,13 +12467,15 @@ components:
               config:
                 serverless:
                   routing_id: example-cluster-1533
-                  spend_limit: 0
+                  upgrade_type: AUTOMATIC
+                  usage_limits:
+                    provisioned_virtual_cpus: "2"
               created_at: 2022-03-22T20:23:11.285067Z
               creator_id: 7cde0cd9-0d8a-4008-8f90-45092ce8afc1
               id: 35c4abb2-bb66-46d7-afed-25ebef5ed2aa
               name: example-cluster
               operation_status: UNSPECIFIED
-              plan: SERVERLESS
+              plan: STANDARD
               regions:
               - internal_dns: internal-free-tier7.gcp-us-central1.crdb.io
                 name: us-central1
@@ -12492,13 +12513,15 @@ components:
               config:
                 serverless:
                   routing_id: example-cluster-1533
-                  spend_limit: 0
+                  upgrade_type: AUTOMATIC
+                  usage_limits:
+                    provisioned_virtual_cpus: "2"
               created_at: 2022-03-22T20:23:11.285067Z
               creator_id: 7cde0cd9-0d8a-4008-8f90-45092ce8afc1
               id: 35c4abb2-bb66-46d7-afed-25ebef5ed2aa
               name: example-cluster
               operation_status: UNSPECIFIED
-              plan: SERVERLESS
+              plan: STANDARD
               regions:
               - internal_dns: internal-free-tier7.gcp-us-central1.crdb.io
                 name: us-central1
@@ -12617,8 +12640,18 @@ components:
           previous_page: previous_page
         versions:
         - support_status: null
+          support_end: 2000-01-23T04:56:07.000+00:00
+          release_type: null
+          allowed_upgrades:
+          - allowed_upgrades
+          - allowed_upgrades
           version: version
         - support_status: null
+          support_end: 2000-01-23T04:56:07.000+00:00
+          release_type: null
+          allowed_upgrades:
+          - allowed_upgrades
+          - allowed_upgrades
           version: version
       properties:
         pagination:
@@ -12718,7 +12751,6 @@ components:
           items:
             $ref: '#/components/schemas/UserGroupRoleGrant'
           type: array
-      title: list_role_grants_response contains a representation of all roles
       type: object
     ListSQLUsersResponse:
       example:
@@ -13110,15 +13142,22 @@ components:
       type: object
     Plan.Type:
       description: |2-
-         - DEDICATED: A paid plan that offers dedicated hardware in any location.
-         - CUSTOM: A plan option that is used for clusters whose machine configs are not
-        supported in self-service. All INVOICE clusters are under this plan option.
-         - SERVERLESS: A paid plan that runs on shared hardware and caps the users'
-        maximum monthly spending to a user-specified (possibly 0) amount.
+         - BASIC: The Basic plan includes essential operational features, is available in
+        select regions, and offers on-demand capacity, making it ideal for small
+        teams with unpredictable workloads.
+         - STANDARD: The Standard plan includes standard enterprise security and monitoring
+        features, is available in all supported regions, and offers provisioned
+        pricing, making it the default choice for most CockroachDB production
+        workloads.
+         - ADVANCED: The Advanced plan is ideal for workloads with stringent isolation,
+        compliance, and security requirements such as CMEK, PCI and HIPAA-readiness,
+        and support for dedicated hardware. Customers are advised to have their
+        account team and/or Cockroach Labs Support <support@cockroachlabs.com>
+        involved when provisioning Advanced clusters.
       enum:
-      - DEDICATED
-      - CUSTOM
-      - SERVERLESS
+      - BASIC
+      - STANDARD
+      - ADVANCED
       type: string
     PrivateEndpointConnection:
       example:
@@ -13379,6 +13418,7 @@ components:
       - HOURS
       - REQUEST_UNITS
       - GIB
+      - GIB_HOURS
       type: string
     Region:
       properties:
@@ -13420,6 +13460,11 @@ components:
       - sql_dns
       - ui_dns
       type: object
+    ReleaseType.Type:
+      enum:
+      - REGULAR
+      - INNOVATION
+      type: string
     RemovePrivateEndpointTrustedOwnerResponse:
       example:
         trusted_owner:
@@ -13858,17 +13903,13 @@ components:
           description: routing_id is used to identify the cluster in a connection
             string.
           type: string
-        spend_limit:
-          description: |-
-            spend_limit is the maximum monthly charge for a cluster, in US cents. We
-            recommend using usage_limits instead, since spend_limit will be deprecated
-            in the future.
-          format: int32
-          type: integer
+        upgrade_type:
+          $ref: '#/components/schemas/UpgradeType.Type'
         usage_limits:
           $ref: '#/components/schemas/UsageLimits'
       required:
       - routing_id
+      - upgrade_type
       type: object
     ServerlessClusterCreateSpecification:
       properties:
@@ -13887,13 +13928,8 @@ components:
           items:
             type: string
           type: array
-        spend_limit:
-          description: |-
-            spend_limit is the maximum monthly charge for a cluster, in US cents. We
-            recommend using usage_limits instead, since spend_limit will be deprecated
-            in the future.
-          format: int32
-          type: integer
+        upgrade_type:
+          $ref: '#/components/schemas/UpgradeType.Type'
         usage_limits:
           $ref: '#/components/schemas/UsageLimits'
         with_empty_ip_allowlist:
@@ -13923,13 +13959,8 @@ components:
           items:
             type: string
           type: array
-        spend_limit:
-          description: |-
-            spend_limit is the maximum monthly charge for a cluster, in US cents. We
-            recommend using usage_limits instead, since spend_limit will be deprecated
-            in the future.
-          format: int32
-          type: integer
+        upgrade_type:
+          $ref: '#/components/schemas/UpgradeType.Type'
         usage_limits:
           $ref: '#/components/schemas/UsageLimits'
       type: object
@@ -14033,6 +14064,8 @@ components:
             Preview: The parent ID is a folder ID. An empty string or "root"
             represents the root level.
           type: string
+        plan:
+          $ref: '#/components/schemas/Plan.Type'
         serverless:
           $ref: '#/components/schemas/ServerlessClusterUpdateSpecification'
         upgrade_status:
@@ -14062,8 +14095,20 @@ components:
           description: name of the service account.
           type: string
       type: object
+    UpgradeType.Type:
+      enum:
+      - MANUAL
+      - AUTOMATIC
+      type: string
     UsageLimits:
       properties:
+        provisioned_virtual_cpus:
+          description: |-
+            provisioned_virtual_cpus is the maximum number of vCPUs that the cluster
+            can use. Once this limit is reached, operation latency may increase due to
+            throttling. It is an error for this to be zero.
+          format: int64
+          type: integer
         request_unit_limit:
           description: |-
             request_unit_limit is the maximum number of request units that the cluster
@@ -14082,9 +14127,6 @@ components:
             usage. It is an error for this to be zero.
           format: int64
           type: integer
-      required:
-      - request_unit_limit
-      - storage_mib_limit
       type: object
     UserGroupRoleGrant:
       example:
@@ -14473,7 +14515,6 @@ components:
       title: SetAwsEndpointConnectionStateRequest
       type: object
     AddEgressRuleRequest:
-      description: AddEgressRuleRequest is the input for the rpc AddEgressRule().
       example:
         cluster_id: 35c4abb2-bb66-46d7-afed-25ebef5ed100
         description: egress for GCP storage buckets
@@ -14529,8 +14570,6 @@ components:
       title: AddEgressRuleRequest
       type: object
     SetEgressTrafficPolicyRequest:
-      description: SetEgressTrafficPolicyRequest is the input for the SetEgressTrafficPolicy
-        RPC.
       example:
         idempotency_key: idempotency_key
         allow_all: true
@@ -14551,8 +14590,6 @@ components:
       title: SetEgressTrafficPolicyRequest
       type: object
     EditEgressRuleRequest:
-      description: EditEgressRuleRequest is the input message to the EditEgressRule
-        RPC.
       example:
         cluster_id: 35c4abb2-bb66-46d7-afed-25ebef5ed100
         ports:

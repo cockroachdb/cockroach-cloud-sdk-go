@@ -1,14 +1,10 @@
-# QuantityUnitType
+# ReleaseTypeType
 
 ## Enum
 
-* `HOURS` (value: `"HOURS"`)
+* `REGULAR` (value: `"REGULAR"`)
 
-* `REQUEST_UNITS` (value: `"REQUEST_UNITS"`)
-
-* `GIB` (value: `"GIB"`)
-
-* `GIB_HOURS` (value: `"GIB_HOURS"`)
+* `INNOVATION` (value: `"INNOVATION"`)
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

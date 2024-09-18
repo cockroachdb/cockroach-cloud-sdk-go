@@ -168,6 +168,7 @@ docs/PrivateEndpointTrustedOwnerTypeType.md
 docs/PrometheusMetricExportInfo.md
 docs/QuantityUnitType.md
 docs/Region.md
+docs/ReleaseTypeType.md
 docs/RemovePrivateEndpointTrustedOwnerResponse.md
 docs/Resource.md
 docs/ResourceTypeType.md
@@ -212,6 +213,7 @@ docs/UpdateJWTIssuerRequest.md
 docs/UpdateSQLUserPasswordRequest.md
 docs/UpdateServiceAccountSpecification.md
 docs/UpdateUserRequest.md
+docs/UpgradeTypeType.md
 docs/UsageLimits.md
 docs/UserGroupRoleGrant.md
 docs/UserRoleGrants.md
@@ -365,6 +367,7 @@ model_private_endpoint_trusted_owner_type_type.go
 model_prometheus_metric_export_info.go
 model_quantity_unit_type.go
 model_region.go
+model_release_type_type.go
 model_remove_private_endpoint_trusted_owner_response.go
 model_resource.go
 model_resource_type_type.go
@@ -405,6 +408,7 @@ model_update_jwt_issuer_request.go
 model_update_service_account_specification.go
 model_update_sql_user_password_request.go
 model_update_user_request.go
+model_upgrade_type_type.go
 model_usage_limits.go
 model_user_group_role_grant.go
 model_user_role_grants.go

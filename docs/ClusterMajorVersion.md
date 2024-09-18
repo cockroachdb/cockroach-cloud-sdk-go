@@ -4,6 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**AllowedUpgrades** | **[]string** |  | 
+**ReleaseType** | [**ReleaseTypeType**](ReleaseTypeType.md) |  | 
+**SupportEnd** | **time.Time** |  | 
 **SupportStatus** | [**ClusterMajorVersionSupportStatusType**](ClusterMajorVersionSupportStatusType.md) |  | 
 **Version** | **string** |  | 
 
@@ -11,7 +14,7 @@ Name | Type | Description | Notes
 
 ### NewClusterMajorVersion
 
-`func NewClusterMajorVersion(supportStatus ClusterMajorVersionSupportStatusType, version string, ) *ClusterMajorVersion`
+`func NewClusterMajorVersion(allowedUpgrades []string, releaseType ReleaseTypeType, supportEnd time.Time, supportStatus ClusterMajorVersionSupportStatusType, version string, ) *ClusterMajorVersion`
 
 NewClusterMajorVersion instantiates a new ClusterMajorVersion object.
 This constructor will assign default values to properties that have it defined,
@@ -25,6 +28,42 @@ will change when the set of required properties is changed.
 NewClusterMajorVersionWithDefaults instantiates a new ClusterMajorVersion object.
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set.
+
+### GetAllowedUpgrades
+
+`func (o *ClusterMajorVersion) GetAllowedUpgrades() []string`
+
+GetAllowedUpgrades returns the AllowedUpgrades field if non-nil, zero value otherwise.
+
+### SetAllowedUpgrades
+
+`func (o *ClusterMajorVersion) SetAllowedUpgrades(v []string)`
+
+SetAllowedUpgrades sets AllowedUpgrades field to given value.
+
+### GetReleaseType
+
+`func (o *ClusterMajorVersion) GetReleaseType() ReleaseTypeType`
+
+GetReleaseType returns the ReleaseType field if non-nil, zero value otherwise.
+
+### SetReleaseType
+
+`func (o *ClusterMajorVersion) SetReleaseType(v ReleaseTypeType)`
+
+SetReleaseType sets ReleaseType field to given value.
+
+### GetSupportEnd
+
+`func (o *ClusterMajorVersion) GetSupportEnd() time.Time`
+
+GetSupportEnd returns the SupportEnd field if non-nil, zero value otherwise.
+
+### SetSupportEnd
+
+`func (o *ClusterMajorVersion) SetSupportEnd(v time.Time)`
+
+SetSupportEnd sets SupportEnd field to given value.
 
 ### GetSupportStatus
 

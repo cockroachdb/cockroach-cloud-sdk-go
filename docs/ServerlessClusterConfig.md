@@ -5,14 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **RoutingId** | **string** | routing_id is used to identify the cluster in a connection string. | 
-**SpendLimit** | Pointer to **int32** | spend_limit is the maximum monthly charge for a cluster, in US cents. We recommend using usage_limits instead, since spend_limit will be deprecated in the future. | [optional] 
+**UpgradeType** | [**UpgradeTypeType**](UpgradeTypeType.md) |  | 
 **UsageLimits** | Pointer to [**UsageLimits**](UsageLimits.md) |  | [optional] 
 
 ## Methods
 
 ### NewServerlessClusterConfig
 
-`func NewServerlessClusterConfig(routingId string, ) *ServerlessClusterConfig`
+`func NewServerlessClusterConfig(routingId string, upgradeType UpgradeTypeType, ) *ServerlessClusterConfig`
 
 NewServerlessClusterConfig instantiates a new ServerlessClusterConfig object.
 This constructor will assign default values to properties that have it defined,
@@ -39,17 +39,17 @@ GetRoutingId returns the RoutingId field if non-nil, zero value otherwise.
 
 SetRoutingId sets RoutingId field to given value.
 
-### GetSpendLimit
+### GetUpgradeType
 
-`func (o *ServerlessClusterConfig) GetSpendLimit() int32`
+`func (o *ServerlessClusterConfig) GetUpgradeType() UpgradeTypeType`
 
-GetSpendLimit returns the SpendLimit field if non-nil, zero value otherwise.
+GetUpgradeType returns the UpgradeType field if non-nil, zero value otherwise.
 
-### SetSpendLimit
+### SetUpgradeType
 
-`func (o *ServerlessClusterConfig) SetSpendLimit(v int32)`
+`func (o *ServerlessClusterConfig) SetUpgradeType(v UpgradeTypeType)`
 
-SetSpendLimit sets SpendLimit field to given value.
+SetUpgradeType sets UpgradeType field to given value.
 
 ### GetUsageLimits
 
