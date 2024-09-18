@@ -13,13 +13,13 @@ For more information, please visit [https://support.cockroachlabs.com](https://s
 Install the package:
 
 ```shell
-go get github.com/cockroachdb/cockroach-cloud-sdk-go/v2
+go get github.com/cockroachdb/cockroach-cloud-sdk-go/v3
 ```
 
 Import the package:
 
 ```golang
-import "github.com/cockroachdb/cockroach-cloud-sdk-go/v2/pkg/client"
+import "github.com/cockroachdb/cockroach-cloud-sdk-go/v3/pkg/client"
 ```
 
 ## Example Client Usage

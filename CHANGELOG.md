@@ -1,4 +1,6 @@
 
+## 3.0.0
+
 BREAKING CHANGES:
 
 * RequestUnitLimit and StorageMibLimit inside UsageLimits became optional and

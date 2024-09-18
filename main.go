@@ -19,7 +19,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/cockroachdb/cockroach-cloud-sdk-go/v2/pkg/client"
+	"github.com/cockroachdb/cockroach-cloud-sdk-go/v3/pkg/client"
 )
 
 func main() {
