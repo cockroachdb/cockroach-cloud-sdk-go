@@ -22,35 +22,35 @@ import (
 	"fmt"
 )
 
-// DeleteProtectionStateType the model 'DeleteProtectionStateType'.
-type DeleteProtectionStateType string
+// ReleaseTypeType the model 'ReleaseTypeType'.
+type ReleaseTypeType string
 
-// List of DeleteProtectionState.Type.
+// List of ReleaseType.Type.
 const (
-	DELETEPROTECTIONSTATETYPE_ENABLED  DeleteProtectionStateType = "ENABLED"
-	DELETEPROTECTIONSTATETYPE_DISABLED DeleteProtectionStateType = "DISABLED"
+	RELEASETYPETYPE_REGULAR    ReleaseTypeType = "REGULAR"
+	RELEASETYPETYPE_INNOVATION ReleaseTypeType = "INNOVATION"
 )
 
-// All allowed values of DeleteProtectionStateType enum.
-var AllowedDeleteProtectionStateTypeEnumValues = []DeleteProtectionStateType{
-	"ENABLED",
-	"DISABLED",
+// All allowed values of ReleaseTypeType enum.
+var AllowedReleaseTypeTypeEnumValues = []ReleaseTypeType{
+	"REGULAR",
+	"INNOVATION",
 }
 
-// NewDeleteProtectionStateTypeFromValue returns a pointer to a valid DeleteProtectionStateType
+// NewReleaseTypeTypeFromValue returns a pointer to a valid ReleaseTypeType
 // for the value passed as argument, or an error if the value passed is not allowed by the enum.
-func NewDeleteProtectionStateTypeFromValue(v string) (*DeleteProtectionStateType, error) {
-	ev := DeleteProtectionStateType(v)
+func NewReleaseTypeTypeFromValue(v string) (*ReleaseTypeType, error) {
+	ev := ReleaseTypeType(v)
 	if ev.IsValid() {
 		return &ev, nil
 	} else {
-		return nil, fmt.Errorf("invalid value '%v' for DeleteProtectionStateType: valid values are %v", v, AllowedDeleteProtectionStateTypeEnumValues)
+		return nil, fmt.Errorf("invalid value '%v' for ReleaseTypeType: valid values are %v", v, AllowedReleaseTypeTypeEnumValues)
 	}
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise.
-func (v DeleteProtectionStateType) IsValid() bool {
-	for _, existing := range AllowedDeleteProtectionStateTypeEnumValues {
+func (v ReleaseTypeType) IsValid() bool {
+	for _, existing := range AllowedReleaseTypeTypeEnumValues {
 		if existing == v {
 			return true
 		}
@@ -58,7 +58,7 @@ func (v DeleteProtectionStateType) IsValid() bool {
 	return false
 }
 
-// Ptr returns reference to DeleteProtectionState.Type value.
-func (v DeleteProtectionStateType) Ptr() *DeleteProtectionStateType {
+// Ptr returns reference to ReleaseType.Type value.
+func (v ReleaseTypeType) Ptr() *ReleaseTypeType {
 	return &v
 }

@@ -1,11 +1,33 @@
 
+BREAKING CHANGES:
+
+* RequestUnitLimit and StorageMibLimit inside UsageLimits became optional and
+  have hence been updated to use pointers in the UsageLimits struct. This also
+  changed the NewUsageLimits constructor which now has no required arguments.
+
+* Added UpgradeType to Add ServerlessClusterConfig. Technically a breaking
+  change to the SDK because new required fields are added to the object
+  constructor.
+
+* SpendLimit was removed as an optional value in ServerlessClusterConfig.
+  UsageLimits should be used instead.
+
+* PlanType enum now consists of the new plan types: "BASIC", "STANDARD" and
+  "ADVANCED".
+
+* Add new fields to the ClusterMajorVersion struct. Technically a breaking
+  change to the SDK because new required fields are added to the object
+  constructor.
+
 BUG FIXES
 
 * fixed install path examples in README
 
 NEW FEATURES:
 
-* Add GIB to QuantityUnit enum used in billing line items.
+* ProvisionedVirtualCpus was added to UsageLimits
+
+* Add GIB and GIB_HOURS to QuantityUnit enum used in billing line items.
 
 ## 2.0.1
 

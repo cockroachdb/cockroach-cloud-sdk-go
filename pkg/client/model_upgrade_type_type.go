@@ -22,35 +22,35 @@ import (
 	"fmt"
 )
 
-// DeleteProtectionStateType the model 'DeleteProtectionStateType'.
-type DeleteProtectionStateType string
+// UpgradeTypeType the model 'UpgradeTypeType'.
+type UpgradeTypeType string
 
-// List of DeleteProtectionState.Type.
+// List of UpgradeType.Type.
 const (
-	DELETEPROTECTIONSTATETYPE_ENABLED  DeleteProtectionStateType = "ENABLED"
-	DELETEPROTECTIONSTATETYPE_DISABLED DeleteProtectionStateType = "DISABLED"
+	UPGRADETYPETYPE_MANUAL    UpgradeTypeType = "MANUAL"
+	UPGRADETYPETYPE_AUTOMATIC UpgradeTypeType = "AUTOMATIC"
 )
 
-// All allowed values of DeleteProtectionStateType enum.
-var AllowedDeleteProtectionStateTypeEnumValues = []DeleteProtectionStateType{
-	"ENABLED",
-	"DISABLED",
+// All allowed values of UpgradeTypeType enum.
+var AllowedUpgradeTypeTypeEnumValues = []UpgradeTypeType{
+	"MANUAL",
+	"AUTOMATIC",
 }
 
-// NewDeleteProtectionStateTypeFromValue returns a pointer to a valid DeleteProtectionStateType
+// NewUpgradeTypeTypeFromValue returns a pointer to a valid UpgradeTypeType
 // for the value passed as argument, or an error if the value passed is not allowed by the enum.
-func NewDeleteProtectionStateTypeFromValue(v string) (*DeleteProtectionStateType, error) {
-	ev := DeleteProtectionStateType(v)
+func NewUpgradeTypeTypeFromValue(v string) (*UpgradeTypeType, error) {
+	ev := UpgradeTypeType(v)
 	if ev.IsValid() {
 		return &ev, nil
 	} else {
-		return nil, fmt.Errorf("invalid value '%v' for DeleteProtectionStateType: valid values are %v", v, AllowedDeleteProtectionStateTypeEnumValues)
+		return nil, fmt.Errorf("invalid value '%v' for UpgradeTypeType: valid values are %v", v, AllowedUpgradeTypeTypeEnumValues)
 	}
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise.
-func (v DeleteProtectionStateType) IsValid() bool {
-	for _, existing := range AllowedDeleteProtectionStateTypeEnumValues {
+func (v UpgradeTypeType) IsValid() bool {
+	for _, existing := range AllowedUpgradeTypeTypeEnumValues {
 		if existing == v {
 			return true
 		}
@@ -58,7 +58,7 @@ func (v DeleteProtectionStateType) IsValid() bool {
 	return false
 }
 
-// Ptr returns reference to DeleteProtectionState.Type value.
-func (v DeleteProtectionStateType) Ptr() *DeleteProtectionStateType {
+// Ptr returns reference to UpgradeType.Type value.
+func (v UpgradeTypeType) Ptr() *UpgradeTypeType {
 	return &v
 }
