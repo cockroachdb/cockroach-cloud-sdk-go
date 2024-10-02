@@ -4104,7 +4104,7 @@
       "patch": {
         "operationId": "CockroachCloud_UpdateCluster",
         "summary": "Scale, edit or upgrade a cluster",
-        "description": "In addition to adding nodes and changing cluster fields, the PATCH Cluster endpoint can be used to upgrade the cluster version. A cluster can be upgraded when its `upgrade_status` field is equal to `UPGRADE_AVAILABLE`. To begin the upgrade, PATCH `{\"upgrade_status\": \"MAJOR_UPGRADE_RUNNING\"}` to this endpoint. Multi-node clusters will undergo a rolling upgrade and will remain available, but single-node clusters will be briefly unavailable while the upgrade takes place. Upgrades will be finalized automatically after 72 hours but can be manually finalized by sending a PATCH containing `{\"upgrade_status\": \"FINALIZED\"}` to this endpoint. Before the cluster is finalized, it can be rolled back by sending a PATCH containing `{\"upgrade_status\": \"ROLLBACK_RUNNING\"}`. Version upgrade operations cannot be performed simultaneously with other update operations.\n\nCan be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "In addition to adding nodes and changing cluster fields, the PATCH Cluster endpoint can be used to upgrade the cluster version. A cluster can be upgraded when its `upgrade_status` field is equal to `UPGRADE_AVAILABLE`. The `/api/v1/cluster-versions` endpoint can be used to enumerate versions which are valid to upgrade to. To begin the upgrade, PATCH the desired version into `cockroach_version`.  For example `{\"cockroach_version\": \"v24.2\"}`. Multi-node clusters will undergo a rolling upgrade and will remain available, but single-node clusters will be briefly unavailable while the upgrade takes place. Upgrades will be finalized automatically after 72 hours but can be manually finalized by sending a PATCH containing `{\"upgrade_status\": \"FINALIZED\"}` to this endpoint. Before the cluster is finalized, it can be rolled back by either sending a PATCH of the previous version via `cockroach_version` or sending a PATCH containing `{\"upgrade_status\": \"ROLLBACK_RUNNING\"}`. Version upgrade operations cannot be performed simultaneously with other update operations. Only one of `upgrade_status` or `cockroach_version` is allowed in the request.\n\nCan be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -11517,7 +11517,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/jwt-issuers \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"audience\":\"1234567890abcd\",\"claim\":\"email\",\"identity_map\":[{\"cc_identity\":\"\\\\1\",\"is_regex\":true,\"token_identity\":\"sso_(.*)\"}],\"issuer_url\":\"https://jwt-issuer.example.com\",\"jwks\":\"{\\\"keys\\\":[{\\\"e\\\":\\\"AQAB\\\",\\\"use\\\":\\\"sig\\\",\\\"kty\\\":\\\"RSA\\\",\\\"alg\\\":\\\"RS256\\\",\\\"n\\\":\\\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\\\",\\\"kid\\\":\\\"9341dedeee2d1869b657fa930300082fe26b3d92\\\"}]}\"}'"
+            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/jwt-issuers \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"audience\":\"1234567890abcd\",\"claim\":\"email\",\"identity_map\":[{\"cc_identity\":\"\\\\1\",\"token_identity\":\"/^sso_(.*)$\"}],\"issuer_url\":\"https://jwt-issuer.example.com\",\"jwks\":\"{\\\"keys\\\":[{\\\"e\\\":\\\"AQAB\\\",\\\"use\\\":\\\"sig\\\",\\\"kty\\\":\\\"RSA\\\",\\\"alg\\\":\\\"RS256\\\",\\\"n\\\":\\\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\\\",\\\"kid\\\":\\\"9341dedeee2d1869b657fa930300082fe26b3d92\\\"}]}\"}'"
           }
         ]
       }
@@ -11841,7 +11841,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PATCH \\\n  --url https://cockroachlabs.cloud/api/v1/jwt-issuers/{id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"audience\":\"1234567890abcd\",\"claim\":\"email\",\"identity_map\":[{\"cc_identity\":\"\\\\1\",\"is_regex\":true,\"token_identity\":\"sso_(.*)\"}],\"issuer_url\":\"https://jwt-issuer.example.com\",\"jwks\":\"{\\\"keys\\\":[{\\\"e\\\":\\\"AQAB\\\",\\\"use\\\":\\\"sig\\\",\\\"kty\\\":\\\"RSA\\\",\\\"alg\\\":\\\"RS256\\\",\\\"n\\\":\\\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\\\",\\\"kid\\\":\\\"9341dedeee2d1869b657fa930300082fe26b3d92\\\"}]}\"}'"
+            "source": "curl --request PATCH \\\n  --url https://cockroachlabs.cloud/api/v1/jwt-issuers/{id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"audience\":\"1234567890abcd\",\"claim\":\"email\",\"identity_map\":[{\"cc_identity\":\"\\\\1\",\"token_identity\":\"/^sso_(.*)$\"}],\"issuer_url\":\"https://jwt-issuer.example.com\",\"jwks\":\"{\\\"keys\\\":[{\\\"e\\\":\\\"AQAB\\\",\\\"use\\\":\\\"sig\\\",\\\"kty\\\":\\\"RSA\\\",\\\"alg\\\":\\\"RS256\\\",\\\"n\\\":\\\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\\\",\\\"kid\\\":\\\"9341dedeee2d1869b657fa930300082fe26b3d92\\\"}]}\"}'"
           }
         ]
       }
@@ -13229,7 +13229,7 @@
         "title": "AllowlistEntry"
       },
       "Any": {
-        "description": "`Any` contains an arbitrary serialized protocol buffer message along with a\nURL that describes the type of the serialized message.\n\nProtobuf library provides support to pack/unpack Any values in the form\nof utility functions or additional generated methods of the Any type.\n\nExample 1: Pack and unpack a message in C++.\n\n    Foo foo = ...;\n    Any any;\n    any.PackFrom(foo);\n    ...\n    if (any.UnpackTo(&foo)) {\n      ...\n    }\n\nExample 2: Pack and unpack a message in Java.\n\n    Foo foo = ...;\n    Any any = Any.pack(foo);\n    ...\n    if (any.is(Foo.class)) {\n      foo = any.unpack(Foo.class);\n    }\n\nExample 3: Pack and unpack a message in Python.\n\n    foo = Foo(...)\n    any = Any()\n    any.Pack(foo)\n    ...\n    if any.Is(Foo.DESCRIPTOR):\n      any.Unpack(foo)\n      ...\n\nExample 4: Pack and unpack a message in Go\n\n     foo := &pb.Foo{...}\n     any, err := anypb.New(foo)\n     if err != nil {\n       ...\n     }\n     ...\n     foo := &pb.Foo{}\n     if err := any.UnmarshalTo(foo); err != nil {\n       ...\n     }\n\nThe pack methods provided by protobuf library will by default use\n'type.googleapis.com/full.type.name' as the type URL and the unpack\nmethods only use the fully qualified type name after the last '/'\nin the type URL, for example \"foo.bar.com/x/y.z\" will yield type\nname \"y.z\".\n\n\nJSON\n\nThe JSON representation of an `Any` value uses the regular\nrepresentation of the deserialized, embedded message, with an\nadditional field `@type` which contains the type URL. Example:\n\n    package google.profile;\n    message Person {\n      string first_name = 1;\n      string last_name = 2;\n    }\n\n    {\n      \"@type\": \"type.googleapis.com/google.profile.Person\",\n      \"firstName\": <string>,\n      \"lastName\": <string>\n    }\n\nIf the embedded message type is well-known and has a custom JSON\nrepresentation, that representation will be embedded adding a field\n`value` which holds the custom JSON in addition to the `@type`\nfield. Example (for message [google.protobuf.Duration][]):\n\n    {\n      \"@type\": \"type.googleapis.com/google.protobuf.Duration\",\n      \"value\": \"1.212s\"\n    }",
+        "description": "`Any` contains an arbitrary serialized protocol buffer message along with a\nURL that describes the type of the serialized message.\n\nProtobuf library provides support to pack/unpack Any values in the form\nof utility functions or additional generated methods of the Any type.\n\nExample 1: Pack and unpack a message in C++.\n\n    Foo foo = ...;\n    Any any;\n    any.PackFrom(foo);\n    ...\n    if (any.UnpackTo(&foo)) {\n      ...\n    }\n\nExample 2: Pack and unpack a message in Java.\n\n    Foo foo = ...;\n    Any any = Any.pack(foo);\n    ...\n    if (any.is(Foo.class)) {\n      foo = any.unpack(Foo.class);\n    }\n    // or ...\n    if (any.isSameTypeAs(Foo.getDefaultInstance())) {\n      foo = any.unpack(Foo.getDefaultInstance());\n    }\n\n Example 3: Pack and unpack a message in Python.\n\n    foo = Foo(...)\n    any = Any()\n    any.Pack(foo)\n    ...\n    if any.Is(Foo.DESCRIPTOR):\n      any.Unpack(foo)\n      ...\n\n Example 4: Pack and unpack a message in Go\n\n     foo := &pb.Foo{...}\n     any, err := anypb.New(foo)\n     if err != nil {\n       ...\n     }\n     ...\n     foo := &pb.Foo{}\n     if err := any.UnmarshalTo(foo); err != nil {\n       ...\n     }\n\nThe pack methods provided by protobuf library will by default use\n'type.googleapis.com/full.type.name' as the type URL and the unpack\nmethods only use the fully qualified type name after the last '/'\nin the type URL, for example \"foo.bar.com/x/y.z\" will yield type\nname \"y.z\".\n\nJSON\n====\nThe JSON representation of an `Any` value uses the regular\nrepresentation of the deserialized, embedded message, with an\nadditional field `@type` which contains the type URL. Example:\n\n    package google.profile;\n    message Person {\n      string first_name = 1;\n      string last_name = 2;\n    }\n\n    {\n      \"@type\": \"type.googleapis.com/google.profile.Person\",\n      \"firstName\": <string>,\n      \"lastName\": <string>\n    }\n\nIf the embedded message type is well-known and has a custom JSON\nrepresentation, that representation will be embedded adding a field\n`value` which holds the custom JSON in addition to the `@type`\nfield. Example (for message [google.protobuf.Duration][]):\n\n    {\n      \"@type\": \"type.googleapis.com/google.protobuf.Duration\",\n      \"value\": \"1.212s\"\n    }",
         "type": "object",
         "properties": {
           "@type": {
@@ -14427,7 +14427,7 @@
         "type": "object",
         "properties": {
           "cockroach_version": {
-            "description": "The CockroachDB version for the cluster. The current version\nis used if omitted.",
+            "description": "The CockroachDB major version for the cluster. i.e. v24.1  The latest\nversion is used if omitted. The version passed must be one of the currently\nsupported versions.",
             "type": "string"
           },
           "hardware": {
@@ -15151,21 +15151,21 @@
         "type": "object",
         "properties": {
           "cc_identity": {
+            "description": "Specifies how to map the fetched token identity to an identity in CockroachDB Cloud. In case of a regular\nexpression for token_identity, this must contain a \\1 placeholder for the matched content. Note that you will need\nto escape the backslash in the string as in the example usage (\\\\\\\\1).",
             "type": "string",
-            "example": "\\1",
-            "title": "Specifies how to map the fetched token identity into CockroachDB Cloud"
-          },
-          "is_regex": {
-            "type": "boolean",
-            "example": true,
-            "title": "Specifies whether the token_identity and cc_identity configurations are in regex format"
+            "example": "\\1"
           },
           "token_identity": {
+            "description": "Specifies how to fetch external identity from the token claim. A regular expression must start\nwith a forward slash. The regular expression must be in RE2 compatible syntax. For further details, please see\nhttps://github.com/google/re2/wiki/Syntax.",
             "type": "string",
-            "example": "sso_(.*)",
-            "title": "Specifies how to fetch external identity from the token claim"
+            "example": "/^sso_(.*)$"
           }
-        }
+        },
+        "required": [
+          "token_identity",
+          "cc_identity"
+        ],
+        "title": "JWTIssuerIdentityMapEntry"
       },
       "KeysetPaginationResponse": {
         "type": "object",
@@ -15993,7 +15993,8 @@
           "HOURS",
           "REQUEST_UNITS",
           "GIB",
-          "GIB_HOURS"
+          "GIB_HOURS",
+          "VCPU_HOURS"
         ]
       },
       "Region": {
@@ -16591,6 +16592,10 @@
       "UpdateClusterSpecification": {
         "type": "object",
         "properties": {
+          "cockroach_version": {
+            "description": "The desired CockroachDB major version for the cluster.  It can be used to\norchestrate version changes.  Setting the version to a later version will\ninitiate an upgrade to that version.  After an upgrade is initiated but\nbefore it's finalized, setting the version back to the previous version\nwill initiate a rollback.",
+            "type": "string"
+          },
           "dedicated": {
             "$ref": "#/components/schemas/DedicatedClusterUpdateSpecification"
           },

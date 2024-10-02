@@ -4,20 +4,27 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CcIdentity** | Pointer to **string** |  | [optional] 
-**IsRegex** | Pointer to **bool** |  | [optional] 
-**TokenIdentity** | Pointer to **string** |  | [optional] 
+**CcIdentity** | **string** | Specifies how to map the fetched token identity to an identity in CockroachDB Cloud. In case of a regular expression for token_identity, this must contain a \\1 placeholder for the matched content. Note that you will need to escape the backslash in the string as in the example usage (\\\\\\\\1). | 
+**TokenIdentity** | **string** | Specifies how to fetch external identity from the token claim. A regular expression must start with a forward slash. The regular expression must be in RE2 compatible syntax. For further details, please see https://github.com/google/re2/wiki/Syntax. | 
 
 ## Methods
 
 ### NewJWTIssuerIdentityMapEntry
 
-`func NewJWTIssuerIdentityMapEntry() *JWTIssuerIdentityMapEntry`
+`func NewJWTIssuerIdentityMapEntry(ccIdentity string, tokenIdentity string, ) *JWTIssuerIdentityMapEntry`
 
 NewJWTIssuerIdentityMapEntry instantiates a new JWTIssuerIdentityMapEntry object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed.
+
+### NewJWTIssuerIdentityMapEntryWithDefaults
+
+`func NewJWTIssuerIdentityMapEntryWithDefaults() *JWTIssuerIdentityMapEntry`
+
+NewJWTIssuerIdentityMapEntryWithDefaults instantiates a new JWTIssuerIdentityMapEntry object.
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set.
 
 ### GetCcIdentity
 
@@ -30,18 +37,6 @@ GetCcIdentity returns the CcIdentity field if non-nil, zero value otherwise.
 `func (o *JWTIssuerIdentityMapEntry) SetCcIdentity(v string)`
 
 SetCcIdentity sets CcIdentity field to given value.
-
-### GetIsRegex
-
-`func (o *JWTIssuerIdentityMapEntry) GetIsRegex() bool`
-
-GetIsRegex returns the IsRegex field if non-nil, zero value otherwise.
-
-### SetIsRegex
-
-`func (o *JWTIssuerIdentityMapEntry) SetIsRegex(v bool)`
-
-SetIsRegex sets IsRegex field to given value.
 
 ### GetTokenIdentity
 

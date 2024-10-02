@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**CockroachVersion** | Pointer to **string** | The desired CockroachDB major version for the cluster.  It can be used to orchestrate version changes.  Setting the version to a later version will initiate an upgrade to that version.  After an upgrade is initiated but before it&#39;s finalized, setting the version back to the previous version will initiate a rollback. | [optional] 
 **Dedicated** | Pointer to [**DedicatedClusterUpdateSpecification**](DedicatedClusterUpdateSpecification.md) |  | [optional] 
 **DeleteProtection** | Pointer to [**DeleteProtectionStateType**](DeleteProtectionStateType.md) |  | [optional] 
 **ParentId** | Pointer to **string** | Preview: The parent ID is a folder ID. An empty string or \&quot;root\&quot; represents the root level. | [optional] 
@@ -21,6 +22,18 @@ NewUpdateClusterSpecification instantiates a new UpdateClusterSpecification obje
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed.
+
+### GetCockroachVersion
+
+`func (o *UpdateClusterSpecification) GetCockroachVersion() string`
+
+GetCockroachVersion returns the CockroachVersion field if non-nil, zero value otherwise.
+
+### SetCockroachVersion
+
+`func (o *UpdateClusterSpecification) SetCockroachVersion(v string)`
+
+SetCockroachVersion sets CockroachVersion field to given value.
 
 ### GetDedicated
 
