@@ -2936,7 +2936,7 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     patch:
       description: |
-        In addition to adding nodes and changing cluster fields, the PATCH Cluster endpoint can be used to upgrade the cluster version. A cluster can be upgraded when its `upgrade_status` field is equal to `UPGRADE_AVAILABLE`. To begin the upgrade, PATCH `{"upgrade_status": "MAJOR_UPGRADE_RUNNING"}` to this endpoint. Multi-node clusters will undergo a rolling upgrade and will remain available, but single-node clusters will be briefly unavailable while the upgrade takes place. Upgrades will be finalized automatically after 72 hours but can be manually finalized by sending a PATCH containing `{"upgrade_status": "FINALIZED"}` to this endpoint. Before the cluster is finalized, it can be rolled back by sending a PATCH containing `{"upgrade_status": "ROLLBACK_RUNNING"}`. Version upgrade operations cannot be performed simultaneously with other update operations.
+        In addition to adding nodes and changing cluster fields, the PATCH Cluster endpoint can be used to upgrade the cluster version. A cluster can be upgraded when its `upgrade_status` field is equal to `UPGRADE_AVAILABLE`. The `/api/v1/cluster-versions` endpoint can be used to enumerate versions which are valid to upgrade to. To begin the upgrade, PATCH the desired version into `cockroach_version`.  For example `{"cockroach_version": "v24.2"}`. Multi-node clusters will undergo a rolling upgrade and will remain available, but single-node clusters will be briefly unavailable while the upgrade takes place. Upgrades will be finalized automatically after 72 hours but can be manually finalized by sending a PATCH containing `{"upgrade_status": "FINALIZED"}` to this endpoint. Before the cluster is finalized, it can be rolled back by either sending a PATCH of the previous version via `cockroach_version` or sending a PATCH containing `{"upgrade_status": "ROLLBACK_RUNNING"}`. Version upgrade operations cannot be performed simultaneously with other update operations. Only one of `upgrade_status` or `cockroach_version` is allowed in the request.
 
         Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
@@ -8082,7 +8082,7 @@ paths:
           curl --request POST \
             --url https://cockroachlabs.cloud/api/v1/jwt-issuers \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
-            --json '{"audience":"1234567890abcd","claim":"email","identity_map":[{"cc_identity":"\\1","is_regex":true,"token_identity":"sso_(.*)"}],"issuer_url":"https://jwt-issuer.example.com","jwks":"{\"keys\":[{\"e\":\"AQAB\",\"use\":\"sig\",\"kty\":\"RSA\",\"alg\":\"RS256\",\"n\":\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\",\"kid\":\"9341dedeee2d1869b657fa930300082fe26b3d92\"}]}"}'
+            --json '{"audience":"1234567890abcd","claim":"email","identity_map":[{"cc_identity":"\\1","token_identity":"/^sso_(.*)$"}],"issuer_url":"https://jwt-issuer.example.com","jwks":"{\"keys\":[{\"e\":\"AQAB\",\"use\":\"sig\",\"kty\":\"RSA\",\"alg\":\"RS256\",\"n\":\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\",\"kid\":\"9341dedeee2d1869b657fa930300082fe26b3d92\"}]}"}'
   /api/v1/jwt-issuers/{id}:
     delete:
       description: |
@@ -8294,7 +8294,7 @@ paths:
           curl --request PATCH \
             --url https://cockroachlabs.cloud/api/v1/jwt-issuers/{id} \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
-            --json '{"audience":"1234567890abcd","claim":"email","identity_map":[{"cc_identity":"\\1","is_regex":true,"token_identity":"sso_(.*)"}],"issuer_url":"https://jwt-issuer.example.com","jwks":"{\"keys\":[{\"e\":\"AQAB\",\"use\":\"sig\",\"kty\":\"RSA\",\"alg\":\"RS256\",\"n\":\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\",\"kid\":\"9341dedeee2d1869b657fa930300082fe26b3d92\"}]}"}'
+            --json '{"audience":"1234567890abcd","claim":"email","identity_map":[{"cc_identity":"\\1","token_identity":"/^sso_(.*)$"}],"issuer_url":"https://jwt-issuer.example.com","jwks":"{\"keys\":[{\"e\":\"AQAB\",\"use\":\"sig\",\"kty\":\"RSA\",\"alg\":\"RS256\",\"n\":\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\",\"kid\":\"9341dedeee2d1869b657fa930300082fe26b3d92\"}]}"}'
   /api/v1/organization:
     get:
       description: |
@@ -9284,12 +9284,10 @@ components:
           ,\"kid\":\"9341dedeee2d1869b657fa930300082fe26b3d92\"}]}"
         claim: email
         identity_map:
-        - token_identity: sso_(.*)
+        - token_identity: /^sso_(.*)$
           cc_identity: \1
-          is_regex: true
-        - token_identity: sso_(.*)
+        - token_identity: /^sso_(.*)$
           cc_identity: \1
-          is_regex: true
       properties:
         audience:
           example: 1234567890abcd
@@ -9388,8 +9386,12 @@ components:
             if (any.is(Foo.class)) {
               foo = any.unpack(Foo.class);
             }
+            // or ...
+            if (any.isSameTypeAs(Foo.getDefaultInstance())) {
+              foo = any.unpack(Foo.getDefaultInstance());
+            }
 
-        Example 3: Pack and unpack a message in Python.
+         Example 3: Pack and unpack a message in Python.
 
             foo = Foo(...)
             any = Any()
@@ -9399,7 +9401,7 @@ components:
               any.Unpack(foo)
               ...
 
-        Example 4: Pack and unpack a message in Go
+         Example 4: Pack and unpack a message in Go
 
              foo := &pb.Foo{...}
              any, err := anypb.New(foo)
@@ -9418,9 +9420,8 @@ components:
         in the type URL, for example "foo.bar.com/x/y.z" will yield type
         name "y.z".
 
-
         JSON
-
+        ====
         The JSON representation of an `Any` value uses the regular
         representation of the deserialized, embedded message, with an
         additional field `@type` which contains the type URL. Example:
@@ -10637,8 +10638,9 @@ components:
       properties:
         cockroach_version:
           description: |-
-            The CockroachDB version for the cluster. The current version
-            is used if omitted.
+            The CockroachDB major version for the cluster. i.e. v24.1  The latest
+            version is used if omitted. The version passed must be one of the currently
+            supported versions.
           type: string
         hardware:
           $ref: '#/components/schemas/DedicatedHardwareCreateSpecification'
@@ -11833,12 +11835,10 @@ components:
           ,\"kid\":\"9341dedeee2d1869b657fa930300082fe26b3d92\"}]}"
         claim: email
         identity_map:
-        - token_identity: sso_(.*)
+        - token_identity: /^sso_(.*)$
           cc_identity: \1
-          is_regex: true
-        - token_identity: sso_(.*)
+        - token_identity: /^sso_(.*)$
           cc_identity: \1
-          is_regex: true
         id: 1234abcd-1234-1234-abcd-12345678abcd
       properties:
         audience:
@@ -11879,24 +11879,27 @@ components:
       type: object
     JWTIssuerIdentityMapEntry:
       example:
-        token_identity: sso_(.*)
+        token_identity: /^sso_(.*)$
         cc_identity: \1
-        is_regex: true
       properties:
         cc_identity:
+          description: |-
+            Specifies how to map the fetched token identity to an identity in CockroachDB Cloud. In case of a regular
+            expression for token_identity, this must contain a \1 placeholder for the matched content. Note that you will need
+            to escape the backslash in the string as in the example usage (\\\\1).
           example: \1
-          title: Specifies how to map the fetched token identity into CockroachDB
-            Cloud
           type: string
-        is_regex:
-          example: true
-          title: Specifies whether the token_identity and cc_identity configurations
-            are in regex format
-          type: boolean
         token_identity:
-          example: sso_(.*)
-          title: Specifies how to fetch external identity from the token claim
+          description: |-
+            Specifies how to fetch external identity from the token claim. A regular expression must start
+            with a forward slash. The regular expression must be in RE2 compatible syntax. For further details, please see
+            https://github.com/google/re2/wiki/Syntax.
+          example: /^sso_(.*)$
           type: string
+      required:
+      - cc_identity
+      - token_identity
+      title: JWTIssuerIdentityMapEntry
       type: object
     KeysetPaginationResponse:
       example:
@@ -12602,12 +12605,10 @@ components:
             ,\"kid\":\"9341dedeee2d1869b657fa930300082fe26b3d92\"}]}"
           claim: email
           identity_map:
-          - token_identity: sso_(.*)
+          - token_identity: /^sso_(.*)$
             cc_identity: \1
-            is_regex: true
-          - token_identity: sso_(.*)
+          - token_identity: /^sso_(.*)$
             cc_identity: \1
-            is_regex: true
           id: 1234abcd-1234-1234-abcd-12345678abcd
         - audience: 1234567890abcd
           issuer_url: https://jwt-issuer.example.com
@@ -12616,12 +12617,10 @@ components:
             ,\"kid\":\"9341dedeee2d1869b657fa930300082fe26b3d92\"}]}"
           claim: email
           identity_map:
-          - token_identity: sso_(.*)
+          - token_identity: /^sso_(.*)$
             cc_identity: \1
-            is_regex: true
-          - token_identity: sso_(.*)
+          - token_identity: /^sso_(.*)$
             cc_identity: \1
-            is_regex: true
           id: 1234abcd-1234-1234-abcd-12345678abcd
       properties:
         jwt_issuers:
@@ -13419,6 +13418,7 @@ components:
       - REQUEST_UNITS
       - GIB
       - GIB_HOURS
+      - VCPU_HOURS
       type: string
     Region:
       properties:
@@ -14055,6 +14055,14 @@ components:
             us-central1: 5
             us-west1: 3
       properties:
+        cockroach_version:
+          description: |-
+            The desired CockroachDB major version for the cluster.  It can be used to
+            orchestrate version changes.  Setting the version to a later version will
+            initiate an upgrade to that version.  After an upgrade is initiated but
+            before it's finalized, setting the version back to the previous version
+            will initiate a rollback.
+          type: string
         dedicated:
           $ref: '#/components/schemas/DedicatedClusterUpdateSpecification'
         delete_protection:
@@ -14699,12 +14707,10 @@ components:
           ,\"kid\":\"9341dedeee2d1869b657fa930300082fe26b3d92\"}]}"
         claim: email
         identity_map:
-        - token_identity: sso_(.*)
+        - token_identity: /^sso_(.*)$
           cc_identity: \1
-          is_regex: true
-        - token_identity: sso_(.*)
+        - token_identity: /^sso_(.*)$
           cc_identity: \1
-          is_regex: true
       properties:
         audience:
           example: 1234567890abcd

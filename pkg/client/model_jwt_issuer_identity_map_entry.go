@@ -20,58 +20,57 @@ package client
 
 // JWTIssuerIdentityMapEntry struct for JWTIssuerIdentityMapEntry.
 type JWTIssuerIdentityMapEntry struct {
-	CcIdentity    *string `json:"cc_identity,omitempty"`
-	IsRegex       *bool   `json:"is_regex,omitempty"`
-	TokenIdentity *string `json:"token_identity,omitempty"`
+	// Specifies how to map the fetched token identity to an identity in CockroachDB Cloud. In case of a regular expression for token_identity, this must contain a \\1 placeholder for the matched content. Note that you will need to escape the backslash in the string as in the example usage (\\\\\\\\1).
+	CcIdentity string `json:"cc_identity"`
+	// Specifies how to fetch external identity from the token claim. A regular expression must start with a forward slash. The regular expression must be in RE2 compatible syntax. For further details, please see https://github.com/google/re2/wiki/Syntax.
+	TokenIdentity string `json:"token_identity"`
 }
 
 // NewJWTIssuerIdentityMapEntry instantiates a new JWTIssuerIdentityMapEntry object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewJWTIssuerIdentityMapEntry() *JWTIssuerIdentityMapEntry {
+func NewJWTIssuerIdentityMapEntry(ccIdentity string, tokenIdentity string) *JWTIssuerIdentityMapEntry {
+	p := JWTIssuerIdentityMapEntry{}
+	p.CcIdentity = ccIdentity
+	p.TokenIdentity = tokenIdentity
+	return &p
+}
+
+// NewJWTIssuerIdentityMapEntryWithDefaults instantiates a new JWTIssuerIdentityMapEntry object.
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewJWTIssuerIdentityMapEntryWithDefaults() *JWTIssuerIdentityMapEntry {
 	p := JWTIssuerIdentityMapEntry{}
 	return &p
 }
 
-// GetCcIdentity returns the CcIdentity field value if set, zero value otherwise.
+// GetCcIdentity returns the CcIdentity field value.
 func (o *JWTIssuerIdentityMapEntry) GetCcIdentity() string {
-	if o == nil || o.CcIdentity == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.CcIdentity
+
+	return o.CcIdentity
 }
 
-// SetCcIdentity gets a reference to the given string and assigns it to the CcIdentity field.
+// SetCcIdentity sets field value.
 func (o *JWTIssuerIdentityMapEntry) SetCcIdentity(v string) {
-	o.CcIdentity = &v
+	o.CcIdentity = v
 }
 
-// GetIsRegex returns the IsRegex field value if set, zero value otherwise.
-func (o *JWTIssuerIdentityMapEntry) GetIsRegex() bool {
-	if o == nil || o.IsRegex == nil {
-		var ret bool
-		return ret
-	}
-	return *o.IsRegex
-}
-
-// SetIsRegex gets a reference to the given bool and assigns it to the IsRegex field.
-func (o *JWTIssuerIdentityMapEntry) SetIsRegex(v bool) {
-	o.IsRegex = &v
-}
-
-// GetTokenIdentity returns the TokenIdentity field value if set, zero value otherwise.
+// GetTokenIdentity returns the TokenIdentity field value.
 func (o *JWTIssuerIdentityMapEntry) GetTokenIdentity() string {
-	if o == nil || o.TokenIdentity == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.TokenIdentity
+
+	return o.TokenIdentity
 }
 
-// SetTokenIdentity gets a reference to the given string and assigns it to the TokenIdentity field.
+// SetTokenIdentity sets field value.
 func (o *JWTIssuerIdentityMapEntry) SetTokenIdentity(v string) {
-	o.TokenIdentity = &v
+	o.TokenIdentity = v
 }

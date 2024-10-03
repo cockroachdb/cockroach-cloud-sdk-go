@@ -1,4 +1,20 @@
 
+## 4.0.0
+
+BREAKING CHANGES:
+
+* Removed IsRegex from JWTIssuerIdentityMapEntry. Regex token identities
+  must start with a forward slash ('/') to be detected as regexes.
+
+NEW FEATURES:
+
+* Added CockroachVersion to UpdateClusterSpecification. It is now possible
+  to upgrade or roll back a CockroachDB Cloud cluster by specifying its
+  version.
+
+* Added VCPU_HOURS to QuantityUnitType enum, used by billing and invoice
+  endpoints.
+
 ## 3.0.0
 
 BREAKING CHANGES:
