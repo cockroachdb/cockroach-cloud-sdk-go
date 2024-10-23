@@ -156,6 +156,10 @@
 
 * `UPDATE_JWT_ISSUER` (value: `"AUDIT_LOG_ACTION_UPDATE_JWT_ISSUER"`)
 
+* `CREATE_LICENSE` (value: `"AUDIT_LOG_ACTION_CREATE_LICENSE"`)
+
+* `UPDATE_ORGANIZATION_NAME` (value: `"AUDIT_LOG_ACTION_UPDATE_ORGANIZATION_NAME"`)
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

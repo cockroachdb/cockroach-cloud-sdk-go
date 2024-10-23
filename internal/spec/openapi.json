@@ -4082,6 +4082,189 @@
         ]
       }
     },
+    "/api/v1/clusters/{cluster_id}/backups-config": {
+      "get": {
+        "operationId": "CockroachCloud_GetBackupConfiguration",
+        "summary": "Get the backup configuration for a cluster",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "parameters": [
+          {
+            "name": "cluster_id",
+            "in": "path",
+            "description": "The UUID of the cluster that this backup configuration belongs to.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BackupConfiguration"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Backup/Restore"],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request GET \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/backups-config \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+          }
+        ]
+      },
+      "patch": {
+        "operationId": "CockroachCloud_UpdateBackupConfiguration",
+        "summary": "Update the backup configuration for a cluster",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "parameters": [
+          {
+            "name": "cluster_id",
+            "in": "path",
+            "description": "The UUID of the cluster that this backup configuration belongs to.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "spec contains the information that is being updated for the given\nBackupConfiguration.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateBackupConfigurationSpec"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BackupConfiguration"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Backup/Restore"],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request PATCH \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/backups-config \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"enabled\":true,\"frequency_minutes\":60,\"retention_days\":7}'"
+          }
+        ]
+      }
+    },
     "/api/v1/clusters/{cluster_id}/client-ca-cert": {
       "delete": {
         "operationId": "CockroachCloud_DeleteClientCACert",
@@ -12830,7 +13013,7 @@
         "type": "object",
         "properties": {
           "@type": {
-            "description": "A URL/resource name that uniquely identifies the type of the serialized\nprotocol buffer message. This string must contain at least\none \"/\" character. The last segment of the URL's path must represent\nthe fully qualified name of the type (as in\n`path/google.protobuf.Duration`). The name should be in a canonical form\n(e.g., leading \".\" is not accepted).\n\nIn practice, teams usually precompile into the binary all types that they\nexpect it to use in the context of Any. However, for URLs which use the\nscheme `http`, `https`, or no scheme, one can optionally set up a type\nserver that maps type URLs to message definitions as follows:\n\n* If no scheme is provided, `https` is assumed.\n* An HTTP GET on the URL must yield a [google.protobuf.Type][]\n  value in binary format, or produce an error.\n* Applications are allowed to cache lookup results based on the\n  URL, or have them precompiled into a binary to avoid any\n  lookup. Therefore, binary compatibility needs to be preserved\n  on changes to types. (Use versioned type names to manage\n  breaking changes.)\n\nNote: this functionality is not currently available in the official\nprotobuf release, and it is not used for type URLs beginning with\ntype.googleapis.com.\n\nSchemes other than `http`, `https` (or the empty scheme) might be\nused with implementation specific semantics.",
+            "description": "A URL/resource name that uniquely identifies the type of the serialized\nprotocol buffer message. This string must contain at least\none \"/\" character. The last segment of the URL's path must represent\nthe fully qualified name of the type (as in\n`path/google.protobuf.Duration`). The name should be in a canonical form\n(e.g., leading \".\" is not accepted).\n\nIn practice, teams usually precompile into the binary all types that they\nexpect it to use in the context of Any. However, for URLs which use the\nscheme `http`, `https`, or no scheme, one can optionally set up a type\nserver that maps type URLs to message definitions as follows:\n\n* If no scheme is provided, `https` is assumed.\n* An HTTP GET on the URL must yield a [google.protobuf.Type][]\n  value in binary format, or produce an error.\n* Applications are allowed to cache lookup results based on the\n  URL, or have them precompiled into a binary to avoid any\n  lookup. Therefore, binary compatibility needs to be preserved\n  on changes to types. (Use versioned type names to manage\n  breaking changes.)\n\nNote: this functionality is not currently available in the official\nprotobuf release, and it is not used for type URLs beginning with\ntype.googleapis.com. As of May 2023, there are no widely used type server\nimplementations and no plans to implement one.\n\nSchemes other than `http`, `https` (or the empty scheme) might be\nused with implementation specific semantics.",
             "type": "string"
           }
         },
@@ -13011,7 +13194,9 @@
           "AUDIT_LOG_ACTION_MARKETPLACE_CANCEL_SUBSCRIPTION",
           "AUDIT_LOG_ACTION_ADD_JWT_ISSUER",
           "AUDIT_LOG_ACTION_DELETE_JWT_ISSUER",
-          "AUDIT_LOG_ACTION_UPDATE_JWT_ISSUER"
+          "AUDIT_LOG_ACTION_UPDATE_JWT_ISSUER",
+          "AUDIT_LOG_ACTION_CREATE_LICENSE",
+          "AUDIT_LOG_ACTION_UPDATE_ORGANIZATION_NAME"
         ]
       },
       "AuditLogEntry": {
@@ -13133,6 +13318,32 @@
           }
         },
         "required": ["connections"]
+      },
+      "BackupConfiguration": {
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "description": "Indicates whether backups are enabled.",
+            "type": "boolean"
+          },
+          "frequency_minutes": {
+            "description": "How frequently in minutes that backups are taken, which will determine the\n[RPO](https://www.cockroachlabs.com/docs/stable/disaster-recovery-overview#resilience-strategy)\nof the cluster.",
+            "type": "integer",
+            "format": "int32"
+          },
+          "retention_days": {
+            "description": "The number of days backups are retained for.",
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "example": {
+          "enabled": true,
+          "frequency_minutes": 60,
+          "retention_days": 7
+        },
+        "required": ["enabled", "retention_days", "frequency_minutes"],
+        "title": "BackupConfiguration"
       },
       "BuiltInFromGroups": {
         "type": "object",
@@ -15931,6 +16142,30 @@
         },
         "example": {
           "name": "new name"
+        }
+      },
+      "UpdateBackupConfigurationSpec": {
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "description": "Indicates whether backups are enabled.",
+            "type": "boolean"
+          },
+          "frequency_minutes": {
+            "description": "How frequently in minutes that backups are taken, which will determine the\n[RPO](https://www.cockroachlabs.com/docs/stable/disaster-recovery-overview#resilience-strategy)\nof the cluster.  Valid values are [5, 10, 15, 30, 60, 240, 1440].",
+            "type": "integer",
+            "format": "int32"
+          },
+          "retention_days": {
+            "description": "The number of days to retain backups for. Can only be set once, further\nchanges require opening a support ticket. Valid values are [2, 7, 30, 90,\n365].",
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "example": {
+          "enabled": true,
+          "frequency_minutes": 60,
+          "retention_days": 7
         }
       },
       "UpdateClusterSpecification": {

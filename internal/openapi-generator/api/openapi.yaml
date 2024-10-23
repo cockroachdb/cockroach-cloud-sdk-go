@@ -3005,6 +3005,145 @@ paths:
             --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id} \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
             --json '{"dedicated":{"hardware":{"machine_spec":{"machine_type":"n2-standard-8"}},"region_nodes":{"us-central1":5,"us-west1":3}}}'
+  /api/v1/clusters/{cluster_id}/backups-config:
+    get:
+      description: |
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
+      operationId: CockroachCloud_GetBackupConfiguration
+      parameters:
+      - description: The UUID of the cluster that this backup configuration belongs
+          to.
+        explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BackupConfiguration'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Get the backup configuration for a cluster
+      tags:
+      - Backup/Restore
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request GET \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/backups-config \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+    patch:
+      description: |
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
+      operationId: CockroachCloud_UpdateBackupConfiguration
+      parameters:
+      - description: The UUID of the cluster that this backup configuration belongs
+          to.
+        explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateBackupConfigurationSpec'
+        description: |-
+          spec contains the information that is being updated for the given
+          BackupConfiguration.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BackupConfiguration'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Update the backup configuration for a cluster
+      tags:
+      - Backup/Restore
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request PATCH \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/backups-config \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
+            --json '{"enabled":true,"frequency_minutes":60,"retention_days":7}'
   /api/v1/clusters/{cluster_id}/client-ca-cert:
     delete:
       description: |
@@ -9473,7 +9612,8 @@ components:
 
             Note: this functionality is not currently available in the official
             protobuf release, and it is not used for type URLs beginning with
-            type.googleapis.com.
+            type.googleapis.com. As of May 2023, there are no widely used type server
+            implementations and no plans to implement one.
 
             Schemes other than `http`, `https` (or the empty scheme) might be
             used with implementation specific semantics.
@@ -9639,6 +9779,8 @@ components:
       - AUDIT_LOG_ACTION_ADD_JWT_ISSUER
       - AUDIT_LOG_ACTION_DELETE_JWT_ISSUER
       - AUDIT_LOG_ACTION_UPDATE_JWT_ISSUER
+      - AUDIT_LOG_ACTION_CREATE_LICENSE
+      - AUDIT_LOG_ACTION_UPDATE_ORGANIZATION_NAME
       type: string
     AuditLogEntry:
       description: |-
@@ -9790,6 +9932,32 @@ components:
           type: array
       required:
       - connections
+      type: object
+    BackupConfiguration:
+      example:
+        enabled: true
+        frequency_minutes: 60
+        retention_days: 7
+      properties:
+        enabled:
+          description: Indicates whether backups are enabled.
+          type: boolean
+        frequency_minutes:
+          description: |-
+            How frequently in minutes that backups are taken, which will determine the
+            [RPO](https://www.cockroachlabs.com/docs/stable/disaster-recovery-overview#resilience-strategy)
+            of the cluster.
+          format: int32
+          type: integer
+        retention_days:
+          description: The number of days backups are retained for.
+          format: int32
+          type: integer
+      required:
+      - enabled
+      - frequency_minutes
+      - retention_days
+      title: BackupConfiguration
       type: object
     BuiltInFromGroups:
       example:
@@ -14044,6 +14212,30 @@ components:
           description: name of the api key.
           example: new name
           type: string
+      type: object
+    UpdateBackupConfigurationSpec:
+      example:
+        enabled: true
+        frequency_minutes: 60
+        retention_days: 7
+      properties:
+        enabled:
+          description: Indicates whether backups are enabled.
+          type: boolean
+        frequency_minutes:
+          description: |-
+            How frequently in minutes that backups are taken, which will determine the
+            [RPO](https://www.cockroachlabs.com/docs/stable/disaster-recovery-overview#resilience-strategy)
+            of the cluster.  Valid values are [5, 10, 15, 30, 60, 240, 1440].
+          format: int32
+          type: integer
+        retention_days:
+          description: |-
+            The number of days to retain backups for. Can only be set once, further
+            changes require opening a support ticket. Valid values are [2, 7, 30, 90,
+            365].
+          format: int32
+          type: integer
       type: object
     UpdateClusterSpecification:
       example:
