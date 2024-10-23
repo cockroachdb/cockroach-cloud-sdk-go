@@ -25,6 +25,8 @@ docs/AuditLogSource.md
 docs/AuditLogsApi.md
 docs/AwsEndpointConnection.md
 docs/AwsEndpointConnections.md
+docs/BackupConfiguration.md
+docs/BackupRestoreApi.md
 docs/BillingApi.md
 docs/BuiltInFromGroups.md
 docs/BuiltInRole.md
@@ -202,6 +204,7 @@ docs/SetClientCACertRequest.md
 docs/SetEgressTrafficPolicyRequest.md
 docs/Status.md
 docs/UpdateApiKeySpecification.md
+docs/UpdateBackupConfigurationSpec.md
 docs/UpdateCMEKStatusRequest.md
 docs/UpdateClientCACertRequest.md
 docs/UpdateClusterSpecification.md
@@ -239,6 +242,7 @@ model_aws_endpoint_connection.go
 model_aws_endpoint_connection_status_type.go
 model_aws_endpoint_connections.go
 model_aws_private_link_service_detail.go
+model_backup_configuration.go
 model_built_in_from_groups.go
 model_built_in_role.go
 model_client_ca_cert_info.go
@@ -397,6 +401,7 @@ model_set_egress_traffic_policy_request.go
 model_sql_user.go
 model_status.go
 model_update_api_key_specification.go
+model_update_backup_configuration_spec.go
 model_update_client_ca_cert_request.go
 model_update_cluster_specification.go
 model_update_cmek_status_request.go

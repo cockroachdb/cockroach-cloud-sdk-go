@@ -1,4 +1,12 @@
 
+## 4.1.0
+
+NEW FEATURES:
+
+* audit log actions `CREATE_LICENSE` and `UPDATE_ORGANIZATION_NAME` were added.
+
+* endpoints to manage cluster backup configurations.
+
 ## 4.0.0
 
 BREAKING CHANGES:
