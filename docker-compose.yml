@@ -2,7 +2,7 @@ version: '3'
 
 services:
   jq:
-    image: stedolan/jq
+    image: ghcr.io/jqlang/jq:1.7.1
     volumes:
       - ./:/go/src/github.com/cockroachdb/cockroach-cloud-sdk-go
     working_dir: /go/src/github.com/cockroachdb/cockroach-cloud-sdk-go
