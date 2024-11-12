@@ -1,4 +1,16 @@
 
+## 5.0.0
+
+BREAKING CHANGES:
+
+* NewCluster constructor now includes cidr_range
+
+NEW FEATURES:
+
+* cidr_range for GCP Advanced tier clusters is added.
+
+* support for API authentication via JWT is added.
+
 ## 4.1.0
 
 NEW FEATURES:

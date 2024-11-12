@@ -10284,6 +10284,7 @@ components:
     Cluster:
       example:
         account_id: ""
+        cidr_range: 172.28.0.0/14
         cloud_provider: GCP
         cockroach_version: v21.2.4
         config:
@@ -10310,6 +10311,12 @@ components:
         upgrade_status: UPGRADE_AVAILABLE
       properties:
         account_id:
+          type: string
+        cidr_range:
+          description: |-
+            cidr_range is the IPv4 range in CIDR format that will be used by the
+            cluster. It is only set on GCP Advanced tier clusters and is otherwise
+            empty.
           type: string
         cloud_provider:
           $ref: '#/components/schemas/CloudProvider.Type'
@@ -10359,6 +10366,7 @@ components:
         upgrade_status:
           $ref: '#/components/schemas/ClusterUpgradeStatus.Type'
       required:
+      - cidr_range
       - cloud_provider
       - cockroach_version
       - config
@@ -10804,6 +10812,12 @@ components:
       type: string
     DedicatedClusterCreateSpecification:
       properties:
+        cidr_range:
+          description: |-
+            cidr_range is the IPv4 range in CIDR format that will be used by the
+            cluster. This is supported only on GCP, and must have a subnet mask no larger
+            than /19. Defaults to "172.28.0.0/14".
+          type: string
         cockroach_version:
           description: |-
             The CockroachDB major version for the cluster. i.e. v24.1  The latest
@@ -10825,7 +10839,7 @@ components:
           type: object
         restrict_egress_traffic:
           description: |-
-            Preview: RestrictEgressTraffic if set, results in an egress traffic policy of
+            Preview: restrict_egress_traffic if set, results in an egress traffic policy of
             default-deny at creation time.
           type: boolean
       required:
@@ -11742,6 +11756,7 @@ components:
         invoice_items:
         - cluster:
             account_id: ""
+            cidr_range: 172.28.0.0/14
             cloud_provider: GCP
             cockroach_version: v21.2.4
             config:
@@ -11788,6 +11803,7 @@ components:
             currency: null
         - cluster:
             account_id: ""
+            cidr_range: 172.28.0.0/14
             cloud_provider: GCP
             cockroach_version: v21.2.4
             config:
@@ -11931,6 +11947,7 @@ components:
       example:
         cluster:
           account_id: ""
+          cidr_range: 172.28.0.0/14
           cloud_provider: GCP
           cockroach_version: v21.2.4
           config:
@@ -12055,6 +12072,7 @@ components:
             Specifies how to map the fetched token identity to an identity in CockroachDB Cloud. In case of a regular
             expression for token_identity, this must contain a \1 placeholder for the matched content. Note that you will need
             to escape the backslash in the string as in the example usage (\\\\1).
+            The mapped identity must match with either a user email address or a service account ID.
           example: \1
           type: string
         token_identity:
@@ -12313,6 +12331,7 @@ components:
           previous_page: previous_page
         clusters:
         - account_id: ""
+          cidr_range: 172.28.0.0/14
           cloud_provider: GCP
           cockroach_version: v21.2.4
           config:
@@ -12338,6 +12357,7 @@ components:
           updated_at: 2022-03-22T20:23:11.879593Z
           upgrade_status: UPGRADE_AVAILABLE
         - account_id: ""
+          cidr_range: 172.28.0.0/14
           cloud_provider: GCP
           cockroach_version: v21.2.4
           config:
@@ -12497,6 +12517,7 @@ components:
           invoice_items:
           - cluster:
               account_id: ""
+              cidr_range: 172.28.0.0/14
               cloud_provider: GCP
               cockroach_version: v21.2.4
               config:
@@ -12543,6 +12564,7 @@ components:
               currency: null
           - cluster:
               account_id: ""
+              cidr_range: 172.28.0.0/14
               cloud_provider: GCP
               cockroach_version: v21.2.4
               config:
@@ -12633,6 +12655,7 @@ components:
           invoice_items:
           - cluster:
               account_id: ""
+              cidr_range: 172.28.0.0/14
               cloud_provider: GCP
               cockroach_version: v21.2.4
               config:
@@ -12679,6 +12702,7 @@ components:
               currency: null
           - cluster:
               account_id: ""
+              cidr_range: 172.28.0.0/14
               cloud_provider: GCP
               cockroach_version: v21.2.4
               config:
