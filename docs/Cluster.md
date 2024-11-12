@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AccountId** | Pointer to **string** |  | [optional] 
+**CidrRange** | **string** | cidr_range is the IPv4 range in CIDR format that will be used by the cluster. It is only set on GCP Advanced tier clusters and is otherwise empty. | 
 **CloudProvider** | [**CloudProviderType**](CloudProviderType.md) |  | 
 **CockroachVersion** | **string** |  | 
 **Config** | [**ClusterConfig**](ClusterConfig.md) |  | 
@@ -29,7 +30,7 @@ Name | Type | Description | Notes
 
 ### NewCluster
 
-`func NewCluster(cloudProvider CloudProviderType, cockroachVersion string, config ClusterConfig, creatorId string, id string, name string, operationStatus ClusterStatusType, plan PlanType, regions []Region, state ClusterStateType, upgradeStatus ClusterUpgradeStatusType, ) *Cluster`
+`func NewCluster(cidrRange string, cloudProvider CloudProviderType, cockroachVersion string, config ClusterConfig, creatorId string, id string, name string, operationStatus ClusterStatusType, plan PlanType, regions []Region, state ClusterStateType, upgradeStatus ClusterUpgradeStatusType, ) *Cluster`
 
 NewCluster instantiates a new Cluster object.
 This constructor will assign default values to properties that have it defined,
@@ -55,6 +56,18 @@ GetAccountId returns the AccountId field if non-nil, zero value otherwise.
 `func (o *Cluster) SetAccountId(v string)`
 
 SetAccountId sets AccountId field to given value.
+
+### GetCidrRange
+
+`func (o *Cluster) GetCidrRange() string`
+
+GetCidrRange returns the CidrRange field if non-nil, zero value otherwise.
+
+### SetCidrRange
+
+`func (o *Cluster) SetCidrRange(v string)`
+
+SetCidrRange sets CidrRange field to given value.
 
 ### GetCloudProvider
 

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CcIdentity** | **string** | Specifies how to map the fetched token identity to an identity in CockroachDB Cloud. In case of a regular expression for token_identity, this must contain a \\1 placeholder for the matched content. Note that you will need to escape the backslash in the string as in the example usage (\\\\\\\\1). | 
+**CcIdentity** | **string** | Specifies how to map the fetched token identity to an identity in CockroachDB Cloud. In case of a regular expression for token_identity, this must contain a \\1 placeholder for the matched content. Note that you will need to escape the backslash in the string as in the example usage (\\\\\\\\1). The mapped identity must match with either a user email address or a service account ID. | 
 **TokenIdentity** | **string** | Specifies how to fetch external identity from the token claim. A regular expression must start with a forward slash. The regular expression must be in RE2 compatible syntax. For further details, please see https://github.com/google/re2/wiki/Syntax. | 
 
 ## Methods
