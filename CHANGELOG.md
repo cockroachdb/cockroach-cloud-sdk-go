@@ -1,4 +1,8 @@
 
+BREAKING CHANGES:
+
+* Removed generated constructors and broken example code.
+
 ## 4.1.0
 
 NEW FEATURES:
