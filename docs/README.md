@@ -133,11 +133,6 @@ API | Method | HTTP request | Description
 [MetricExportApi](docs/MetricExportApi.md) | **GetCloudWatchMetricExportInfo** | **Get** /api/v1/clusters/{cluster_id}/metricexport/cloudwatch | Get the CloudWatch Metric Export configuration for a cluster
 [MetricExportApi](docs/MetricExportApi.md) | **GetDatadogMetricExportInfo** | **Get** /api/v1/clusters/{cluster_id}/metricexport/datadog | Get the Datadog Metric Export configuration for a cluster
 [MetricExportApi](docs/MetricExportApi.md) | **GetPrometheusMetricExportInfo** | **Get** /api/v1/clusters/{cluster_id}/metricexport/prometheus | Get the Prometheus Metric Export configuration for a cluster
-[OpenIDConnectConfigurationApi](docs/OpenIDConnectConfigurationApi.md) | **CreateApiOidcConfig** | **Post** /api/v1/api_oidc | Create an API OIDC configuration (Deprecated)
-[OpenIDConnectConfigurationApi](docs/OpenIDConnectConfigurationApi.md) | **DeleteApiOidcConfig** | **Delete** /api/v1/api_oidc/{id} | Delete an API OIDC configuration (Deprecated)
-[OpenIDConnectConfigurationApi](docs/OpenIDConnectConfigurationApi.md) | **GetApiOidcConfig** | **Get** /api/v1/api_oidc/{id} | Get an API OIDC configuration (Deprecated)
-[OpenIDConnectConfigurationApi](docs/OpenIDConnectConfigurationApi.md) | **ListApiOidcConfig** | **Get** /api/v1/api_oidc | List all API OIDC configurations (Deprecated)
-[OpenIDConnectConfigurationApi](docs/OpenIDConnectConfigurationApi.md) | **UpdateApiOidcConfig** | **Put** /api/v1/api_oidc/{id} | Update an API OIDC configuration (Deprecated)
 [OrganizationsApi](docs/OrganizationsApi.md) | **GetOrganizationInfo** | **Get** /api/v1/organization | Get information about the caller&#39;s organization
 [PrivateEndpointServicesApi](docs/PrivateEndpointServicesApi.md) | **AddPrivateEndpointConnection** | **Post** /api/v1/clusters/{cluster_id}/networking/private-endpoint-connections | Add a connection to a cluster&#39;s private endpoint service.
 [PrivateEndpointServicesApi](docs/PrivateEndpointServicesApi.md) | **AddPrivateEndpointTrustedOwner** | **Post** /api/v1/clusters/{cluster_id}/networking/private-endpoint-trusted-owners | Add a private endpoint trusted owner to a cluster

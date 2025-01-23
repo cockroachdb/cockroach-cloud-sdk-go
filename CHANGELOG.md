@@ -1,3 +1,8 @@
+## 5.1.0
+
+DEPRECATIONS:
+
+* The OIDC config API endpoints are deprecated.
 
 ## 5.0.0
 

@@ -15,9 +15,6 @@ docs/AllowlistEntry.md
 docs/AllowlistEntry1.md
 docs/Any.md
 docs/ApiKey.md
-docs/ApiOidcConfig.md
-docs/ApiOidcConfig1.md
-docs/ApiOidcIdentityMapEntry.md
 docs/AuditLogAction.md
 docs/AuditLogEntry.md
 docs/AuditLogMetadata.md
@@ -59,7 +56,6 @@ docs/CockroachCloudSetRolesForUserRequest.md
 docs/ConnectionStringParameters.md
 docs/CreateApiKeyRequest.md
 docs/CreateApiKeyResponse.md
-docs/CreateApiOidcConfigRequest.md
 docs/CreateClusterRequest.md
 docs/CreateClusterSpecification.md
 docs/CreateDatabaseRequest.md
@@ -121,7 +117,6 @@ docs/KeysetPaginationResponse.md
 docs/LineItem.md
 docs/ListAllowlistEntriesResponse.md
 docs/ListApiKeysResponse.md
-docs/ListApiOidcConfigResponse.md
 docs/ListAuditLogsResponse.md
 docs/ListAvailableRegionsResponse.md
 docs/ListClusterNodesResponse.md
@@ -150,7 +145,6 @@ docs/MetricExportStatusType.md
 docs/NetworkVisibilityType.md
 docs/Node.md
 docs/NodeStatusType.md
-docs/OpenIDConnectConfigurationApi.md
 docs/OperatingSystemType.md
 docs/Organization.md
 docs/OrganizationUserRoleType.md
@@ -231,9 +225,6 @@ model_allowlist_entry.go
 model_allowlist_entry_1.go
 model_any.go
 model_api_key.go
-model_api_oidc_config.go
-model_api_oidc_config_1.go
-model_api_oidc_identity_map_entry.go
 model_audit_log_action.go
 model_audit_log_entry.go
 model_audit_log_metadata.go
@@ -272,7 +263,6 @@ model_cockroach_cloud_set_roles_for_user_request.go
 model_connection_string_parameters.go
 model_create_api_key_request.go
 model_create_api_key_response.go
-model_create_api_oidc_config_request.go
 model_create_cluster_request.go
 model_create_cluster_specification.go
 model_create_database_request.go
@@ -328,7 +318,6 @@ model_keyset_pagination_response.go
 model_line_item.go
 model_list_allowlist_entries_response.go
 model_list_api_keys_response.go
-model_list_api_oidc_config_response.go
 model_list_audit_logs_response.go
 model_list_available_regions_response.go
 model_list_cluster_nodes_response.go
