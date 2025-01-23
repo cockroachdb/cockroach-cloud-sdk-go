@@ -154,6 +154,8 @@ Name | Type | Description  | Notes
 
 Set the maintenance window for a cluster
 
+Maintenance windows are supported for ADVANCED clusters.
+
 Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
