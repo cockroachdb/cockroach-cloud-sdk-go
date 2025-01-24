@@ -6,6 +6,10 @@ BREAKING CHANGES:
   endpoints were never moved out of private preview, we are not bumping
   the major version.
 
+NEW FEATURES:
+
+* Added endpoints for Physical Cluster Replication.
+
 ## 5.0.0
 
 BREAKING CHANGES:

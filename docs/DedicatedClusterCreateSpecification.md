@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **NetworkVisibility** | Pointer to [**NetworkVisibilityType**](NetworkVisibilityType.md) |  | [optional] 
 **RegionNodes** | **map[string]int32** | Region keys should match the cloud provider&#39;s zone code. For example, for Oregon, set region_name to \&quot;us-west2\&quot; for GCP and \&quot;us-west-2\&quot; for AWS. Values represent the node count. | 
 **RestrictEgressTraffic** | Pointer to **bool** | Preview: restrict_egress_traffic if set, results in an egress traffic policy of default-deny at creation time. | [optional] 
+**SupportPhysicalClusterReplication** | Pointer to **bool** | Preview: support_physical_cluster_replication specifies whether a cluster should be started using an architecture that supports physical cluster replication. | [optional] 
 
 ## Methods
 
@@ -101,6 +102,18 @@ GetRestrictEgressTraffic returns the RestrictEgressTraffic field if non-nil, zer
 `func (o *DedicatedClusterCreateSpecification) SetRestrictEgressTraffic(v bool)`
 
 SetRestrictEgressTraffic sets RestrictEgressTraffic field to given value.
+
+### GetSupportPhysicalClusterReplication
+
+`func (o *DedicatedClusterCreateSpecification) GetSupportPhysicalClusterReplication() bool`
+
+GetSupportPhysicalClusterReplication returns the SupportPhysicalClusterReplication field if non-nil, zero value otherwise.
+
+### SetSupportPhysicalClusterReplication
+
+`func (o *DedicatedClusterCreateSpecification) SetSupportPhysicalClusterReplication(v bool)`
+
+SetSupportPhysicalClusterReplication sets SupportPhysicalClusterReplication field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
