@@ -2804,558 +2804,6 @@
         ]
       }
     },
-    "/api/v1/api_oidc": {
-      "get": {
-        "operationId": "CockroachCloud_ListApiOidcConfig",
-        "summary": "List all API OIDC configurations (Deprecated)",
-        "description": "This endpoint has been deprecated in favor of /jwt-issuers\n\nCan be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
-        "parameters": [
-          {
-            "name": "pagination.page",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "pagination.limit",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "pagination.as_of_time",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
-            "name": "pagination.sort_order",
-            "in": "query",
-            "description": " - ASC: Sort in ascending order. This is the default unless otherwise specified.\n - DESC: Sort in descending order.",
-            "schema": {
-              "type": "string",
-              "enum": [
-                "ASC",
-                "DESC"
-              ]
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ListApiOidcConfigResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Returned when a request field is invalid.",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "401": {
-            "description": "Returned when the token bearer cannot be authenticated.",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "403": {
-            "description": "Returned when the user does not have permission to access the resource.",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "404": {
-            "description": "Returned when the resource does not exist.",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "500": {
-            "description": "Server error",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Status"
-                }
-              }
-            }
-          }
-        },
-        "deprecated": true,
-        "tags": [
-          "OpenID Connect Configuration"
-        ],
-        "x-badges": [
-          {
-            "color": "red",
-            "label": "LIMITED ACCESS"
-          }
-        ],
-        "x-codeSamples": [
-          {
-            "lang": "Shell + Curl",
-            "source": "curl --request GET \\\n  --url 'https://cockroachlabs.cloud/api/v1/api_oidc?pagination.page=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.as_of_time=SOME_STRING_VALUE&pagination.sort_order=SOME_STRING_VALUE' \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
-          }
-        ]
-      },
-      "post": {
-        "operationId": "CockroachCloud_CreateApiOidcConfig",
-        "summary": "Create an API OIDC configuration (Deprecated)",
-        "description": "This endpoint has been deprecated in favor of /jwt-issuers\n\nCan be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateApiOidcConfigRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiOidcConfig"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Returned when a request field is invalid.",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "401": {
-            "description": "Returned when the token bearer cannot be authenticated.",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "403": {
-            "description": "Returned when the user does not have permission to access the resource.",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "404": {
-            "description": "Returned when the resource does not exist.",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "500": {
-            "description": "Server error",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Status"
-                }
-              }
-            }
-          }
-        },
-        "deprecated": true,
-        "tags": [
-          "OpenID Connect Configuration"
-        ],
-        "x-badges": [
-          {
-            "color": "red",
-            "label": "LIMITED ACCESS"
-          }
-        ],
-        "x-codeSamples": [
-          {
-            "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/api_oidc \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"audience\":\"542c6390-bf38-4912-856b-8f31480e978b\",\"claim\":\"sub\",\"identity_map\":[{\"cc_identity\":\"\\\\1\",\"is_regex\":true,\"token_identity\":\"sso_(.*)\"},{\"cc_identity\":\"\\\\1\",\"is_regex\":true,\"token_identity\":\"gcp_(.*)\"}],\"issuer\":\"theissuer\",\"jwks\":\"{\\\"keys\\\":[{\\\"e\\\":\\\"AQAB\\\",\\\"use\\\":\\\"sig\\\",\\\"kty\\\":\\\"RSA\\\",\\\"alg\\\":\\\"RS256\\\",\\\"n\\\":\\\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\\\",\\\"kid\\\":\\\"9341dedeee2d1869b657fa930300082fe26b3d92\\\"}]}\"}'"
-          }
-        ]
-      }
-    },
-    "/api/v1/api_oidc/{id}": {
-      "delete": {
-        "operationId": "CockroachCloud_DeleteApiOidcConfig",
-        "summary": "Delete an API OIDC configuration (Deprecated)",
-        "description": "This endpoint has been deprecated in favor of /jwt-issuers\n\nCan be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiOidcConfig"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Returned when a request field is invalid.",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "401": {
-            "description": "Returned when the token bearer cannot be authenticated.",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "403": {
-            "description": "Returned when the user does not have permission to access the resource.",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "404": {
-            "description": "Returned when the resource does not exist.",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "500": {
-            "description": "Server error",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Status"
-                }
-              }
-            }
-          }
-        },
-        "deprecated": true,
-        "tags": [
-          "OpenID Connect Configuration"
-        ],
-        "x-badges": [
-          {
-            "color": "red",
-            "label": "LIMITED ACCESS"
-          }
-        ],
-        "x-codeSamples": [
-          {
-            "lang": "Shell + Curl",
-            "source": "curl --request DELETE \\\n  --url https://cockroachlabs.cloud/api/v1/api_oidc/{id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
-          }
-        ]
-      },
-      "get": {
-        "operationId": "CockroachCloud_GetApiOidcConfig",
-        "summary": "Get an API OIDC configuration (Deprecated)",
-        "description": "This endpoint has been deprecated in favor of /jwt-issuers\n\nCan be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiOidcConfig"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Returned when a request field is invalid.",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "401": {
-            "description": "Returned when the token bearer cannot be authenticated.",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "403": {
-            "description": "Returned when the user does not have permission to access the resource.",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "404": {
-            "description": "Returned when the resource does not exist.",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "500": {
-            "description": "Server error",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Status"
-                }
-              }
-            }
-          }
-        },
-        "deprecated": true,
-        "tags": [
-          "OpenID Connect Configuration"
-        ],
-        "x-badges": [
-          {
-            "color": "red",
-            "label": "LIMITED ACCESS"
-          }
-        ],
-        "x-codeSamples": [
-          {
-            "lang": "Shell + Curl",
-            "source": "curl --request GET \\\n  --url https://cockroachlabs.cloud/api/v1/api_oidc/{id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
-          }
-        ]
-      },
-      "put": {
-        "operationId": "CockroachCloud_UpdateApiOidcConfig",
-        "summary": "Update an API OIDC configuration (Deprecated)",
-        "description": "This endpoint has been deprecated in favor of /jwt-issuers\n\nCan be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "description": "api_oidc_config contains information about an OIDC provider that can generate JWT tokens\nthat can be used for authentication with the Cockroach Cloud API.",
-                "type": "object",
-                "properties": {
-                  "audience": {
-                    "type": "string"
-                  },
-                  "claim": {
-                    "type": "string"
-                  },
-                  "identity_map": {
-                    "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/ApiOidcIdentityMapEntry"
-                    }
-                  },
-                  "issuer": {
-                    "type": "string"
-                  },
-                  "jwks": {
-                    "type": "string"
-                  }
-                },
-                "example": {
-                  "audience": "542c6390-bf38-4912-856b-8f31480e978b",
-                  "claim": "sub",
-                  "id": "1234abcd-1234-1234-abcd-12345678abcd",
-                  "identity_map": [
-                    {
-                      "cc_identity": "\\1",
-                      "is_regex": true,
-                      "token_identity": "sso_(.*)"
-                    },
-                    {
-                      "cc_identity": "\\1",
-                      "is_regex": true,
-                      "token_identity": "gcp_(.*)"
-                    }
-                  ],
-                  "issuer": "theissuer",
-                  "jwks": "{\"keys\":[{\"e\":\"AQAB\",\"use\":\"sig\",\"kty\":\"RSA\",\"alg\":\"RS256\",\"n\":\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\",\"kid\":\"9341dedeee2d1869b657fa930300082fe26b3d92\"}]}"
-                },
-                "required": [
-                  "issuer",
-                  "audience",
-                  "jwks"
-                ],
-                "title": "ApiOidcConfig"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ApiOidcConfig"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Returned when a request field is invalid.",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "401": {
-            "description": "Returned when the token bearer cannot be authenticated.",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "403": {
-            "description": "Returned when the user does not have permission to access the resource.",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "404": {
-            "description": "Returned when the resource does not exist.",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "500": {
-            "description": "Server error",
-            "content": {
-              "application/json": {
-                "schema": {}
-              }
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Status"
-                }
-              }
-            }
-          }
-        },
-        "deprecated": true,
-        "tags": [
-          "OpenID Connect Configuration"
-        ],
-        "x-badges": [
-          {
-            "color": "red",
-            "label": "LIMITED ACCESS"
-          }
-        ],
-        "x-codeSamples": [
-          {
-            "lang": "Shell + Curl",
-            "source": "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/v1/api_oidc/{id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"audience\":\"542c6390-bf38-4912-856b-8f31480e978b\",\"claim\":\"sub\",\"id\":\"1234abcd-1234-1234-abcd-12345678abcd\",\"identity_map\":[{\"cc_identity\":\"\\\\1\",\"is_regex\":true,\"token_identity\":\"sso_(.*)\"},{\"cc_identity\":\"\\\\1\",\"is_regex\":true,\"token_identity\":\"gcp_(.*)\"}],\"issuer\":\"theissuer\",\"jwks\":\"{\\\"keys\\\":[{\\\"e\\\":\\\"AQAB\\\",\\\"use\\\":\\\"sig\\\",\\\"kty\\\":\\\"RSA\\\",\\\"alg\\\":\\\"RS256\\\",\\\"n\\\":\\\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\\\",\\\"kid\\\":\\\"9341dedeee2d1869b657fa930300082fe26b3d92\\\"}]}\"}'"
-          }
-        ]
-      }
-    },
     "/api/v1/auditlogevents": {
       "get": {
         "operationId": "CockroachCloud_ListAuditLogs",
@@ -6315,12 +5763,6 @@
         "tags": [
           "Maintenance Windows"
         ],
-        "x-badges": [
-          {
-            "color": "blue",
-            "label": "PREVIEW"
-          }
-        ],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -6407,12 +5849,6 @@
         "tags": [
           "Maintenance Windows"
         ],
-        "x-badges": [
-          {
-            "color": "blue",
-            "label": "PREVIEW"
-          }
-        ],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -6423,7 +5859,7 @@
       "put": {
         "operationId": "CockroachCloud_SetMaintenanceWindow",
         "summary": "Set the maintenance window for a cluster",
-        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Maintenance windows are supported for ADVANCED clusters.\n\nCan be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -6508,12 +5944,6 @@
         },
         "tags": [
           "Maintenance Windows"
-        ],
-        "x-badges": [
-          {
-            "color": "blue",
-            "label": "PREVIEW"
-          }
         ],
         "x-codeSamples": [
           {
@@ -12111,6 +11541,299 @@
         ]
       }
     },
+    "/api/v1/replication-streams": {
+      "post": {
+        "operationId": "CockroachCloud_CreateReplicationStream",
+        "summary": "Create a replication stream",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateReplicationStreamRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReplicationStream"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Physical Cluster Replication"
+        ],
+        "x-badges": [
+          {
+            "color": "blue",
+            "label": "PREVIEW"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/replication-streams \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"source_cluster_id\":\"string\",\"target_cluster_id\":\"string\"}'"
+          }
+        ]
+      }
+    },
+    "/api/v1/replication-streams/{id}": {
+      "get": {
+        "operationId": "CockroachCloud_GetReplicationStream",
+        "summary": "Get a replication stream",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n- CLUSTER_DEVELOPER\n",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id is the ID of the replication stream to get.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReplicationStream"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Physical Cluster Replication"
+        ],
+        "x-badges": [
+          {
+            "color": "blue",
+            "label": "PREVIEW"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request GET \\\n  --url https://cockroachlabs.cloud/api/v1/replication-streams/{id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+          }
+        ]
+      },
+      "patch": {
+        "operationId": "CockroachCloud_UpdateReplicationStream",
+        "summary": "Update a replication stream",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id is the ID of the replication stream to update.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "spec contains the information that is being updated for the given\nreplication stream.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateReplicationStreamSpec"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReplicationStream"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Physical Cluster Replication"
+        ],
+        "x-badges": [
+          {
+            "color": "blue",
+            "label": "PREVIEW"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request PATCH \\\n  --url https://cockroachlabs.cloud/api/v1/replication-streams/{id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"failover_at\":\"2019-08-24T14:15:22Z\",\"status\":\"STARTING\"}'"
+          }
+        ]
+      }
+    },
     "/api/v1/roles": {
       "get": {
         "operationId": "CockroachCloud_ListRoleGrants",
@@ -13465,73 +13188,6 @@
           "created_at"
         ]
       },
-      "ApiOidcConfig": {
-        "description": "api_oidc_config contains information about an OIDC provider that can generate JWT tokens\nthat can be used for authentication with the Cockroach Cloud API.",
-        "type": "object",
-        "properties": {
-          "audience": {
-            "type": "string"
-          },
-          "claim": {
-            "type": "string"
-          },
-          "id": {
-            "type": "string"
-          },
-          "identity_map": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ApiOidcIdentityMapEntry"
-            }
-          },
-          "issuer": {
-            "type": "string"
-          },
-          "jwks": {
-            "type": "string"
-          }
-        },
-        "example": {
-          "audience": "542c6390-bf38-4912-856b-8f31480e978b",
-          "claim": "sub",
-          "id": "1234abcd-1234-1234-abcd-12345678abcd",
-          "identity_map": [
-            {
-              "cc_identity": "\\1",
-              "is_regex": true,
-              "token_identity": "sso_(.*)"
-            },
-            {
-              "cc_identity": "\\1",
-              "is_regex": true,
-              "token_identity": "gcp_(.*)"
-            }
-          ],
-          "issuer": "theissuer",
-          "jwks": "{\"keys\":[{\"e\":\"AQAB\",\"use\":\"sig\",\"kty\":\"RSA\",\"alg\":\"RS256\",\"n\":\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\",\"kid\":\"9341dedeee2d1869b657fa930300082fe26b3d92\"}]}"
-        },
-        "required": [
-          "id",
-          "issuer",
-          "audience",
-          "jwks"
-        ],
-        "title": "ApiOidcConfig"
-      },
-      "ApiOidcIdentityMapEntry": {
-        "type": "object",
-        "properties": {
-          "cc_identity": {
-            "type": "string"
-          },
-          "is_regex": {
-            "type": "boolean"
-          },
-          "token_identity": {
-            "type": "string"
-          }
-        }
-      },
       "AuditLogAction": {
         "type": "string",
         "enum": [
@@ -14322,53 +13978,6 @@
           "secret"
         ]
       },
-      "CreateApiOidcConfigRequest": {
-        "type": "object",
-        "properties": {
-          "audience": {
-            "type": "string"
-          },
-          "claim": {
-            "type": "string"
-          },
-          "identity_map": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ApiOidcIdentityMapEntry"
-            }
-          },
-          "issuer": {
-            "type": "string"
-          },
-          "jwks": {
-            "type": "string"
-          }
-        },
-        "example": {
-          "audience": "542c6390-bf38-4912-856b-8f31480e978b",
-          "claim": "sub",
-          "identity_map": [
-            {
-              "cc_identity": "\\1",
-              "is_regex": true,
-              "token_identity": "sso_(.*)"
-            },
-            {
-              "cc_identity": "\\1",
-              "is_regex": true,
-              "token_identity": "gcp_(.*)"
-            }
-          ],
-          "issuer": "theissuer",
-          "jwks": "{\"keys\":[{\"e\":\"AQAB\",\"use\":\"sig\",\"kty\":\"RSA\",\"alg\":\"RS256\",\"n\":\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\",\"kid\":\"9341dedeee2d1869b657fa930300082fe26b3d92\"}]}"
-        },
-        "required": [
-          "issuer",
-          "audience",
-          "jwks"
-        ],
-        "title": "CreateApiOidcConfigRequest"
-      },
       "CreateClusterRequest": {
         "type": "object",
         "properties": {
@@ -14479,6 +14088,23 @@
           "displayName"
         ],
         "title": "CreateGroupRequest"
+      },
+      "CreateReplicationStreamRequest": {
+        "type": "object",
+        "properties": {
+          "source_cluster_id": {
+            "description": "source_cluster_id is the ID of the cluster that is being\nreplicated.",
+            "type": "string"
+          },
+          "target_cluster_id": {
+            "description": "target_cluster_id is the ID of the cluster that data is being replicated to.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "source_cluster_id",
+          "target_cluster_id"
+        ]
       },
       "CreateServiceAccountRequest": {
         "type": "object",
@@ -14675,6 +14301,10 @@
           },
           "restrict_egress_traffic": {
             "description": "Preview: restrict_egress_traffic if set, results in an egress traffic policy of\ndefault-deny at creation time.",
+            "type": "boolean"
+          },
+          "support_physical_cluster_replication": {
+            "description": "Preview: support_physical_cluster_replication specifies whether a cluster\nshould be started using an architecture that supports physical\ncluster replication.",
             "type": "boolean"
           }
         },
@@ -15478,21 +15108,6 @@
           "api_keys"
         ]
       },
-      "ListApiOidcConfigResponse": {
-        "type": "object",
-        "properties": {
-          "api_oidc_configs": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ApiOidcConfig"
-            }
-          },
-          "pagination": {
-            "$ref": "#/components/schemas/KeysetPaginationResponse"
-          }
-        },
-        "title": "ListApiOidcConfigResponse"
-      },
       "ListAuditLogsResponse": {
         "type": "object",
         "properties": {
@@ -15856,7 +15471,7 @@
         ]
       },
       "MaintenanceWindow": {
-        "description": "MaintenanceWindowSpec specifies a weekly recurring maintenance window for a\ncluster.",
+        "description": "MaintenanceWindowSpec specifies a weekly recurring maintenance window for an\nADVANCED cluster.",
         "type": "object",
         "properties": {
           "offset_duration": {
@@ -16283,6 +15898,83 @@
         },
         "required": [
           "trusted_owner"
+        ]
+      },
+      "ReplicationStream": {
+        "type": "object",
+        "properties": {
+          "activation_at": {
+            "description": "activation_at is the crdb system time at which failover is\nfinalized. This may differ from the time for which failover was\nrequested. This field will be present when a replication stream is\nin the COMPLETED state.",
+            "type": "string",
+            "format": "date-time"
+          },
+          "created_at": {
+            "description": "created_at is the timestamp at which the replication stream was\ncreated.",
+            "type": "string",
+            "format": "date-time"
+          },
+          "failover_at": {
+            "description": "failover_at is the time for which failover is requested. If the user\nsets the status to 'FAILING_OVER' but omits failover_at, the failover\ntime will default to the latest consistent replicated time.\nOtherwise, the user can pick a time up to one hour in the future to\nschedule a failover, or a time in the past to restore the cluster to\na recent state. This field will be present if the user has\nrequested failover at a future time.",
+            "type": "string",
+            "format": "date-time"
+          },
+          "id": {
+            "description": "id is the UUID of the replication stream.",
+            "type": "string"
+          },
+          "replicated_time": {
+            "description": "replicated_time is the timestamp indicating the point up to which\ndata has been replicated. The window between replicated_time and\nthe actual time is known as replication lag. This field will be\npresent when a replication stream is in the REPLICATING state.",
+            "type": "string",
+            "format": "date-time"
+          },
+          "replication_lag_seconds": {
+            "description": "replication_lag_seconds is the replication lag (current time minus\nreplicated time) in seconds. This field will be present when a\nreplication stream is in the REPLICATING state.",
+            "type": "integer",
+            "format": "int32"
+          },
+          "retained_time": {
+            "description": "retained_time is the timestamp indicating the lower bound that the\nreplication stream can failover to. This field will be present\nwhen a replication stream is in the REPLICATING state.",
+            "type": "string",
+            "format": "date-time"
+          },
+          "source_cluster_id": {
+            "description": "source_cluster_id is the ID of the cluster that is being replicated.",
+            "type": "string"
+          },
+          "status": {
+            "$ref": "#/components/schemas/ReplicationStreamStatus.Type"
+          },
+          "target_cluster_id": {
+            "description": "target_cluster_id is the ID of the cluster that data is being\nreplicated to.",
+            "type": "string"
+          }
+        },
+        "example": {
+          "activation_at": "2006-01-03T15:04:15Z",
+          "created_at": "2006-01-02T15:04:05Z",
+          "failover_at": "2006-01-03T15:04:05Z",
+          "id": "00000000-0000-0000-0000-000000000001",
+          "replicated_time": "2006-01-03T15:04:04Z",
+          "retained_time": "2006-01-02T15:04:06Z",
+          "source_cluster_id": "00000000-0000-0000-0000-000000000002",
+          "status": "COMPLETED",
+          "target_cluster_id": "00000000-0000-0000-0000-000000000003"
+        },
+        "required": [
+          "id",
+          "status",
+          "source_cluster_id",
+          "target_cluster_id",
+          "created_at"
+        ]
+      },
+      "ReplicationStreamStatus.Type": {
+        "type": "string",
+        "enum": [
+          "STARTING",
+          "REPLICATING",
+          "FAILING_OVER",
+          "COMPLETED"
         ]
       },
       "Resource": {
@@ -16897,6 +16589,19 @@
         "example": {
           "name": "folder_name",
           "parent_id": "12345678-1234-1234-1234-123456789012"
+        }
+      },
+      "UpdateReplicationStreamSpec": {
+        "type": "object",
+        "properties": {
+          "failover_at": {
+            "description": "failover_at is the crdb system time at which failover occurs. If the user\nsets the status to 'FAILING_OVER' but omits failover_at, the failover time\nwill default to the latest consistent replicated time. Otherwise, the user\ncan pick a time up to one hour in the future to schedule a failover, or a\ntime in the past to restore the cluster to a recent state. If the\ntime is in the past, the API will make a best-effort attempt to\nvalidate that the time is not earlier than the retained time. In\nthis case, if the retained time is updated in between validation\nand failover execution and the failover time becomes invalid, the\nstream will failover to the retained time.",
+            "type": "string",
+            "format": "date-time"
+          },
+          "status": {
+            "$ref": "#/components/schemas/ReplicationStreamStatus.Type"
+          }
         }
       },
       "UpdateServiceAccountSpecification": {

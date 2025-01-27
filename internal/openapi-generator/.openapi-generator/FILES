@@ -15,9 +15,6 @@ docs/AllowlistEntry.md
 docs/AllowlistEntry1.md
 docs/Any.md
 docs/ApiKey.md
-docs/ApiOidcConfig.md
-docs/ApiOidcConfig1.md
-docs/ApiOidcIdentityMapEntry.md
 docs/AuditLogAction.md
 docs/AuditLogEntry.md
 docs/AuditLogMetadata.md
@@ -59,12 +56,12 @@ docs/CockroachCloudSetRolesForUserRequest.md
 docs/ConnectionStringParameters.md
 docs/CreateApiKeyRequest.md
 docs/CreateApiKeyResponse.md
-docs/CreateApiOidcConfigRequest.md
 docs/CreateClusterRequest.md
 docs/CreateClusterSpecification.md
 docs/CreateDatabaseRequest.md
 docs/CreateFolderRequest.md
 docs/CreateGroupRequest.md
+docs/CreateReplicationStreamRequest.md
 docs/CreateSQLUserRequest.md
 docs/CreateServiceAccountRequest.md
 docs/CreateUserRequest.md
@@ -121,7 +118,6 @@ docs/KeysetPaginationResponse.md
 docs/LineItem.md
 docs/ListAllowlistEntriesResponse.md
 docs/ListApiKeysResponse.md
-docs/ListApiOidcConfigResponse.md
 docs/ListAuditLogsResponse.md
 docs/ListAvailableRegionsResponse.md
 docs/ListClusterNodesResponse.md
@@ -150,13 +146,13 @@ docs/MetricExportStatusType.md
 docs/NetworkVisibilityType.md
 docs/Node.md
 docs/NodeStatusType.md
-docs/OpenIDConnectConfigurationApi.md
 docs/OperatingSystemType.md
 docs/Organization.md
 docs/OrganizationUserRoleType.md
 docs/OrganizationsApi.md
 docs/PathSegment.md
 docs/PersonUserInfo.md
+docs/PhysicalClusterReplicationApi.md
 docs/PlanType.md
 docs/PrivateEndpointConnection.md
 docs/PrivateEndpointConnectionStatus.md
@@ -172,6 +168,8 @@ docs/QuantityUnitType.md
 docs/Region.md
 docs/ReleaseTypeType.md
 docs/RemovePrivateEndpointTrustedOwnerResponse.md
+docs/ReplicationStream.md
+docs/ReplicationStreamStatusType.md
 docs/Resource.md
 docs/ResourceTypeType.md
 docs/RoleManagementApi.md
@@ -213,6 +211,7 @@ docs/UpdateDatabaseRequest1.md
 docs/UpdateFolderSpecification.md
 docs/UpdateGroupRequest.md
 docs/UpdateJWTIssuerRequest.md
+docs/UpdateReplicationStreamSpec.md
 docs/UpdateSQLUserPasswordRequest.md
 docs/UpdateServiceAccountSpecification.md
 docs/UpdateUserRequest.md
@@ -231,9 +230,6 @@ model_allowlist_entry.go
 model_allowlist_entry_1.go
 model_any.go
 model_api_key.go
-model_api_oidc_config.go
-model_api_oidc_config_1.go
-model_api_oidc_identity_map_entry.go
 model_audit_log_action.go
 model_audit_log_entry.go
 model_audit_log_metadata.go
@@ -272,12 +268,12 @@ model_cockroach_cloud_set_roles_for_user_request.go
 model_connection_string_parameters.go
 model_create_api_key_request.go
 model_create_api_key_response.go
-model_create_api_oidc_config_request.go
 model_create_cluster_request.go
 model_create_cluster_specification.go
 model_create_database_request.go
 model_create_folder_request.go
 model_create_group_request.go
+model_create_replication_stream_request.go
 model_create_service_account_request.go
 model_create_sql_user_request.go
 model_create_user_request.go
@@ -328,7 +324,6 @@ model_keyset_pagination_response.go
 model_line_item.go
 model_list_allowlist_entries_response.go
 model_list_api_keys_response.go
-model_list_api_oidc_config_response.go
 model_list_audit_logs_response.go
 model_list_available_regions_response.go
 model_list_cluster_nodes_response.go
@@ -373,6 +368,8 @@ model_quantity_unit_type.go
 model_region.go
 model_release_type_type.go
 model_remove_private_endpoint_trusted_owner_response.go
+model_replication_stream.go
+model_replication_stream_status_type.go
 model_resource.go
 model_resource_type_type.go
 model_scim_authentication_scheme.go
@@ -410,6 +407,7 @@ model_update_database_request_1.go
 model_update_folder_specification.go
 model_update_group_request.go
 model_update_jwt_issuer_request.go
+model_update_replication_stream_spec.go
 model_update_service_account_specification.go
 model_update_sql_user_password_request.go
 model_update_user_request.go
