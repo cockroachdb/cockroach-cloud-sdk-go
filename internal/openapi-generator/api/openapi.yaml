@@ -8111,6 +8111,141 @@ paths:
             --url https://cockroachlabs.cloud/api/v1/organization \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
   /api/v1/replication-streams:
+    get:
+      description: |
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
+        - CLUSTER_DEVELOPER
+      operationId: CockroachCloud_ListReplicationStreams
+      parameters:
+      - description: |-
+          source_cluster_id, if set, will cause only replication streams
+          with this cluster as the source to be returned.
+        explode: true
+        in: query
+        name: source_cluster_id
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: |-
+          target_cluster_id, if set, will cause only replication streams
+          with this cluster as the target to be returned.
+        explode: true
+        in: query
+        name: target_cluster_id
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: |-
+          cluster_id, if set, will cause replication streams with this
+          cluster as the source or the target to be returned.
+        explode: true
+        in: query
+        name: cluster_id
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: |-
+          show_completed specifies whether or not replication streams in the
+          completed state are shown.
+        explode: true
+        in: query
+        name: show_completed
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - explode: true
+        in: query
+        name: pagination.page
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: pagination.limit
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: pagination.as_of_time
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: |2-
+           - ASC: Sort in ascending order. This is the default unless otherwise specified.
+           - DESC: Sort in descending order.
+        explode: true
+        in: query
+        name: pagination.sort_order
+        required: false
+        schema:
+          enum:
+          - ASC
+          - DESC
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReplicationStreamList'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: List replication streams
+      tags:
+      - Physical Cluster Replication
+      x-badges:
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request GET \
+            --url 'https://cockroachlabs.cloud/api/v1/replication-streams?source_cluster_id=SOME_STRING_VALUE&target_cluster_id=SOME_STRING_VALUE&cluster_id=SOME_STRING_VALUE&show_completed=SOME_BOOLEAN_VALUE&pagination.page=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.as_of_time=SOME_STRING_VALUE&pagination.sort_order=SOME_STRING_VALUE' \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     post:
       description: |
         Can be used by the following roles assigned at the organization, folder or cluster scope:
@@ -10603,12 +10738,6 @@ components:
           description: |-
             Preview: restrict_egress_traffic if set, results in an egress traffic policy of
             default-deny at creation time.
-          type: boolean
-        support_physical_cluster_replication:
-          description: |-
-            Preview: support_physical_cluster_replication specifies whether a cluster
-            should be started using an architecture that supports physical
-            cluster replication.
           type: boolean
       required:
       - hardware
@@ -13474,6 +13603,41 @@ components:
       - source_cluster_id
       - status
       - target_cluster_id
+      type: object
+    ReplicationStreamList:
+      example:
+        replication_streams:
+        - activation_at: 2006-01-03T15:04:15Z
+          created_at: 2006-01-02T15:04:05Z
+          failover_at: 2006-01-03T15:04:05Z
+          id: 00000000-0000-0000-0000-000000000001
+          replicated_time: 2006-01-03T15:04:04Z
+          retained_time: 2006-01-02T15:04:06Z
+          source_cluster_id: 00000000-0000-0000-0000-000000000002
+          status: COMPLETED
+          target_cluster_id: 00000000-0000-0000-0000-000000000003
+        - activation_at: 2006-01-03T15:04:15Z
+          created_at: 2006-01-02T15:04:05Z
+          failover_at: 2006-01-03T15:04:05Z
+          id: 00000000-0000-0000-0000-000000000001
+          replicated_time: 2006-01-03T15:04:04Z
+          retained_time: 2006-01-02T15:04:06Z
+          source_cluster_id: 00000000-0000-0000-0000-000000000002
+          status: COMPLETED
+          target_cluster_id: 00000000-0000-0000-0000-000000000003
+        pagination:
+          next_page: next_page
+          previous_page: previous_page
+      properties:
+        pagination:
+          $ref: '#/components/schemas/KeysetPaginationResponse'
+        replication_streams:
+          description: replication_streams is a list of ReplicationStreams.
+          items:
+            $ref: '#/components/schemas/ReplicationStream'
+          type: array
+      required:
+      - replication_streams
       type: object
     ReplicationStreamStatus.Type:
       enum:

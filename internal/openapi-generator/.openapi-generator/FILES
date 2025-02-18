@@ -169,6 +169,7 @@ docs/Region.md
 docs/ReleaseTypeType.md
 docs/RemovePrivateEndpointTrustedOwnerResponse.md
 docs/ReplicationStream.md
+docs/ReplicationStreamList.md
 docs/ReplicationStreamStatusType.md
 docs/Resource.md
 docs/ResourceTypeType.md
@@ -369,6 +370,7 @@ model_region.go
 model_release_type_type.go
 model_remove_private_endpoint_trusted_owner_response.go
 model_replication_stream.go
+model_replication_stream_list.go
 model_replication_stream_status_type.go
 model_resource.go
 model_resource_type_type.go
