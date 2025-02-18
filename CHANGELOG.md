@@ -1,3 +1,16 @@
+## 5.1.1
+
+BREAKING CHANGES:
+
+* The SupportPhysicalClusterReplication field has been removed from
+  cluster creation. We are not bumping the major version since this flag
+  was never moved out of preview.
+
+NEW FEATURES:
+
+* Added the list endpoint for PCR, which was previously accidentally
+  omitted.
+
 ## 5.1.0
 
 BREAKING CHANGES:
