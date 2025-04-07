@@ -21,8 +21,10 @@ package client
 // GetUsersRequest struct for GetUsersRequest.
 type GetUsersRequest struct {
 	Attributes         *string `json:"attributes,omitempty"`
+	Count              *int32  `json:"count,omitempty"`
 	ExcludedAttributes *string `json:"excludedAttributes,omitempty"`
 	Filter             *string `json:"filter,omitempty"`
+	StartIndex         *int32  `json:"startIndex,omitempty"`
 }
 
 // NewGetUsersRequest instantiates a new GetUsersRequest object.
@@ -46,6 +48,20 @@ func (o *GetUsersRequest) GetAttributes() string {
 // SetAttributes gets a reference to the given string and assigns it to the Attributes field.
 func (o *GetUsersRequest) SetAttributes(v string) {
 	o.Attributes = &v
+}
+
+// GetCount returns the Count field value if set, zero value otherwise.
+func (o *GetUsersRequest) GetCount() int32 {
+	if o == nil || o.Count == nil {
+		var ret int32
+		return ret
+	}
+	return *o.Count
+}
+
+// SetCount gets a reference to the given int32 and assigns it to the Count field.
+func (o *GetUsersRequest) SetCount(v int32) {
+	o.Count = &v
 }
 
 // GetExcludedAttributes returns the ExcludedAttributes field value if set, zero value otherwise.
@@ -74,4 +90,18 @@ func (o *GetUsersRequest) GetFilter() string {
 // SetFilter gets a reference to the given string and assigns it to the Filter field.
 func (o *GetUsersRequest) SetFilter(v string) {
 	o.Filter = &v
+}
+
+// GetStartIndex returns the StartIndex field value if set, zero value otherwise.
+func (o *GetUsersRequest) GetStartIndex() int32 {
+	if o == nil || o.StartIndex == nil {
+		var ret int32
+		return ret
+	}
+	return *o.StartIndex
+}
+
+// SetStartIndex gets a reference to the given int32 and assigns it to the StartIndex field.
+func (o *GetUsersRequest) SetStartIndex(v int32) {
+	o.StartIndex = &v
 }

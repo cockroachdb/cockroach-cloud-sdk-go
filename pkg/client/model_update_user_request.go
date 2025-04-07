@@ -20,7 +20,7 @@ package client
 
 // UpdateUserRequest struct for UpdateUserRequest.
 type UpdateUserRequest struct {
-	Active      bool         `json:"active"`
+	Active      *bool        `json:"active,omitempty"`
 	DisplayName *string      `json:"displayName,omitempty"`
 	Emails      *[]ScimEmail `json:"emails,omitempty"`
 	ExternalId  *string      `json:"externalId,omitempty"`
@@ -33,33 +33,23 @@ type UpdateUserRequest struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateUserRequest(active bool) *UpdateUserRequest {
-	p := UpdateUserRequest{}
-	p.Active = active
-	return &p
-}
-
-// NewUpdateUserRequestWithDefaults instantiates a new UpdateUserRequest object.
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewUpdateUserRequestWithDefaults() *UpdateUserRequest {
+func NewUpdateUserRequest() *UpdateUserRequest {
 	p := UpdateUserRequest{}
 	return &p
 }
 
-// GetActive returns the Active field value.
+// GetActive returns the Active field value if set, zero value otherwise.
 func (o *UpdateUserRequest) GetActive() bool {
-	if o == nil {
+	if o == nil || o.Active == nil {
 		var ret bool
 		return ret
 	}
-
-	return o.Active
+	return *o.Active
 }
 
-// SetActive sets field value.
+// SetActive gets a reference to the given bool and assigns it to the Active field.
 func (o *UpdateUserRequest) SetActive(v bool) {
-	o.Active = v
+	o.Active = &v
 }
 
 // GetDisplayName returns the DisplayName field value if set, zero value otherwise.

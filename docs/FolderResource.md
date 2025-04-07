@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Labels** | **map[string]string** | labels are key-value pairs used to organize and categorize resources. | 
 **Name** | **string** | name is the resource&#39;s name. | 
 **OrganizationId** | **string** | organization_id is the id of the organization this resource belongs to. | 
 **ParentId** | **string** | parent_id is the id of the resource&#39;s parent folder. \&quot;root\&quot; represents a root level resource. | 
@@ -15,7 +16,7 @@ Name | Type | Description | Notes
 
 ### NewFolderResource
 
-`func NewFolderResource(name string, organizationId string, parentId string, path []PathSegment, resourceId string, resourceType FolderResourceTypeType, ) *FolderResource`
+`func NewFolderResource(labels map[string]string, name string, organizationId string, parentId string, path []PathSegment, resourceId string, resourceType FolderResourceTypeType, ) *FolderResource`
 
 NewFolderResource instantiates a new FolderResource object.
 This constructor will assign default values to properties that have it defined,
@@ -29,6 +30,18 @@ will change when the set of required properties is changed.
 NewFolderResourceWithDefaults instantiates a new FolderResource object.
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set.
+
+### GetLabels
+
+`func (o *FolderResource) GetLabels() map[string]string`
+
+GetLabels returns the Labels field if non-nil, zero value otherwise.
+
+### SetLabels
+
+`func (o *FolderResource) SetLabels(v map[string]string)`
+
+SetLabels sets Labels field to given value.
 
 ### GetName
 

@@ -604,7 +604,7 @@
                   ],
                   "schemas": ["urn:ietf:params:scim:schemas:core:2.0:Group"]
                 },
-                "required": ["displayName"],
+                "required": ["schemas", "displayName"],
                 "title": "UpdateGroupRequest"
               }
             }
@@ -1376,6 +1376,22 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "count",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "startIndex",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
           }
         ],
         "responses": {
@@ -1444,7 +1460,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request GET \\\n  --url 'https://cockroachlabs.cloud/api/scim/v2/Users?filter=SOME_STRING_VALUE&attributes=SOME_STRING_VALUE&excludedAttributes=SOME_STRING_VALUE' \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+            "source": "curl --request GET \\\n  --url 'https://cockroachlabs.cloud/api/scim/v2/Users?filter=SOME_STRING_VALUE&attributes=SOME_STRING_VALUE&excludedAttributes=SOME_STRING_VALUE&count=SOME_INTEGER_VALUE&startIndex=SOME_INTEGER_VALUE' \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
           }
         ]
       },
@@ -1468,7 +1484,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ScimUser"
+                  "$ref": "#/components/schemas/CreateUserResponse"
                 }
               }
             }
@@ -1614,7 +1630,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/scim/v2/Users/.search \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"attributes\":\"string\",\"excludedAttributes\":\"string\",\"filter\":\"string\"}'"
+            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/scim/v2/Users/.search \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"attributes\":\"string\",\"count\":0,\"excludedAttributes\":\"string\",\"filter\":\"string\",\"startIndex\":0}'"
           }
         ]
       },
@@ -1699,7 +1715,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/scim/v2/Users/.search \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"attributes\":\"string\",\"excludedAttributes\":\"string\",\"filter\":\"string\"}'"
+            "source": "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/scim/v2/Users/.search \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"attributes\":\"string\",\"count\":0,\"excludedAttributes\":\"string\",\"filter\":\"string\",\"startIndex\":0}'"
           }
         ]
       }
@@ -1887,6 +1903,142 @@
           }
         ]
       },
+      "patch": {
+        "operationId": "CockroachCloud_PatchUser",
+        "summary": "Patch a user by supplying partial updates",
+        "description": "Can be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Operations": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/ScimOperations"
+                    }
+                  },
+                  "schemas": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "Operations": [
+                    {
+                      "op": "replace",
+                      "path": "userName",
+                      "value": "newUserName"
+                    },
+                    {
+                      "op": "replace",
+                      "value": {
+                        "displayName": "New Name",
+                        "emails": [
+                          {
+                            "primary": true,
+                            "value": "new@example.com"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "op": "remove",
+                      "path": "externalId"
+                    }
+                  ],
+                  "schemas": ["urn:ietf:params:scim:api:messages:2.0:PatchOp"]
+                },
+                "required": ["schemas", "Operations"],
+                "title": "PatchUserRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScimUser"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["SCIM"],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request PATCH \\\n  --url https://cockroachlabs.cloud/api/scim/v2/Users/{id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"Operations\":[{\"op\":\"replace\",\"path\":\"userName\",\"value\":\"newUserName\"},{\"op\":\"replace\",\"value\":{\"displayName\":\"New Name\",\"emails\":[{\"primary\":true,\"value\":\"new@example.com\"}]}},{\"op\":\"remove\",\"path\":\"externalId\"}],\"schemas\":[\"urn:ietf:params:scim:api:messages:2.0:PatchOp\"]}'"
+          }
+        ]
+      },
       "put": {
         "operationId": "CockroachCloud_UpdateUser",
         "summary": "Update a user by supplying all values of the user object",
@@ -1952,7 +2104,6 @@
                   },
                   "schemas": ["urn:ietf:params:scim:schemas:core:2.0:User"]
                 },
-                "required": ["active"],
                 "title": "UpdateUserRequest"
               }
             }
@@ -5172,6 +5323,209 @@
           {
             "lang": "Shell + Curl",
             "source": "curl --request PATCH \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/databases/{name} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"name\":\"example_database_name\",\"new_name\":\"example_new_database_name\"}'"
+          }
+        ]
+      }
+    },
+    "/api/v1/clusters/{cluster_id}/disrupt": {
+      "get": {
+        "operationId": "CockroachCloud_GetClusterDisruptionInfo",
+        "summary": "Get disruption specifications for a cluster",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "parameters": [
+          {
+            "name": "cluster_id",
+            "in": "path",
+            "description": "cluster_id is the cluster we are requesting disruption information for.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClusterDisruptionInfo"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Cluster Disruption"],
+        "x-badges": [
+          {
+            "color": "red",
+            "label": "LIMITED ACCESS"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request GET \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/disrupt \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+          }
+        ]
+      },
+      "put": {
+        "operationId": "CockroachCloud_UpdateClusterDisruption",
+        "summary": "Update disruption specifications for a cluster",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "parameters": [
+          {
+            "name": "cluster_id",
+            "in": "path",
+            "description": "cluster_id specifies the cluster for this request.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "regional_disruptor_specifications": {
+                    "description": "regional_disruptor_specifications specify how regions are to be\ndisrupted. Any Cluster region that is not specified here will not be\ndisrupted. A cluster region that was previously disrupted but is not listed\nhere will be removed from disruption. To stop all disruptions, set this\nto an empty list or omit it from the request.",
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/RegionalDisruptorSpecification"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClusterDisruptionInfo"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Cluster Disruption"],
+        "x-badges": [
+          {
+            "color": "red",
+            "label": "LIMITED ACCESS"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/disrupt \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"regional_disruptor_specifications\":[{\"azs\":[\"string\"],\"is_whole_region\":true,\"pods\":[\"string\"],\"region_code\":\"string\"}]}'"
           }
         ]
       }
@@ -13410,6 +13764,13 @@
           "id": {
             "type": "string"
           },
+          "labels": {
+            "description": "labels are key-value pairs used to organize and categorize resources.",
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
           "name": {
             "type": "string"
           },
@@ -13464,6 +13825,10 @@
           "created_at": "2022-03-22T20:23:11.285067Z",
           "creator_id": "7cde0cd9-0d8a-4008-8f90-45092ce8afc1",
           "id": "35c4abb2-bb66-46d7-afed-25ebef5ed2aa",
+          "labels": {
+            "cost_center": "12345",
+            "env": "prod"
+          },
           "name": "example-cluster",
           "operation_status": "UNSPECIFIED",
           "plan": "STANDARD",
@@ -13493,7 +13858,8 @@
           "operation_status",
           "config",
           "regions",
-          "cidr_range"
+          "cidr_range",
+          "labels"
         ]
       },
       "ClusterConfig": {
@@ -13506,6 +13872,19 @@
             "$ref": "#/components/schemas/ServerlessClusterConfig"
           }
         }
+      },
+      "ClusterDisruptionInfo": {
+        "type": "object",
+        "properties": {
+          "regional_disruptor_specifications": {
+            "description": "regional_disruptor_specifications represents a region that is disrupted.\nIf there are no entries, it means the cluster is not disrupted.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RegionalDisruptorSpecification"
+            }
+          }
+        },
+        "required": ["regional_disruptor_specifications"]
       },
       "ClusterMajorVersion": {
         "description": "For more information about CockroachDB cluster version support, see https://www.cockroachlabs.com/docs/releases/release-support-policy.html",
@@ -13704,6 +14083,13 @@
           "delete_protection": {
             "$ref": "#/components/schemas/DeleteProtectionState.Type"
           },
+          "labels": {
+            "description": "labels are key-value pairs used to organize and categorize resources.",
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
           "parent_id": {
             "description": "Preview: The parent ID is a folder ID. An empty string or \"root\"\nwill create a cluster at the root level.",
             "type": "string"
@@ -13719,6 +14105,13 @@
       "CreateFolderRequest": {
         "type": "object",
         "properties": {
+          "labels": {
+            "description": "labels are key-value pairs used to organize and categorize resources.",
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
           "name": {
             "type": "string"
           },
@@ -13761,7 +14154,7 @@
           "members": [],
           "schemas": ["urn:ietf:params:scim:schemas:core:2.0:Group"]
         },
-        "required": ["displayName"],
+        "required": ["schemas", "displayName"],
         "title": "CreateGroupRequest"
       },
       "CreateReplicationStreamRequest": {
@@ -13860,8 +14253,55 @@
           "schemas": ["urn:ietf:params:scim:schemas:core:2.0:User"],
           "userName": "croach@example.com"
         },
-        "required": ["name", "displayName", "emails", "active"],
+        "required": ["schemas", "emails"],
         "title": "CreateUserRequest"
+      },
+      "CreateUserResponse": {
+        "description": "Response when creating a new user via SCIM 2.0",
+        "type": "object",
+        "properties": {
+          "active": {
+            "type": "boolean"
+          },
+          "displayName": {
+            "type": "string"
+          },
+          "emails": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ScimEmail"
+            }
+          },
+          "externalId": {
+            "type": "string"
+          },
+          "groups": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ScimResource"
+            }
+          },
+          "id": {
+            "type": "string"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/ScimMetadata"
+          },
+          "name": {
+            "$ref": "#/components/schemas/ScimName"
+          },
+          "schemas": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "userName": {
+            "type": "string"
+          }
+        },
+        "required": ["schemas", "id"],
+        "title": "CreateUserResponse"
       },
       "Currency.Type": {
         "type": "string",
@@ -14184,6 +14624,13 @@
         "description": "FolderResource describes a resource, and includes info about its lineage (parent/ancestors).",
         "type": "object",
         "properties": {
+          "labels": {
+            "description": "labels are key-value pairs used to organize and categorize resources.",
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
           "name": {
             "description": "name is the resource's name.",
             "type": "string"
@@ -14217,7 +14664,8 @@
           "parent_id",
           "organization_id",
           "name",
-          "path"
+          "path",
+          "labels"
         ],
         "title": "FolderResource"
       },
@@ -14319,6 +14767,7 @@
             "format": "int32"
           }
         },
+        "required": ["schemas", "totalResults"],
         "title": "GetGroupsResponse"
       },
       "GetPersonUsersByEmailResponse": {
@@ -14367,6 +14816,7 @@
             "format": "int32"
           }
         },
+        "required": ["schemas", "totalResults"],
         "title": "GetResourceTypesResponse"
       },
       "GetSchemasResponse": {
@@ -14397,6 +14847,7 @@
             "format": "int32"
           }
         },
+        "required": ["schemas", "totalResults"],
         "title": "GetSchemasResponse"
       },
       "GetServiceProviderConfigResponse": {
@@ -14433,6 +14884,15 @@
             "$ref": "#/components/schemas/ScimSortSupport"
           }
         },
+        "required": [
+          "schemas",
+          "bulk",
+          "filter",
+          "changePassword",
+          "sort",
+          "etag",
+          "authenticationSchemes"
+        ],
         "title": "GetServiceProviderConfigResponse"
       },
       "GetUsersRequest": {
@@ -14441,11 +14901,19 @@
           "attributes": {
             "type": "string"
           },
+          "count": {
+            "type": "integer",
+            "format": "int32"
+          },
           "excludedAttributes": {
             "type": "string"
           },
           "filter": {
             "type": "string"
+          },
+          "startIndex": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "title": "GetUsersRequest"
@@ -14459,17 +14927,26 @@
               "$ref": "#/components/schemas/ScimUser"
             }
           },
+          "itemsPerPage": {
+            "type": "integer",
+            "format": "int32"
+          },
           "schemas": {
             "type": "array",
             "items": {
               "type": "string"
             }
           },
+          "startIndex": {
+            "type": "integer",
+            "format": "int32"
+          },
           "totalResults": {
             "type": "integer",
             "format": "int32"
           }
         },
+        "required": ["schemas", "totalResults"],
         "title": "GetUsersResponse"
       },
       "Invoice": {
@@ -15401,6 +15878,35 @@
           "private_endpoint_dns"
         ]
       },
+      "RegionalDisruptorSpecification": {
+        "description": "RegionalDisruptorSpecification represents how a region is disrupted. To\nreduce ambiguity, a RegionalDisruptorSpecification should not represent a\nhealthy cluster - there should be at least some disrupted pods.",
+        "type": "object",
+        "properties": {
+          "azs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "title": "azs represents each availability zone that should be disrupted. The AZs for\na cluster can be found in the db-console under the Advanced Debug -\nLocalities section. The AZ should not include the cloud provider name\nprefix.  (i.e. us-east1-a)"
+          },
+          "is_whole_region": {
+            "description": "is_whole_region denotes whether the whole region should be disrupted.  If a\nspecific pod or az is passed, this value should be false.",
+            "type": "boolean"
+          },
+          "pods": {
+            "description": "pods represents each individual CRDB pod name that should be disrupted.\nPod names can be found using the\n[ListClusterNodes api](https://www.cockroachlabs.com/docs/api/cloud/v1#get-/api/v1/clusters/-cluster_id-/nodes).",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "region_code": {
+            "description": "region_code is the cloud provider specific region code of the region. (i.e\nus-east1 for gcp, us-east-1 for aws, eastus for azure). Region names for\neach node the cluster can be found using the\n[ListClusterNodes api](https://www.cockroachlabs.com/docs/api/cloud/v1#get-/api/v1/clusters/-cluster_id-/nodes).",
+            "type": "string"
+          }
+        },
+        "required": ["region_code", "is_whole_region"]
+      },
       "ReleaseType.Type": {
         "type": "string",
         "enum": ["REGULAR", "INNOVATION"]
@@ -15549,7 +16055,9 @@
           "type": {
             "type": "string"
           }
-        }
+        },
+        "required": ["name", "description", "type"],
+        "title": "ScimAuthenticationScheme"
       },
       "ScimBulkSupport": {
         "type": "object",
@@ -15565,7 +16073,9 @@
           "supported": {
             "type": "boolean"
           }
-        }
+        },
+        "required": ["supported", "maxOperations", "maxPayloadSize"],
+        "title": "ScimBulkSupport"
       },
       "ScimChangePasswordSupport": {
         "type": "object",
@@ -15573,7 +16083,9 @@
           "supported": {
             "type": "boolean"
           }
-        }
+        },
+        "required": ["supported"],
+        "title": "ScimChangePasswordSupport"
       },
       "ScimEmail": {
         "type": "object",
@@ -15591,7 +16103,7 @@
             "type": "string"
           }
         },
-        "required": ["value", "primary"]
+        "required": ["value"]
       },
       "ScimEtagSupport": {
         "type": "object",
@@ -15603,7 +16115,9 @@
           "supported": {
             "type": "boolean"
           }
-        }
+        },
+        "required": ["supported"],
+        "title": "ScimEtagSupport"
       },
       "ScimFilterSupport": {
         "type": "object",
@@ -15615,9 +16129,12 @@
           "supported": {
             "type": "boolean"
           }
-        }
+        },
+        "required": ["supported", "maxResults"],
+        "title": "ScimFilterSupport"
       },
       "ScimGroup": {
+        "description": "SCIM 2.0 Group Resource",
         "type": "object",
         "properties": {
           "displayName": {
@@ -15644,7 +16161,9 @@
               "type": "string"
             }
           }
-        }
+        },
+        "required": ["schemas", "id", "displayName"],
+        "title": "ScimGroup"
       },
       "ScimMetadata": {
         "type": "object",
@@ -15675,6 +16194,19 @@
           }
         },
         "title": "name"
+      },
+      "ScimOperations": {
+        "type": "object",
+        "properties": {
+          "op": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "value": {}
+        },
+        "required": ["op"]
       },
       "ScimResource": {
         "type": "object",
@@ -15721,7 +16253,9 @@
               "type": "string"
             }
           }
-        }
+        },
+        "required": ["name", "endpoint", "schema"],
+        "title": "ScimResourceType"
       },
       "ScimSchema": {
         "type": "object",
@@ -15744,7 +16278,9 @@
           "name": {
             "type": "string"
           }
-        }
+        },
+        "required": ["id"],
+        "title": "ScimSchema"
       },
       "ScimSchemaAttribute": {
         "type": "object",
@@ -15802,9 +16338,12 @@
           "supported": {
             "type": "boolean"
           }
-        }
+        },
+        "required": ["supported"],
+        "title": "ScimSortSupport"
       },
       "ScimUser": {
+        "description": "SCIM 2.0 User Resource",
         "type": "object",
         "properties": {
           "active": {
@@ -15846,7 +16385,9 @@
           "userName": {
             "type": "string"
           }
-        }
+        },
+        "required": ["schemas", "id"],
+        "title": "ScimUser"
       },
       "ServerlessClusterConfig": {
         "type": "object",
@@ -16053,6 +16594,13 @@
           "delete_protection": {
             "$ref": "#/components/schemas/DeleteProtectionState.Type"
           },
+          "labels": {
+            "description": "labels are key-value pairs used to organize and categorize resources.\nIf the labels field is included in the request: Any existing labels on the cluster\nthat are not included will be removed, and any new labels specified will be added.\nIf the labels field is omitted from the request entirely, all existing labels will\nremain unchanged.",
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
           "parent_id": {
             "description": "Preview: The parent ID is a folder ID. An empty string or \"root\"\nrepresents the root level.",
             "type": "string"
@@ -16085,6 +16633,13 @@
         "description": "Set `parent_id` to empty string '' or 'root' to move a folder to the root level.",
         "type": "object",
         "properties": {
+          "labels": {
+            "description": "labels are key-value pairs used to organize and categorize resources.\nIf the labels field is included in the request: Any existing labels on the folder\nthat are not included will be removed, and any new labels specified will be added.\nIf the labels field is omitted from the request entirely, all existing labels will\nremain unchanged.",
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
           "name": {
             "type": "string"
           },
@@ -16210,6 +16765,9 @@
     },
     {
       "name": "Clusters"
+    },
+    {
+      "name": "Cluster Disruption"
     },
     {
       "name": "SQL Users"

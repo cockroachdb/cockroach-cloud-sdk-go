@@ -18,6 +18,7 @@ tags:
 - name: SCIM
 - name: Organizations
 - name: Clusters
+- name: Cluster Disruption
 - name: SQL Users
 - name: SQL Privilege Grants
 - name: Databases
@@ -1010,6 +1011,22 @@ paths:
         schema:
           type: string
         style: form
+      - explode: true
+        in: query
+        name: count
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: startIndex
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
       responses:
         "200":
           content:
@@ -1056,7 +1073,7 @@ paths:
       - lang: Shell + Curl
         source: |-
           curl --request GET \
-            --url 'https://cockroachlabs.cloud/api/scim/v2/Users?filter=SOME_STRING_VALUE&attributes=SOME_STRING_VALUE&excludedAttributes=SOME_STRING_VALUE' \
+            --url 'https://cockroachlabs.cloud/api/scim/v2/Users?filter=SOME_STRING_VALUE&attributes=SOME_STRING_VALUE&excludedAttributes=SOME_STRING_VALUE&count=SOME_INTEGER_VALUE&startIndex=SOME_INTEGER_VALUE' \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     post:
       description: |
@@ -1074,7 +1091,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ScimUser'
+                $ref: '#/components/schemas/CreateUserResponse'
           description: A successful response.
         "400":
           content:
@@ -1180,7 +1197,7 @@ paths:
           curl --request POST \
             --url https://cockroachlabs.cloud/api/scim/v2/Users/.search \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
-            --json '{"attributes":"string","excludedAttributes":"string","filter":"string"}'
+            --json '{"attributes":"string","count":0,"excludedAttributes":"string","filter":"string","startIndex":0}'
     put:
       deprecated: true
       description: |
@@ -1241,7 +1258,7 @@ paths:
           curl --request PUT \
             --url https://cockroachlabs.cloud/api/scim/v2/Users/.search \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
-            --json '{"attributes":"string","excludedAttributes":"string","filter":"string"}'
+            --json '{"attributes":"string","count":0,"excludedAttributes":"string","filter":"string","startIndex":0}'
   /api/scim/v2/Users/{id}:
     delete:
       description: |
@@ -1379,6 +1396,74 @@ paths:
           curl --request GET \
             --url 'https://cockroachlabs.cloud/api/scim/v2/Users/{id}?attributes=SOME_STRING_VALUE&excludedAttributes=SOME_STRING_VALUE' \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+    patch:
+      description: |
+        Can be used by the following roles assigned at the organization scope:
+        - ORG_ADMIN
+      operationId: CockroachCloud_PatchUser
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchUserRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScimUser'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Patch a user by supplying partial updates
+      tags:
+      - SCIM
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request PATCH \
+            --url https://cockroachlabs.cloud/api/scim/v2/Users/{id} \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
+            --json '{"Operations":[{"op":"replace","path":"userName","value":"newUserName"},{"op":"replace","value":{"displayName":"New Name","emails":[{"primary":true,"value":"new@example.com"}]}},{"op":"remove","path":"externalId"}],"schemas":["urn:ietf:params:scim:api:messages:2.0:PatchOp"]}'
     put:
       description: |
         Can be used by the following roles assigned at the organization scope:
@@ -3787,6 +3872,147 @@ paths:
             --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/databases/{name} \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
             --json '{"name":"example_database_name","new_name":"example_new_database_name"}'
+  /api/v1/clusters/{cluster_id}/disrupt:
+    get:
+      description: |
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
+      operationId: CockroachCloud_GetClusterDisruptionInfo
+      parameters:
+      - description: cluster_id is the cluster we are requesting disruption information
+          for.
+        explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClusterDisruptionInfo'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Get disruption specifications for a cluster
+      tags:
+      - Cluster Disruption
+      x-badges:
+      - color: red
+        label: LIMITED ACCESS
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request GET \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/disrupt \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+    put:
+      description: |
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
+      operationId: CockroachCloud_UpdateClusterDisruption
+      parameters:
+      - description: cluster_id specifies the cluster for this request.
+        explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CockroachCloud_UpdateClusterDisruption_request'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClusterDisruptionInfo'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Update disruption specifications for a cluster
+      tags:
+      - Cluster Disruption
+      x-badges:
+      - color: red
+        label: LIMITED ACCESS
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request PUT \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/disrupt \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
+            --json '{"regional_disruptor_specifications":[{"azs":["string"],"is_whole_region":true,"pods":["string"],"region_code":"string"}]}'
   /api/v1/clusters/{cluster_id}/logexport:
     delete:
       description: |
@@ -10209,6 +10435,9 @@ components:
         created_at: 2022-03-22T20:23:11.285067Z
         creator_id: 7cde0cd9-0d8a-4008-8f90-45092ce8afc1
         id: 35c4abb2-bb66-46d7-afed-25ebef5ed2aa
+        labels:
+          cost_center: "12345"
+          env: prod
         name: example-cluster
         operation_status: UNSPECIFIED
         plan: STANDARD
@@ -10251,6 +10480,12 @@ components:
           $ref: '#/components/schemas/EgressTrafficPolicy.Type'
         id:
           type: string
+        labels:
+          additionalProperties:
+            type: string
+          description: labels are key-value pairs used to organize and categorize
+            resources.
+          type: object
         name:
           type: string
         network_visibility:
@@ -10285,6 +10520,7 @@ components:
       - config
       - creator_id
       - id
+      - labels
       - name
       - operation_status
       - plan
@@ -10298,6 +10534,36 @@ components:
           $ref: '#/components/schemas/DedicatedHardwareConfig'
         serverless:
           $ref: '#/components/schemas/ServerlessClusterConfig'
+      type: object
+    ClusterDisruptionInfo:
+      example:
+        regional_disruptor_specifications:
+        - is_whole_region: true
+          pods:
+          - pods
+          - pods
+          azs:
+          - azs
+          - azs
+          region_code: region_code
+        - is_whole_region: true
+          pods:
+          - pods
+          - pods
+          azs:
+          - azs
+          - azs
+          region_code: region_code
+      properties:
+        regional_disruptor_specifications:
+          description: |-
+            regional_disruptor_specifications represents a region that is disrupted.
+            If there are no entries, it means the cluster is not disrupted.
+          items:
+            $ref: '#/components/schemas/RegionalDisruptorSpecification'
+          type: array
+      required:
+      - regional_disruptor_specifications
       type: object
     ClusterMajorVersion:
       description: "For more information about CockroachDB cluster version support,\
@@ -10507,6 +10773,12 @@ components:
           $ref: '#/components/schemas/DedicatedClusterCreateSpecification'
         delete_protection:
           $ref: '#/components/schemas/DeleteProtectionState.Type'
+        labels:
+          additionalProperties:
+            type: string
+          description: labels are key-value pairs used to organize and categorize
+            resources.
+          type: object
         parent_id:
           description: |-
             Preview: The parent ID is a folder ID. An empty string or "root"
@@ -10522,6 +10794,12 @@ components:
         name: folder_name
         parent_id: 12345678-1234-1234-1234-123456789012
       properties:
+        labels:
+          additionalProperties:
+            type: string
+          description: labels are key-value pairs used to organize and categorize
+            resources.
+          type: object
         name:
           type: string
         parent_id:
@@ -10554,6 +10832,7 @@ components:
           type: array
       required:
       - displayName
+      - schemas
       title: CreateGroupRequest
       type: object
     CreateReplicationStreamRequest:
@@ -10634,11 +10913,78 @@ components:
         userName:
           type: string
       required:
-      - active
-      - displayName
       - emails
-      - name
+      - schemas
       title: CreateUserRequest
+      type: object
+    CreateUserResponse:
+      description: Response when creating a new user via SCIM 2.0
+      example:
+        emails:
+        - display: display
+          type: type
+          value: value
+          primary: true
+        - display: display
+          type: type
+          value: value
+          primary: true
+        displayName: displayName
+        meta:
+          created: created
+          location: location
+          lastModified: lastModified
+          resourceType: resourceType
+        schemas:
+        - schemas
+        - schemas
+        name:
+          familyName: familyName
+          givenName: givenName
+        active: true
+        externalId: externalId
+        groups:
+        - ref: ref
+          display: display
+          type: type
+          value: value
+        - ref: ref
+          display: display
+          type: type
+          value: value
+        id: id
+        userName: userName
+      properties:
+        active:
+          type: boolean
+        displayName:
+          type: string
+        emails:
+          items:
+            $ref: '#/components/schemas/ScimEmail'
+          type: array
+        externalId:
+          type: string
+        groups:
+          items:
+            $ref: '#/components/schemas/ScimResource'
+          type: array
+        id:
+          type: string
+        meta:
+          $ref: '#/components/schemas/ScimMetadata'
+        name:
+          $ref: '#/components/schemas/ScimName'
+        schemas:
+          items:
+            type: string
+          type: array
+        userName:
+          type: string
+      required:
+      - id
+      - schemas
+      title: CreateUserResponse
       type: object
     Currency.Type:
       enum:
@@ -11031,7 +11377,15 @@ components:
         name: name
         resource_type: null
         resource_id: resource_id
+        labels:
+          key: labels
       properties:
+        labels:
+          additionalProperties:
+            type: string
+          description: labels are key-value pairs used to organize and categorize
+            resources.
+          type: object
         name:
           description: name is the resource's name.
           type: string
@@ -11056,6 +11410,7 @@ components:
         resource_type:
           $ref: '#/components/schemas/FolderResourceType.Type'
       required:
+      - labels
       - name
       - organization_id
       - parent_id
@@ -11081,6 +11436,8 @@ components:
           name: name
           resource_type: null
           resource_id: resource_id
+          labels:
+            key: labels
         - path:
           - name: name
             id: id
@@ -11091,6 +11448,8 @@ components:
           name: name
           resource_type: null
           resource_id: resource_id
+          labels:
+            key: labels
       properties:
         pagination:
           $ref: '#/components/schemas/KeysetPaginationResponse'
@@ -11263,6 +11622,9 @@ components:
         totalResults:
           format: int32
           type: integer
+      required:
+      - schemas
+      - totalResults
       title: GetGroupsResponse
       type: object
     GetPersonUsersByEmailResponse:
@@ -11343,6 +11705,9 @@ components:
         totalResults:
           format: int32
           type: integer
+      required:
+      - schemas
+      - totalResults
       title: GetResourceTypesResponse
       type: object
     GetSchemasResponse:
@@ -11462,6 +11827,9 @@ components:
         totalResults:
           format: int32
           type: integer
+      required:
+      - schemas
+      - totalResults
       title: GetSchemasResponse
       type: object
     GetServiceProviderConfigResponse:
@@ -11522,25 +11890,43 @@ components:
           type: array
         sort:
           $ref: '#/components/schemas/ScimSortSupport'
+      required:
+      - authenticationSchemes
+      - bulk
+      - changePassword
+      - etag
+      - filter
+      - schemas
+      - sort
       title: GetServiceProviderConfigResponse
       type: object
     GetUsersRequest:
       example:
         filter: filter
+        startIndex: 6
+        count: 0
         attributes: attributes
         excludedAttributes: excludedAttributes
       properties:
         attributes:
           type: string
+        count:
+          format: int32
+          type: integer
         excludedAttributes:
           type: string
         filter:
           type: string
+        startIndex:
+          format: int32
+          type: integer
       title: GetUsersRequest
       type: object
     GetUsersResponse:
       example:
-        totalResults: 0
+        startIndex: 6
+        totalResults: 1
+        itemsPerPage: 0
         schemas:
         - schemas
         - schemas
@@ -11618,13 +12004,22 @@ components:
           items:
             $ref: '#/components/schemas/ScimUser'
           type: array
+        itemsPerPage:
+          format: int32
+          type: integer
         schemas:
           items:
             type: string
           type: array
+        startIndex:
+          format: int32
+          type: integer
         totalResults:
           format: int32
           type: integer
+      required:
+      - schemas
+      - totalResults
       title: GetUsersResponse
       type: object
     Invoice:
@@ -11665,6 +12060,9 @@ components:
             created_at: 2022-03-22T20:23:11.285067Z
             creator_id: 7cde0cd9-0d8a-4008-8f90-45092ce8afc1
             id: 35c4abb2-bb66-46d7-afed-25ebef5ed2aa
+            labels:
+              cost_center: "12345"
+              env: prod
             name: example-cluster
             operation_status: UNSPECIFIED
             plan: STANDARD
@@ -11712,6 +12110,9 @@ components:
             created_at: 2022-03-22T20:23:11.285067Z
             creator_id: 7cde0cd9-0d8a-4008-8f90-45092ce8afc1
             id: 35c4abb2-bb66-46d7-afed-25ebef5ed2aa
+            labels:
+              cost_center: "12345"
+              env: prod
             name: example-cluster
             operation_status: UNSPECIFIED
             plan: STANDARD
@@ -11757,6 +12158,8 @@ components:
           name: name
           resource_type: null
           resource_id: resource_id
+          labels:
+            key: labels
         - path:
           - name: name
             id: id
@@ -11767,6 +12170,8 @@ components:
           name: name
           resource_type: null
           resource_id: resource_id
+          labels:
+            key: labels
         invoice_id: invoice_id
         totals:
         - amount: 0.8008281904610115
@@ -11856,6 +12261,9 @@ components:
           created_at: 2022-03-22T20:23:11.285067Z
           creator_id: 7cde0cd9-0d8a-4008-8f90-45092ce8afc1
           id: 35c4abb2-bb66-46d7-afed-25ebef5ed2aa
+          labels:
+            cost_center: "12345"
+            env: prod
           name: example-cluster
           operation_status: UNSPECIFIED
           plan: STANDARD
@@ -12197,6 +12605,9 @@ components:
           created_at: 2022-03-22T20:23:11.285067Z
           creator_id: 7cde0cd9-0d8a-4008-8f90-45092ce8afc1
           id: 35c4abb2-bb66-46d7-afed-25ebef5ed2aa
+          labels:
+            cost_center: "12345"
+            env: prod
           name: example-cluster
           operation_status: UNSPECIFIED
           plan: STANDARD
@@ -12223,6 +12634,9 @@ components:
           created_at: 2022-03-22T20:23:11.285067Z
           creator_id: 7cde0cd9-0d8a-4008-8f90-45092ce8afc1
           id: 35c4abb2-bb66-46d7-afed-25ebef5ed2aa
+          labels:
+            cost_center: "12345"
+            env: prod
           name: example-cluster
           operation_status: UNSPECIFIED
           plan: STANDARD
@@ -12327,6 +12741,8 @@ components:
           name: name
           resource_type: null
           resource_id: resource_id
+          labels:
+            key: labels
         - path:
           - name: name
             id: id
@@ -12337,6 +12753,8 @@ components:
           name: name
           resource_type: null
           resource_id: resource_id
+          labels:
+            key: labels
         pagination:
           next_page: next_page
           previous_page: previous_page
@@ -12383,6 +12801,9 @@ components:
               created_at: 2022-03-22T20:23:11.285067Z
               creator_id: 7cde0cd9-0d8a-4008-8f90-45092ce8afc1
               id: 35c4abb2-bb66-46d7-afed-25ebef5ed2aa
+              labels:
+                cost_center: "12345"
+                env: prod
               name: example-cluster
               operation_status: UNSPECIFIED
               plan: STANDARD
@@ -12430,6 +12851,9 @@ components:
               created_at: 2022-03-22T20:23:11.285067Z
               creator_id: 7cde0cd9-0d8a-4008-8f90-45092ce8afc1
               id: 35c4abb2-bb66-46d7-afed-25ebef5ed2aa
+              labels:
+                cost_center: "12345"
+                env: prod
               name: example-cluster
               operation_status: UNSPECIFIED
               plan: STANDARD
@@ -12475,6 +12899,8 @@ components:
             name: name
             resource_type: null
             resource_id: resource_id
+            labels:
+              key: labels
           - path:
             - name: name
               id: id
@@ -12485,6 +12911,8 @@ components:
             name: name
             resource_type: null
             resource_id: resource_id
+            labels:
+              key: labels
           invoice_id: invoice_id
           totals:
           - amount: 0.8008281904610115
@@ -12521,6 +12949,9 @@ components:
               created_at: 2022-03-22T20:23:11.285067Z
               creator_id: 7cde0cd9-0d8a-4008-8f90-45092ce8afc1
               id: 35c4abb2-bb66-46d7-afed-25ebef5ed2aa
+              labels:
+                cost_center: "12345"
+                env: prod
               name: example-cluster
               operation_status: UNSPECIFIED
               plan: STANDARD
@@ -12568,6 +12999,9 @@ components:
               created_at: 2022-03-22T20:23:11.285067Z
               creator_id: 7cde0cd9-0d8a-4008-8f90-45092ce8afc1
               id: 35c4abb2-bb66-46d7-afed-25ebef5ed2aa
+              labels:
+                cost_center: "12345"
+                env: prod
               name: example-cluster
               operation_status: UNSPECIFIED
               plan: STANDARD
@@ -12613,6 +13047,8 @@ components:
             name: name
             resource_type: null
             resource_id: resource_id
+            labels:
+              key: labels
           - path:
             - name: name
               id: id
@@ -12623,6 +13059,8 @@ components:
             name: name
             resource_type: null
             resource_id: resource_id
+            labels:
+              key: labels
           invoice_id: invoice_id
           totals:
           - amount: 0.8008281904610115
@@ -13506,6 +13944,54 @@ components:
       - sql_dns
       - ui_dns
       type: object
+    RegionalDisruptorSpecification:
+      description: |-
+        RegionalDisruptorSpecification represents how a region is disrupted. To
+        reduce ambiguity, a RegionalDisruptorSpecification should not represent a
+        healthy cluster - there should be at least some disrupted pods.
+      example:
+        is_whole_region: true
+        pods:
+        - pods
+        - pods
+        azs:
+        - azs
+        - azs
+        region_code: region_code
+      properties:
+        azs:
+          items:
+            type: string
+          title: |-
+            azs represents each availability zone that should be disrupted. The AZs for
+            a cluster can be found in the db-console under the Advanced Debug -
+            Localities section. The AZ should not include the cloud provider name
+            prefix.  (i.e. us-east1-a)
+          type: array
+        is_whole_region:
+          description: |-
+            is_whole_region denotes whether the whole region should be disrupted.  If a
+            specific pod or az is passed, this value should be false.
+          type: boolean
+        pods:
+          description: |-
+            pods represents each individual CRDB pod name that should be disrupted.
+            Pod names can be found using the
+            [ListClusterNodes api](https://www.cockroachlabs.com/docs/api/cloud/v1#get-/api/v1/clusters/-cluster_id-/nodes).
+          items:
+            type: string
+          type: array
+        region_code:
+          description: |-
+            region_code is the cloud provider specific region code of the region. (i.e
+            us-east1 for gcp, us-east-1 for aws, eastus for azure). Region names for
+            each node the cluster can be found using the
+            [ListClusterNodes api](https://www.cockroachlabs.com/docs/api/cloud/v1#get-/api/v1/clusters/-cluster_id-/nodes).
+          type: string
+      required:
+      - is_whole_region
+      - region_code
+      type: object
     ReleaseType.Type:
       enum:
       - REGULAR
@@ -13698,6 +14184,11 @@ components:
           type: string
         type:
           type: string
+      required:
+      - description
+      - name
+      - type
+      title: ScimAuthenticationScheme
       type: object
     ScimBulkSupport:
       example:
@@ -13713,6 +14204,11 @@ components:
           type: integer
         supported:
           type: boolean
+      required:
+      - maxOperations
+      - maxPayloadSize
+      - supported
+      title: ScimBulkSupport
       type: object
     ScimChangePasswordSupport:
       example:
@@ -13720,6 +14216,9 @@ components:
       properties:
         supported:
           type: boolean
+      required:
+      - supported
+      title: ScimChangePasswordSupport
       type: object
     ScimEmail:
       example:
@@ -13737,7 +14236,6 @@ components:
         value:
           type: string
       required:
-      - primary
       - value
       type: object
     ScimEtagSupport:
@@ -13750,6 +14248,9 @@ components:
           type: integer
         supported:
           type: boolean
+      required:
+      - supported
+      title: ScimEtagSupport
       type: object
     ScimFilterSupport:
       example:
@@ -13761,8 +14262,13 @@ components:
           type: integer
         supported:
           type: boolean
+      required:
+      - maxResults
+      - supported
+      title: ScimFilterSupport
       type: object
     ScimGroup:
+      description: SCIM 2.0 Group Resource
       example:
         displayName: displayName
         meta:
@@ -13801,6 +14307,11 @@ components:
           items:
             type: string
           type: array
+      required:
+      - displayName
+      - id
+      - schemas
+      title: ScimGroup
       type: object
     ScimMetadata:
       example:
@@ -13829,6 +14340,16 @@ components:
         givenName:
           type: string
       title: name
+      type: object
+    ScimOperations:
+      properties:
+        op:
+          type: string
+        path:
+          type: string
+        value: {}
+      required:
+      - op
       type: object
     ScimResource:
       example:
@@ -13879,6 +14400,11 @@ components:
           items:
             type: string
           type: array
+      required:
+      - endpoint
+      - name
+      - schema
+      title: ScimResourceType
       type: object
     ScimSchema:
       example:
@@ -13940,6 +14466,9 @@ components:
           $ref: '#/components/schemas/ScimMetadata'
         name:
           type: string
+      required:
+      - id
+      title: ScimSchema
       type: object
     ScimSchemaAttribute:
       example:
@@ -13999,8 +14528,12 @@ components:
       properties:
         supported:
           type: boolean
+      required:
+      - supported
+      title: ScimSortSupport
       type: object
     ScimUser:
+      description: SCIM 2.0 User Resource
       example:
         emails:
         - display: display
@@ -14063,6 +14596,10 @@ components:
           type: array
         userName:
           type: string
+      required:
+      - id
+      - schemas
+      title: ScimUser
       type: object
     ServerlessClusterConfig:
       properties:
@@ -14258,6 +14795,16 @@ components:
           $ref: '#/components/schemas/DedicatedClusterUpdateSpecification'
         delete_protection:
           $ref: '#/components/schemas/DeleteProtectionState.Type'
+        labels:
+          additionalProperties:
+            type: string
+          description: |-
+            labels are key-value pairs used to organize and categorize resources.
+            If the labels field is included in the request: Any existing labels on the cluster
+            that are not included will be removed, and any new labels specified will be added.
+            If the labels field is omitted from the request entirely, all existing labels will
+            remain unchanged.
+          type: object
         parent_id:
           description: |-
             Preview: The parent ID is a folder ID. An empty string or "root"
@@ -14277,6 +14824,16 @@ components:
         name: folder_name
         parent_id: 12345678-1234-1234-1234-123456789012
       properties:
+        labels:
+          additionalProperties:
+            type: string
+          description: |-
+            labels are key-value pairs used to organize and categorize resources.
+            If the labels field is included in the request: Any existing labels on the folder
+            that are not included will be removed, and any new labels specified will be added.
+            If the labels field is omitted from the request entirely, all existing labels will
+            remain unchanged.
+          type: object
         name:
           type: string
         parent_id:
@@ -14420,6 +14977,7 @@ components:
           type: array
       required:
       - displayName
+      - schemas
       title: UpdateGroupRequest
       type: object
     GetGroupRequest:
@@ -14465,9 +15023,37 @@ components:
           type: array
         userName:
           type: string
-      required:
-      - active
       title: UpdateUserRequest
+      type: object
+    PatchUserRequest:
+      example:
+        Operations:
+        - op: replace
+          path: userName
+          value: newUserName
+        - op: replace
+          value:
+            displayName: New Name
+            emails:
+            - primary: true
+              value: new@example.com
+        - op: remove
+          path: externalId
+        schemas:
+        - urn:ietf:params:scim:api:messages:2.0:PatchOp
+      properties:
+        Operations:
+          items:
+            $ref: '#/components/schemas/ScimOperations'
+          type: array
+        schemas:
+          items:
+            type: string
+          type: array
+      required:
+      - Operations
+      - schemas
+      title: PatchUserRequest
       type: object
     GetUserRequest:
       example:
@@ -14559,6 +15145,19 @@ components:
       required:
       - new_name
       title: UpdateDatabaseRequest
+      type: object
+    CockroachCloud_UpdateClusterDisruption_request:
+      properties:
+        regional_disruptor_specifications:
+          description: |-
+            regional_disruptor_specifications specify how regions are to be
+            disrupted. Any Cluster region that is not specified here will not be
+            disrupted. A cluster region that was previously disrupted but is not listed
+            here will be removed from disruption. To stop all disruptions, set this
+            to an empty list or omit it from the request.
+          items:
+            $ref: '#/components/schemas/RegionalDisruptorSpecification'
+          type: array
       type: object
     EnableLogExportRequest:
       example:

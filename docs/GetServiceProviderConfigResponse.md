@@ -4,25 +4,33 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AuthenticationSchemes** | Pointer to [**[]ScimAuthenticationScheme**](ScimAuthenticationScheme.md) |  | [optional] 
-**Bulk** | Pointer to [**ScimBulkSupport**](ScimBulkSupport.md) |  | [optional] 
-**ChangePassword** | Pointer to [**ScimChangePasswordSupport**](ScimChangePasswordSupport.md) |  | [optional] 
-**Etag** | Pointer to [**ScimEtagSupport**](ScimEtagSupport.md) |  | [optional] 
-**Filter** | Pointer to [**ScimFilterSupport**](ScimFilterSupport.md) |  | [optional] 
+**AuthenticationSchemes** | [**[]ScimAuthenticationScheme**](ScimAuthenticationScheme.md) |  | 
+**Bulk** | [**ScimBulkSupport**](ScimBulkSupport.md) |  | 
+**ChangePassword** | [**ScimChangePasswordSupport**](ScimChangePasswordSupport.md) |  | 
+**Etag** | [**ScimEtagSupport**](ScimEtagSupport.md) |  | 
+**Filter** | [**ScimFilterSupport**](ScimFilterSupport.md) |  | 
 **Meta** | Pointer to [**ScimMetadata**](ScimMetadata.md) |  | [optional] 
-**Schemas** | Pointer to **[]string** |  | [optional] 
-**Sort** | Pointer to [**ScimSortSupport**](ScimSortSupport.md) |  | [optional] 
+**Schemas** | **[]string** |  | 
+**Sort** | [**ScimSortSupport**](ScimSortSupport.md) |  | 
 
 ## Methods
 
 ### NewGetServiceProviderConfigResponse
 
-`func NewGetServiceProviderConfigResponse() *GetServiceProviderConfigResponse`
+`func NewGetServiceProviderConfigResponse(authenticationSchemes []ScimAuthenticationScheme, bulk ScimBulkSupport, changePassword ScimChangePasswordSupport, etag ScimEtagSupport, filter ScimFilterSupport, schemas []string, sort ScimSortSupport, ) *GetServiceProviderConfigResponse`
 
 NewGetServiceProviderConfigResponse instantiates a new GetServiceProviderConfigResponse object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed.
+
+### NewGetServiceProviderConfigResponseWithDefaults
+
+`func NewGetServiceProviderConfigResponseWithDefaults() *GetServiceProviderConfigResponse`
+
+NewGetServiceProviderConfigResponseWithDefaults instantiates a new GetServiceProviderConfigResponse object.
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set.
 
 ### GetAuthenticationSchemes
 

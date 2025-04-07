@@ -21,15 +21,27 @@ package client
 // GetUsersResponse struct for GetUsersResponse.
 type GetUsersResponse struct {
 	Resources    *[]ScimUser `json:"Resources,omitempty"`
-	Schemas      *[]string   `json:"schemas,omitempty"`
-	TotalResults *int32      `json:"totalResults,omitempty"`
+	ItemsPerPage *int32      `json:"itemsPerPage,omitempty"`
+	Schemas      []string    `json:"schemas"`
+	StartIndex   *int32      `json:"startIndex,omitempty"`
+	TotalResults int32       `json:"totalResults"`
 }
 
 // NewGetUsersResponse instantiates a new GetUsersResponse object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetUsersResponse() *GetUsersResponse {
+func NewGetUsersResponse(schemas []string, totalResults int32) *GetUsersResponse {
+	p := GetUsersResponse{}
+	p.Schemas = schemas
+	p.TotalResults = totalResults
+	return &p
+}
+
+// NewGetUsersResponseWithDefaults instantiates a new GetUsersResponse object.
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetUsersResponseWithDefaults() *GetUsersResponse {
 	p := GetUsersResponse{}
 	return &p
 }
@@ -48,30 +60,60 @@ func (o *GetUsersResponse) SetResources(v []ScimUser) {
 	o.Resources = &v
 }
 
-// GetSchemas returns the Schemas field value if set, zero value otherwise.
-func (o *GetUsersResponse) GetSchemas() []string {
-	if o == nil || o.Schemas == nil {
-		var ret []string
-		return ret
-	}
-	return *o.Schemas
-}
-
-// SetSchemas gets a reference to the given []string and assigns it to the Schemas field.
-func (o *GetUsersResponse) SetSchemas(v []string) {
-	o.Schemas = &v
-}
-
-// GetTotalResults returns the TotalResults field value if set, zero value otherwise.
-func (o *GetUsersResponse) GetTotalResults() int32 {
-	if o == nil || o.TotalResults == nil {
+// GetItemsPerPage returns the ItemsPerPage field value if set, zero value otherwise.
+func (o *GetUsersResponse) GetItemsPerPage() int32 {
+	if o == nil || o.ItemsPerPage == nil {
 		var ret int32
 		return ret
 	}
-	return *o.TotalResults
+	return *o.ItemsPerPage
 }
 
-// SetTotalResults gets a reference to the given int32 and assigns it to the TotalResults field.
+// SetItemsPerPage gets a reference to the given int32 and assigns it to the ItemsPerPage field.
+func (o *GetUsersResponse) SetItemsPerPage(v int32) {
+	o.ItemsPerPage = &v
+}
+
+// GetSchemas returns the Schemas field value.
+func (o *GetUsersResponse) GetSchemas() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+
+	return o.Schemas
+}
+
+// SetSchemas sets field value.
+func (o *GetUsersResponse) SetSchemas(v []string) {
+	o.Schemas = v
+}
+
+// GetStartIndex returns the StartIndex field value if set, zero value otherwise.
+func (o *GetUsersResponse) GetStartIndex() int32 {
+	if o == nil || o.StartIndex == nil {
+		var ret int32
+		return ret
+	}
+	return *o.StartIndex
+}
+
+// SetStartIndex gets a reference to the given int32 and assigns it to the StartIndex field.
+func (o *GetUsersResponse) SetStartIndex(v int32) {
+	o.StartIndex = &v
+}
+
+// GetTotalResults returns the TotalResults field value.
+func (o *GetUsersResponse) GetTotalResults() int32 {
+	if o == nil {
+		var ret int32
+		return ret
+	}
+
+	return o.TotalResults
+}
+
+// SetTotalResults sets field value.
 func (o *GetUsersResponse) SetTotalResults(v int32) {
-	o.TotalResults = &v
+	o.TotalResults = v
 }

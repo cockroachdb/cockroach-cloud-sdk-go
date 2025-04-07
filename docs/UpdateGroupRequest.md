@@ -7,13 +7,13 @@ Name | Type | Description | Notes
 **DisplayName** | **string** |  | 
 **ExternalId** | Pointer to **string** |  | [optional] 
 **Members** | Pointer to [**[]ScimResource**](ScimResource.md) |  | [optional] 
-**Schemas** | Pointer to **[]string** |  | [optional] 
+**Schemas** | **[]string** |  | 
 
 ## Methods
 
 ### NewUpdateGroupRequest
 
-`func NewUpdateGroupRequest(displayName string, ) *UpdateGroupRequest`
+`func NewUpdateGroupRequest(displayName string, schemas []string, ) *UpdateGroupRequest`
 
 NewUpdateGroupRequest instantiates a new UpdateGroupRequest object.
 This constructor will assign default values to properties that have it defined,

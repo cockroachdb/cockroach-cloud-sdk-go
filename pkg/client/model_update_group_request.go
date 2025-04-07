@@ -23,16 +23,17 @@ type UpdateGroupRequest struct {
 	DisplayName string          `json:"displayName"`
 	ExternalId  *string         `json:"externalId,omitempty"`
 	Members     *[]ScimResource `json:"members,omitempty"`
-	Schemas     *[]string       `json:"schemas,omitempty"`
+	Schemas     []string        `json:"schemas"`
 }
 
 // NewUpdateGroupRequest instantiates a new UpdateGroupRequest object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateGroupRequest(displayName string) *UpdateGroupRequest {
+func NewUpdateGroupRequest(displayName string, schemas []string) *UpdateGroupRequest {
 	p := UpdateGroupRequest{}
 	p.DisplayName = displayName
+	p.Schemas = schemas
 	return &p
 }
 
@@ -87,16 +88,17 @@ func (o *UpdateGroupRequest) SetMembers(v []ScimResource) {
 	o.Members = &v
 }
 
-// GetSchemas returns the Schemas field value if set, zero value otherwise.
+// GetSchemas returns the Schemas field value.
 func (o *UpdateGroupRequest) GetSchemas() []string {
-	if o == nil || o.Schemas == nil {
+	if o == nil {
 		var ret []string
 		return ret
 	}
-	return *o.Schemas
+
+	return o.Schemas
 }
 
-// SetSchemas gets a reference to the given []string and assigns it to the Schemas field.
+// SetSchemas sets field value.
 func (o *UpdateGroupRequest) SetSchemas(v []string) {
-	o.Schemas = &v
+	o.Schemas = v
 }

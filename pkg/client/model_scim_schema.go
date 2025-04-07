@@ -22,7 +22,7 @@ package client
 type ScimSchema struct {
 	Attributes  *[]ScimSchemaAttribute `json:"attributes,omitempty"`
 	Description *string                `json:"description,omitempty"`
-	Id          *string                `json:"id,omitempty"`
+	Id          string                 `json:"id"`
 	Meta        *ScimMetadata          `json:"meta,omitempty"`
 	Name        *string                `json:"name,omitempty"`
 }
@@ -31,7 +31,16 @@ type ScimSchema struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewScimSchema() *ScimSchema {
+func NewScimSchema(id string) *ScimSchema {
+	p := ScimSchema{}
+	p.Id = id
+	return &p
+}
+
+// NewScimSchemaWithDefaults instantiates a new ScimSchema object.
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewScimSchemaWithDefaults() *ScimSchema {
 	p := ScimSchema{}
 	return &p
 }
@@ -64,18 +73,19 @@ func (o *ScimSchema) SetDescription(v string) {
 	o.Description = &v
 }
 
-// GetId returns the Id field value if set, zero value otherwise.
+// GetId returns the Id field value.
 func (o *ScimSchema) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Id
+
+	return o.Id
 }
 
-// SetId gets a reference to the given string and assigns it to the Id field.
+// SetId sets field value.
 func (o *ScimSchema) SetId(v string) {
-	o.Id = &v
+	o.Id = v
 }
 
 // GetMeta returns the Meta field value if set, zero value otherwise.

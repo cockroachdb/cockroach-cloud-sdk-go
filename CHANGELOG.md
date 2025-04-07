@@ -1,3 +1,25 @@
+## 6.0.0
+
+BREAKING CHANGES:
+
+* CreateUser endpoint returns CreateUserResponse instead of ScimUser. The fields within the response remained the same.
+
+* Marked certain fields in SCIM endpoints as required.
+
+NEW FEATURES:
+
+* A Labels field was added to the Cluster and FolderResource models.
+
+* CreateCluster, UpdateCluster, CreateFolder, UpdateFolder endpoints now accept an optional labels field to manage labels assigned to the specified resource.
+
+* Cluster Disruption API is now in available in LIMITED ACCESS.
+
+* Added PatchUser SCIM endpoint.
+
+* The following updates were made to the GetUsers endpoint:
+  * Added Count and StartIndex optional parameters to GetUsersRequest.
+  * Added ItemsPerPage and StartIndex fields to GetUsersResponse.
+
 ## 5.1.1
 
 BREAKING CHANGES:

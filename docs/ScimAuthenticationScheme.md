@@ -4,23 +4,31 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Description** | Pointer to **string** |  | [optional] 
+**Description** | **string** |  | 
 **DocumentationUri** | Pointer to **string** |  | [optional] 
-**Name** | Pointer to **string** |  | [optional] 
+**Name** | **string** |  | 
 **Primary** | Pointer to **bool** |  | [optional] 
 **SpecUri** | Pointer to **string** |  | [optional] 
-**Type** | Pointer to **string** |  | [optional] 
+**Type** | **string** |  | 
 
 ## Methods
 
 ### NewScimAuthenticationScheme
 
-`func NewScimAuthenticationScheme() *ScimAuthenticationScheme`
+`func NewScimAuthenticationScheme(description string, name string, type_ string, ) *ScimAuthenticationScheme`
 
 NewScimAuthenticationScheme instantiates a new ScimAuthenticationScheme object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed.
+
+### NewScimAuthenticationSchemeWithDefaults
+
+`func NewScimAuthenticationSchemeWithDefaults() *ScimAuthenticationScheme`
+
+NewScimAuthenticationSchemeWithDefaults instantiates a new ScimAuthenticationScheme object.
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set.
 
 ### GetDescription
 

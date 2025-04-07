@@ -20,28 +20,38 @@ package client
 
 // ScimChangePasswordSupport struct for ScimChangePasswordSupport.
 type ScimChangePasswordSupport struct {
-	Supported *bool `json:"supported,omitempty"`
+	Supported bool `json:"supported"`
 }
 
 // NewScimChangePasswordSupport instantiates a new ScimChangePasswordSupport object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewScimChangePasswordSupport() *ScimChangePasswordSupport {
+func NewScimChangePasswordSupport(supported bool) *ScimChangePasswordSupport {
+	p := ScimChangePasswordSupport{}
+	p.Supported = supported
+	return &p
+}
+
+// NewScimChangePasswordSupportWithDefaults instantiates a new ScimChangePasswordSupport object.
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewScimChangePasswordSupportWithDefaults() *ScimChangePasswordSupport {
 	p := ScimChangePasswordSupport{}
 	return &p
 }
 
-// GetSupported returns the Supported field value if set, zero value otherwise.
+// GetSupported returns the Supported field value.
 func (o *ScimChangePasswordSupport) GetSupported() bool {
-	if o == nil || o.Supported == nil {
+	if o == nil {
 		var ret bool
 		return ret
 	}
-	return *o.Supported
+
+	return o.Supported
 }
 
-// SetSupported gets a reference to the given bool and assigns it to the Supported field.
+// SetSupported sets field value.
 func (o *ScimChangePasswordSupport) SetSupported(v bool) {
-	o.Supported = &v
+	o.Supported = v
 }

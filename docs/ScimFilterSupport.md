@@ -4,19 +4,27 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**MaxResults** | Pointer to **int32** |  | [optional] 
-**Supported** | Pointer to **bool** |  | [optional] 
+**MaxResults** | **int32** |  | 
+**Supported** | **bool** |  | 
 
 ## Methods
 
 ### NewScimFilterSupport
 
-`func NewScimFilterSupport() *ScimFilterSupport`
+`func NewScimFilterSupport(maxResults int32, supported bool, ) *ScimFilterSupport`
 
 NewScimFilterSupport instantiates a new ScimFilterSupport object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed.
+
+### NewScimFilterSupportWithDefaults
+
+`func NewScimFilterSupportWithDefaults() *ScimFilterSupport`
+
+NewScimFilterSupportWithDefaults instantiates a new ScimFilterSupport object.
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set.
 
 ### GetMaxResults
 

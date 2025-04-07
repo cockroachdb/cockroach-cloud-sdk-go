@@ -6,20 +6,28 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Resources** | Pointer to [**[]ScimSchema**](ScimSchema.md) |  | [optional] 
 **ItemsPerPage** | Pointer to **int32** |  | [optional] 
-**Schemas** | Pointer to **[]string** |  | [optional] 
+**Schemas** | **[]string** |  | 
 **StartIndex** | Pointer to **int32** |  | [optional] 
-**TotalResults** | Pointer to **int32** |  | [optional] 
+**TotalResults** | **int32** |  | 
 
 ## Methods
 
 ### NewGetSchemasResponse
 
-`func NewGetSchemasResponse() *GetSchemasResponse`
+`func NewGetSchemasResponse(schemas []string, totalResults int32, ) *GetSchemasResponse`
 
 NewGetSchemasResponse instantiates a new GetSchemasResponse object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed.
+
+### NewGetSchemasResponseWithDefaults
+
+`func NewGetSchemasResponseWithDefaults() *GetSchemasResponse`
+
+NewGetSchemasResponseWithDefaults instantiates a new GetSchemasResponse object.
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set.
 
 ### GetResources
 

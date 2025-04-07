@@ -24,6 +24,8 @@ type UpdateClusterSpecification struct {
 	CockroachVersion *string                              `json:"cockroach_version,omitempty"`
 	Dedicated        *DedicatedClusterUpdateSpecification `json:"dedicated,omitempty"`
 	DeleteProtection *DeleteProtectionStateType           `json:"delete_protection,omitempty"`
+	// labels are key-value pairs used to organize and categorize resources. If the labels field is included in the request: Any existing labels on the cluster that are not included will be removed, and any new labels specified will be added. If the labels field is omitted from the request entirely, all existing labels will remain unchanged.
+	Labels *map[string]string `json:"labels,omitempty"`
 	// Preview: The parent ID is a folder ID. An empty string or \"root\" represents the root level.
 	ParentId      *string                               `json:"parent_id,omitempty"`
 	Plan          *PlanType                             `json:"plan,omitempty"`
@@ -80,6 +82,20 @@ func (o *UpdateClusterSpecification) GetDeleteProtection() DeleteProtectionState
 // SetDeleteProtection gets a reference to the given DeleteProtectionStateType and assigns it to the DeleteProtection field.
 func (o *UpdateClusterSpecification) SetDeleteProtection(v DeleteProtectionStateType) {
 	o.DeleteProtection = &v
+}
+
+// GetLabels returns the Labels field value if set, zero value otherwise.
+func (o *UpdateClusterSpecification) GetLabels() map[string]string {
+	if o == nil || o.Labels == nil {
+		var ret map[string]string
+		return ret
+	}
+	return *o.Labels
+}
+
+// SetLabels gets a reference to the given map[string]string and assigns it to the Labels field.
+func (o *UpdateClusterSpecification) SetLabels(v map[string]string) {
+	o.Labels = &v
 }
 
 // GetParentId returns the ParentId field value if set, zero value otherwise.

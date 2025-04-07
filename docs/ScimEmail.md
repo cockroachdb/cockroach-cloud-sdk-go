@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Display** | Pointer to **string** |  | [optional] 
-**Primary** | **bool** |  | 
+**Primary** | Pointer to **bool** |  | [optional] 
 **Type** | Pointer to **string** |  | [optional] 
 **Value** | **string** |  | 
 
@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 
 ### NewScimEmail
 
-`func NewScimEmail(primary bool, value string, ) *ScimEmail`
+`func NewScimEmail(value string, ) *ScimEmail`
 
 NewScimEmail instantiates a new ScimEmail object.
 This constructor will assign default values to properties that have it defined,

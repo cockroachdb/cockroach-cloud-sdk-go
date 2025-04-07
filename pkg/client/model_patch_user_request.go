@@ -18,40 +18,57 @@
 
 package client
 
-// ScimSortSupport struct for ScimSortSupport.
-type ScimSortSupport struct {
-	Supported bool `json:"supported"`
+// PatchUserRequest struct for PatchUserRequest.
+type PatchUserRequest struct {
+	Operations []ScimOperations `json:"Operations"`
+	Schemas    []string         `json:"schemas"`
 }
 
-// NewScimSortSupport instantiates a new ScimSortSupport object.
+// NewPatchUserRequest instantiates a new PatchUserRequest object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewScimSortSupport(supported bool) *ScimSortSupport {
-	p := ScimSortSupport{}
-	p.Supported = supported
+func NewPatchUserRequest(operations []ScimOperations, schemas []string) *PatchUserRequest {
+	p := PatchUserRequest{}
+	p.Operations = operations
+	p.Schemas = schemas
 	return &p
 }
 
-// NewScimSortSupportWithDefaults instantiates a new ScimSortSupport object.
+// NewPatchUserRequestWithDefaults instantiates a new PatchUserRequest object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewScimSortSupportWithDefaults() *ScimSortSupport {
-	p := ScimSortSupport{}
+func NewPatchUserRequestWithDefaults() *PatchUserRequest {
+	p := PatchUserRequest{}
 	return &p
 }
 
-// GetSupported returns the Supported field value.
-func (o *ScimSortSupport) GetSupported() bool {
+// GetOperations returns the Operations field value.
+func (o *PatchUserRequest) GetOperations() []ScimOperations {
 	if o == nil {
-		var ret bool
+		var ret []ScimOperations
 		return ret
 	}
 
-	return o.Supported
+	return o.Operations
 }
 
-// SetSupported sets field value.
-func (o *ScimSortSupport) SetSupported(v bool) {
-	o.Supported = v
+// SetOperations sets field value.
+func (o *PatchUserRequest) SetOperations(v []ScimOperations) {
+	o.Operations = v
+}
+
+// GetSchemas returns the Schemas field value.
+func (o *PatchUserRequest) GetSchemas() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+
+	return o.Schemas
+}
+
+// SetSchemas sets field value.
+func (o *PatchUserRequest) SetSchemas(v []string) {
+	o.Schemas = v
 }

@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Labels** | Pointer to **map[string]string** | labels are key-value pairs used to organize and categorize resources. If the labels field is included in the request: Any existing labels on the folder that are not included will be removed, and any new labels specified will be added. If the labels field is omitted from the request entirely, all existing labels will remain unchanged. | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
 **ParentId** | Pointer to **string** |  | [optional] 
 
@@ -17,6 +18,18 @@ NewUpdateFolderSpecification instantiates a new UpdateFolderSpecification object
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed.
+
+### GetLabels
+
+`func (o *UpdateFolderSpecification) GetLabels() map[string]string`
+
+GetLabels returns the Labels field if non-nil, zero value otherwise.
+
+### SetLabels
+
+`func (o *UpdateFolderSpecification) SetLabels(v map[string]string)`
+
+SetLabels sets Labels field to given value.
 
 ### GetName
 

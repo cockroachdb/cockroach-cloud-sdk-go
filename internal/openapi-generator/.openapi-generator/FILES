@@ -44,6 +44,8 @@ docs/CloudProviderType.md
 docs/CloudWatchMetricExportInfo.md
 docs/Cluster.md
 docs/ClusterConfig.md
+docs/ClusterDisruptionApi.md
+docs/ClusterDisruptionInfo.md
 docs/ClusterMajorVersion.md
 docs/ClusterMajorVersionSupportStatusType.md
 docs/ClusterStateType.md
@@ -53,6 +55,7 @@ docs/ClusterVersionDeferral.md
 docs/ClusterVersionDeferralPolicyType.md
 docs/ClustersApi.md
 docs/CockroachCloudSetRolesForUserRequest.md
+docs/CockroachCloudUpdateClusterDisruptionRequest.md
 docs/ConnectionStringParameters.md
 docs/CreateApiKeyRequest.md
 docs/CreateApiKeyResponse.md
@@ -65,6 +68,7 @@ docs/CreateReplicationStreamRequest.md
 docs/CreateSQLUserRequest.md
 docs/CreateServiceAccountRequest.md
 docs/CreateUserRequest.md
+docs/CreateUserResponse.md
 docs/CurrencyAmount.md
 docs/CurrencyType.md
 docs/CustomerManagedEncryptionKeysApi.md
@@ -150,6 +154,7 @@ docs/OperatingSystemType.md
 docs/Organization.md
 docs/OrganizationUserRoleType.md
 docs/OrganizationsApi.md
+docs/PatchUserRequest.md
 docs/PathSegment.md
 docs/PersonUserInfo.md
 docs/PhysicalClusterReplicationApi.md
@@ -166,6 +171,7 @@ docs/PrivateEndpointTrustedOwnerTypeType.md
 docs/PrometheusMetricExportInfo.md
 docs/QuantityUnitType.md
 docs/Region.md
+docs/RegionalDisruptorSpecification.md
 docs/ReleaseTypeType.md
 docs/RemovePrivateEndpointTrustedOwnerResponse.md
 docs/ReplicationStream.md
@@ -186,6 +192,7 @@ docs/ScimFilterSupport.md
 docs/ScimGroup.md
 docs/ScimMetadata.md
 docs/ScimName.md
+docs/ScimOperations.md
 docs/ScimResource.md
 docs/ScimResourceType.md
 docs/ScimSchema.md
@@ -249,6 +256,7 @@ model_cloud_provider_type.go
 model_cloud_watch_metric_export_info.go
 model_cluster.go
 model_cluster_config.go
+model_cluster_disruption_info.go
 model_cluster_major_version.go
 model_cluster_major_version_support_status_type.go
 model_cluster_state_type.go
@@ -266,6 +274,7 @@ model_cmek_region_info.go
 model_cmek_region_specification.go
 model_cmek_status.go
 model_cockroach_cloud_set_roles_for_user_request.go
+model_cockroach_cloud_update_cluster_disruption_request.go
 model_connection_string_parameters.go
 model_create_api_key_request.go
 model_create_api_key_response.go
@@ -278,6 +287,7 @@ model_create_replication_stream_request.go
 model_create_service_account_request.go
 model_create_sql_user_request.go
 model_create_user_request.go
+model_create_user_response.go
 model_currency_amount.go
 model_currency_type.go
 model_database.go
@@ -353,6 +363,7 @@ model_node_status_type.go
 model_operating_system_type.go
 model_organization.go
 model_organization_user_role_type.go
+model_patch_user_request.go
 model_path_segment.go
 model_person_user_info.go
 model_plan_type.go
@@ -367,6 +378,7 @@ model_private_endpoint_trusted_owner_type_type.go
 model_prometheus_metric_export_info.go
 model_quantity_unit_type.go
 model_region.go
+model_regional_disruptor_specification.go
 model_release_type_type.go
 model_remove_private_endpoint_trusted_owner_response.go
 model_replication_stream.go
@@ -383,6 +395,7 @@ model_scim_filter_support.go
 model_scim_group.go
 model_scim_metadata.go
 model_scim_name.go
+model_scim_operations.go
 model_scim_resource.go
 model_scim_resource_type.go
 model_scim_schema.go

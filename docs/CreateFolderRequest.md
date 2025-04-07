@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Labels** | Pointer to **map[string]string** | labels are key-value pairs used to organize and categorize resources. | [optional] 
 **Name** | **string** |  | 
 **ParentId** | Pointer to **string** | The parent ID is a folder ID. An empty string or \&quot;root\&quot; will create a folder at the root level. | [optional] 
 
@@ -25,6 +26,18 @@ will change when the set of required properties is changed.
 NewCreateFolderRequestWithDefaults instantiates a new CreateFolderRequest object.
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set.
+
+### GetLabels
+
+`func (o *CreateFolderRequest) GetLabels() map[string]string`
+
+GetLabels returns the Labels field if non-nil, zero value otherwise.
+
+### SetLabels
+
+`func (o *CreateFolderRequest) SetLabels(v map[string]string)`
+
+SetLabels sets Labels field to given value.
 
 ### GetName
 

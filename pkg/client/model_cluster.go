@@ -36,9 +36,11 @@ type Cluster struct {
 	DeletedAt           *time.Time                 `json:"deleted_at,omitempty"`
 	EgressTrafficPolicy *EgressTrafficPolicyType   `json:"egress_traffic_policy,omitempty"`
 	Id                  string                     `json:"id"`
-	Name                string                     `json:"name"`
-	NetworkVisibility   *NetworkVisibilityType     `json:"network_visibility,omitempty"`
-	OperationStatus     ClusterStatusType          `json:"operation_status"`
+	// labels are key-value pairs used to organize and categorize resources.
+	Labels            map[string]string      `json:"labels"`
+	Name              string                 `json:"name"`
+	NetworkVisibility *NetworkVisibilityType `json:"network_visibility,omitempty"`
+	OperationStatus   ClusterStatusType      `json:"operation_status"`
 	// Preview: The parent ID is a folder ID. A \"root\" valued parent ID refers to a cluster at the root level.
 	ParentId *string  `json:"parent_id,omitempty"`
 	Plan     PlanType `json:"plan"`
@@ -54,7 +56,7 @@ type Cluster struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCluster(cidrRange string, cloudProvider CloudProviderType, cockroachVersion string, config ClusterConfig, creatorId string, id string, name string, operationStatus ClusterStatusType, plan PlanType, regions []Region, state ClusterStateType, upgradeStatus ClusterUpgradeStatusType) *Cluster {
+func NewCluster(cidrRange string, cloudProvider CloudProviderType, cockroachVersion string, config ClusterConfig, creatorId string, id string, labels map[string]string, name string, operationStatus ClusterStatusType, plan PlanType, regions []Region, state ClusterStateType, upgradeStatus ClusterUpgradeStatusType) *Cluster {
 	p := Cluster{}
 	p.CidrRange = cidrRange
 	p.CloudProvider = cloudProvider
@@ -62,6 +64,7 @@ func NewCluster(cidrRange string, cloudProvider CloudProviderType, cockroachVers
 	p.Config = config
 	p.CreatorId = creatorId
 	p.Id = id
+	p.Labels = labels
 	p.Name = name
 	p.OperationStatus = operationStatus
 	p.Plan = plan
@@ -237,6 +240,21 @@ func (o *Cluster) GetId() string {
 // SetId sets field value.
 func (o *Cluster) SetId(v string) {
 	o.Id = v
+}
+
+// GetLabels returns the Labels field value.
+func (o *Cluster) GetLabels() map[string]string {
+	if o == nil {
+		var ret map[string]string
+		return ret
+	}
+
+	return o.Labels
+}
+
+// SetLabels sets field value.
+func (o *Cluster) SetLabels(v map[string]string) {
+	o.Labels = v
 }
 
 // GetName returns the Name field value.

@@ -18,8 +18,8 @@
 
 package client
 
-// ScimUser SCIM 2.0 User Resource.
-type ScimUser struct {
+// CreateUserResponse Response when creating a new user via SCIM 2.0.
+type CreateUserResponse struct {
 	Active      *bool           `json:"active,omitempty"`
 	DisplayName *string         `json:"displayName,omitempty"`
 	Emails      *[]ScimEmail    `json:"emails,omitempty"`
@@ -32,27 +32,27 @@ type ScimUser struct {
 	UserName    *string         `json:"userName,omitempty"`
 }
 
-// NewScimUser instantiates a new ScimUser object.
+// NewCreateUserResponse instantiates a new CreateUserResponse object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewScimUser(id string, schemas []string) *ScimUser {
-	p := ScimUser{}
+func NewCreateUserResponse(id string, schemas []string) *CreateUserResponse {
+	p := CreateUserResponse{}
 	p.Id = id
 	p.Schemas = schemas
 	return &p
 }
 
-// NewScimUserWithDefaults instantiates a new ScimUser object.
+// NewCreateUserResponseWithDefaults instantiates a new CreateUserResponse object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewScimUserWithDefaults() *ScimUser {
-	p := ScimUser{}
+func NewCreateUserResponseWithDefaults() *CreateUserResponse {
+	p := CreateUserResponse{}
 	return &p
 }
 
 // GetActive returns the Active field value if set, zero value otherwise.
-func (o *ScimUser) GetActive() bool {
+func (o *CreateUserResponse) GetActive() bool {
 	if o == nil || o.Active == nil {
 		var ret bool
 		return ret
@@ -61,12 +61,12 @@ func (o *ScimUser) GetActive() bool {
 }
 
 // SetActive gets a reference to the given bool and assigns it to the Active field.
-func (o *ScimUser) SetActive(v bool) {
+func (o *CreateUserResponse) SetActive(v bool) {
 	o.Active = &v
 }
 
 // GetDisplayName returns the DisplayName field value if set, zero value otherwise.
-func (o *ScimUser) GetDisplayName() string {
+func (o *CreateUserResponse) GetDisplayName() string {
 	if o == nil || o.DisplayName == nil {
 		var ret string
 		return ret
@@ -75,12 +75,12 @@ func (o *ScimUser) GetDisplayName() string {
 }
 
 // SetDisplayName gets a reference to the given string and assigns it to the DisplayName field.
-func (o *ScimUser) SetDisplayName(v string) {
+func (o *CreateUserResponse) SetDisplayName(v string) {
 	o.DisplayName = &v
 }
 
 // GetEmails returns the Emails field value if set, zero value otherwise.
-func (o *ScimUser) GetEmails() []ScimEmail {
+func (o *CreateUserResponse) GetEmails() []ScimEmail {
 	if o == nil || o.Emails == nil {
 		var ret []ScimEmail
 		return ret
@@ -89,12 +89,12 @@ func (o *ScimUser) GetEmails() []ScimEmail {
 }
 
 // SetEmails gets a reference to the given []ScimEmail and assigns it to the Emails field.
-func (o *ScimUser) SetEmails(v []ScimEmail) {
+func (o *CreateUserResponse) SetEmails(v []ScimEmail) {
 	o.Emails = &v
 }
 
 // GetExternalId returns the ExternalId field value if set, zero value otherwise.
-func (o *ScimUser) GetExternalId() string {
+func (o *CreateUserResponse) GetExternalId() string {
 	if o == nil || o.ExternalId == nil {
 		var ret string
 		return ret
@@ -103,12 +103,12 @@ func (o *ScimUser) GetExternalId() string {
 }
 
 // SetExternalId gets a reference to the given string and assigns it to the ExternalId field.
-func (o *ScimUser) SetExternalId(v string) {
+func (o *CreateUserResponse) SetExternalId(v string) {
 	o.ExternalId = &v
 }
 
 // GetGroups returns the Groups field value if set, zero value otherwise.
-func (o *ScimUser) GetGroups() []ScimResource {
+func (o *CreateUserResponse) GetGroups() []ScimResource {
 	if o == nil || o.Groups == nil {
 		var ret []ScimResource
 		return ret
@@ -117,12 +117,12 @@ func (o *ScimUser) GetGroups() []ScimResource {
 }
 
 // SetGroups gets a reference to the given []ScimResource and assigns it to the Groups field.
-func (o *ScimUser) SetGroups(v []ScimResource) {
+func (o *CreateUserResponse) SetGroups(v []ScimResource) {
 	o.Groups = &v
 }
 
 // GetId returns the Id field value.
-func (o *ScimUser) GetId() string {
+func (o *CreateUserResponse) GetId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -132,12 +132,12 @@ func (o *ScimUser) GetId() string {
 }
 
 // SetId sets field value.
-func (o *ScimUser) SetId(v string) {
+func (o *CreateUserResponse) SetId(v string) {
 	o.Id = v
 }
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *ScimUser) GetMeta() ScimMetadata {
+func (o *CreateUserResponse) GetMeta() ScimMetadata {
 	if o == nil || o.Meta == nil {
 		var ret ScimMetadata
 		return ret
@@ -146,12 +146,12 @@ func (o *ScimUser) GetMeta() ScimMetadata {
 }
 
 // SetMeta gets a reference to the given ScimMetadata and assigns it to the Meta field.
-func (o *ScimUser) SetMeta(v ScimMetadata) {
+func (o *CreateUserResponse) SetMeta(v ScimMetadata) {
 	o.Meta = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *ScimUser) GetName() ScimName {
+func (o *CreateUserResponse) GetName() ScimName {
 	if o == nil || o.Name == nil {
 		var ret ScimName
 		return ret
@@ -160,12 +160,12 @@ func (o *ScimUser) GetName() ScimName {
 }
 
 // SetName gets a reference to the given ScimName and assigns it to the Name field.
-func (o *ScimUser) SetName(v ScimName) {
+func (o *CreateUserResponse) SetName(v ScimName) {
 	o.Name = &v
 }
 
 // GetSchemas returns the Schemas field value.
-func (o *ScimUser) GetSchemas() []string {
+func (o *CreateUserResponse) GetSchemas() []string {
 	if o == nil {
 		var ret []string
 		return ret
@@ -175,12 +175,12 @@ func (o *ScimUser) GetSchemas() []string {
 }
 
 // SetSchemas sets field value.
-func (o *ScimUser) SetSchemas(v []string) {
+func (o *CreateUserResponse) SetSchemas(v []string) {
 	o.Schemas = v
 }
 
 // GetUserName returns the UserName field value if set, zero value otherwise.
-func (o *ScimUser) GetUserName() string {
+func (o *CreateUserResponse) GetUserName() string {
 	if o == nil || o.UserName == nil {
 		var ret string
 		return ret
@@ -189,6 +189,6 @@ func (o *ScimUser) GetUserName() string {
 }
 
 // SetUserName gets a reference to the given string and assigns it to the UserName field.
-func (o *ScimUser) SetUserName(v string) {
+func (o *CreateUserResponse) SetUserName(v string) {
 	o.UserName = &v
 }

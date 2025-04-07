@@ -20,93 +20,113 @@ package client
 
 // GetServiceProviderConfigResponse struct for GetServiceProviderConfigResponse.
 type GetServiceProviderConfigResponse struct {
-	AuthenticationSchemes *[]ScimAuthenticationScheme `json:"authenticationSchemes,omitempty"`
-	Bulk                  *ScimBulkSupport            `json:"bulk,omitempty"`
-	ChangePassword        *ScimChangePasswordSupport  `json:"changePassword,omitempty"`
-	Etag                  *ScimEtagSupport            `json:"etag,omitempty"`
-	Filter                *ScimFilterSupport          `json:"filter,omitempty"`
-	Meta                  *ScimMetadata               `json:"meta,omitempty"`
-	Schemas               *[]string                   `json:"schemas,omitempty"`
-	Sort                  *ScimSortSupport            `json:"sort,omitempty"`
+	AuthenticationSchemes []ScimAuthenticationScheme `json:"authenticationSchemes"`
+	Bulk                  ScimBulkSupport            `json:"bulk"`
+	ChangePassword        ScimChangePasswordSupport  `json:"changePassword"`
+	Etag                  ScimEtagSupport            `json:"etag"`
+	Filter                ScimFilterSupport          `json:"filter"`
+	Meta                  *ScimMetadata              `json:"meta,omitempty"`
+	Schemas               []string                   `json:"schemas"`
+	Sort                  ScimSortSupport            `json:"sort"`
 }
 
 // NewGetServiceProviderConfigResponse instantiates a new GetServiceProviderConfigResponse object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetServiceProviderConfigResponse() *GetServiceProviderConfigResponse {
+func NewGetServiceProviderConfigResponse(authenticationSchemes []ScimAuthenticationScheme, bulk ScimBulkSupport, changePassword ScimChangePasswordSupport, etag ScimEtagSupport, filter ScimFilterSupport, schemas []string, sort ScimSortSupport) *GetServiceProviderConfigResponse {
+	p := GetServiceProviderConfigResponse{}
+	p.AuthenticationSchemes = authenticationSchemes
+	p.Bulk = bulk
+	p.ChangePassword = changePassword
+	p.Etag = etag
+	p.Filter = filter
+	p.Schemas = schemas
+	p.Sort = sort
+	return &p
+}
+
+// NewGetServiceProviderConfigResponseWithDefaults instantiates a new GetServiceProviderConfigResponse object.
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetServiceProviderConfigResponseWithDefaults() *GetServiceProviderConfigResponse {
 	p := GetServiceProviderConfigResponse{}
 	return &p
 }
 
-// GetAuthenticationSchemes returns the AuthenticationSchemes field value if set, zero value otherwise.
+// GetAuthenticationSchemes returns the AuthenticationSchemes field value.
 func (o *GetServiceProviderConfigResponse) GetAuthenticationSchemes() []ScimAuthenticationScheme {
-	if o == nil || o.AuthenticationSchemes == nil {
+	if o == nil {
 		var ret []ScimAuthenticationScheme
 		return ret
 	}
-	return *o.AuthenticationSchemes
+
+	return o.AuthenticationSchemes
 }
 
-// SetAuthenticationSchemes gets a reference to the given []ScimAuthenticationScheme and assigns it to the AuthenticationSchemes field.
+// SetAuthenticationSchemes sets field value.
 func (o *GetServiceProviderConfigResponse) SetAuthenticationSchemes(v []ScimAuthenticationScheme) {
-	o.AuthenticationSchemes = &v
+	o.AuthenticationSchemes = v
 }
 
-// GetBulk returns the Bulk field value if set, zero value otherwise.
+// GetBulk returns the Bulk field value.
 func (o *GetServiceProviderConfigResponse) GetBulk() ScimBulkSupport {
-	if o == nil || o.Bulk == nil {
+	if o == nil {
 		var ret ScimBulkSupport
 		return ret
 	}
-	return *o.Bulk
+
+	return o.Bulk
 }
 
-// SetBulk gets a reference to the given ScimBulkSupport and assigns it to the Bulk field.
+// SetBulk sets field value.
 func (o *GetServiceProviderConfigResponse) SetBulk(v ScimBulkSupport) {
-	o.Bulk = &v
+	o.Bulk = v
 }
 
-// GetChangePassword returns the ChangePassword field value if set, zero value otherwise.
+// GetChangePassword returns the ChangePassword field value.
 func (o *GetServiceProviderConfigResponse) GetChangePassword() ScimChangePasswordSupport {
-	if o == nil || o.ChangePassword == nil {
+	if o == nil {
 		var ret ScimChangePasswordSupport
 		return ret
 	}
-	return *o.ChangePassword
+
+	return o.ChangePassword
 }
 
-// SetChangePassword gets a reference to the given ScimChangePasswordSupport and assigns it to the ChangePassword field.
+// SetChangePassword sets field value.
 func (o *GetServiceProviderConfigResponse) SetChangePassword(v ScimChangePasswordSupport) {
-	o.ChangePassword = &v
+	o.ChangePassword = v
 }
 
-// GetEtag returns the Etag field value if set, zero value otherwise.
+// GetEtag returns the Etag field value.
 func (o *GetServiceProviderConfigResponse) GetEtag() ScimEtagSupport {
-	if o == nil || o.Etag == nil {
+	if o == nil {
 		var ret ScimEtagSupport
 		return ret
 	}
-	return *o.Etag
+
+	return o.Etag
 }
 
-// SetEtag gets a reference to the given ScimEtagSupport and assigns it to the Etag field.
+// SetEtag sets field value.
 func (o *GetServiceProviderConfigResponse) SetEtag(v ScimEtagSupport) {
-	o.Etag = &v
+	o.Etag = v
 }
 
-// GetFilter returns the Filter field value if set, zero value otherwise.
+// GetFilter returns the Filter field value.
 func (o *GetServiceProviderConfigResponse) GetFilter() ScimFilterSupport {
-	if o == nil || o.Filter == nil {
+	if o == nil {
 		var ret ScimFilterSupport
 		return ret
 	}
-	return *o.Filter
+
+	return o.Filter
 }
 
-// SetFilter gets a reference to the given ScimFilterSupport and assigns it to the Filter field.
+// SetFilter sets field value.
 func (o *GetServiceProviderConfigResponse) SetFilter(v ScimFilterSupport) {
-	o.Filter = &v
+	o.Filter = v
 }
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
@@ -123,30 +143,32 @@ func (o *GetServiceProviderConfigResponse) SetMeta(v ScimMetadata) {
 	o.Meta = &v
 }
 
-// GetSchemas returns the Schemas field value if set, zero value otherwise.
+// GetSchemas returns the Schemas field value.
 func (o *GetServiceProviderConfigResponse) GetSchemas() []string {
-	if o == nil || o.Schemas == nil {
+	if o == nil {
 		var ret []string
 		return ret
 	}
-	return *o.Schemas
+
+	return o.Schemas
 }
 
-// SetSchemas gets a reference to the given []string and assigns it to the Schemas field.
+// SetSchemas sets field value.
 func (o *GetServiceProviderConfigResponse) SetSchemas(v []string) {
-	o.Schemas = &v
+	o.Schemas = v
 }
 
-// GetSort returns the Sort field value if set, zero value otherwise.
+// GetSort returns the Sort field value.
 func (o *GetServiceProviderConfigResponse) GetSort() ScimSortSupport {
-	if o == nil || o.Sort == nil {
+	if o == nil {
 		var ret ScimSortSupport
 		return ret
 	}
-	return *o.Sort
+
+	return o.Sort
 }
 
-// SetSort gets a reference to the given ScimSortSupport and assigns it to the Sort field.
+// SetSort sets field value.
 func (o *GetServiceProviderConfigResponse) SetSort(v ScimSortSupport) {
-	o.Sort = &v
+	o.Sort = v
 }

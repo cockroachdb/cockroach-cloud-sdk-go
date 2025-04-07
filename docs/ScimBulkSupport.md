@@ -4,20 +4,28 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**MaxOperations** | Pointer to **int32** |  | [optional] 
-**MaxPayloadSize** | Pointer to **int32** |  | [optional] 
-**Supported** | Pointer to **bool** |  | [optional] 
+**MaxOperations** | **int32** |  | 
+**MaxPayloadSize** | **int32** |  | 
+**Supported** | **bool** |  | 
 
 ## Methods
 
 ### NewScimBulkSupport
 
-`func NewScimBulkSupport() *ScimBulkSupport`
+`func NewScimBulkSupport(maxOperations int32, maxPayloadSize int32, supported bool, ) *ScimBulkSupport`
 
 NewScimBulkSupport instantiates a new ScimBulkSupport object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed.
+
+### NewScimBulkSupportWithDefaults
+
+`func NewScimBulkSupportWithDefaults() *ScimBulkSupport`
+
+NewScimBulkSupportWithDefaults instantiates a new ScimBulkSupport object.
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set.
 
 ### GetMaxOperations
 
