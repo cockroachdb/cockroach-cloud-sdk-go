@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Dedicated** | Pointer to [**DedicatedClusterCreateSpecification**](DedicatedClusterCreateSpecification.md) |  | [optional] 
 **DeleteProtection** | Pointer to [**DeleteProtectionStateType**](DeleteProtectionStateType.md) |  | [optional] 
+**Labels** | Pointer to **map[string]string** | labels are key-value pairs used to organize and categorize resources. | [optional] 
 **ParentId** | Pointer to **string** | Preview: The parent ID is a folder ID. An empty string or \&quot;root\&quot; will create a cluster at the root level. | [optional] 
 **Plan** | Pointer to [**PlanType**](PlanType.md) |  | [optional] 
 **Serverless** | Pointer to [**ServerlessClusterCreateSpecification**](ServerlessClusterCreateSpecification.md) |  | [optional] 
@@ -44,6 +45,18 @@ GetDeleteProtection returns the DeleteProtection field if non-nil, zero value ot
 `func (o *CreateClusterSpecification) SetDeleteProtection(v DeleteProtectionStateType)`
 
 SetDeleteProtection sets DeleteProtection field to given value.
+
+### GetLabels
+
+`func (o *CreateClusterSpecification) GetLabels() map[string]string`
+
+GetLabels returns the Labels field if non-nil, zero value otherwise.
+
+### SetLabels
+
+`func (o *CreateClusterSpecification) SetLabels(v map[string]string)`
+
+SetLabels sets Labels field to given value.
 
 ### GetParentId
 

@@ -20,58 +20,72 @@ package client
 
 // ScimBulkSupport struct for ScimBulkSupport.
 type ScimBulkSupport struct {
-	MaxOperations  *int32 `json:"maxOperations,omitempty"`
-	MaxPayloadSize *int32 `json:"maxPayloadSize,omitempty"`
-	Supported      *bool  `json:"supported,omitempty"`
+	MaxOperations  int32 `json:"maxOperations"`
+	MaxPayloadSize int32 `json:"maxPayloadSize"`
+	Supported      bool  `json:"supported"`
 }
 
 // NewScimBulkSupport instantiates a new ScimBulkSupport object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewScimBulkSupport() *ScimBulkSupport {
+func NewScimBulkSupport(maxOperations int32, maxPayloadSize int32, supported bool) *ScimBulkSupport {
+	p := ScimBulkSupport{}
+	p.MaxOperations = maxOperations
+	p.MaxPayloadSize = maxPayloadSize
+	p.Supported = supported
+	return &p
+}
+
+// NewScimBulkSupportWithDefaults instantiates a new ScimBulkSupport object.
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewScimBulkSupportWithDefaults() *ScimBulkSupport {
 	p := ScimBulkSupport{}
 	return &p
 }
 
-// GetMaxOperations returns the MaxOperations field value if set, zero value otherwise.
+// GetMaxOperations returns the MaxOperations field value.
 func (o *ScimBulkSupport) GetMaxOperations() int32 {
-	if o == nil || o.MaxOperations == nil {
+	if o == nil {
 		var ret int32
 		return ret
 	}
-	return *o.MaxOperations
+
+	return o.MaxOperations
 }
 
-// SetMaxOperations gets a reference to the given int32 and assigns it to the MaxOperations field.
+// SetMaxOperations sets field value.
 func (o *ScimBulkSupport) SetMaxOperations(v int32) {
-	o.MaxOperations = &v
+	o.MaxOperations = v
 }
 
-// GetMaxPayloadSize returns the MaxPayloadSize field value if set, zero value otherwise.
+// GetMaxPayloadSize returns the MaxPayloadSize field value.
 func (o *ScimBulkSupport) GetMaxPayloadSize() int32 {
-	if o == nil || o.MaxPayloadSize == nil {
+	if o == nil {
 		var ret int32
 		return ret
 	}
-	return *o.MaxPayloadSize
+
+	return o.MaxPayloadSize
 }
 
-// SetMaxPayloadSize gets a reference to the given int32 and assigns it to the MaxPayloadSize field.
+// SetMaxPayloadSize sets field value.
 func (o *ScimBulkSupport) SetMaxPayloadSize(v int32) {
-	o.MaxPayloadSize = &v
+	o.MaxPayloadSize = v
 }
 
-// GetSupported returns the Supported field value if set, zero value otherwise.
+// GetSupported returns the Supported field value.
 func (o *ScimBulkSupport) GetSupported() bool {
-	if o == nil || o.Supported == nil {
+	if o == nil {
 		var ret bool
 		return ret
 	}
-	return *o.Supported
+
+	return o.Supported
 }
 
-// SetSupported gets a reference to the given bool and assigns it to the Supported field.
+// SetSupported sets field value.
 func (o *ScimBulkSupport) SetSupported(v bool) {
-	o.Supported = &v
+	o.Supported = v
 }

@@ -4,19 +4,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Active** | **bool** |  | 
-**DisplayName** | **string** |  | 
+**Active** | Pointer to **bool** |  | [optional] 
+**DisplayName** | Pointer to **string** |  | [optional] 
 **Emails** | [**[]ScimEmail**](ScimEmail.md) |  | 
 **ExternalId** | Pointer to **string** |  | [optional] 
-**Name** | [**ScimName**](ScimName.md) |  | 
-**Schemas** | Pointer to **[]string** |  | [optional] 
+**Name** | Pointer to [**ScimName**](ScimName.md) |  | [optional] 
+**Schemas** | **[]string** |  | 
 **UserName** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
 ### NewCreateUserRequest
 
-`func NewCreateUserRequest(active bool, displayName string, emails []ScimEmail, name ScimName, ) *CreateUserRequest`
+`func NewCreateUserRequest(emails []ScimEmail, schemas []string, ) *CreateUserRequest`
 
 NewCreateUserRequest instantiates a new CreateUserRequest object.
 This constructor will assign default values to properties that have it defined,

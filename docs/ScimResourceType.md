@@ -5,23 +5,31 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Description** | Pointer to **string** |  | [optional] 
-**Endpoint** | Pointer to **string** |  | [optional] 
+**Endpoint** | **string** |  | 
 **Id** | Pointer to **string** |  | [optional] 
 **Meta** | Pointer to [**ScimMetadata**](ScimMetadata.md) |  | [optional] 
-**Name** | Pointer to **string** |  | [optional] 
-**Schema** | Pointer to **string** |  | [optional] 
+**Name** | **string** |  | 
+**Schema** | **string** |  | 
 **Schemas** | Pointer to **[]string** |  | [optional] 
 
 ## Methods
 
 ### NewScimResourceType
 
-`func NewScimResourceType() *ScimResourceType`
+`func NewScimResourceType(endpoint string, name string, schema string, ) *ScimResourceType`
 
 NewScimResourceType instantiates a new ScimResourceType object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed.
+
+### NewScimResourceTypeWithDefaults
+
+`func NewScimResourceTypeWithDefaults() *ScimResourceType`
+
+NewScimResourceTypeWithDefaults instantiates a new ScimResourceType object.
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set.
 
 ### GetDescription
 

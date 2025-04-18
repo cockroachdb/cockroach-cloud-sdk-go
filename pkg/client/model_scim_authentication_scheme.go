@@ -20,35 +20,47 @@ package client
 
 // ScimAuthenticationScheme struct for ScimAuthenticationScheme.
 type ScimAuthenticationScheme struct {
-	Description      *string `json:"description,omitempty"`
+	Description      string  `json:"description"`
 	DocumentationUri *string `json:"documentationUri,omitempty"`
-	Name             *string `json:"name,omitempty"`
+	Name             string  `json:"name"`
 	Primary          *bool   `json:"primary,omitempty"`
 	SpecUri          *string `json:"specUri,omitempty"`
-	Type             *string `json:"type,omitempty"`
+	Type             string  `json:"type"`
 }
 
 // NewScimAuthenticationScheme instantiates a new ScimAuthenticationScheme object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewScimAuthenticationScheme() *ScimAuthenticationScheme {
+func NewScimAuthenticationScheme(description string, name string, type_ string) *ScimAuthenticationScheme {
+	p := ScimAuthenticationScheme{}
+	p.Description = description
+	p.Name = name
+	p.Type = type_
+	return &p
+}
+
+// NewScimAuthenticationSchemeWithDefaults instantiates a new ScimAuthenticationScheme object.
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewScimAuthenticationSchemeWithDefaults() *ScimAuthenticationScheme {
 	p := ScimAuthenticationScheme{}
 	return &p
 }
 
-// GetDescription returns the Description field value if set, zero value otherwise.
+// GetDescription returns the Description field value.
 func (o *ScimAuthenticationScheme) GetDescription() string {
-	if o == nil || o.Description == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Description
+
+	return o.Description
 }
 
-// SetDescription gets a reference to the given string and assigns it to the Description field.
+// SetDescription sets field value.
 func (o *ScimAuthenticationScheme) SetDescription(v string) {
-	o.Description = &v
+	o.Description = v
 }
 
 // GetDocumentationUri returns the DocumentationUri field value if set, zero value otherwise.
@@ -65,18 +77,19 @@ func (o *ScimAuthenticationScheme) SetDocumentationUri(v string) {
 	o.DocumentationUri = &v
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
+// GetName returns the Name field value.
 func (o *ScimAuthenticationScheme) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Name
+
+	return o.Name
 }
 
-// SetName gets a reference to the given string and assigns it to the Name field.
+// SetName sets field value.
 func (o *ScimAuthenticationScheme) SetName(v string) {
-	o.Name = &v
+	o.Name = v
 }
 
 // GetPrimary returns the Primary field value if set, zero value otherwise.
@@ -107,16 +120,17 @@ func (o *ScimAuthenticationScheme) SetSpecUri(v string) {
 	o.SpecUri = &v
 }
 
-// GetType returns the Type field value if set, zero value otherwise.
+// GetType returns the Type field value.
 func (o *ScimAuthenticationScheme) GetType() string {
-	if o == nil || o.Type == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Type
+
+	return o.Type
 }
 
-// SetType gets a reference to the given string and assigns it to the Type field.
+// SetType sets field value.
 func (o *ScimAuthenticationScheme) SetType(v string) {
-	o.Type = &v
+	o.Type = v
 }

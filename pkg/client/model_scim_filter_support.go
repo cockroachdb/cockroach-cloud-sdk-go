@@ -20,43 +20,55 @@ package client
 
 // ScimFilterSupport struct for ScimFilterSupport.
 type ScimFilterSupport struct {
-	MaxResults *int32 `json:"maxResults,omitempty"`
-	Supported  *bool  `json:"supported,omitempty"`
+	MaxResults int32 `json:"maxResults"`
+	Supported  bool  `json:"supported"`
 }
 
 // NewScimFilterSupport instantiates a new ScimFilterSupport object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewScimFilterSupport() *ScimFilterSupport {
+func NewScimFilterSupport(maxResults int32, supported bool) *ScimFilterSupport {
+	p := ScimFilterSupport{}
+	p.MaxResults = maxResults
+	p.Supported = supported
+	return &p
+}
+
+// NewScimFilterSupportWithDefaults instantiates a new ScimFilterSupport object.
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewScimFilterSupportWithDefaults() *ScimFilterSupport {
 	p := ScimFilterSupport{}
 	return &p
 }
 
-// GetMaxResults returns the MaxResults field value if set, zero value otherwise.
+// GetMaxResults returns the MaxResults field value.
 func (o *ScimFilterSupport) GetMaxResults() int32 {
-	if o == nil || o.MaxResults == nil {
+	if o == nil {
 		var ret int32
 		return ret
 	}
-	return *o.MaxResults
+
+	return o.MaxResults
 }
 
-// SetMaxResults gets a reference to the given int32 and assigns it to the MaxResults field.
+// SetMaxResults sets field value.
 func (o *ScimFilterSupport) SetMaxResults(v int32) {
-	o.MaxResults = &v
+	o.MaxResults = v
 }
 
-// GetSupported returns the Supported field value if set, zero value otherwise.
+// GetSupported returns the Supported field value.
 func (o *ScimFilterSupport) GetSupported() bool {
-	if o == nil || o.Supported == nil {
+	if o == nil {
 		var ret bool
 		return ret
 	}
-	return *o.Supported
+
+	return o.Supported
 }
 
-// SetSupported gets a reference to the given bool and assigns it to the Supported field.
+// SetSupported sets field value.
 func (o *ScimFilterSupport) SetSupported(v bool) {
-	o.Supported = &v
+	o.Supported = v
 }

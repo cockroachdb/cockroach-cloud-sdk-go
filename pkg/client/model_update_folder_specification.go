@@ -20,8 +20,10 @@ package client
 
 // UpdateFolderSpecification Set `parent_id` to empty string ” or 'root' to move a folder to the root level..
 type UpdateFolderSpecification struct {
-	Name     *string `json:"name,omitempty"`
-	ParentId *string `json:"parent_id,omitempty"`
+	// labels are key-value pairs used to organize and categorize resources. If the labels field is included in the request: Any existing labels on the folder that are not included will be removed, and any new labels specified will be added. If the labels field is omitted from the request entirely, all existing labels will remain unchanged.
+	Labels   *map[string]string `json:"labels,omitempty"`
+	Name     *string            `json:"name,omitempty"`
+	ParentId *string            `json:"parent_id,omitempty"`
 }
 
 // NewUpdateFolderSpecification instantiates a new UpdateFolderSpecification object.
@@ -31,6 +33,20 @@ type UpdateFolderSpecification struct {
 func NewUpdateFolderSpecification() *UpdateFolderSpecification {
 	p := UpdateFolderSpecification{}
 	return &p
+}
+
+// GetLabels returns the Labels field value if set, zero value otherwise.
+func (o *UpdateFolderSpecification) GetLabels() map[string]string {
+	if o == nil || o.Labels == nil {
+		var ret map[string]string
+		return ret
+	}
+	return *o.Labels
+}
+
+// SetLabels gets a reference to the given map[string]string and assigns it to the Labels field.
+func (o *UpdateFolderSpecification) SetLabels(v map[string]string) {
+	o.Labels = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.

@@ -20,12 +20,12 @@ package client
 
 // CreateUserRequest struct for CreateUserRequest.
 type CreateUserRequest struct {
-	Active      bool        `json:"active"`
-	DisplayName string      `json:"displayName"`
+	Active      *bool       `json:"active,omitempty"`
+	DisplayName *string     `json:"displayName,omitempty"`
 	Emails      []ScimEmail `json:"emails"`
 	ExternalId  *string     `json:"externalId,omitempty"`
-	Name        ScimName    `json:"name"`
-	Schemas     *[]string   `json:"schemas,omitempty"`
+	Name        *ScimName   `json:"name,omitempty"`
+	Schemas     []string    `json:"schemas"`
 	UserName    *string     `json:"userName,omitempty"`
 }
 
@@ -33,12 +33,10 @@ type CreateUserRequest struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateUserRequest(active bool, displayName string, emails []ScimEmail, name ScimName) *CreateUserRequest {
+func NewCreateUserRequest(emails []ScimEmail, schemas []string) *CreateUserRequest {
 	p := CreateUserRequest{}
-	p.Active = active
-	p.DisplayName = displayName
 	p.Emails = emails
-	p.Name = name
+	p.Schemas = schemas
 	return &p
 }
 
@@ -50,34 +48,32 @@ func NewCreateUserRequestWithDefaults() *CreateUserRequest {
 	return &p
 }
 
-// GetActive returns the Active field value.
+// GetActive returns the Active field value if set, zero value otherwise.
 func (o *CreateUserRequest) GetActive() bool {
-	if o == nil {
+	if o == nil || o.Active == nil {
 		var ret bool
 		return ret
 	}
-
-	return o.Active
+	return *o.Active
 }
 
-// SetActive sets field value.
+// SetActive gets a reference to the given bool and assigns it to the Active field.
 func (o *CreateUserRequest) SetActive(v bool) {
-	o.Active = v
+	o.Active = &v
 }
 
-// GetDisplayName returns the DisplayName field value.
+// GetDisplayName returns the DisplayName field value if set, zero value otherwise.
 func (o *CreateUserRequest) GetDisplayName() string {
-	if o == nil {
+	if o == nil || o.DisplayName == nil {
 		var ret string
 		return ret
 	}
-
-	return o.DisplayName
+	return *o.DisplayName
 }
 
-// SetDisplayName sets field value.
+// SetDisplayName gets a reference to the given string and assigns it to the DisplayName field.
 func (o *CreateUserRequest) SetDisplayName(v string) {
-	o.DisplayName = v
+	o.DisplayName = &v
 }
 
 // GetEmails returns the Emails field value.
@@ -109,33 +105,33 @@ func (o *CreateUserRequest) SetExternalId(v string) {
 	o.ExternalId = &v
 }
 
-// GetName returns the Name field value.
+// GetName returns the Name field value if set, zero value otherwise.
 func (o *CreateUserRequest) GetName() ScimName {
-	if o == nil {
+	if o == nil || o.Name == nil {
 		var ret ScimName
 		return ret
 	}
-
-	return o.Name
+	return *o.Name
 }
 
-// SetName sets field value.
+// SetName gets a reference to the given ScimName and assigns it to the Name field.
 func (o *CreateUserRequest) SetName(v ScimName) {
-	o.Name = v
+	o.Name = &v
 }
 
-// GetSchemas returns the Schemas field value if set, zero value otherwise.
+// GetSchemas returns the Schemas field value.
 func (o *CreateUserRequest) GetSchemas() []string {
-	if o == nil || o.Schemas == nil {
+	if o == nil {
 		var ret []string
 		return ret
 	}
-	return *o.Schemas
+
+	return o.Schemas
 }
 
-// SetSchemas gets a reference to the given []string and assigns it to the Schemas field.
+// SetSchemas sets field value.
 func (o *CreateUserRequest) SetSchemas(v []string) {
-	o.Schemas = &v
+	o.Schemas = v
 }
 
 // GetUserName returns the UserName field value if set, zero value otherwise.

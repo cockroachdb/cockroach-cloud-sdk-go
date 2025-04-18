@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **DeletedAt** | Pointer to **time.Time** |  | [optional] 
 **EgressTrafficPolicy** | Pointer to [**EgressTrafficPolicyType**](EgressTrafficPolicyType.md) |  | [optional] 
 **Id** | **string** |  | 
+**Labels** | **map[string]string** | labels are key-value pairs used to organize and categorize resources. | 
 **Name** | **string** |  | 
 **NetworkVisibility** | Pointer to [**NetworkVisibilityType**](NetworkVisibilityType.md) |  | [optional] 
 **OperationStatus** | [**ClusterStatusType**](ClusterStatusType.md) |  | 
@@ -30,7 +31,7 @@ Name | Type | Description | Notes
 
 ### NewCluster
 
-`func NewCluster(cidrRange string, cloudProvider CloudProviderType, cockroachVersion string, config ClusterConfig, creatorId string, id string, name string, operationStatus ClusterStatusType, plan PlanType, regions []Region, state ClusterStateType, upgradeStatus ClusterUpgradeStatusType, ) *Cluster`
+`func NewCluster(cidrRange string, cloudProvider CloudProviderType, cockroachVersion string, config ClusterConfig, creatorId string, id string, labels map[string]string, name string, operationStatus ClusterStatusType, plan PlanType, regions []Region, state ClusterStateType, upgradeStatus ClusterUpgradeStatusType, ) *Cluster`
 
 NewCluster instantiates a new Cluster object.
 This constructor will assign default values to properties that have it defined,
@@ -176,6 +177,18 @@ GetId returns the Id field if non-nil, zero value otherwise.
 `func (o *Cluster) SetId(v string)`
 
 SetId sets Id field to given value.
+
+### GetLabels
+
+`func (o *Cluster) GetLabels() map[string]string`
+
+GetLabels returns the Labels field if non-nil, zero value otherwise.
+
+### SetLabels
+
+`func (o *Cluster) SetLabels(v map[string]string)`
+
+SetLabels sets Labels field to given value.
 
 ### GetName
 

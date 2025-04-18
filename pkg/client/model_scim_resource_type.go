@@ -21,11 +21,11 @@ package client
 // ScimResourceType struct for ScimResourceType.
 type ScimResourceType struct {
 	Description *string       `json:"description,omitempty"`
-	Endpoint    *string       `json:"endpoint,omitempty"`
+	Endpoint    string        `json:"endpoint"`
 	Id          *string       `json:"id,omitempty"`
 	Meta        *ScimMetadata `json:"meta,omitempty"`
-	Name        *string       `json:"name,omitempty"`
-	Schema      *string       `json:"schema,omitempty"`
+	Name        string        `json:"name"`
+	Schema      string        `json:"schema"`
 	Schemas     *[]string     `json:"schemas,omitempty"`
 }
 
@@ -33,7 +33,18 @@ type ScimResourceType struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewScimResourceType() *ScimResourceType {
+func NewScimResourceType(endpoint string, name string, schema string) *ScimResourceType {
+	p := ScimResourceType{}
+	p.Endpoint = endpoint
+	p.Name = name
+	p.Schema = schema
+	return &p
+}
+
+// NewScimResourceTypeWithDefaults instantiates a new ScimResourceType object.
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewScimResourceTypeWithDefaults() *ScimResourceType {
 	p := ScimResourceType{}
 	return &p
 }
@@ -52,18 +63,19 @@ func (o *ScimResourceType) SetDescription(v string) {
 	o.Description = &v
 }
 
-// GetEndpoint returns the Endpoint field value if set, zero value otherwise.
+// GetEndpoint returns the Endpoint field value.
 func (o *ScimResourceType) GetEndpoint() string {
-	if o == nil || o.Endpoint == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Endpoint
+
+	return o.Endpoint
 }
 
-// SetEndpoint gets a reference to the given string and assigns it to the Endpoint field.
+// SetEndpoint sets field value.
 func (o *ScimResourceType) SetEndpoint(v string) {
-	o.Endpoint = &v
+	o.Endpoint = v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
@@ -94,32 +106,34 @@ func (o *ScimResourceType) SetMeta(v ScimMetadata) {
 	o.Meta = &v
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
+// GetName returns the Name field value.
 func (o *ScimResourceType) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Name
+
+	return o.Name
 }
 
-// SetName gets a reference to the given string and assigns it to the Name field.
+// SetName sets field value.
 func (o *ScimResourceType) SetName(v string) {
-	o.Name = &v
+	o.Name = v
 }
 
-// GetSchema returns the Schema field value if set, zero value otherwise.
+// GetSchema returns the Schema field value.
 func (o *ScimResourceType) GetSchema() string {
-	if o == nil || o.Schema == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Schema
+
+	return o.Schema
 }
 
-// SetSchema gets a reference to the given string and assigns it to the Schema field.
+// SetSchema sets field value.
 func (o *ScimResourceType) SetSchema(v string) {
-	o.Schema = &v
+	o.Schema = v
 }
 
 // GetSchemas returns the Schemas field value if set, zero value otherwise.

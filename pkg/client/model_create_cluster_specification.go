@@ -22,6 +22,8 @@ package client
 type CreateClusterSpecification struct {
 	Dedicated        *DedicatedClusterCreateSpecification `json:"dedicated,omitempty"`
 	DeleteProtection *DeleteProtectionStateType           `json:"delete_protection,omitempty"`
+	// labels are key-value pairs used to organize and categorize resources.
+	Labels *map[string]string `json:"labels,omitempty"`
 	// Preview: The parent ID is a folder ID. An empty string or \"root\" will create a cluster at the root level.
 	ParentId   *string                               `json:"parent_id,omitempty"`
 	Plan       *PlanType                             `json:"plan,omitempty"`
@@ -63,6 +65,20 @@ func (o *CreateClusterSpecification) GetDeleteProtection() DeleteProtectionState
 // SetDeleteProtection gets a reference to the given DeleteProtectionStateType and assigns it to the DeleteProtection field.
 func (o *CreateClusterSpecification) SetDeleteProtection(v DeleteProtectionStateType) {
 	o.DeleteProtection = &v
+}
+
+// GetLabels returns the Labels field value if set, zero value otherwise.
+func (o *CreateClusterSpecification) GetLabels() map[string]string {
+	if o == nil || o.Labels == nil {
+		var ret map[string]string
+		return ret
+	}
+	return *o.Labels
+}
+
+// SetLabels gets a reference to the given map[string]string and assigns it to the Labels field.
+func (o *CreateClusterSpecification) SetLabels(v map[string]string) {
+	o.Labels = &v
 }
 
 // GetParentId returns the ParentId field value if set, zero value otherwise.

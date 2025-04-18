@@ -1,4 +1,4 @@
-# ScimUser
+# CreateUserResponse
 
 ## Properties
 
@@ -17,140 +17,140 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewScimUser
+### NewCreateUserResponse
 
-`func NewScimUser(id string, schemas []string, ) *ScimUser`
+`func NewCreateUserResponse(id string, schemas []string, ) *CreateUserResponse`
 
-NewScimUser instantiates a new ScimUser object.
+NewCreateUserResponse instantiates a new CreateUserResponse object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed.
 
-### NewScimUserWithDefaults
+### NewCreateUserResponseWithDefaults
 
-`func NewScimUserWithDefaults() *ScimUser`
+`func NewCreateUserResponseWithDefaults() *CreateUserResponse`
 
-NewScimUserWithDefaults instantiates a new ScimUser object.
+NewCreateUserResponseWithDefaults instantiates a new CreateUserResponse object.
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set.
 
 ### GetActive
 
-`func (o *ScimUser) GetActive() bool`
+`func (o *CreateUserResponse) GetActive() bool`
 
 GetActive returns the Active field if non-nil, zero value otherwise.
 
 ### SetActive
 
-`func (o *ScimUser) SetActive(v bool)`
+`func (o *CreateUserResponse) SetActive(v bool)`
 
 SetActive sets Active field to given value.
 
 ### GetDisplayName
 
-`func (o *ScimUser) GetDisplayName() string`
+`func (o *CreateUserResponse) GetDisplayName() string`
 
 GetDisplayName returns the DisplayName field if non-nil, zero value otherwise.
 
 ### SetDisplayName
 
-`func (o *ScimUser) SetDisplayName(v string)`
+`func (o *CreateUserResponse) SetDisplayName(v string)`
 
 SetDisplayName sets DisplayName field to given value.
 
 ### GetEmails
 
-`func (o *ScimUser) GetEmails() []ScimEmail`
+`func (o *CreateUserResponse) GetEmails() []ScimEmail`
 
 GetEmails returns the Emails field if non-nil, zero value otherwise.
 
 ### SetEmails
 
-`func (o *ScimUser) SetEmails(v []ScimEmail)`
+`func (o *CreateUserResponse) SetEmails(v []ScimEmail)`
 
 SetEmails sets Emails field to given value.
 
 ### GetExternalId
 
-`func (o *ScimUser) GetExternalId() string`
+`func (o *CreateUserResponse) GetExternalId() string`
 
 GetExternalId returns the ExternalId field if non-nil, zero value otherwise.
 
 ### SetExternalId
 
-`func (o *ScimUser) SetExternalId(v string)`
+`func (o *CreateUserResponse) SetExternalId(v string)`
 
 SetExternalId sets ExternalId field to given value.
 
 ### GetGroups
 
-`func (o *ScimUser) GetGroups() []ScimResource`
+`func (o *CreateUserResponse) GetGroups() []ScimResource`
 
 GetGroups returns the Groups field if non-nil, zero value otherwise.
 
 ### SetGroups
 
-`func (o *ScimUser) SetGroups(v []ScimResource)`
+`func (o *CreateUserResponse) SetGroups(v []ScimResource)`
 
 SetGroups sets Groups field to given value.
 
 ### GetId
 
-`func (o *ScimUser) GetId() string`
+`func (o *CreateUserResponse) GetId() string`
 
 GetId returns the Id field if non-nil, zero value otherwise.
 
 ### SetId
 
-`func (o *ScimUser) SetId(v string)`
+`func (o *CreateUserResponse) SetId(v string)`
 
 SetId sets Id field to given value.
 
 ### GetMeta
 
-`func (o *ScimUser) GetMeta() ScimMetadata`
+`func (o *CreateUserResponse) GetMeta() ScimMetadata`
 
 GetMeta returns the Meta field if non-nil, zero value otherwise.
 
 ### SetMeta
 
-`func (o *ScimUser) SetMeta(v ScimMetadata)`
+`func (o *CreateUserResponse) SetMeta(v ScimMetadata)`
 
 SetMeta sets Meta field to given value.
 
 ### GetName
 
-`func (o *ScimUser) GetName() ScimName`
+`func (o *CreateUserResponse) GetName() ScimName`
 
 GetName returns the Name field if non-nil, zero value otherwise.
 
 ### SetName
 
-`func (o *ScimUser) SetName(v ScimName)`
+`func (o *CreateUserResponse) SetName(v ScimName)`
 
 SetName sets Name field to given value.
 
 ### GetSchemas
 
-`func (o *ScimUser) GetSchemas() []string`
+`func (o *CreateUserResponse) GetSchemas() []string`
 
 GetSchemas returns the Schemas field if non-nil, zero value otherwise.
 
 ### SetSchemas
 
-`func (o *ScimUser) SetSchemas(v []string)`
+`func (o *CreateUserResponse) SetSchemas(v []string)`
 
 SetSchemas sets Schemas field to given value.
 
 ### GetUserName
 
-`func (o *ScimUser) GetUserName() string`
+`func (o *CreateUserResponse) GetUserName() string`
 
 GetUserName returns the UserName field if non-nil, zero value otherwise.
 
 ### SetUserName
 
-`func (o *ScimUser) SetUserName(v string)`
+`func (o *CreateUserResponse) SetUserName(v string)`
 
 SetUserName sets UserName field to given value.
 

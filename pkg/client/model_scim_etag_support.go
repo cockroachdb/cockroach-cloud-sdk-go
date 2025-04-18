@@ -21,14 +21,23 @@ package client
 // ScimEtagSupport struct for ScimEtagSupport.
 type ScimEtagSupport struct {
 	MaxResults *int32 `json:"maxResults,omitempty"`
-	Supported  *bool  `json:"supported,omitempty"`
+	Supported  bool   `json:"supported"`
 }
 
 // NewScimEtagSupport instantiates a new ScimEtagSupport object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewScimEtagSupport() *ScimEtagSupport {
+func NewScimEtagSupport(supported bool) *ScimEtagSupport {
+	p := ScimEtagSupport{}
+	p.Supported = supported
+	return &p
+}
+
+// NewScimEtagSupportWithDefaults instantiates a new ScimEtagSupport object.
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewScimEtagSupportWithDefaults() *ScimEtagSupport {
 	p := ScimEtagSupport{}
 	return &p
 }
@@ -47,16 +56,17 @@ func (o *ScimEtagSupport) SetMaxResults(v int32) {
 	o.MaxResults = &v
 }
 
-// GetSupported returns the Supported field value if set, zero value otherwise.
+// GetSupported returns the Supported field value.
 func (o *ScimEtagSupport) GetSupported() bool {
-	if o == nil || o.Supported == nil {
+	if o == nil {
 		var ret bool
 		return ret
 	}
-	return *o.Supported
+
+	return o.Supported
 }
 
-// SetSupported gets a reference to the given bool and assigns it to the Supported field.
+// SetSupported sets field value.
 func (o *ScimEtagSupport) SetSupported(v bool) {
-	o.Supported = &v
+	o.Supported = v
 }

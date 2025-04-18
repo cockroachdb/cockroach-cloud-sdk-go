@@ -18,37 +18,49 @@
 
 package client
 
-// ScimGroup struct for ScimGroup.
+// ScimGroup SCIM 2.0 Group Resource.
 type ScimGroup struct {
-	DisplayName *string         `json:"displayName,omitempty"`
+	DisplayName string          `json:"displayName"`
 	ExternalId  *string         `json:"externalId,omitempty"`
-	Id          *string         `json:"id,omitempty"`
+	Id          string          `json:"id"`
 	Members     *[]ScimResource `json:"members,omitempty"`
 	Meta        *ScimMetadata   `json:"meta,omitempty"`
-	Schemas     *[]string       `json:"schemas,omitempty"`
+	Schemas     []string        `json:"schemas"`
 }
 
 // NewScimGroup instantiates a new ScimGroup object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewScimGroup() *ScimGroup {
+func NewScimGroup(displayName string, id string, schemas []string) *ScimGroup {
+	p := ScimGroup{}
+	p.DisplayName = displayName
+	p.Id = id
+	p.Schemas = schemas
+	return &p
+}
+
+// NewScimGroupWithDefaults instantiates a new ScimGroup object.
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewScimGroupWithDefaults() *ScimGroup {
 	p := ScimGroup{}
 	return &p
 }
 
-// GetDisplayName returns the DisplayName field value if set, zero value otherwise.
+// GetDisplayName returns the DisplayName field value.
 func (o *ScimGroup) GetDisplayName() string {
-	if o == nil || o.DisplayName == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.DisplayName
+
+	return o.DisplayName
 }
 
-// SetDisplayName gets a reference to the given string and assigns it to the DisplayName field.
+// SetDisplayName sets field value.
 func (o *ScimGroup) SetDisplayName(v string) {
-	o.DisplayName = &v
+	o.DisplayName = v
 }
 
 // GetExternalId returns the ExternalId field value if set, zero value otherwise.
@@ -65,18 +77,19 @@ func (o *ScimGroup) SetExternalId(v string) {
 	o.ExternalId = &v
 }
 
-// GetId returns the Id field value if set, zero value otherwise.
+// GetId returns the Id field value.
 func (o *ScimGroup) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Id
+
+	return o.Id
 }
 
-// SetId gets a reference to the given string and assigns it to the Id field.
+// SetId sets field value.
 func (o *ScimGroup) SetId(v string) {
-	o.Id = &v
+	o.Id = v
 }
 
 // GetMembers returns the Members field value if set, zero value otherwise.
@@ -107,16 +120,17 @@ func (o *ScimGroup) SetMeta(v ScimMetadata) {
 	o.Meta = &v
 }
 
-// GetSchemas returns the Schemas field value if set, zero value otherwise.
+// GetSchemas returns the Schemas field value.
 func (o *ScimGroup) GetSchemas() []string {
-	if o == nil || o.Schemas == nil {
+	if o == nil {
 		var ret []string
 		return ret
 	}
-	return *o.Schemas
+
+	return o.Schemas
 }
 
-// SetSchemas gets a reference to the given []string and assigns it to the Schemas field.
+// SetSchemas sets field value.
 func (o *ScimGroup) SetSchemas(v []string) {
-	o.Schemas = &v
+	o.Schemas = v
 }

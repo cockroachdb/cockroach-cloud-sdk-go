@@ -20,6 +20,8 @@ package client
 
 // FolderResource FolderResource describes a resource, and includes info about its lineage (parent/ancestors)..
 type FolderResource struct {
+	// labels are key-value pairs used to organize and categorize resources.
+	Labels map[string]string `json:"labels"`
 	// name is the resource's name.
 	Name string `json:"name"`
 	// organization_id is the id of the organization this resource belongs to.
@@ -37,8 +39,9 @@ type FolderResource struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFolderResource(name string, organizationId string, parentId string, path []PathSegment, resourceId string, resourceType FolderResourceTypeType) *FolderResource {
+func NewFolderResource(labels map[string]string, name string, organizationId string, parentId string, path []PathSegment, resourceId string, resourceType FolderResourceTypeType) *FolderResource {
 	p := FolderResource{}
+	p.Labels = labels
 	p.Name = name
 	p.OrganizationId = organizationId
 	p.ParentId = parentId
@@ -54,6 +57,21 @@ func NewFolderResource(name string, organizationId string, parentId string, path
 func NewFolderResourceWithDefaults() *FolderResource {
 	p := FolderResource{}
 	return &p
+}
+
+// GetLabels returns the Labels field value.
+func (o *FolderResource) GetLabels() map[string]string {
+	if o == nil {
+		var ret map[string]string
+		return ret
+	}
+
+	return o.Labels
+}
+
+// SetLabels sets field value.
+func (o *FolderResource) SetLabels(v map[string]string) {
+	o.Labels = v
 }
 
 // GetName returns the Name field value.

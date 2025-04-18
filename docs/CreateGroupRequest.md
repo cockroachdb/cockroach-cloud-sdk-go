@@ -7,13 +7,13 @@ Name | Type | Description | Notes
 **DisplayName** | **string** |  | 
 **ExternalId** | Pointer to **string** |  | [optional] 
 **Members** | Pointer to [**[]ScimResource**](ScimResource.md) |  | [optional] 
-**Schemas** | Pointer to **[]string** |  | [optional] 
+**Schemas** | **[]string** |  | 
 
 ## Methods
 
 ### NewCreateGroupRequest
 
-`func NewCreateGroupRequest(displayName string, ) *CreateGroupRequest`
+`func NewCreateGroupRequest(displayName string, schemas []string, ) *CreateGroupRequest`
 
 NewCreateGroupRequest instantiates a new CreateGroupRequest object.
 This constructor will assign default values to properties that have it defined,

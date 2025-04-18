@@ -21,6 +21,7 @@ Method | HTTP request | Description
 [**GetUser2**](SCIMApi.md#GetUser2) | **Put** /api/scim/v2/Users/{id}/.search | Search for a user by ID (Deprecated)
 [**GetUsers**](SCIMApi.md#GetUsers) | **Get** /api/scim/v2/Users | List Users
 [**GetUsers2**](SCIMApi.md#GetUsers2) | **Put** /api/scim/v2/Users/.search | Search User (Deprecated)
+[**PatchUser**](SCIMApi.md#PatchUser) | **Patch** /api/scim/v2/Users/{id} | Patch a user by supplying partial updates
 [**SearchGroup**](SCIMApi.md#SearchGroup) | **Post** /api/scim/v2/Groups/{id}/.search | Search a group by ID
 [**SearchGroups**](SCIMApi.md#SearchGroups) | **Post** /api/scim/v2/Groups/.search | Search groups
 [**SearchUser**](SCIMApi.md#SearchUser) | **Post** /api/scim/v2/Users/{id}/.search | Search for a user by ID
@@ -53,7 +54,7 @@ import (
 )
 
 func main() {
-    createGroupRequest := *openapiclient.NewCreateGroupRequest("DisplayName_example") // CreateGroupRequest | 
+    createGroupRequest := *openapiclient.NewCreateGroupRequest("DisplayName_example", []string{"Schemas_example"}) // CreateGroupRequest | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
@@ -99,7 +100,7 @@ Name | Type | Description  | Notes
 
 ## CreateUser
 
-> ScimUser CreateUser(ctx).CreateUserRequest(createUserRequest).Execute()
+> CreateUserResponse CreateUser(ctx).CreateUserRequest(createUserRequest).Execute()
 
 Create a user
 
@@ -120,7 +121,7 @@ import (
 )
 
 func main() {
-    createUserRequest := *openapiclient.NewCreateUserRequest(false, "DisplayName_example", []openapiclient.ScimEmail{*openapiclient.NewScimEmail(false, "Value_example")}, *openapiclient.NewScimName()) // CreateUserRequest | 
+    createUserRequest := *openapiclient.NewCreateUserRequest([]openapiclient.ScimEmail{*openapiclient.NewScimEmail("Value_example")}, []string{"Schemas_example"}) // CreateUserRequest | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
@@ -129,7 +130,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `SCIMApi.CreateUser``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `CreateUser`: ScimUser
+    // response from `CreateUser`: CreateUserResponse
     fmt.Fprintf(os.Stdout, "Response from `SCIMApi.CreateUser`: %v\n", resp)
 }
 ```
@@ -149,7 +150,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ScimUser**](ScimUser.md)
+[**CreateUserResponse**](CreateUserResponse.md)
 
 ### Authorization
 
@@ -1065,7 +1066,7 @@ Name | Type | Description  | Notes
 
 ## GetUsers
 
-> GetUsersResponse GetUsers(ctx).Filter(filter).Attributes(attributes).ExcludedAttributes(excludedAttributes).Execute()
+> GetUsersResponse GetUsers(ctx).Filter(filter).Attributes(attributes).ExcludedAttributes(excludedAttributes).Count(count).StartIndex(startIndex).Execute()
 
 List Users
 
@@ -1089,10 +1090,12 @@ func main() {
     filter := "filter_example" // string |  (optional)
     attributes := "attributes_example" // string |  (optional)
     excludedAttributes := "excludedAttributes_example" // string |  (optional)
+    count := int32(56) // int32 |  (optional)
+    startIndex := int32(56) // int32 |  (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
-    resp, r, err := api_client.SCIMApi.GetUsers(context.Background()).Filter(filter).Attributes(attributes).ExcludedAttributes(excludedAttributes).Execute()
+    resp, r, err := api_client.SCIMApi.GetUsers(context.Background()).Filter(filter).Attributes(attributes).ExcludedAttributes(excludedAttributes).Count(count).StartIndex(startIndex).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SCIMApi.GetUsers``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1117,6 +1120,8 @@ Name | Type | Description  | Notes
  **filter** | **string** |  | 
  **attributes** | **string** |  | 
  **excludedAttributes** | **string** |  | 
+ **count** | **int32** |  | 
+ **startIndex** | **int32** |  | 
 
 ### Return type
 
@@ -1188,6 +1193,76 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**GetUsersResponse**](GetUsersResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## PatchUser
+
+> ScimUser PatchUser(ctx, id).PatchUserRequest(patchUserRequest).Execute()
+
+Patch a user by supplying partial updates
+
+Can be used by the following roles assigned at the organization scope:
+- ORG_ADMIN
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+    patchUserRequest := *openapiclient.NewPatchUserRequest([]openapiclient.ScimOperations{*openapiclient.NewScimOperations("Op_example")}, []string{"Schemas_example"}) // PatchUserRequest | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.SCIMApi.PatchUser(context.Background(), id).PatchUserRequest(patchUserRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `SCIMApi.PatchUser``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `PatchUser`: ScimUser
+    fmt.Fprintf(os.Stdout, "Response from `SCIMApi.PatchUser`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **patchUserRequest** | [**PatchUserRequest**](PatchUserRequest.md) |  | 
+
+### Return type
+
+[**ScimUser**](ScimUser.md)
 
 ### Authorization
 
@@ -1508,7 +1583,7 @@ import (
 
 func main() {
     id := "id_example" // string | 
-    updateGroupRequest := *openapiclient.NewUpdateGroupRequest("DisplayName_example") // UpdateGroupRequest | 
+    updateGroupRequest := *openapiclient.NewUpdateGroupRequest("DisplayName_example", []string{"Schemas_example"}) // UpdateGroupRequest | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
@@ -1578,7 +1653,7 @@ import (
 
 func main() {
     id := "id_example" // string | 
-    updateUserRequest := *openapiclient.NewUpdateUserRequest(false) // UpdateUserRequest | 
+    updateUserRequest := *openapiclient.NewUpdateUserRequest() // UpdateUserRequest | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)

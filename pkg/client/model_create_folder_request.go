@@ -20,7 +20,9 @@ package client
 
 // CreateFolderRequest struct for CreateFolderRequest.
 type CreateFolderRequest struct {
-	Name string `json:"name"`
+	// labels are key-value pairs used to organize and categorize resources.
+	Labels *map[string]string `json:"labels,omitempty"`
+	Name   string             `json:"name"`
 	// The parent ID is a folder ID. An empty string or \"root\" will create a folder at the root level.
 	ParentId *string `json:"parent_id,omitempty"`
 }
@@ -41,6 +43,20 @@ func NewCreateFolderRequest(name string) *CreateFolderRequest {
 func NewCreateFolderRequestWithDefaults() *CreateFolderRequest {
 	p := CreateFolderRequest{}
 	return &p
+}
+
+// GetLabels returns the Labels field value if set, zero value otherwise.
+func (o *CreateFolderRequest) GetLabels() map[string]string {
+	if o == nil || o.Labels == nil {
+		var ret map[string]string
+		return ret
+	}
+	return *o.Labels
+}
+
+// SetLabels gets a reference to the given map[string]string and assigns it to the Labels field.
+func (o *CreateFolderRequest) SetLabels(v map[string]string) {
+	o.Labels = &v
 }
 
 // GetName returns the Name field value.

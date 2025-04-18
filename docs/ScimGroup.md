@@ -4,23 +4,31 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DisplayName** | Pointer to **string** |  | [optional] 
+**DisplayName** | **string** |  | 
 **ExternalId** | Pointer to **string** |  | [optional] 
-**Id** | Pointer to **string** |  | [optional] 
+**Id** | **string** |  | 
 **Members** | Pointer to [**[]ScimResource**](ScimResource.md) |  | [optional] 
 **Meta** | Pointer to [**ScimMetadata**](ScimMetadata.md) |  | [optional] 
-**Schemas** | Pointer to **[]string** |  | [optional] 
+**Schemas** | **[]string** |  | 
 
 ## Methods
 
 ### NewScimGroup
 
-`func NewScimGroup() *ScimGroup`
+`func NewScimGroup(displayName string, id string, schemas []string, ) *ScimGroup`
 
 NewScimGroup instantiates a new ScimGroup object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed.
+
+### NewScimGroupWithDefaults
+
+`func NewScimGroupWithDefaults() *ScimGroup`
+
+NewScimGroupWithDefaults instantiates a new ScimGroup object.
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set.
 
 ### GetDisplayName
 

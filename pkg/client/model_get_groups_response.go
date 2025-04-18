@@ -22,15 +22,25 @@ package client
 type GetGroupsResponse struct {
 	Resources    *[]ScimGroup `json:"Resources,omitempty"`
 	ItemsPerPage *int32       `json:"itemsPerPage,omitempty"`
-	Schemas      *[]string    `json:"schemas,omitempty"`
-	TotalResults *int32       `json:"totalResults,omitempty"`
+	Schemas      []string     `json:"schemas"`
+	TotalResults int32        `json:"totalResults"`
 }
 
 // NewGetGroupsResponse instantiates a new GetGroupsResponse object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetGroupsResponse() *GetGroupsResponse {
+func NewGetGroupsResponse(schemas []string, totalResults int32) *GetGroupsResponse {
+	p := GetGroupsResponse{}
+	p.Schemas = schemas
+	p.TotalResults = totalResults
+	return &p
+}
+
+// NewGetGroupsResponseWithDefaults instantiates a new GetGroupsResponse object.
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetGroupsResponseWithDefaults() *GetGroupsResponse {
 	p := GetGroupsResponse{}
 	return &p
 }
@@ -63,30 +73,32 @@ func (o *GetGroupsResponse) SetItemsPerPage(v int32) {
 	o.ItemsPerPage = &v
 }
 
-// GetSchemas returns the Schemas field value if set, zero value otherwise.
+// GetSchemas returns the Schemas field value.
 func (o *GetGroupsResponse) GetSchemas() []string {
-	if o == nil || o.Schemas == nil {
+	if o == nil {
 		var ret []string
 		return ret
 	}
-	return *o.Schemas
+
+	return o.Schemas
 }
 
-// SetSchemas gets a reference to the given []string and assigns it to the Schemas field.
+// SetSchemas sets field value.
 func (o *GetGroupsResponse) SetSchemas(v []string) {
-	o.Schemas = &v
+	o.Schemas = v
 }
 
-// GetTotalResults returns the TotalResults field value if set, zero value otherwise.
+// GetTotalResults returns the TotalResults field value.
 func (o *GetGroupsResponse) GetTotalResults() int32 {
-	if o == nil || o.TotalResults == nil {
+	if o == nil {
 		var ret int32
 		return ret
 	}
-	return *o.TotalResults
+
+	return o.TotalResults
 }
 
-// SetTotalResults gets a reference to the given int32 and assigns it to the TotalResults field.
+// SetTotalResults sets field value.
 func (o *GetGroupsResponse) SetTotalResults(v int32) {
-	o.TotalResults = &v
+	o.TotalResults = v
 }

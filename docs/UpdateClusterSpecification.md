@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **CockroachVersion** | Pointer to **string** | The desired CockroachDB major version for the cluster.  It can be used to orchestrate version changes.  Setting the version to a later version will initiate an upgrade to that version.  After an upgrade is initiated but before it&#39;s finalized, setting the version back to the previous version will initiate a rollback. | [optional] 
 **Dedicated** | Pointer to [**DedicatedClusterUpdateSpecification**](DedicatedClusterUpdateSpecification.md) |  | [optional] 
 **DeleteProtection** | Pointer to [**DeleteProtectionStateType**](DeleteProtectionStateType.md) |  | [optional] 
+**Labels** | Pointer to **map[string]string** | labels are key-value pairs used to organize and categorize resources. If the labels field is included in the request: Any existing labels on the cluster that are not included will be removed, and any new labels specified will be added. If the labels field is omitted from the request entirely, all existing labels will remain unchanged. | [optional] 
 **ParentId** | Pointer to **string** | Preview: The parent ID is a folder ID. An empty string or \&quot;root\&quot; represents the root level. | [optional] 
 **Plan** | Pointer to [**PlanType**](PlanType.md) |  | [optional] 
 **Serverless** | Pointer to [**ServerlessClusterUpdateSpecification**](ServerlessClusterUpdateSpecification.md) |  | [optional] 
@@ -58,6 +59,18 @@ GetDeleteProtection returns the DeleteProtection field if non-nil, zero value ot
 `func (o *UpdateClusterSpecification) SetDeleteProtection(v DeleteProtectionStateType)`
 
 SetDeleteProtection sets DeleteProtection field to given value.
+
+### GetLabels
+
+`func (o *UpdateClusterSpecification) GetLabels() map[string]string`
+
+GetLabels returns the Labels field if non-nil, zero value otherwise.
+
+### SetLabels
+
+`func (o *UpdateClusterSpecification) SetLabels(v map[string]string)`
+
+SetLabels sets Labels field to given value.
 
 ### GetParentId
 

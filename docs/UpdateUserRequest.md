@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Active** | **bool** |  | 
+**Active** | Pointer to **bool** |  | [optional] 
 **DisplayName** | Pointer to **string** |  | [optional] 
 **Emails** | Pointer to [**[]ScimEmail**](ScimEmail.md) |  | [optional] 
 **ExternalId** | Pointer to **string** |  | [optional] 
@@ -16,20 +16,12 @@ Name | Type | Description | Notes
 
 ### NewUpdateUserRequest
 
-`func NewUpdateUserRequest(active bool, ) *UpdateUserRequest`
+`func NewUpdateUserRequest() *UpdateUserRequest`
 
 NewUpdateUserRequest instantiates a new UpdateUserRequest object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed.
-
-### NewUpdateUserRequestWithDefaults
-
-`func NewUpdateUserRequestWithDefaults() *UpdateUserRequest`
-
-NewUpdateUserRequestWithDefaults instantiates a new UpdateUserRequest object.
-This constructor will only assign default values to properties that have it defined,
-but it doesn't guarantee that properties required by API are set.
 
 ### GetActive
 

@@ -21,7 +21,7 @@ package client
 // ScimEmail struct for ScimEmail.
 type ScimEmail struct {
 	Display *string `json:"display,omitempty"`
-	Primary bool    `json:"primary"`
+	Primary *bool   `json:"primary,omitempty"`
 	Type    *string `json:"type,omitempty"`
 	Value   string  `json:"value"`
 }
@@ -30,9 +30,8 @@ type ScimEmail struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewScimEmail(primary bool, value string) *ScimEmail {
+func NewScimEmail(value string) *ScimEmail {
 	p := ScimEmail{}
-	p.Primary = primary
 	p.Value = value
 	return &p
 }
@@ -59,19 +58,18 @@ func (o *ScimEmail) SetDisplay(v string) {
 	o.Display = &v
 }
 
-// GetPrimary returns the Primary field value.
+// GetPrimary returns the Primary field value if set, zero value otherwise.
 func (o *ScimEmail) GetPrimary() bool {
-	if o == nil {
+	if o == nil || o.Primary == nil {
 		var ret bool
 		return ret
 	}
-
-	return o.Primary
+	return *o.Primary
 }
 
-// SetPrimary sets field value.
+// SetPrimary gets a reference to the given bool and assigns it to the Primary field.
 func (o *ScimEmail) SetPrimary(v bool) {
-	o.Primary = v
+	o.Primary = &v
 }
 
 // GetType returns the Type field value if set, zero value otherwise.

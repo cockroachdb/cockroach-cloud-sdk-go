@@ -4,18 +4,26 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Supported** | Pointer to **bool** |  | [optional] 
+**Supported** | **bool** |  | 
 
 ## Methods
 
 ### NewScimChangePasswordSupport
 
-`func NewScimChangePasswordSupport() *ScimChangePasswordSupport`
+`func NewScimChangePasswordSupport(supported bool, ) *ScimChangePasswordSupport`
 
 NewScimChangePasswordSupport instantiates a new ScimChangePasswordSupport object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed.
+
+### NewScimChangePasswordSupportWithDefaults
+
+`func NewScimChangePasswordSupportWithDefaults() *ScimChangePasswordSupport`
+
+NewScimChangePasswordSupportWithDefaults instantiates a new ScimChangePasswordSupport object.
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set.
 
 ### GetSupported
 

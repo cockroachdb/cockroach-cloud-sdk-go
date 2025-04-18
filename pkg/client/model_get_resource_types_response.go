@@ -22,16 +22,26 @@ package client
 type GetResourceTypesResponse struct {
 	Resources    *[]ScimResourceType `json:"Resources,omitempty"`
 	ItemsPerPage *int32              `json:"itemsPerPage,omitempty"`
-	Schemas      *[]string           `json:"schemas,omitempty"`
+	Schemas      []string            `json:"schemas"`
 	StartIndex   *int32              `json:"startIndex,omitempty"`
-	TotalResults *int32              `json:"totalResults,omitempty"`
+	TotalResults int32               `json:"totalResults"`
 }
 
 // NewGetResourceTypesResponse instantiates a new GetResourceTypesResponse object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetResourceTypesResponse() *GetResourceTypesResponse {
+func NewGetResourceTypesResponse(schemas []string, totalResults int32) *GetResourceTypesResponse {
+	p := GetResourceTypesResponse{}
+	p.Schemas = schemas
+	p.TotalResults = totalResults
+	return &p
+}
+
+// NewGetResourceTypesResponseWithDefaults instantiates a new GetResourceTypesResponse object.
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set
+func NewGetResourceTypesResponseWithDefaults() *GetResourceTypesResponse {
 	p := GetResourceTypesResponse{}
 	return &p
 }
@@ -64,18 +74,19 @@ func (o *GetResourceTypesResponse) SetItemsPerPage(v int32) {
 	o.ItemsPerPage = &v
 }
 
-// GetSchemas returns the Schemas field value if set, zero value otherwise.
+// GetSchemas returns the Schemas field value.
 func (o *GetResourceTypesResponse) GetSchemas() []string {
-	if o == nil || o.Schemas == nil {
+	if o == nil {
 		var ret []string
 		return ret
 	}
-	return *o.Schemas
+
+	return o.Schemas
 }
 
-// SetSchemas gets a reference to the given []string and assigns it to the Schemas field.
+// SetSchemas sets field value.
 func (o *GetResourceTypesResponse) SetSchemas(v []string) {
-	o.Schemas = &v
+	o.Schemas = v
 }
 
 // GetStartIndex returns the StartIndex field value if set, zero value otherwise.
@@ -92,16 +103,17 @@ func (o *GetResourceTypesResponse) SetStartIndex(v int32) {
 	o.StartIndex = &v
 }
 
-// GetTotalResults returns the TotalResults field value if set, zero value otherwise.
+// GetTotalResults returns the TotalResults field value.
 func (o *GetResourceTypesResponse) GetTotalResults() int32 {
-	if o == nil || o.TotalResults == nil {
+	if o == nil {
 		var ret int32
 		return ret
 	}
-	return *o.TotalResults
+
+	return o.TotalResults
 }
 
-// SetTotalResults gets a reference to the given int32 and assigns it to the TotalResults field.
+// SetTotalResults sets field value.
 func (o *GetResourceTypesResponse) SetTotalResults(v int32) {
-	o.TotalResults = &v
+	o.TotalResults = v
 }

@@ -6,19 +6,27 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Resources** | Pointer to [**[]ScimGroup**](ScimGroup.md) |  | [optional] 
 **ItemsPerPage** | Pointer to **int32** |  | [optional] 
-**Schemas** | Pointer to **[]string** |  | [optional] 
-**TotalResults** | Pointer to **int32** |  | [optional] 
+**Schemas** | **[]string** |  | 
+**TotalResults** | **int32** |  | 
 
 ## Methods
 
 ### NewGetGroupsResponse
 
-`func NewGetGroupsResponse() *GetGroupsResponse`
+`func NewGetGroupsResponse(schemas []string, totalResults int32, ) *GetGroupsResponse`
 
 NewGetGroupsResponse instantiates a new GetGroupsResponse object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed.
+
+### NewGetGroupsResponseWithDefaults
+
+`func NewGetGroupsResponseWithDefaults() *GetGroupsResponse`
+
+NewGetGroupsResponseWithDefaults instantiates a new GetGroupsResponse object.
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set.
 
 ### GetResources
 
