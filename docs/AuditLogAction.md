@@ -160,6 +160,8 @@
 
 * `UPDATE_ORGANIZATION_NAME` (value: `"AUDIT_LOG_ACTION_UPDATE_ORGANIZATION_NAME"`)
 
+* `CREATE_LICENSES` (value: `"AUDIT_LOG_ACTION_CREATE_LICENSES"`)
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

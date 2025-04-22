@@ -1,3 +1,13 @@
+## 6.1.0
+
+NEW FEATURES:
+
+* Add external_id support for log and metric export
+  * Add `external_id` field to `CloudWatchMetricExportInfo` and `EnableCloudWatchMetricExportRequest`
+  * Add `aws_external_id` field to `EnableLogExportRequest` and `LogExportClusterSpecification`
+
+* Add `CREATE_LICENSES` to `AuditLogAction` enum
+
 ## 6.0.0
 
 BREAKING CHANGES:
