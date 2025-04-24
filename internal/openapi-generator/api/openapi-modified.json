@@ -5903,6 +5903,10 @@
                     "type": "string",
                     "title": "auth_principal is used in different contexts based on integration.\nCloudWatch: AWS Role ARN that identifies a role\nthat the cluster account can assume to write to CloudWatch\nGCP Cloud Logging: GCP Project ID that the cluster service account\nhas permissions to write to for cloud logging.\nAzure Log Analytics: CustomerID or WorkspaceID"
                   },
+                  "aws_external_id": {
+                    "description": "aws_external_id to include when assuming the IAM role specified by role_arn.\nOptional. A specific value may be required by the role's trust policy.\nOnly supported for Advanced clusters on AWS. If provided for a Standard cluster,\nthe request is rejected.",
+                    "type": "string"
+                  },
                   "azure_shared_key": {
                     "description": "The primary or the secondary connected sources client authentication key.\nThis is used to export logs to Azure Log Analytics.",
                     "type": "string"
@@ -6523,6 +6527,10 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "external_id": {
+                    "description": "external_id to include when assuming the IAM role specified by role_arn.\nOptional. A specific value may be required by the role's trust policy.\nOnly supported for Advanced clusters. If provided for a Standard cluster,\nthe request is rejected.",
+                    "type": "string"
+                  },
                   "log_group_name": {
                     "description": "log_group_name is the customized log group name.",
                     "type": "string"
@@ -6537,6 +6545,7 @@
                   }
                 },
                 "example": {
+                  "external_id": "example_external_id",
                   "log_group_name": "example",
                   "role_arn": "arn:aws:iam::account:role/ExampleRole",
                   "target_region": "us-east-1"
@@ -6623,7 +6632,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/metricexport/cloudwatch \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"log_group_name\":\"example\",\"role_arn\":\"arn:aws:iam::account:role/ExampleRole\",\"target_region\":\"us-east-1\"}'"
+            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/metricexport/cloudwatch \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"external_id\":\"example_external_id\",\"log_group_name\":\"example\",\"role_arn\":\"arn:aws:iam::account:role/ExampleRole\",\"target_region\":\"us-east-1\"}'"
           }
         ]
       }
@@ -13784,7 +13793,8 @@
           "AUDIT_LOG_ACTION_DELETE_JWT_ISSUER",
           "AUDIT_LOG_ACTION_UPDATE_JWT_ISSUER",
           "AUDIT_LOG_ACTION_CREATE_LICENSE",
-          "AUDIT_LOG_ACTION_UPDATE_ORGANIZATION_NAME"
+          "AUDIT_LOG_ACTION_UPDATE_ORGANIZATION_NAME",
+          "AUDIT_LOG_ACTION_CREATE_LICENSES"
         ]
       },
       "AuditLogEntry": {
@@ -14147,6 +14157,10 @@
         "type": "object",
         "properties": {
           "cluster_id": {
+            "type": "string"
+          },
+          "external_id": {
+            "description": "external_id, if set, is included when assuming the IAM role. Supported for\nAdvanced clusters only.",
             "type": "string"
           },
           "log_group_name": {
@@ -16023,6 +16037,10 @@
         "properties": {
           "auth_principal": {
             "description": "auth_principal is either the AWS Role ARN that identifies a role\nthat the cluster account can assume to write to CloudWatch or the\nGCP Project ID that the cluster service account has permissions to\nwrite to for cloud logging.",
+            "type": "string"
+          },
+          "aws_external_id": {
+            "description": "aws_external_id, if set, is included when assuming the IAM role. Supported for\nAdvanced clusters on AWS only.",
             "type": "string"
           },
           "azure_shared_key": {

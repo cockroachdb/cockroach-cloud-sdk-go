@@ -4617,7 +4617,7 @@ paths:
           curl --request POST \
             --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/metricexport/cloudwatch \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
-            --json '{"log_group_name":"example","role_arn":"arn:aws:iam::account:role/ExampleRole","target_region":"us-east-1"}'
+            --json '{"external_id":"example_external_id","log_group_name":"example","role_arn":"arn:aws:iam::account:role/ExampleRole","target_region":"us-east-1"}'
   /api/v1/clusters/{cluster_id}/metricexport/datadog:
     delete:
       description: |
@@ -9920,6 +9920,7 @@ components:
       - AUDIT_LOG_ACTION_UPDATE_JWT_ISSUER
       - AUDIT_LOG_ACTION_CREATE_LICENSE
       - AUDIT_LOG_ACTION_UPDATE_ORGANIZATION_NAME
+      - AUDIT_LOG_ACTION_CREATE_LICENSES
       type: string
     AuditLogEntry:
       description: |-
@@ -10394,9 +10395,15 @@ components:
         cluster_id: cluster_id
         role_arn: role_arn
         user_message: user_message
+        external_id: external_id
         status: null
       properties:
         cluster_id:
+          type: string
+        external_id:
+          description: |-
+            external_id, if set, is included when assuming the IAM role. Supported for
+            Advanced clusters only.
           type: string
         log_group_name:
           description: log_group_name is the customized log group name.
@@ -13304,6 +13311,7 @@ components:
           omitted_channels:
           - omitted_channels
           - omitted_channels
+          aws_external_id: aws_external_id
           auth_principal: auth_principal
           log_name: log_name
           redact: true
@@ -13350,6 +13358,7 @@ components:
         omitted_channels:
         - omitted_channels
         - omitted_channels
+        aws_external_id: aws_external_id
         auth_principal: auth_principal
         log_name: log_name
         redact: true
@@ -13376,6 +13385,11 @@ components:
             that the cluster account can assume to write to CloudWatch or the
             GCP Project ID that the cluster service account has permissions to
             write to for cloud logging.
+          type: string
+        aws_external_id:
+          description: |-
+            aws_external_id, if set, is included when assuming the IAM role. Supported for
+            Advanced clusters on AWS only.
           type: string
         azure_shared_key:
           description: |-
@@ -15185,6 +15199,13 @@ components:
             has permissions to write to for cloud logging.
             Azure Log Analytics: CustomerID or WorkspaceID
           type: string
+        aws_external_id:
+          description: |-
+            aws_external_id to include when assuming the IAM role specified by role_arn.
+            Optional. A specific value may be required by the role's trust policy.
+            Only supported for Advanced clusters on AWS. If provided for a Standard cluster,
+            the request is rejected.
+          type: string
         azure_shared_key:
           description: |-
             The primary or the secondary connected sources client authentication key.
@@ -15231,10 +15252,18 @@ components:
       type: object
     EnableCloudWatchMetricExportRequest:
       example:
+        external_id: example_external_id
         log_group_name: example
         role_arn: arn:aws:iam::account:role/ExampleRole
         target_region: us-east-1
       properties:
+        external_id:
+          description: |-
+            external_id to include when assuming the IAM role specified by role_arn.
+            Optional. A specific value may be required by the role's trust policy.
+            Only supported for Advanced clusters. If provided for a Standard cluster,
+            the request is rejected.
+          type: string
         log_group_name:
           description: log_group_name is the customized log group name.
           type: string

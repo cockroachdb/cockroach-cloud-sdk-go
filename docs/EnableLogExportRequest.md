@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AuthPrincipal** | **string** |  | 
+**AwsExternalId** | Pointer to **string** | aws_external_id to include when assuming the IAM role specified by role_arn. Optional. A specific value may be required by the role&#39;s trust policy. Only supported for Advanced clusters on AWS. If provided for a Standard cluster, the request is rejected. | [optional] 
 **AzureSharedKey** | Pointer to **string** | The primary or the secondary connected sources client authentication key. This is used to export logs to Azure Log Analytics. | [optional] 
 **Groups** | Pointer to [**[]LogExportGroup**](LogExportGroup.md) | groups is a collection of log group configurations that allows the customer to define collections of CRDB log channels that are aggregated separately at the target sink. | [optional] 
 **LogName** | **string** | log_name is an identifier for the logs in the customer&#39;s log sink. | 
@@ -43,6 +44,18 @@ GetAuthPrincipal returns the AuthPrincipal field if non-nil, zero value otherwis
 `func (o *EnableLogExportRequest) SetAuthPrincipal(v string)`
 
 SetAuthPrincipal sets AuthPrincipal field to given value.
+
+### GetAwsExternalId
+
+`func (o *EnableLogExportRequest) GetAwsExternalId() string`
+
+GetAwsExternalId returns the AwsExternalId field if non-nil, zero value otherwise.
+
+### SetAwsExternalId
+
+`func (o *EnableLogExportRequest) SetAwsExternalId(v string)`
+
+SetAwsExternalId sets AwsExternalId field to given value.
 
 ### GetAzureSharedKey
 

@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ClusterId** | **string** |  | 
+**ExternalId** | Pointer to **string** | external_id, if set, is included when assuming the IAM role. Supported for Advanced clusters only. | [optional] 
 **LogGroupName** | Pointer to **string** | log_group_name is the customized log group name. | [optional] 
 **RoleArn** | **string** | role_arn is the IAM role used to upload metric segments to the target AWS account. | 
 **Status** | Pointer to [**MetricExportStatusType**](MetricExportStatusType.md) |  | [optional] 
@@ -41,6 +42,18 @@ GetClusterId returns the ClusterId field if non-nil, zero value otherwise.
 `func (o *CloudWatchMetricExportInfo) SetClusterId(v string)`
 
 SetClusterId sets ClusterId field to given value.
+
+### GetExternalId
+
+`func (o *CloudWatchMetricExportInfo) GetExternalId() string`
+
+GetExternalId returns the ExternalId field if non-nil, zero value otherwise.
+
+### SetExternalId
+
+`func (o *CloudWatchMetricExportInfo) SetExternalId(v string)`
+
+SetExternalId sets ExternalId field to given value.
 
 ### GetLogGroupName
 
