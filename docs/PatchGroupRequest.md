@@ -1,4 +1,4 @@
-# PatchUserRequest
+# PatchGroupRequest
 
 ## Properties
 
@@ -9,44 +9,44 @@ Name | Type | Description | Notes
 
 ## Methods
 
-### NewPatchUserRequest
+### NewPatchGroupRequest
 
-`func NewPatchUserRequest(operations []ScimOperations, schemas []string, ) *PatchUserRequest`
+`func NewPatchGroupRequest(operations []ScimOperations, schemas []string, ) *PatchGroupRequest`
 
-NewPatchUserRequest instantiates a new PatchUserRequest object.
+NewPatchGroupRequest instantiates a new PatchGroupRequest object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed.
 
-### NewPatchUserRequestWithDefaults
+### NewPatchGroupRequestWithDefaults
 
-`func NewPatchUserRequestWithDefaults() *PatchUserRequest`
+`func NewPatchGroupRequestWithDefaults() *PatchGroupRequest`
 
-NewPatchUserRequestWithDefaults instantiates a new PatchUserRequest object.
+NewPatchGroupRequestWithDefaults instantiates a new PatchGroupRequest object.
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set.
 
 ### GetOperations
 
-`func (o *PatchUserRequest) GetOperations() []ScimOperations`
+`func (o *PatchGroupRequest) GetOperations() []ScimOperations`
 
 GetOperations returns the Operations field if non-nil, zero value otherwise.
 
 ### SetOperations
 
-`func (o *PatchUserRequest) SetOperations(v []ScimOperations)`
+`func (o *PatchGroupRequest) SetOperations(v []ScimOperations)`
 
 SetOperations sets Operations field to given value.
 
 ### GetSchemas
 
-`func (o *PatchUserRequest) GetSchemas() []string`
+`func (o *PatchGroupRequest) GetSchemas() []string`
 
 GetSchemas returns the Schemas field if non-nil, zero value otherwise.
 
 ### SetSchemas
 
-`func (o *PatchUserRequest) SetSchemas(v []string)`
+`func (o *PatchGroupRequest) SetSchemas(v []string)`
 
 SetSchemas sets Schemas field to given value.
 

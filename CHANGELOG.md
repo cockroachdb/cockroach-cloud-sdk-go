@@ -1,3 +1,18 @@
+## 6.2.0
+
+NEW FEATURES:
+
+* Add CreatePhysicalReplicationStream, GetPhysicalReplicationStream,
+  ListPhysicalReplicationStreams, UpdatePhysicalReplicationStream
+  endpoints
+
+* Add PatchGroup SCIM endpoint
+
+DEPRECATIONS:
+
+* Deprecate CreateReplicationStream, GetReplicationStream,
+  ListReplicationStreams, UpdateReplicationStream endpoints
+
 ## 6.1.0
 
 NEW FEATURES:

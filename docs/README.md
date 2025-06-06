@@ -136,9 +136,13 @@ API | Method | HTTP request | Description
 [MetricExportApi](docs/MetricExportApi.md) | **GetDatadogMetricExportInfo** | **Get** /api/v1/clusters/{cluster_id}/metricexport/datadog | Get the Datadog Metric Export configuration for a cluster
 [MetricExportApi](docs/MetricExportApi.md) | **GetPrometheusMetricExportInfo** | **Get** /api/v1/clusters/{cluster_id}/metricexport/prometheus | Get the Prometheus Metric Export configuration for a cluster
 [OrganizationsApi](docs/OrganizationsApi.md) | **GetOrganizationInfo** | **Get** /api/v1/organization | Get information about the caller&#39;s organization
+[PhysicalClusterReplicationApi](docs/PhysicalClusterReplicationApi.md) | **CreatePhysicalReplicationStream** | **Post** /api/v1/physical-replication-streams | Create a physical replication stream
 [PhysicalClusterReplicationApi](docs/PhysicalClusterReplicationApi.md) | **CreateReplicationStream** | **Post** /api/v1/replication-streams | Create a replication stream
+[PhysicalClusterReplicationApi](docs/PhysicalClusterReplicationApi.md) | **GetPhysicalReplicationStream** | **Get** /api/v1/physical-replication-streams/{id} | Get a physical replication stream
 [PhysicalClusterReplicationApi](docs/PhysicalClusterReplicationApi.md) | **GetReplicationStream** | **Get** /api/v1/replication-streams/{id} | Get a replication stream
+[PhysicalClusterReplicationApi](docs/PhysicalClusterReplicationApi.md) | **ListPhysicalReplicationStreams** | **Get** /api/v1/physical-replication-streams | List physical replication streams
 [PhysicalClusterReplicationApi](docs/PhysicalClusterReplicationApi.md) | **ListReplicationStreams** | **Get** /api/v1/replication-streams | List replication streams
+[PhysicalClusterReplicationApi](docs/PhysicalClusterReplicationApi.md) | **UpdatePhysicalReplicationStream** | **Patch** /api/v1/physical-replication-streams/{id} | Update a physical replication stream
 [PhysicalClusterReplicationApi](docs/PhysicalClusterReplicationApi.md) | **UpdateReplicationStream** | **Patch** /api/v1/replication-streams/{id} | Update a replication stream
 [PrivateEndpointServicesApi](docs/PrivateEndpointServicesApi.md) | **AddPrivateEndpointConnection** | **Post** /api/v1/clusters/{cluster_id}/networking/private-endpoint-connections | Add a connection to a cluster&#39;s private endpoint service.
 [PrivateEndpointServicesApi](docs/PrivateEndpointServicesApi.md) | **AddPrivateEndpointTrustedOwner** | **Post** /api/v1/clusters/{cluster_id}/networking/private-endpoint-trusted-owners | Add a private endpoint trusted owner to a cluster
@@ -174,6 +178,7 @@ API | Method | HTTP request | Description
 [SCIMApi](docs/SCIMApi.md) | **GetUser2** | **Put** /api/scim/v2/Users/{id}/.search | Search for a user by ID (Deprecated)
 [SCIMApi](docs/SCIMApi.md) | **GetUsers** | **Get** /api/scim/v2/Users | List Users
 [SCIMApi](docs/SCIMApi.md) | **GetUsers2** | **Put** /api/scim/v2/Users/.search | Search User (Deprecated)
+[SCIMApi](docs/SCIMApi.md) | **PatchGroup** | **Patch** /api/scim/v2/Groups/{id} | Patch a group by supplying partial updates
 [SCIMApi](docs/SCIMApi.md) | **PatchUser** | **Patch** /api/scim/v2/Users/{id} | Patch a user by supplying partial updates
 [SCIMApi](docs/SCIMApi.md) | **SearchGroup** | **Post** /api/scim/v2/Groups/{id}/.search | Search a group by ID
 [SCIMApi](docs/SCIMApi.md) | **SearchGroups** | **Post** /api/scim/v2/Groups/.search | Search groups

@@ -565,6 +565,157 @@
           }
         ]
       },
+      "patch": {
+        "operationId": "CockroachCloud_PatchGroup",
+        "summary": "Patch a group by supplying partial updates",
+        "description": "Apply a sequence of operations to modify attributes of a SCIM Group resource. Supports 'add', 'remove', and 'replace' operations per RFC 7644 Section 3.5.2. Operations are applied atomically — if any operation fails, no changes are applied. The request body must include the 'schemas' field set to 'urn:ietf:params:scim:api:messages:2.0:PatchOp'.\n\nCan be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "Operations": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/ScimOperations"
+                    }
+                  },
+                  "schemas": {
+                    "description": "A list of one or more URIs identifying SCIM schemas that define the structure\nof the attributes in the request. The only supported schema at this time is\n\"urn:ietf:params:scim:api:messages:2.0:PatchOp\".",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "Operations": [
+                    {
+                      "op": "replace",
+                      "path": "displayName",
+                      "value": "Updated Group Name"
+                    },
+                    {
+                      "op": "replace",
+                      "path": "externalId",
+                      "value": "ext-123"
+                    },
+                    {
+                      "op": "remove",
+                      "path": "members"
+                    },
+                    {
+                      "op": "add",
+                      "path": "externalId",
+                      "value": "new-external-id"
+                    },
+                    {
+                      "op": "add",
+                      "path": "members",
+                      "value": [
+                        {
+                          "value": "45a35c27-23d3-4d03-c4c5-9043c09e7175"
+                        }
+                      ]
+                    }
+                  ],
+                  "schemas": [
+                    "urn:ietf:params:scim:api:messages:2.0:PatchOp"
+                  ]
+                },
+                "required": [
+                  "schemas",
+                  "Operations"
+                ],
+                "title": "PatchGroupRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScimGroup"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "SCIM"
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request PATCH \\\n  --url https://cockroachlabs.cloud/api/scim/v2/Groups/{id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"Operations\":[{\"op\":\"replace\",\"path\":\"displayName\",\"value\":\"Updated Group Name\"},{\"op\":\"replace\",\"path\":\"externalId\",\"value\":\"ext-123\"},{\"op\":\"remove\",\"path\":\"members\"},{\"op\":\"add\",\"path\":\"externalId\",\"value\":\"new-external-id\"},{\"op\":\"add\",\"path\":\"members\",\"value\":[{\"value\":\"45a35c27-23d3-4d03-c4c5-9043c09e7175\"}]}],\"schemas\":[\"urn:ietf:params:scim:api:messages:2.0:PatchOp\"]}'"
+          }
+        ]
+      },
       "put": {
         "operationId": "CockroachCloud_UpdateGroup",
         "summary": "Update a group by supplying all values of the user object",
@@ -1951,7 +2102,7 @@
       "patch": {
         "operationId": "CockroachCloud_PatchUser",
         "summary": "Patch a user by supplying partial updates",
-        "description": "Can be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
+        "description": "Apply a sequence of operations to modify attributes of a SCIM User resource. Supports 'add', 'remove', and 'replace' operations per RFC 7644 Section 3.5.2. Operations are applied atomically — if any operation fails, no changes are applied. The request body must include the 'schemas' field set to 'urn:ietf:params:scim:api:messages:2.0:PatchOp'.\n\nCan be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n",
         "parameters": [
           {
             "name": "id",
@@ -1976,6 +2127,7 @@
                     }
                   },
                   "schemas": {
+                    "description": "A list of one or more URIs identifying SCIM schemas that define the structure\nof the attributes in the request. The only supported schema at this time is\n\"urn:ietf:params:scim:api:messages:2.0:PatchOp\".",
                     "type": "array",
                     "items": {
                       "type": "string"
@@ -11914,6 +12066,450 @@
         ]
       }
     },
+    "/api/v1/physical-replication-streams": {
+      "get": {
+        "operationId": "CockroachCloud_ListPhysicalReplicationStreams",
+        "summary": "List physical replication streams",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n- CLUSTER_DEVELOPER\n",
+        "parameters": [
+          {
+            "name": "primary_cluster_id",
+            "in": "query",
+            "description": "primary_cluster_id, if set, will cause only replication streams\nwith this cluster as the primary to be returned.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "standby_cluster_id",
+            "in": "query",
+            "description": "standby_cluster_id, if set, will cause only replication streams\nwith this cluster as the standby to be returned.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "cluster_id",
+            "in": "query",
+            "description": "cluster_id, if set, will cause replication streams with this\ncluster as the primary or the standby to be returned.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "show_completed",
+            "in": "query",
+            "description": "show_completed specifies whether or not replication streams in the\ncompleted state are shown.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "pagination.page",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pagination.limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pagination.as_of_time",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "pagination.sort_order",
+            "in": "query",
+            "description": " - ASC: Sort in ascending order. This is the default unless otherwise specified.\n - DESC: Sort in descending order.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "ASC",
+                "DESC"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PhysicalReplicationStreamList"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Physical Cluster Replication"
+        ],
+        "x-badges": [
+          {
+            "color": "blue",
+            "label": "PREVIEW"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request GET \\\n  --url 'https://cockroachlabs.cloud/api/v1/physical-replication-streams?primary_cluster_id=SOME_STRING_VALUE&standby_cluster_id=SOME_STRING_VALUE&cluster_id=SOME_STRING_VALUE&show_completed=SOME_BOOLEAN_VALUE&pagination.page=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.as_of_time=SOME_STRING_VALUE&pagination.sort_order=SOME_STRING_VALUE' \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+          }
+        ]
+      },
+      "post": {
+        "operationId": "CockroachCloud_CreatePhysicalReplicationStream",
+        "summary": "Create a physical replication stream",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatePhysicalReplicationStreamRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PhysicalReplicationStream"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Physical Cluster Replication"
+        ],
+        "x-badges": [
+          {
+            "color": "blue",
+            "label": "PREVIEW"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/physical-replication-streams \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"primary_cluster_id\":\"string\",\"standby_cluster_id\":\"string\"}'"
+          }
+        ]
+      }
+    },
+    "/api/v1/physical-replication-streams/{id}": {
+      "get": {
+        "operationId": "CockroachCloud_GetPhysicalReplicationStream",
+        "summary": "Get a physical replication stream",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n- CLUSTER_DEVELOPER\n",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id is the ID of the replication stream to get.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PhysicalReplicationStream"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Physical Cluster Replication"
+        ],
+        "x-badges": [
+          {
+            "color": "blue",
+            "label": "PREVIEW"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request GET \\\n  --url https://cockroachlabs.cloud/api/v1/physical-replication-streams/{id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+          }
+        ]
+      },
+      "patch": {
+        "operationId": "CockroachCloud_UpdatePhysicalReplicationStream",
+        "summary": "Update a physical replication stream",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id is the ID of the replication stream to update.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "spec contains the information that is being updated for the given\nreplication stream.",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePhysicalReplicationStreamSpec"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PhysicalReplicationStream"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Physical Cluster Replication"
+        ],
+        "x-badges": [
+          {
+            "color": "blue",
+            "label": "PREVIEW"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request PATCH \\\n  --url https://cockroachlabs.cloud/api/v1/physical-replication-streams/{id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"failover_at\":\"2006-01-03T15:04:05Z\",\"status\":\"FAILING_OVER\"}'"
+          }
+        ]
+      }
+    },
     "/api/v1/replication-streams": {
       "get": {
         "operationId": "CockroachCloud_ListReplicationStreams",
@@ -12050,6 +12646,7 @@
             }
           }
         },
+        "deprecated": true,
         "tags": [
           "Physical Cluster Replication"
         ],
@@ -12142,6 +12739,7 @@
             }
           }
         },
+        "deprecated": true,
         "tags": [
           "Physical Cluster Replication"
         ],
@@ -12237,6 +12835,7 @@
             }
           }
         },
+        "deprecated": true,
         "tags": [
           "Physical Cluster Replication"
         ],
@@ -12341,6 +12940,7 @@
             }
           }
         },
+        "deprecated": true,
         "tags": [
           "Physical Cluster Replication"
         ],
@@ -12353,7 +12953,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PATCH \\\n  --url https://cockroachlabs.cloud/api/v1/replication-streams/{id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"failover_at\":\"2019-08-24T14:15:22Z\",\"status\":\"STARTING\"}'"
+            "source": "curl --request PATCH \\\n  --url https://cockroachlabs.cloud/api/v1/replication-streams/{id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"failover_at\":\"2006-01-03T15:04:05Z\",\"status\":\"FAILING_OVER\"}'"
           }
         ]
       }
@@ -14660,6 +15260,23 @@
         ],
         "title": "CreateGroupRequest"
       },
+      "CreatePhysicalReplicationStreamRequest": {
+        "type": "object",
+        "properties": {
+          "primary_cluster_id": {
+            "description": "primary_cluster_id is the ID of the cluster that is being\nreplicated.",
+            "type": "string"
+          },
+          "standby_cluster_id": {
+            "description": "standby_cluster_id is the ID of the cluster that data is being replicated to.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "primary_cluster_id",
+          "standby_cluster_id"
+        ]
+      },
       "CreateReplicationStreamRequest": {
         "type": "object",
         "properties": {
@@ -16281,6 +16898,92 @@
         ],
         "title": "person_user_info contains information about a person"
       },
+      "PhysicalReplicationStream": {
+        "type": "object",
+        "properties": {
+          "activated_at": {
+            "description": "activated_at is the crdb system time at which failover is\nfinalized. This may differ from the time for which failover was\nrequested. This field will be present when a replication stream is\nin the COMPLETED state.",
+            "type": "string",
+            "format": "date-time"
+          },
+          "created_at": {
+            "description": "created_at is the timestamp at which the replication stream was\ncreated.",
+            "type": "string",
+            "format": "date-time"
+          },
+          "failover_at": {
+            "description": "failover_at is the time for which failover is requested. If the user\nsets the status to 'FAILING_OVER' but omits failover_at, the failover\ntime will default to the latest consistent replicated time.\nOtherwise, the user can pick a time up to one hour in the future to\nschedule a failover, or a time in the past to restore the cluster to\na recent state. This field will be present if the user has\nrequested failover at a future time.",
+            "type": "string",
+            "format": "date-time"
+          },
+          "id": {
+            "description": "id is the UUID of the replication stream.",
+            "type": "string"
+          },
+          "primary_cluster_id": {
+            "description": "primary_cluster_id is the ID of the cluster that is being replicated.",
+            "type": "string"
+          },
+          "replicated_time": {
+            "description": "replicated_time is the timestamp indicating the point up to which\ndata has been replicated. The window between replicated_time and\nthe actual time is known as replication lag. This field will be\npresent when a replication stream is in the REPLICATING state.",
+            "type": "string",
+            "format": "date-time"
+          },
+          "replication_lag_seconds": {
+            "description": "replication_lag_seconds is the replication lag (current time minus\nreplicated time) in seconds. This field will be present when a\nreplication stream is in the REPLICATING state.",
+            "type": "integer",
+            "format": "int32"
+          },
+          "retained_time": {
+            "description": "retained_time is the timestamp indicating the lower bound that the\nreplication stream can failover to. This field will be present\nwhen a replication stream is in the REPLICATING state.",
+            "type": "string",
+            "format": "date-time"
+          },
+          "standby_cluster_id": {
+            "description": "standby_cluster_id is the ID of the standby cluster that data is being\nreplicated to.",
+            "type": "string"
+          },
+          "status": {
+            "$ref": "#/components/schemas/ReplicationStreamStatus.Type"
+          }
+        },
+        "example": {
+          "activation_at": "2006-01-03T15:04:15Z",
+          "created_at": "2006-01-02T15:04:05Z",
+          "failover_at": "2006-01-03T15:04:05Z",
+          "id": "00000000-0000-0000-0000-000000000001",
+          "primary_cluster_id": "00000000-0000-0000-0000-000000000002",
+          "replicated_time": "2006-01-03T15:04:04Z",
+          "retained_time": "2006-01-02T15:04:06Z",
+          "standby_cluster_id": "00000000-0000-0000-0000-000000000003",
+          "status": "COMPLETED"
+        },
+        "required": [
+          "id",
+          "status",
+          "primary_cluster_id",
+          "standby_cluster_id",
+          "created_at"
+        ]
+      },
+      "PhysicalReplicationStreamList": {
+        "type": "object",
+        "properties": {
+          "pagination": {
+            "$ref": "#/components/schemas/KeysetPaginationResponse"
+          },
+          "physical_replication_streams": {
+            "description": "physical_replication_streams is a list of PhysicalReplicationStreams.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PhysicalReplicationStream"
+            }
+          }
+        },
+        "required": [
+          "physical_replication_streams"
+        ]
+      },
       "Plan.Type": {
         "description": " - BASIC: The Basic plan includes essential operational features, is available in\nselect regions, and offers on-demand capacity, making it ideal for small\nteams with unpredictable workloads.\n - STANDARD: The Standard plan includes standard enterprise security and monitoring\nfeatures, is available in all supported regions, and offers provisioned\npricing, making it the default choice for most CockroachDB production\nworkloads.\n - ADVANCED: The Advanced plan is ideal for workloads with stringent isolation,\ncompliance, and security requirements such as CMEK, PCI and HIPAA-readiness,\nand support for dedicated hardware. Customers are advised to have their\naccount team and/or Cockroach Labs Support <support@cockroachlabs.com>\ninvolved when provisioning Advanced clusters.",
         "type": "string",
@@ -17389,6 +18092,23 @@
           "parent_id": "12345678-1234-1234-1234-123456789012"
         }
       },
+      "UpdatePhysicalReplicationStreamSpec": {
+        "type": "object",
+        "properties": {
+          "failover_at": {
+            "description": "failover_at is the crdb system time at which failover occurs. If the user\nsets the status to 'FAILING_OVER' but omits failover_at, the failover time\nwill default to the latest consistent replicated time. Otherwise, the user\ncan pick a time up to one hour in the future to schedule a failover, or a\ntime in the past to restore the cluster to a recent state. If the\ntime is in the past, the API will make a best-effort attempt to\nvalidate that the time is not earlier than the retained time. In\nthis case, if the retained time is updated in between validation\nand failover execution and the failover time becomes invalid, the\nstream will failover to the retained time.",
+            "type": "string",
+            "format": "date-time"
+          },
+          "status": {
+            "$ref": "#/components/schemas/ReplicationStreamStatus.Type"
+          }
+        },
+        "example": {
+          "failover_at": "2006-01-03T15:04:05Z",
+          "status": "FAILING_OVER"
+        }
+      },
       "UpdateReplicationStreamSpec": {
         "type": "object",
         "properties": {
@@ -17400,6 +18120,10 @@
           "status": {
             "$ref": "#/components/schemas/ReplicationStreamStatus.Type"
           }
+        },
+        "example": {
+          "failover_at": "2006-01-03T15:04:05Z",
+          "status": "FAILING_OVER"
         }
       },
       "UpdateServiceAccountSpecification": {
@@ -17580,6 +18304,9 @@
     },
     {
       "name": "Physical Cluster Replication"
+    },
+    {
+      "name": "Plan Migrations"
     },
     {
       "name": "Backup/Restore"

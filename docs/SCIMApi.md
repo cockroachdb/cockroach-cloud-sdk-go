@@ -21,6 +21,7 @@ Method | HTTP request | Description
 [**GetUser2**](SCIMApi.md#GetUser2) | **Put** /api/scim/v2/Users/{id}/.search | Search for a user by ID (Deprecated)
 [**GetUsers**](SCIMApi.md#GetUsers) | **Get** /api/scim/v2/Users | List Users
 [**GetUsers2**](SCIMApi.md#GetUsers2) | **Put** /api/scim/v2/Users/.search | Search User (Deprecated)
+[**PatchGroup**](SCIMApi.md#PatchGroup) | **Patch** /api/scim/v2/Groups/{id} | Patch a group by supplying partial updates
 [**PatchUser**](SCIMApi.md#PatchUser) | **Patch** /api/scim/v2/Users/{id} | Patch a user by supplying partial updates
 [**SearchGroup**](SCIMApi.md#SearchGroup) | **Post** /api/scim/v2/Groups/{id}/.search | Search a group by ID
 [**SearchGroups**](SCIMApi.md#SearchGroups) | **Post** /api/scim/v2/Groups/.search | Search groups
@@ -1207,11 +1208,85 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## PatchGroup
+
+> ScimGroup PatchGroup(ctx, id).PatchGroupRequest(patchGroupRequest).Execute()
+
+Patch a group by supplying partial updates
+
+Apply a sequence of operations to modify attributes of a SCIM Group resource. Supports 'add', 'remove', and 'replace' operations per RFC 7644 Section 3.5.2. Operations are applied atomically — if any operation fails, no changes are applied. The request body must include the 'schemas' field set to 'urn:ietf:params:scim:api:messages:2.0:PatchOp'.
+
+Can be used by the following roles assigned at the organization scope:
+- ORG_ADMIN
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    id := "id_example" // string | 
+    patchGroupRequest := *openapiclient.NewPatchGroupRequest([]openapiclient.ScimOperations{*openapiclient.NewScimOperations("Op_example")}, []string{"Schemas_example"}) // PatchGroupRequest | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.SCIMApi.PatchGroup(context.Background(), id).PatchGroupRequest(patchGroupRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `SCIMApi.PatchGroup``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `PatchGroup`: ScimGroup
+    fmt.Fprintf(os.Stdout, "Response from `SCIMApi.PatchGroup`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** |  | 
+
+### Other Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **patchGroupRequest** | [**PatchGroupRequest**](PatchGroupRequest.md) |  | 
+
+### Return type
+
+[**ScimGroup**](ScimGroup.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## PatchUser
 
 > ScimUser PatchUser(ctx, id).PatchUserRequest(patchUserRequest).Execute()
 
 Patch a user by supplying partial updates
+
+Apply a sequence of operations to modify attributes of a SCIM User resource. Supports 'add', 'remove', and 'replace' operations per RFC 7644 Section 3.5.2. Operations are applied atomically — if any operation fails, no changes are applied. The request body must include the 'schemas' field set to 'urn:ietf:params:scim:api:messages:2.0:PatchOp'.
 
 Can be used by the following roles assigned at the organization scope:
 - ORG_ADMIN
