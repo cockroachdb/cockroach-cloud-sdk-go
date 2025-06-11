@@ -64,6 +64,7 @@ docs/CreateClusterSpecification.md
 docs/CreateDatabaseRequest.md
 docs/CreateFolderRequest.md
 docs/CreateGroupRequest.md
+docs/CreatePhysicalReplicationStreamRequest.md
 docs/CreateReplicationStreamRequest.md
 docs/CreateSQLUserRequest.md
 docs/CreateServiceAccountRequest.md
@@ -154,10 +155,13 @@ docs/OperatingSystemType.md
 docs/Organization.md
 docs/OrganizationUserRoleType.md
 docs/OrganizationsApi.md
+docs/PatchGroupRequest.md
 docs/PatchUserRequest.md
 docs/PathSegment.md
 docs/PersonUserInfo.md
 docs/PhysicalClusterReplicationApi.md
+docs/PhysicalReplicationStream.md
+docs/PhysicalReplicationStreamList.md
 docs/PlanType.md
 docs/PrivateEndpointConnection.md
 docs/PrivateEndpointConnectionStatus.md
@@ -219,6 +223,7 @@ docs/UpdateDatabaseRequest1.md
 docs/UpdateFolderSpecification.md
 docs/UpdateGroupRequest.md
 docs/UpdateJWTIssuerRequest.md
+docs/UpdatePhysicalReplicationStreamSpec.md
 docs/UpdateReplicationStreamSpec.md
 docs/UpdateSQLUserPasswordRequest.md
 docs/UpdateServiceAccountSpecification.md
@@ -283,6 +288,7 @@ model_create_cluster_specification.go
 model_create_database_request.go
 model_create_folder_request.go
 model_create_group_request.go
+model_create_physical_replication_stream_request.go
 model_create_replication_stream_request.go
 model_create_service_account_request.go
 model_create_sql_user_request.go
@@ -363,9 +369,12 @@ model_node_status_type.go
 model_operating_system_type.go
 model_organization.go
 model_organization_user_role_type.go
+model_patch_group_request.go
 model_patch_user_request.go
 model_path_segment.go
 model_person_user_info.go
+model_physical_replication_stream.go
+model_physical_replication_stream_list.go
 model_plan_type.go
 model_private_endpoint_connection.go
 model_private_endpoint_connection_status.go
@@ -422,6 +431,7 @@ model_update_database_request_1.go
 model_update_folder_specification.go
 model_update_group_request.go
 model_update_jwt_issuer_request.go
+model_update_physical_replication_stream_spec.go
 model_update_replication_stream_spec.go
 model_update_service_account_specification.go
 model_update_sql_user_password_request.go
