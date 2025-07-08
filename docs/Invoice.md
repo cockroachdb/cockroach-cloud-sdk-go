@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **InvoiceItems** | [**[]InvoiceItem**](InvoiceItem.md) | invoice_items are sorted by the cluster name. | 
 **PeriodEnd** | **time.Time** | period_end is the end of the billing period (exclusive). | 
 **PeriodStart** | **time.Time** | period_start is the start of the billing period (inclusive). | 
+**Status** | Pointer to [**InvoiceStatusType**](InvoiceStatusType.md) |  | [optional] 
 **Totals** | [**[]CurrencyAmount**](CurrencyAmount.md) | totals is a list of the total amounts per currency. | 
 
 ## Methods
@@ -115,6 +116,18 @@ GetPeriodStart returns the PeriodStart field if non-nil, zero value otherwise.
 `func (o *Invoice) SetPeriodStart(v time.Time)`
 
 SetPeriodStart sets PeriodStart field to given value.
+
+### GetStatus
+
+`func (o *Invoice) GetStatus() InvoiceStatusType`
+
+GetStatus returns the Status field if non-nil, zero value otherwise.
+
+### SetStatus
+
+`func (o *Invoice) SetStatus(v InvoiceStatusType)`
+
+SetStatus sets Status field to given value.
 
 ### GetTotals
 

@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AccountId** | Pointer to **string** |  | [optional] 
+**AzureClusterIdentityClientId** | Pointer to **string** | The client ID of the Azure cluster identity associated with this cluster. This field is only populated for clusters deployed on Azure and is used to support customer-managed encryption keys (CMEK). | [optional] 
 **CidrRange** | **string** | cidr_range is the IPv4 range in CIDR format that will be used by the cluster. It is only set on GCP Advanced tier clusters and is otherwise empty. | 
 **CloudProvider** | [**CloudProviderType**](CloudProviderType.md) |  | 
 **CockroachVersion** | **string** |  | 
@@ -57,6 +58,18 @@ GetAccountId returns the AccountId field if non-nil, zero value otherwise.
 `func (o *Cluster) SetAccountId(v string)`
 
 SetAccountId sets AccountId field to given value.
+
+### GetAzureClusterIdentityClientId
+
+`func (o *Cluster) GetAzureClusterIdentityClientId() string`
+
+GetAzureClusterIdentityClientId returns the AzureClusterIdentityClientId field if non-nil, zero value otherwise.
+
+### SetAzureClusterIdentityClientId
+
+`func (o *Cluster) SetAzureClusterIdentityClientId(v string)`
+
+SetAzureClusterIdentityClientId sets AzureClusterIdentityClientId field to given value.
 
 ### GetCidrRange
 

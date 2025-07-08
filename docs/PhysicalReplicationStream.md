@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ActivatedAt** | Pointer to **time.Time** | activated_at is the crdb system time at which failover is finalized. This may differ from the time for which failover was requested. This field will be present when a replication stream is in the COMPLETED state. | [optional] 
+**CanceledAt** | Pointer to **time.Time** | canceled_at is the timestamp at which the replication stream was canceled. | [optional] 
 **CreatedAt** | **time.Time** | created_at is the timestamp at which the replication stream was created. | 
 **FailoverAt** | Pointer to **time.Time** | failover_at is the time for which failover is requested. If the user sets the status to &#39;FAILING_OVER&#39; but omits failover_at, the failover time will default to the latest consistent replicated time. Otherwise, the user can pick a time up to one hour in the future to schedule a failover, or a time in the past to restore the cluster to a recent state. This field will be present if the user has requested failover at a future time. | [optional] 
 **Id** | **string** | id is the UUID of the replication stream. | 
@@ -45,6 +46,18 @@ GetActivatedAt returns the ActivatedAt field if non-nil, zero value otherwise.
 `func (o *PhysicalReplicationStream) SetActivatedAt(v time.Time)`
 
 SetActivatedAt sets ActivatedAt field to given value.
+
+### GetCanceledAt
+
+`func (o *PhysicalReplicationStream) GetCanceledAt() time.Time`
+
+GetCanceledAt returns the CanceledAt field if non-nil, zero value otherwise.
+
+### SetCanceledAt
+
+`func (o *PhysicalReplicationStream) SetCanceledAt(v time.Time)`
+
+SetCanceledAt sets CanceledAt field to given value.
 
 ### GetCreatedAt
 

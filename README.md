@@ -137,13 +137,9 @@ API | Method | HTTP request | Description
 [MetricExportApi](docs/MetricExportApi.md) | **GetPrometheusMetricExportInfo** | **Get** /api/v1/clusters/{cluster_id}/metricexport/prometheus | Get the Prometheus Metric Export configuration for a cluster
 [OrganizationsApi](docs/OrganizationsApi.md) | **GetOrganizationInfo** | **Get** /api/v1/organization | Get information about the caller&#39;s organization
 [PhysicalClusterReplicationApi](docs/PhysicalClusterReplicationApi.md) | **CreatePhysicalReplicationStream** | **Post** /api/v1/physical-replication-streams | Create a physical replication stream
-[PhysicalClusterReplicationApi](docs/PhysicalClusterReplicationApi.md) | **CreateReplicationStream** | **Post** /api/v1/replication-streams | Create a replication stream
 [PhysicalClusterReplicationApi](docs/PhysicalClusterReplicationApi.md) | **GetPhysicalReplicationStream** | **Get** /api/v1/physical-replication-streams/{id} | Get a physical replication stream
-[PhysicalClusterReplicationApi](docs/PhysicalClusterReplicationApi.md) | **GetReplicationStream** | **Get** /api/v1/replication-streams/{id} | Get a replication stream
 [PhysicalClusterReplicationApi](docs/PhysicalClusterReplicationApi.md) | **ListPhysicalReplicationStreams** | **Get** /api/v1/physical-replication-streams | List physical replication streams
-[PhysicalClusterReplicationApi](docs/PhysicalClusterReplicationApi.md) | **ListReplicationStreams** | **Get** /api/v1/replication-streams | List replication streams
 [PhysicalClusterReplicationApi](docs/PhysicalClusterReplicationApi.md) | **UpdatePhysicalReplicationStream** | **Patch** /api/v1/physical-replication-streams/{id} | Update a physical replication stream
-[PhysicalClusterReplicationApi](docs/PhysicalClusterReplicationApi.md) | **UpdateReplicationStream** | **Patch** /api/v1/replication-streams/{id} | Update a replication stream
 [PrivateEndpointServicesApi](docs/PrivateEndpointServicesApi.md) | **AddPrivateEndpointConnection** | **Post** /api/v1/clusters/{cluster_id}/networking/private-endpoint-connections | Add a connection to a cluster&#39;s private endpoint service.
 [PrivateEndpointServicesApi](docs/PrivateEndpointServicesApi.md) | **AddPrivateEndpointTrustedOwner** | **Post** /api/v1/clusters/{cluster_id}/networking/private-endpoint-trusted-owners | Add a private endpoint trusted owner to a cluster
 [PrivateEndpointServicesApi](docs/PrivateEndpointServicesApi.md) | **CreatePrivateEndpointServices** | **Post** /api/v1/clusters/{cluster_id}/networking/private-endpoint-services | Create all PrivateEndpointServices for a cluster

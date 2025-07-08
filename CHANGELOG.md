@@ -1,3 +1,29 @@
+## 6.3.0
+
+BREAKING CHANGES:
+
+* The ReplicationStream endpoints are now fully removed, after having
+  previously been marked as deprecated. The PhysicalReplicationStream
+  endpoints still exist.
+
+* The data type of the Payload field within AuditLogEntry has been
+  changed from a map to a string.
+
+NEW FEATURES:
+
+* The Cluster object now contains the AzureClusterIdentityClientId field
+  for Azure clusters.
+
+* The SupportPhysicalClusterReplication field has been added to
+  DedicatedClusterCreateSpecification.
+
+* PhysicalReplicationStreams now have a CanceledAt field, and have a
+  CANCELED status.
+
+* The Invoice object now contains the Status field.
+
+* AuditLogActions now include some actions related to plan migrations.
+
 ## 6.2.0
 
 NEW FEATURES:
