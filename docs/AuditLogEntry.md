@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **Error** | Pointer to **string** | Error is the error that applies to this entry if it represents a failure. | [optional] 
 **Id** | Pointer to **string** | Id uniquely identifies this entry. | [optional] 
 **Metadata** | Pointer to [**AuditLogMetadata**](AuditLogMetadata.md) |  | [optional] 
-**Payload** | Pointer to **map[string]interface{}** | Payload is a representation of the essential details relating to this log entry. | [optional] 
+**Payload** | Pointer to **string** | Payload is a representation of the essential details relating to this log entry. | [optional] 
 **ServiceAccountName** | Pointer to **string** | ServiceAccountName is the name of the service account that triggered this log entry. If it was not a service account, it will be empty. | [optional] 
 **SessionId** | Pointer to **string** | SessionId is an ID that can be used to correlate this log entry with others that are emitted as part of the same user session, typically for users interacting through the UI. It should be treated as an opaque string with no guaranteed structure. | [optional] 
 **Source** | Pointer to [**AuditLogSource**](AuditLogSource.md) |  | [optional] 
@@ -115,13 +115,13 @@ SetMetadata sets Metadata field to given value.
 
 ### GetPayload
 
-`func (o *AuditLogEntry) GetPayload() map[string]interface{}`
+`func (o *AuditLogEntry) GetPayload() string`
 
 GetPayload returns the Payload field if non-nil, zero value otherwise.
 
 ### SetPayload
 
-`func (o *AuditLogEntry) SetPayload(v map[string]interface{})`
+`func (o *AuditLogEntry) SetPayload(v string)`
 
 SetPayload sets Payload field to given value.
 

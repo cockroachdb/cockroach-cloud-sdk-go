@@ -2790,7 +2790,7 @@ paths:
           curl --request PATCH \
             --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id} \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
-            --json '{"dedicated":{"hardware":{"machine_spec":{"machine_type":"n2-standard-8"}},"region_nodes":{"us-central1":5,"us-west1":3}}}'
+            --json '{"dedicated":{"hardware":{"machine_spec":{"num_virtual_cpus":8}},"region_nodes":{"us-central1":5,"us-west1":3}}}'
   /api/v1/clusters/{cluster_id}/backups-config:
     get:
       description: |
@@ -8751,352 +8751,6 @@ paths:
             --url https://cockroachlabs.cloud/api/v1/physical-replication-streams/{id} \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
             --json '{"failover_at":"2006-01-03T15:04:05Z","status":"FAILING_OVER"}'
-  /api/v1/replication-streams:
-    get:
-      deprecated: true
-      description: |
-        Can be used by the following roles assigned at the organization, folder or cluster scope:
-        - CLUSTER_ADMIN
-        - CLUSTER_OPERATOR_WRITER
-        - CLUSTER_DEVELOPER
-      operationId: CockroachCloud_ListReplicationStreams
-      parameters:
-      - description: |-
-          source_cluster_id, if set, will cause only replication streams
-          with this cluster as the source to be returned.
-        explode: true
-        in: query
-        name: source_cluster_id
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: |-
-          target_cluster_id, if set, will cause only replication streams
-          with this cluster as the target to be returned.
-        explode: true
-        in: query
-        name: target_cluster_id
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: |-
-          cluster_id, if set, will cause replication streams with this
-          cluster as the source or the target to be returned.
-        explode: true
-        in: query
-        name: cluster_id
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: |-
-          show_completed specifies whether or not replication streams in the
-          completed state are shown.
-        explode: true
-        in: query
-        name: show_completed
-        required: false
-        schema:
-          type: boolean
-        style: form
-      - explode: true
-        in: query
-        name: pagination.page
-        required: false
-        schema:
-          type: string
-        style: form
-      - explode: true
-        in: query
-        name: pagination.limit
-        required: false
-        schema:
-          format: int32
-          type: integer
-        style: form
-      - explode: true
-        in: query
-        name: pagination.as_of_time
-        required: false
-        schema:
-          format: date-time
-          type: string
-        style: form
-      - description: |2-
-           - ASC: Sort in ascending order. This is the default unless otherwise specified.
-           - DESC: Sort in descending order.
-        explode: true
-        in: query
-        name: pagination.sort_order
-        required: false
-        schema:
-          enum:
-          - ASC
-          - DESC
-          type: string
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ReplicationStreamList'
-          description: A successful response.
-        "400":
-          content:
-            application/json:
-              schema: {}
-          description: Returned when a request field is invalid.
-        "401":
-          content:
-            application/json:
-              schema: {}
-          description: Returned when the token bearer cannot be authenticated.
-        "403":
-          content:
-            application/json:
-              schema: {}
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            application/json:
-              schema: {}
-          description: Returned when the resource does not exist.
-        "500":
-          content:
-            application/json:
-              schema: {}
-          description: Server error
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Status'
-          description: An unexpected error response.
-      summary: List replication streams
-      tags:
-      - Physical Cluster Replication
-      x-badges:
-      - color: blue
-        label: PREVIEW
-      x-codeSamples:
-      - lang: Shell + Curl
-        source: |-
-          curl --request GET \
-            --url 'https://cockroachlabs.cloud/api/v1/replication-streams?source_cluster_id=SOME_STRING_VALUE&target_cluster_id=SOME_STRING_VALUE&cluster_id=SOME_STRING_VALUE&show_completed=SOME_BOOLEAN_VALUE&pagination.page=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.as_of_time=SOME_STRING_VALUE&pagination.sort_order=SOME_STRING_VALUE' \
-            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
-    post:
-      deprecated: true
-      description: |
-        Can be used by the following roles assigned at the organization, folder or cluster scope:
-        - CLUSTER_ADMIN
-      operationId: CockroachCloud_CreateReplicationStream
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CreateReplicationStreamRequest'
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ReplicationStream'
-          description: A successful response.
-        "400":
-          content:
-            application/json:
-              schema: {}
-          description: Returned when a request field is invalid.
-        "401":
-          content:
-            application/json:
-              schema: {}
-          description: Returned when the token bearer cannot be authenticated.
-        "403":
-          content:
-            application/json:
-              schema: {}
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            application/json:
-              schema: {}
-          description: Returned when the resource does not exist.
-        "500":
-          content:
-            application/json:
-              schema: {}
-          description: Server error
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Status'
-          description: An unexpected error response.
-      summary: Create a replication stream
-      tags:
-      - Physical Cluster Replication
-      x-badges:
-      - color: blue
-        label: PREVIEW
-      x-codeSamples:
-      - lang: Shell + Curl
-        source: |-
-          curl --request POST \
-            --url https://cockroachlabs.cloud/api/v1/replication-streams \
-            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
-            --json '{"source_cluster_id":"string","target_cluster_id":"string"}'
-  /api/v1/replication-streams/{id}:
-    get:
-      deprecated: true
-      description: |
-        Can be used by the following roles assigned at the organization, folder or cluster scope:
-        - CLUSTER_ADMIN
-        - CLUSTER_OPERATOR_WRITER
-        - CLUSTER_DEVELOPER
-      operationId: CockroachCloud_GetReplicationStream
-      parameters:
-      - description: id is the ID of the replication stream to get.
-        explode: false
-        in: path
-        name: id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ReplicationStream'
-          description: A successful response.
-        "400":
-          content:
-            application/json:
-              schema: {}
-          description: Returned when a request field is invalid.
-        "401":
-          content:
-            application/json:
-              schema: {}
-          description: Returned when the token bearer cannot be authenticated.
-        "403":
-          content:
-            application/json:
-              schema: {}
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            application/json:
-              schema: {}
-          description: Returned when the resource does not exist.
-        "500":
-          content:
-            application/json:
-              schema: {}
-          description: Server error
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Status'
-          description: An unexpected error response.
-      summary: Get a replication stream
-      tags:
-      - Physical Cluster Replication
-      x-badges:
-      - color: blue
-        label: PREVIEW
-      x-codeSamples:
-      - lang: Shell + Curl
-        source: |-
-          curl --request GET \
-            --url https://cockroachlabs.cloud/api/v1/replication-streams/{id} \
-            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
-    patch:
-      deprecated: true
-      description: |
-        Can be used by the following roles assigned at the organization, folder or cluster scope:
-        - CLUSTER_ADMIN
-      operationId: CockroachCloud_UpdateReplicationStream
-      parameters:
-      - description: id is the ID of the replication stream to update.
-        explode: false
-        in: path
-        name: id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/UpdateReplicationStreamSpec'
-        description: |-
-          spec contains the information that is being updated for the given
-          replication stream.
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ReplicationStream'
-          description: A successful response.
-        "400":
-          content:
-            application/json:
-              schema: {}
-          description: Returned when a request field is invalid.
-        "401":
-          content:
-            application/json:
-              schema: {}
-          description: Returned when the token bearer cannot be authenticated.
-        "403":
-          content:
-            application/json:
-              schema: {}
-          description: Returned when the user does not have permission to access the
-            resource.
-        "404":
-          content:
-            application/json:
-              schema: {}
-          description: Returned when the resource does not exist.
-        "500":
-          content:
-            application/json:
-              schema: {}
-          description: Server error
-        default:
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Status'
-          description: An unexpected error response.
-      summary: Update a replication stream
-      tags:
-      - Physical Cluster Replication
-      x-badges:
-      - color: blue
-        label: PREVIEW
-      x-codeSamples:
-      - lang: Shell + Curl
-        source: |-
-          curl --request PATCH \
-            --url https://cockroachlabs.cloud/api/v1/replication-streams/{id} \
-            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
-            --json '{"failover_at":"2006-01-03T15:04:05Z","status":"FAILING_OVER"}'
   /api/v1/roles:
     get:
       description: |
@@ -10340,6 +9994,9 @@ components:
       - AUDIT_LOG_ACTION_CREATE_LICENSE
       - AUDIT_LOG_ACTION_UPDATE_ORGANIZATION_NAME
       - AUDIT_LOG_ACTION_CREATE_LICENSES
+      - AUDIT_LOG_ACTION_CREATE_PLAN_MIGRATION
+      - AUDIT_LOG_ACTION_CANCEL_PLAN_MIGRATION
+      - AUDIT_LOG_ACTION_CUTOVER_PLAN_MIGRATION
       type: string
     AuditLogEntry:
       description: |-
@@ -10358,7 +10015,7 @@ components:
         source: null
         error: error
         cluster_id: cluster_id
-        payload: "{}"
+        payload: payload
         action: null
         id: id
       properties:
@@ -10391,7 +10048,7 @@ components:
           description: |-
             Payload is a representation of the essential details relating to this
             log entry.
-          type: object
+          type: string
         service_account_name:
           description: |-
             ServiceAccountName is the name of the service account that triggered this
@@ -10880,6 +10537,12 @@ components:
       properties:
         account_id:
           type: string
+        azure_cluster_identity_client_id:
+          description: |-
+            The client ID of the Azure cluster identity associated with this cluster.
+            This field is only populated for clusters deployed on Azure and is used
+            to support customer-managed encryption keys (CMEK).
+          type: string
         cidr_range:
           description: |-
             cidr_range is the IPv4 range in CIDR format that will be used by the
@@ -11279,24 +10942,6 @@ components:
       - primary_cluster_id
       - standby_cluster_id
       type: object
-    CreateReplicationStreamRequest:
-      example:
-        target_cluster_id: target_cluster_id
-        source_cluster_id: source_cluster_id
-      properties:
-        source_cluster_id:
-          description: |-
-            source_cluster_id is the ID of the cluster that is being
-            replicated.
-          type: string
-        target_cluster_id:
-          description: target_cluster_id is the ID of the cluster that data is being
-            replicated to.
-          type: string
-      required:
-      - source_cluster_id
-      - target_cluster_id
-      type: object
     CreateServiceAccountRequest:
       example:
         description: ""
@@ -11528,6 +11173,14 @@ components:
           description: |-
             Preview: restrict_egress_traffic if set, results in an egress traffic policy of
             default-deny at creation time.
+          type: boolean
+        support_physical_cluster_replication:
+          title: |-
+            support_physical_cluster_replication specifies whether a cluster
+            should be started using an architecture that supports physical
+            cluster replication. This field is restricted to Limited Access
+            usage; see our documentation for details:
+            https://www.cockroachlabs.com/docs/cockroachcloud/physical-cluster-replication.html
           type: boolean
       required:
       - hardware
@@ -12622,6 +12275,7 @@ components:
           currency: null
         - amount: 0.8008281904610115
           currency: null
+        status: null
       properties:
         adjustments:
           description: |-
@@ -12660,6 +12314,8 @@ components:
           description: period_start is the start of the billing period (inclusive).
           format: date-time
           type: string
+        status:
+          $ref: '#/components/schemas/InvoiceStatus.Type'
         totals:
           description: totals is a list of the total amounts per currency.
           items:
@@ -12760,6 +12416,11 @@ components:
       - line_items
       - totals
       type: object
+    InvoiceStatus.Type:
+      enum:
+      - FINALIZED
+      - DRAFT
+      type: string
     JWTIssuer:
       example:
         audience: 1234567890abcd
@@ -12948,7 +12609,7 @@ components:
           source: null
           error: error
           cluster_id: cluster_id
-          payload: "{}"
+          payload: payload
           action: null
           id: id
         - service_account_name: service_account_name
@@ -12962,7 +12623,7 @@ components:
           source: null
           error: error
           cluster_id: cluster_id
-          payload: "{}"
+          payload: payload
           action: null
           id: id
       properties:
@@ -13363,6 +13024,7 @@ components:
             currency: null
           - amount: 0.8008281904610115
             currency: null
+          status: null
         - period_end: 2000-01-23T04:56:07.000+00:00
           balances:
           - amount: 0.8008281904610115
@@ -13511,6 +13173,7 @@ components:
             currency: null
           - amount: 0.8008281904610115
             currency: null
+          status: null
       properties:
         invoices:
           description: invoices are sorted by period_start time.
@@ -14094,6 +13757,11 @@ components:
             in the COMPLETED state.
           format: date-time
           type: string
+        canceled_at:
+          description: canceled_at is the timestamp at which the replication stream
+            was canceled.
+          format: date-time
+          type: string
         created_at:
           description: |-
             created_at is the timestamp at which the replication stream was
@@ -14576,126 +14244,13 @@ components:
       required:
       - trusted_owner
       type: object
-    ReplicationStream:
-      example:
-        activation_at: 2006-01-03T15:04:15Z
-        created_at: 2006-01-02T15:04:05Z
-        failover_at: 2006-01-03T15:04:05Z
-        id: 00000000-0000-0000-0000-000000000001
-        replicated_time: 2006-01-03T15:04:04Z
-        retained_time: 2006-01-02T15:04:06Z
-        source_cluster_id: 00000000-0000-0000-0000-000000000002
-        status: COMPLETED
-        target_cluster_id: 00000000-0000-0000-0000-000000000003
-      properties:
-        activation_at:
-          description: |-
-            activation_at is the crdb system time at which failover is
-            finalized. This may differ from the time for which failover was
-            requested. This field will be present when a replication stream is
-            in the COMPLETED state.
-          format: date-time
-          type: string
-        created_at:
-          description: |-
-            created_at is the timestamp at which the replication stream was
-            created.
-          format: date-time
-          type: string
-        failover_at:
-          description: |-
-            failover_at is the time for which failover is requested. If the user
-            sets the status to 'FAILING_OVER' but omits failover_at, the failover
-            time will default to the latest consistent replicated time.
-            Otherwise, the user can pick a time up to one hour in the future to
-            schedule a failover, or a time in the past to restore the cluster to
-            a recent state. This field will be present if the user has
-            requested failover at a future time.
-          format: date-time
-          type: string
-        id:
-          description: id is the UUID of the replication stream.
-          type: string
-        replicated_time:
-          description: |-
-            replicated_time is the timestamp indicating the point up to which
-            data has been replicated. The window between replicated_time and
-            the actual time is known as replication lag. This field will be
-            present when a replication stream is in the REPLICATING state.
-          format: date-time
-          type: string
-        replication_lag_seconds:
-          description: |-
-            replication_lag_seconds is the replication lag (current time minus
-            replicated time) in seconds. This field will be present when a
-            replication stream is in the REPLICATING state.
-          format: int32
-          type: integer
-        retained_time:
-          description: |-
-            retained_time is the timestamp indicating the lower bound that the
-            replication stream can failover to. This field will be present
-            when a replication stream is in the REPLICATING state.
-          format: date-time
-          type: string
-        source_cluster_id:
-          description: source_cluster_id is the ID of the cluster that is being replicated.
-          type: string
-        status:
-          $ref: '#/components/schemas/ReplicationStreamStatus.Type'
-        target_cluster_id:
-          description: |-
-            target_cluster_id is the ID of the cluster that data is being
-            replicated to.
-          type: string
-      required:
-      - created_at
-      - id
-      - source_cluster_id
-      - status
-      - target_cluster_id
-      type: object
-    ReplicationStreamList:
-      example:
-        replication_streams:
-        - activation_at: 2006-01-03T15:04:15Z
-          created_at: 2006-01-02T15:04:05Z
-          failover_at: 2006-01-03T15:04:05Z
-          id: 00000000-0000-0000-0000-000000000001
-          replicated_time: 2006-01-03T15:04:04Z
-          retained_time: 2006-01-02T15:04:06Z
-          source_cluster_id: 00000000-0000-0000-0000-000000000002
-          status: COMPLETED
-          target_cluster_id: 00000000-0000-0000-0000-000000000003
-        - activation_at: 2006-01-03T15:04:15Z
-          created_at: 2006-01-02T15:04:05Z
-          failover_at: 2006-01-03T15:04:05Z
-          id: 00000000-0000-0000-0000-000000000001
-          replicated_time: 2006-01-03T15:04:04Z
-          retained_time: 2006-01-02T15:04:06Z
-          source_cluster_id: 00000000-0000-0000-0000-000000000002
-          status: COMPLETED
-          target_cluster_id: 00000000-0000-0000-0000-000000000003
-        pagination:
-          next_page: next_page
-          previous_page: previous_page
-      properties:
-        pagination:
-          $ref: '#/components/schemas/KeysetPaginationResponse'
-        replication_streams:
-          description: replication_streams is a list of ReplicationStreams.
-          items:
-            $ref: '#/components/schemas/ReplicationStream'
-          type: array
-      required:
-      - replication_streams
-      type: object
     ReplicationStreamStatus.Type:
       enum:
       - STARTING
       - REPLICATING
       - FAILING_OVER
       - COMPLETED
+      - CANCELED
       type: string
     Resource:
       example:
@@ -15343,7 +14898,7 @@ components:
         dedicated:
           hardware:
             machine_spec:
-              machine_type: n2-standard-8
+              num_virtual_cpus: 8
           region_nodes:
             us-central1: 5
             us-west1: 3
@@ -15405,28 +14960,6 @@ components:
           type: string
       type: object
     UpdatePhysicalReplicationStreamSpec:
-      example:
-        failover_at: 2006-01-03T15:04:05Z
-        status: FAILING_OVER
-      properties:
-        failover_at:
-          description: |-
-            failover_at is the crdb system time at which failover occurs. If the user
-            sets the status to 'FAILING_OVER' but omits failover_at, the failover time
-            will default to the latest consistent replicated time. Otherwise, the user
-            can pick a time up to one hour in the future to schedule a failover, or a
-            time in the past to restore the cluster to a recent state. If the
-            time is in the past, the API will make a best-effort attempt to
-            validate that the time is not earlier than the retained time. In
-            this case, if the retained time is updated in between validation
-            and failover execution and the failover time becomes invalid, the
-            stream will failover to the retained time.
-          format: date-time
-          type: string
-        status:
-          $ref: '#/components/schemas/ReplicationStreamStatus.Type'
-      type: object
-    UpdateReplicationStreamSpec:
       example:
         failover_at: 2006-01-03T15:04:05Z
         status: FAILING_OVER

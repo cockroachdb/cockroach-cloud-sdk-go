@@ -162,6 +162,12 @@
 
 * `CREATE_LICENSES` (value: `"AUDIT_LOG_ACTION_CREATE_LICENSES"`)
 
+* `CREATE_PLAN_MIGRATION` (value: `"AUDIT_LOG_ACTION_CREATE_PLAN_MIGRATION"`)
+
+* `CANCEL_PLAN_MIGRATION` (value: `"AUDIT_LOG_ACTION_CANCEL_PLAN_MIGRATION"`)
+
+* `CUTOVER_PLAN_MIGRATION` (value: `"AUDIT_LOG_ACTION_CUTOVER_PLAN_MIGRATION"`)
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

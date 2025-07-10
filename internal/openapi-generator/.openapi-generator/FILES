@@ -65,7 +65,6 @@ docs/CreateDatabaseRequest.md
 docs/CreateFolderRequest.md
 docs/CreateGroupRequest.md
 docs/CreatePhysicalReplicationStreamRequest.md
-docs/CreateReplicationStreamRequest.md
 docs/CreateSQLUserRequest.md
 docs/CreateServiceAccountRequest.md
 docs/CreateUserRequest.md
@@ -116,6 +115,7 @@ docs/IPAllowlistsApi.md
 docs/Invoice.md
 docs/InvoiceAdjustment.md
 docs/InvoiceItem.md
+docs/InvoiceStatusType.md
 docs/JWTIssuer.md
 docs/JWTIssuerIdentityMapEntry.md
 docs/JWTIssuersApi.md
@@ -178,8 +178,6 @@ docs/Region.md
 docs/RegionalDisruptorSpecification.md
 docs/ReleaseTypeType.md
 docs/RemovePrivateEndpointTrustedOwnerResponse.md
-docs/ReplicationStream.md
-docs/ReplicationStreamList.md
 docs/ReplicationStreamStatusType.md
 docs/Resource.md
 docs/ResourceTypeType.md
@@ -224,7 +222,6 @@ docs/UpdateFolderSpecification.md
 docs/UpdateGroupRequest.md
 docs/UpdateJWTIssuerRequest.md
 docs/UpdatePhysicalReplicationStreamSpec.md
-docs/UpdateReplicationStreamSpec.md
 docs/UpdateSQLUserPasswordRequest.md
 docs/UpdateServiceAccountSpecification.md
 docs/UpdateUserRequest.md
@@ -289,7 +286,6 @@ model_create_database_request.go
 model_create_folder_request.go
 model_create_group_request.go
 model_create_physical_replication_stream_request.go
-model_create_replication_stream_request.go
 model_create_service_account_request.go
 model_create_sql_user_request.go
 model_create_user_request.go
@@ -335,6 +331,7 @@ model_get_users_response.go
 model_invoice.go
 model_invoice_adjustment.go
 model_invoice_item.go
+model_invoice_status_type.go
 model_jwt_issuer.go
 model_jwt_issuer_identity_map_entry.go
 model_keyset_pagination_response.go
@@ -390,8 +387,6 @@ model_region.go
 model_regional_disruptor_specification.go
 model_release_type_type.go
 model_remove_private_endpoint_trusted_owner_response.go
-model_replication_stream.go
-model_replication_stream_list.go
 model_replication_stream_status_type.go
 model_resource.go
 model_resource_type_type.go
@@ -432,7 +427,6 @@ model_update_folder_specification.go
 model_update_group_request.go
 model_update_jwt_issuer_request.go
 model_update_physical_replication_stream_spec.go
-model_update_replication_stream_spec.go
 model_update_service_account_specification.go
 model_update_sql_user_password_request.go
 model_update_user_request.go
