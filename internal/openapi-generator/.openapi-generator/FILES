@@ -24,6 +24,7 @@ docs/AwsEndpointConnection.md
 docs/AwsEndpointConnections.md
 docs/BackupConfiguration.md
 docs/BackupRestoreApi.md
+docs/BackupSummary.md
 docs/BillingApi.md
 docs/BuiltInFromGroups.md
 docs/BuiltInRole.md
@@ -54,6 +55,7 @@ docs/ClusterUpgradeStatusType.md
 docs/ClusterVersionDeferral.md
 docs/ClusterVersionDeferralPolicyType.md
 docs/ClustersApi.md
+docs/CockroachCloudCreateRestoreRequest.md
 docs/CockroachCloudSetRolesForUserRequest.md
 docs/CockroachCloudUpdateClusterDisruptionRequest.md
 docs/ConnectionStringParameters.md
@@ -125,6 +127,7 @@ docs/ListAllowlistEntriesResponse.md
 docs/ListApiKeysResponse.md
 docs/ListAuditLogsResponse.md
 docs/ListAvailableRegionsResponse.md
+docs/ListBackupsResponse.md
 docs/ListClusterNodesResponse.md
 docs/ListClustersResponse.md
 docs/ListDatabasesResponse.md
@@ -134,6 +137,7 @@ docs/ListInvoicesResponse.md
 docs/ListJWTIssuersResponse.md
 docs/ListMajorClusterVersionsResponse.md
 docs/ListPrivateEndpointTrustedOwnersResponse.md
+docs/ListRestoresResponse.md
 docs/ListRoleGrantsResponse.md
 docs/ListSQLUsersResponse.md
 docs/ListServiceAccountsResponse.md
@@ -181,6 +185,11 @@ docs/RemovePrivateEndpointTrustedOwnerResponse.md
 docs/ReplicationStreamStatusType.md
 docs/Resource.md
 docs/ResourceTypeType.md
+docs/Restore.md
+docs/RestoreItem.md
+docs/RestoreOpts.md
+docs/RestoreStatusType.md
+docs/RestoreTypeType.md
 docs/RoleManagementApi.md
 docs/SCIMApi.md
 docs/SQLUser.md
@@ -249,6 +258,7 @@ model_aws_endpoint_connection_status_type.go
 model_aws_endpoint_connections.go
 model_aws_private_link_service_detail.go
 model_backup_configuration.go
+model_backup_summary.go
 model_built_in_from_groups.go
 model_built_in_role.go
 model_client_ca_cert_info.go
@@ -275,6 +285,7 @@ model_cmek_key_type.go
 model_cmek_region_info.go
 model_cmek_region_specification.go
 model_cmek_status.go
+model_cockroach_cloud_create_restore_request.go
 model_cockroach_cloud_set_roles_for_user_request.go
 model_cockroach_cloud_update_cluster_disruption_request.go
 model_connection_string_parameters.go
@@ -340,6 +351,7 @@ model_list_allowlist_entries_response.go
 model_list_api_keys_response.go
 model_list_audit_logs_response.go
 model_list_available_regions_response.go
+model_list_backups_response.go
 model_list_cluster_nodes_response.go
 model_list_clusters_response.go
 model_list_databases_response.go
@@ -349,6 +361,7 @@ model_list_invoices_response.go
 model_list_jwt_issuers_response.go
 model_list_major_cluster_versions_response.go
 model_list_private_endpoint_trusted_owners_response.go
+model_list_restores_response.go
 model_list_role_grants_response.go
 model_list_service_accounts_response.go
 model_list_sql_users_response.go
@@ -390,6 +403,11 @@ model_remove_private_endpoint_trusted_owner_response.go
 model_replication_stream_status_type.go
 model_resource.go
 model_resource_type_type.go
+model_restore.go
+model_restore_item.go
+model_restore_opts.go
+model_restore_status_type.go
+model_restore_type_type.go
 model_scim_authentication_scheme.go
 model_scim_bulk_support.go
 model_scim_change_password_support.go

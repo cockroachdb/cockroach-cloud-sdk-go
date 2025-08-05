@@ -1,3 +1,11 @@
+## 6.4.0
+
+NEW FEATURES:
+
+* Added new endpoints: `ListBackups`, `CreateRestore`, `GetRestore`, and `ListRestores`
+
+* Added new CMEK Key Type: `AZURE_KEY_VAULT`
+
 ## 6.3.0
 
 BREAKING CHANGES:

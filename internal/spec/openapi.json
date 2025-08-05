@@ -3251,8 +3251,8 @@
     "/api/v1/clusters": {
       "get": {
         "operationId": "CockroachCloud_ListClusters",
-        "summary": "List clusters owned by an organization",
-        "description": "Sort order: Cluster name\n\nReturns all clusters that the user has read access over",
+        "summary": "List clusters in the organization",
+        "description": "Sort order: Cluster name\n\nCan be used by the following roles assigned at the organization, folder or cluster scope:\n- ORG_ADMIN\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n- CLUSTER_DEVELOPER\n- FOLDER_ADMIN\n- FOLDER_MOVER\n",
         "parameters": [
           {
             "name": "show_inactive",
@@ -3369,7 +3369,7 @@
       "post": {
         "operationId": "CockroachCloud_CreateCluster",
         "summary": "Create and initialize a new cluster",
-        "description": "Can be used by the following roles assigned at the organization scope:\n- CLUSTER_ADMIN\n- CLUSTER_CREATOR\n",
+        "description": "Can be used by the following roles assigned at the organization or folder scope:\n- CLUSTER_ADMIN\n- CLUSTER_CREATOR\n",
         "requestBody": {
           "required": true,
           "content": {
@@ -3839,6 +3839,149 @@
           {
             "lang": "Shell + Curl",
             "source": "curl --request PATCH \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"dedicated\":{\"hardware\":{\"machine_spec\":{\"num_virtual_cpus\":8}},\"region_nodes\":{\"us-central1\":5,\"us-west1\":3}}}'"
+          }
+        ]
+      }
+    },
+    "/api/v1/clusters/{cluster_id}/backups": {
+      "get": {
+        "operationId": "CockroachCloud_ListBackups",
+        "summary": "List cluster backups",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "parameters": [
+          {
+            "name": "cluster_id",
+            "in": "path",
+            "description": "The cluster associated with the backups being retrieved.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "start_time",
+            "in": "query",
+            "description": "The beginning of the time range (inclusive) used to search for backups\nbased on their restore point. If this field is provided, end_time must\nalso be included in the request.",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "end_time",
+            "in": "query",
+            "description": "The end of the time range (exclusive) used to search for backups based\non their restore point. If this field is provided, start_time must also\nbe included in the request.",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "pagination.page",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pagination.limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pagination.as_of_time",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "pagination.sort_order",
+            "in": "query",
+            "description": " - ASC: Sort in ascending order. This is the default unless otherwise specified.\n - DESC: Sort in descending order.",
+            "schema": {
+              "type": "string",
+              "enum": ["ASC", "DESC"]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListBackupsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Backup/Restore"],
+        "x-badges": [
+          {
+            "color": "blue",
+            "label": "PREVIEW"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request GET \\\n  --url 'https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/backups?start_time=SOME_STRING_VALUE&end_time=SOME_STRING_VALUE&pagination.page=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.as_of_time=SOME_STRING_VALUE&pagination.sort_order=SOME_STRING_VALUE' \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
           }
         ]
       }
@@ -9704,6 +9847,251 @@
         ]
       }
     },
+    "/api/v1/clusters/{cluster_id}/restores": {
+      "get": {
+        "operationId": "CockroachCloud_ListRestores",
+        "summary": "List restore operations",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "parameters": [
+          {
+            "name": "cluster_id",
+            "in": "path",
+            "description": "The ID of the cluster where the restores ran or are currently running.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "start_time",
+            "in": "query",
+            "description": "The beginning of the time range (inclusive) used to search for restores.",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "end_time",
+            "in": "query",
+            "description": "The end of the time range (exclusive) used to search for restores.",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "pagination.page",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pagination.limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pagination.as_of_time",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "pagination.sort_order",
+            "in": "query",
+            "description": " - ASC: Sort in ascending order. This is the default unless otherwise specified.\n - DESC: Sort in descending order.",
+            "schema": {
+              "type": "string",
+              "enum": ["ASC", "DESC"]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListRestoresResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Backup/Restore"],
+        "x-badges": [
+          {
+            "color": "blue",
+            "label": "PREVIEW"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request GET \\\n  --url 'https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/restores?start_time=SOME_STRING_VALUE&end_time=SOME_STRING_VALUE&pagination.page=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.as_of_time=SOME_STRING_VALUE&pagination.sort_order=SOME_STRING_VALUE' \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+          }
+        ]
+      }
+    },
+    "/api/v1/clusters/{cluster_id}/restores/{restore_id}": {
+      "get": {
+        "operationId": "CockroachCloud_GetRestore",
+        "summary": "View a restore job",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "parameters": [
+          {
+            "name": "cluster_id",
+            "in": "path",
+            "description": "The ID of the cluster where the restore ran or is currently running.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "restore_id",
+            "in": "path",
+            "description": "The ID of the restore.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Restore"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Backup/Restore"],
+        "x-badges": [
+          {
+            "color": "blue",
+            "label": "PREVIEW"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request GET \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/restores/{restore_id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+          }
+        ]
+      }
+    },
     "/api/v1/clusters/{cluster_id}/sql-users": {
       "get": {
         "operationId": "CockroachCloud_ListSQLUsers",
@@ -10326,6 +10714,154 @@
           {
             "lang": "Shell + Curl",
             "source": "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/version-deferral \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"deferral_policy\":\"FIXED_DEFERRAL\"}'"
+          }
+        ]
+      }
+    },
+    "/api/v1/clusters/{destination_cluster_id}/restores": {
+      "post": {
+        "operationId": "CockroachCloud_CreateRestore",
+        "summary": "Create a restore",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "parameters": [
+          {
+            "name": "destination_cluster_id",
+            "in": "path",
+            "description": "The ID of the cluster where the backup will be restored.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "backup_id": {
+                    "description": "The ID of the backup from which data will be restored.\nIf backup_id is not set, the restore will use the latest\navailable backup from source_cluster_id.",
+                    "type": "string"
+                  },
+                  "objects": {
+                    "description": "The list of objects to restore. Required when type is DATABASE\nor TABLE.",
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/RestoreItem"
+                    }
+                  },
+                  "restore_opts": {
+                    "$ref": "#/components/schemas/RestoreOpts"
+                  },
+                  "source_cluster_id": {
+                    "description": "The ID of the cluster containing the backup to be restored.",
+                    "type": "string"
+                  },
+                  "type": {
+                    "$ref": "#/components/schemas/RestoreType.Type"
+                  }
+                },
+                "example": {
+                  "backup_id": "1234abcd-1234-1234-abcd-12345678abcd",
+                  "destination_cluster_id": "12345678-1234-1234-1234-123456789012",
+                  "objects": [
+                    {
+                      "database": "database1",
+                      "schema": "schema1",
+                      "table": "table1"
+                    },
+                    {
+                      "database": "database1",
+                      "schema": "schema1",
+                      "table": "table2"
+                    }
+                  ],
+                  "restore_opts": {
+                    "into_db": "database2",
+                    "schema_only": true
+                  },
+                  "type": "TABLE"
+                },
+                "required": ["type"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Restore"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Backup/Restore"],
+        "x-badges": [
+          {
+            "color": "blue",
+            "label": "PREVIEW"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{destination_cluster_id}/restores \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"backup_id\":\"1234abcd-1234-1234-abcd-12345678abcd\",\"destination_cluster_id\":\"12345678-1234-1234-1234-123456789012\",\"objects\":[{\"database\":\"database1\",\"schema\":\"schema1\",\"table\":\"table1\"},{\"database\":\"database1\",\"schema\":\"schema1\",\"table\":\"table2\"}],\"restore_opts\":{\"into_db\":\"database2\",\"schema_only\":true},\"type\":\"TABLE\"}'"
           }
         ]
       }
@@ -13675,6 +14211,21 @@
         "required": ["enabled", "retention_days", "frequency_minutes"],
         "title": "BackupConfiguration"
       },
+      "BackupSummary": {
+        "type": "object",
+        "properties": {
+          "as_of_time": {
+            "description": "The point in time (in UTC) the backup restores to.",
+            "type": "string",
+            "format": "date-time"
+          },
+          "id": {
+            "description": "The unique identifier associated with the backup.",
+            "type": "string"
+          }
+        },
+        "required": ["id", "as_of_time"]
+      },
       "BuiltInFromGroups": {
         "type": "object",
         "properties": {
@@ -13761,7 +14312,7 @@
       },
       "CMEKKeyType": {
         "type": "string",
-        "enum": ["AWS_KMS", "GCP_CLOUD_KMS", "NULL_KMS"],
+        "enum": ["AWS_KMS", "GCP_CLOUD_KMS", "NULL_KMS", "AZURE_KEY_VAULT"],
         "title": "CMEKKeyType enumerates types of customer-managed keys"
       },
       "CMEKRegionInfo": {
@@ -13891,6 +14442,7 @@
         "type": "object",
         "properties": {
           "account_id": {
+            "description": "account_id is a cloud provider account ID representing the CockroachDB\ncluster. This ID can be used for setting up trust relationships with cloud\nresources. For GCP clusters, this value is a project name that can be used\nto construct principal service account names for authentication.",
             "type": "string"
           },
           "azure_cluster_identity_client_id": {
@@ -15391,6 +15943,21 @@
         },
         "required": ["regions"]
       },
+      "ListBackupsResponse": {
+        "type": "object",
+        "properties": {
+          "backups": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BackupSummary"
+            }
+          },
+          "pagination": {
+            "$ref": "#/components/schemas/KeysetPaginationResponse"
+          }
+        },
+        "required": ["backups"]
+      },
       "ListClusterNodesResponse": {
         "type": "object",
         "properties": {
@@ -15523,6 +16090,21 @@
             }
           }
         }
+      },
+      "ListRestoresResponse": {
+        "type": "object",
+        "properties": {
+          "pagination": {
+            "$ref": "#/components/schemas/KeysetPaginationResponse"
+          },
+          "restores": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Restore"
+            }
+          }
+        },
+        "required": ["restores"]
       },
       "ListRoleGrantsResponse": {
         "type": "object",
@@ -16216,6 +16798,103 @@
         "description": " - ORGANIZATION: An organization.\n - CLUSTER: A cluster resource.\n - FOLDER: Preview: A folder resource.",
         "type": "string",
         "enum": ["ORGANIZATION", "CLUSTER", "FOLDER"]
+      },
+      "Restore": {
+        "type": "object",
+        "properties": {
+          "backup_id": {
+            "description": "The ID of the backup used for this restore operation.",
+            "type": "string"
+          },
+          "completion_percent": {
+            "description": "The percentage of the restore operation that has been completed.\nThe value ranges from 0 to 1.",
+            "type": "number",
+            "format": "float"
+          },
+          "created_at": {
+            "description": "The time at which the restore operation was initiated.",
+            "type": "string",
+            "format": "date-time"
+          },
+          "id": {
+            "description": "The unique identifier associated with the restore.",
+            "type": "string"
+          },
+          "status": {
+            "$ref": "#/components/schemas/RestoreStatus.Type"
+          },
+          "type": {
+            "$ref": "#/components/schemas/RestoreType.Type"
+          }
+        },
+        "example": {
+          "backup_id": "1234abcd-1234-1234-abcd-12345678abcd",
+          "completion_percent": 0,
+          "created_at": "2025-07-09T15:04:05Z",
+          "id": "abcd1234-5678-90ab-cdef-1234567890ab",
+          "status": "PENDING",
+          "type": "TABLE"
+        },
+        "required": [
+          "id",
+          "backup_id",
+          "status",
+          "created_at",
+          "type",
+          "completion_percent"
+        ]
+      },
+      "RestoreItem": {
+        "type": "object",
+        "properties": {
+          "Database": {
+            "type": "string"
+          },
+          "Schema": {
+            "type": "string"
+          },
+          "Table": {
+            "type": "string"
+          }
+        },
+        "required": ["database"]
+      },
+      "RestoreOpts": {
+        "type": "object",
+        "properties": {
+          "into_db": {
+            "description": "Specifies the target database to restore the table into during a\ntable restore operation. If not set, the table will be restored\ninto the database it belonged to in the source backup.",
+            "type": "string"
+          },
+          "new_db_name": {
+            "description": "Specifies the name of the database to create during a\ndatabase restore operation. If not set, the name defaults to\nthe original database name from the source cluster.",
+            "type": "string"
+          },
+          "schema_only": {
+            "description": "If set, only the schema will be restored and no user data will\nbe included.",
+            "type": "boolean"
+          },
+          "skip_localities_check": {
+            "description": "Allows the restore operation to continue in the event that there\nare mismatched localities between the backup and target cluster.\nUseful when restoring multi-region tables to a cluster missing\nsome localities.",
+            "type": "boolean"
+          },
+          "skip_missing_foreign_keys": {
+            "description": "Allows a table to be restored even if it has foreign key\nconstraints referencing rows that no longer exist in the target\ncluster.",
+            "type": "boolean"
+          },
+          "skip_missing_sequences": {
+            "type": "boolean",
+            "title": "Allows a table to be restored even if it contains a column whose\n`DEFAULT` value depends on a sequence.\n(See https://www.cockroachlabs.com/docs/stable/show-sequences)"
+          }
+        }
+      },
+      "RestoreStatus.Type": {
+        "type": "string",
+        "enum": ["PENDING", "SUCCESS", "FAILED"]
+      },
+      "RestoreType.Type": {
+        "type": "string",
+        "enum": ["CLUSTER", "DATABASE", "TABLE"]
       },
       "SQLUser": {
         "type": "object",
@@ -17039,6 +17718,9 @@
     },
     {
       "name": "Backup/Restore"
+    },
+    {
+      "name": "Egress Private Endpoints"
     }
   ],
   "externalDocs": {
