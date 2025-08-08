@@ -70,7 +70,11 @@ API | Method | HTTP request | Description
 [APIKeysApi](docs/APIKeysApi.md) | **ListApiKeys** | **Get** /api/v1/api-keys | List API Keys
 [APIKeysApi](docs/APIKeysApi.md) | **UpdateApiKey** | **Patch** /api/v1/api-keys/{id} | Update an API Key
 [AuditLogsApi](docs/AuditLogsApi.md) | **ListAuditLogs** | **Get** /api/v1/auditlogevents | List audit logs
+[BackupRestoreApi](docs/BackupRestoreApi.md) | **CreateRestore** | **Post** /api/v1/clusters/{destination_cluster_id}/restores | Create a restore
 [BackupRestoreApi](docs/BackupRestoreApi.md) | **GetBackupConfiguration** | **Get** /api/v1/clusters/{cluster_id}/backups-config | Get the backup configuration for a cluster
+[BackupRestoreApi](docs/BackupRestoreApi.md) | **GetRestore** | **Get** /api/v1/clusters/{cluster_id}/restores/{restore_id} | View a restore job
+[BackupRestoreApi](docs/BackupRestoreApi.md) | **ListBackups** | **Get** /api/v1/clusters/{cluster_id}/backups | List cluster backups
+[BackupRestoreApi](docs/BackupRestoreApi.md) | **ListRestores** | **Get** /api/v1/clusters/{cluster_id}/restores | List restore operations
 [BackupRestoreApi](docs/BackupRestoreApi.md) | **UpdateBackupConfiguration** | **Patch** /api/v1/clusters/{cluster_id}/backups-config | Update the backup configuration for a cluster
 [BillingApi](docs/BillingApi.md) | **GetInvoice** | **Get** /api/v1/invoices/{invoice_id} | Get a specific invoice for an organization
 [BillingApi](docs/BillingApi.md) | **ListInvoices** | **Get** /api/v1/invoices | List invoices for a given organization
@@ -86,7 +90,7 @@ API | Method | HTTP request | Description
 [ClustersApi](docs/ClustersApi.md) | **GetConnectionString** | **Get** /api/v1/clusters/{cluster_id}/connection-string | Get a formatted generic connection string for a cluster
 [ClustersApi](docs/ClustersApi.md) | **ListAvailableRegions** | **Get** /api/v1/clusters/available-regions | List the regions available for new clusters and nodes
 [ClustersApi](docs/ClustersApi.md) | **ListClusterNodes** | **Get** /api/v1/clusters/{cluster_id}/nodes | List nodes for a cluster
-[ClustersApi](docs/ClustersApi.md) | **ListClusters** | **Get** /api/v1/clusters | List clusters owned by an organization
+[ClustersApi](docs/ClustersApi.md) | **ListClusters** | **Get** /api/v1/clusters | List clusters in the organization
 [ClustersApi](docs/ClustersApi.md) | **ListMajorClusterVersions** | **Get** /api/v1/cluster-versions | List available major cluster versions
 [ClustersApi](docs/ClustersApi.md) | **UpdateCluster** | **Patch** /api/v1/clusters/{cluster_id} | Scale, edit or upgrade a cluster
 [CustomerManagedEncryptionKeysApi](docs/CustomerManagedEncryptionKeysApi.md) | **EnableCMEKSpec** | **Post** /api/v1/clusters/{cluster_id}/cmek | Enable CMEK for a cluster

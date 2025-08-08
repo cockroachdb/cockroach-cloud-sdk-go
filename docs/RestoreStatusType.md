@@ -1,14 +1,12 @@
-# CMEKKeyType
+# RestoreStatusType
 
 ## Enum
 
-* `AWS_KMS` (value: `"AWS_KMS"`)
+* `PENDING` (value: `"PENDING"`)
 
-* `GCP_CLOUD_KMS` (value: `"GCP_CLOUD_KMS"`)
+* `SUCCESS` (value: `"SUCCESS"`)
 
-* `NULL_KMS` (value: `"NULL_KMS"`)
-
-* `AZURE_KEY_VAULT` (value: `"AZURE_KEY_VAULT"`)
+* `FAILED` (value: `"FAILED"`)
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

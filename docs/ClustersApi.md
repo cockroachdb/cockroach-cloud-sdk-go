@@ -10,7 +10,7 @@ Method | HTTP request | Description
 [**GetConnectionString**](ClustersApi.md#GetConnectionString) | **Get** /api/v1/clusters/{cluster_id}/connection-string | Get a formatted generic connection string for a cluster
 [**ListAvailableRegions**](ClustersApi.md#ListAvailableRegions) | **Get** /api/v1/clusters/available-regions | List the regions available for new clusters and nodes
 [**ListClusterNodes**](ClustersApi.md#ListClusterNodes) | **Get** /api/v1/clusters/{cluster_id}/nodes | List nodes for a cluster
-[**ListClusters**](ClustersApi.md#ListClusters) | **Get** /api/v1/clusters | List clusters owned by an organization
+[**ListClusters**](ClustersApi.md#ListClusters) | **Get** /api/v1/clusters | List clusters in the organization
 [**ListMajorClusterVersions**](ClustersApi.md#ListMajorClusterVersions) | **Get** /api/v1/cluster-versions | List available major cluster versions
 [**UpdateCluster**](ClustersApi.md#UpdateCluster) | **Patch** /api/v1/clusters/{cluster_id} | Scale, edit or upgrade a cluster
 
@@ -22,7 +22,7 @@ Method | HTTP request | Description
 
 Create and initialize a new cluster
 
-Can be used by the following roles assigned at the organization scope:
+Can be used by the following roles assigned at the organization or folder scope:
 - CLUSTER_ADMIN
 - CLUSTER_CREATOR
 
@@ -473,11 +473,18 @@ Name | Type | Description  | Notes
 
 > ListClustersResponse ListClusters(ctx).ShowInactive(showInactive).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).Execute()
 
-List clusters owned by an organization
+List clusters in the organization
 
 Sort order: Cluster name
 
-Returns all clusters that the user has read access over
+Can be used by the following roles assigned at the organization, folder or cluster scope:
+- ORG_ADMIN
+- CLUSTER_ADMIN
+- CLUSTER_OPERATOR_WRITER
+- CLUSTER_DEVELOPER
+- FOLDER_ADMIN
+- FOLDER_MOVER
+
 
 ### Example
 
