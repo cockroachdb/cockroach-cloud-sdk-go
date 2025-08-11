@@ -4091,8 +4091,8 @@
         ],
         "x-badges": [
           {
-            "color": "blue",
-            "label": "PREVIEW"
+            "color": "red",
+            "label": "LIMITED ACCESS"
           }
         ],
         "x-codeSamples": [
@@ -10284,8 +10284,8 @@
         ],
         "x-badges": [
           {
-            "color": "blue",
-            "label": "PREVIEW"
+            "color": "red",
+            "label": "LIMITED ACCESS"
           }
         ],
         "x-codeSamples": [
@@ -10388,8 +10388,8 @@
         ],
         "x-badges": [
           {
-            "color": "blue",
-            "label": "PREVIEW"
+            "color": "red",
+            "label": "LIMITED ACCESS"
           }
         ],
         "x-codeSamples": [
@@ -11186,8 +11186,8 @@
         ],
         "x-badges": [
           {
-            "color": "blue",
-            "label": "PREVIEW"
+            "color": "red",
+            "label": "LIMITED ACCESS"
           }
         ],
         "x-codeSamples": [
@@ -14501,7 +14501,10 @@
           "AUDIT_LOG_ACTION_CREATE_LICENSES",
           "AUDIT_LOG_ACTION_CREATE_PLAN_MIGRATION",
           "AUDIT_LOG_ACTION_CANCEL_PLAN_MIGRATION",
-          "AUDIT_LOG_ACTION_CUTOVER_PLAN_MIGRATION"
+          "AUDIT_LOG_ACTION_CUTOVER_PLAN_MIGRATION",
+          "AUDIT_LOG_ACTION_CREATE_EGRESS_PRIVATE_ENDPOINT",
+          "AUDIT_LOG_ACTION_DELETE_EGRESS_PRIVATE_ENDPOINT",
+          "AUDIT_LOG_ACTION_UPDATE_EGRESS_PRIVATE_ENDPOINT"
         ]
       },
       "AuditLogEntry": {

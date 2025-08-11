@@ -2,9 +2,13 @@
 
 NEW FEATURES:
 
-* Added new endpoints: `ListBackups`, `CreateRestore`, `GetRestore`, and `ListRestores`
+* Added new endpoints: `ListBackups`, `CreateRestore`, `GetRestore`, and
+  `ListRestores` in LIMITED ACCESS.
 
 * Added new CMEK Key Type: `AZURE_KEY_VAULT`
+
+* Audit log actions: `CREATE_EGRESS_PRIVATE_ENDPOINT`,
+  `DELETE_EGRESS_PRIVATE_ENDPOINT`, and `UPDATE_EGRESS_PRIVATE_ENDPOINT`.
 
 ## 6.3.0
 
