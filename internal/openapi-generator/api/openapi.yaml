@@ -2917,8 +2917,8 @@ paths:
       tags:
       - Backup/Restore
       x-badges:
-      - color: blue
-        label: PREVIEW
+      - color: red
+        label: LIMITED ACCESS
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -7159,8 +7159,8 @@ paths:
       tags:
       - Backup/Restore
       x-badges:
-      - color: blue
-        label: PREVIEW
+      - color: red
+        label: LIMITED ACCESS
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -7234,8 +7234,8 @@ paths:
       tags:
       - Backup/Restore
       x-badges:
-      - color: blue
-        label: PREVIEW
+      - color: red
+        label: LIMITED ACCESS
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -7760,8 +7760,8 @@ paths:
       tags:
       - Backup/Restore
       x-badges:
-      - color: blue
-        label: PREVIEW
+      - color: red
+        label: LIMITED ACCESS
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -10403,6 +10403,9 @@ components:
       - AUDIT_LOG_ACTION_CREATE_PLAN_MIGRATION
       - AUDIT_LOG_ACTION_CANCEL_PLAN_MIGRATION
       - AUDIT_LOG_ACTION_CUTOVER_PLAN_MIGRATION
+      - AUDIT_LOG_ACTION_CREATE_EGRESS_PRIVATE_ENDPOINT
+      - AUDIT_LOG_ACTION_DELETE_EGRESS_PRIVATE_ENDPOINT
+      - AUDIT_LOG_ACTION_UPDATE_EGRESS_PRIVATE_ENDPOINT
       type: string
     AuditLogEntry:
       description: |-
