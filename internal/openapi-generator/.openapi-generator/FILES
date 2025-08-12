@@ -64,6 +64,7 @@ docs/CreateApiKeyResponse.md
 docs/CreateClusterRequest.md
 docs/CreateClusterSpecification.md
 docs/CreateDatabaseRequest.md
+docs/CreateEgressPrivateEndpointRequest.md
 docs/CreateFolderRequest.md
 docs/CreateGroupRequest.md
 docs/CreatePhysicalReplicationStreamRequest.md
@@ -89,6 +90,10 @@ docs/DeleteMetricExportResponse.md
 docs/DeleteProtectionStateType.md
 docs/EditEgressRuleRequest.md
 docs/EditEgressRuleResponse.md
+docs/EgressPrivateEndpoint.md
+docs/EgressPrivateEndpointStateType.md
+docs/EgressPrivateEndpointTargetServiceTypeType.md
+docs/EgressPrivateEndpointsApi.md
 docs/EgressRule.md
 docs/EgressRulesApi.md
 docs/EgressTrafficPolicyType.md
@@ -131,6 +136,7 @@ docs/ListBackupsResponse.md
 docs/ListClusterNodesResponse.md
 docs/ListClustersResponse.md
 docs/ListDatabasesResponse.md
+docs/ListEgressPrivateEndpointsResponse.md
 docs/ListEgressRulesResponse.md
 docs/ListFoldersResponse.md
 docs/ListInvoicesResponse.md
@@ -227,6 +233,7 @@ docs/UpdateClientCACertRequest.md
 docs/UpdateClusterSpecification.md
 docs/UpdateDatabaseRequest.md
 docs/UpdateDatabaseRequest1.md
+docs/UpdateEgressPrivateEndpointDomainNamesRequest.md
 docs/UpdateFolderSpecification.md
 docs/UpdateGroupRequest.md
 docs/UpdateJWTIssuerRequest.md
@@ -294,6 +301,7 @@ model_create_api_key_response.go
 model_create_cluster_request.go
 model_create_cluster_specification.go
 model_create_database_request.go
+model_create_egress_private_endpoint_request.go
 model_create_folder_request.go
 model_create_group_request.go
 model_create_physical_replication_stream_request.go
@@ -317,6 +325,9 @@ model_delete_metric_export_response.go
 model_delete_protection_state_type.go
 model_edit_egress_rule_request.go
 model_edit_egress_rule_response.go
+model_egress_private_endpoint.go
+model_egress_private_endpoint_state_type.go
+model_egress_private_endpoint_target_service_type_type.go
 model_egress_rule.go
 model_egress_traffic_policy_type.go
 model_enable_cloud_watch_metric_export_request.go
@@ -355,6 +366,7 @@ model_list_backups_response.go
 model_list_cluster_nodes_response.go
 model_list_clusters_response.go
 model_list_databases_response.go
+model_list_egress_private_endpoints_response.go
 model_list_egress_rules_response.go
 model_list_folders_response.go
 model_list_invoices_response.go
@@ -441,6 +453,7 @@ model_update_cluster_specification.go
 model_update_cmek_status_request.go
 model_update_database_request.go
 model_update_database_request_1.go
+model_update_egress_private_endpoint_domain_names_request.go
 model_update_folder_specification.go
 model_update_group_request.go
 model_update_jwt_issuer_request.go

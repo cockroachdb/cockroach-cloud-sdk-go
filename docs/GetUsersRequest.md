@@ -5,10 +5,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Attributes** | Pointer to **string** |  | [optional] 
-**Count** | Pointer to **int32** |  | [optional] 
+**Count** | Pointer to **int32** | The maximum number of resources to return. If omitted, defaults to 20. If set to 0, the response will contain no resources but will include metadata such as &#x60;totalResults&#x60;, complying with [RFC 7644, Section 3.4.2.4: Pagination](https://datatracker.ietf.org/doc/html/rfc7644#section-3.4.2.4). | [optional] 
 **ExcludedAttributes** | Pointer to **string** |  | [optional] 
 **Filter** | Pointer to **string** |  | [optional] 
-**StartIndex** | Pointer to **int32** |  | [optional] 
+**StartIndex** | Pointer to **int32** | The 1-based index of the first resource to return in the response. If omitted or less than 1, defaults to 1. This behavior complies with [RFC 7644, Section 3.4.2.4: Pagination](https://datatracker.ietf.org/doc/html/rfc7644#section-3.4.2.4). | [optional] 
 
 ## Methods
 

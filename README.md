@@ -102,6 +102,10 @@ API | Method | HTTP request | Description
 [DatabasesApi](docs/DatabasesApi.md) | **EditDatabase** | **Patch** /api/v1/clusters/{cluster_id}/databases/{name} | Update a database
 [DatabasesApi](docs/DatabasesApi.md) | **EditDatabase2** | **Patch** /api/v1/clusters/{cluster_id}/databases | Update a database
 [DatabasesApi](docs/DatabasesApi.md) | **ListDatabases** | **Get** /api/v1/clusters/{cluster_id}/databases | List databases for a cluster
+[EgressPrivateEndpointsApi](docs/EgressPrivateEndpointsApi.md) | **CreateEgressPrivateEndpoint** | **Post** /api/v1/clusters/{cluster_id}/networking/egress-private-endpoints | Create an egress private endpoint
+[EgressPrivateEndpointsApi](docs/EgressPrivateEndpointsApi.md) | **DeleteEgressPrivateEndpoint** | **Delete** /api/v1/clusters/{cluster_id}/networking/egress-private-endpoints/{id} | Delete an egress private endpoint
+[EgressPrivateEndpointsApi](docs/EgressPrivateEndpointsApi.md) | **ListEgressPrivateEndpoints** | **Get** /api/v1/clusters/{cluster_id}/networking/egress-private-endpoints | List egress private endpoints
+[EgressPrivateEndpointsApi](docs/EgressPrivateEndpointsApi.md) | **UpdateEgressPrivateEndpointDomainNames** | **Patch** /api/v1/clusters/{cluster_id}/networking/egress-private-endpoints/{id}/domain-names | Update egress private endpoint domain names
 [EgressRulesApi](docs/EgressRulesApi.md) | **AddEgressRule** | **Post** /api/v1/clusters/{cluster_id}/networking/egress-rules | Add an egress rule
 [EgressRulesApi](docs/EgressRulesApi.md) | **DeleteEgressRule** | **Delete** /api/v1/clusters/{cluster_id}/networking/egress-rules/{rule_id} | Delete an existing egress rule
 [EgressRulesApi](docs/EgressRulesApi.md) | **EditEgressRule** | **Patch** /api/v1/clusters/{cluster_id}/networking/egress-rules/{rule_id} | Edit an existing egress rule

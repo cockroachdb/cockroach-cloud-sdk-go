@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Resources** | Pointer to [**[]ScimGroup**](ScimGroup.md) |  | [optional] 
 **ItemsPerPage** | Pointer to **int32** |  | [optional] 
 **Schemas** | **[]string** |  | 
+**StartIndex** | Pointer to **int32** |  | [optional] 
 **TotalResults** | **int32** |  | 
 
 ## Methods
@@ -63,6 +64,18 @@ GetSchemas returns the Schemas field if non-nil, zero value otherwise.
 `func (o *GetGroupsResponse) SetSchemas(v []string)`
 
 SetSchemas sets Schemas field to given value.
+
+### GetStartIndex
+
+`func (o *GetGroupsResponse) GetStartIndex() int32`
+
+GetStartIndex returns the StartIndex field if non-nil, zero value otherwise.
+
+### SetStartIndex
+
+`func (o *GetGroupsResponse) SetStartIndex(v int32)`
+
+SetStartIndex sets StartIndex field to given value.
 
 ### GetTotalResults
 
