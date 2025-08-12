@@ -74,6 +74,29 @@ paths:
         schema:
           type: string
         style: form
+      - description: |-
+          The maximum number of resources to return. If omitted, defaults to 20.
+          If set to 0, the response will contain no resources but will include metadata such as
+          `totalResults`, complying with [RFC 7644, Section 3.4.2.4: Pagination](https://datatracker.ietf.org/doc/html/rfc7644#section-3.4.2.4).
+        explode: true
+        in: query
+        name: count
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - description: |-
+          The 1-based index of the first resource to return in the response.
+          If omitted or less than 1, defaults to 1. This behavior complies with [RFC 7644, Section 3.4.2.4: Pagination](https://datatracker.ietf.org/doc/html/rfc7644#section-3.4.2.4).
+        explode: true
+        in: query
+        name: startIndex
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
       responses:
         "200":
           content:
@@ -120,7 +143,7 @@ paths:
       - lang: Shell + Curl
         source: |-
           curl --request GET \
-            --url 'https://cockroachlabs.cloud/api/scim/v2/Groups?attributes=SOME_STRING_VALUE&excludedAttributes=SOME_STRING_VALUE&filter=SOME_STRING_VALUE' \
+            --url 'https://cockroachlabs.cloud/api/scim/v2/Groups?attributes=SOME_STRING_VALUE&excludedAttributes=SOME_STRING_VALUE&filter=SOME_STRING_VALUE&count=SOME_INTEGER_VALUE&startIndex=SOME_INTEGER_VALUE' \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     post:
       description: |
@@ -244,7 +267,7 @@ paths:
           curl --request POST \
             --url https://cockroachlabs.cloud/api/scim/v2/Groups/.search \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
-            --json '{"attributes":"string","excludedAttributes":"string","filter":"string"}'
+            --json '{"attributes":"string","count":20,"excludedAttributes":"string","filter":"string","startIndex":1}'
     put:
       deprecated: true
       description: |
@@ -305,7 +328,7 @@ paths:
           curl --request PUT \
             --url https://cockroachlabs.cloud/api/scim/v2/Groups/.search \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
-            --json '{"attributes":"string","excludedAttributes":"string","filter":"string"}'
+            --json '{"attributes":"string","count":20,"excludedAttributes":"string","filter":"string","startIndex":1}'
   /api/scim/v2/Groups/{id}:
     delete:
       description: |
@@ -1083,7 +1106,11 @@ paths:
         schema:
           type: string
         style: form
-      - explode: true
+      - description: |-
+          The maximum number of resources to return. If omitted, defaults to 20.
+          If set to 0, the response will contain no resources but will include metadata such as
+          `totalResults`, complying with [RFC 7644, Section 3.4.2.4: Pagination](https://datatracker.ietf.org/doc/html/rfc7644#section-3.4.2.4).
+        explode: true
         in: query
         name: count
         required: false
@@ -1091,7 +1118,10 @@ paths:
           format: int32
           type: integer
         style: form
-      - explode: true
+      - description: |-
+          The 1-based index of the first resource to return in the response.
+          If omitted or less than 1, defaults to 1. This behavior complies with [RFC 7644, Section 3.4.2.4: Pagination](https://datatracker.ietf.org/doc/html/rfc7644#section-3.4.2.4).
+        explode: true
         in: query
         name: startIndex
         required: false
@@ -1269,7 +1299,7 @@ paths:
           curl --request POST \
             --url https://cockroachlabs.cloud/api/scim/v2/Users/.search \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
-            --json '{"attributes":"string","count":0,"excludedAttributes":"string","filter":"string","startIndex":0}'
+            --json '{"attributes":"string","count":20,"excludedAttributes":"string","filter":"string","startIndex":1}'
     put:
       deprecated: true
       description: |
@@ -1330,7 +1360,7 @@ paths:
           curl --request PUT \
             --url https://cockroachlabs.cloud/api/scim/v2/Users/.search \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
-            --json '{"attributes":"string","count":0,"excludedAttributes":"string","filter":"string","startIndex":0}'
+            --json '{"attributes":"string","count":20,"excludedAttributes":"string","filter":"string","startIndex":1}'
   /api/scim/v2/Users/{id}:
     delete:
       description: |
@@ -5790,6 +5820,343 @@ paths:
             --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/aws-endpoint-connections/{endpoint_id} \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
             --json '{"status":"AVAILABLE"}'
+  /api/v1/clusters/{cluster_id}/networking/egress-private-endpoints:
+    get:
+      description: |
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
+      operationId: CockroachCloud_ListEgressPrivateEndpoints
+      parameters:
+      - description: cluster_id identifies the cluster whose egress private endpoints
+          to list.
+        explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: pagination.page
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: pagination.limit
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: pagination.as_of_time
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: |2-
+           - ASC: Sort in ascending order. This is the default unless otherwise specified.
+           - DESC: Sort in descending order.
+        explode: true
+        in: query
+        name: pagination.sort_order
+        required: false
+        schema:
+          enum:
+          - ASC
+          - DESC
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListEgressPrivateEndpointsResponse'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: List egress private endpoints
+      tags:
+      - Egress Private Endpoints
+      x-badges:
+      - color: red
+        label: LIMITED ACCESS
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request GET \
+            --url 'https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/egress-private-endpoints?pagination.page=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.as_of_time=SOME_STRING_VALUE&pagination.sort_order=SOME_STRING_VALUE' \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+    post:
+      description: |
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
+      operationId: CockroachCloud_CreateEgressPrivateEndpoint
+      parameters:
+      - description: cluster_id identifies the cluster to which this egress private
+          endpoint applies.
+        explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateEgressPrivateEndpointRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EgressPrivateEndpoint'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Create an egress private endpoint
+      tags:
+      - Egress Private Endpoints
+      x-badges:
+      - color: red
+        label: LIMITED ACCESS
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request POST \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/egress-private-endpoints \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
+            --json '{"cluster_id":"example_cluster_id","region":"us-east-1","target_service_identifier":"arn:aws:s3:::example-bucket","target_service_type":"MSK_SASL_IAM"}'
+  /api/v1/clusters/{cluster_id}/networking/egress-private-endpoints/{id}:
+    delete:
+      description: |
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
+      operationId: CockroachCloud_DeleteEgressPrivateEndpoint
+      parameters:
+      - description: cluster_id identifies the cluster to which this egress private
+          endpoint applies.
+        explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The CRL-specific id of the endpoint to delete.
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Delete an egress private endpoint
+      tags:
+      - Egress Private Endpoints
+      x-badges:
+      - color: red
+        label: LIMITED ACCESS
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request DELETE \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/egress-private-endpoints/{id} \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+  /api/v1/clusters/{cluster_id}/networking/egress-private-endpoints/{id}/domain-names:
+    patch:
+      description: |
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
+      operationId: CockroachCloud_UpdateEgressPrivateEndpointDomainNames
+      parameters:
+      - description: cluster_id identifies the cluster to which this egress private
+          endpoint applies.
+        explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The CRL-specific id of the endpoint to update.
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateEgressPrivateEndpointDomainNamesRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: object
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Update egress private endpoint domain names
+      tags:
+      - Egress Private Endpoints
+      x-badges:
+      - color: red
+        label: LIMITED ACCESS
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request PATCH \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/egress-private-endpoints/{id}/domain-names \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
+            --json '{"cluster_id":"example_cluster_id","domain_names":["example.com","api.example.com"],"id":"example_id"}'
   /api/v1/clusters/{cluster_id}/networking/egress-rules:
     get:
       description: |
@@ -11605,13 +11972,13 @@ components:
             Preview: restrict_egress_traffic if set, results in an egress traffic policy of
             default-deny at creation time.
           type: boolean
-        support_physical_cluster_replication:
+        supports_cluster_virtualization:
           title: |-
-            support_physical_cluster_replication specifies whether a cluster
-            should be started using an architecture that supports physical
-            cluster replication. This field is restricted to Limited Access
-            usage; see our documentation for details:
-            https://www.cockroachlabs.com/docs/cockroachcloud/physical-cluster-replication.html
+            supports_cluster_virtualization specifies whether an Advanced
+            cluster is started with a virtual cluster architecture. This field
+            is restricted to Limited Access usage; see our documentation for
+            details:
+            https://www.cockroachlabs.com/docs/stable/cluster-virtualization-overview
           type: boolean
       required:
       - hardware
@@ -11792,6 +12159,91 @@ components:
       - rule
       title: EditEgressRuleResponse
       type: object
+    EgressPrivateEndpoint:
+      example:
+        target_service_type: null
+        id: id
+        state: null
+        region: region
+        target_service_identifier: target_service_identifier
+        endpoint_connection_id: endpoint_connection_id
+        domain_names:
+        - domain_names
+        - domain_names
+        endpoint_address: endpoint_address
+      properties:
+        domain_names:
+          description: domain_names are the domain names associated with the egress
+            private endpoint.
+          items:
+            type: string
+          type: array
+        endpoint_address:
+          title: |-
+            endpoint_address is the cloud-provider generated address (either
+            IP address or DNS name) through which the endpoint is accessible
+          type: string
+        endpoint_connection_id:
+          description: |-
+            endpoint_connection_id is the cloud-specific id for egress private endpoints.
+            This connection ID is visible in CRL and CSP consoles as "VPC endpoint ID" and
+            is used to uniquely identify the endpoint in external configurations.
+          type: string
+        id:
+          description: |-
+            A generated ID that uniquely identifies the egress_private_endpoint
+            for use with the CockroachDB Cloud API. This ID is generic and not specific
+            to the cloud provider.
+          type: string
+        region:
+          description: region represents the cloud region that the endpoint was created
+            in.
+          type: string
+        state:
+          $ref: '#/components/schemas/EgressPrivateEndpointState.Type'
+        target_service_identifier:
+          description: |-
+            target_service_identifier represents the identifier of the target service.
+            User-visible in CRL and CSP consoles as the "thing" the user is telling us to connect to,
+            i.e. Service Name for AWS, Service Attachment for GCP, or ARN for AWS MSK.
+          type: string
+        target_service_type:
+          $ref: '#/components/schemas/EgressPrivateEndpointTargetServiceType.Type'
+      required:
+      - domain_names
+      - endpoint_address
+      - endpoint_connection_id
+      - id
+      - region
+      - state
+      - target_service_identifier
+      - target_service_type
+      title: EgressPrivateEndpoint
+      type: object
+    EgressPrivateEndpointState.Type:
+      enum:
+      - PENDING
+      - PENDING_ACCEPTANCE
+      - AVAILABLE
+      - DELETING
+      - DELETED
+      - REJECTED
+      - FAILED
+      - EXPIRED
+      type: string
+    EgressPrivateEndpointTargetServiceType.Type:
+      enum:
+      - PRIVATE_SERVICE
+      - MSK_SASL_SCRAM
+      - MSK_SASL_IAM
+      - MSK_TLS
+      title: |-
+        - UNSPECIFIED: UNSPECIFIED represents an unspecified target service type.
+         - PRIVATE_SERVICE: PRIVATE_SERVICE represents any private service, such as a GCP service attachment, or an AWS VPC endpoint service.
+         - MSK_SASL_SCRAM: MSK_SASL_SCRAM represents the managed Kafka service in AWS, with SASL/SCRAM auth
+         - MSK_SASL_IAM: MSK_SASL_IAM represents the managed Kafka service in AWS, with SASL/IAM auth
+         - MSK_TLS: MSK_TLS represents the managed Kafka service in AWS, with TLS auth
+      type: string
     EgressRule:
       description: EgressRule represents a network egress rule.
       example:
@@ -12076,20 +12528,36 @@ components:
     GetGroupsRequest:
       example:
         filter: filter
+        startIndex: 6
+        count: 0
         attributes: attributes
         excludedAttributes: excludedAttributes
       properties:
         attributes:
           type: string
+        count:
+          description: |-
+            The maximum number of resources to return. If omitted, defaults to 20.
+            If set to 0, the response will contain no resources but will include metadata such as
+            `totalResults`, complying with [RFC 7644, Section 3.4.2.4: Pagination](https://datatracker.ietf.org/doc/html/rfc7644#section-3.4.2.4).
+          format: int32
+          type: integer
         excludedAttributes:
           type: string
         filter:
           type: string
+        startIndex:
+          description: |-
+            The 1-based index of the first resource to return in the response.
+            If omitted or less than 1, defaults to 1. This behavior complies with [RFC 7644, Section 3.4.2.4: Pagination](https://datatracker.ietf.org/doc/html/rfc7644#section-3.4.2.4).
+          format: int32
+          type: integer
       title: GetGroupsRequest
       type: object
     GetGroupsResponse:
       example:
-        totalResults: 6
+        startIndex: 6
+        totalResults: 1
         itemsPerPage: 0
         schemas:
         - schemas
@@ -12147,6 +12615,9 @@ components:
           items:
             type: string
           type: array
+        startIndex:
+          format: int32
+          type: integer
         totalResults:
           format: int32
           type: integer
@@ -12439,6 +12910,10 @@ components:
         attributes:
           type: string
         count:
+          description: |-
+            The maximum number of resources to return. If omitted, defaults to 20.
+            If set to 0, the response will contain no resources but will include metadata such as
+            `totalResults`, complying with [RFC 7644, Section 3.4.2.4: Pagination](https://datatracker.ietf.org/doc/html/rfc7644#section-3.4.2.4).
           format: int32
           type: integer
         excludedAttributes:
@@ -12446,6 +12921,9 @@ components:
         filter:
           type: string
         startIndex:
+          description: |-
+            The 1-based index of the first resource to return in the response.
+            If omitted or less than 1, defaults to 1. This behavior complies with [RFC 7644, Section 3.4.2.4: Pagination](https://datatracker.ietf.org/doc/html/rfc7644#section-3.4.2.4).
           format: int32
           type: integer
       title: GetUsersRequest
@@ -13236,6 +13714,45 @@ components:
       required:
       - databases
       title: ListDatabasesResponse
+      type: object
+    ListEgressPrivateEndpointsResponse:
+      example:
+        pagination:
+          next_page: next_page
+          previous_page: previous_page
+        egress_private_endpoints:
+        - target_service_type: null
+          id: id
+          state: null
+          region: region
+          target_service_identifier: target_service_identifier
+          endpoint_connection_id: endpoint_connection_id
+          domain_names:
+          - domain_names
+          - domain_names
+          endpoint_address: endpoint_address
+        - target_service_type: null
+          id: id
+          state: null
+          region: region
+          target_service_identifier: target_service_identifier
+          endpoint_connection_id: endpoint_connection_id
+          domain_names:
+          - domain_names
+          - domain_names
+          endpoint_address: endpoint_address
+      properties:
+        egress_private_endpoints:
+          description: egress_private_endpoints are the egress private endpoints associated
+            with the given cluster.
+          items:
+            $ref: '#/components/schemas/EgressPrivateEndpoint'
+          type: array
+        pagination:
+          $ref: '#/components/schemas/KeysetPaginationResponse'
+      required:
+      - egress_private_endpoints
+      title: ListEgressPrivateEndpointsResponse
       type: object
     ListEgressRulesResponse:
       example:
@@ -14724,6 +15241,15 @@ components:
       - trusted_owner
       type: object
     ReplicationStreamStatus.Type:
+      description: |-
+        status describes the desired status of the replication stream.
+
+         - STARTING: signifies that a stream is starting
+         - REPLICATING: during an update request, status 'REPLICATING' is allowed to transition to 'FAILING_OVER' or 'CANCELED'.
+        Other status transitions are not supported.
+         - FAILING_OVER: used to trigger a failover, or to signify that a failover is occurring.
+         - COMPLETED: signifies that a failover is complete.
+         - CANCELED: signifies that a stream is canceled.
       enum:
       - STARTING
       - REPLICATING
@@ -15553,7 +16079,8 @@ components:
             validate that the time is not earlier than the retained time. In
             this case, if the retained time is updated in between validation
             and failover execution and the failover time becomes invalid, the
-            stream will failover to the retained time.
+            stream will failover to the retained time. failover_at is not required
+            when updating the status to 'CANCELED'.
           format: date-time
           type: string
         status:
@@ -16050,6 +16577,49 @@ components:
       required:
       - status
       title: SetAwsEndpointConnectionStateRequest
+      type: object
+    CreateEgressPrivateEndpointRequest:
+      example:
+        cluster_id: example_cluster_id
+        region: us-east-1
+        target_service_identifier: arn:aws:s3:::example-bucket
+        target_service_type: MSK_SASL_IAM
+      properties:
+        region:
+          description: region represents the region that the endpoint will be created
+            in.
+          type: string
+        target_service_identifier:
+          description: |-
+            target_service_identifier represents the identifier of the target service.
+            User-visible in CRL and CSP consoles as the "thing" the user is telling us to connect to,
+            i.e. Service Name for AWS, Service Attachment for GCP, or ARN for AWS MSK.
+          type: string
+        target_service_type:
+          $ref: '#/components/schemas/EgressPrivateEndpointTargetServiceType.Type'
+      required:
+      - region
+      - target_service_identifier
+      - target_service_type
+      title: CreateEgressPrivateEndpointRequest
+      type: object
+    UpdateEgressPrivateEndpointDomainNamesRequest:
+      example:
+        cluster_id: example_cluster_id
+        domain_names:
+        - example.com
+        - api.example.com
+        id: example_id
+      properties:
+        domain_names:
+          description: domain_names are the domain names to associate with the egress
+            private endpoint.
+          items:
+            type: string
+          type: array
+      required:
+      - domain_names
+      title: UpdateEgressPrivateEndpointDomainNamesRequest
       type: object
     AddEgressRuleRequest:
       example:

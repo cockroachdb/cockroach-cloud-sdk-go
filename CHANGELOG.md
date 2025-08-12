@@ -2,13 +2,25 @@
 
 NEW FEATURES:
 
-* Added new endpoints: `ListBackups`, `CreateRestore`, `GetRestore`, and
-  `ListRestores` in LIMITED ACCESS.
+* Added new endpoints: `ListBackups`, `CreateRestore`, `GetRestore`,
+  `ListRestores`, `CreateEgressPrivateEndpoint`,
+  `DeleteEgressPrivateEndpoint`, `ListEgressPrivateEndpoints`,
+  `UpdateEgressPrivateEndpointDomainNames` in LIMITED ACCESS.
 
 * Added new CMEK Key Type: `AZURE_KEY_VAULT`
 
-* Audit log actions: `CREATE_EGRESS_PRIVATE_ENDPOINT`,
+* Added audit log actions: `CREATE_EGRESS_PRIVATE_ENDPOINT`,
   `DELETE_EGRESS_PRIVATE_ENDPOINT`, and `UPDATE_EGRESS_PRIVATE_ENDPOINT`.
+
+
+* Added `Count` and `StartIndex` fields to GetGroupsRequest and
+  GetUsersRequest.
+
+BREAKING CHANGES:
+
+* The SupportPhysicalClusterReplication field in
+  DedicatedClusterCreateSpecification has been renamed to
+  SupportsClusterVirtualization.
 
 ## 6.3.0
 

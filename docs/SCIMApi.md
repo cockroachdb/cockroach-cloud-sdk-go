@@ -447,7 +447,7 @@ Name | Type | Description  | Notes
 
 ## GetGroups
 
-> GetGroupsResponse GetGroups(ctx).Attributes(attributes).ExcludedAttributes(excludedAttributes).Filter(filter).Execute()
+> GetGroupsResponse GetGroups(ctx).Attributes(attributes).ExcludedAttributes(excludedAttributes).Filter(filter).Count(count).StartIndex(startIndex).Execute()
 
 List groups
 
@@ -471,10 +471,12 @@ func main() {
     attributes := "attributes_example" // string |  (optional)
     excludedAttributes := "excludedAttributes_example" // string |  (optional)
     filter := "filter_example" // string |  (optional)
+    count := int32(56) // int32 | The maximum number of resources to return. If omitted, defaults to 20. If set to 0, the response will contain no resources but will include metadata such as `totalResults`, complying with [RFC 7644, Section 3.4.2.4: Pagination](https://datatracker.ietf.org/doc/html/rfc7644#section-3.4.2.4). (optional)
+    startIndex := int32(56) // int32 | The 1-based index of the first resource to return in the response. If omitted or less than 1, defaults to 1. This behavior complies with [RFC 7644, Section 3.4.2.4: Pagination](https://datatracker.ietf.org/doc/html/rfc7644#section-3.4.2.4). (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
-    resp, r, err := api_client.SCIMApi.GetGroups(context.Background()).Attributes(attributes).ExcludedAttributes(excludedAttributes).Filter(filter).Execute()
+    resp, r, err := api_client.SCIMApi.GetGroups(context.Background()).Attributes(attributes).ExcludedAttributes(excludedAttributes).Filter(filter).Count(count).StartIndex(startIndex).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SCIMApi.GetGroups``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -499,6 +501,8 @@ Name | Type | Description  | Notes
  **attributes** | **string** |  | 
  **excludedAttributes** | **string** |  | 
  **filter** | **string** |  | 
+ **count** | **int32** | The maximum number of resources to return. If omitted, defaults to 20. If set to 0, the response will contain no resources but will include metadata such as &#x60;totalResults&#x60;, complying with [RFC 7644, Section 3.4.2.4: Pagination](https://datatracker.ietf.org/doc/html/rfc7644#section-3.4.2.4). | 
+ **startIndex** | **int32** | The 1-based index of the first resource to return in the response. If omitted or less than 1, defaults to 1. This behavior complies with [RFC 7644, Section 3.4.2.4: Pagination](https://datatracker.ietf.org/doc/html/rfc7644#section-3.4.2.4). | 
 
 ### Return type
 
@@ -1091,8 +1095,8 @@ func main() {
     filter := "filter_example" // string |  (optional)
     attributes := "attributes_example" // string |  (optional)
     excludedAttributes := "excludedAttributes_example" // string |  (optional)
-    count := int32(56) // int32 |  (optional)
-    startIndex := int32(56) // int32 |  (optional)
+    count := int32(56) // int32 | The maximum number of resources to return. If omitted, defaults to 20. If set to 0, the response will contain no resources but will include metadata such as `totalResults`, complying with [RFC 7644, Section 3.4.2.4: Pagination](https://datatracker.ietf.org/doc/html/rfc7644#section-3.4.2.4). (optional)
+    startIndex := int32(56) // int32 | The 1-based index of the first resource to return in the response. If omitted or less than 1, defaults to 1. This behavior complies with [RFC 7644, Section 3.4.2.4: Pagination](https://datatracker.ietf.org/doc/html/rfc7644#section-3.4.2.4). (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
@@ -1121,8 +1125,8 @@ Name | Type | Description  | Notes
  **filter** | **string** |  | 
  **attributes** | **string** |  | 
  **excludedAttributes** | **string** |  | 
- **count** | **int32** |  | 
- **startIndex** | **int32** |  | 
+ **count** | **int32** | The maximum number of resources to return. If omitted, defaults to 20. If set to 0, the response will contain no resources but will include metadata such as &#x60;totalResults&#x60;, complying with [RFC 7644, Section 3.4.2.4: Pagination](https://datatracker.ietf.org/doc/html/rfc7644#section-3.4.2.4). | 
+ **startIndex** | **int32** | The 1-based index of the first resource to return in the response. If omitted or less than 1, defaults to 1. This behavior complies with [RFC 7644, Section 3.4.2.4: Pagination](https://datatracker.ietf.org/doc/html/rfc7644#section-3.4.2.4). | 
 
 ### Return type
 
