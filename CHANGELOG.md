@@ -1,3 +1,9 @@
+## 6.4.1
+
+BUG FIXES:
+
+* Add in a few files that were accidentally omitted
+
 ## 6.4.0
 
 NEW FEATURES:
