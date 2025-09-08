@@ -8357,7 +8357,7 @@
           {
             "name": "cluster_id",
             "in": "path",
-            "description": "cluster_id identifies the cluster whose egress private endpoints to list.",
+            "description": "cluster_id identifies the CockroachDB Cloud cluster whose egress private endpoints to list.",
             "required": true,
             "schema": {
               "type": "string"
@@ -8615,7 +8615,7 @@
           {
             "name": "cluster_id",
             "in": "path",
-            "description": "cluster_id identifies the cluster to which this egress private endpoint applies.",
+            "description": "cluster_id identifies the CockroachDB Cloud cluster owning the egress private endpoint.",
             "required": true,
             "schema": {
               "type": "string"
@@ -8624,7 +8624,7 @@
           {
             "name": "id",
             "in": "path",
-            "description": "The CRL-specific id of the endpoint to delete.",
+            "description": "id is the UUID value of the egress private endpoint in CockroachDB Cloud.",
             "required": true,
             "schema": {
               "type": "string"
@@ -8708,6 +8708,108 @@
             "source": "curl --request DELETE \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/egress-private-endpoints/{id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
           }
         ]
+      },
+      "get": {
+        "operationId": "CockroachCloud_GetEgressPrivateEndpoint",
+        "summary": "Get egress private endpoint",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "parameters": [
+          {
+            "name": "cluster_id",
+            "in": "path",
+            "description": "cluster_id identifies the CockroachDB Cloud cluster owning the egress private endpoint.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id is the UUID value of the egress private endpoint in CockroachDB Cloud.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetEgressPrivateEndpointResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Egress Private Endpoints"
+        ],
+        "x-badges": [
+          {
+            "color": "red",
+            "label": "LIMITED ACCESS"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request GET \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/egress-private-endpoints/{id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+          }
+        ]
       }
     },
     "/api/v1/clusters/{cluster_id}/networking/egress-private-endpoints/{id}/domain-names": {
@@ -8719,7 +8821,7 @@
           {
             "name": "cluster_id",
             "in": "path",
-            "description": "cluster_id identifies the cluster to which this egress private endpoint applies.",
+            "description": "cluster_id identifies the CockroachDB Cloud cluster owning the egress private endpoint.",
             "required": true,
             "schema": {
               "type": "string"
@@ -8728,7 +8830,7 @@
           {
             "name": "id",
             "in": "path",
-            "description": "The CRL-specific id of the endpoint to update.",
+            "description": "id is the UUID value of the egress private endpoint in CockroachDB Cloud.",
             "required": true,
             "schema": {
               "type": "string"
@@ -16597,6 +16699,18 @@
           "connection_string",
           "params"
         ]
+      },
+      "GetEgressPrivateEndpointResponse": {
+        "type": "object",
+        "properties": {
+          "egress_private_endpoint": {
+            "$ref": "#/components/schemas/EgressPrivateEndpoint"
+          }
+        },
+        "required": [
+          "egress_private_endpoints"
+        ],
+        "title": "GetEgressPrivateEndpointResponse"
       },
       "GetEgressRuleResponse": {
         "type": "object",

@@ -1,3 +1,9 @@
+## 6.5.0
+
+NEW FEATURES:
+
+* Added new endpoint: `GetEgressPrivateEndpoint` in LIMITED ACCESS.
+
 ## 6.4.1
 
 BUG FIXES:
