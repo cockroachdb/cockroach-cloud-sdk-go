@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateEgressPrivateEndpoint**](EgressPrivateEndpointsApi.md#CreateEgressPrivateEndpoint) | **Post** /api/v1/clusters/{cluster_id}/networking/egress-private-endpoints | Create an egress private endpoint
 [**DeleteEgressPrivateEndpoint**](EgressPrivateEndpointsApi.md#DeleteEgressPrivateEndpoint) | **Delete** /api/v1/clusters/{cluster_id}/networking/egress-private-endpoints/{id} | Delete an egress private endpoint
+[**GetEgressPrivateEndpoint**](EgressPrivateEndpointsApi.md#GetEgressPrivateEndpoint) | **Get** /api/v1/clusters/{cluster_id}/networking/egress-private-endpoints/{id} | Get egress private endpoint
 [**ListEgressPrivateEndpoints**](EgressPrivateEndpointsApi.md#ListEgressPrivateEndpoints) | **Get** /api/v1/clusters/{cluster_id}/networking/egress-private-endpoints | List egress private endpoints
 [**UpdateEgressPrivateEndpointDomainNames**](EgressPrivateEndpointsApi.md#UpdateEgressPrivateEndpointDomainNames) | **Patch** /api/v1/clusters/{cluster_id}/networking/egress-private-endpoints/{id}/domain-names | Update egress private endpoint domain names
 
@@ -106,8 +107,8 @@ import (
 )
 
 func main() {
-    clusterId := "clusterId_example" // string | cluster_id identifies the cluster to which this egress private endpoint applies.
-    id := "id_example" // string | The CRL-specific id of the endpoint to delete.
+    clusterId := "clusterId_example" // string | cluster_id identifies the CockroachDB Cloud cluster owning the egress private endpoint.
+    id := "id_example" // string | id is the UUID value of the egress private endpoint in CockroachDB Cloud.
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
@@ -126,8 +127,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**clusterId** | **string** | cluster_id identifies the cluster to which this egress private endpoint applies. | 
-**id** | **string** | The CRL-specific id of the endpoint to delete. | 
+**clusterId** | **string** | cluster_id identifies the CockroachDB Cloud cluster owning the egress private endpoint. | 
+**id** | **string** | id is the UUID value of the egress private endpoint in CockroachDB Cloud. | 
 
 ### Other Parameters
 
@@ -140,6 +141,78 @@ Name | Type | Description  | Notes
 ### Return type
 
 **map[string]interface{}**
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetEgressPrivateEndpoint
+
+> GetEgressPrivateEndpointResponse GetEgressPrivateEndpoint(ctx, clusterId, id).Execute()
+
+Get egress private endpoint
+
+Can be used by the following roles assigned at the organization, folder or cluster scope:
+- CLUSTER_ADMIN
+- CLUSTER_OPERATOR_WRITER
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    clusterId := "clusterId_example" // string | cluster_id identifies the CockroachDB Cloud cluster owning the egress private endpoint.
+    id := "id_example" // string | id is the UUID value of the egress private endpoint in CockroachDB Cloud.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.EgressPrivateEndpointsApi.GetEgressPrivateEndpoint(context.Background(), clusterId, id).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `EgressPrivateEndpointsApi.GetEgressPrivateEndpoint``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetEgressPrivateEndpoint`: GetEgressPrivateEndpointResponse
+    fmt.Fprintf(os.Stdout, "Response from `EgressPrivateEndpointsApi.GetEgressPrivateEndpoint`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**clusterId** | **string** | cluster_id identifies the CockroachDB Cloud cluster owning the egress private endpoint. | 
+**id** | **string** | id is the UUID value of the egress private endpoint in CockroachDB Cloud. | 
+
+### Other Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+[**GetEgressPrivateEndpointResponse**](GetEgressPrivateEndpointResponse.md)
 
 ### Authorization
 
@@ -179,7 +252,7 @@ import (
 )
 
 func main() {
-    clusterId := "clusterId_example" // string | cluster_id identifies the cluster whose egress private endpoints to list.
+    clusterId := "clusterId_example" // string | cluster_id identifies the CockroachDB Cloud cluster whose egress private endpoints to list.
     paginationPage := "paginationPage_example" // string |  (optional)
     paginationLimit := int32(56) // int32 |  (optional)
     paginationAsOfTime := time.Now() // time.Time |  (optional)
@@ -202,7 +275,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**clusterId** | **string** | cluster_id identifies the cluster whose egress private endpoints to list. | 
+**clusterId** | **string** | cluster_id identifies the CockroachDB Cloud cluster whose egress private endpoints to list. | 
 
 ### Other Parameters
 
@@ -257,8 +330,8 @@ import (
 )
 
 func main() {
-    clusterId := "clusterId_example" // string | cluster_id identifies the cluster to which this egress private endpoint applies.
-    id := "id_example" // string | The CRL-specific id of the endpoint to update.
+    clusterId := "clusterId_example" // string | cluster_id identifies the CockroachDB Cloud cluster owning the egress private endpoint.
+    id := "id_example" // string | id is the UUID value of the egress private endpoint in CockroachDB Cloud.
     updateEgressPrivateEndpointDomainNamesRequest := *openapiclient.NewUpdateEgressPrivateEndpointDomainNamesRequest([]string{"DomainNames_example"}) // UpdateEgressPrivateEndpointDomainNamesRequest | 
 
     configuration := openapiclient.NewConfiguration()
@@ -278,8 +351,8 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**clusterId** | **string** | cluster_id identifies the cluster to which this egress private endpoint applies. | 
-**id** | **string** | The CRL-specific id of the endpoint to update. | 
+**clusterId** | **string** | cluster_id identifies the CockroachDB Cloud cluster owning the egress private endpoint. | 
+**id** | **string** | id is the UUID value of the egress private endpoint in CockroachDB Cloud. | 
 
 ### Other Parameters
 

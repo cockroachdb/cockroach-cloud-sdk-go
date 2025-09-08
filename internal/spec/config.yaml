@@ -1,5 +1,5 @@
 templateDir: internal/spec/templates
-packageVersion: 6.0.0
+packageVersion: 6.5.0
 # Include new templates and filenames.
 files:
     service.mustache:
@@ -17,7 +17,7 @@ structPrefix: false
 # https://openapi-generator.tech/docs/usage#generate
 removeOperationIdPrefix: true
 # The 'additionalProperties' implementation is compliant with the OAS and JSON schema specifications.
-disallowAdditionalPropertiesIfNotPresent: true 
+disallowAdditionalPropertiesIfNotPresent: true
 
 # Prefix enum with class name
 enumClassPrefix: true

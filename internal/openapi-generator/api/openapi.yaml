@@ -5828,8 +5828,8 @@ paths:
         - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_ListEgressPrivateEndpoints
       parameters:
-      - description: cluster_id identifies the cluster whose egress private endpoints
-          to list.
+      - description: cluster_id identifies the CockroachDB Cloud cluster whose egress
+          private endpoints to list.
         explode: false
         in: path
         name: cluster_id
@@ -6006,8 +6006,8 @@ paths:
         - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_DeleteEgressPrivateEndpoint
       parameters:
-      - description: cluster_id identifies the cluster to which this egress private
-          endpoint applies.
+      - description: cluster_id identifies the CockroachDB Cloud cluster owning the
+          egress private endpoint.
         explode: false
         in: path
         name: cluster_id
@@ -6015,7 +6015,8 @@ paths:
         schema:
           type: string
         style: simple
-      - description: The CRL-specific id of the endpoint to delete.
+      - description: id is the UUID value of the egress private endpoint in CockroachDB
+          Cloud.
         explode: false
         in: path
         name: id
@@ -6074,6 +6075,82 @@ paths:
           curl --request DELETE \
             --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/egress-private-endpoints/{id} \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+    get:
+      description: |
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
+      operationId: CockroachCloud_GetEgressPrivateEndpoint
+      parameters:
+      - description: cluster_id identifies the CockroachDB Cloud cluster owning the
+          egress private endpoint.
+        explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: id is the UUID value of the egress private endpoint in CockroachDB
+          Cloud.
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetEgressPrivateEndpointResponse'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Get egress private endpoint
+      tags:
+      - Egress Private Endpoints
+      x-badges:
+      - color: red
+        label: LIMITED ACCESS
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request GET \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/networking/egress-private-endpoints/{id} \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
   /api/v1/clusters/{cluster_id}/networking/egress-private-endpoints/{id}/domain-names:
     patch:
       description: |
@@ -6082,8 +6159,8 @@ paths:
         - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_UpdateEgressPrivateEndpointDomainNames
       parameters:
-      - description: cluster_id identifies the cluster to which this egress private
-          endpoint applies.
+      - description: cluster_id identifies the CockroachDB Cloud cluster owning the
+          egress private endpoint.
         explode: false
         in: path
         name: cluster_id
@@ -6091,7 +6168,8 @@ paths:
         schema:
           type: string
         style: simple
-      - description: The CRL-specific id of the endpoint to update.
+      - description: id is the UUID value of the egress private endpoint in CockroachDB
+          Cloud.
         explode: false
         in: path
         name: id
@@ -12499,6 +12577,26 @@ components:
       required:
       - connection_string
       - params
+      type: object
+    GetEgressPrivateEndpointResponse:
+      example:
+        egress_private_endpoint:
+          target_service_type: null
+          id: id
+          state: null
+          region: region
+          target_service_identifier: target_service_identifier
+          endpoint_connection_id: endpoint_connection_id
+          domain_names:
+          - domain_names
+          - domain_names
+          endpoint_address: endpoint_address
+      properties:
+        egress_private_endpoint:
+          $ref: '#/components/schemas/EgressPrivateEndpoint'
+      required:
+      - egress_private_endpoints
+      title: GetEgressPrivateEndpointResponse
       type: object
     GetEgressRuleResponse:
       example:

@@ -106,6 +106,7 @@ docs/FolderResourceTypeType.md
 docs/FoldersApi.md
 docs/GetAllRolesForUserResponse.md
 docs/GetConnectionStringResponse.md
+docs/GetEgressPrivateEndpointResponse.md
 docs/GetEgressRuleResponse.md
 docs/GetGroupRequest.md
 docs/GetGroupsRequest.md
@@ -338,6 +339,7 @@ model_folder_resource_list.go
 model_folder_resource_type_type.go
 model_get_all_roles_for_user_response.go
 model_get_connection_string_response.go
+model_get_egress_private_endpoint_response.go
 model_get_egress_rule_response.go
 model_get_group_request.go
 model_get_groups_request.go
