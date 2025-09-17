@@ -1,3 +1,20 @@
+## 6.6.0
+
+NEW FEATURES:
+
+* Added new audit log actions: `CREATE_PHYSICAL_REPLICATION_STREAM`,
+  `FAILOVER_PHYSICAL_REPLICATION_STREAM`, and `CANCEL_PHYSICAL_REPLICATION_STREAM`.
+
+* Added new endpoint: `UpdateEgressPrivateEndpoint` in LIMITED ACCESS. 
+
+* Added new fields related to the Bring Your Own Cloud feature in LIMITED ACCESS:
+  `CustomerCloudAccount` in `CreateClusterRequest` and `Cluster`.
+
+DEPRECATIONS:
+
+* Deprecated the `UpdateEgressPrivateEndpointDomainNames` endpoint. Prefer
+  `UpdateEgressPrivateEndpoint`.
+
 ## 6.5.0
 
 NEW FEATURES:

@@ -20,8 +20,10 @@ docs/AuditLogEntry.md
 docs/AuditLogMetadata.md
 docs/AuditLogSource.md
 docs/AuditLogsApi.md
+docs/AwsCustomerCloudAccount.md
 docs/AwsEndpointConnection.md
 docs/AwsEndpointConnections.md
+docs/AzureCustomerCloudAccount.md
 docs/BackupConfiguration.md
 docs/BackupRestoreApi.md
 docs/BackupSummary.md
@@ -74,6 +76,7 @@ docs/CreateUserRequest.md
 docs/CreateUserResponse.md
 docs/CurrencyAmount.md
 docs/CurrencyType.md
+docs/CustomerCloudAccount.md
 docs/CustomerManagedEncryptionKeysApi.md
 docs/Database.md
 docs/DatabasesApi.md
@@ -104,6 +107,7 @@ docs/FolderResource.md
 docs/FolderResourceList.md
 docs/FolderResourceTypeType.md
 docs/FoldersApi.md
+docs/GcpCustomerCloudAccount.md
 docs/GetAllRolesForUserResponse.md
 docs/GetConnectionStringResponse.md
 docs/GetEgressPrivateEndpointResponse.md
@@ -234,7 +238,7 @@ docs/UpdateClientCACertRequest.md
 docs/UpdateClusterSpecification.md
 docs/UpdateDatabaseRequest.md
 docs/UpdateDatabaseRequest1.md
-docs/UpdateEgressPrivateEndpointDomainNamesRequest.md
+docs/UpdateEgressPrivateEndpointRequest.md
 docs/UpdateFolderSpecification.md
 docs/UpdateGroupRequest.md
 docs/UpdateJWTIssuerRequest.md
@@ -261,10 +265,12 @@ model_audit_log_action.go
 model_audit_log_entry.go
 model_audit_log_metadata.go
 model_audit_log_source.go
+model_aws_customer_cloud_account.go
 model_aws_endpoint_connection.go
 model_aws_endpoint_connection_status_type.go
 model_aws_endpoint_connections.go
 model_aws_private_link_service_detail.go
+model_azure_customer_cloud_account.go
 model_backup_configuration.go
 model_backup_summary.go
 model_built_in_from_groups.go
@@ -312,6 +318,7 @@ model_create_user_request.go
 model_create_user_response.go
 model_currency_amount.go
 model_currency_type.go
+model_customer_cloud_account.go
 model_database.go
 model_datadog_metric_export_info.go
 model_datadog_site_type.go
@@ -337,6 +344,7 @@ model_enable_log_export_request.go
 model_folder_resource.go
 model_folder_resource_list.go
 model_folder_resource_type_type.go
+model_gcp_customer_cloud_account.go
 model_get_all_roles_for_user_response.go
 model_get_connection_string_response.go
 model_get_egress_private_endpoint_response.go
@@ -455,7 +463,7 @@ model_update_cluster_specification.go
 model_update_cmek_status_request.go
 model_update_database_request.go
 model_update_database_request_1.go
-model_update_egress_private_endpoint_domain_names_request.go
+model_update_egress_private_endpoint_request.go
 model_update_folder_specification.go
 model_update_group_request.go
 model_update_jwt_issuer_request.go

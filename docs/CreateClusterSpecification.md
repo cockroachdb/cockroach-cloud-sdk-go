@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**CustomerCloudAccount** | Pointer to [**CustomerCloudAccount**](CustomerCloudAccount.md) |  | [optional] 
 **Dedicated** | Pointer to [**DedicatedClusterCreateSpecification**](DedicatedClusterCreateSpecification.md) |  | [optional] 
 **DeleteProtection** | Pointer to [**DeleteProtectionStateType**](DeleteProtectionStateType.md) |  | [optional] 
 **Labels** | Pointer to **map[string]string** | labels are key-value pairs used to organize and categorize resources. | [optional] 
@@ -21,6 +22,18 @@ NewCreateClusterSpecification instantiates a new CreateClusterSpecification obje
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed.
+
+### GetCustomerCloudAccount
+
+`func (o *CreateClusterSpecification) GetCustomerCloudAccount() CustomerCloudAccount`
+
+GetCustomerCloudAccount returns the CustomerCloudAccount field if non-nil, zero value otherwise.
+
+### SetCustomerCloudAccount
+
+`func (o *CreateClusterSpecification) SetCustomerCloudAccount(v CustomerCloudAccount)`
+
+SetCustomerCloudAccount sets CustomerCloudAccount field to given value.
 
 ### GetDedicated
 
