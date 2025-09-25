@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **Config** | [**ClusterConfig**](ClusterConfig.md) |  | 
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
 **CreatorId** | **string** |  | 
+**CustomerCloudAccount** | Pointer to [**CustomerCloudAccount**](CustomerCloudAccount.md) |  | [optional] 
 **DeleteProtection** | Pointer to [**DeleteProtectionStateType**](DeleteProtectionStateType.md) |  | [optional] 
 **DeletedAt** | Pointer to **time.Time** |  | [optional] 
 **EgressTrafficPolicy** | Pointer to [**EgressTrafficPolicyType**](EgressTrafficPolicyType.md) |  | [optional] 
@@ -142,6 +143,18 @@ GetCreatorId returns the CreatorId field if non-nil, zero value otherwise.
 `func (o *Cluster) SetCreatorId(v string)`
 
 SetCreatorId sets CreatorId field to given value.
+
+### GetCustomerCloudAccount
+
+`func (o *Cluster) GetCustomerCloudAccount() CustomerCloudAccount`
+
+GetCustomerCloudAccount returns the CustomerCloudAccount field if non-nil, zero value otherwise.
+
+### SetCustomerCloudAccount
+
+`func (o *Cluster) SetCustomerCloudAccount(v CustomerCloudAccount)`
+
+SetCustomerCloudAccount sets CustomerCloudAccount field to given value.
 
 ### GetDeleteProtection
 

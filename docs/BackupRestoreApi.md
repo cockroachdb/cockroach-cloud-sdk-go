@@ -227,7 +227,7 @@ Name | Type | Description  | Notes
 
 ## ListBackups
 
-> ListBackupsResponse ListBackups(ctx, clusterId).StartTime(startTime).EndTime(endTime).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).Execute()
+> ListBackupsResponse ListBackups(ctx, clusterId).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).StartTime(startTime).EndTime(endTime).Execute()
 
 List cluster backups
 
@@ -251,16 +251,16 @@ import (
 
 func main() {
     clusterId := "clusterId_example" // string | The cluster associated with the backups being retrieved.
-    startTime := time.Now() // time.Time | The beginning of the time range (inclusive) used to search for backups based on their restore point. If this field is provided, end_time must also be included in the request. (optional)
-    endTime := time.Now() // time.Time | The end of the time range (exclusive) used to search for backups based on their restore point. If this field is provided, start_time must also be included in the request. (optional)
     paginationPage := "paginationPage_example" // string |  (optional)
     paginationLimit := int32(56) // int32 |  (optional)
     paginationAsOfTime := time.Now() // time.Time |  (optional)
     paginationSortOrder := "paginationSortOrder_example" // string |  - ASC: Sort in ascending order. This is the default unless otherwise specified.  - DESC: Sort in descending order. (optional)
+    startTime := time.Now() // time.Time | The beginning of the time range (inclusive) used to search for backups. (optional)
+    endTime := time.Now() // time.Time | The end of the time range (exclusive) used to search for backups. (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
-    resp, r, err := api_client.BackupRestoreApi.ListBackups(context.Background(), clusterId).StartTime(startTime).EndTime(endTime).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).Execute()
+    resp, r, err := api_client.BackupRestoreApi.ListBackups(context.Background(), clusterId).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).StartTime(startTime).EndTime(endTime).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `BackupRestoreApi.ListBackups``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -284,12 +284,12 @@ Optional parameters can be passed through a pointer to the ListBackupsOptions st
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **startTime** | **time.Time** | The beginning of the time range (inclusive) used to search for backups based on their restore point. If this field is provided, end_time must also be included in the request. | 
- **endTime** | **time.Time** | The end of the time range (exclusive) used to search for backups based on their restore point. If this field is provided, start_time must also be included in the request. | 
  **paginationPage** | **string** |  | 
  **paginationLimit** | **int32** |  | 
  **paginationAsOfTime** | **time.Time** |  | 
  **paginationSortOrder** | **string** |  - ASC: Sort in ascending order. This is the default unless otherwise specified.  - DESC: Sort in descending order. | 
+ **startTime** | **time.Time** | The beginning of the time range (inclusive) used to search for backups. | 
+ **endTime** | **time.Time** | The end of the time range (exclusive) used to search for backups. | 
 
 ### Return type
 
@@ -310,7 +310,7 @@ Name | Type | Description  | Notes
 
 ## ListRestores
 
-> ListRestoresResponse ListRestores(ctx, clusterId).StartTime(startTime).EndTime(endTime).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).Execute()
+> ListRestoresResponse ListRestores(ctx, clusterId).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).StartTime(startTime).EndTime(endTime).Execute()
 
 List restore operations
 
@@ -334,16 +334,16 @@ import (
 
 func main() {
     clusterId := "clusterId_example" // string | The ID of the cluster where the restores ran or are currently running.
-    startTime := time.Now() // time.Time | The beginning of the time range (inclusive) used to search for restores. (optional)
-    endTime := time.Now() // time.Time | The end of the time range (exclusive) used to search for restores. (optional)
     paginationPage := "paginationPage_example" // string |  (optional)
     paginationLimit := int32(56) // int32 |  (optional)
     paginationAsOfTime := time.Now() // time.Time |  (optional)
     paginationSortOrder := "paginationSortOrder_example" // string |  - ASC: Sort in ascending order. This is the default unless otherwise specified.  - DESC: Sort in descending order. (optional)
+    startTime := time.Now() // time.Time | The beginning of the time range (inclusive) used to search for restores. (optional)
+    endTime := time.Now() // time.Time | The end of the time range (exclusive) used to search for restores. (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
-    resp, r, err := api_client.BackupRestoreApi.ListRestores(context.Background(), clusterId).StartTime(startTime).EndTime(endTime).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).Execute()
+    resp, r, err := api_client.BackupRestoreApi.ListRestores(context.Background(), clusterId).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).StartTime(startTime).EndTime(endTime).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `BackupRestoreApi.ListRestores``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -367,12 +367,12 @@ Optional parameters can be passed through a pointer to the ListRestoresOptions s
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **startTime** | **time.Time** | The beginning of the time range (inclusive) used to search for restores. | 
- **endTime** | **time.Time** | The end of the time range (exclusive) used to search for restores. | 
  **paginationPage** | **string** |  | 
  **paginationLimit** | **int32** |  | 
  **paginationAsOfTime** | **time.Time** |  | 
  **paginationSortOrder** | **string** |  - ASC: Sort in ascending order. This is the default unless otherwise specified.  - DESC: Sort in descending order. | 
+ **startTime** | **time.Time** | The beginning of the time range (inclusive) used to search for restores. | 
+ **endTime** | **time.Time** | The end of the time range (exclusive) used to search for restores. | 
 
 ### Return type
 

@@ -8,7 +8,8 @@ Method | HTTP request | Description
 [**DeleteEgressPrivateEndpoint**](EgressPrivateEndpointsApi.md#DeleteEgressPrivateEndpoint) | **Delete** /api/v1/clusters/{cluster_id}/networking/egress-private-endpoints/{id} | Delete an egress private endpoint
 [**GetEgressPrivateEndpoint**](EgressPrivateEndpointsApi.md#GetEgressPrivateEndpoint) | **Get** /api/v1/clusters/{cluster_id}/networking/egress-private-endpoints/{id} | Get egress private endpoint
 [**ListEgressPrivateEndpoints**](EgressPrivateEndpointsApi.md#ListEgressPrivateEndpoints) | **Get** /api/v1/clusters/{cluster_id}/networking/egress-private-endpoints | List egress private endpoints
-[**UpdateEgressPrivateEndpointDomainNames**](EgressPrivateEndpointsApi.md#UpdateEgressPrivateEndpointDomainNames) | **Patch** /api/v1/clusters/{cluster_id}/networking/egress-private-endpoints/{id}/domain-names | Update egress private endpoint domain names
+[**UpdateEgressPrivateEndpoint**](EgressPrivateEndpointsApi.md#UpdateEgressPrivateEndpoint) | **Patch** /api/v1/clusters/{cluster_id}/networking/egress-private-endpoints/{id} | Update egress private endpoint domain names
+[**UpdateEgressPrivateEndpointDomainNames**](EgressPrivateEndpointsApi.md#UpdateEgressPrivateEndpointDomainNames) | **Patch** /api/v1/clusters/{cluster_id}/networking/egress-private-endpoints/{id}/domain-names | Update egress private endpoint domain names. This endpoint is deprecated in favor of PATCH /api/v1/clusters/{cluster_id}/networking/egress-private-endpoints/{id} and will be removed in a future version.
 
 
 
@@ -306,9 +307,9 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## UpdateEgressPrivateEndpointDomainNames
+## UpdateEgressPrivateEndpoint
 
-> map[string]interface{} UpdateEgressPrivateEndpointDomainNames(ctx, clusterId, id).UpdateEgressPrivateEndpointDomainNamesRequest(updateEgressPrivateEndpointDomainNamesRequest).Execute()
+> map[string]interface{} UpdateEgressPrivateEndpoint(ctx, clusterId, id).UpdateEgressPrivateEndpointRequest(updateEgressPrivateEndpointRequest).Execute()
 
 Update egress private endpoint domain names
 
@@ -332,11 +333,85 @@ import (
 func main() {
     clusterId := "clusterId_example" // string | cluster_id identifies the CockroachDB Cloud cluster owning the egress private endpoint.
     id := "id_example" // string | id is the UUID value of the egress private endpoint in CockroachDB Cloud.
-    updateEgressPrivateEndpointDomainNamesRequest := *openapiclient.NewUpdateEgressPrivateEndpointDomainNamesRequest([]string{"DomainNames_example"}) // UpdateEgressPrivateEndpointDomainNamesRequest | 
+    updateEgressPrivateEndpointRequest := *openapiclient.NewUpdateEgressPrivateEndpointRequest([]string{"DomainNames_example"}) // UpdateEgressPrivateEndpointRequest | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
-    resp, r, err := api_client.EgressPrivateEndpointsApi.UpdateEgressPrivateEndpointDomainNames(context.Background(), clusterId, id).UpdateEgressPrivateEndpointDomainNamesRequest(updateEgressPrivateEndpointDomainNamesRequest).Execute()
+    resp, r, err := api_client.EgressPrivateEndpointsApi.UpdateEgressPrivateEndpoint(context.Background(), clusterId, id).UpdateEgressPrivateEndpointRequest(updateEgressPrivateEndpointRequest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `EgressPrivateEndpointsApi.UpdateEgressPrivateEndpoint``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateEgressPrivateEndpoint`: map[string]interface{}
+    fmt.Fprintf(os.Stdout, "Response from `EgressPrivateEndpointsApi.UpdateEgressPrivateEndpoint`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**clusterId** | **string** | cluster_id identifies the CockroachDB Cloud cluster owning the egress private endpoint. | 
+**id** | **string** | id is the UUID value of the egress private endpoint in CockroachDB Cloud. | 
+
+### Other Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **updateEgressPrivateEndpointRequest** | [**UpdateEgressPrivateEndpointRequest**](UpdateEgressPrivateEndpointRequest.md) |  | 
+
+### Return type
+
+**map[string]interface{}**
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## UpdateEgressPrivateEndpointDomainNames
+
+> map[string]interface{} UpdateEgressPrivateEndpointDomainNames(ctx, clusterId, id).UpdateEgressPrivateEndpointRequest(updateEgressPrivateEndpointRequest).Execute()
+
+Update egress private endpoint domain names. This endpoint is deprecated in favor of PATCH /api/v1/clusters/{cluster_id}/networking/egress-private-endpoints/{id} and will be removed in a future version.
+
+Can be used by the following roles assigned at the organization, folder or cluster scope:
+- CLUSTER_ADMIN
+- CLUSTER_OPERATOR_WRITER
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    clusterId := "clusterId_example" // string | cluster_id identifies the CockroachDB Cloud cluster owning the egress private endpoint.
+    id := "id_example" // string | id is the UUID value of the egress private endpoint in CockroachDB Cloud.
+    updateEgressPrivateEndpointRequest := *openapiclient.NewUpdateEgressPrivateEndpointRequest([]string{"DomainNames_example"}) // UpdateEgressPrivateEndpointRequest | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.EgressPrivateEndpointsApi.UpdateEgressPrivateEndpointDomainNames(context.Background(), clusterId, id).UpdateEgressPrivateEndpointRequest(updateEgressPrivateEndpointRequest).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `EgressPrivateEndpointsApi.UpdateEgressPrivateEndpointDomainNames``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -361,7 +436,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **updateEgressPrivateEndpointDomainNamesRequest** | [**UpdateEgressPrivateEndpointDomainNamesRequest**](UpdateEgressPrivateEndpointDomainNamesRequest.md) |  | 
+ **updateEgressPrivateEndpointRequest** | [**UpdateEgressPrivateEndpointRequest**](UpdateEgressPrivateEndpointRequest.md) |  | 
 
 ### Return type
 
