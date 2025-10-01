@@ -8,7 +8,7 @@ Method | HTTP request | Description
 [**DeleteEgressPrivateEndpoint**](EgressPrivateEndpointsApi.md#DeleteEgressPrivateEndpoint) | **Delete** /api/v1/clusters/{cluster_id}/networking/egress-private-endpoints/{id} | Delete an egress private endpoint
 [**GetEgressPrivateEndpoint**](EgressPrivateEndpointsApi.md#GetEgressPrivateEndpoint) | **Get** /api/v1/clusters/{cluster_id}/networking/egress-private-endpoints/{id} | Get egress private endpoint
 [**ListEgressPrivateEndpoints**](EgressPrivateEndpointsApi.md#ListEgressPrivateEndpoints) | **Get** /api/v1/clusters/{cluster_id}/networking/egress-private-endpoints | List egress private endpoints
-[**UpdateEgressPrivateEndpoint**](EgressPrivateEndpointsApi.md#UpdateEgressPrivateEndpoint) | **Patch** /api/v1/clusters/{cluster_id}/networking/egress-private-endpoints/{id} | Update egress private endpoint domain names
+[**UpdateEgressPrivateEndpoint**](EgressPrivateEndpointsApi.md#UpdateEgressPrivateEndpoint) | **Patch** /api/v1/clusters/{cluster_id}/networking/egress-private-endpoints/{id} | Update egress private endpoint.
 [**UpdateEgressPrivateEndpointDomainNames**](EgressPrivateEndpointsApi.md#UpdateEgressPrivateEndpointDomainNames) | **Patch** /api/v1/clusters/{cluster_id}/networking/egress-private-endpoints/{id}/domain-names | Update egress private endpoint domain names. This endpoint is deprecated in favor of PATCH /api/v1/clusters/{cluster_id}/networking/egress-private-endpoints/{id} and will be removed in a future version.
 
 
@@ -158,7 +158,7 @@ Name | Type | Description  | Notes
 
 ## GetEgressPrivateEndpoint
 
-> GetEgressPrivateEndpointResponse GetEgressPrivateEndpoint(ctx, clusterId, id).Execute()
+> EgressPrivateEndpoint GetEgressPrivateEndpoint(ctx, clusterId, id).Execute()
 
 Get egress private endpoint
 
@@ -190,7 +190,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `EgressPrivateEndpointsApi.GetEgressPrivateEndpoint``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetEgressPrivateEndpoint`: GetEgressPrivateEndpointResponse
+    // response from `GetEgressPrivateEndpoint`: EgressPrivateEndpoint
     fmt.Fprintf(os.Stdout, "Response from `EgressPrivateEndpointsApi.GetEgressPrivateEndpoint`: %v\n", resp)
 }
 ```
@@ -213,7 +213,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GetEgressPrivateEndpointResponse**](GetEgressPrivateEndpointResponse.md)
+[**EgressPrivateEndpoint**](EgressPrivateEndpoint.md)
 
 ### Authorization
 
@@ -309,9 +309,9 @@ Name | Type | Description  | Notes
 
 ## UpdateEgressPrivateEndpoint
 
-> map[string]interface{} UpdateEgressPrivateEndpoint(ctx, clusterId, id).UpdateEgressPrivateEndpointRequest(updateEgressPrivateEndpointRequest).Execute()
+> EgressPrivateEndpoint UpdateEgressPrivateEndpoint(ctx, clusterId, id).UpdateEgressPrivateEndpointRequest(updateEgressPrivateEndpointRequest).Execute()
 
-Update egress private endpoint domain names
+Update egress private endpoint.
 
 Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN
@@ -342,7 +342,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `EgressPrivateEndpointsApi.UpdateEgressPrivateEndpoint``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `UpdateEgressPrivateEndpoint`: map[string]interface{}
+    // response from `UpdateEgressPrivateEndpoint`: EgressPrivateEndpoint
     fmt.Fprintf(os.Stdout, "Response from `EgressPrivateEndpointsApi.UpdateEgressPrivateEndpoint`: %v\n", resp)
 }
 ```
@@ -366,7 +366,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**map[string]interface{}**
+[**EgressPrivateEndpoint**](EgressPrivateEndpoint.md)
 
 ### Authorization
 

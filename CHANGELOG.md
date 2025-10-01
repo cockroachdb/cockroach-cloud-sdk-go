@@ -1,3 +1,21 @@
+## 6.7.0
+
+NEW FEATURES:
+
+* `UpdateEgressPrivateEndpoint` now returns a strongly-typed
+  `EgressPrivateEndpoint` in LIMITED ACCESS.
+
+* `EgressPrivateEndpoint` now contains a `DomainNamesState` type in
+  LIMITED ACCESS.
+
+* `ListInvoicesOptions` now contains an optional `status` filter.
+
+BREAKING CHANGES:
+
+* Removed `GetEgressPrivateEndpointResponse` from
+  `GetEgressPrivateEndpoint` in LIMITED ACCESS. The private endpoint
+  is now returned as a top-level object in the response.
+
 ## 6.6.0
 
 NEW FEATURES:
@@ -5,7 +23,7 @@ NEW FEATURES:
 * Added new audit log actions: `CREATE_PHYSICAL_REPLICATION_STREAM`,
   `FAILOVER_PHYSICAL_REPLICATION_STREAM`, and `CANCEL_PHYSICAL_REPLICATION_STREAM`.
 
-* Added new endpoint: `UpdateEgressPrivateEndpoint` in LIMITED ACCESS. 
+* Added new endpoint: `UpdateEgressPrivateEndpoint` in LIMITED ACCESS.
 
 * Added new fields related to the Bring Your Own Cloud feature in LIMITED ACCESS:
   `CustomerCloudAccount` in `CreateClusterRequest` and `Cluster`.

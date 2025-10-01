@@ -80,7 +80,7 @@ Name | Type | Description  | Notes
 
 ## ListInvoices
 
-> ListInvoicesResponse ListInvoices(ctx).Execute()
+> ListInvoicesResponse ListInvoices(ctx).Status(status).Execute()
 
 List invoices for a given organization
 
@@ -104,10 +104,11 @@ import (
 )
 
 func main() {
+    status := "status_example" // string | Filters the response to only include invoices with the specified status. This will be sent as a query parameter on the GET request. If not specified, both Finalized and Draft invoices will be included. (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
-    resp, r, err := api_client.BillingApi.ListInvoices(context.Background()).Execute()
+    resp, r, err := api_client.BillingApi.ListInvoices(context.Background()).Status(status).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `BillingApi.ListInvoices``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -125,6 +126,11 @@ Name | Type | Description  | Notes
 
 ### Other Parameters
 
+Optional parameters can be passed through a pointer to the ListInvoicesOptions struct.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **status** | **string** | Filters the response to only include invoices with the specified status. This will be sent as a query parameter on the GET request. If not specified, both Finalized and Draft invoices will be included. | 
 
 ### Return type
 

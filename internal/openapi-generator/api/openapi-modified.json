@@ -8738,7 +8738,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetEgressPrivateEndpointResponse"
+                  "$ref": "#/components/schemas/EgressPrivateEndpoint"
                 }
               }
             }
@@ -8812,7 +8812,7 @@
       },
       "patch": {
         "operationId": "CockroachCloud_UpdateEgressPrivateEndpoint",
-        "summary": "Update egress private endpoint domain names",
+        "summary": "Update egress private endpoint.",
         "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
@@ -8869,7 +8869,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object"
+                  "$ref": "#/components/schemas/EgressPrivateEndpoint"
                 }
               }
             }
@@ -12589,6 +12589,20 @@
         "operationId": "CockroachCloud_ListInvoices",
         "summary": "List invoices for a given organization",
         "description": "Sort order: invoice start date ascending\n\nCan be used by the following roles assigned at the organization scope:\n- BILLING_COORDINATOR\n- CLUSTER_ADMIN\n",
+        "parameters": [
+          {
+            "name": "status",
+            "in": "query",
+            "description": "Filters the response to only include invoices with the specified status.\nThis will be sent as a query parameter on the GET request.\nIf not specified, both Finalized and Draft invoices will be included.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "FINALIZED",
+                "DRAFT"
+              ]
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -12657,7 +12671,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request GET \\\n  --url https://cockroachlabs.cloud/api/v1/invoices \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+            "source": "curl --request GET \\\n  --url 'https://cockroachlabs.cloud/api/v1/invoices?status=SOME_STRING_VALUE' \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
           }
         ]
       }
@@ -16637,6 +16651,9 @@
               "type": "string"
             }
           },
+          "domain_names_state": {
+            "$ref": "#/components/schemas/EgressPrivateEndpointDomainNamesState.Type"
+          },
           "endpoint_address": {
             "type": "string",
             "title": "endpoint_address is the cloud-provider generated address (either\nIP address or DNS name) through which the endpoint is accessible"
@@ -16675,6 +16692,16 @@
           "domain_names"
         ],
         "title": "EgressPrivateEndpoint"
+      },
+      "EgressPrivateEndpointDomainNamesState.Type": {
+        "type": "string",
+        "enum": [
+          "EMPTY",
+          "PENDING",
+          "AVAILABLE",
+          "FAILED"
+        ],
+        "title": "- EMPTY: EMPTY indicates that there are no egress private endpoint domain names on the cluster\n - PENDING: PENDING indicates that the domain names are currently being applied on the cluster\n - AVAILABLE: AVAILABLE indicates that the domain names have been applied on the cluster\n - FAILED: FAILED indicates that the domain names have failed to apply on the cluster"
       },
       "EgressPrivateEndpointState.Type": {
         "type": "string",
@@ -16894,18 +16921,6 @@
           "connection_string",
           "params"
         ]
-      },
-      "GetEgressPrivateEndpointResponse": {
-        "type": "object",
-        "properties": {
-          "egress_private_endpoint": {
-            "$ref": "#/components/schemas/EgressPrivateEndpoint"
-          }
-        },
-        "required": [
-          "egress_private_endpoints"
-        ],
-        "title": "GetEgressPrivateEndpointResponse"
       },
       "GetEgressRuleResponse": {
         "type": "object",

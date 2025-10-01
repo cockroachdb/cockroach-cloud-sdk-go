@@ -6100,7 +6100,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GetEgressPrivateEndpointResponse'
+                $ref: '#/components/schemas/EgressPrivateEndpoint'
           description: A successful response.
         "400":
           content:
@@ -6182,7 +6182,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
+                $ref: '#/components/schemas/EgressPrivateEndpoint'
           description: A successful response.
         "400":
           content:
@@ -6216,7 +6216,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
-      summary: Update egress private endpoint domain names
+      summary: Update egress private endpoint.
       tags:
       - Egress Private Endpoints
       x-badges:
@@ -8799,6 +8799,21 @@ paths:
         - BILLING_COORDINATOR
         - CLUSTER_ADMIN
       operationId: CockroachCloud_ListInvoices
+      parameters:
+      - description: |-
+          Filters the response to only include invoices with the specified status.
+          This will be sent as a query parameter on the GET request.
+          If not specified, both Finalized and Draft invoices will be included.
+        explode: true
+        in: query
+        name: status
+        required: false
+        schema:
+          enum:
+          - FINALIZED
+          - DRAFT
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -8845,7 +8860,7 @@ paths:
       - lang: Shell + Curl
         source: |-
           curl --request GET \
-            --url https://cockroachlabs.cloud/api/v1/invoices \
+            --url 'https://cockroachlabs.cloud/api/v1/invoices?status=SOME_STRING_VALUE' \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
   /api/v1/invoices/{invoice_id}:
     get:
@@ -12366,6 +12381,7 @@ components:
     EgressPrivateEndpoint:
       example:
         target_service_type: null
+        domain_names_state: null
         id: id
         state: null
         region: region
@@ -12382,6 +12398,8 @@ components:
           items:
             type: string
           type: array
+        domain_names_state:
+          $ref: '#/components/schemas/EgressPrivateEndpointDomainNamesState.Type'
         endpoint_address:
           title: |-
             endpoint_address is the cloud-provider generated address (either
@@ -12424,6 +12442,18 @@ components:
       - target_service_type
       title: EgressPrivateEndpoint
       type: object
+    EgressPrivateEndpointDomainNamesState.Type:
+      enum:
+      - EMPTY
+      - PENDING
+      - AVAILABLE
+      - FAILED
+      title: |-
+        - EMPTY: EMPTY indicates that there are no egress private endpoint domain names on the cluster
+         - PENDING: PENDING indicates that the domain names are currently being applied on the cluster
+         - AVAILABLE: AVAILABLE indicates that the domain names have been applied on the cluster
+         - FAILED: FAILED indicates that the domain names have failed to apply on the cluster
+      type: string
     EgressPrivateEndpointState.Type:
       enum:
       - PENDING
@@ -12716,26 +12746,6 @@ components:
       required:
       - connection_string
       - params
-      type: object
-    GetEgressPrivateEndpointResponse:
-      example:
-        egress_private_endpoint:
-          target_service_type: null
-          id: id
-          state: null
-          region: region
-          target_service_identifier: target_service_identifier
-          endpoint_connection_id: endpoint_connection_id
-          domain_names:
-          - domain_names
-          - domain_names
-          endpoint_address: endpoint_address
-      properties:
-        egress_private_endpoint:
-          $ref: '#/components/schemas/EgressPrivateEndpoint'
-      required:
-      - egress_private_endpoints
-      title: GetEgressPrivateEndpointResponse
       type: object
     GetEgressRuleResponse:
       example:
@@ -13964,6 +13974,7 @@ components:
           previous_page: previous_page
         egress_private_endpoints:
         - target_service_type: null
+          domain_names_state: null
           id: id
           state: null
           region: region
@@ -13974,6 +13985,7 @@ components:
           - domain_names
           endpoint_address: endpoint_address
         - target_service_type: null
+          domain_names_state: null
           id: id
           state: null
           region: region

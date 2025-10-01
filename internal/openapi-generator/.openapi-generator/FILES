@@ -94,6 +94,7 @@ docs/DeleteProtectionStateType.md
 docs/EditEgressRuleRequest.md
 docs/EditEgressRuleResponse.md
 docs/EgressPrivateEndpoint.md
+docs/EgressPrivateEndpointDomainNamesStateType.md
 docs/EgressPrivateEndpointStateType.md
 docs/EgressPrivateEndpointTargetServiceTypeType.md
 docs/EgressPrivateEndpointsApi.md
@@ -110,7 +111,6 @@ docs/FoldersApi.md
 docs/GcpCustomerCloudAccount.md
 docs/GetAllRolesForUserResponse.md
 docs/GetConnectionStringResponse.md
-docs/GetEgressPrivateEndpointResponse.md
 docs/GetEgressRuleResponse.md
 docs/GetGroupRequest.md
 docs/GetGroupsRequest.md
@@ -334,6 +334,7 @@ model_delete_protection_state_type.go
 model_edit_egress_rule_request.go
 model_edit_egress_rule_response.go
 model_egress_private_endpoint.go
+model_egress_private_endpoint_domain_names_state_type.go
 model_egress_private_endpoint_state_type.go
 model_egress_private_endpoint_target_service_type_type.go
 model_egress_rule.go
@@ -347,7 +348,6 @@ model_folder_resource_type_type.go
 model_gcp_customer_cloud_account.go
 model_get_all_roles_for_user_response.go
 model_get_connection_string_response.go
-model_get_egress_private_endpoint_response.go
 model_get_egress_rule_response.go
 model_get_group_request.go
 model_get_groups_request.go
