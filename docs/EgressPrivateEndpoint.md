@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **DomainNames** | **[]string** | domain_names are the domain names associated with the egress private endpoint. | 
+**DomainNamesState** | Pointer to [**EgressPrivateEndpointDomainNamesStateType**](EgressPrivateEndpointDomainNamesStateType.md) |  | [optional] 
 **EndpointAddress** | **string** |  | 
 **EndpointConnectionId** | **string** | endpoint_connection_id is the cloud-specific id for egress private endpoints. This connection ID is visible in CRL and CSP consoles as \&quot;VPC endpoint ID\&quot; and is used to uniquely identify the endpoint in external configurations. | 
 **Id** | **string** | A generated ID that uniquely identifies the egress_private_endpoint for use with the CockroachDB Cloud API. This ID is generic and not specific to the cloud provider. | 
@@ -43,6 +44,18 @@ GetDomainNames returns the DomainNames field if non-nil, zero value otherwise.
 `func (o *EgressPrivateEndpoint) SetDomainNames(v []string)`
 
 SetDomainNames sets DomainNames field to given value.
+
+### GetDomainNamesState
+
+`func (o *EgressPrivateEndpoint) GetDomainNamesState() EgressPrivateEndpointDomainNamesStateType`
+
+GetDomainNamesState returns the DomainNamesState field if non-nil, zero value otherwise.
+
+### SetDomainNamesState
+
+`func (o *EgressPrivateEndpoint) SetDomainNamesState(v EgressPrivateEndpointDomainNamesStateType)`
+
+SetDomainNamesState sets DomainNamesState field to given value.
 
 ### GetEndpointAddress
 
