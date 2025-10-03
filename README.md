@@ -78,6 +78,11 @@ API | Method | HTTP request | Description
 [BackupRestoreApi](docs/BackupRestoreApi.md) | **UpdateBackupConfiguration** | **Patch** /api/v1/clusters/{cluster_id}/backups-config | Update the backup configuration for a cluster
 [BillingApi](docs/BillingApi.md) | **GetInvoice** | **Get** /api/v1/invoices/{invoice_id} | Get a specific invoice for an organization
 [BillingApi](docs/BillingApi.md) | **ListInvoices** | **Get** /api/v1/invoices | List invoices for a given organization
+[BlackoutWindowsApi](docs/BlackoutWindowsApi.md) | **CreateBlackoutWindow** | **Post** /api/v1/clusters/{cluster_id}/blackout-windows | Create a blackout window for a cluster
+[BlackoutWindowsApi](docs/BlackoutWindowsApi.md) | **DeleteBlackoutWindow** | **Delete** /api/v1/clusters/{cluster_id}/blackout-windows/{blackout_window_id} | Delete a blackout window for a cluster
+[BlackoutWindowsApi](docs/BlackoutWindowsApi.md) | **GetBlackoutWindow** | **Get** /api/v1/clusters/{cluster_id}/blackout-windows/{blackout_window_id} | Get a blackout window by its ID for a cluster
+[BlackoutWindowsApi](docs/BlackoutWindowsApi.md) | **ListBlackoutWindows** | **Get** /api/v1/clusters/{cluster_id}/blackout-windows | List all blackout windows for a cluster
+[BlackoutWindowsApi](docs/BlackoutWindowsApi.md) | **UpdateBlackoutWindow** | **Patch** /api/v1/clusters/{cluster_id}/blackout-windows/{blackout_window_id} | Update a blackout window for a cluster
 [ClientCACertificatesApi](docs/ClientCACertificatesApi.md) | **DeleteClientCACert** | **Delete** /api/v1/clusters/{cluster_id}/client-ca-cert | Delete Client CA Cert for a cluster
 [ClientCACertificatesApi](docs/ClientCACertificatesApi.md) | **GetClientCACert** | **Get** /api/v1/clusters/{cluster_id}/client-ca-cert | Get Client CA Cert information for a cluster
 [ClientCACertificatesApi](docs/ClientCACertificatesApi.md) | **SetClientCACert** | **Post** /api/v1/clusters/{cluster_id}/client-ca-cert | Set Client CA Cert for a cluster

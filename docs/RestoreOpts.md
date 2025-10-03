@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **SkipLocalitiesCheck** | Pointer to **bool** | Allows the restore operation to continue in the event that there are mismatched localities between the backup and target cluster. Useful when restoring multi-region tables to a cluster missing some localities. | [optional] 
 **SkipMissingForeignKeys** | Pointer to **bool** | Allows a table to be restored even if it has foreign key constraints referencing rows that no longer exist in the target cluster. | [optional] 
 **SkipMissingSequences** | Pointer to **bool** |  | [optional] 
+**SkipMissingViews** | Pointer to **bool** | Allows the operation to skip restoring views that cannot be restored because their dependencies are not included in the current restore operation. | [optional] 
 
 ## Methods
 
@@ -93,6 +94,18 @@ GetSkipMissingSequences returns the SkipMissingSequences field if non-nil, zero 
 `func (o *RestoreOpts) SetSkipMissingSequences(v bool)`
 
 SetSkipMissingSequences sets SkipMissingSequences field to given value.
+
+### GetSkipMissingViews
+
+`func (o *RestoreOpts) GetSkipMissingViews() bool`
+
+GetSkipMissingViews returns the SkipMissingViews field if non-nil, zero value otherwise.
+
+### SetSkipMissingViews
+
+`func (o *RestoreOpts) SetSkipMissingViews(v bool)`
+
+SetSkipMissingViews sets SkipMissingViews field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
