@@ -1,3 +1,23 @@
+## 6.8.0
+
+NEW FEATURES:
+
+* Added `CreateBlackoutWindow`, `GetBlackoutWindow`, `UpdateBlackoutWindow`,
+  `DeleteBlackoutWindow`, and `ListBlackoutWindows` endpoints.
+
+* Added new options for patch deferral: `DEFERRAL_30_DAYS`, `DEFERRAL_60_DAYS`,
+ `DEFERRAL_90_DAYS`.
+
+* Added new RestoreOpts field, `SkipMissingViews`, for CreateRestore requests.
+
+BUG FIXES:
+
+* Entries in the `objects` field in `CreateRestoreRequest` now serialize
+  with lowercase JSON keys (`database`, `schema`, `table`), matching API
+  requirements. Older SDK versions that send `Database`, `Schema`, `Table`
+  remain incompatible - upgrade to this version to run TABLE and DATABASE
+  restores successfully.
+
 ## 6.7.0
 
 NEW FEATURES:

@@ -32,6 +32,7 @@ tags:
 - name: Egress Rules
 - name: Billing
 - name: Maintenance Windows
+- name: Blackout Windows
 - name: Role Management
 - name: Service Accounts
 - name: API Keys
@@ -3089,6 +3090,406 @@ paths:
             --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/backups-config \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
             --json '{"enabled":true,"frequency_minutes":60,"retention_days":7}'
+  /api/v1/clusters/{cluster_id}/blackout-windows:
+    get:
+      description: |
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
+      operationId: CockroachCloud_ListBlackoutWindows
+      parameters:
+      - explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: pagination.page
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: pagination.limit
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: pagination.as_of_time
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: |2-
+           - ASC: Sort in ascending order. This is the default unless otherwise specified.
+           - DESC: Sort in descending order.
+        explode: true
+        in: query
+        name: pagination.sort_order
+        required: false
+        schema:
+          enum:
+          - ASC
+          - DESC
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListBlackoutWindowsResponse'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: List all blackout windows for a cluster
+      tags:
+      - Blackout Windows
+      x-badges:
+      - color: red
+        label: LIMITED ACCESS
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request GET \
+            --url 'https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/blackout-windows?pagination.page=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.as_of_time=SOME_STRING_VALUE&pagination.sort_order=SOME_STRING_VALUE' \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+    post:
+      description: |
+        Blackout windows are supported for ADVANCED clusters only.
+
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
+      operationId: CockroachCloud_CreateBlackoutWindow
+      parameters:
+      - explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateBlackoutWindowRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlackoutWindow'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Create a blackout window for a cluster
+      tags:
+      - Blackout Windows
+      x-badges:
+      - color: red
+        label: LIMITED ACCESS
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request POST \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/blackout-windows \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
+            --json '{"cluster_id":"12345678-1234-1234-1234-123456789012","end_time":"2025-10-15T06:00:00Z","start_time":"2025-10-15T00:00:00Z"}'
+  /api/v1/clusters/{cluster_id}/blackout-windows/{blackout_window_id}:
+    delete:
+      description: |
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
+      operationId: CockroachCloud_DeleteBlackoutWindow
+      parameters:
+      - explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: blackout_window_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlackoutWindow'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Delete a blackout window for a cluster
+      tags:
+      - Blackout Windows
+      x-badges:
+      - color: red
+        label: LIMITED ACCESS
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request DELETE \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/blackout-windows/{blackout_window_id} \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+    get:
+      description: |
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
+      operationId: CockroachCloud_GetBlackoutWindow
+      parameters:
+      - explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: blackout_window_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlackoutWindow'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Get a blackout window by its ID for a cluster
+      tags:
+      - Blackout Windows
+      x-badges:
+      - color: red
+        label: LIMITED ACCESS
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request GET \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/blackout-windows/{blackout_window_id} \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+    patch:
+      description: |
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
+      operationId: CockroachCloud_UpdateBlackoutWindow
+      parameters:
+      - explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: blackout_window_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateBlackoutWindowRequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlackoutWindow'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Update a blackout window for a cluster
+      tags:
+      - Blackout Windows
+      x-badges:
+      - color: red
+        label: LIMITED ACCESS
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request PATCH \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/blackout-windows/{blackout_window_id} \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
+            --json '{"blackout_window_id":"12345678-1234-1234-1234-123456789012","cluster_id":"12345678-1234-1234-1234-123456789012","end_time":"2025-10-15T06:00:00Z","start_time":"2025-10-15T00:00:00Z"}'
   /api/v1/clusters/{cluster_id}/client-ca-cert:
     delete:
       description: |
@@ -8221,7 +8622,7 @@ paths:
           curl --request PUT \
             --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/version-deferral \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
-            --json '{"deferral_policy":"FIXED_DEFERRAL"}'
+            --json '{"deferral_policy":"DEFERRAL_60_DAYS"}'
   /api/v1/clusters/{destination_cluster_id}/restores:
     post:
       description: |
@@ -10951,6 +11352,9 @@ components:
       - AUDIT_LOG_ACTION_CREATE_PHYSICAL_REPLICATION_STREAM
       - AUDIT_LOG_ACTION_FAILOVER_PHYSICAL_REPLICATION_STREAM
       - AUDIT_LOG_ACTION_CANCEL_PHYSICAL_REPLICATION_STREAM
+      - AUDIT_LOG_ACTION_CREATE_CLUSTER_BLACKOUT_WINDOW
+      - AUDIT_LOG_ACTION_UPDATE_CLUSTER_BLACKOUT_WINDOW
+      - AUDIT_LOG_ACTION_DELETE_CLUSTER_BLACKOUT_WINDOW
       type: string
     AuditLogEntry:
       description: |-
@@ -11170,6 +11574,43 @@ components:
       required:
       - as_of_time
       - id
+      type: object
+    BlackoutWindow:
+      description: |-
+        BlackoutWindow schedules a period of up to 14 days for an
+        ADVANCED cluster to block "high-risk" operations that
+        impact SQL availability or require CRDB pod restarts.
+      example:
+        cluster_id: 12345678-1234-1234-1234-123456789012
+        end_time: 2025-10-15T06:00:00Z
+        id: 12345678-1234-1234-1234-123456789012
+        start_time: 2025-10-15T00:00:00Z
+      properties:
+        cluster_id:
+          description: The cluster ID that this blackout window applies to.
+          type: string
+        end_time:
+          description: |-
+            The end time of the blackout window (UTC).
+            Can be up to 14 days after the start time.
+            Must not be more than three months after the current time.
+          format: date-time
+          type: string
+        id:
+          description: The unique ID of the blackout window.
+          type: string
+        start_time:
+          description: |-
+            The start time of the blackout window (UTC).
+            Must be scheduled at least 7 days in advance.
+          format: date-time
+          type: string
+      required:
+      - cluster_id
+      - end_time
+      - id
+      - start_time
+      title: BlackoutWindow
       type: object
     BuiltInFromGroups:
       example:
@@ -11758,9 +12199,10 @@ components:
       description: |-
         ClusterVersionDeferral specifies whether automatic patch version upgrades are applied
         immediately or deferred. If upgrades are deferred, the cluster will be automatically
-        upgraded to each patch version 60 days after the version is released to CockroachDB Cloud.
+        upgraded to each patch version after the specified number of days (30, 60, or 90)
+        after the version is released to CockroachDB Cloud.
       example:
-        deferral_policy: FIXED_DEFERRAL
+        deferral_policy: DEFERRAL_60_DAYS
       properties:
         deferral_policy:
           $ref: '#/components/schemas/ClusterVersionDeferralPolicy.Type'
@@ -11772,6 +12214,9 @@ components:
       enum:
       - NOT_DEFERRED
       - FIXED_DEFERRAL
+      - DEFERRAL_60_DAYS
+      - DEFERRAL_30_DAYS
+      - DEFERRAL_90_DAYS
       type: string
     ConnectionStringParameters:
       description: Individual parameters used to create a connection string.
@@ -13848,6 +14293,29 @@ components:
       required:
       - backups
       type: object
+    ListBlackoutWindowsResponse:
+      example:
+        pagination:
+          next_page: next_page
+          previous_page: previous_page
+        blackout_windows:
+        - cluster_id: 12345678-1234-1234-1234-123456789012
+          end_time: 2025-10-15T06:00:00Z
+          id: 12345678-1234-1234-1234-123456789012
+          start_time: 2025-10-15T00:00:00Z
+        - cluster_id: 12345678-1234-1234-1234-123456789012
+          end_time: 2025-10-15T06:00:00Z
+          id: 12345678-1234-1234-1234-123456789012
+          start_time: 2025-10-15T00:00:00Z
+      properties:
+        blackout_windows:
+          items:
+            $ref: '#/components/schemas/BlackoutWindow'
+          type: array
+        pagination:
+          $ref: '#/components/schemas/KeysetPaginationResponse'
+      title: ListBlackoutWindowsResponse
+      type: object
     ListClusterNodesResponse:
       example:
         nodes:
@@ -15576,11 +16044,11 @@ components:
       type: object
     RestoreItem:
       properties:
-        Database:
+        database:
           type: string
-        Schema:
+        schema:
           type: string
-        Table:
+        table:
           type: string
       required:
       - database
@@ -15622,6 +16090,12 @@ components:
             Allows a table to be restored even if it contains a column whose
             `DEFAULT` value depends on a sequence.
             (See https://www.cockroachlabs.com/docs/stable/show-sequences)
+          type: boolean
+        skip_missing_views:
+          description: |-
+            Allows the operation to skip restoring views that cannot be
+            restored because their dependencies are not included in the
+            current restore operation.
           type: boolean
       type: object
     RestoreStatus.Type:
@@ -16590,6 +17064,52 @@ components:
         excludedAttributes:
           type: string
       title: GetUserRequest
+      type: object
+    CreateBlackoutWindowRequest:
+      example:
+        cluster_id: 12345678-1234-1234-1234-123456789012
+        end_time: 2025-10-15T06:00:00Z
+        start_time: 2025-10-15T00:00:00Z
+      properties:
+        end_time:
+          description: |-
+            The end time of the blackout window (UTC).
+            Can be up to 14 days after the start time.
+            Must not be more than three months after the current time.
+          format: date-time
+          type: string
+        start_time:
+          description: |-
+            The start time of the blackout window (UTC).
+            Must be scheduled at least 7 days in advance.
+          format: date-time
+          type: string
+      required:
+      - end_time
+      - start_time
+      title: CreateBlackoutWindowRequest
+      type: object
+    UpdateBlackoutWindowRequest:
+      example:
+        blackout_window_id: 12345678-1234-1234-1234-123456789012
+        cluster_id: 12345678-1234-1234-1234-123456789012
+        end_time: 2025-10-15T06:00:00Z
+        start_time: 2025-10-15T00:00:00Z
+      properties:
+        end_time:
+          description: |-
+            Optional new UTC end time for the blackout window.
+            Can be up to 14 days after the start time.
+            Must not be more than three months after the current time.
+          format: date-time
+          type: string
+        start_time:
+          description: |-
+            Optional new UTC start time for the blackout window.
+            Must be scheduled at least 7 days in advance.
+          format: date-time
+          type: string
+      title: UpdateBlackoutWindowRequest
       type: object
     SetClientCACertRequest:
       example:
