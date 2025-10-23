@@ -12004,7 +12004,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/version-deferral \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"deferral_policy\":\"DEFERRAL_60_DAYS\"}'"
+            "source": "curl --request PUT \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/version-deferral \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"deferral_policy\":\"DEFERRAL_60_DAYS\",\"deferred_until\":\"2025-12-15T00:00:00Z\"}'"
           }
         ]
       }
@@ -16067,10 +16067,16 @@
         "properties": {
           "deferral_policy": {
             "$ref": "#/components/schemas/ClusterVersionDeferralPolicy.Type"
+          },
+          "deferred_until": {
+            "type": "string",
+            "format": "date-time",
+            "title": "The calculated date and time after which the cluster will be eligible for the next patch upgrade,\nbased on the deferral policy and the patch version's release date.\nThe patch will be applied in a maintenance window available after the deferral date.\nThis field will be null if:\n- The deferral policy is NOT_DEFERRED (immediate eligibility upon patch release)\n- There is no pending patch version available\n- The cluster is already on the latest patch version\n- Version release date information is unavailable"
           }
         },
         "example": {
-          "deferral_policy": "DEFERRAL_60_DAYS"
+          "deferral_policy": "DEFERRAL_60_DAYS",
+          "deferred_until": "2025-12-15T00:00:00Z"
         },
         "required": ["deferral_policy"],
         "title": "ClusterVersionDeferral"

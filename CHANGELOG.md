@@ -1,3 +1,9 @@
+## 6.9.0
+
+NEW FEATURES:
+
+* Added `deferred_until` field to `ClusterVersionDeferral` endpoint.
+
 ## 6.8.0
 
 NEW FEATURES:

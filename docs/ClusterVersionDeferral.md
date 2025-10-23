@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **DeferralPolicy** | [**ClusterVersionDeferralPolicyType**](ClusterVersionDeferralPolicyType.md) |  | 
+**DeferredUntil** | Pointer to **time.Time** |  | [optional] 
 
 ## Methods
 
@@ -36,6 +37,18 @@ GetDeferralPolicy returns the DeferralPolicy field if non-nil, zero value otherw
 `func (o *ClusterVersionDeferral) SetDeferralPolicy(v ClusterVersionDeferralPolicyType)`
 
 SetDeferralPolicy sets DeferralPolicy field to given value.
+
+### GetDeferredUntil
+
+`func (o *ClusterVersionDeferral) GetDeferredUntil() time.Time`
+
+GetDeferredUntil returns the DeferredUntil field if non-nil, zero value otherwise.
+
+### SetDeferredUntil
+
+`func (o *ClusterVersionDeferral) SetDeferredUntil(v time.Time)`
+
+SetDeferredUntil sets DeferredUntil field to given value.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

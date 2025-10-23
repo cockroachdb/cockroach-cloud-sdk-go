@@ -8622,7 +8622,7 @@ paths:
           curl --request PUT \
             --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/version-deferral \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
-            --json '{"deferral_policy":"DEFERRAL_60_DAYS"}'
+            --json '{"deferral_policy":"DEFERRAL_60_DAYS","deferred_until":"2025-12-15T00:00:00Z"}'
   /api/v1/clusters/{destination_cluster_id}/restores:
     post:
       description: |
@@ -12203,9 +12203,22 @@ components:
         after the version is released to CockroachDB Cloud.
       example:
         deferral_policy: DEFERRAL_60_DAYS
+        deferred_until: 2025-12-15T00:00:00Z
       properties:
         deferral_policy:
           $ref: '#/components/schemas/ClusterVersionDeferralPolicy.Type'
+        deferred_until:
+          format: date-time
+          title: |-
+            The calculated date and time after which the cluster will be eligible for the next patch upgrade,
+            based on the deferral policy and the patch version's release date.
+            The patch will be applied in a maintenance window available after the deferral date.
+            This field will be null if:
+            - The deferral policy is NOT_DEFERRED (immediate eligibility upon patch release)
+            - There is no pending patch version available
+            - The cluster is already on the latest patch version
+            - Version release date information is unavailable
+          type: string
       required:
       - deferral_policy
       title: ClusterVersionDeferral
