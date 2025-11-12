@@ -74,7 +74,7 @@ API | Method | HTTP request | Description
 [BackupRestoreApi](docs/BackupRestoreApi.md) | **GetBackupConfiguration** | **Get** /api/v1/clusters/{cluster_id}/backups-config | Get the backup configuration for a cluster
 [BackupRestoreApi](docs/BackupRestoreApi.md) | **GetRestore** | **Get** /api/v1/clusters/{cluster_id}/restores/{restore_id} | View a restore job
 [BackupRestoreApi](docs/BackupRestoreApi.md) | **ListBackups** | **Get** /api/v1/clusters/{cluster_id}/backups | List cluster backups
-[BackupRestoreApi](docs/BackupRestoreApi.md) | **ListRestores** | **Get** /api/v1/clusters/{cluster_id}/restores | List restore operations
+[BackupRestoreApi](docs/BackupRestoreApi.md) | **ListRestores** | **Get** /api/v1/clusters/{cluster_id}/restores | List restore jobs
 [BackupRestoreApi](docs/BackupRestoreApi.md) | **UpdateBackupConfiguration** | **Patch** /api/v1/clusters/{cluster_id}/backups-config | Update the backup configuration for a cluster
 [BillingApi](docs/BillingApi.md) | **GetInvoice** | **Get** /api/v1/invoices/{invoice_id} | Get a specific invoice for an organization
 [BillingApi](docs/BillingApi.md) | **ListInvoices** | **Get** /api/v1/invoices | List invoices for a given organization

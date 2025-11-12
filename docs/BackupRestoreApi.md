@@ -8,7 +8,7 @@ Method | HTTP request | Description
 [**GetBackupConfiguration**](BackupRestoreApi.md#GetBackupConfiguration) | **Get** /api/v1/clusters/{cluster_id}/backups-config | Get the backup configuration for a cluster
 [**GetRestore**](BackupRestoreApi.md#GetRestore) | **Get** /api/v1/clusters/{cluster_id}/restores/{restore_id} | View a restore job
 [**ListBackups**](BackupRestoreApi.md#ListBackups) | **Get** /api/v1/clusters/{cluster_id}/backups | List cluster backups
-[**ListRestores**](BackupRestoreApi.md#ListRestores) | **Get** /api/v1/clusters/{cluster_id}/restores | List restore operations
+[**ListRestores**](BackupRestoreApi.md#ListRestores) | **Get** /api/v1/clusters/{cluster_id}/restores | List restore jobs
 [**UpdateBackupConfiguration**](BackupRestoreApi.md#UpdateBackupConfiguration) | **Patch** /api/v1/clusters/{cluster_id}/backups-config | Update the backup configuration for a cluster
 
 
@@ -312,7 +312,7 @@ Name | Type | Description  | Notes
 
 > ListRestoresResponse ListRestores(ctx, clusterId).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).StartTime(startTime).EndTime(endTime).Execute()
 
-List restore operations
+List restore jobs
 
 Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN

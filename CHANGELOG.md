@@ -1,3 +1,10 @@
+## 6.10.0
+
+NEW FEATURES:
+
+* Add new fields to `Restore` model: `BackupEndTime`, `ClientErrorCode`, `ClientErrorMessage`, `CompletedAt`, `CrdbJobId`, `SourceClusterName`, `DestinationClusterName`, `Objects`, `Opts`
+
+
 ## 6.9.0
 
 NEW FEATURES:

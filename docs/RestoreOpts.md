@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**IntoDb** | Pointer to **string** | Specifies the target database to restore the table into during a table restore operation. If not set, the table will be restored into the database it belonged to in the source backup. | [optional] 
-**NewDbName** | Pointer to **string** | Specifies the name of the database to create during a database restore operation. If not set, the name defaults to the original database name from the source cluster. | [optional] 
+**IntoDb** | Pointer to **string** | Specifies the target database to restore the table into during a table restore job. If not set, the table will be restored into the database it belonged to in the source backup. | [optional] 
+**NewDbName** | Pointer to **string** | Specifies the name of the database to create during a database restore job. If not set, the name defaults to the original database name from the source cluster. | [optional] 
 **SchemaOnly** | Pointer to **bool** | If set, only the schema will be restored and no user data will be included. | [optional] 
-**SkipLocalitiesCheck** | Pointer to **bool** | Allows the restore operation to continue in the event that there are mismatched localities between the backup and target cluster. Useful when restoring multi-region tables to a cluster missing some localities. | [optional] 
+**SkipLocalitiesCheck** | Pointer to **bool** | Allows the restore job to continue in the event that there are mismatched localities between the backup and target cluster. Useful when restoring multi-region tables to a cluster missing some localities. | [optional] 
 **SkipMissingForeignKeys** | Pointer to **bool** | Allows a table to be restored even if it has foreign key constraints referencing rows that no longer exist in the target cluster. | [optional] 
 **SkipMissingSequences** | Pointer to **bool** |  | [optional] 
-**SkipMissingViews** | Pointer to **bool** | Allows the operation to skip restoring views that cannot be restored because their dependencies are not included in the current restore operation. | [optional] 
+**SkipMissingViews** | Pointer to **bool** | Allows the job to skip restoring views that cannot be restored because their dependencies are not included in the current restore job. | [optional] 
 
 ## Methods
 
