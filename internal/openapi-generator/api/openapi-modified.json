@@ -11483,7 +11483,7 @@
     "/api/v1/clusters/{cluster_id}/restores": {
       "get": {
         "operationId": "CockroachCloud_ListRestores",
-        "summary": "List restore operations",
+        "summary": "List restore jobs",
         "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
         "parameters": [
           {
@@ -15856,7 +15856,9 @@
           "AUDIT_LOG_ACTION_CANCEL_PHYSICAL_REPLICATION_STREAM",
           "AUDIT_LOG_ACTION_CREATE_CLUSTER_BLACKOUT_WINDOW",
           "AUDIT_LOG_ACTION_UPDATE_CLUSTER_BLACKOUT_WINDOW",
-          "AUDIT_LOG_ACTION_DELETE_CLUSTER_BLACKOUT_WINDOW"
+          "AUDIT_LOG_ACTION_DELETE_CLUSTER_BLACKOUT_WINDOW",
+          "AUDIT_LOG_ACTION_START_FAULT_TOLERANCE_DEMO",
+          "AUDIT_LOG_ACTION_END_FAULT_TOLERANCE_DEMO"
         ]
       },
       "AuditLogEntry": {
@@ -16629,8 +16631,8 @@
         "type": "string",
         "enum": [
           "NOT_DEFERRED",
-          "FIXED_DEFERRAL",
           "DEFERRAL_60_DAYS",
+          "FIXED_DEFERRAL",
           "DEFERRAL_30_DAYS",
           "DEFERRAL_90_DAYS"
         ]
@@ -19106,22 +19108,63 @@
       "Restore": {
         "type": "object",
         "properties": {
-          "backup_id": {
-            "description": "The ID of the backup used for this restore operation.",
-            "type": "string"
-          },
-          "completion_percent": {
-            "description": "The percentage of the restore operation that has been completed.\nThe value ranges from 0 to 1.",
-            "type": "number",
-            "format": "float"
-          },
-          "created_at": {
-            "description": "The time at which the restore operation was initiated.",
+          "backup_end_time": {
+            "description": "The timestamp at which the backup data was captured.",
             "type": "string",
             "format": "date-time"
           },
+          "backup_id": {
+            "description": "The ID of the backup used for this restore job.",
+            "type": "string"
+          },
+          "client_error_code": {
+            "description": "Error code from the restore job, only populated if it has failed.",
+            "type": "integer",
+            "format": "int32"
+          },
+          "client_error_message": {
+            "description": "Error message from the restore job, only populated if it has failed.",
+            "type": "string"
+          },
+          "completed_at": {
+            "description": "The timestamp at which the restore job completed.",
+            "type": "string",
+            "format": "date-time"
+          },
+          "completion_percent": {
+            "description": "The percentage of the restore job that has been completed.\nThe value ranges from 0 to 1.",
+            "type": "number",
+            "format": "float"
+          },
+          "crdb_job_id": {
+            "description": "The CockroachDB internal job ID for the restore job.",
+            "type": "string"
+          },
+          "created_at": {
+            "description": "The time at which the restore job was initiated.",
+            "type": "string",
+            "format": "date-time"
+          },
+          "destination_cluster_name": {
+            "description": "The name of the cluster to which the restore is being applied.",
+            "type": "string"
+          },
           "id": {
             "description": "The unique identifier associated with the restore.",
+            "type": "string"
+          },
+          "objects": {
+            "description": "The list of database objects (databases, tables) that were restored.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RestoreItem"
+            }
+          },
+          "restore_opts": {
+            "$ref": "#/components/schemas/RestoreOpts"
+          },
+          "source_cluster_name": {
+            "description": "The name of the cluster from which the backup was taken.",
             "type": "string"
           },
           "status": {
@@ -19132,10 +19175,20 @@
           }
         },
         "example": {
+          "backup_end_time": "2025-07-09T14:00:00Z",
           "backup_id": "1234abcd-1234-1234-abcd-12345678abcd",
           "completion_percent": 0,
           "created_at": "2025-07-09T15:04:05Z",
+          "destination_cluster_name": "dest-cluster",
           "id": "abcd1234-5678-90ab-cdef-1234567890ab",
+          "objects": [
+            {
+              "database": "mydb",
+              "schema": "public",
+              "table": "users"
+            }
+          ],
+          "source_cluster_name": "src-cluster",
           "status": "PENDING",
           "type": "TABLE"
         },
@@ -19145,7 +19198,10 @@
           "status",
           "created_at",
           "type",
-          "completion_percent"
+          "completion_percent",
+          "source_cluster_name",
+          "destination_cluster_name",
+          "backup_end_time"
         ]
       },
       "RestoreItem": {
@@ -19169,11 +19225,11 @@
         "type": "object",
         "properties": {
           "into_db": {
-            "description": "Specifies the target database to restore the table into during a\ntable restore operation. If not set, the table will be restored\ninto the database it belonged to in the source backup.",
+            "description": "Specifies the target database to restore the table into during a\ntable restore job. If not set, the table will be restored\ninto the database it belonged to in the source backup.",
             "type": "string"
           },
           "new_db_name": {
-            "description": "Specifies the name of the database to create during a\ndatabase restore operation. If not set, the name defaults to\nthe original database name from the source cluster.",
+            "description": "Specifies the name of the database to create during a\ndatabase restore job. If not set, the name defaults to\nthe original database name from the source cluster.",
             "type": "string"
           },
           "schema_only": {
@@ -19181,7 +19237,7 @@
             "type": "boolean"
           },
           "skip_localities_check": {
-            "description": "Allows the restore operation to continue in the event that there\nare mismatched localities between the backup and target cluster.\nUseful when restoring multi-region tables to a cluster missing\nsome localities.",
+            "description": "Allows the restore job to continue in the event that there\nare mismatched localities between the backup and target cluster.\nUseful when restoring multi-region tables to a cluster missing\nsome localities.",
             "type": "boolean"
           },
           "skip_missing_foreign_keys": {
@@ -19193,7 +19249,7 @@
             "title": "Allows a table to be restored even if it contains a column whose\n`DEFAULT` value depends on a sequence.\n(See https://www.cockroachlabs.com/docs/stable/show-sequences)"
           },
           "skip_missing_views": {
-            "description": "Allows the operation to skip restoring views that cannot be\nrestored because their dependencies are not included in the\ncurrent restore operation.",
+            "description": "Allows the job to skip restoring views that cannot be\nrestored because their dependencies are not included in the\ncurrent restore job.",
             "type": "boolean"
           }
         }

@@ -4,9 +4,9 @@
 
 * `NOT_DEFERRED` (value: `"NOT_DEFERRED"`)
 
-* `FIXED_DEFERRAL` (value: `"FIXED_DEFERRAL"`)
-
 * `DEFERRAL_60_DAYS` (value: `"DEFERRAL_60_DAYS"`)
+
+* `FIXED_DEFERRAL` (value: `"FIXED_DEFERRAL"`)
 
 * `DEFERRAL_30_DAYS` (value: `"DEFERRAL_30_DAYS"`)
 
