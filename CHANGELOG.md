@@ -1,3 +1,10 @@
+## 6.10.0
+
+NEW FEATURES:
+
+* Added new fields to `Restore` model: `BackupEndTime`, `ClientErrorCode`, `ClientErrorMessage`, `CompletedAt`, `CrdbJobId`, `SourceClusterName`, `DestinationClusterName`, `Objects`, `RestoreOpts`
+* Added new audit log actions: `START_FAULT_TOLERANCE_DEMO`, `END_FAULT_TOLERANCE_DEMO` 
+
 ## 6.9.0
 
 NEW FEATURES:

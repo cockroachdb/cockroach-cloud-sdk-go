@@ -8083,7 +8083,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
-      summary: List restore operations
+      summary: List restore jobs
       tags:
       - Backup/Restore
       x-badges:
@@ -11355,6 +11355,8 @@ components:
       - AUDIT_LOG_ACTION_CREATE_CLUSTER_BLACKOUT_WINDOW
       - AUDIT_LOG_ACTION_UPDATE_CLUSTER_BLACKOUT_WINDOW
       - AUDIT_LOG_ACTION_DELETE_CLUSTER_BLACKOUT_WINDOW
+      - AUDIT_LOG_ACTION_START_FAULT_TOLERANCE_DEMO
+      - AUDIT_LOG_ACTION_END_FAULT_TOLERANCE_DEMO
       type: string
     AuditLogEntry:
       description: |-
@@ -12226,8 +12228,8 @@ components:
     ClusterVersionDeferralPolicy.Type:
       enum:
       - NOT_DEFERRED
-      - FIXED_DEFERRAL
       - DEFERRAL_60_DAYS
+      - FIXED_DEFERRAL
       - DEFERRAL_30_DAYS
       - DEFERRAL_90_DAYS
       type: string
@@ -14988,16 +14990,30 @@ components:
           next_page: next_page
           previous_page: previous_page
         restores:
-        - backup_id: 1234abcd-1234-1234-abcd-12345678abcd
+        - backup_end_time: 2025-07-09T14:00:00Z
+          backup_id: 1234abcd-1234-1234-abcd-12345678abcd
           completion_percent: 0
           created_at: 2025-07-09T15:04:05Z
+          destination_cluster_name: dest-cluster
           id: abcd1234-5678-90ab-cdef-1234567890ab
+          objects:
+          - database: mydb
+            schema: public
+            table: users
+          source_cluster_name: src-cluster
           status: PENDING
           type: TABLE
-        - backup_id: 1234abcd-1234-1234-abcd-12345678abcd
+        - backup_end_time: 2025-07-09T14:00:00Z
+          backup_id: 1234abcd-1234-1234-abcd-12345678abcd
           completion_percent: 0
           created_at: 2025-07-09T15:04:05Z
+          destination_cluster_name: dest-cluster
           id: abcd1234-5678-90ab-cdef-1234567890ab
+          objects:
+          - database: mydb
+            schema: public
+            table: users
+          source_cluster_name: src-cluster
           status: PENDING
           type: TABLE
       properties:
@@ -16020,38 +16036,82 @@ components:
       type: string
     Restore:
       example:
+        backup_end_time: 2025-07-09T14:00:00Z
         backup_id: 1234abcd-1234-1234-abcd-12345678abcd
         completion_percent: 0
         created_at: 2025-07-09T15:04:05Z
+        destination_cluster_name: dest-cluster
         id: abcd1234-5678-90ab-cdef-1234567890ab
+        objects:
+        - database: mydb
+          schema: public
+          table: users
+        source_cluster_name: src-cluster
         status: PENDING
         type: TABLE
       properties:
+        backup_end_time:
+          description: The timestamp at which the backup data was captured.
+          format: date-time
+          type: string
         backup_id:
-          description: The ID of the backup used for this restore operation.
+          description: The ID of the backup used for this restore job.
+          type: string
+        client_error_code:
+          description: "Error code from the restore job, only populated if it has\
+            \ failed."
+          format: int32
+          type: integer
+        client_error_message:
+          description: "Error message from the restore job, only populated if it has\
+            \ failed."
+          type: string
+        completed_at:
+          description: The timestamp at which the restore job completed.
+          format: date-time
           type: string
         completion_percent:
           description: |-
-            The percentage of the restore operation that has been completed.
+            The percentage of the restore job that has been completed.
             The value ranges from 0 to 1.
           format: float
           type: number
+        crdb_job_id:
+          description: The CockroachDB internal job ID for the restore job.
+          type: string
         created_at:
-          description: The time at which the restore operation was initiated.
+          description: The time at which the restore job was initiated.
           format: date-time
+          type: string
+        destination_cluster_name:
+          description: The name of the cluster to which the restore is being applied.
           type: string
         id:
           description: The unique identifier associated with the restore.
+          type: string
+        objects:
+          description: "The list of database objects (databases, tables) that were\
+            \ restored."
+          items:
+            $ref: '#/components/schemas/RestoreItem'
+          type: array
+        restore_opts:
+          $ref: '#/components/schemas/RestoreOpts'
+        source_cluster_name:
+          description: The name of the cluster from which the backup was taken.
           type: string
         status:
           $ref: '#/components/schemas/RestoreStatus.Type'
         type:
           $ref: '#/components/schemas/RestoreType.Type'
       required:
+      - backup_end_time
       - backup_id
       - completion_percent
       - created_at
+      - destination_cluster_name
       - id
+      - source_cluster_name
       - status
       - type
       type: object
@@ -16071,13 +16131,13 @@ components:
         into_db:
           description: |-
             Specifies the target database to restore the table into during a
-            table restore operation. If not set, the table will be restored
+            table restore job. If not set, the table will be restored
             into the database it belonged to in the source backup.
           type: string
         new_db_name:
           description: |-
             Specifies the name of the database to create during a
-            database restore operation. If not set, the name defaults to
+            database restore job. If not set, the name defaults to
             the original database name from the source cluster.
           type: string
         schema_only:
@@ -16087,7 +16147,7 @@ components:
           type: boolean
         skip_localities_check:
           description: |-
-            Allows the restore operation to continue in the event that there
+            Allows the restore job to continue in the event that there
             are mismatched localities between the backup and target cluster.
             Useful when restoring multi-region tables to a cluster missing
             some localities.
@@ -16106,9 +16166,9 @@ components:
           type: boolean
         skip_missing_views:
           description: |-
-            Allows the operation to skip restoring views that cannot be
+            Allows the job to skip restoring views that cannot be
             restored because their dependencies are not included in the
-            current restore operation.
+            current restore job.
           type: boolean
       type: object
     RestoreStatus.Type:

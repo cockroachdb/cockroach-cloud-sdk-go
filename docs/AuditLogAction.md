@@ -186,6 +186,10 @@
 
 * `DELETE_CLUSTER_BLACKOUT_WINDOW` (value: `"AUDIT_LOG_ACTION_DELETE_CLUSTER_BLACKOUT_WINDOW"`)
 
+* `START_FAULT_TOLERANCE_DEMO` (value: `"AUDIT_LOG_ACTION_START_FAULT_TOLERANCE_DEMO"`)
+
+* `END_FAULT_TOLERANCE_DEMO` (value: `"AUDIT_LOG_ACTION_END_FAULT_TOLERANCE_DEMO"`)
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
