@@ -53,9 +53,7 @@ jobs:
         run: |
           if [[ -n "$(git status --porcelain)" ]]; then
             git add .
-            git commit -m "Update version to ${{ steps.extract-version.outputs.next_version }}
-
-Co-Authored-By: roachdev-claude <roachdev-claude-bot@cockroachlabs.com>"
+            git commit -m "Update version to ${{ steps.extract-version.outputs.next_version }}" -m "Co-Authored-By: roachdev-claude <roachdev-claude-bot@cockroachlabs.com>"
             git push origin update-version-${{ steps.extract-version.outputs.next_version }}
           else
             echo "No changes to commit"
