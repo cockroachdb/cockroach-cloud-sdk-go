@@ -1,0 +1,37 @@
+name: Release SDK
+
+on:
+  push:
+    branches: [main]
+
+# contents:write is required for autotag-from-changelog to push tags.
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - uses: cockroachdb/actions/autotag-from-changelog@v0
+        id: autotag
+
+      # Dispatches an sdk-release event to ccloud-private. Requires a
+      # CCLOUD_PRIVATE_DISPATCH_PAT secret — a fine-grained PAT with
+      # contents:write on cockroachdb/ccloud-private, since GITHUB_TOKEN
+      # cannot trigger workflows in other repositories.
+      - name: Dispatch to ccloud-private
+        if: steps.autotag.outputs.tag-created == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.CCLOUD_PRIVATE_DISPATCH_PAT }}
+        run: |
+          if [ -z "$GH_TOKEN" ]; then
+            echo "::warning::CCLOUD_PRIVATE_DISPATCH_PAT secret is not set. Skipping dispatch to ccloud-private for ${{ steps.autotag.outputs.tag }}."
+            exit 0
+          fi
+          gh api repos/cockroachdb/ccloud-private/dispatches \
+            -f event_type=sdk-release \
+            -f "client_payload[version]=${{ steps.autotag.outputs.tag }}"
