@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Add bullet 1
 - Add bullet 3
+- Add bullet x
 
 ### Changed
 
