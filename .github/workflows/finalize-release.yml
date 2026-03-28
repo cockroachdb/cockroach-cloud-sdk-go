@@ -71,15 +71,15 @@ Co-Authored-By: roachdev-claude <roachdev-claude-bot@cockroachlabs.com>"
           pr_url=$(gh pr create \
             --title "Update version to ${{ steps.extract-version.outputs.next_version }}" \
             --body "$(cat <<'EOF'
-          ## Summary
-          - Updates version to ${{ steps.extract-version.outputs.next_version }}
-          - Updates CHANGELOG.md, internal/spec/config.yaml, and README.md
+## Summary
+- Updates version to ${{ steps.extract-version.outputs.next_version }}
+- Updates CHANGELOG.md, internal/spec/config.yaml, and README.md
 
-          ## Test plan
-          - [ ] Verify CI checks pass
-          - [ ] Verify version is correctly updated in all files
-          EOF
-          )" \
+## Test plan
+- [ ] Verify CI checks pass
+- [ ] Verify version is correctly updated in all files
+EOF
+)" \
             --base main \
             --head update-version-${{ steps.extract-version.outputs.next_version }})
           echo "pr_url=$pr_url" >> $GITHUB_OUTPUT
