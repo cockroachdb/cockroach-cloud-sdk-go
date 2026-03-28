@@ -1,0 +1,93 @@
+name: Finalize Release
+
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - main
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update-version:
+    # Only run if PR was merged and source branch starts with pending-deploy-
+    if: github.event.pull_request.merged == true && startsWith(github.event.pull_request.head.ref, 'pending-deploy-')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Extract release version
+        id: extract-version
+        uses: cockroachdb/actions/release-version-extract@add-changelog-workflow
+
+      - name: Check for unreleased changes
+        if: steps.extract-version.outputs.has_unreleased != 'true'
+        run: |
+          echo "No unreleased changes found. Skipping version update."
+          exit 0
+
+      - name: Configure git
+        if: steps.extract-version.outputs.has_unreleased == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Create branch
+        if: steps.extract-version.outputs.has_unreleased == 'true'
+        run: |
+          git checkout -b update-version-${{ steps.extract-version.outputs.next_version }}
+
+      - name: Run update-version.sh
+        if: steps.extract-version.outputs.has_unreleased == 'true'
+        run: |
+          chmod +x update-version.sh
+          ./update-version.sh ${{ steps.extract-version.outputs.next_version }}
+
+      - name: Commit and push changes
+        if: steps.extract-version.outputs.has_unreleased == 'true'
+        run: |
+          if [[ -n "$(git status --porcelain)" ]]; then
+            git add .
+            git commit -m "Update version to ${{ steps.extract-version.outputs.next_version }}
+
+Co-Authored-By: roachdev-claude <roachdev-claude-bot@cockroachlabs.com>"
+            git push origin update-version-${{ steps.extract-version.outputs.next_version }}
+          else
+            echo "No changes to commit"
+            exit 1
+          fi
+
+      - name: Create Pull Request
+        if: steps.extract-version.outputs.has_unreleased == 'true'
+        id: create-pr
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          pr_url=$(gh pr create \
+            --title "Update version to ${{ steps.extract-version.outputs.next_version }}" \
+            --body "$(cat <<'EOF'
+          ## Summary
+          - Updates version to ${{ steps.extract-version.outputs.next_version }}
+          - Updates CHANGELOG.md, internal/spec/config.yaml, and README.md
+
+          ## Test plan
+          - [ ] Verify CI checks pass
+          - [ ] Verify version is correctly updated in all files
+          EOF
+          )" \
+            --base main \
+            --head update-version-${{ steps.extract-version.outputs.next_version }})
+          echo "pr_url=$pr_url" >> $GITHUB_OUTPUT
+
+      - name: Enable auto-merge
+        if: steps.extract-version.outputs.has_unreleased == 'true' && steps.create-pr.outputs.pr_url != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          pr_number=$(echo "${{ steps.create-pr.outputs.pr_url }}" | grep -oE '[0-9]+$')
+          gh pr merge $pr_number --auto --squash

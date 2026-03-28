@@ -8,7 +8,7 @@ on:
 
 jobs:
   changelog:
-    uses: cockroachdb/actions/.github/workflows/pr-changelog-check.yml@v0.2.0
+    uses: cockroachdb/actions/.github/workflows/pr-changelog-check.yml@add-changelog-worfklow
     with:
       base-ref: ${{ github.event.pull_request.base.ref }}
       pr-number: ${{ github.event.pull_request.number }}
