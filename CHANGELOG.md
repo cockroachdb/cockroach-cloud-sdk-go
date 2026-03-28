@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+
+- Added release workflow that auto-tags from CHANGELOG and dispatches
+  sdk-release events to ccloud-private. Requires a `CCLOUD_PRIVATE_DISPATCH_PAT`
+  repository secret (fine-grained PAT with contents:write on
+  cockroachdb/ccloud-private) and a corresponding `repository_dispatch`
+  workflow in ccloud-private to handle the `sdk-release` event
+
 ## [6.10.0] - 2025-11-19
 
 ### Added
