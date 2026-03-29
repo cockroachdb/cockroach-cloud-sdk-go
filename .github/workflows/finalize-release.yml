@@ -23,7 +23,7 @@ jobs:
 
       - name: Extract release version
         id: extract-version
-        uses: cockroachdb/actions/release-version-extract@v0
+        uses: cockroachdb/actions/release-version-extract@main
 
       - name: Configure git
         if: steps.extract-version.outputs.has_unreleased == 'true'
