@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Random stuff
+
+## [7.0.0] - 2026-03-29
+
 ### Added
 
 - Added automated release workflow that triggers after merging `pending-deploy-*` branches to create version bump PRs
