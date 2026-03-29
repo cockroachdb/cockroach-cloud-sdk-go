@@ -1,0 +1,33 @@
+name: Create Release PR
+
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write  # Push to fork and create branch
+  pull-requests: write  # Create release PR
+
+jobs:
+  create-release-pr:
+    # Run on merged PRs with automation/pending-deploy- prefix, or manual workflow_dispatch
+    if: github.event_name == 'workflow_dispatch' || (github.event.pull_request.merged && startsWith(github.event.pull_request.head.ref, 'automation/pending-deploy-'))
+    uses: cockroachdb/actions/.github/workflows/create-release-pr.yml@v0
+    with:
+      fork_owner: crl-gh-actions-pr-bot
+      fork_repo: cockroach-cloud-sdk-go
+      build_script: scripts/update_version.sh
+      files_to_commit: |
+        go.mod
+        main.go
+        internal/spec/config.yaml
+        README.md
+        docs/README.md
+        pkg/client/configuration.go
+      allow_fork_force_sync: true
+    secrets:
+      fork_push_token: ${{ secrets.FORK_PUSH_TOKEN }}
+      pr_create_token: ${{ secrets.GITHUB_TOKEN }}
