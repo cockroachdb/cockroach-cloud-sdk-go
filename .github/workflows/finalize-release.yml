@@ -1,0 +1,80 @@
+name: Finalize Release
+
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - main
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update-version:
+    # Only run if PR was merged and source branch starts with pending-deploy-
+    if: github.event.pull_request.merged && startsWith(github.event.pull_request.head.ref, 'pending-deploy-')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          ref: main
+
+      - name: Extract release version
+        id: extract-version
+        uses: cockroachdb/actions/release-version-extract@v0
+
+      - name: Configure git
+        if: steps.extract-version.outputs.has_unreleased == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Create branch and update version
+        if: steps.extract-version.outputs.has_unreleased == 'true'
+        run: |
+          git checkout -b "update-version-${{ steps.extract-version.outputs.next_version }}"
+          bash internal/update-version.sh "${{ steps.extract-version.outputs.next_version }}"
+
+      - name: Commit and push changes
+        if: steps.extract-version.outputs.has_unreleased == 'true'
+        run: |
+          if [[ -z "$(git status --porcelain)" ]]; then
+            echo "No changes to commit"
+            exit 1
+          fi
+
+          # Extract changelog entries for this version
+          changelog_body=$(awk '
+            /^## \[${{ steps.extract-version.outputs.next_version }}\]/ {flag=1; next}
+            /^## \[/ {flag=0}
+            flag
+          ' CHANGELOG.md | sed '/^$/d')
+
+          git add .
+          git commit -F - <<EOF
+Release v${{ steps.extract-version.outputs.next_version }}
+
+$changelog_body
+
+Co-Authored-By: roachdev-claude <roachdev-claude-bot@cockroachlabs.com>
+EOF
+          git push origin "update-version-${{ steps.extract-version.outputs.next_version }}"
+
+      - name: Create Pull Request and enable auto-merge
+        if: steps.extract-version.outputs.has_unreleased == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          pr_url=$(gh pr create \
+            --title "Release v${{ steps.extract-version.outputs.next_version }}" \
+            --body "$(cat <<EOF
+## Summary
+- Updates version to ${{ steps.extract-version.outputs.next_version }}
+- Updates CHANGELOG.md, internal/spec/config.yaml, and README.md
+EOF
+          )" \
+            --base main \
+            --head "update-version-${{ steps.extract-version.outputs.next_version }}")
+          gh pr merge "$pr_url" --auto --squash
