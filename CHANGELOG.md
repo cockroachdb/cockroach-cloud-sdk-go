@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Added automated release workflow that triggers after merging `pending-deploy-*` branches to create version bump PRs
 
+### Removed
+
+- Breaking Change: removed endpoint A
+
 ## [6.10.0] - 2025-11-19
 
 ### Added
