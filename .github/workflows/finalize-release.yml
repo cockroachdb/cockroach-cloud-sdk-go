@@ -23,7 +23,7 @@ jobs:
 
       - name: Extract release version
         id: extract-version
-        uses: cockroachdb/actions/release-version-extract@v0
+        uses: cockroachdb/actions/release-version-extract@main
 
       - name: Configure git
         if: steps.extract-version.outputs.has_unreleased == 'true'
@@ -53,13 +53,9 @@ jobs:
           ' CHANGELOG.md | sed '/^$/d')
 
           git add .
-          git commit -F - <<EOF
-Release v${{ steps.extract-version.outputs.next_version }}
-
-$changelog_body
-
-Co-Authored-By: roachdev-claude <roachdev-claude-bot@cockroachlabs.com>
-EOF
+          git commit -m "Release v${{ steps.extract-version.outputs.next_version }}" \
+            -m "$changelog_body" \
+            -m "Co-Authored-By: roachdev-claude <roachdev-claude-bot@cockroachlabs.com>"
           git push origin "update-version-${{ steps.extract-version.outputs.next_version }}"
 
       - name: Create Pull Request and enable auto-merge
@@ -67,14 +63,13 @@ EOF
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
+          pr_body="## Summary
+          - Updates version to ${{ steps.extract-version.outputs.next_version }}
+          - Updates CHANGELOG.md, internal/spec/config.yaml, and README.md"
+
           pr_url=$(gh pr create \
             --title "Release v${{ steps.extract-version.outputs.next_version }}" \
-            --body "$(cat <<EOF
-## Summary
-- Updates version to ${{ steps.extract-version.outputs.next_version }}
-- Updates CHANGELOG.md, internal/spec/config.yaml, and README.md
-EOF
-          )" \
+            --body "$pr_body" \
             --base main \
             --head "update-version-${{ steps.extract-version.outputs.next_version }}")
           gh pr merge "$pr_url" --auto --squash
