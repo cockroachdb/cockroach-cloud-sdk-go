@@ -2,9 +2,8 @@ name: Changelog Check
 
 on:
   pull_request:
-    branches:
-      - main
-      - 'pending-deploy-*'
+    paths:
+      - 'CHANGELOG.md'
 
 jobs:
   changelog:
