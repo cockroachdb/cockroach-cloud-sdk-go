@@ -162,6 +162,8 @@ Can be used by the following roles assigned at the organization or folder scope:
 - CLUSTER_CREATOR
 - FOLDER_ADMIN
 - FOLDER_MOVER
+- METRICS_VIEWER
+- CLUSTER_MONITOR
 
 
 ### Example
@@ -237,6 +239,8 @@ Can be used by the following roles assigned at the organization, folder or clust
 - CLUSTER_DEVELOPER
 - FOLDER_ADMIN
 - FOLDER_MOVER
+- METRICS_VIEWER
+- CLUSTER_MONITOR
 
 
 ### Example
@@ -323,6 +327,8 @@ Can be used by the following roles assigned at the organization or folder scope:
 - CLUSTER_CREATOR
 - FOLDER_ADMIN
 - FOLDER_MOVER
+- METRICS_VIEWER
+- CLUSTER_MONITOR
 
 
 ### Example

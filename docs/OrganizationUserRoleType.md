@@ -21,6 +21,12 @@
 
 * `FOLDER_MOVER` (value: `"FOLDER_MOVER"`)
 
+* `METRICS_VIEWER` (value: `"METRICS_VIEWER"`)
+
+* `CLUSTER_MONITOR` (value: `"CLUSTER_MONITOR"`)
+
+* `BILLING_VIEWER` (value: `"BILLING_VIEWER"`)
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

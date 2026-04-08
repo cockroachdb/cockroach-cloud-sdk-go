@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**CockroachCloudServicePrincipals** | Pointer to [**CockroachCloudServicePrincipals**](CockroachCloudServicePrincipals.md) |  | [optional] 
 **CreatedAt** | **time.Time** |  | 
 **Id** | **string** |  | 
 **Label** | **string** |  | 
@@ -27,6 +28,18 @@ will change when the set of required properties is changed.
 NewOrganizationWithDefaults instantiates a new Organization object.
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set.
+
+### GetCockroachCloudServicePrincipals
+
+`func (o *Organization) GetCockroachCloudServicePrincipals() CockroachCloudServicePrincipals`
+
+GetCockroachCloudServicePrincipals returns the CockroachCloudServicePrincipals field if non-nil, zero value otherwise.
+
+### SetCockroachCloudServicePrincipals
+
+`func (o *Organization) SetCockroachCloudServicePrincipals(v CockroachCloudServicePrincipals)`
+
+SetCockroachCloudServicePrincipals sets CockroachCloudServicePrincipals field to given value.
 
 ### GetCreatedAt
 

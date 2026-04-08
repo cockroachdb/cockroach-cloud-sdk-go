@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Enabled** | **bool** | Indicates whether backups are enabled. | 
-**FrequencyMinutes** | **int32** | How frequently in minutes that backups are taken, which will determine the [RPO](https://www.cockroachlabs.com/docs/stable/disaster-recovery-overview#resilience-strategy) of the cluster. | 
+**FrequencyMinutes** | **int32** | How frequently in minutes that backups are taken, which will determine the [RPO](https://www.cockroachlabs.com/docs/stable/disaster-recovery-overview) of the cluster. | 
 **RetentionDays** | **int32** | The number of days backups are retained for. | 
 
 ## Methods

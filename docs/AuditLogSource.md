@@ -10,6 +10,8 @@
 
 * `INTERNAL` (value: `"AUDIT_LOG_SOURCE_INTERNAL"`)
 
+* `MCP` (value: `"AUDIT_LOG_SOURCE_MCP"`)
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

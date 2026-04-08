@@ -165,6 +165,8 @@ Can be used by the following roles assigned at the organization, folder or clust
 - CLUSTER_DEVELOPER
 - FOLDER_ADMIN
 - FOLDER_MOVER
+- METRICS_VIEWER
+- CLUSTER_MONITOR
 
 
 ### Example
@@ -238,6 +240,8 @@ Can be used by the following roles assigned at the organization, folder or clust
 - CLUSTER_DEVELOPER
 - FOLDER_ADMIN
 - FOLDER_MOVER
+- METRICS_VIEWER
+- CLUSTER_MONITOR
 
 
 ### Example
@@ -471,11 +475,11 @@ Name | Type | Description  | Notes
 
 ## ListClusters
 
-> ListClustersResponse ListClusters(ctx).ShowInactive(showInactive).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).Execute()
+> ListClustersResponse ListClusters(ctx).ShowInactive(showInactive).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).PaginationSortBy(paginationSortBy).Execute()
 
 List clusters in the organization
 
-Sort order: Cluster name
+By default, clusters are sorted alphabetically by name in ascending A to Z order. To customize sorting, use the pagination.sort_by and pagination.sort_order query parameters.
 
 Can be used by the following roles assigned at the organization, folder or cluster scope:
 - ORG_ADMIN
@@ -484,6 +488,8 @@ Can be used by the following roles assigned at the organization, folder or clust
 - CLUSTER_DEVELOPER
 - FOLDER_ADMIN
 - FOLDER_MOVER
+- METRICS_VIEWER
+- CLUSTER_MONITOR
 
 
 ### Example
@@ -505,10 +511,11 @@ func main() {
     paginationLimit := int32(56) // int32 |  (optional)
     paginationAsOfTime := time.Now() // time.Time |  (optional)
     paginationSortOrder := "paginationSortOrder_example" // string |  - ASC: Sort in ascending order. This is the default unless otherwise specified.  - DESC: Sort in descending order. (optional)
+    paginationSortBy := "paginationSortBy_example" // string |  - NAME: Sort by cluster name. This is the default unless otherwise specified.  - CREATED_AT: Sort by cluster created_at.  - DELETED_AT: Sort by cluster deleted_at. Active clusters will be sorted by created_at. (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
-    resp, r, err := api_client.ClustersApi.ListClusters(context.Background()).ShowInactive(showInactive).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).Execute()
+    resp, r, err := api_client.ClustersApi.ListClusters(context.Background()).ShowInactive(showInactive).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).PaginationSortBy(paginationSortBy).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ClustersApi.ListClusters``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -535,6 +542,7 @@ Name | Type | Description  | Notes
  **paginationLimit** | **int32** |  | 
  **paginationAsOfTime** | **time.Time** |  | 
  **paginationSortOrder** | **string** |  - ASC: Sort in ascending order. This is the default unless otherwise specified.  - DESC: Sort in descending order. | 
+ **paginationSortBy** | **string** |  - NAME: Sort by cluster name. This is the default unless otherwise specified.  - CREATED_AT: Sort by cluster created_at.  - DELETED_AT: Sort by cluster deleted_at. Active clusters will be sorted by created_at. | 
 
 ### Return type
 

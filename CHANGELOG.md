@@ -7,13 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [6.11.0] - 2026-04-09
+
 ### Added
 
-- Added release workflow that auto-tags from CHANGELOG and dispatches
-  sdk-release events to ccloud-private. Requires a `CCLOUD_PRIVATE_DISPATCH_PAT`
-  repository secret (fine-grained PAT with contents:write on
-  cockroachdb/ccloud-private) and a corresponding `repository_dispatch`
-  workflow in ccloud-private to handle the `sdk-release` event
+- Added `start_time` and `end_time` query parameters to `ListInvoices` for
+  date-range filtering of invoices by billing period.
+- Added `pagination.sort_by` query parameter to `ListClusters` for sorting
+  clusters by name, created_at, or deleted_at.
+- Added new model types: `Aws`, `Azure`, `Gcp`, `CockroachCloudServicePrincipals`,
+  `ClusterVersionDeferralUpdate`.
 
 ## [6.10.0] - 2025-11-19
 

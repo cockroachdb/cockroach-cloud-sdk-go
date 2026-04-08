@@ -2343,7 +2343,7 @@ paths:
   /api/v1/clusters:
     get:
       description: |
-        Sort order: Cluster name
+        By default, clusters are sorted alphabetically by name in ascending A to Z order. To customize sorting, use the pagination.sort_by and pagination.sort_order query parameters.
 
         Can be used by the following roles assigned at the organization, folder or cluster scope:
         - ORG_ADMIN
@@ -2352,6 +2352,8 @@ paths:
         - CLUSTER_DEVELOPER
         - FOLDER_ADMIN
         - FOLDER_MOVER
+        - METRICS_VIEWER
+        - CLUSTER_MONITOR
       operationId: CockroachCloud_ListClusters
       parameters:
       - description: |-
@@ -2402,6 +2404,21 @@ paths:
           - DESC
           type: string
         style: form
+      - description: |2-
+           - NAME: Sort by cluster name. This is the default unless otherwise specified.
+           - CREATED_AT: Sort by cluster created_at.
+           - DELETED_AT: Sort by cluster deleted_at. Active clusters will be sorted by created_at.
+        explode: true
+        in: query
+        name: pagination.sort_by
+        required: false
+        schema:
+          enum:
+          - NAME
+          - CREATED_AT
+          - DELETED_AT
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -2448,7 +2465,7 @@ paths:
       - lang: Shell + Curl
         source: |-
           curl --request GET \
-            --url 'https://cockroachlabs.cloud/api/v1/clusters?show_inactive=SOME_BOOLEAN_VALUE&pagination.page=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.as_of_time=SOME_STRING_VALUE&pagination.sort_order=SOME_STRING_VALUE' \
+            --url 'https://cockroachlabs.cloud/api/v1/clusters?show_inactive=SOME_BOOLEAN_VALUE&pagination.page=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.as_of_time=SOME_STRING_VALUE&pagination.sort_order=SOME_STRING_VALUE&pagination.sort_by=SOME_STRING_VALUE' \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     post:
       description: |
@@ -2701,6 +2718,8 @@ paths:
         - CLUSTER_DEVELOPER
         - FOLDER_ADMIN
         - FOLDER_MOVER
+        - METRICS_VIEWER
+        - CLUSTER_MONITOR
       operationId: CockroachCloud_GetCluster
       parameters:
       - explode: false
@@ -2942,9 +2961,6 @@ paths:
       summary: List cluster backups
       tags:
       - Backup/Restore
-      x-badges:
-      - color: red
-        label: LIMITED ACCESS
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -4033,6 +4049,8 @@ paths:
         - CLUSTER_DEVELOPER
         - FOLDER_ADMIN
         - FOLDER_MOVER
+        - METRICS_VIEWER
+        - CLUSTER_MONITOR
       operationId: CockroachCloud_GetConnectionString
       parameters:
       - explode: false
@@ -4719,6 +4737,7 @@ paths:
         - ORG_ADMIN
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
+        - METRICS_VIEWER
       operationId: CockroachCloud_GetLogExportInfo
       parameters:
       - explode: false
@@ -5119,6 +5138,7 @@ paths:
         Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
+        - METRICS_VIEWER
       operationId: CockroachCloud_GetCloudWatchMetricExportInfo
       parameters:
       - explode: false
@@ -5322,6 +5342,7 @@ paths:
         Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
+        - METRICS_VIEWER
       operationId: CockroachCloud_GetDatadogMetricExportInfo
       parameters:
       - explode: false
@@ -5525,6 +5546,7 @@ paths:
         Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
+        - METRICS_VIEWER
       operationId: CockroachCloud_GetPrometheusMetricExportInfo
       parameters:
       - explode: false
@@ -8086,9 +8108,6 @@ paths:
       summary: List restore jobs
       tags:
       - Backup/Restore
-      x-badges:
-      - color: red
-        label: LIMITED ACCESS
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -8161,9 +8180,6 @@ paths:
       summary: View a restore job
       tags:
       - Backup/Restore
-      x-badges:
-      - color: red
-        label: LIMITED ACCESS
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -8569,7 +8585,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ClusterVersionDeferral'
+              $ref: '#/components/schemas/ClusterVersionDeferralUpdate'
         required: true
       responses:
         "200":
@@ -8622,7 +8638,7 @@ paths:
           curl --request PUT \
             --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/version-deferral \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
-            --json '{"deferral_policy":"DEFERRAL_60_DAYS","deferred_until":"2025-12-15T00:00:00Z"}'
+            --json '{"deferral_policy":"DEFERRAL_60_DAYS"}'
   /api/v1/clusters/{destination_cluster_id}/restores:
     post:
       description: |
@@ -8687,9 +8703,6 @@ paths:
       summary: Create a restore
       tags:
       - Backup/Restore
-      x-badges:
-      - color: red
-        label: LIMITED ACCESS
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -8710,6 +8723,8 @@ paths:
         - CLUSTER_CREATOR
         - FOLDER_ADMIN
         - FOLDER_MOVER
+        - METRICS_VIEWER
+        - CLUSTER_MONITOR
       operationId: CockroachCloud_ListFolders
       parameters:
       - description: |-
@@ -8951,6 +8966,8 @@ paths:
         - CLUSTER_CREATOR
         - FOLDER_ADMIN
         - FOLDER_MOVER
+        - METRICS_VIEWER
+        - CLUSTER_MONITOR
       operationId: CockroachCloud_GetFolder
       parameters:
       - explode: false
@@ -9095,6 +9112,8 @@ paths:
         - CLUSTER_DEVELOPER
         - FOLDER_ADMIN
         - FOLDER_MOVER
+        - METRICS_VIEWER
+        - CLUSTER_MONITOR
       operationId: CockroachCloud_ListFolderContents
       parameters:
       - explode: false
@@ -9215,6 +9234,28 @@ paths:
           - DRAFT
           type: string
         style: form
+      - description: |-
+          start_time filters the response to invoices whose billing period started at or after this time (inclusive).
+          Defaults to organization creation time if omitted.
+        explode: true
+        in: query
+        name: start_time
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: |-
+          end_time filters the response to invoices whose billing period ended at or before this time (exclusive).
+          Defaults to current time if omitted.
+        explode: true
+        in: query
+        name: end_time
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -9261,7 +9302,7 @@ paths:
       - lang: Shell + Curl
         source: |-
           curl --request GET \
-            --url 'https://cockroachlabs.cloud/api/v1/invoices?status=SOME_STRING_VALUE' \
+            --url 'https://cockroachlabs.cloud/api/v1/invoices?status=SOME_STRING_VALUE&start_time=SOME_STRING_VALUE&end_time=SOME_STRING_VALUE' \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
   /api/v1/invoices/{invoice_id}:
     get:
@@ -10262,7 +10303,7 @@ paths:
         Replace the entire role set for a user or service account by providing its user_id or service_account_id.
 
         Roles that will be removed or added as a result of this call must follow the CC rules for role assignment:
-        https://www.cockroachlabs.com/docs/cockroachcloud/authorization#which-roles-grant-the-ability-to-add-remove-and-manage-members-in-in-a-cockroachdb-cloud-organization
+        https://www.cockroachlabs.com/docs/cockroachcloud/authorization#organization-user-roles
       operationId: CockroachCloud_SetRolesForUser
       parameters:
       - explode: false
@@ -10334,7 +10375,7 @@ paths:
         Remove a single role from a user or service account by providing its user_id or service_account_id.
 
         Roles that will be removed as a result of this call must follow the CC rules for role assignment:
-        https://www.cockroachlabs.com/docs/cockroachcloud/authorization#which-roles-grant-the-ability-to-add-remove-and-manage-members-in-in-a-cockroachdb-cloud-organization
+        https://www.cockroachlabs.com/docs/cockroachcloud/authorization#organization-user-roles
       operationId: CockroachCloud_RemoveUserFromRole
       parameters:
       - explode: false
@@ -10377,6 +10418,9 @@ paths:
           - CLUSTER_CREATOR
           - FOLDER_ADMIN
           - FOLDER_MOVER
+          - METRICS_VIEWER
+          - CLUSTER_MONITOR
+          - BILLING_VIEWER
           type: string
         style: simple
       responses:
@@ -10432,7 +10476,7 @@ paths:
         Add a single role to a user or service account by providing its user_id or service_account_id.
 
         Roles that will be added as a result of this call must follow the CC rules for role assignment:
-        https://www.cockroachlabs.com/docs/cockroachcloud/authorization#which-roles-grant-the-ability-to-add-remove-and-manage-members-in-in-a-cockroachdb-cloud-organization
+        https://www.cockroachlabs.com/docs/cockroachcloud/authorization#organization-user-roles
       operationId: CockroachCloud_AddUserToRole
       parameters:
       - explode: false
@@ -10475,6 +10519,9 @@ paths:
           - CLUSTER_CREATOR
           - FOLDER_ADMIN
           - FOLDER_MOVER
+          - METRICS_VIEWER
+          - CLUSTER_MONITOR
+          - BILLING_VIEWER
           type: string
         style: simple
       responses:
@@ -11357,6 +11404,10 @@ components:
       - AUDIT_LOG_ACTION_DELETE_CLUSTER_BLACKOUT_WINDOW
       - AUDIT_LOG_ACTION_START_FAULT_TOLERANCE_DEMO
       - AUDIT_LOG_ACTION_END_FAULT_TOLERANCE_DEMO
+      - AUDIT_LOG_ACTION_UPDATE_CLUSTER_DISRUPTION
+      - AUDIT_LOG_ACTION_SET_CLUSTER_SETTING
+      - AUDIT_LOG_ACTION_EVICT_BYOC_CLUSTER
+      - AUDIT_LOG_ACTION_MCP_OAUTH_CONSENT
       type: string
     AuditLogEntry:
       description: |-
@@ -11448,7 +11499,16 @@ components:
       - AUDIT_LOG_SOURCE_CLI
       - AUDIT_LOG_SOURCE_UI
       - AUDIT_LOG_SOURCE_INTERNAL
+      - AUDIT_LOG_SOURCE_MCP
       type: string
+    Aws:
+      example:
+        user_arn: user_arn
+      properties:
+        user_arn:
+          title: AWS IAM user ARN used by CockroachDB Cloud
+          type: string
+      type: object
     AwsCustomerCloudAccount:
       properties:
         arn:
@@ -11520,6 +11580,18 @@ components:
       required:
       - connections
       type: object
+    Azure:
+      example:
+        app_registration_client_id: app_registration_client_id
+        app_registration_name: app_registration_name
+      properties:
+        app_registration_client_id:
+          title: Azure app registration client ID used by CockroachDB Cloud
+          type: string
+        app_registration_name:
+          title: Azure app registration name used by CockroachDB Cloud
+          type: string
+      type: object
     AzureCustomerCloudAccount:
       properties:
         subscription_id:
@@ -11547,7 +11619,7 @@ components:
         frequency_minutes:
           description: |-
             How frequently in minutes that backups are taken, which will determine the
-            [RPO](https://www.cockroachlabs.com/docs/stable/disaster-recovery-overview#resilience-strategy)
+            [RPO](https://www.cockroachlabs.com/docs/stable/disaster-recovery-overview)
             of the cluster.
           format: int32
           type: integer
@@ -12226,6 +12298,16 @@ components:
       title: ClusterVersionDeferral
       type: object
     ClusterVersionDeferralPolicy.Type:
+      description: |2-
+         - NOT_DEFERRED: automatic patch version upgrades are applied immediately after release.
+         - DEFERRAL_60_DAYS: automatic patch version upgrades are applied in a maintenance window at
+        least 60 days after the patch version release date.
+         - FIXED_DEFERRAL: Deprecated: FIXED_DEFERRAL is equivalent to DEFERRAL_60_DAYS. It will be
+        removed in a future version.
+         - DEFERRAL_30_DAYS: automatic patch version upgrades are applied in a maintenance window at
+        least 30 days after the patch version release date.
+         - DEFERRAL_90_DAYS: automatic patch version upgrades are applied in a maintenance window at
+        least 90 days after the patch version release date.
       enum:
       - NOT_DEFERRED
       - DEFERRAL_60_DAYS
@@ -12233,6 +12315,38 @@ components:
       - DEFERRAL_30_DAYS
       - DEFERRAL_90_DAYS
       type: string
+    ClusterVersionDeferralUpdate:
+      example:
+        deferral_policy: DEFERRAL_60_DAYS
+      properties:
+        deferral_policy:
+          $ref: '#/components/schemas/ClusterVersionDeferralPolicy.Type'
+        deferred_until:
+          description: "Deprecated: This field is ignored and will be removed in a\
+            \ future version."
+          format: date-time
+          type: string
+      required:
+      - deferral_policy
+      title: ClusterVersionDeferralUpdate
+      type: object
+    CockroachCloudServicePrincipals:
+      example:
+        gcp:
+          service_account_email: service_account_email
+        aws:
+          user_arn: user_arn
+        azure:
+          app_registration_client_id: app_registration_client_id
+          app_registration_name: app_registration_name
+      properties:
+        aws:
+          $ref: '#/components/schemas/Aws'
+        azure:
+          $ref: '#/components/schemas/Azure'
+        gcp:
+          $ref: '#/components/schemas/Gcp'
+      type: object
     ConnectionStringParameters:
       description: Individual parameters used to create a connection string.
       example:
@@ -12690,8 +12804,12 @@ components:
         disk_iops:
           description: |-
             disk_iops is the number of disk I/O operations per second that are
-            permitted on each node in the cluster. Zero indicates the cloud
-            provider-specific default.
+            permitted on each node in the cluster. This value reflects the
+            actual provisioned IOPS, which may differ from the value specified
+            during cluster creation or update. Only AWS clusters support
+            user-specified IOPS; for GCP and Azure clusters, IOPS is
+            determined by the cloud provider based on disk size. A value of
+            zero indicates the cloud provider-specific default.
           format: int32
           type: integer
         machine_type:
@@ -12724,8 +12842,11 @@ components:
         disk_iops:
           description: |-
             disk_iops is the number of disk I/O operations per second that are
-            permitted on each node in the cluster. Zero indicates the cloud
-            provider-specific default. Only available for AWS clusters.
+            permitted on each node in an AWS cluster. Set to zero or omit this
+            field to use the cloud provider-specific default based on machine
+            type and storage size. The value returned in the response may differ
+            from the requested value. For GCP and Azure clusters, this value is
+            ignored and the cloud provider default is used.
           format: int32
           type: integer
         machine_spec:
@@ -12745,8 +12866,11 @@ components:
         disk_iops:
           description: |-
             disk_iops is the number of disk I/O operations per second that are
-            permitted on each node in the cluster. Zero indicates the cloud
-            provider-specific default. Only available for AWS clusters.
+            permitted on each node in an AWS cluster. Set to zero or omit this
+            field to use the cloud provider-specific default based on machine
+            type and storage size. The value returned in the response may differ
+            from the requested value. For GCP and Azure clusters, this value is
+            ignored and the cloud provider default is used.
           format: int32
           type: integer
         machine_spec:
@@ -13137,6 +13261,14 @@ components:
       - FOLDER
       - CLUSTER
       type: string
+    Gcp:
+      example:
+        service_account_email: service_account_email
+      properties:
+        service_account_email:
+          title: GCP service account email used by CockroachDB Cloud
+          type: string
+      type: object
     GcpCustomerCloudAccount:
       properties:
         service_account_email:
@@ -15430,7 +15562,17 @@ components:
         created_at: 2000-01-23T04:56:07.000+00:00
         id: id
         label: label
+        cockroach_cloud_service_principals:
+          gcp:
+            service_account_email: service_account_email
+          aws:
+            user_arn: user_arn
+          azure:
+            app_registration_client_id: app_registration_client_id
+            app_registration_name: app_registration_name
       properties:
+        cockroach_cloud_service_principals:
+          $ref: '#/components/schemas/CockroachCloudServicePrincipals'
         created_at:
           format: date-time
           type: string
@@ -15460,6 +15602,9 @@ components:
       - CLUSTER_CREATOR
       - FOLDER_ADMIN
       - FOLDER_MOVER
+      - METRICS_VIEWER
+      - CLUSTER_MONITOR
+      - BILLING_VIEWER
       type: string
     PathSegment:
       example:
@@ -16790,7 +16935,7 @@ components:
         frequency_minutes:
           description: |-
             How frequently in minutes that backups are taken, which will determine the
-            [RPO](https://www.cockroachlabs.com/docs/stable/disaster-recovery-overview#resilience-strategy)
+            [RPO](https://www.cockroachlabs.com/docs/stable/disaster-recovery-overview)
             of the cluster.  Valid values are [5, 10, 15, 30, 60, 240, 1440].
           format: int32
           type: integer
