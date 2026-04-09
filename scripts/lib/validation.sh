@@ -19,3 +19,22 @@ check_required_commands() {
 
   return 0
 }
+
+# Check if required environment variables are set
+# Usage: check_required_env "VAR1" "VAR2" "VAR3"
+check_required_env() {
+  local missing_vars=()
+
+  for var in "$@"; do
+    if [[ -z "${!var:-}" ]]; then
+      missing_vars+=("$var")
+    fi
+  done
+
+  if [[ ${#missing_vars[@]} -gt 0 ]]; then
+    log_error "Required environment variable(s) not set: ${missing_vars[*]}"
+    return 1
+  fi
+
+  return 0
+}
