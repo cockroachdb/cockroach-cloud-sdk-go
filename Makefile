@@ -40,6 +40,11 @@ add-boilerplate:
 validate:
 	go run main.go
 
+# Run bash helper script tests
+.PHONY: test-scripts
+test-scripts:
+	./scripts/run-tests.sh
+
 default: generate-openapi-client validate
 
 # build-tool is a helper that builds $TOOL_PKG in a temp directory so that it
