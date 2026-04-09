@@ -1,0 +1,115 @@
+name: Pending Deploy PR
+
+on:
+  repository_dispatch:
+    types: [managed-service-deployed]
+  workflow_dispatch:
+
+# Required permissions:
+# - contents:read for checking out code and reading branches/tags
+# - pull-requests:write for creating/updating PRs
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  create-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0  # Need full history to compare branches and commits
+
+      - name: Fetch latest remote refs
+        run: |
+          # Ensure we have the latest branches and tags from origin
+          git fetch origin --tags --force
+          git fetch origin --prune
+
+      - name: Find latest pending deploy branch
+        id: find-branch
+        run: |
+          # Find all remote branches matching pending-deploy-YYYYMMDD-hhmmss
+          all_branches=$(git branch -r)
+          branches=$(echo "$all_branches" | grep -E 'origin/pending-deploy-[0-9]{8}-[0-9]{6}$' || true)  # Allow no-match case to be handled gracefully below
+
+          if [ -z "$branches" ]; then
+            echo "No pending deploy branches found on origin"
+            exit 0
+          fi
+
+          # Find the latest branch (branches sort lexicographically in chronological order)
+          latest=$(echo "$branches" | sed 's|^[[:space:]]*origin/||' | sort -r | head -1)
+
+          if [ -z "$latest" ]; then
+            echo "::error::Failed to parse pending deploy branches"
+            exit 1
+          fi
+
+          echo "Latest pending deploy branch: $latest"
+          echo "branch=$latest" >> $GITHUB_OUTPUT
+
+      - name: Check if branch has commits not in main
+        id: check-commits
+        if: steps.find-branch.outputs.branch != ''
+        run: |
+          branch="${{ steps.find-branch.outputs.branch }}"
+
+          # Count commits in branch but not in origin/main
+          commit_count=$(git rev-list --count origin/main..origin/$branch)
+
+          if [ "$commit_count" -eq 0 ]; then
+            echo "No new commits"
+            echo "has_commits=false" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          echo "Found $commit_count commit(s) in $branch not in main"
+          echo "has_commits=true" >> $GITHUB_OUTPUT
+
+      - name: Create or reuse pull request
+        id: create-pr
+        if: steps.check-commits.outputs.has_commits == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          branch="${{ steps.find-branch.outputs.branch }}"
+
+          # Check if PR already exists
+          existing_pr=$(gh pr list --head "$branch" --base main --json number --jq '.[0].number' || echo "")
+
+          if [ -n "$existing_pr" ]; then
+            echo "PR already exists: #$existing_pr"
+            exit 0
+          fi
+
+          # Create new PR
+          pr_body=$(printf "%s\n\n%s" \
+            "This PR represents commits from \`$branch\` that are pending deployment. These commits were generated in response to Cockroach Cloud API changes in the managed-service repository." \
+            "This PR is automatically managed by the pending-deploy-pr workflow.")
+
+          pr_url=$(gh pr create \
+            --head "$branch" \
+            --base main \
+            --title "Applying pending deploy changes: $branch" \
+            --body "$pr_body")
+
+          if [ -z "$pr_url" ]; then
+            echo "Failed to create PR"
+            exit 1
+          fi
+
+          echo "Created PR: $pr_url"
+          echo "pr_url=$pr_url" >> $GITHUB_OUTPUT
+
+      - name: Summary
+        if: always()
+        run: |
+          if [ -z "${{ steps.find-branch.outputs.branch }}" ]; then
+            echo "No pending deploy branches found"
+          elif [ "${{ steps.check-commits.outputs.has_commits }}" != "true" ]; then
+            echo "Pending deploy branch has no new commits"
+          elif [ -n "${{ steps.create-pr.outputs.pr_url }}" ]; then
+            echo "PR created or updated for pending deploy branch"
+          fi

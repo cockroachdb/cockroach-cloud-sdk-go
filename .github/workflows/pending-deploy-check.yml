@@ -1,0 +1,221 @@
+name: Pending Deploy Check
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  check-deployment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check if pending deploy branch
+        id: check-branch
+        run: |
+          # Only run checks for pending-deploy branches
+          if [[ "${{ github.head_ref }}" =~ ^pending-deploy-[0-9]{8}-[0-9]{6}$ ]]; then
+            echo "is_pending_deploy=true" >> $GITHUB_OUTPUT
+            echo "Branch ${{ github.head_ref }} is a pending deploy branch"
+          else
+            echo "is_pending_deploy=false" >> $GITHUB_OUTPUT
+            echo "Branch ${{ github.head_ref }} is not a pending deploy branch - skipping checks"
+          fi
+
+      - name: Checkout repository
+        if: steps.check-branch.outputs.is_pending_deploy == 'true'
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Get commit list from PR
+        id: get-commits
+        if: steps.check-branch.outputs.is_pending_deploy == 'true'
+        run: |
+          branch="${{ github.head_ref }}"
+
+          # Get commits that are in the pending deploy branch but not in main
+          # Format: SHA|subject
+          git log origin/main..origin/$branch --format="%H|%s" > commits.txt
+
+          echo "Commits to check:"
+          cat commits.txt
+
+      - name: Clone managed-service repository
+        if: steps.check-branch.outputs.is_pending_deploy == 'true'
+        env:
+          MANAGED_SERVICE_TOKEN: ${{ secrets.MANAGED_SERVICE_TOKEN }}
+        run: |
+          # Clone managed-service to check deployment tags
+          git clone https://oauth2:${MANAGED_SERVICE_TOKEN}@github.com/cockroachlabs/managed-service.git /tmp/managed-service
+          cd /tmp/managed-service
+          # Fetch all tags (needed for deployment checks)
+          git fetch --tags --force
+
+      - name: Check deployment status of commits
+        id: check-deployment
+        if: steps.check-branch.outputs.is_pending_deploy == 'true'
+        run: |
+          # Initialize result files
+          > not_deployed.txt
+          > missing_trailer.txt
+          > unexpected_status.txt
+
+          # Process each commit
+          while IFS='|' read -r sha subject; do
+            echo "Checking commit $sha: $subject"
+
+            # Extract Managed-service-commit-SHA trailer from commit message
+            full_message=$(git log -1 --format=%B "$sha")
+            ms_sha=$(echo "$full_message" | grep -oP '^Managed-service-commit-SHA:\s*\K[a-f0-9]+$' | head -1 || echo "")
+
+            if [ -z "$ms_sha" ]; then
+              # No trailer found - potentially not deployed
+              echo "  No Managed-service-commit-SHA trailer found"
+              echo "$sha|$subject" >> missing_trailer.txt
+              continue
+            fi
+
+            echo "  Found managed-service SHA: $ms_sha"
+
+            # Check deployment status in managed-service repo
+            cd /tmp/managed-service
+
+            deploy_output=$(git tag --contains "$ms_sha" 2>/dev/null | head -1 | grep . || echo 'not deployed')
+
+            cd - > /dev/null
+
+            echo "  Managed-service deploy check output: $deploy_output"
+
+            if [ "$deploy_output" = "not deployed" ]; then
+              # Definitively not deployed
+              echo "$sha|$subject|$ms_sha|not deployed" >> not_deployed.txt
+            elif [[ $deploy_output =~ ^release-[0-9]{4}-[0-9]{2}-[0-9]{2}-[0-9]+$ ]]; then
+              # Deployed (matches release-YYYY-MM-DD-N pattern)
+              echo "  Deployed"
+            else
+              # Unexpected output - potentially not deployed
+              echo "$sha|$subject|$ms_sha|$deploy_output" >> unexpected_status.txt
+            fi
+          done < commits.txt
+
+          # Check if there are any issues
+          if [ -s not_deployed.txt ] || [ -s missing_trailer.txt ] || [ -s unexpected_status.txt ]; then
+            echo "Found commits that are not deployed or potentially not deployed"
+            echo "has_issues=true" >> $GITHUB_OUTPUT
+          else
+            echo "All commits are deployed"
+            echo "has_issues=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Format and post PR comment
+        if: steps.check-branch.outputs.is_pending_deploy == 'true' && steps.check-deployment.outputs.has_issues == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          pr_number="${{ github.event.pull_request.number }}"
+
+          # Build comment body
+          cat > comment.md <<'EOF'
+          ## Pre-Deploy Check Failed
+
+          This PR contains commits that are not yet deployed or potentially not deployed in managed-service.
+
+          EOF
+
+          # Add not deployed section
+          if [ -s not_deployed.txt ]; then
+            cat >> comment.md <<'EOF'
+          ### Not Deployed Commits
+
+          These commits reference managed-service SHAs that are definitively not deployed:
+
+          EOF
+
+            while IFS='|' read -r sha subject ms_sha status; do
+              cat >> comment.md <<EOF
+          - $subject (\`$sha\`)
+            - Managed-service SHA: \`$ms_sha\`
+
+          EOF
+            done < not_deployed.txt
+          fi
+
+          # Add potentially not deployed section
+          if [ -s missing_trailer.txt ] || [ -s unexpected_status.txt ]; then
+            cat >> comment.md <<'EOF'
+          ### Potentially Not Deployed Commits
+
+          EOF
+
+            # Missing trailers section
+            if [ -s missing_trailer.txt ]; then
+              cat >> comment.md <<'EOF'
+          #### Missing Trailers
+
+          These commits lack a managed-service SHA trailer:
+
+          EOF
+
+              while IFS='|' read -r sha subject; do
+                cat >> comment.md <<EOF
+          - $subject (\`$sha\`)
+
+          EOF
+              done < missing_trailer.txt
+            fi
+
+            # Unexpected status section
+            if [ -s unexpected_status.txt ]; then
+              cat >> comment.md <<'EOF'
+          #### Unexpected Deploy Status
+
+          These commits have unexpected deployment status:
+
+          EOF
+
+              while IFS='|' read -r sha subject ms_sha output; do
+                cat >> comment.md <<EOF
+          - $subject (\`$sha\`)
+            - Managed-service SHA: \`$ms_sha\`
+            - Unexpected output: \`$output\`
+
+          EOF
+              done < unexpected_status.txt
+            fi
+          fi
+
+          cat >> comment.md <<'EOF'
+
+          ---
+
+          **Action Required:** This PR is blocked from merging until all commits are confirmed deployed in managed-service.
+
+          - For commits with missing trailers: Add the `Managed-service-commit-SHA:` trailer to the commit message
+          - For not deployed commits: Remove commit from pending deploy branch and wait for the corresponding managed-service release
+          - This check will re-run automatically when the PR is updated
+          EOF
+
+          # Post comment
+          gh pr comment "$pr_number" --body-file comment.md
+
+          echo "Posted deployment status comment to PR #$pr_number"
+
+      - name: Fail workflow if issues found
+        if: steps.check-branch.outputs.is_pending_deploy == 'true' && steps.check-deployment.outputs.has_issues == 'true'
+        run: |
+          echo "::error::Deployment check failed - see PR comment for details"
+          exit 1
+
+      - name: Summary
+        if: always()
+        run: |
+          if [ "${{ steps.check-branch.outputs.is_pending_deploy }}" != "true" ]; then
+            echo "Not a pending deploy branch - skipped checks"
+          elif [ "${{ steps.check-deployment.outputs.has_issues }}" != "true" ]; then
+            echo "All commits in pending deploy branch are deployed in managed-service"
+          else
+            echo "Some commits are not deployed or potentially not deployed"
+          fi
