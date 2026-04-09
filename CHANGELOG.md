@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Automated pending deploy branch management with two GitHub Actions workflows:
+  - `pending-deploy-pr.yml`: Automatically creates PRs from pending deploy branches to main when managed-service deploys
+  - `pending-deploy-check.yml`: Validates that SDK commits reference deployed managed-service changes before allowing merge
+
 ## [7.1.0] - 2026-04-14
 
 ### Added
