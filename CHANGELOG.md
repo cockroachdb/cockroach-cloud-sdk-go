@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Automated pending deploy branch management with two GitHub Actions workflows:
+  - `pending-deploy-pr.yml`: Automatically creates PRs from pending deploy branches to main when managed-service deploys
+  - `pending-deploy-check.yml`: Validates that SDK commits reference deployed managed-service changes before allowing merge
 - Added release workflow that auto-tags from CHANGELOG and dispatches
   sdk-release events to ccloud-private. Requires a `CCLOUD_PRIVATE_DISPATCH_PAT`
   repository secret (fine-grained PAT with contents:write on
