@@ -7,13 +7,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [7.0.0] - 2026-04-08
+
 ### Added
 
+- Added `CockroachCloudServicePrincipals` field to `Organization` model, containing
+  cloud provider service principal information (AWS, Azure, GCP).
+- Added new models: `Aws`, `Azure`, `Gcp`, `CockroachCloudServicePrincipals`.
+- Added `StartTime` and `EndTime` optional filters to `ListInvoicesOptions`.
+- Added `PaginationSortBy` option to `ListClustersOptions`, supporting sorting by
+  `NAME`, `CREATED_AT`, or `DELETED_AT`.
+- Added new organization user roles: `METRICS_VIEWER`, `CLUSTER_MONITOR`, `BILLING_VIEWER`.
+- Added new audit log actions: `UPDATE_CLUSTER_DISRUPTION`, `SET_CLUSTER_SETTING`,
+  `EVICT_BYOC_CLUSTER`, `MCP_OAUTH_CONSENT`.
+- Added new audit log source: `MCP`.
 - Added release workflow that auto-tags from CHANGELOG and dispatches
   sdk-release events to ccloud-private. Requires a `CCLOUD_PRIVATE_DISPATCH_PAT`
   repository secret (fine-grained PAT with contents:write on
   cockroachdb/ccloud-private) and a corresponding `repository_dispatch`
-  workflow in ccloud-private to handle the `sdk-release` event
+  workflow in ccloud-private to handle the `sdk-release` event.
+
+### Changed
+
+- Breaking Change: `SetClusterVersionDeferral` now accepts a `ClusterVersionDeferralUpdate`
+  request body instead of `ClusterVersionDeferral`.
 
 ## [6.10.0] - 2025-11-19
 

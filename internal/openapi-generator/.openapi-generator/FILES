@@ -20,9 +20,11 @@ docs/AuditLogEntry.md
 docs/AuditLogMetadata.md
 docs/AuditLogSource.md
 docs/AuditLogsApi.md
+docs/Aws.md
 docs/AwsCustomerCloudAccount.md
 docs/AwsEndpointConnection.md
 docs/AwsEndpointConnections.md
+docs/Azure.md
 docs/AzureCustomerCloudAccount.md
 docs/BackupConfiguration.md
 docs/BackupRestoreApi.md
@@ -58,8 +60,10 @@ docs/ClusterStatusType.md
 docs/ClusterUpgradeStatusType.md
 docs/ClusterVersionDeferral.md
 docs/ClusterVersionDeferralPolicyType.md
+docs/ClusterVersionDeferralUpdate.md
 docs/ClustersApi.md
 docs/CockroachCloudCreateRestoreRequest.md
+docs/CockroachCloudServicePrincipals.md
 docs/CockroachCloudSetRolesForUserRequest.md
 docs/CockroachCloudUpdateClusterDisruptionRequest.md
 docs/ConnectionStringParameters.md
@@ -111,6 +115,7 @@ docs/FolderResource.md
 docs/FolderResourceList.md
 docs/FolderResourceTypeType.md
 docs/FoldersApi.md
+docs/Gcp.md
 docs/GcpCustomerCloudAccount.md
 docs/GetAllRolesForUserResponse.md
 docs/GetConnectionStringResponse.md
@@ -270,11 +275,13 @@ model_audit_log_action.go
 model_audit_log_entry.go
 model_audit_log_metadata.go
 model_audit_log_source.go
+model_aws.go
 model_aws_customer_cloud_account.go
 model_aws_endpoint_connection.go
 model_aws_endpoint_connection_status_type.go
 model_aws_endpoint_connections.go
 model_aws_private_link_service_detail.go
+model_azure.go
 model_azure_customer_cloud_account.go
 model_backup_configuration.go
 model_backup_summary.go
@@ -296,6 +303,7 @@ model_cluster_status_type.go
 model_cluster_upgrade_status_type.go
 model_cluster_version_deferral.go
 model_cluster_version_deferral_policy_type.go
+model_cluster_version_deferral_update.go
 model_cmek_cluster_info.go
 model_cmek_cluster_specification.go
 model_cmek_customer_action.go
@@ -306,6 +314,7 @@ model_cmek_region_info.go
 model_cmek_region_specification.go
 model_cmek_status.go
 model_cockroach_cloud_create_restore_request.go
+model_cockroach_cloud_service_principals.go
 model_cockroach_cloud_set_roles_for_user_request.go
 model_cockroach_cloud_update_cluster_disruption_request.go
 model_connection_string_parameters.go
@@ -352,6 +361,7 @@ model_enable_log_export_request.go
 model_folder_resource.go
 model_folder_resource_list.go
 model_folder_resource_type_type.go
+model_gcp.go
 model_gcp_customer_cloud_account.go
 model_get_all_roles_for_user_response.go
 model_get_connection_string_response.go

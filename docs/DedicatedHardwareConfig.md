@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DiskIops** | **int32** | disk_iops is the number of disk I/O operations per second that are permitted on each node in the cluster. Zero indicates the cloud provider-specific default. | 
+**DiskIops** | **int32** | disk_iops is the number of disk I/O operations per second that are permitted on each node in the cluster. This value reflects the actual provisioned IOPS, which may differ from the value specified during cluster creation or update. Only AWS clusters support user-specified IOPS; for GCP and Azure clusters, IOPS is determined by the cloud provider based on disk size. A value of zero indicates the cloud provider-specific default. | 
 **MachineType** | **string** | machine_type is the machine type identifier within the given cloud provider, ex. m5.xlarge, n2-standard-4. | 
 **MemoryGib** | **float32** | memory_gib is the memory GiB per node in the cluster. | 
 **NumVirtualCpus** | **int32** | num_virtual_cpus is the number of virtual CPUs per node in the cluster. | 

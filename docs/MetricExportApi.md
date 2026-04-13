@@ -443,6 +443,7 @@ Get the CloudWatch Metric Export configuration for a cluster
 Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
+- METRICS_VIEWER
 
 
 ### Example
@@ -512,6 +513,7 @@ Get the Datadog Metric Export configuration for a cluster
 Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
+- METRICS_VIEWER
 
 
 ### Example
@@ -581,6 +583,7 @@ Get the Prometheus Metric Export configuration for a cluster
 Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
+- METRICS_VIEWER
 
 
 ### Example
