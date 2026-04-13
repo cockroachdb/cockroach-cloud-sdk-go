@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Added pending deploy branch management to release workflow to ensure automated
+  PRs that remain open after an SDK release are retargeted to the latest pending
+  deploy branch
 - Added release workflow that auto-tags from CHANGELOG and dispatches
   sdk-release events to ccloud-private. Requires a `CCLOUD_PRIVATE_DISPATCH_PAT`
   repository secret (fine-grained PAT with contents:write on

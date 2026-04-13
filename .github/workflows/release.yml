@@ -5,12 +5,16 @@ on:
     branches: [main]
 
 # contents:write is required for autotag-from-changelog to push tags.
+# pull-requests:write is required for retargeting PRs to pending deploy branches.
 permissions:
   contents: write
+  pull-requests: write
 
 jobs:
   release:
     runs-on: ubuntu-latest
+    outputs:
+      tag-created: ${{ steps.autotag.outputs.tag-created }}
     steps:
       - uses: actions/checkout@v6
         with:
@@ -35,3 +39,149 @@ jobs:
           gh api repos/cockroachdb/ccloud-private/dispatches \
             -f event_type=sdk-release \
             -f "client_payload[version]=${{ steps.autotag.outputs.tag }}"
+
+  manage-pending-deploy:
+    needs: release
+    if: needs.release.outputs.tag-created == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      # Step 1: Determine the previous pending deploy branch timestamp from main
+      # Find the most recent merged PR to main where the head branch was pending-deploy-YYYYMMDD-hhmmss
+      - name: Find previous pending deploy branch from merged PRs
+        id: previous
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "Searching for previous pending deploy branch from merged PRs..."
+
+          # Find the most recent merged PR where the head branch matched pending-deploy-YYYYMMDD-hhmmss
+          previous_branch=$(gh pr list \
+            --state merged \
+            --base main \
+            --limit 1000 \
+            --json headRefName,mergedAt \
+            --jq '[.[] | select(.headRefName | test("^pending-deploy-[0-9]{8}-[0-9]{6}$"))] | sort_by(.mergedAt) | reverse | .[0].headRefName')
+
+          if [ -z "$previous_branch" ] || [ "$previous_branch" = "null" ]; then
+            echo "No previous pending deploy branch found from merged PRs"
+            echo "previous_branch_timestamp=" >> "$GITHUB_OUTPUT"
+          else
+            echo "Found previous pending deploy branch: $previous_branch"
+
+            # Extract timestamp from the branch name: pending-deploy-YYYYMMDD-hhmmss
+            previous_branch_timestamp=$(echo "$previous_branch" | sed -E 's/^pending-deploy-([0-9]{8}-[0-9]{6})$/\1/' | tr -d '-')
+
+            echo "previous_branch_timestamp=$previous_branch_timestamp" >> "$GITHUB_OUTPUT"
+
+            echo "  Timestamp: $previous_branch_timestamp"
+          fi
+
+      # Step 2: Determine the current live pending deploy branch in the main repository
+      # Look for live remote branches matching pending-deploy-YYYYMMDD-hhmmss
+      # If multiple exist, select the one with the latest timestamp
+      - name: Find current live pending deploy branch
+        id: current
+        run: |
+          echo "Searching for live pending deploy branches in the main repository..."
+
+          # List all remote branches matching the pattern, sorted by timestamp descending
+          current_branch=$(git ls-remote --heads origin | \
+            grep -oE 'pending-deploy-[0-9]{8}-[0-9]{6}$' | \
+            sort -r | \
+            head -n 1)
+
+          if [ -z "$current_branch" ]; then
+            echo "No live pending deploy branch found"
+            echo "current_branch=" >> "$GITHUB_OUTPUT"
+            echo "current_branch_timestamp=" >> "$GITHUB_OUTPUT"
+          else
+            echo "Found current live pending deploy branch: $current_branch"
+
+            # Extract timestamp
+            current_branch_timestamp=$(echo "$current_branch" | sed -E 's/^pending-deploy-([0-9]{8}-[0-9]{6})$/\1/' | tr -d '-')
+
+            echo "current_branch=$current_branch" >> "$GITHUB_OUTPUT"
+            echo "current_branch_timestamp=$current_branch_timestamp" >> "$GITHUB_OUTPUT"
+
+            echo "  Timestamp: $current_branch_timestamp"
+          fi
+
+      # Step 3: Decide which pending deploy branch should be used now
+      # If previous timestamp >= current timestamp, create a new branch
+      - name: Select pending deploy branch
+        id: selected
+        env:
+          PREVIOUS_BRANCH_TIMESTAMP: ${{ steps.previous.outputs.previous_branch_timestamp }}
+          CURRENT_BRANCH: ${{ steps.current.outputs.current_branch }}
+          CURRENT_BRANCH_TIMESTAMP: ${{ steps.current.outputs.current_branch_timestamp }}
+        run: |
+          # Get current UTC timestamp in YYYYMMDD-hhmmss format
+          current_timestamp=$(date -u +%Y%m%d-%H%M%S)
+          echo "Current UTC timestamp: $current_timestamp"
+
+          # Decision logic: create new branch if previous >= current, otherwise use current
+          if [ -z "$CURRENT_BRANCH" ]; then
+            # No current live branch exists, create new
+            echo "No current live branch exists, creating new branch..."
+            selected_branch="pending-deploy-${current_timestamp}"
+            needs_creation=true
+          elif [ -n "$PREVIOUS_BRANCH_TIMESTAMP" ] && [ "$PREVIOUS_BRANCH_TIMESTAMP" -ge "$CURRENT_BRANCH_TIMESTAMP" ]; then
+            # Previous timestamp >= current timestamp, create new branch
+            echo "Previous timestamp ($PREVIOUS_BRANCH_TIMESTAMP) >= current timestamp ($CURRENT_BRANCH_TIMESTAMP), creating new branch..."
+            selected_branch="pending-deploy-${current_timestamp}"
+            needs_creation=true
+          else
+            # Use current live branch
+            echo "Using current live branch"
+            selected_branch="$CURRENT_BRANCH"
+            needs_creation=false
+          fi
+
+          echo "Selected pending deploy branch: $selected_branch"
+          echo "Needs creation: $needs_creation"
+
+          echo "selected_branch=$selected_branch" >> "$GITHUB_OUTPUT"
+          echo "needs_creation=$needs_creation" >> "$GITHUB_OUTPUT"
+
+      # Step 4: Ensure the selected pending deploy branch exists in the main repository
+      # Create it from main if it doesn't already exist remotely
+      - name: Create pending deploy branch if needed
+        if: steps.selected.outputs.needs_creation == 'true'
+        env:
+          SELECTED_BRANCH: ${{ steps.selected.outputs.selected_branch }}
+        run: |
+          echo "Creating pending deploy branch: $SELECTED_BRANCH"
+
+          # Create the branch from main and push it to the main repository
+          git checkout -b "$SELECTED_BRANCH" origin/main
+          git push origin "$SELECTED_BRANCH"
+
+          echo "Branch $SELECTED_BRANCH created and pushed to origin"
+
+      # Step 5: Retarget open PRs from any pending deploy branch to the selected branch
+      - name: Retarget open PRs
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SELECTED_BRANCH: ${{ steps.selected.outputs.selected_branch }}
+        run: |
+          echo "Looking for open PRs targeting pending deploy branches..."
+
+          # Find all open PRs and filter for those targeting pending-deploy-YYYYMMDD-hhmmss branches
+          prs_to_retarget=$(gh pr list --state open --json number,baseRefName --jq '.[] | select(.baseRefName | test("^pending-deploy-[0-9]{8}-[0-9]{6}$")) | select(.baseRefName != "'$SELECTED_BRANCH'") | "\(.number):\(.baseRefName)"')
+
+          if [ -z "$prs_to_retarget" ]; then
+            echo "No open PRs found targeting pending deploy branches"
+          else
+            echo "Found PRs to retarget to $SELECTED_BRANCH:"
+            echo "$prs_to_retarget" | while IFS=: read -r pr_number base_branch; do
+              echo "  PR #$pr_number (from $base_branch)"
+              gh pr edit "$pr_number" --base "$SELECTED_BRANCH"
+              echo "  Retargeted PR #$pr_number to $SELECTED_BRANCH"
+            done
+
+            echo "All PRs retargeted successfully"
+          fi
