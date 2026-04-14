@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [7.1.0] - 2026-04-14
+
 ### Added
 
 - Added `S3VpcEndpointId` field to `Region` model. This is the ID of the AWS S3
