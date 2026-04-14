@@ -22,7 +22,7 @@ Add a role to a user or service account
 Add a single role to a user or service account by providing its user_id or service_account_id.
 
 Roles that will be added as a result of this call must follow the CC rules for role assignment:
-https://www.cockroachlabs.com/docs/cockroachcloud/authorization#which-roles-grant-the-ability-to-add-remove-and-manage-members-in-in-a-cockroachdb-cloud-organization
+https://www.cockroachlabs.com/docs/cockroachcloud/authorization#organization-user-roles
 
 ### Example
 
@@ -316,7 +316,7 @@ Remove a role from a user or service account
 Remove a single role from a user or service account by providing its user_id or service_account_id.
 
 Roles that will be removed as a result of this call must follow the CC rules for role assignment:
-https://www.cockroachlabs.com/docs/cockroachcloud/authorization#which-roles-grant-the-ability-to-add-remove-and-manage-members-in-in-a-cockroachdb-cloud-organization
+https://www.cockroachlabs.com/docs/cockroachcloud/authorization#organization-user-roles
 
 ### Example
 
@@ -394,7 +394,7 @@ Replace the roles for a user or service account with exactly those provided
 Replace the entire role set for a user or service account by providing its user_id or service_account_id.
 
 Roles that will be removed or added as a result of this call must follow the CC rules for role assignment:
-https://www.cockroachlabs.com/docs/cockroachcloud/authorization#which-roles-grant-the-ability-to-add-remove-and-manage-members-in-in-a-cockroachdb-cloud-organization
+https://www.cockroachlabs.com/docs/cockroachcloud/authorization#organization-user-roles
 
 ### Example
 

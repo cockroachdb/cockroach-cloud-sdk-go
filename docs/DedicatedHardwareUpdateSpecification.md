@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DiskIops** | Pointer to **int32** | disk_iops is the number of disk I/O operations per second that are permitted on each node in the cluster. Zero indicates the cloud provider-specific default. Only available for AWS clusters. | [optional] 
+**DiskIops** | Pointer to **int32** | disk_iops is the number of disk I/O operations per second that are permitted on each node in an AWS cluster. Set to zero or omit this field to use the cloud provider-specific default based on machine type and storage size. The value returned in the response may differ from the requested value. For GCP and Azure clusters, this value is ignored and the cloud provider default is used. | [optional] 
 **MachineSpec** | Pointer to [**DedicatedMachineTypeSpecification**](DedicatedMachineTypeSpecification.md) |  | [optional] 
 **StorageGib** | Pointer to **int32** | storage_gib is the number of storage GiB per node in the cluster. | [optional] 
 

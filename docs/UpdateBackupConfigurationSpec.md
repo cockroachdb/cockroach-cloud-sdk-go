@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Enabled** | Pointer to **bool** | Indicates whether backups are enabled. | [optional] 
-**FrequencyMinutes** | Pointer to **int32** | How frequently in minutes that backups are taken, which will determine the [RPO](https://www.cockroachlabs.com/docs/stable/disaster-recovery-overview#resilience-strategy) of the cluster.  Valid values are [5, 10, 15, 30, 60, 240, 1440]. | [optional] 
+**FrequencyMinutes** | Pointer to **int32** | How frequently in minutes that backups are taken, which will determine the [RPO](https://www.cockroachlabs.com/docs/stable/disaster-recovery-overview) of the cluster.  Valid values are [5, 10, 15, 30, 60, 240, 1440]. | [optional] 
 **RetentionDays** | Pointer to **int32** | The number of days to retain backups for. Can only be set once, further changes require opening a support ticket. Valid values are [2, 7, 30, 90, 365]. | [optional] 
 
 ## Methods

@@ -80,7 +80,7 @@ Name | Type | Description  | Notes
 
 ## SetClusterVersionDeferral
 
-> ClusterVersionDeferral SetClusterVersionDeferral(ctx, clusterId).ClusterVersionDeferral(clusterVersionDeferral).Execute()
+> ClusterVersionDeferral SetClusterVersionDeferral(ctx, clusterId).ClusterVersionDeferralUpdate(clusterVersionDeferralUpdate).Execute()
 
 Set the version upgrade deferral policy for a cluster
 
@@ -103,11 +103,11 @@ import (
 
 func main() {
     clusterId := "clusterId_example" // string | 
-    clusterVersionDeferral := *openapiclient.NewClusterVersionDeferral(openapiclient.ClusterVersionDeferralPolicy.Type("NOT_DEFERRED")) // ClusterVersionDeferral | 
+    clusterVersionDeferralUpdate := *openapiclient.NewClusterVersionDeferralUpdate(openapiclient.ClusterVersionDeferralPolicy.Type("NOT_DEFERRED")) // ClusterVersionDeferralUpdate | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
-    resp, r, err := api_client.VersionDeferralApi.SetClusterVersionDeferral(context.Background(), clusterId).ClusterVersionDeferral(clusterVersionDeferral).Execute()
+    resp, r, err := api_client.VersionDeferralApi.SetClusterVersionDeferral(context.Background(), clusterId).ClusterVersionDeferralUpdate(clusterVersionDeferralUpdate).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `VersionDeferralApi.SetClusterVersionDeferral``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -130,7 +130,7 @@ Name | Type | Description  | Notes
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **clusterVersionDeferral** | [**ClusterVersionDeferral**](ClusterVersionDeferral.md) |  | 
+ **clusterVersionDeferralUpdate** | [**ClusterVersionDeferralUpdate**](ClusterVersionDeferralUpdate.md) |  | 
 
 ### Return type
 

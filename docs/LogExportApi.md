@@ -162,6 +162,7 @@ Can be used by the following roles assigned at the organization, folder or clust
 - ORG_ADMIN
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
+- METRICS_VIEWER
 
 
 ### Example

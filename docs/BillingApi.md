@@ -80,7 +80,7 @@ Name | Type | Description  | Notes
 
 ## ListInvoices
 
-> ListInvoicesResponse ListInvoices(ctx).Status(status).Execute()
+> ListInvoicesResponse ListInvoices(ctx).Status(status).StartTime(startTime).EndTime(endTime).Execute()
 
 List invoices for a given organization
 
@@ -100,15 +100,18 @@ import (
     "context"
     "fmt"
     "os"
+    "time"
     openapiclient "./openapi"
 )
 
 func main() {
     status := "status_example" // string | Filters the response to only include invoices with the specified status. This will be sent as a query parameter on the GET request. If not specified, both Finalized and Draft invoices will be included. (optional)
+    startTime := time.Now() // time.Time | start_time filters the response to invoices whose billing period started at or after this time (inclusive). Defaults to organization creation time if omitted. (optional)
+    endTime := time.Now() // time.Time | end_time filters the response to invoices whose billing period ended at or before this time (exclusive). Defaults to current time if omitted. (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
-    resp, r, err := api_client.BillingApi.ListInvoices(context.Background()).Status(status).Execute()
+    resp, r, err := api_client.BillingApi.ListInvoices(context.Background()).Status(status).StartTime(startTime).EndTime(endTime).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `BillingApi.ListInvoices``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -131,6 +134,8 @@ Optional parameters can be passed through a pointer to the ListInvoicesOptions s
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **status** | **string** | Filters the response to only include invoices with the specified status. This will be sent as a query parameter on the GET request. If not specified, both Finalized and Draft invoices will be included. | 
+ **startTime** | **time.Time** | start_time filters the response to invoices whose billing period started at or after this time (inclusive). Defaults to organization creation time if omitted. | 
+ **endTime** | **time.Time** | end_time filters the response to invoices whose billing period ended at or before this time (exclusive). Defaults to current time if omitted. | 
 
 ### Return type
 

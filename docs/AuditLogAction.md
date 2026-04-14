@@ -190,6 +190,14 @@
 
 * `END_FAULT_TOLERANCE_DEMO` (value: `"AUDIT_LOG_ACTION_END_FAULT_TOLERANCE_DEMO"`)
 
+* `UPDATE_CLUSTER_DISRUPTION` (value: `"AUDIT_LOG_ACTION_UPDATE_CLUSTER_DISRUPTION"`)
+
+* `SET_CLUSTER_SETTING` (value: `"AUDIT_LOG_ACTION_SET_CLUSTER_SETTING"`)
+
+* `EVICT_BYOC_CLUSTER` (value: `"AUDIT_LOG_ACTION_EVICT_BYOC_CLUSTER"`)
+
+* `MCP_OAUTH_CONSENT` (value: `"AUDIT_LOG_ACTION_MCP_OAUTH_CONSENT"`)
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
