@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Added `S3VpcEndpointId` field to `Region` model. This is the ID of the AWS S3
+  VPC gateway endpoint associated with a cluster region, used to configure S3
+  bucket policies. Only populated for Advanced clusters on AWS.
+
 ## [7.0.0] - 2026-04-08
 
 ### Added
