@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Added automated workflow for OpenAPI spec synchronization from managed-service.
+  Supports both `openapi-spec-changed` (creates/updates PRs) and `openapi-spec-merged`
+  (updates PRs with exact merged commit) event types.
+
 ## [7.1.0] - 2026-04-14
 
 ### Added

@@ -6,9 +6,9 @@ TOOLPATH := $(abspath bin)
 .PHONY: generate-openapi-client
 generate-openapi-client: bin/goimports
 	rm -rf ./pkg/client/*.go docs
-	docker-compose -f ./docker-compose.yml run --rm \
+	docker compose -f ./docker-compose.yml run --rm \
 		jq -M -f filter.jq internal/spec/openapi.json > internal/openapi-generator/api/openapi-modified.json
-	docker-compose -f ./docker-compose.yml run --rm \
+	docker compose -f ./docker-compose.yml run --rm \
 		openapi-generator generate \
 			-g go \
 			-i internal/openapi-generator/api/openapi-modified.json \

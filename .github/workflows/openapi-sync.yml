@@ -1,0 +1,60 @@
+name: Sync OpenAPI Spec from Managed Service
+
+on:
+  workflow_dispatch:
+    inputs:
+      event_type:
+        description: 'Event type (openapi-spec-changed or openapi-spec-merged)'
+        required: true
+        type: choice
+        options:
+          - openapi-spec-changed
+          - openapi-spec-merged
+      pr_url:
+        description: 'Managed-service PR URL'
+        required: true
+        type: string
+      sha:
+        description: 'Managed-service commit SHA (required for merged events)'
+        required: false
+        type: string
+
+# Required permissions for the workflow
+permissions:
+  contents: write
+  pull-requests: write
+  id-token: write
+
+jobs:
+  openapi-sync:
+    runs-on: ubuntu-latest
+    env:
+      EVENT_TYPE: ${{ github.event.inputs.event_type }}
+      MANAGED_SERVICE_PR_URL: ${{ github.event.inputs.pr_url }}
+      MANAGED_SERVICE_SHA: ${{ github.event.inputs.sha }}
+      MANAGED_SERVICE_TOKEN: ${{ secrets.MANAGED_SERVICE_TOKEN }}
+      FORK_OWNER: "crl-console-bot"
+      FORK_PUSH_TOKEN: ${{ secrets.FORK_PUSH_TOKEN }}
+      CREATE_PR_TOKEN: ${{ github.token }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          token: ${{ github.token }}
+          persist-credentials: false
+
+      - name: Set up Go
+        uses: actions/setup-go@v6
+        with:
+          go-version-file: go.mod
+
+      - name: Authenticate to Google Cloud (Vertex AI)
+        uses: google-github-actions/auth@v3
+        with:
+          project_id: vertex-model-runners
+          service_account: vertex-ai-user@vertex-model-runners.iam.gserviceaccount.com
+          workload_identity_provider: projects/108106229451/locations/global/workloadIdentityPools/vertex-ai-user/providers/vertex-ai-user
+
+      - name: Run OpenAPI sync workflow
+        run: scripts/openapi-sync.sh
