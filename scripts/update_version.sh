@@ -17,11 +17,7 @@ source "$SCRIPT_DIR/lib/validation.sh"
 check_required_commands cut sed make
 
 # Check if VERSION environment variable is set
-if [ -z "$VERSION" ]; then
-    log_error "VERSION environment variable is required"
-    log_error "This script is intended to be called by the create-release-pr workflow"
-    exit 1
-fi
+check_required_env VERSION || exit 1
 
 log_info "Updating version to $VERSION in config and documentation files..."
 
