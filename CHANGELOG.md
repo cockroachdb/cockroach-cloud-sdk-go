@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Added automated workflow for OpenAPI spec synchronization from managed-service.
+  Supports both `openapi-spec-changed` (creates/updates PRs) and `openapi-spec-merged`
+  (updates PRs with exact merged commit) event types.
 - Automated release workflow that creates release PRs when `automation/pending-deploy-*`
   branches are merged to main, updating the version number in all relevant files
 - Added pending deploy branch management to release workflow to ensure automated
