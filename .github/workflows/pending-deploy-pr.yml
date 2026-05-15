@@ -1,0 +1,83 @@
+name: Pending Deploy PR
+
+# This workflow creates PRs to apply pending deploy changes to main.
+#
+# Trigger: workflow_dispatch - called by TeamCity when managed-service is deployed
+# Purpose: Automatically create a PR to merge the latest automation/pending-deploy-* branch into main
+#
+# Flow:
+# 1. Find the latest automation/pending-deploy-YYYYMMDD-HHMMSS branch
+# 2. Check if it has commits not in main
+# 3. Create a PR if one doesn't already exist
+
+on:
+  workflow_dispatch:
+    inputs:
+      timestamp:
+        description: 'Deployment timestamp'
+        required: true
+        type: string
+      commit_sha:
+        description: 'Deployed commit SHA'
+        required: true
+        type: string
+
+permissions:
+  contents: read  # Checkout repository and read branches/tags
+  pull-requests: write  # Create and update PRs
+  actions: write  # Trigger pending deploy check workflow
+
+jobs:
+  pending-deploy-pr:
+    runs-on: ubuntu-latest
+    outputs:
+      branch: ${{ steps.create-pr.outputs.branch }}
+      pr_url: ${{ steps.create-pr.outputs.pr_url }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0  # Need full history to compare branches and commits
+
+      - name: Run pending deploy PR workflow
+        id: create-pr
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: scripts/pending-deploy-pr.sh
+
+      # GitHub Actions doesn't automatically trigger workflows when a PR is created using GITHUB_TOKEN
+      # (to prevent recursive workflow triggers). Since we need deployment validation to run,
+      # we explicitly dispatch the check workflow here.
+      - name: Trigger pending deploy check
+        if: steps.create-pr.outputs.pr_url != '' && steps.create-pr.outputs.branch != ''
+        id: trigger-check
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          source scripts/lib/actions-helpers.sh
+          if ! gh workflow run pending-deploy-check.yml \
+            --repo ${{ github.repository }} \
+            --field branch="${{ steps.create-pr.outputs.branch }}" \
+            --field pr_url="${{ steps.create-pr.outputs.pr_url }}"; then
+            log_error "Failed to trigger pending-deploy-check workflow. You may need to manually trigger the check for ${{ steps.create-pr.outputs.pr_url }}"
+          else
+            log_info "Successfully triggered pending-deploy-check workflow"
+          fi
+
+      - name: Summary
+        if: always()
+        run: |
+          source scripts/lib/actions-helpers.sh
+          if [ -z "${{ steps.create-pr.outputs.branch }}" ]; then
+            log_info "No pending deploy branches found"
+          elif [ "${{ steps.create-pr.outputs.has_new_commits }}" != "true" ]; then
+            log_info "Pending deploy branch has no new commits"
+          elif [ -n "${{ steps.create-pr.outputs.pr_url }}" ]; then
+            log_info "PR created or updated for pending deploy branch"
+            if [ "${{ steps.trigger-check.outcome }}" = "success" ]; then
+              log_info "Deployment check workflow triggered successfully"
+            elif [ "${{ steps.trigger-check.outcome }}" = "failure" ]; then
+              log_info "Failed to trigger deployment check workflow"
+            fi
+          fi

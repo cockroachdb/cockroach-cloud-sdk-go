@@ -1,0 +1,92 @@
+name: Pending Deploy Check
+
+# This workflow validates that pending deploy PRs are safe to merge.
+#
+# Trigger: Pull requests to main from automation/pending-deploy-* branches
+# Purpose: Verify all commits in the PR have been deployed in managed-service
+#
+# Why: SDK changes are generated from managed-service OpenAPI specs. We must ensure
+# the corresponding managed-service changes have been deployed before merging the SDK changes,
+# otherwise the SDK could reference unreleased API features.
+#
+# Flow:
+# 1. For each commit in the PR, extract the Managed-service-commit-SHA trailer
+# 2. Check if that SHA is in the latest managed-service release tag
+# 3. If any commits are not yet deployed, post a detailed comment and fail the PR
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Pending deploy branch to check'
+        required: true
+        type: string
+      pr_url:
+        description: 'PR URL to comment on if check fails'
+        required: true
+        type: string
+
+permissions:
+  contents: read  # Checkout repository and read commit history
+  pull-requests: write  # Post failure comments on PRs
+
+jobs:
+  pending-deploy-check:
+    runs-on: ubuntu-latest
+    if: |
+      (github.event_name == 'pull_request' && startsWith(github.head_ref, 'automation/pending-deploy-')) ||
+      (github.event_name == 'workflow_dispatch' && startsWith(inputs.branch, 'automation/pending-deploy-'))
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Validate workflow input
+        if: github.event_name == 'workflow_dispatch'
+        id: validate-input
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          source scripts/lib/actions-helpers.sh
+
+          # Extract PR number from URL
+          PR_NUMBER=$(echo "${{ inputs.pr_url }}" | grep -oE '[0-9]+$')
+          set_output pr_number "$PR_NUMBER"
+
+          # Validate the PR's head branch matches the input branch
+          PR_HEAD_BRANCH=$(gh pr view "$PR_NUMBER" --json headRefName --jq '.headRefName')
+          if [ "$PR_HEAD_BRANCH" != "${{ inputs.branch }}" ]; then
+            log_error "PR #$PR_NUMBER head branch ($PR_HEAD_BRANCH) does not match input branch (${{ inputs.branch }})"
+            exit 1
+          fi
+
+      - name: Run deployment check
+        id: check-deployment
+        env:
+          PENDING_DEPLOY_BRANCH: ${{ inputs.branch || github.head_ref }}
+          MANAGED_SERVICE_TOKEN: ${{ secrets.MANAGED_SERVICE_TOKEN }}
+        run: scripts/pending-deploy-check.sh
+
+      - name: Post failure comment and fail
+        if: steps.check-deployment.outputs.has_issues == 'true'
+        env:
+          PR_NUMBER: ${{ steps.validate-input.outputs.pr_number || github.event.pull_request.number }}
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          scripts/post-failure-comment.sh
+          source scripts/lib/actions-helpers.sh
+          log_error "Deployment check failed - see PR comment for details"
+          exit 1
+
+      - name: Summary
+        if: always()
+        run: |
+          source scripts/lib/actions-helpers.sh
+          if [ "${{ steps.check-deployment.outputs.has_issues }}" != "true" ]; then
+            log_info "All commits in pending deploy branch are deployed in managed-service"
+          else
+            log_info "Some commits are not deployed or potentially not deployed"
+          fi
