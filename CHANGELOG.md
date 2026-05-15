@@ -11,6 +11,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Automated release workflow that creates release PRs when `automation/pending-deploy-*`
   branches are merged to main, updating the version number in all relevant files
+- Added pending deploy branch management to release workflow to ensure automated
+  PRs that remain open after an SDK release are retargeted to the latest pending
+  deploy branch
 
 ## [7.1.0] - 2026-04-14
 
