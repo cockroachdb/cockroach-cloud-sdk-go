@@ -15,6 +15,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   PRs that remain open after an SDK release are retargeted to the latest pending
   deploy branch
 
+### Changed
+
+- Updated release workflow to trigger ccloud-private CLI sync using workflow_dispatch
+  instead of repository_dispatch.
+
 ## [7.1.0] - 2026-04-14
 
 ### Added
