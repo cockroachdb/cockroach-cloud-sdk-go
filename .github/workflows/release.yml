@@ -12,7 +12,7 @@ jobs:
   release:
     runs-on: ubuntu-latest
     outputs:
-      tag-created: ${{ steps.autotag.outputs.tag-created }}
+      tag_created: ${{ steps.autotag.outputs.tag_created }}
     steps:
       - uses: actions/checkout@v6
         with:
@@ -21,12 +21,12 @@ jobs:
       - uses: cockroachdb/actions/autotag-from-changelog@v0
         id: autotag
 
-      # Dispatches an sdk-release event to ccloud-private. Requires a
+      # Triggers the sync-cli-with-sdk workflow in ccloud-private. Requires a
       # CCLOUD_PRIVATE_DISPATCH_PAT secret — a fine-grained PAT with
-      # contents:write on cockroachdb/ccloud-private, since GITHUB_TOKEN
+      # actions:write on cockroachlabs/ccloud-private, since GITHUB_TOKEN
       # cannot trigger workflows in other repositories.
       - name: Dispatch to ccloud-private
-        if: steps.autotag.outputs.tag-created == 'true'
+        if: steps.autotag.outputs.tag_created == 'true'
         env:
           GH_TOKEN: ${{ secrets.CCLOUD_PRIVATE_DISPATCH_PAT }}
         run: |
@@ -36,9 +36,9 @@ jobs:
             log_warning "CCLOUD_PRIVATE_DISPATCH_PAT secret is required. Skipping dispatch to ccloud-private for ${{ steps.autotag.outputs.tag }}."
             exit 0
           fi
-          gh api repos/cockroachdb/ccloud-private/dispatches \
-            --field event_type=sdk-release \
-            --field "client_payload[version]=${{ steps.autotag.outputs.tag }}"
+          gh workflow run sync-cli-with-sdk.yml \
+            --repo cockroachlabs/ccloud-private \
+            --field sdk_version=${{ steps.autotag.outputs.tag }}
 
   # After a successful release, this job ensures there's always a fresh pending deploy
   # branch ready for the next release cycle. It:
@@ -49,7 +49,7 @@ jobs:
   # 4. Retargets all open PRs to point to the current pending deploy branch
   manage-pending-deploy:
     needs: release
-    if: needs.release.outputs.tag-created == 'true'
+    if: needs.release.outputs.tag_created == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
