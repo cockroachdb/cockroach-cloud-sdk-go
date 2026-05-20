@@ -1,0 +1,97 @@
+name: Sync OpenAPI Spec from Managed Service
+
+on:
+  workflow_dispatch:
+    inputs:
+      event_type:
+        description: 'Event type (openapi-spec-changed or openapi-spec-merged)'
+        required: true
+        type: choice
+        options:
+          - openapi-spec-changed
+          - openapi-spec-merged
+      pr_url:
+        description: 'Managed-service PR URL'
+        required: true
+        type: string
+      sha:
+        description: 'Managed-service commit SHA (required for merged events)'
+        required: false
+        type: string
+
+permissions:
+  contents: write       # Push commits to fork branch
+  pull-requests: write  # Create/update pull requests in upstream repo
+  id-token: write       # Authenticate to Google Cloud for Vertex AI
+
+jobs:
+  openapi-sync:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_REPOSITORY: ${{ github.repository }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Validate branch
+        run: |
+          source scripts/lib/actions-helpers.sh
+          if [[ "${{ github.ref }}" != "refs/heads/main" ]]; then
+            log_error "This workflow can only be triggered from the main branch (current ref: ${{ github.ref }})"
+            exit 1
+          fi
+
+      - name: Set up Go
+        uses: actions/setup-go@v6
+        with:
+          go-version-file: go.mod  # Required by make generate-openapi-client and make validate
+
+      - name: Authenticate to Google Cloud (Vertex AI)
+        uses: google-github-actions/auth@v3
+        with:
+          project_id: vertex-model-runners
+          service_account: vertex-ai-user@vertex-model-runners.iam.gserviceaccount.com
+          workload_identity_provider: projects/108106229451/locations/global/workloadIdentityPools/vertex-ai-user/providers/vertex-ai-user
+
+      - name: Generate updated client from OpenAPI spec
+        id: sync
+        env:
+          EVENT_TYPE: ${{ github.event.inputs.event_type }}
+          MANAGED_SERVICE_PR_URL: ${{ github.event.inputs.pr_url }}
+          MANAGED_SERVICE_SHA: ${{ github.event.inputs.sha }}
+          MANAGED_SERVICE_TOKEN: ${{ secrets.MANAGED_SERVICE_TOKEN }}
+          FORK_OWNER: crl-gh-actions-pr-bot
+          FORK_PUSH_TOKEN: ${{ secrets.FORK_PUSH_TOKEN }}
+          GH_TOKEN: ${{ github.token }}
+        run: scripts/openapi-sync-generate.sh
+
+      - name: Update changelog with Claude
+        id: changelog
+        if: steps.sync.outputs.has_changes == 'true'
+        env:
+          BASE_BRANCH: ${{ steps.sync.outputs.base_branch }}
+          HAS_CHANGES: ${{ steps.sync.outputs.has_changes }}
+        run: scripts/openapi-sync-update-changelog.sh
+
+      - name: Publish changes (commit and create PR)
+        if: steps.sync.outputs.has_changes == 'true' || github.event.inputs.event_type == 'openapi-spec-merged'
+        env:
+          EVENT_TYPE: ${{ github.event.inputs.event_type }}
+          MANAGED_SERVICE_PR_URL: ${{ github.event.inputs.pr_url }}
+          MANAGED_SERVICE_SHA: ${{ github.event.inputs.sha }}
+          FORK_OWNER: crl-gh-actions-pr-bot
+          FORK_PUSH_TOKEN: ${{ secrets.FORK_PUSH_TOKEN }}
+          GH_TOKEN: ${{ github.token }}
+          BASE_BRANCH: ${{ steps.sync.outputs.base_branch }}
+          HAS_CHANGES: ${{ steps.sync.outputs.has_changes }}
+          EXISTING_SDK_PR: ${{ steps.sync.outputs.existing_sdk_pr }}
+          HEAD_BRANCH: ${{ steps.sync.outputs.head_branch }}
+          SDK_PR_NUMBER: ${{ steps.sync.outputs.sdk_pr_number }}
+          COMMIT_TITLE: ${{ steps.changelog.outputs.commit_title }}
+          COMMIT_BODY: ${{ steps.changelog.outputs.commit_body }}
+          PR_TITLE: ${{ steps.changelog.outputs.pr_title }}
+          PR_DESCRIPTION: ${{ steps.changelog.outputs.pr_description }}
+        run: scripts/openapi-sync-publish.sh
