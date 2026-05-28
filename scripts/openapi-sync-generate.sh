@@ -51,6 +51,7 @@ main() {
     echo "existing_sdk_pr=$EXISTING_SDK_PR"
     echo "head_branch=$HEAD_BRANCH"
     echo "sdk_pr_number=${SDK_PR_NUMBER:-}"
+    echo "managed_service_pr_author=${MS_PR_AUTHOR:-}"
   } >> "$GITHUB_OUTPUT"
 
   log_info "=== OpenAPI sync step completed: Generate ==="
