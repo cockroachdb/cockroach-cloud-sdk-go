@@ -90,6 +90,7 @@ jobs:
           EXISTING_SDK_PR: ${{ steps.sync.outputs.existing_sdk_pr }}
           HEAD_BRANCH: ${{ steps.sync.outputs.head_branch }}
           SDK_PR_NUMBER: ${{ steps.sync.outputs.sdk_pr_number }}
+          MANAGED_SERVICE_PR_AUTHOR: ${{ steps.sync.outputs.managed_service_pr_author }}
           COMMIT_TITLE: ${{ steps.changelog.outputs.commit_title }}
           COMMIT_BODY: ${{ steps.changelog.outputs.commit_body }}
           PR_TITLE: ${{ steps.changelog.outputs.pr_title }}

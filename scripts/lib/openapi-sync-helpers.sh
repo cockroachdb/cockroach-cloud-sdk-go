@@ -93,12 +93,13 @@ validate_event_payload() {
 # Parse managed-service PR metadata from URL
 #
 # Validates that the URL is from cockroachlabs/managed-service and extracts
-# the PR number.
+# the PR number and author.
 #
 # Exports:
 #   MS_OWNER: The GitHub organization
 #   MS_REPO: The repository name
 #   MS_PR_NUMBER: The managed-service PR number
+#   MS_PR_AUTHOR: The managed-service PR author's GitHub login (empty on lookup failure)
 parse_managed_service_pr_url() {
   MS_OWNER="cockroachlabs"
   MS_REPO="managed-service"
@@ -113,8 +114,18 @@ parse_managed_service_pr_url() {
 
   log_info "Managed-service PR: $MS_OWNER/$MS_REPO#$MS_PR_NUMBER"
 
+  # Look up PR author so we can request them as a reviewer on the SDK PR.
+  # Best-effort: failures here must not abort the sync.
+  MS_PR_AUTHOR=$(GH_TOKEN="$MANAGED_SERVICE_TOKEN" \
+    gh api "repos/$MS_OWNER/$MS_REPO/pulls/$MS_PR_NUMBER" --jq '.user.login' || true)
+  if [[ -n "$MS_PR_AUTHOR" ]]; then
+    log_info "Managed-service PR author: $MS_PR_AUTHOR"
+  else
+    log_warning "Could not resolve managed-service PR author; SDK PR will be created without a requested reviewer"
+  fi
+
   # Export for use in other functions
-  export MS_OWNER MS_REPO MS_PR_NUMBER
+  export MS_OWNER MS_REPO MS_PR_NUMBER MS_PR_AUTHOR
 }
 
 # Configure Git
@@ -500,13 +511,32 @@ create_or_update_pr() {
     # Create a new PR from the fork to the base branch
     log_info "Creating new SDK PR from $FORK_OWNER:$HEAD_BRANCH to $GITHUB_REPOSITORY:$BASE_BRANCH"
 
-    gh pr create \
+    local pr_url
+    pr_url=$(gh pr create \
       --repo "$GITHUB_REPOSITORY" \
       --head "$FORK_OWNER:$HEAD_BRANCH" \
       --base "$BASE_BRANCH" \
       --title "$PR_TITLE" \
-      --body "$PR_DESCRIPTION"
+      --body "$PR_DESCRIPTION")
 
-    log_info "SDK PR created successfully"
+    log_info "SDK PR created: $pr_url"
+
+    # Request the managed-service PR author as a reviewer. Best-effort: failures
+    # (e.g. user lacks push access, account is a bot, lookup returned empty)
+    # must not fail the workflow since the PR itself was created successfully.
+    if [[ -n "${MANAGED_SERVICE_PR_AUTHOR:-}" ]]; then
+      # Use the REST API directly rather than `gh pr edit --add-reviewer`, which
+      # runs a GraphQL query that resolves the reviewer as either a user or a
+      # team and therefore requires `read:org` scope. The PR author is always a
+      # user, so the REST endpoint is sufficient and works with the default
+      # workflow token scopes.
+      if gh api --method POST \
+        "repos/$GITHUB_REPOSITORY/pulls/$(basename "$pr_url")/requested_reviewers" \
+        --field "reviewers[]=$MANAGED_SERVICE_PR_AUTHOR" >/dev/null; then
+        log_info "Requested $MANAGED_SERVICE_PR_AUTHOR as reviewer"
+      else
+        log_warning "Could not add $MANAGED_SERVICE_PR_AUTHOR as reviewer; SDK PR was created successfully"
+      fi
+    fi
   fi
 }
