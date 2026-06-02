@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Added `sync-fork.yml`: on every push to upstream main (and via manual workflow_dispatch), pushes
+  upstream main to `crl-gh-actions-pr-bot`'s fork main using the cockroachdb/actions `sync-fork`
+  reusable workflow.
 - Added automated workflow for OpenAPI spec synchronization from managed-service.
   Supports both `openapi-spec-changed` (creates/updates PRs) and `openapi-spec-merged`
   (updates PRs with exact merged commit) event types.
