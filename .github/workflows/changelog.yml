@@ -5,6 +5,10 @@ on:
     paths:
       - 'CHANGELOG.md'
 
+
+permissions:
+  contents: read
+
 jobs:
   changelog:
     uses: cockroachdb/actions/.github/workflows/pr-changelog-check.yml@v0
