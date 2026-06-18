@@ -511,13 +511,20 @@ create_or_update_pr() {
     # Create a new PR from the fork to the base branch
     log_info "Creating new SDK PR from $FORK_OWNER:$HEAD_BRANCH to $GITHUB_REPOSITORY:$BASE_BRANCH"
 
+    # --no-maintainer-edit is required: GH_TOKEN is the upstream repo's
+    # workflow token and has no write access to the fork, so it cannot grant
+    # "Allow edits by maintainers" (fork collab). Without this flag, PR
+    # creation fails with "Fork collab can't be granted by someone without
+    # permission". Reviewers who need to push fixups can be added as
+    # collaborators on the fork instead.
     local pr_url
     pr_url=$(gh pr create \
       --repo "$GITHUB_REPOSITORY" \
       --head "$FORK_OWNER:$HEAD_BRANCH" \
       --base "$BASE_BRANCH" \
       --title "$PR_TITLE" \
-      --body "$PR_DESCRIPTION")
+      --body "$PR_DESCRIPTION" \
+      --no-maintainer-edit)
 
     log_info "SDK PR created: $pr_url"
 
