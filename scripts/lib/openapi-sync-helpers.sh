@@ -331,10 +331,11 @@ update_changelog() {
   claude --print \
     --model claude-opus-4-6 \
     --output-format json \
+    --verbose \
     --max-turns 15 \
     --allowedTools "Read,Edit(CHANGELOG.md),Bash(git:diff:*),Bash(printenv BASE_BRANCH)" \
     < "$prompt_file" \
-    > "$output_file" 2>&1 || {
+    > "$output_file" || {
       log_error "Claude CLI failed"
       cat "$output_file" >&2
       return 1
