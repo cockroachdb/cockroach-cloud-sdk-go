@@ -327,23 +327,33 @@ update_changelog() {
   # Call Claude CLI
   # WARNING: Do not modify --allowedTools without security review.
   # These restrictions sandbox Claude to only edit CHANGELOG.md and run specific git commands.
+  #
+  # --output-format stream-json --verbose emits one JSON event per turn (tool
+  # call, tool result, assistant message, final result) instead of buffering a
+  # single JSON object at the end. Piping through tee streams those events to
+  # the GitHub Actions log live while still capturing them for result parsing.
   log_info "Calling Claude CLI..."
+  # Wrap the stream in a GitHub Actions log group so the per-turn JSON events
+  # collapse to a single expandable section in the workflow UI instead of
+  # drowning out surrounding step output.
+  echo "::group::Claude stream"
   claude --print \
     --model claude-opus-4-6 \
-    --output-format json \
+    --output-format stream-json \
     --verbose \
     --max-turns 15 \
     --allowedTools "Read,Edit(CHANGELOG.md),Bash(git:diff:*),Bash(printenv BASE_BRANCH)" \
     < "$prompt_file" \
-    > "$output_file" || {
+    | tee "$output_file" || {
+      echo "::endgroup::"
       log_error "Claude CLI failed"
-      cat "$output_file" >&2
       return 1
     }
+  echo "::endgroup::"
 
-  # Extract result text from JSON
+  # Extract result text from the final "result" event in the stream
   local result_text
-  result_text=$(jq --raw-output '.result // empty' "$output_file")
+  result_text=$(jq --raw-output 'select(.type == "result") | .result // empty' "$output_file")
 
   if [[ -z "${result_text:-}" ]]; then
     log_error "Claude produced empty result"
