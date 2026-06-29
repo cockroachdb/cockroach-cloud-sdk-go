@@ -57,7 +57,7 @@ type Service interface {
 	//
 
 	// Create a restore
-	CreateRestore(ctx _context.Context, destinationClusterId string, cockroachCloudCreateRestoreRequest *CockroachCloudCreateRestoreRequest) (*Restore, *_nethttp.Response, error)
+	CreateRestore(ctx _context.Context, destinationClusterId string, createRestoreBody *CreateRestoreBody) (*Restore, *_nethttp.Response, error)
 	// Get the backup configuration for a cluster
 	GetBackupConfiguration(ctx _context.Context, clusterId string) (*BackupConfiguration, *_nethttp.Response, error)
 	// View a restore job
@@ -83,7 +83,7 @@ type Service interface {
 	//
 
 	// Create a blackout window for a cluster
-	CreateBlackoutWindow(ctx _context.Context, clusterId string, createBlackoutWindowRequest *CreateBlackoutWindowRequest) (*BlackoutWindow, *_nethttp.Response, error)
+	CreateBlackoutWindow(ctx _context.Context, clusterId string, createBlackoutWindowBody *CreateBlackoutWindowBody) (*BlackoutWindow, *_nethttp.Response, error)
 	// Delete a blackout window for a cluster
 	DeleteBlackoutWindow(ctx _context.Context, clusterId string, blackoutWindowId string) (*BlackoutWindow, *_nethttp.Response, error)
 	// Get a blackout window by its ID for a cluster
@@ -91,7 +91,7 @@ type Service interface {
 	// List all blackout windows for a cluster
 	ListBlackoutWindows(ctx _context.Context, clusterId string, options *ListBlackoutWindowsOptions) (*ListBlackoutWindowsResponse, *_nethttp.Response, error)
 	// Update a blackout window for a cluster
-	UpdateBlackoutWindow(ctx _context.Context, clusterId string, blackoutWindowId string, updateBlackoutWindowRequest *UpdateBlackoutWindowRequest) (*BlackoutWindow, *_nethttp.Response, error)
+	UpdateBlackoutWindow(ctx _context.Context, clusterId string, blackoutWindowId string, updateBlackoutWindowBody *UpdateBlackoutWindowBody) (*BlackoutWindow, *_nethttp.Response, error)
 
 	//
 	// ClientCACertificates
@@ -102,9 +102,9 @@ type Service interface {
 	// Get Client CA Cert information for a cluster
 	GetClientCACert(ctx _context.Context, clusterId string) (*ClientCACertInfo, *_nethttp.Response, error)
 	// Set Client CA Cert for a cluster
-	SetClientCACert(ctx _context.Context, clusterId string, setClientCACertRequest *SetClientCACertRequest) (*ClientCACertInfo, *_nethttp.Response, error)
+	SetClientCACert(ctx _context.Context, clusterId string, setClientCACertBody *SetClientCACertBody) (*ClientCACertInfo, *_nethttp.Response, error)
 	// Update Client CA Cert for a cluster
-	UpdateClientCACert(ctx _context.Context, clusterId string, updateClientCACertRequest *UpdateClientCACertRequest) (*ClientCACertInfo, *_nethttp.Response, error)
+	UpdateClientCACert(ctx _context.Context, clusterId string, updateClientCACertBody *UpdateClientCACertBody) (*ClientCACertInfo, *_nethttp.Response, error)
 
 	//
 	// ClusterDisruption
@@ -113,7 +113,7 @@ type Service interface {
 	// Get disruption specifications for a cluster
 	GetClusterDisruptionInfo(ctx _context.Context, clusterId string) (*ClusterDisruptionInfo, *_nethttp.Response, error)
 	// Update disruption specifications for a cluster
-	UpdateClusterDisruption(ctx _context.Context, clusterId string, cockroachCloudUpdateClusterDisruptionRequest *CockroachCloudUpdateClusterDisruptionRequest) (*ClusterDisruptionInfo, *_nethttp.Response, error)
+	UpdateClusterDisruption(ctx _context.Context, clusterId string, updateClusterDisruptionBody *UpdateClusterDisruptionBody) (*ClusterDisruptionInfo, *_nethttp.Response, error)
 
 	//
 	// Clusters
@@ -143,26 +143,26 @@ type Service interface {
 	//
 
 	// Enable CMEK for a cluster
-	EnableCMEKSpec(ctx _context.Context, clusterId string, cMEKClusterSpecification *CMEKClusterSpecification) (*CMEKClusterInfo, *_nethttp.Response, error)
+	EnableCMEKSpec(ctx _context.Context, clusterId string, enableCMEKSpecBody *EnableCMEKSpecBody) (*CMEKClusterInfo, *_nethttp.Response, error)
 	// Get CMEK-related information for a cluster
 	GetCMEKClusterInfo(ctx _context.Context, clusterId string) (*CMEKClusterInfo, *_nethttp.Response, error)
 	// Enable or update the CMEK spec for a cluster
-	UpdateCMEKSpec(ctx _context.Context, clusterId string, cMEKClusterSpecification *CMEKClusterSpecification) (*CMEKClusterInfo, *_nethttp.Response, error)
+	UpdateCMEKSpec(ctx _context.Context, clusterId string, updateCMEKSpecBody *UpdateCMEKSpecBody) (*CMEKClusterInfo, *_nethttp.Response, error)
 	// Update the CMEK-related status for a cluster
-	UpdateCMEKStatus(ctx _context.Context, clusterId string, updateCMEKStatusRequest *UpdateCMEKStatusRequest) (*CMEKClusterInfo, *_nethttp.Response, error)
+	UpdateCMEKStatus(ctx _context.Context, clusterId string, updateCMEKStatusBody *UpdateCMEKStatusBody) (*CMEKClusterInfo, *_nethttp.Response, error)
 
 	//
 	// Databases
 	//
 
 	// Create a new database
-	CreateDatabase(ctx _context.Context, clusterId string, createDatabaseRequest *CreateDatabaseRequest) (*Database, *_nethttp.Response, error)
+	CreateDatabase(ctx _context.Context, clusterId string, createDatabaseBody *CreateDatabaseBody) (*Database, *_nethttp.Response, error)
 	// Delete a database
 	DeleteDatabase(ctx _context.Context, clusterId string, name string) (*Database, *_nethttp.Response, error)
 	// Update a database
-	EditDatabase(ctx _context.Context, clusterId string, name string, updateDatabaseRequest1 *UpdateDatabaseRequest1) (*Database, *_nethttp.Response, error)
+	EditDatabase(ctx _context.Context, clusterId string, name string, editDatabaseBody *EditDatabaseBody) (*Database, *_nethttp.Response, error)
 	// Update a database
-	EditDatabase2(ctx _context.Context, clusterId string, updateDatabaseRequest *UpdateDatabaseRequest) (*Database, *_nethttp.Response, error)
+	EditDatabase2(ctx _context.Context, clusterId string, editDatabaseBody *EditDatabaseBody) (*Database, *_nethttp.Response, error)
 	// List databases for a cluster
 	ListDatabases(ctx _context.Context, clusterId string, options *ListDatabasesOptions) (*ListDatabasesResponse, *_nethttp.Response, error)
 
@@ -171,7 +171,7 @@ type Service interface {
 	//
 
 	// Create an egress private endpoint
-	CreateEgressPrivateEndpoint(ctx _context.Context, clusterId string, createEgressPrivateEndpointRequest *CreateEgressPrivateEndpointRequest) (*EgressPrivateEndpoint, *_nethttp.Response, error)
+	CreateEgressPrivateEndpoint(ctx _context.Context, clusterId string, createEgressPrivateEndpointBody *CreateEgressPrivateEndpointBody) (*EgressPrivateEndpoint, *_nethttp.Response, error)
 	// Delete an egress private endpoint
 	DeleteEgressPrivateEndpoint(ctx _context.Context, clusterId string, id string) (*_nethttp.Response, error)
 	// Get egress private endpoint
@@ -179,26 +179,26 @@ type Service interface {
 	// List egress private endpoints
 	ListEgressPrivateEndpoints(ctx _context.Context, clusterId string, options *ListEgressPrivateEndpointsOptions) (*ListEgressPrivateEndpointsResponse, *_nethttp.Response, error)
 	// Update egress private endpoint.
-	UpdateEgressPrivateEndpoint(ctx _context.Context, clusterId string, id string, updateEgressPrivateEndpointRequest *UpdateEgressPrivateEndpointRequest) (*EgressPrivateEndpoint, *_nethttp.Response, error)
+	UpdateEgressPrivateEndpoint(ctx _context.Context, clusterId string, id string, updateEgressPrivateEndpointBody *UpdateEgressPrivateEndpointBody) (*EgressPrivateEndpoint, *_nethttp.Response, error)
 	// Deprecated: Update egress private endpoint domain names. This endpoint is deprecated in favor of PATCH /api/v1/clusters/{cluster_id}/networking/egress-private-endpoints/{id} and will be removed in a future version.
-	UpdateEgressPrivateEndpointDomainNames(ctx _context.Context, clusterId string, id string, updateEgressPrivateEndpointRequest *UpdateEgressPrivateEndpointRequest) (*_nethttp.Response, error)
+	UpdateEgressPrivateEndpointDomainNames(ctx _context.Context, clusterId string, id string, updateEgressPrivateEndpointDomainNamesBody *UpdateEgressPrivateEndpointDomainNamesBody) (*_nethttp.Response, error)
 
 	//
 	// EgressRules
 	//
 
 	// Add an egress rule
-	AddEgressRule(ctx _context.Context, clusterId string, addEgressRuleRequest *AddEgressRuleRequest) (*AddEgressRuleResponse, *_nethttp.Response, error)
+	AddEgressRule(ctx _context.Context, clusterId string, addEgressRuleBody *AddEgressRuleBody) (*AddEgressRuleResponse, *_nethttp.Response, error)
 	// Delete an existing egress rule
 	DeleteEgressRule(ctx _context.Context, clusterId string, ruleId string, options *DeleteEgressRuleOptions) (*DeleteEgressRuleResponse, *_nethttp.Response, error)
 	// Edit an existing egress rule
-	EditEgressRule(ctx _context.Context, clusterId string, ruleId string, editEgressRuleRequest *EditEgressRuleRequest) (*EditEgressRuleResponse, *_nethttp.Response, error)
+	EditEgressRule(ctx _context.Context, clusterId string, ruleId string, editEgressRuleBody *EditEgressRuleBody) (*EditEgressRuleResponse, *_nethttp.Response, error)
 	// Get an existing egress rule
 	GetEgressRule(ctx _context.Context, clusterId string, ruleId string) (*GetEgressRuleResponse, *_nethttp.Response, error)
 	// List all egress rules associated with a cluster
 	ListEgressRules(ctx _context.Context, clusterId string, options *ListEgressRulesOptions) (*ListEgressRulesResponse, *_nethttp.Response, error)
 	// Outbound traffic management
-	SetEgressTrafficPolicy(ctx _context.Context, clusterId string, setEgressTrafficPolicyRequest *SetEgressTrafficPolicyRequest) (*_nethttp.Response, error)
+	SetEgressTrafficPolicy(ctx _context.Context, clusterId string, setEgressTrafficPolicyBody *SetEgressTrafficPolicyBody) (*_nethttp.Response, error)
 
 	//
 	// Folders
@@ -245,7 +245,7 @@ type Service interface {
 	// List all JWT Issuers
 	ListJWTIssuers(ctx _context.Context, options *ListJWTIssuersOptions) (*ListJWTIssuersResponse, *_nethttp.Response, error)
 	// Update a JWT Issuer
-	UpdateJWTIssuer(ctx _context.Context, id string, updateJWTIssuerRequest *UpdateJWTIssuerRequest) (*JWTIssuer, *_nethttp.Response, error)
+	UpdateJWTIssuer(ctx _context.Context, id string, updateJWTIssuerBody *UpdateJWTIssuerBody) (*JWTIssuer, *_nethttp.Response, error)
 
 	//
 	// LogExport
@@ -254,7 +254,7 @@ type Service interface {
 	// Delete the Log Export configuration for a cluster
 	DeleteLogExport(ctx _context.Context, clusterId string) (*LogExportClusterInfo, *_nethttp.Response, error)
 	// Create or update the Log Export configuration for a cluster
-	EnableLogExport(ctx _context.Context, clusterId string, enableLogExportRequest *EnableLogExportRequest) (*LogExportClusterInfo, *_nethttp.Response, error)
+	EnableLogExport(ctx _context.Context, clusterId string, enableLogExportBody *EnableLogExportBody) (*LogExportClusterInfo, *_nethttp.Response, error)
 	// Get the Log Export configuration for a cluster
 	GetLogExportInfo(ctx _context.Context, clusterId string) (*LogExportClusterInfo, *_nethttp.Response, error)
 
@@ -280,9 +280,9 @@ type Service interface {
 	// Disable Prometheus Metric Export for a cluster
 	DeletePrometheusMetricExport(ctx _context.Context, clusterId string) (*DeleteMetricExportResponse, *_nethttp.Response, error)
 	// Create or update the CloudWatch Metric Export configuration for a cluster
-	EnableCloudWatchMetricExport(ctx _context.Context, clusterId string, enableCloudWatchMetricExportRequest *EnableCloudWatchMetricExportRequest) (*CloudWatchMetricExportInfo, *_nethttp.Response, error)
+	EnableCloudWatchMetricExport(ctx _context.Context, clusterId string, enableCloudWatchMetricExportBody *EnableCloudWatchMetricExportBody) (*CloudWatchMetricExportInfo, *_nethttp.Response, error)
 	// Create or update the Datadog Metric Export configuration for a cluster
-	EnableDatadogMetricExport(ctx _context.Context, clusterId string, enableDatadogMetricExportRequest *EnableDatadogMetricExportRequest) (*DatadogMetricExportInfo, *_nethttp.Response, error)
+	EnableDatadogMetricExport(ctx _context.Context, clusterId string, enableDatadogMetricExportBody *EnableDatadogMetricExportBody) (*DatadogMetricExportInfo, *_nethttp.Response, error)
 	// Enable Prometheus Metric Export for a cluster
 	EnablePrometheusMetricExport(ctx _context.Context, clusterId string) (*PrometheusMetricExportInfo, *_nethttp.Response, error)
 	// Get the CloudWatch Metric Export configuration for a cluster
@@ -317,9 +317,9 @@ type Service interface {
 	//
 
 	// Add a connection to a cluster&#39;s private endpoint service.
-	AddPrivateEndpointConnection(ctx _context.Context, clusterId string, addPrivateEndpointConnectionRequest *AddPrivateEndpointConnectionRequest) (*PrivateEndpointConnection, *_nethttp.Response, error)
+	AddPrivateEndpointConnection(ctx _context.Context, clusterId string, addPrivateEndpointConnectionBody *AddPrivateEndpointConnectionBody) (*PrivateEndpointConnection, *_nethttp.Response, error)
 	// Add a private endpoint trusted owner to a cluster
-	AddPrivateEndpointTrustedOwner(ctx _context.Context, clusterId string, addPrivateEndpointTrustedOwnerRequest *AddPrivateEndpointTrustedOwnerRequest) (*AddPrivateEndpointTrustedOwnerResponse, *_nethttp.Response, error)
+	AddPrivateEndpointTrustedOwner(ctx _context.Context, clusterId string, addPrivateEndpointTrustedOwnerBody *AddPrivateEndpointTrustedOwnerBody) (*AddPrivateEndpointTrustedOwnerResponse, *_nethttp.Response, error)
 	// Create all PrivateEndpointServices for a cluster
 	CreatePrivateEndpointServices(ctx _context.Context, clusterId string) (*PrivateEndpointServices, *_nethttp.Response, error)
 	// Delete a connection from a cluster&#39;s private endpoint service.
@@ -337,7 +337,7 @@ type Service interface {
 	// Remove a private endpoint trusted owner from a cluster
 	RemovePrivateEndpointTrustedOwner(ctx _context.Context, clusterId string, ownerId string) (*RemovePrivateEndpointTrustedOwnerResponse, *_nethttp.Response, error)
 	// Set the AWS Endpoint Connection state
-	SetAwsEndpointConnectionState(ctx _context.Context, clusterId string, endpointId string, setAwsEndpointConnectionStateRequest *SetAwsEndpointConnectionStateRequest) (*AwsEndpointConnection, *_nethttp.Response, error)
+	SetAwsEndpointConnectionState(ctx _context.Context, clusterId string, endpointId string, setAwsEndpointConnectionStateBody *SetAwsEndpointConnectionStateBody) (*AwsEndpointConnection, *_nethttp.Response, error)
 
 	//
 	// RoleManagement
@@ -354,7 +354,7 @@ type Service interface {
 	// Remove a role from a user or service account
 	RemoveUserFromRole(ctx _context.Context, userId string, resourceType string, resourceId string, roleName string) (*GetAllRolesForUserResponse, *_nethttp.Response, error)
 	// Replace the roles for a user or service account with exactly those provided
-	SetRolesForUser(ctx _context.Context, userId string, cockroachCloudSetRolesForUserRequest *CockroachCloudSetRolesForUserRequest) (*GetAllRolesForUserResponse, *_nethttp.Response, error)
+	SetRolesForUser(ctx _context.Context, userId string, setRolesForUserBody *SetRolesForUserBody) (*GetAllRolesForUserResponse, *_nethttp.Response, error)
 
 	//
 	// SCIM
@@ -371,7 +371,7 @@ type Service interface {
 	// Get a group by ID
 	GetGroup(ctx _context.Context, id string, options *GetGroupOptions) (*ScimGroup, *_nethttp.Response, error)
 	// Deprecated: Search a group by ID (Deprecated)
-	GetGroup2(ctx _context.Context, id string, getGroupRequest *GetGroupRequest) (*ScimGroup, *_nethttp.Response, error)
+	GetGroup2(ctx _context.Context, id string, getGroup2Body *GetGroup2Body) (*ScimGroup, *_nethttp.Response, error)
 	// List groups
 	GetGroups(ctx _context.Context, options *GetGroupsOptions) (*GetGroupsResponse, *_nethttp.Response, error)
 	// Deprecated: Search groups (Deprecated)
@@ -389,40 +389,40 @@ type Service interface {
 	// Get a user by ID
 	GetUser(ctx _context.Context, id string, options *GetUserOptions) (*ScimUser, *_nethttp.Response, error)
 	// Deprecated: Search for a user by ID (Deprecated)
-	GetUser2(ctx _context.Context, id string, getUserRequest *GetUserRequest) (*ScimUser, *_nethttp.Response, error)
+	GetUser2(ctx _context.Context, id string, getUser2Body *GetUser2Body) (*ScimUser, *_nethttp.Response, error)
 	// List Users
 	GetUsers(ctx _context.Context, options *GetUsersOptions) (*GetUsersResponse, *_nethttp.Response, error)
 	// Deprecated: Search User (Deprecated)
 	GetUsers2(ctx _context.Context, getUsersRequest *GetUsersRequest) (*GetUsersResponse, *_nethttp.Response, error)
 	// Patch a group by supplying partial updates
-	PatchGroup(ctx _context.Context, id string, patchGroupRequest *PatchGroupRequest) (*ScimGroup, *_nethttp.Response, error)
+	PatchGroup(ctx _context.Context, id string, patchGroupBody *PatchGroupBody) (*ScimGroup, *_nethttp.Response, error)
 	// Patch a user by supplying partial updates
-	PatchUser(ctx _context.Context, id string, patchUserRequest *PatchUserRequest) (*ScimUser, *_nethttp.Response, error)
+	PatchUser(ctx _context.Context, id string, patchUserBody *PatchUserBody) (*ScimUser, *_nethttp.Response, error)
 	// Search a group by ID
-	SearchGroup(ctx _context.Context, id string, getGroupRequest *GetGroupRequest) (*ScimGroup, *_nethttp.Response, error)
+	SearchGroup(ctx _context.Context, id string, searchGroupBody *SearchGroupBody) (*ScimGroup, *_nethttp.Response, error)
 	// Search groups
 	SearchGroups(ctx _context.Context, getGroupsRequest *GetGroupsRequest) (*GetGroupsResponse, *_nethttp.Response, error)
 	// Search for a user by ID
-	SearchUser(ctx _context.Context, id string, getUserRequest *GetUserRequest) (*ScimUser, *_nethttp.Response, error)
+	SearchUser(ctx _context.Context, id string, searchUserBody *SearchUserBody) (*ScimUser, *_nethttp.Response, error)
 	// Search Users
 	SearchUsers(ctx _context.Context, getUsersRequest *GetUsersRequest) (*GetUsersResponse, *_nethttp.Response, error)
 	// Update a group by supplying all values of the user object
-	UpdateGroup(ctx _context.Context, id string, updateGroupRequest *UpdateGroupRequest) (*ScimGroup, *_nethttp.Response, error)
+	UpdateGroup(ctx _context.Context, id string, updateGroupBody *UpdateGroupBody) (*ScimGroup, *_nethttp.Response, error)
 	// Update a user by supplying all values of the user object
-	UpdateUser(ctx _context.Context, id string, updateUserRequest *UpdateUserRequest) (*ScimUser, *_nethttp.Response, error)
+	UpdateUser(ctx _context.Context, id string, updateUserBody *UpdateUserBody) (*ScimUser, *_nethttp.Response, error)
 
 	//
 	// SQLUsers
 	//
 
 	// Create a new SQL user
-	CreateSQLUser(ctx _context.Context, clusterId string, createSQLUserRequest *CreateSQLUserRequest) (*SQLUser, *_nethttp.Response, error)
+	CreateSQLUser(ctx _context.Context, clusterId string, createSQLUserBody *CreateSQLUserBody) (*SQLUser, *_nethttp.Response, error)
 	// Delete a SQL user
 	DeleteSQLUser(ctx _context.Context, clusterId string, name string) (*SQLUser, *_nethttp.Response, error)
 	// List SQL users for a cluster
 	ListSQLUsers(ctx _context.Context, clusterId string, options *ListSQLUsersOptions) (*ListSQLUsersResponse, *_nethttp.Response, error)
 	// Update a SQL user&#39;s password
-	UpdateSQLUserPassword(ctx _context.Context, clusterId string, name string, updateSQLUserPasswordRequest *UpdateSQLUserPasswordRequest) (*SQLUser, *_nethttp.Response, error)
+	UpdateSQLUserPassword(ctx _context.Context, clusterId string, name string, updateSQLUserPasswordBody *UpdateSQLUserPasswordBody) (*SQLUser, *_nethttp.Response, error)
 
 	//
 	// ServiceAccounts
@@ -1317,7 +1317,7 @@ func (a *ServiceImpl) ListAuditLogs(
 
 // CreateRestore executes the request.
 func (a *ServiceImpl) CreateRestore(
-	ctx _context.Context, destinationClusterId string, cockroachCloudCreateRestoreRequest *CockroachCloudCreateRestoreRequest,
+	ctx _context.Context, destinationClusterId string, createRestoreBody *CreateRestoreBody,
 ) (*Restore, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
@@ -1335,8 +1335,8 @@ func (a *ServiceImpl) CreateRestore(
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if cockroachCloudCreateRestoreRequest == nil {
-		return nil, nil, reportError("cockroachCloudCreateRestoreRequest is required and must be specified")
+	if createRestoreBody == nil {
+		return nil, nil, reportError("createRestoreBody is required and must be specified")
 	}
 
 	// Determine the Content-Type header.
@@ -1357,7 +1357,7 @@ func (a *ServiceImpl) CreateRestore(
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// Body params.
-	localVarPostBody = cockroachCloudCreateRestoreRequest
+	localVarPostBody = createRestoreBody
 	req, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return nil, nil, err
@@ -2334,10 +2334,10 @@ type ListInvoicesOptions struct {
 	// Filters the response to only include invoices with the specified status. This will be sent as a query parameter on the GET request. If not specified, both Finalized and Draft invoices will be included.
 	Status *string
 
-	// start_time filters the response to invoices whose billing period started at or after this time (inclusive). Defaults to organization creation time if omitted.
+	// start_time filters the response to invoices whose billing period started at or after this time (inclusive). Must be in RFC3339 format (e.g., 2024-01-01T00:00:00Z). Defaults to organization creation time if omitted.
 	StartTime *time.Time
 
-	// end_time filters the response to invoices whose billing period ended at or before this time (exclusive). Defaults to current time if omitted.
+	// end_time filters the response to invoices whose billing period ended at or before this time (exclusive). Must be in RFC3339 format (e.g., 2024-12-31T23:59:59Z). Defaults to current time if omitted.
 	EndTime *time.Time
 }
 
@@ -2484,7 +2484,7 @@ func (a *ServiceImpl) ListInvoices(
 
 // CreateBlackoutWindow executes the request.
 func (a *ServiceImpl) CreateBlackoutWindow(
-	ctx _context.Context, clusterId string, createBlackoutWindowRequest *CreateBlackoutWindowRequest,
+	ctx _context.Context, clusterId string, createBlackoutWindowBody *CreateBlackoutWindowBody,
 ) (*BlackoutWindow, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
@@ -2502,8 +2502,8 @@ func (a *ServiceImpl) CreateBlackoutWindow(
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if createBlackoutWindowRequest == nil {
-		return nil, nil, reportError("createBlackoutWindowRequest is required and must be specified")
+	if createBlackoutWindowBody == nil {
+		return nil, nil, reportError("createBlackoutWindowBody is required and must be specified")
 	}
 
 	// Determine the Content-Type header.
@@ -2524,7 +2524,7 @@ func (a *ServiceImpl) CreateBlackoutWindow(
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// Body params.
-	localVarPostBody = createBlackoutWindowRequest
+	localVarPostBody = createBlackoutWindowBody
 	req, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return nil, nil, err
@@ -3047,7 +3047,7 @@ func (a *ServiceImpl) ListBlackoutWindows(
 
 // UpdateBlackoutWindow executes the request.
 func (a *ServiceImpl) UpdateBlackoutWindow(
-	ctx _context.Context, clusterId string, blackoutWindowId string, updateBlackoutWindowRequest *UpdateBlackoutWindowRequest,
+	ctx _context.Context, clusterId string, blackoutWindowId string, updateBlackoutWindowBody *UpdateBlackoutWindowBody,
 ) (*BlackoutWindow, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPatch
@@ -3066,8 +3066,8 @@ func (a *ServiceImpl) UpdateBlackoutWindow(
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if updateBlackoutWindowRequest == nil {
-		return nil, nil, reportError("updateBlackoutWindowRequest is required and must be specified")
+	if updateBlackoutWindowBody == nil {
+		return nil, nil, reportError("updateBlackoutWindowBody is required and must be specified")
 	}
 
 	// Determine the Content-Type header.
@@ -3088,7 +3088,7 @@ func (a *ServiceImpl) UpdateBlackoutWindow(
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// Body params.
-	localVarPostBody = updateBlackoutWindowRequest
+	localVarPostBody = updateBlackoutWindowBody
 	req, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return nil, nil, err
@@ -3452,7 +3452,7 @@ func (a *ServiceImpl) GetClientCACert(
 
 // SetClientCACert executes the request.
 func (a *ServiceImpl) SetClientCACert(
-	ctx _context.Context, clusterId string, setClientCACertRequest *SetClientCACertRequest,
+	ctx _context.Context, clusterId string, setClientCACertBody *SetClientCACertBody,
 ) (*ClientCACertInfo, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
@@ -3470,8 +3470,8 @@ func (a *ServiceImpl) SetClientCACert(
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if setClientCACertRequest == nil {
-		return nil, nil, reportError("setClientCACertRequest is required and must be specified")
+	if setClientCACertBody == nil {
+		return nil, nil, reportError("setClientCACertBody is required and must be specified")
 	}
 
 	// Determine the Content-Type header.
@@ -3492,7 +3492,7 @@ func (a *ServiceImpl) SetClientCACert(
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// Body params.
-	localVarPostBody = setClientCACertRequest
+	localVarPostBody = setClientCACertBody
 	req, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return nil, nil, err
@@ -3590,7 +3590,7 @@ func (a *ServiceImpl) SetClientCACert(
 
 // UpdateClientCACert executes the request.
 func (a *ServiceImpl) UpdateClientCACert(
-	ctx _context.Context, clusterId string, updateClientCACertRequest *UpdateClientCACertRequest,
+	ctx _context.Context, clusterId string, updateClientCACertBody *UpdateClientCACertBody,
 ) (*ClientCACertInfo, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPatch
@@ -3608,8 +3608,8 @@ func (a *ServiceImpl) UpdateClientCACert(
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if updateClientCACertRequest == nil {
-		return nil, nil, reportError("updateClientCACertRequest is required and must be specified")
+	if updateClientCACertBody == nil {
+		return nil, nil, reportError("updateClientCACertBody is required and must be specified")
 	}
 
 	// Determine the Content-Type header.
@@ -3630,7 +3630,7 @@ func (a *ServiceImpl) UpdateClientCACert(
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// Body params.
-	localVarPostBody = updateClientCACertRequest
+	localVarPostBody = updateClientCACertBody
 	req, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return nil, nil, err
@@ -3861,7 +3861,7 @@ func (a *ServiceImpl) GetClusterDisruptionInfo(
 
 // UpdateClusterDisruption executes the request.
 func (a *ServiceImpl) UpdateClusterDisruption(
-	ctx _context.Context, clusterId string, cockroachCloudUpdateClusterDisruptionRequest *CockroachCloudUpdateClusterDisruptionRequest,
+	ctx _context.Context, clusterId string, updateClusterDisruptionBody *UpdateClusterDisruptionBody,
 ) (*ClusterDisruptionInfo, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
@@ -3879,8 +3879,8 @@ func (a *ServiceImpl) UpdateClusterDisruption(
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if cockroachCloudUpdateClusterDisruptionRequest == nil {
-		return nil, nil, reportError("cockroachCloudUpdateClusterDisruptionRequest is required and must be specified")
+	if updateClusterDisruptionBody == nil {
+		return nil, nil, reportError("updateClusterDisruptionBody is required and must be specified")
 	}
 
 	// Determine the Content-Type header.
@@ -3901,7 +3901,7 @@ func (a *ServiceImpl) UpdateClusterDisruption(
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// Body params.
-	localVarPostBody = cockroachCloudUpdateClusterDisruptionRequest
+	localVarPostBody = updateClusterDisruptionBody
 	req, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return nil, nil, err
@@ -5347,7 +5347,7 @@ func (a *ServiceImpl) UpdateCluster(
 
 // EnableCMEKSpec executes the request.
 func (a *ServiceImpl) EnableCMEKSpec(
-	ctx _context.Context, clusterId string, cMEKClusterSpecification *CMEKClusterSpecification,
+	ctx _context.Context, clusterId string, enableCMEKSpecBody *EnableCMEKSpecBody,
 ) (*CMEKClusterInfo, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
@@ -5365,8 +5365,8 @@ func (a *ServiceImpl) EnableCMEKSpec(
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if cMEKClusterSpecification == nil {
-		return nil, nil, reportError("cMEKClusterSpecification is required and must be specified")
+	if enableCMEKSpecBody == nil {
+		return nil, nil, reportError("enableCMEKSpecBody is required and must be specified")
 	}
 
 	// Determine the Content-Type header.
@@ -5387,7 +5387,7 @@ func (a *ServiceImpl) EnableCMEKSpec(
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// Body params.
-	localVarPostBody = cMEKClusterSpecification
+	localVarPostBody = enableCMEKSpecBody
 	req, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return nil, nil, err
@@ -5618,7 +5618,7 @@ func (a *ServiceImpl) GetCMEKClusterInfo(
 
 // UpdateCMEKSpec executes the request.
 func (a *ServiceImpl) UpdateCMEKSpec(
-	ctx _context.Context, clusterId string, cMEKClusterSpecification *CMEKClusterSpecification,
+	ctx _context.Context, clusterId string, updateCMEKSpecBody *UpdateCMEKSpecBody,
 ) (*CMEKClusterInfo, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
@@ -5636,8 +5636,8 @@ func (a *ServiceImpl) UpdateCMEKSpec(
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if cMEKClusterSpecification == nil {
-		return nil, nil, reportError("cMEKClusterSpecification is required and must be specified")
+	if updateCMEKSpecBody == nil {
+		return nil, nil, reportError("updateCMEKSpecBody is required and must be specified")
 	}
 
 	// Determine the Content-Type header.
@@ -5658,7 +5658,7 @@ func (a *ServiceImpl) UpdateCMEKSpec(
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// Body params.
-	localVarPostBody = cMEKClusterSpecification
+	localVarPostBody = updateCMEKSpecBody
 	req, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return nil, nil, err
@@ -5756,7 +5756,7 @@ func (a *ServiceImpl) UpdateCMEKSpec(
 
 // UpdateCMEKStatus executes the request.
 func (a *ServiceImpl) UpdateCMEKStatus(
-	ctx _context.Context, clusterId string, updateCMEKStatusRequest *UpdateCMEKStatusRequest,
+	ctx _context.Context, clusterId string, updateCMEKStatusBody *UpdateCMEKStatusBody,
 ) (*CMEKClusterInfo, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPatch
@@ -5774,8 +5774,8 @@ func (a *ServiceImpl) UpdateCMEKStatus(
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if updateCMEKStatusRequest == nil {
-		return nil, nil, reportError("updateCMEKStatusRequest is required and must be specified")
+	if updateCMEKStatusBody == nil {
+		return nil, nil, reportError("updateCMEKStatusBody is required and must be specified")
 	}
 
 	// Determine the Content-Type header.
@@ -5796,7 +5796,7 @@ func (a *ServiceImpl) UpdateCMEKStatus(
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// Body params.
-	localVarPostBody = updateCMEKStatusRequest
+	localVarPostBody = updateCMEKStatusBody
 	req, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return nil, nil, err
@@ -5894,7 +5894,7 @@ func (a *ServiceImpl) UpdateCMEKStatus(
 
 // CreateDatabase executes the request.
 func (a *ServiceImpl) CreateDatabase(
-	ctx _context.Context, clusterId string, createDatabaseRequest *CreateDatabaseRequest,
+	ctx _context.Context, clusterId string, createDatabaseBody *CreateDatabaseBody,
 ) (*Database, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
@@ -5912,8 +5912,8 @@ func (a *ServiceImpl) CreateDatabase(
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if createDatabaseRequest == nil {
-		return nil, nil, reportError("createDatabaseRequest is required and must be specified")
+	if createDatabaseBody == nil {
+		return nil, nil, reportError("createDatabaseBody is required and must be specified")
 	}
 
 	// Determine the Content-Type header.
@@ -5934,7 +5934,7 @@ func (a *ServiceImpl) CreateDatabase(
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// Body params.
-	localVarPostBody = createDatabaseRequest
+	localVarPostBody = createDatabaseBody
 	req, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return nil, nil, err
@@ -6166,7 +6166,7 @@ func (a *ServiceImpl) DeleteDatabase(
 
 // EditDatabase executes the request.
 func (a *ServiceImpl) EditDatabase(
-	ctx _context.Context, clusterId string, name string, updateDatabaseRequest1 *UpdateDatabaseRequest1,
+	ctx _context.Context, clusterId string, name string, editDatabaseBody *EditDatabaseBody,
 ) (*Database, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPatch
@@ -6185,8 +6185,8 @@ func (a *ServiceImpl) EditDatabase(
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if updateDatabaseRequest1 == nil {
-		return nil, nil, reportError("updateDatabaseRequest1 is required and must be specified")
+	if editDatabaseBody == nil {
+		return nil, nil, reportError("editDatabaseBody is required and must be specified")
 	}
 
 	// Determine the Content-Type header.
@@ -6207,7 +6207,7 @@ func (a *ServiceImpl) EditDatabase(
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// Body params.
-	localVarPostBody = updateDatabaseRequest1
+	localVarPostBody = editDatabaseBody
 	req, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return nil, nil, err
@@ -6305,7 +6305,7 @@ func (a *ServiceImpl) EditDatabase(
 
 // EditDatabase2 executes the request.
 func (a *ServiceImpl) EditDatabase2(
-	ctx _context.Context, clusterId string, updateDatabaseRequest *UpdateDatabaseRequest,
+	ctx _context.Context, clusterId string, editDatabaseBody *EditDatabaseBody,
 ) (*Database, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPatch
@@ -6323,8 +6323,8 @@ func (a *ServiceImpl) EditDatabase2(
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if updateDatabaseRequest == nil {
-		return nil, nil, reportError("updateDatabaseRequest is required and must be specified")
+	if editDatabaseBody == nil {
+		return nil, nil, reportError("editDatabaseBody is required and must be specified")
 	}
 
 	// Determine the Content-Type header.
@@ -6345,7 +6345,7 @@ func (a *ServiceImpl) EditDatabase2(
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// Body params.
-	localVarPostBody = updateDatabaseRequest
+	localVarPostBody = editDatabaseBody
 	req, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return nil, nil, err
@@ -6600,7 +6600,7 @@ func (a *ServiceImpl) ListDatabases(
 
 // CreateEgressPrivateEndpoint executes the request.
 func (a *ServiceImpl) CreateEgressPrivateEndpoint(
-	ctx _context.Context, clusterId string, createEgressPrivateEndpointRequest *CreateEgressPrivateEndpointRequest,
+	ctx _context.Context, clusterId string, createEgressPrivateEndpointBody *CreateEgressPrivateEndpointBody,
 ) (*EgressPrivateEndpoint, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
@@ -6618,8 +6618,8 @@ func (a *ServiceImpl) CreateEgressPrivateEndpoint(
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if createEgressPrivateEndpointRequest == nil {
-		return nil, nil, reportError("createEgressPrivateEndpointRequest is required and must be specified")
+	if createEgressPrivateEndpointBody == nil {
+		return nil, nil, reportError("createEgressPrivateEndpointBody is required and must be specified")
 	}
 
 	// Determine the Content-Type header.
@@ -6640,7 +6640,7 @@ func (a *ServiceImpl) CreateEgressPrivateEndpoint(
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// Body params.
-	localVarPostBody = createEgressPrivateEndpointRequest
+	localVarPostBody = createEgressPrivateEndpointBody
 	req, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return nil, nil, err
@@ -7153,7 +7153,7 @@ func (a *ServiceImpl) ListEgressPrivateEndpoints(
 
 // UpdateEgressPrivateEndpoint executes the request.
 func (a *ServiceImpl) UpdateEgressPrivateEndpoint(
-	ctx _context.Context, clusterId string, id string, updateEgressPrivateEndpointRequest *UpdateEgressPrivateEndpointRequest,
+	ctx _context.Context, clusterId string, id string, updateEgressPrivateEndpointBody *UpdateEgressPrivateEndpointBody,
 ) (*EgressPrivateEndpoint, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPatch
@@ -7172,8 +7172,8 @@ func (a *ServiceImpl) UpdateEgressPrivateEndpoint(
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if updateEgressPrivateEndpointRequest == nil {
-		return nil, nil, reportError("updateEgressPrivateEndpointRequest is required and must be specified")
+	if updateEgressPrivateEndpointBody == nil {
+		return nil, nil, reportError("updateEgressPrivateEndpointBody is required and must be specified")
 	}
 
 	// Determine the Content-Type header.
@@ -7194,7 +7194,7 @@ func (a *ServiceImpl) UpdateEgressPrivateEndpoint(
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// Body params.
-	localVarPostBody = updateEgressPrivateEndpointRequest
+	localVarPostBody = updateEgressPrivateEndpointBody
 	req, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return nil, nil, err
@@ -7293,7 +7293,7 @@ func (a *ServiceImpl) UpdateEgressPrivateEndpoint(
 // UpdateEgressPrivateEndpointDomainNames executes the request.
 // Deprecated.
 func (a *ServiceImpl) UpdateEgressPrivateEndpointDomainNames(
-	ctx _context.Context, clusterId string, id string, updateEgressPrivateEndpointRequest *UpdateEgressPrivateEndpointRequest,
+	ctx _context.Context, clusterId string, id string, updateEgressPrivateEndpointDomainNamesBody *UpdateEgressPrivateEndpointDomainNamesBody,
 ) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPatch
@@ -7312,8 +7312,8 @@ func (a *ServiceImpl) UpdateEgressPrivateEndpointDomainNames(
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if updateEgressPrivateEndpointRequest == nil {
-		return nil, reportError("updateEgressPrivateEndpointRequest is required and must be specified")
+	if updateEgressPrivateEndpointDomainNamesBody == nil {
+		return nil, reportError("updateEgressPrivateEndpointDomainNamesBody is required and must be specified")
 	}
 
 	// Determine the Content-Type header.
@@ -7334,7 +7334,7 @@ func (a *ServiceImpl) UpdateEgressPrivateEndpointDomainNames(
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// Body params.
-	localVarPostBody = updateEgressPrivateEndpointRequest
+	localVarPostBody = updateEgressPrivateEndpointDomainNamesBody
 	req, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return nil, err
@@ -7422,7 +7422,7 @@ func (a *ServiceImpl) UpdateEgressPrivateEndpointDomainNames(
 
 // AddEgressRule executes the request.
 func (a *ServiceImpl) AddEgressRule(
-	ctx _context.Context, clusterId string, addEgressRuleRequest *AddEgressRuleRequest,
+	ctx _context.Context, clusterId string, addEgressRuleBody *AddEgressRuleBody,
 ) (*AddEgressRuleResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
@@ -7440,8 +7440,8 @@ func (a *ServiceImpl) AddEgressRule(
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if addEgressRuleRequest == nil {
-		return nil, nil, reportError("addEgressRuleRequest is required and must be specified")
+	if addEgressRuleBody == nil {
+		return nil, nil, reportError("addEgressRuleBody is required and must be specified")
 	}
 
 	// Determine the Content-Type header.
@@ -7462,7 +7462,7 @@ func (a *ServiceImpl) AddEgressRule(
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// Body params.
-	localVarPostBody = addEgressRuleRequest
+	localVarPostBody = addEgressRuleBody
 	req, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return nil, nil, err
@@ -7703,7 +7703,7 @@ func (a *ServiceImpl) DeleteEgressRule(
 
 // EditEgressRule executes the request.
 func (a *ServiceImpl) EditEgressRule(
-	ctx _context.Context, clusterId string, ruleId string, editEgressRuleRequest *EditEgressRuleRequest,
+	ctx _context.Context, clusterId string, ruleId string, editEgressRuleBody *EditEgressRuleBody,
 ) (*EditEgressRuleResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPatch
@@ -7722,8 +7722,8 @@ func (a *ServiceImpl) EditEgressRule(
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if editEgressRuleRequest == nil {
-		return nil, nil, reportError("editEgressRuleRequest is required and must be specified")
+	if editEgressRuleBody == nil {
+		return nil, nil, reportError("editEgressRuleBody is required and must be specified")
 	}
 
 	// Determine the Content-Type header.
@@ -7744,7 +7744,7 @@ func (a *ServiceImpl) EditEgressRule(
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// Body params.
-	localVarPostBody = editEgressRuleRequest
+	localVarPostBody = editEgressRuleBody
 	req, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return nil, nil, err
@@ -8133,7 +8133,7 @@ func (a *ServiceImpl) ListEgressRules(
 
 // SetEgressTrafficPolicy executes the request.
 func (a *ServiceImpl) SetEgressTrafficPolicy(
-	ctx _context.Context, clusterId string, setEgressTrafficPolicyRequest *SetEgressTrafficPolicyRequest,
+	ctx _context.Context, clusterId string, setEgressTrafficPolicyBody *SetEgressTrafficPolicyBody,
 ) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
@@ -8151,8 +8151,8 @@ func (a *ServiceImpl) SetEgressTrafficPolicy(
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if setEgressTrafficPolicyRequest == nil {
-		return nil, reportError("setEgressTrafficPolicyRequest is required and must be specified")
+	if setEgressTrafficPolicyBody == nil {
+		return nil, reportError("setEgressTrafficPolicyBody is required and must be specified")
 	}
 
 	// Determine the Content-Type header.
@@ -8173,7 +8173,7 @@ func (a *ServiceImpl) SetEgressTrafficPolicy(
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// Body params.
-	localVarPostBody = setEgressTrafficPolicyRequest
+	localVarPostBody = setEgressTrafficPolicyBody
 	req, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return nil, err
@@ -10380,7 +10380,7 @@ func (a *ServiceImpl) ListJWTIssuers(
 
 // UpdateJWTIssuer executes the request.
 func (a *ServiceImpl) UpdateJWTIssuer(
-	ctx _context.Context, id string, updateJWTIssuerRequest *UpdateJWTIssuerRequest,
+	ctx _context.Context, id string, updateJWTIssuerBody *UpdateJWTIssuerBody,
 ) (*JWTIssuer, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPatch
@@ -10398,8 +10398,8 @@ func (a *ServiceImpl) UpdateJWTIssuer(
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if updateJWTIssuerRequest == nil {
-		return nil, nil, reportError("updateJWTIssuerRequest is required and must be specified")
+	if updateJWTIssuerBody == nil {
+		return nil, nil, reportError("updateJWTIssuerBody is required and must be specified")
 	}
 
 	// Determine the Content-Type header.
@@ -10420,7 +10420,7 @@ func (a *ServiceImpl) UpdateJWTIssuer(
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// Body params.
-	localVarPostBody = updateJWTIssuerRequest
+	localVarPostBody = updateJWTIssuerBody
 	req, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return nil, nil, err
@@ -10651,7 +10651,7 @@ func (a *ServiceImpl) DeleteLogExport(
 
 // EnableLogExport executes the request.
 func (a *ServiceImpl) EnableLogExport(
-	ctx _context.Context, clusterId string, enableLogExportRequest *EnableLogExportRequest,
+	ctx _context.Context, clusterId string, enableLogExportBody *EnableLogExportBody,
 ) (*LogExportClusterInfo, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
@@ -10669,8 +10669,8 @@ func (a *ServiceImpl) EnableLogExport(
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if enableLogExportRequest == nil {
-		return nil, nil, reportError("enableLogExportRequest is required and must be specified")
+	if enableLogExportBody == nil {
+		return nil, nil, reportError("enableLogExportBody is required and must be specified")
 	}
 
 	// Determine the Content-Type header.
@@ -10691,7 +10691,7 @@ func (a *ServiceImpl) EnableLogExport(
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// Body params.
-	localVarPostBody = enableLogExportRequest
+	localVarPostBody = enableLogExportBody
 	req, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return nil, nil, err
@@ -11725,7 +11725,7 @@ func (a *ServiceImpl) DeletePrometheusMetricExport(
 
 // EnableCloudWatchMetricExport executes the request.
 func (a *ServiceImpl) EnableCloudWatchMetricExport(
-	ctx _context.Context, clusterId string, enableCloudWatchMetricExportRequest *EnableCloudWatchMetricExportRequest,
+	ctx _context.Context, clusterId string, enableCloudWatchMetricExportBody *EnableCloudWatchMetricExportBody,
 ) (*CloudWatchMetricExportInfo, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
@@ -11743,8 +11743,8 @@ func (a *ServiceImpl) EnableCloudWatchMetricExport(
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if enableCloudWatchMetricExportRequest == nil {
-		return nil, nil, reportError("enableCloudWatchMetricExportRequest is required and must be specified")
+	if enableCloudWatchMetricExportBody == nil {
+		return nil, nil, reportError("enableCloudWatchMetricExportBody is required and must be specified")
 	}
 
 	// Determine the Content-Type header.
@@ -11765,7 +11765,7 @@ func (a *ServiceImpl) EnableCloudWatchMetricExport(
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// Body params.
-	localVarPostBody = enableCloudWatchMetricExportRequest
+	localVarPostBody = enableCloudWatchMetricExportBody
 	req, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return nil, nil, err
@@ -11863,7 +11863,7 @@ func (a *ServiceImpl) EnableCloudWatchMetricExport(
 
 // EnableDatadogMetricExport executes the request.
 func (a *ServiceImpl) EnableDatadogMetricExport(
-	ctx _context.Context, clusterId string, enableDatadogMetricExportRequest *EnableDatadogMetricExportRequest,
+	ctx _context.Context, clusterId string, enableDatadogMetricExportBody *EnableDatadogMetricExportBody,
 ) (*DatadogMetricExportInfo, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
@@ -11881,8 +11881,8 @@ func (a *ServiceImpl) EnableDatadogMetricExport(
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if enableDatadogMetricExportRequest == nil {
-		return nil, nil, reportError("enableDatadogMetricExportRequest is required and must be specified")
+	if enableDatadogMetricExportBody == nil {
+		return nil, nil, reportError("enableDatadogMetricExportBody is required and must be specified")
 	}
 
 	// Determine the Content-Type header.
@@ -11903,7 +11903,7 @@ func (a *ServiceImpl) EnableDatadogMetricExport(
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// Body params.
-	localVarPostBody = enableDatadogMetricExportRequest
+	localVarPostBody = enableDatadogMetricExportBody
 	req, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return nil, nil, err
@@ -13253,7 +13253,7 @@ func (a *ServiceImpl) UpdatePhysicalReplicationStream(
 
 // AddPrivateEndpointConnection executes the request.
 func (a *ServiceImpl) AddPrivateEndpointConnection(
-	ctx _context.Context, clusterId string, addPrivateEndpointConnectionRequest *AddPrivateEndpointConnectionRequest,
+	ctx _context.Context, clusterId string, addPrivateEndpointConnectionBody *AddPrivateEndpointConnectionBody,
 ) (*PrivateEndpointConnection, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
@@ -13271,8 +13271,8 @@ func (a *ServiceImpl) AddPrivateEndpointConnection(
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if addPrivateEndpointConnectionRequest == nil {
-		return nil, nil, reportError("addPrivateEndpointConnectionRequest is required and must be specified")
+	if addPrivateEndpointConnectionBody == nil {
+		return nil, nil, reportError("addPrivateEndpointConnectionBody is required and must be specified")
 	}
 
 	// Determine the Content-Type header.
@@ -13293,7 +13293,7 @@ func (a *ServiceImpl) AddPrivateEndpointConnection(
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// Body params.
-	localVarPostBody = addPrivateEndpointConnectionRequest
+	localVarPostBody = addPrivateEndpointConnectionBody
 	req, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return nil, nil, err
@@ -13391,7 +13391,7 @@ func (a *ServiceImpl) AddPrivateEndpointConnection(
 
 // AddPrivateEndpointTrustedOwner executes the request.
 func (a *ServiceImpl) AddPrivateEndpointTrustedOwner(
-	ctx _context.Context, clusterId string, addPrivateEndpointTrustedOwnerRequest *AddPrivateEndpointTrustedOwnerRequest,
+	ctx _context.Context, clusterId string, addPrivateEndpointTrustedOwnerBody *AddPrivateEndpointTrustedOwnerBody,
 ) (*AddPrivateEndpointTrustedOwnerResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
@@ -13409,8 +13409,8 @@ func (a *ServiceImpl) AddPrivateEndpointTrustedOwner(
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if addPrivateEndpointTrustedOwnerRequest == nil {
-		return nil, nil, reportError("addPrivateEndpointTrustedOwnerRequest is required and must be specified")
+	if addPrivateEndpointTrustedOwnerBody == nil {
+		return nil, nil, reportError("addPrivateEndpointTrustedOwnerBody is required and must be specified")
 	}
 
 	// Determine the Content-Type header.
@@ -13431,7 +13431,7 @@ func (a *ServiceImpl) AddPrivateEndpointTrustedOwner(
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// Body params.
-	localVarPostBody = addPrivateEndpointTrustedOwnerRequest
+	localVarPostBody = addPrivateEndpointTrustedOwnerBody
 	req, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return nil, nil, err
@@ -14586,7 +14586,7 @@ func (a *ServiceImpl) RemovePrivateEndpointTrustedOwner(
 
 // SetAwsEndpointConnectionState executes the request.
 func (a *ServiceImpl) SetAwsEndpointConnectionState(
-	ctx _context.Context, clusterId string, endpointId string, setAwsEndpointConnectionStateRequest *SetAwsEndpointConnectionStateRequest,
+	ctx _context.Context, clusterId string, endpointId string, setAwsEndpointConnectionStateBody *SetAwsEndpointConnectionStateBody,
 ) (*AwsEndpointConnection, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPatch
@@ -14605,8 +14605,8 @@ func (a *ServiceImpl) SetAwsEndpointConnectionState(
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if setAwsEndpointConnectionStateRequest == nil {
-		return nil, nil, reportError("setAwsEndpointConnectionStateRequest is required and must be specified")
+	if setAwsEndpointConnectionStateBody == nil {
+		return nil, nil, reportError("setAwsEndpointConnectionStateBody is required and must be specified")
 	}
 
 	// Determine the Content-Type header.
@@ -14627,7 +14627,7 @@ func (a *ServiceImpl) SetAwsEndpointConnectionState(
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// Body params.
-	localVarPostBody = setAwsEndpointConnectionStateRequest
+	localVarPostBody = setAwsEndpointConnectionStateBody
 	req, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return nil, nil, err
@@ -15422,7 +15422,7 @@ func (a *ServiceImpl) RemoveUserFromRole(
 
 // SetRolesForUser executes the request.
 func (a *ServiceImpl) SetRolesForUser(
-	ctx _context.Context, userId string, cockroachCloudSetRolesForUserRequest *CockroachCloudSetRolesForUserRequest,
+	ctx _context.Context, userId string, setRolesForUserBody *SetRolesForUserBody,
 ) (*GetAllRolesForUserResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
@@ -15440,8 +15440,8 @@ func (a *ServiceImpl) SetRolesForUser(
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if cockroachCloudSetRolesForUserRequest == nil {
-		return nil, nil, reportError("cockroachCloudSetRolesForUserRequest is required and must be specified")
+	if setRolesForUserBody == nil {
+		return nil, nil, reportError("setRolesForUserBody is required and must be specified")
 	}
 
 	// Determine the Content-Type header.
@@ -15462,7 +15462,7 @@ func (a *ServiceImpl) SetRolesForUser(
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// Body params.
-	localVarPostBody = cockroachCloudSetRolesForUserRequest
+	localVarPostBody = setRolesForUserBody
 	req, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return nil, nil, err
@@ -16227,7 +16227,7 @@ func (a *ServiceImpl) GetGroup(
 // GetGroup2 executes the request.
 // Deprecated.
 func (a *ServiceImpl) GetGroup2(
-	ctx _context.Context, id string, getGroupRequest *GetGroupRequest,
+	ctx _context.Context, id string, getGroup2Body *GetGroup2Body,
 ) (*ScimGroup, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
@@ -16245,8 +16245,8 @@ func (a *ServiceImpl) GetGroup2(
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if getGroupRequest == nil {
-		return nil, nil, reportError("getGroupRequest is required and must be specified")
+	if getGroup2Body == nil {
+		return nil, nil, reportError("getGroup2Body is required and must be specified")
 	}
 
 	// Determine the Content-Type header.
@@ -16267,7 +16267,7 @@ func (a *ServiceImpl) GetGroup2(
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// Body params.
-	localVarPostBody = getGroupRequest
+	localVarPostBody = getGroup2Body
 	req, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return nil, nil, err
@@ -17526,7 +17526,7 @@ func (a *ServiceImpl) GetUser(
 // GetUser2 executes the request.
 // Deprecated.
 func (a *ServiceImpl) GetUser2(
-	ctx _context.Context, id string, getUserRequest *GetUserRequest,
+	ctx _context.Context, id string, getUser2Body *GetUser2Body,
 ) (*ScimUser, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
@@ -17544,8 +17544,8 @@ func (a *ServiceImpl) GetUser2(
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if getUserRequest == nil {
-		return nil, nil, reportError("getUserRequest is required and must be specified")
+	if getUser2Body == nil {
+		return nil, nil, reportError("getUser2Body is required and must be specified")
 	}
 
 	// Determine the Content-Type header.
@@ -17566,7 +17566,7 @@ func (a *ServiceImpl) GetUser2(
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// Body params.
-	localVarPostBody = getUserRequest
+	localVarPostBody = getUser2Body
 	req, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return nil, nil, err
@@ -17964,7 +17964,7 @@ func (a *ServiceImpl) GetUsers2(
 
 // PatchGroup executes the request.
 func (a *ServiceImpl) PatchGroup(
-	ctx _context.Context, id string, patchGroupRequest *PatchGroupRequest,
+	ctx _context.Context, id string, patchGroupBody *PatchGroupBody,
 ) (*ScimGroup, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPatch
@@ -17982,8 +17982,8 @@ func (a *ServiceImpl) PatchGroup(
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if patchGroupRequest == nil {
-		return nil, nil, reportError("patchGroupRequest is required and must be specified")
+	if patchGroupBody == nil {
+		return nil, nil, reportError("patchGroupBody is required and must be specified")
 	}
 
 	// Determine the Content-Type header.
@@ -18004,7 +18004,7 @@ func (a *ServiceImpl) PatchGroup(
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// Body params.
-	localVarPostBody = patchGroupRequest
+	localVarPostBody = patchGroupBody
 	req, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return nil, nil, err
@@ -18102,7 +18102,7 @@ func (a *ServiceImpl) PatchGroup(
 
 // PatchUser executes the request.
 func (a *ServiceImpl) PatchUser(
-	ctx _context.Context, id string, patchUserRequest *PatchUserRequest,
+	ctx _context.Context, id string, patchUserBody *PatchUserBody,
 ) (*ScimUser, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPatch
@@ -18120,8 +18120,8 @@ func (a *ServiceImpl) PatchUser(
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if patchUserRequest == nil {
-		return nil, nil, reportError("patchUserRequest is required and must be specified")
+	if patchUserBody == nil {
+		return nil, nil, reportError("patchUserBody is required and must be specified")
 	}
 
 	// Determine the Content-Type header.
@@ -18142,7 +18142,7 @@ func (a *ServiceImpl) PatchUser(
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// Body params.
-	localVarPostBody = patchUserRequest
+	localVarPostBody = patchUserBody
 	req, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return nil, nil, err
@@ -18240,7 +18240,7 @@ func (a *ServiceImpl) PatchUser(
 
 // SearchGroup executes the request.
 func (a *ServiceImpl) SearchGroup(
-	ctx _context.Context, id string, getGroupRequest *GetGroupRequest,
+	ctx _context.Context, id string, searchGroupBody *SearchGroupBody,
 ) (*ScimGroup, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
@@ -18258,8 +18258,8 @@ func (a *ServiceImpl) SearchGroup(
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if getGroupRequest == nil {
-		return nil, nil, reportError("getGroupRequest is required and must be specified")
+	if searchGroupBody == nil {
+		return nil, nil, reportError("searchGroupBody is required and must be specified")
 	}
 
 	// Determine the Content-Type header.
@@ -18280,7 +18280,7 @@ func (a *ServiceImpl) SearchGroup(
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// Body params.
-	localVarPostBody = getGroupRequest
+	localVarPostBody = searchGroupBody
 	req, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return nil, nil, err
@@ -18515,7 +18515,7 @@ func (a *ServiceImpl) SearchGroups(
 
 // SearchUser executes the request.
 func (a *ServiceImpl) SearchUser(
-	ctx _context.Context, id string, getUserRequest *GetUserRequest,
+	ctx _context.Context, id string, searchUserBody *SearchUserBody,
 ) (*ScimUser, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
@@ -18533,8 +18533,8 @@ func (a *ServiceImpl) SearchUser(
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if getUserRequest == nil {
-		return nil, nil, reportError("getUserRequest is required and must be specified")
+	if searchUserBody == nil {
+		return nil, nil, reportError("searchUserBody is required and must be specified")
 	}
 
 	// Determine the Content-Type header.
@@ -18555,7 +18555,7 @@ func (a *ServiceImpl) SearchUser(
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// Body params.
-	localVarPostBody = getUserRequest
+	localVarPostBody = searchUserBody
 	req, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return nil, nil, err
@@ -18790,7 +18790,7 @@ func (a *ServiceImpl) SearchUsers(
 
 // UpdateGroup executes the request.
 func (a *ServiceImpl) UpdateGroup(
-	ctx _context.Context, id string, updateGroupRequest *UpdateGroupRequest,
+	ctx _context.Context, id string, updateGroupBody *UpdateGroupBody,
 ) (*ScimGroup, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
@@ -18808,8 +18808,8 @@ func (a *ServiceImpl) UpdateGroup(
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if updateGroupRequest == nil {
-		return nil, nil, reportError("updateGroupRequest is required and must be specified")
+	if updateGroupBody == nil {
+		return nil, nil, reportError("updateGroupBody is required and must be specified")
 	}
 
 	// Determine the Content-Type header.
@@ -18830,7 +18830,7 @@ func (a *ServiceImpl) UpdateGroup(
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// Body params.
-	localVarPostBody = updateGroupRequest
+	localVarPostBody = updateGroupBody
 	req, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return nil, nil, err
@@ -18928,7 +18928,7 @@ func (a *ServiceImpl) UpdateGroup(
 
 // UpdateUser executes the request.
 func (a *ServiceImpl) UpdateUser(
-	ctx _context.Context, id string, updateUserRequest *UpdateUserRequest,
+	ctx _context.Context, id string, updateUserBody *UpdateUserBody,
 ) (*ScimUser, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
@@ -18946,8 +18946,8 @@ func (a *ServiceImpl) UpdateUser(
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if updateUserRequest == nil {
-		return nil, nil, reportError("updateUserRequest is required and must be specified")
+	if updateUserBody == nil {
+		return nil, nil, reportError("updateUserBody is required and must be specified")
 	}
 
 	// Determine the Content-Type header.
@@ -18968,7 +18968,7 @@ func (a *ServiceImpl) UpdateUser(
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// Body params.
-	localVarPostBody = updateUserRequest
+	localVarPostBody = updateUserBody
 	req, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return nil, nil, err
@@ -19066,7 +19066,7 @@ func (a *ServiceImpl) UpdateUser(
 
 // CreateSQLUser executes the request.
 func (a *ServiceImpl) CreateSQLUser(
-	ctx _context.Context, clusterId string, createSQLUserRequest *CreateSQLUserRequest,
+	ctx _context.Context, clusterId string, createSQLUserBody *CreateSQLUserBody,
 ) (*SQLUser, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
@@ -19084,8 +19084,8 @@ func (a *ServiceImpl) CreateSQLUser(
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if createSQLUserRequest == nil {
-		return nil, nil, reportError("createSQLUserRequest is required and must be specified")
+	if createSQLUserBody == nil {
+		return nil, nil, reportError("createSQLUserBody is required and must be specified")
 	}
 
 	// Determine the Content-Type header.
@@ -19106,7 +19106,7 @@ func (a *ServiceImpl) CreateSQLUser(
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// Body params.
-	localVarPostBody = createSQLUserRequest
+	localVarPostBody = createSQLUserBody
 	req, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return nil, nil, err
@@ -19495,7 +19495,7 @@ func (a *ServiceImpl) ListSQLUsers(
 
 // UpdateSQLUserPassword executes the request.
 func (a *ServiceImpl) UpdateSQLUserPassword(
-	ctx _context.Context, clusterId string, name string, updateSQLUserPasswordRequest *UpdateSQLUserPasswordRequest,
+	ctx _context.Context, clusterId string, name string, updateSQLUserPasswordBody *UpdateSQLUserPasswordBody,
 ) (*SQLUser, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
@@ -19514,8 +19514,8 @@ func (a *ServiceImpl) UpdateSQLUserPassword(
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if updateSQLUserPasswordRequest == nil {
-		return nil, nil, reportError("updateSQLUserPasswordRequest is required and must be specified")
+	if updateSQLUserPasswordBody == nil {
+		return nil, nil, reportError("updateSQLUserPasswordBody is required and must be specified")
 	}
 
 	// Determine the Content-Type header.
@@ -19536,7 +19536,7 @@ func (a *ServiceImpl) UpdateSQLUserPassword(
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// Body params.
-	localVarPostBody = updateSQLUserPasswordRequest
+	localVarPostBody = updateSQLUserPasswordBody
 	req, err := a.client.prepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		return nil, nil, err

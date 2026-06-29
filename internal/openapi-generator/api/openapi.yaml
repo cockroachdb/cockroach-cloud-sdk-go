@@ -487,7 +487,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PatchGroupRequest'
+              $ref: '#/components/schemas/PatchGroupBody'
         required: true
       responses:
         "200":
@@ -555,7 +555,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateGroupRequest'
+              $ref: '#/components/schemas/UpdateGroupBody'
         required: true
       responses:
         "200":
@@ -626,7 +626,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/GetGroupRequest'
+              $ref: '#/components/schemas/SearchGroupBody'
         required: true
       responses:
         "200":
@@ -695,7 +695,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/GetGroupRequest'
+              $ref: '#/components/schemas/GetGroup2Body'
         required: true
       responses:
         "200":
@@ -1519,7 +1519,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/PatchUserRequest'
+              $ref: '#/components/schemas/PatchUserBody'
         required: true
       responses:
         "200":
@@ -1587,7 +1587,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateUserRequest'
+              $ref: '#/components/schemas/UpdateUserBody'
         required: true
       responses:
         "200":
@@ -1658,7 +1658,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/GetUserRequest'
+              $ref: '#/components/schemas/SearchUserBody'
         required: true
       responses:
         "200":
@@ -1727,7 +1727,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/GetUserRequest'
+              $ref: '#/components/schemas/GetUser2Body'
         required: true
       responses:
         "200":
@@ -3229,7 +3229,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateBlackoutWindowRequest'
+              $ref: '#/components/schemas/CreateBlackoutWindowBody'
         required: true
       responses:
         "200":
@@ -3453,7 +3453,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateBlackoutWindowRequest'
+              $ref: '#/components/schemas/UpdateBlackoutWindowBody'
         required: true
       responses:
         "200":
@@ -3650,7 +3650,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateClientCACertRequest'
+              $ref: '#/components/schemas/UpdateClientCACertBody'
         required: true
       responses:
         "200":
@@ -3719,7 +3719,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SetClientCACertRequest'
+              $ref: '#/components/schemas/SetClientCACertBody'
         required: true
       responses:
         "200":
@@ -3851,7 +3851,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateCMEKStatusRequest'
+              $ref: '#/components/schemas/UpdateCMEKStatusBody'
         required: true
       responses:
         "200":
@@ -3920,7 +3920,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CMEKClusterSpecification'
+              $ref: '#/components/schemas/EnableCMEKSpecBody'
         required: true
       responses:
         "200":
@@ -3989,7 +3989,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CMEKClusterSpecification'
+              $ref: '#/components/schemas/UpdateCMEKSpecBody'
         required: true
       responses:
         "200":
@@ -4258,7 +4258,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateDatabaseRequest'
+              $ref: '#/components/schemas/EditDatabaseBody'
         required: true
       responses:
         "200":
@@ -4327,7 +4327,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateDatabaseRequest'
+              $ref: '#/components/schemas/CreateDatabaseBody'
         required: true
       responses:
         "200":
@@ -4473,7 +4473,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateDatabaseRequest_1'
+              $ref: '#/components/schemas/EditDatabaseBody'
         required: true
       responses:
         "200":
@@ -4611,7 +4611,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CockroachCloud_UpdateClusterDisruption_request'
+              $ref: '#/components/schemas/UpdateClusterDisruptionBody'
         required: true
       responses:
         "200":
@@ -4818,7 +4818,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/EnableLogExportRequest'
+              $ref: '#/components/schemas/EnableLogExportBody'
         required: true
       responses:
         "200":
@@ -5218,7 +5218,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/EnableCloudWatchMetricExportRequest'
+              $ref: '#/components/schemas/EnableCloudWatchMetricExportBody'
         required: true
       responses:
         "200":
@@ -5422,7 +5422,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/EnableDatadogMetricExportRequest'
+              $ref: '#/components/schemas/EnableDatadogMetricExportBody'
         required: true
       responses:
         "200":
@@ -6188,7 +6188,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SetAwsEndpointConnectionStateRequest'
+              $ref: '#/components/schemas/SetAwsEndpointConnectionStateBody'
         required: true
       responses:
         "200":
@@ -6363,7 +6363,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateEgressPrivateEndpointRequest'
+              $ref: '#/components/schemas/CreateEgressPrivateEndpointBody'
         required: true
       responses:
         "200":
@@ -6599,7 +6599,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateEgressPrivateEndpointRequest'
+              $ref: '#/components/schemas/UpdateEgressPrivateEndpointBody'
         required: true
       responses:
         "200":
@@ -6684,7 +6684,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateEgressPrivateEndpointRequest'
+              $ref: '#/components/schemas/UpdateEgressPrivateEndpointDomainNamesBody'
         required: true
       responses:
         "200":
@@ -6867,7 +6867,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AddEgressRuleRequest'
+              $ref: '#/components/schemas/AddEgressRuleBody'
         required: true
       responses:
         "200":
@@ -6942,7 +6942,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SetEgressTrafficPolicyRequest'
+              $ref: '#/components/schemas/SetEgressTrafficPolicyBody'
         required: true
       responses:
         "200":
@@ -7187,7 +7187,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/EditEgressRuleRequest'
+              $ref: '#/components/schemas/EditEgressRuleBody'
         required: true
       responses:
         "200":
@@ -7329,7 +7329,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AddPrivateEndpointConnectionRequest'
+              $ref: '#/components/schemas/AddPrivateEndpointConnectionBody'
         required: true
       responses:
         "200":
@@ -7678,7 +7678,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AddPrivateEndpointTrustedOwnerRequest'
+              $ref: '#/components/schemas/AddPrivateEndpointTrustedOwnerBody'
         required: true
       responses:
         "200":
@@ -8306,7 +8306,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateSQLUserRequest'
+              $ref: '#/components/schemas/CreateSQLUserBody'
         required: true
       responses:
         "200":
@@ -8451,7 +8451,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateSQLUserPasswordRequest'
+              $ref: '#/components/schemas/UpdateSQLUserPasswordBody'
         required: true
       responses:
         "200":
@@ -8660,7 +8660,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CockroachCloud_CreateRestore_request'
+              $ref: '#/components/schemas/CreateRestoreBody'
         required: true
       responses:
         "200":
@@ -9237,7 +9237,7 @@ paths:
         style: form
       - description: |-
           start_time filters the response to invoices whose billing period started at or after this time (inclusive).
-          Defaults to organization creation time if omitted.
+          Must be in RFC3339 format (e.g., 2024-01-01T00:00:00Z). Defaults to organization creation time if omitted.
         explode: true
         in: query
         name: start_time
@@ -9248,7 +9248,7 @@ paths:
         style: form
       - description: |-
           end_time filters the response to invoices whose billing period ended at or before this time (exclusive).
-          Defaults to current time if omitted.
+          Must be in RFC3339 format (e.g., 2024-12-31T23:59:59Z). Defaults to current time if omitted.
         explode: true
         in: query
         name: end_time
@@ -9691,7 +9691,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateJWTIssuerRequest'
+              $ref: '#/components/schemas/UpdateJWTIssuerBody'
         required: true
       responses:
         "200":
@@ -10318,7 +10318,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CockroachCloud_SetRolesForUser_request'
+              $ref: '#/components/schemas/SetRolesForUserBody'
         required: true
       responses:
         "200":
@@ -11048,6 +11048,61 @@ components:
       - service_id
       - service_name
       type: object
+    AddEgressRuleBody:
+      example:
+        cluster_id: 35c4abb2-bb66-46d7-afed-25ebef5ed100
+        description: egress for GCP storage buckets
+        destination: storage.googleapis.com
+        name: roach-buckets
+        ports:
+        - 443
+        - 80
+        type: FQDN
+      properties:
+        description:
+          description: description is text that serves to document the rules purpose.
+          type: string
+        destination:
+          description: |-
+            destination is the endpoint (or subnetwork if CIDR) to which traffic is
+            allowed.
+          type: string
+        idempotency_key:
+          description: |-
+            idempotency_key uniquely identifies this request. If not set, it will be
+            set by the server.
+          type: string
+        name:
+          description: name is the name of the egress rule.
+          type: string
+        paths:
+          description: |-
+            Deprecated: This field is ignored and will be removed in the next version.
+            paths are the allowed URL paths. If empty, all paths are allowed. Only
+            valid if Type="FQDN".
+          items:
+            type: string
+          type: array
+        ports:
+          description: |-
+            ports are the allowed ports for TCP protocol. If Empty, all ports are
+            allowed.
+          items:
+            format: int32
+            type: integer
+          type: array
+        type:
+          description: |-
+            type classifies the Destination field. Valid types include: "FQDN",
+            "CIDR".
+          type: string
+      required:
+      - description
+      - destination
+      - name
+      - type
+      title: AddEgressRuleRequest
+      type: object
     AddEgressRuleResponse:
       example:
         Rule:
@@ -11117,6 +11172,39 @@ components:
       - issuer_url
       title: AddJWTIssuerRequest
       type: object
+    AddPrivateEndpointConnectionBody:
+      example:
+        cluster_id: 35c4abb2-bb66-46d7-afed-25ebef5ed2aa
+        endpoint_id: e-65de2gf3
+      properties:
+        endpoint_id:
+          description: |-
+            endpoint_id is the id of the private endpoint associated with a cluster's
+            private endpoint service. The private endpoint is customer-created and
+            its id is generated by the cloud provider at endpoint creation time.
+          type: string
+      required:
+      - endpoint_id
+      title: AddPrivateEndpointConnectionRequest
+      type: object
+    AddPrivateEndpointTrustedOwnerBody:
+      example:
+        external_owner_id: "012345678901"
+        type: AWS_ACCOUNT_ID
+      properties:
+        external_owner_id:
+          description: |-
+            external_owner_id is the identifier of the owner within the cloud provider
+            for private endpoint connections. A wildcard character ("*") can be used to
+            denote all owners.
+          type: string
+        type:
+          $ref: '#/components/schemas/PrivateEndpointTrustedOwnerType.Type'
+      required:
+      - external_owner_id
+      - type
+      title: AddPrivateEndpointTrustedOwnerRequest
+      type: object
     AddPrivateEndpointTrustedOwnerResponse:
       example:
         trusted_owner:
@@ -11163,119 +11251,65 @@ components:
         `Any` contains an arbitrary serialized protocol buffer message along with a
         URL that describes the type of the serialized message.
 
-        Protobuf library provides support to pack/unpack Any values in the form
-        of utility functions or additional generated methods of the Any type.
+        In its binary encoding, an `Any` is an ordinary message; but in other wire
+        forms like JSON, it has a special encoding. The format of the type URL is
+        described on the `type_url` field.
 
-        Example 1: Pack and unpack a message in C++.
+        Protobuf APIs provide utilities to interact with `Any` values:
 
-            Foo foo = ...;
-            Any any;
-            any.PackFrom(foo);
-            ...
-            if (any.UnpackTo(&foo)) {
-              ...
-            }
+        - A 'pack' operation accepts a message and constructs a generic `Any` wrapper
+          around it.
+        - An 'unpack' operation reads the content of an `Any` message, either into an
+          existing message or a new one. Unpack operations must check the type of the
+          value they unpack against the declared `type_url`.
+        - An 'is' operation decides whether an `Any` contains a message of the given
+          type, i.e. whether it can 'unpack' that type.
 
-        Example 2: Pack and unpack a message in Java.
+        The JSON format representation of an `Any` follows one of these cases:
 
-            Foo foo = ...;
-            Any any = Any.pack(foo);
-            ...
-            if (any.is(Foo.class)) {
-              foo = any.unpack(Foo.class);
-            }
-            // or ...
-            if (any.isSameTypeAs(Foo.getDefaultInstance())) {
-              foo = any.unpack(Foo.getDefaultInstance());
-            }
+        - For types without special-cased JSON encodings, the JSON format
+          representation of the `Any` is the same as that of the message, with an
+          additional `@type` field which contains the type URL.
+        - For types with special-cased JSON encodings (typically called 'well-known'
+          types, listed in https://protobuf.dev/programming-guides/json/#any), the
+          JSON format representation has a key `@type` which contains the type URL
+          and a key `value` which contains the JSON-serialized value.
 
-         Example 3: Pack and unpack a message in Python.
-
-            foo = Foo(...)
-            any = Any()
-            any.Pack(foo)
-            ...
-            if any.Is(Foo.DESCRIPTOR):
-              any.Unpack(foo)
-              ...
-
-         Example 4: Pack and unpack a message in Go
-
-             foo := &pb.Foo{...}
-             any, err := anypb.New(foo)
-             if err != nil {
-               ...
-             }
-             ...
-             foo := &pb.Foo{}
-             if err := any.UnmarshalTo(foo); err != nil {
-               ...
-             }
-
-        The pack methods provided by protobuf library will by default use
-        'type.googleapis.com/full.type.name' as the type URL and the unpack
-        methods only use the fully qualified type name after the last '/'
-        in the type URL, for example "foo.bar.com/x/y.z" will yield type
-        name "y.z".
-
-        JSON
-        ====
-        The JSON representation of an `Any` value uses the regular
-        representation of the deserialized, embedded message, with an
-        additional field `@type` which contains the type URL. Example:
-
-            package google.profile;
-            message Person {
-              string first_name = 1;
-              string last_name = 2;
-            }
-
-            {
-              "@type": "type.googleapis.com/google.profile.Person",
-              "firstName": <string>,
-              "lastName": <string>
-            }
-
-        If the embedded message type is well-known and has a custom JSON
-        representation, that representation will be embedded adding a field
-        `value` which holds the custom JSON in addition to the `@type`
-        field. Example (for message [google.protobuf.Duration][]):
-
-            {
-              "@type": "type.googleapis.com/google.protobuf.Duration",
-              "value": "1.212s"
-            }
+        The text format representation of an `Any` is like a message with one field
+        whose name is the type URL in brackets. For example, an `Any` containing a
+        `foo.Bar` message may be written `[type.googleapis.com/foo.Bar] { a: 2 }`.
       properties:
         '@type':
           description: |-
-            A URL/resource name that uniquely identifies the type of the serialized
-            protocol buffer message. This string must contain at least
-            one "/" character. The last segment of the URL's path must represent
-            the fully qualified name of the type (as in
-            `path/google.protobuf.Duration`). The name should be in a canonical form
-            (e.g., leading "." is not accepted).
+            Identifies the type of the serialized Protobuf message with a URI reference
+            consisting of a prefix ending in a slash and the fully-qualified type name.
 
-            In practice, teams usually precompile into the binary all types that they
-            expect it to use in the context of Any. However, for URLs which use the
-            scheme `http`, `https`, or no scheme, one can optionally set up a type
-            server that maps type URLs to message definitions as follows:
+            Example: type.googleapis.com/google.protobuf.StringValue
 
-            * If no scheme is provided, `https` is assumed.
-            * An HTTP GET on the URL must yield a [google.protobuf.Type][]
-              value in binary format, or produce an error.
-            * Applications are allowed to cache lookup results based on the
-              URL, or have them precompiled into a binary to avoid any
-              lookup. Therefore, binary compatibility needs to be preserved
-              on changes to types. (Use versioned type names to manage
-              breaking changes.)
+            This string must contain at least one `/` character, and the content after
+            the last `/` must be the fully-qualified name of the type in canonical
+            form, without a leading dot. Do not write a scheme on these URI references
+            so that clients do not attempt to contact them.
 
-            Note: this functionality is not currently available in the official
-            protobuf release, and it is not used for type URLs beginning with
-            type.googleapis.com. As of May 2023, there are no widely used type server
-            implementations and no plans to implement one.
+            The prefix is arbitrary and Protobuf implementations are expected to
+            simply strip off everything up to and including the last `/` to identify
+            the type. `type.googleapis.com/` is a common default prefix that some
+            legacy implementations require. This prefix does not indicate the origin of
+            the type, and URIs containing it are not expected to respond to any
+            requests.
 
-            Schemes other than `http`, `https` (or the empty scheme) might be
-            used with implementation specific semantics.
+            All type URL strings must be legal URI references with the additional
+            restriction (for the text format) that the content of the reference
+            must consist only of alphanumeric characters, percent-encoded escapes, and
+            characters in the following set (not including the outer backticks):
+            `/-.~_!$&()*+,;=`. Despite our allowing percent encodings, implementations
+            should not unescape them to prevent confusion with existing parsers. For
+            example, `type.googleapis.com%2FFoo` should be rejected.
+
+            In the original design of `Any`, the possibility of launching a type
+            resolution service at these type URLs was considered but Protobuf never
+            implemented one and considers contacting these URLs to be problematic and
+            a potential security issue. Do not attempt to contact type URLs.
           type: string
       type: object
     ApiKey:
@@ -11409,6 +11443,13 @@ components:
       - AUDIT_LOG_ACTION_SET_CLUSTER_SETTING
       - AUDIT_LOG_ACTION_EVICT_BYOC_CLUSTER
       - AUDIT_LOG_ACTION_MCP_OAUTH_CONSENT
+      - AUDIT_LOG_ACTION_ENABLE_MFA_ENFORCEMENT
+      - AUDIT_LOG_ACTION_DISABLE_MFA_ENFORCEMENT
+      - AUDIT_LOG_ACTION_RESET_USER_MFA
+      - AUDIT_LOG_ACTION_ENROLL_USER_MFA
+      - AUDIT_LOG_ACTION_REGENERATE_RECOVERY_CODES
+      - AUDIT_LOG_ACTION_CREATE_MIGRATION_ASSISTANT
+      - AUDIT_LOG_ACTION_DELETE_MIGRATION_ASSISTANT
       type: string
     AuditLogEntry:
       description: |-
@@ -11422,6 +11463,7 @@ components:
           ip_address: ip_address
         trace_id: trace_id
         user_email: user_email
+        system_actor_name: null
         created_at: 2000-01-23T04:56:07.000+00:00
         session_id: session_id
         source: null
@@ -11475,6 +11517,8 @@ components:
           type: string
         source:
           $ref: '#/components/schemas/AuditLogSource'
+        system_actor_name:
+          $ref: '#/components/schemas/SystemActorName'
         trace_id:
           description: |-
             TraceId is an ID that can be used to correlate this log entry with others
@@ -11501,6 +11545,7 @@ components:
       - AUDIT_LOG_SOURCE_UI
       - AUDIT_LOG_SOURCE_INTERNAL
       - AUDIT_LOG_SOURCE_MCP
+      - AUDIT_LOG_SOURCE_SSH_GATEWAY
       type: string
     Aws:
       example:
@@ -12410,6 +12455,30 @@ components:
       - api_key
       - secret
       type: object
+    CreateBlackoutWindowBody:
+      example:
+        cluster_id: 12345678-1234-1234-1234-123456789012
+        end_time: 2025-10-15T06:00:00Z
+        start_time: 2025-10-15T00:00:00Z
+      properties:
+        end_time:
+          description: |-
+            The end time of the blackout window (UTC).
+            Can be up to 14 days after the start time.
+            Must not be more than three months after the current time.
+          format: date-time
+          type: string
+        start_time:
+          description: |-
+            The start time of the blackout window (UTC).
+            Must be scheduled at least 7 days in advance.
+          format: date-time
+          type: string
+      required:
+      - end_time
+      - start_time
+      title: CreateBlackoutWindowRequest
+      type: object
     CreateClusterRequest:
       example:
         name: test-cluster
@@ -12460,6 +12529,40 @@ components:
           $ref: '#/components/schemas/Plan.Type'
         serverless:
           $ref: '#/components/schemas/ServerlessClusterCreateSpecification'
+      type: object
+    CreateDatabaseBody:
+      example:
+        name: example_database_name
+      properties:
+        name:
+          type: string
+      required:
+      - name
+      title: CreateDatabaseRequest
+      type: object
+    CreateEgressPrivateEndpointBody:
+      example:
+        region: us-east-1
+        target_service_identifier: arn:aws:s3:::example-bucket
+        target_service_type: MSK_SASL_IAM
+      properties:
+        region:
+          description: region represents the region that the endpoint will be created
+            in.
+          type: string
+        target_service_identifier:
+          description: |-
+            target_service_identifier represents the identifier of the target service.
+            User-visible in CRL and CSP consoles as the "thing" the user is telling us to connect to,
+            i.e. Service Name for AWS, Service Attachment for GCP, or ARN for AWS MSK.
+          type: string
+        target_service_type:
+          $ref: '#/components/schemas/EgressPrivateEndpointTargetServiceType.Type'
+      required:
+      - region
+      - target_service_identifier
+      - target_service_type
+      title: CreateEgressPrivateEndpointRequest
       type: object
     CreateFolderRequest:
       example:
@@ -12524,6 +12627,59 @@ components:
       required:
       - primary_cluster_id
       - standby_cluster_id
+      type: object
+    CreateRestoreBody:
+      example:
+        backup_id: 1234abcd-1234-1234-abcd-12345678abcd
+        destination_cluster_id: 12345678-1234-1234-1234-123456789012
+        objects:
+        - database: database1
+          schema: schema1
+          table: table1
+        - database: database1
+          schema: schema1
+          table: table2
+        restore_opts:
+          into_db: database2
+          schema_only: true
+        type: TABLE
+      properties:
+        backup_id:
+          description: |-
+            The ID of the backup from which data will be restored.
+            If backup_id is not set, the restore will use the latest
+            available backup from source_cluster_id.
+          type: string
+        objects:
+          description: |-
+            The list of objects to restore. Required when type is DATABASE
+            or TABLE.
+          items:
+            $ref: '#/components/schemas/RestoreItem'
+          type: array
+        restore_opts:
+          $ref: '#/components/schemas/RestoreOpts'
+        source_cluster_id:
+          description: The ID of the cluster containing the backup to be restored.
+          type: string
+        type:
+          $ref: '#/components/schemas/RestoreType.Type'
+      required:
+      - type
+      type: object
+    CreateSQLUserBody:
+      example:
+        name: example_username
+        password: example_password
+      properties:
+        name:
+          type: string
+        password:
+          type: string
+      required:
+      - name
+      - password
+      title: CreateSQLUserRequest
       type: object
     CreateServiceAccountRequest:
       example:
@@ -12752,6 +12908,18 @@ components:
           $ref: '#/components/schemas/DedicatedHardwareCreateSpecification'
         network_visibility:
           $ref: '#/components/schemas/NetworkVisibility.Type'
+        region_machine_specs:
+          additionalProperties:
+            $ref: '#/components/schemas/DedicatedMachineTypeSpecification'
+          description: |-
+            region_machine_specs configures a machine type per region, producing a
+            cluster whose regions may use different machine types. Keys are region
+            codes (matching region_nodes) and values select a machine type by
+            machine_type or num_virtual_cpus. When set, every region in region_nodes
+            must have a corresponding entry, and hardware.machine_spec must be
+            omitted (the two fields are mutually exclusive). hardware.storage_gib
+            and hardware.disk_iops continue to apply cluster-wide.
+          type: object
         region_nodes:
           additionalProperties:
             format: int32
@@ -12790,6 +12958,16 @@ components:
           type: array
         hardware:
           $ref: '#/components/schemas/DedicatedHardwareUpdateSpecification'
+        region_machine_specs:
+          additionalProperties:
+            $ref: '#/components/schemas/DedicatedMachineTypeSpecification'
+          description: |-
+            region_machine_specs updates machine types per region. Only regions named
+            in this map are affected; unnamed regions retain their current machine
+            type. Use this to add a new region with a distinct machine type or to
+            resize an existing region independently of others. Mutually exclusive
+            with hardware.machine_spec.
+          type: object
         region_nodes:
           additionalProperties:
             format: int32
@@ -12839,6 +13017,10 @@ components:
       - storage_gib
       type: object
     DedicatedHardwareCreateSpecification:
+      description: "Exactly one of machine_spec or DedicatedClusterCreateSpecification.region_machine_specs\
+        \ must be provided. For the standard (non-limited-access) cluster creation\
+        \ flow, machine_spec is effectively required; it may only be omitted by callers\
+        \ using the limited-access region_machine_specs field."
       properties:
         disk_iops:
           description: |-
@@ -12859,7 +13041,6 @@ components:
           format: int32
           type: integer
       required:
-      - machine_spec
       - storage_gib
       type: object
     DedicatedHardwareUpdateSpecification:
@@ -12938,6 +13119,64 @@ components:
       - ENABLED
       - DISABLED
       type: string
+    EditDatabaseBody:
+      example:
+        name: example_database_name
+        new_name: example_new_database_name
+      properties:
+        name:
+          type: string
+        new_name:
+          type: string
+      required:
+      - name
+      - new_name
+      title: UpdateDatabaseRequest
+      type: object
+    EditEgressRuleBody:
+      example:
+        cluster_id: 35c4abb2-bb66-46d7-afed-25ebef5ed100
+        ports:
+        - 443
+        - 80
+        rule_id: 35c4abb2-bb66-46d7-afed-25ebef5ed2aa
+      properties:
+        description:
+          description: description is text that serves to document the rules purpose.
+          type: string
+        destination:
+          description: |-
+            destination is a CIDR range or fully-qualified domain name to which
+            outgoing traffic should be allowed. This field is required.
+          type: string
+        idempotency_key:
+          description: |-
+            idempotency_key uniquely identifies this request. If not set, it will be
+            set by the server.
+          type: string
+        paths:
+          description: |-
+            Deprecated: This field is ignored and will be removed in the next version.
+            paths are the allowed URL paths. If empty, all paths are allowed. Only
+            valid if Type="FQDN".
+          items:
+            type: string
+          type: array
+        ports:
+          description: |-
+            ports are the allowed ports for TCP protocol. If empty, all ports are
+            allowed.
+          items:
+            format: int32
+            type: integer
+          type: array
+        type:
+          description: |-
+            type is the destination type of this rule. Example values are
+            FQDN or CIDR. This field is required.
+          type: string
+      title: EditEgressRuleRequest
+      type: object
     EditEgressRuleResponse:
       example:
         Rule:
@@ -13057,8 +13296,7 @@ components:
       - MSK_SASL_IAM
       - MSK_TLS
       title: |-
-        - UNSPECIFIED: UNSPECIFIED represents an unspecified target service type.
-         - PRIVATE_SERVICE: PRIVATE_SERVICE represents any private service, such as a GCP service attachment, or an AWS VPC endpoint service.
+        - PRIVATE_SERVICE: PRIVATE_SERVICE represents any private service, such as a GCP service attachment, or an AWS VPC endpoint service.
          - MSK_SASL_SCRAM: MSK_SASL_SCRAM represents the managed Kafka service in AWS, with SASL/SCRAM auth
          - MSK_SASL_IAM: MSK_SASL_IAM represents the managed Kafka service in AWS, with SASL/IAM auth
          - MSK_TLS: MSK_TLS represents the managed Kafka service in AWS, with TLS auth
@@ -13162,6 +13400,146 @@ components:
       - DEFAULT_DENY
       - UPDATING
       type: string
+    EnableCMEKSpecBody:
+      example:
+        region_specs:
+        - key_spec:
+            auth_principal: arn:aws:iam::account:role/role-name-with-path
+            type: AWS_KMS
+            uri: arn:aws:kms:us-west-2:111122223333:key/id-of-kms-key
+          region: us-central1
+      properties:
+        region_specs:
+          items:
+            $ref: '#/components/schemas/CMEKRegionSpecification'
+          type: array
+      required:
+      - region_specs
+      title: CMEKClusterSpecification
+      type: object
+    EnableCloudWatchMetricExportBody:
+      example:
+        external_id: example_external_id
+        log_group_name: example
+        role_arn: arn:aws:iam::account:role/ExampleRole
+        target_region: us-east-1
+      properties:
+        external_id:
+          description: |-
+            external_id to include when assuming the IAM role specified by role_arn.
+            Optional. A specific value may be required by the role's trust policy.
+            Only supported for Advanced clusters. If provided for a Standard cluster,
+            the request is rejected.
+          type: string
+        log_group_name:
+          description: log_group_name is the customized log group name.
+          type: string
+        role_arn:
+          description: |-
+            role_arn is the IAM role used to upload metric segments to the
+            target AWS account.
+          type: string
+        target_region:
+          description: |-
+            target_region specifies the specific AWS region that the metrics will
+            be exported to.
+          type: string
+      required:
+      - role_arn
+      title: EnableCloudWatchMetricExportRequest
+      type: object
+    EnableDatadogMetricExportBody:
+      example:
+        api_key: datadog_api_key
+        site: US1
+      properties:
+        api_key:
+          description: api_key is a Datadog API key.
+          type: string
+        site:
+          $ref: '#/components/schemas/DatadogSite.Type'
+      required:
+      - api_key
+      - site
+      title: EnableDatadogMetricExportRequest
+      type: object
+    EnableLogExportBody:
+      example:
+        auth_principal: my-gcp-project-id
+        groups:
+        - channels:
+          - OPS
+          - HEALTH
+          log_name: devops
+          min_level: WARNING
+        log_name: default
+        omitted_channels:
+        - SESSIONS
+        - SQL_PERF
+        redact: true
+        shared_key: shared-key
+        type: GCP_CLOUD_LOGGING
+      properties:
+        auth_principal:
+          title: |-
+            auth_principal is used in different contexts based on integration.
+            CloudWatch: AWS Role ARN that identifies a role
+            that the cluster account can assume to write to CloudWatch
+            GCP Cloud Logging: GCP Project ID that the cluster service account
+            has permissions to write to for cloud logging.
+            Azure Log Analytics: CustomerID or WorkspaceID
+          type: string
+        aws_external_id:
+          description: |-
+            aws_external_id to include when assuming the IAM role specified by role_arn.
+            Optional. A specific value may be required by the role's trust policy.
+            Only supported for Advanced clusters on AWS. If provided for a Standard cluster,
+            the request is rejected.
+          type: string
+        azure_shared_key:
+          description: |-
+            The primary or the secondary connected sources client authentication key.
+            This is used to export logs to Azure Log Analytics.
+          type: string
+        groups:
+          description: |-
+            groups is a collection of log group configurations that allows the
+            customer to define collections of CRDB log channels that are aggregated
+            separately at the target sink.
+          items:
+            $ref: '#/components/schemas/LogExportGroup'
+          type: array
+        log_name:
+          description: log_name is an identifier for the logs in the customer's log
+            sink.
+          type: string
+        omitted_channels:
+          description: |-
+            omitted_channels is a list of channels that the user does not want to
+            export logs for.
+          items:
+            type: string
+          type: array
+        redact:
+          description: |-
+            redact allows the customer to set a default redaction policy for
+            logs before they are exported to the target sink. If a group config
+            omits a redact flag and this one is set to `true`, then that group
+            will receive redacted logs.
+          type: boolean
+        region:
+          description: |-
+            region allows the customer to override the destination region for
+            all logs for a cluster.
+          type: string
+        type:
+          $ref: '#/components/schemas/LogExportType'
+      required:
+      - auth_principal
+      - log_name
+      - type
+      title: EnableLogExportRequest
+      type: object
     FolderResource:
       description: "FolderResource describes a resource, and includes info about its\
         \ lineage (parent/ancestors)."
@@ -13364,6 +13742,17 @@ components:
       required:
       - rule
       title: GetEgressRuleResponse
+      type: object
+    GetGroup2Body:
+      example:
+        attributes: attributes
+        excludedAttributes: excludedAttributes
+      properties:
+        attributes:
+          type: string
+        excludedAttributes:
+          type: string
+      title: GetGroupRequest
       type: object
     GetGroupsRequest:
       example:
@@ -13738,6 +14127,17 @@ components:
       - schemas
       - sort
       title: GetServiceProviderConfigResponse
+      type: object
+    GetUser2Body:
+      example:
+        attributes: attributes
+        excludedAttributes: excludedAttributes
+      properties:
+        attributes:
+          type: string
+        excludedAttributes:
+          type: string
+      title: GetUserRequest
       type: object
     GetUsersRequest:
       example:
@@ -14356,6 +14756,7 @@ components:
             ip_address: ip_address
           trace_id: trace_id
           user_email: user_email
+          system_actor_name: null
           created_at: 2000-01-23T04:56:07.000+00:00
           session_id: session_id
           source: null
@@ -14370,6 +14771,7 @@ components:
             ip_address: ip_address
           trace_id: trace_id
           user_email: user_email
+          system_actor_name: null
           created_at: 2000-01-23T04:56:07.000+00:00
           session_id: session_id
           source: null
@@ -15305,12 +15707,14 @@ components:
             - channels
             log_name: log_name
             redact: true
+            enable_sending_queue: true
             min_level: null
           - channels:
             - channels
             - channels
             log_name: log_name
             redact: true
+            enable_sending_queue: true
             min_level: null
           region: region
           type: null
@@ -15352,12 +15756,14 @@ components:
           - channels
           log_name: log_name
           redact: true
+          enable_sending_queue: true
           min_level: null
         - channels:
           - channels
           - channels
           log_name: log_name
           redact: true
+          enable_sending_queue: true
           min_level: null
         region: region
         type: null
@@ -15424,6 +15830,7 @@ components:
         - channels
         log_name: log_name
         redact: true
+        enable_sending_queue: true
         min_level: null
       properties:
         channels:
@@ -15433,6 +15840,11 @@ components:
           items:
             type: string
           type: array
+        enable_sending_queue:
+          description: |-
+            enable_sending_queue enables the sending queue for logs in this
+            group. Only one group can have enable_sending_queue enabled.
+          type: boolean
         log_name:
           description: "log_name is the name of the group, reflected in the log sink."
           type: string
@@ -15607,6 +16019,78 @@ components:
       - CLUSTER_MONITOR
       - BILLING_VIEWER
       type: string
+    PatchGroupBody:
+      example:
+        Operations:
+        - op: replace
+          path: displayName
+          value: Updated Group Name
+        - op: replace
+          path: externalId
+          value: ext-123
+        - op: remove
+          path: members
+        - op: add
+          path: externalId
+          value: new-external-id
+        - op: add
+          path: members
+          value:
+          - value: 45a35c27-23d3-4d03-c4c5-9043c09e7175
+        schemas:
+        - urn:ietf:params:scim:api:messages:2.0:PatchOp
+      properties:
+        Operations:
+          items:
+            $ref: '#/components/schemas/ScimOperations'
+          type: array
+        schemas:
+          description: |-
+            A list of one or more URIs identifying SCIM schemas that define the structure
+            of the attributes in the request. The only supported schema at this time is
+            "urn:ietf:params:scim:api:messages:2.0:PatchOp".
+          items:
+            type: string
+          type: array
+      required:
+      - Operations
+      - schemas
+      title: PatchGroupRequest
+      type: object
+    PatchUserBody:
+      example:
+        Operations:
+        - op: replace
+          path: userName
+          value: newUserName
+        - op: replace
+          value:
+            displayName: New Name
+            emails:
+            - primary: true
+              value: new@example.com
+        - op: remove
+          path: externalId
+        schemas:
+        - urn:ietf:params:scim:api:messages:2.0:PatchOp
+      properties:
+        Operations:
+          items:
+            $ref: '#/components/schemas/ScimOperations'
+          type: array
+        schemas:
+          description: |-
+            A list of one or more URIs identifying SCIM schemas that define the structure
+            of the attributes in the request. The only supported schema at this time is
+            "urn:ietf:params:scim:api:messages:2.0:PatchOp".
+          items:
+            type: string
+          type: array
+      required:
+      - Operations
+      - schemas
+      title: PatchUserRequest
+      type: object
     PathSegment:
       example:
         name: name
@@ -15823,6 +16307,9 @@ components:
       description: |-
         PrivateEndpointConnectionStatus enumerates the possible statuses
         for the private endpoints connection.
+
+         - STATUS_STALE: Indicates that the endpoint was deleted outside of CockroachDB Cloud. Delete the endpoint
+        through the Cloud API or Console to manually remove the connection entry.
       enum:
       - STATUS_PENDING
       - STATUS_PENDING_ACCEPTANCE
@@ -15832,6 +16319,7 @@ components:
       - STATUS_REJECTED
       - STATUS_FAILED
       - STATUS_EXPIRED
+      - STATUS_STALE
       type: string
     PrivateEndpointConnections:
       example:
@@ -16036,6 +16524,13 @@ components:
       type: string
     Region:
       properties:
+        disk_iops:
+          description: |-
+            disk_iops is the provisioned disk I/O operations per second for nodes
+            in this region. Only meaningful for Advanced clusters on AWS; for GCP
+            and Azure the cloud provider chooses based on disk size.
+          format: int32
+          type: integer
         internal_dns:
           description: |-
             internal_dns is the internal DNS name of the cluster within the cloud
@@ -16043,10 +16538,23 @@ components:
             PrivateLink, Azure Private Link, and GCP VPC Peering, but not GCP Private
             Service Connect.
           type: string
+        machine_type:
+          description: |-
+            machine_type is the machine type identifier within the cloud provider
+            for nodes in this region (e.g. m5.xlarge, n2-standard-4). May differ
+            across regions in a heterogeneous Advanced cluster. Only populated for
+            Advanced clusters.
+          type: string
         name:
           type: string
         node_count:
           description: node_count will be 0 for Serverless clusters.
+          format: int32
+          type: integer
+        num_virtual_cpus:
+          description: |-
+            num_virtual_cpus is the number of virtual CPUs per node in this region,
+            derived from machine_type. Only populated for Advanced clusters.
           format: int32
           type: integer
         primary:
@@ -16060,7 +16568,7 @@ components:
           type: string
         s3_vpc_endpoint_id:
           description: |-
-            Preview: s3_vpc_endpoint_id is the ID of the AWS S3 VPC gateway endpoint
+            s3_vpc_endpoint_id is the ID of the AWS S3 VPC gateway endpoint
             associated with this cluster region. This can be used to configure
             S3 bucket policies that restrict access to traffic from this
             VPC endpoint. Only populated for Advanced clusters on AWS.
@@ -16783,6 +17291,28 @@ components:
       - schemas
       title: ScimUser
       type: object
+    SearchGroupBody:
+      example:
+        attributes: attributes
+        excludedAttributes: excludedAttributes
+      properties:
+        attributes:
+          type: string
+        excludedAttributes:
+          type: string
+      title: GetGroupRequest
+      type: object
+    SearchUserBody:
+      example:
+        attributes: attributes
+        excludedAttributes: excludedAttributes
+      properties:
+        attributes:
+          type: string
+        excludedAttributes:
+          type: string
+      title: GetUserRequest
+      type: object
     ServerlessClusterConfig:
       properties:
         routing_id:
@@ -16910,6 +17440,62 @@ components:
       - AVAILABLE
       - REJECTED
       type: string
+    SetAwsEndpointConnectionStateBody:
+      example:
+        status: AVAILABLE
+      properties:
+        status:
+          $ref: '#/components/schemas/SetAWSEndpointConnectionStatus.Type'
+      required:
+      - status
+      title: SetAwsEndpointConnectionStateRequest
+      type: object
+    SetClientCACertBody:
+      example:
+        x509_pem_cert: '-----BEGIN CERTIFICATE-----...'
+      properties:
+        x509_pem_cert:
+          type: string
+      required:
+      - x509_pem_cert
+      title: SetClientCACertRequest
+      type: object
+    SetEgressTrafficPolicyBody:
+      example:
+        idempotency_key: idempotency_key
+        allow_all: true
+      properties:
+        allow_all:
+          description: |-
+            allow_all, if true results in unrestricted egress traffic. If false, egress
+            traffic is set to default-deny and is managed via the Egress Rule
+            Management API.
+          type: boolean
+        idempotency_key:
+          description: |-
+            idempotency_key uniquely identifies this request. If not set, it will be
+            set by the server.
+          type: string
+      required:
+      - allow_all
+      title: SetEgressTrafficPolicyRequest
+      type: object
+    SetRolesForUserBody:
+      example:
+        roles:
+        - name: CLUSTER_ADMIN
+          resource:
+            id: example_cluster_id
+            type: CLUSTER
+        user_id: 12345678-1234-1234-1234-123456789012
+      properties:
+        roles:
+          items:
+            $ref: '#/components/schemas/BuiltInRole'
+          type: array
+      required:
+      - roles
+      type: object
     Status:
       properties:
         code:
@@ -16922,6 +17508,13 @@ components:
         message:
           type: string
       type: object
+    SystemActorName:
+      description: |-
+        SystemActorName identifies a system process that triggered an audit log
+        entry when the action was not initiated by a human user or service account.
+      enum:
+      - SYSTEM_ACTOR_NAME_SYSTEM
+      type: string
     UpdateApiKeySpecification:
       example:
         name: new name
@@ -16954,6 +17547,94 @@ components:
             365].
           format: int32
           type: integer
+      type: object
+    UpdateBlackoutWindowBody:
+      example:
+        blackout_window_id: 12345678-1234-1234-1234-123456789012
+        cluster_id: 12345678-1234-1234-1234-123456789012
+        end_time: 2025-10-15T06:00:00Z
+        start_time: 2025-10-15T00:00:00Z
+      properties:
+        end_time:
+          description: |-
+            Optional new UTC end time for the blackout window.
+            Can be up to 14 days after the start time.
+            Must not be more than three months after the current time.
+          format: date-time
+          type: string
+        start_time:
+          description: |-
+            Optional new UTC start time for the blackout window.
+            Must be scheduled at least 7 days in advance.
+          format: date-time
+          type: string
+      title: UpdateBlackoutWindowRequest
+      type: object
+    UpdateCMEKSpecBody:
+      example:
+        region_specs:
+        - key_spec:
+            auth_principal: arn:aws:iam::account:role/role-name-with-path
+            type: AWS_KMS
+            uri: arn:aws:kms:us-west-2:111122223333:key/id-of-kms-key
+          region: us-central1
+      properties:
+        region_specs:
+          items:
+            $ref: '#/components/schemas/CMEKRegionSpecification'
+          type: array
+      required:
+      - region_specs
+      title: CMEKClusterSpecification
+      type: object
+    UpdateCMEKStatusBody:
+      example:
+        action: REVOKE
+      properties:
+        action:
+          $ref: '#/components/schemas/CMEKCustomerAction'
+      required:
+      - action
+      title: UpdateCMEKStatusRequest
+      type: object
+    UpdateClientCACertBody:
+      example:
+        x509_pem_cert: '-----BEGIN CERTIFICATE-----...'
+      properties:
+        x509_pem_cert:
+          type: string
+      title: UpdateClientCACertRequest
+      type: object
+    UpdateClusterDisruptionBody:
+      example:
+        regional_disruptor_specifications:
+        - is_whole_region: true
+          pods:
+          - pods
+          - pods
+          azs:
+          - azs
+          - azs
+          region_code: region_code
+        - is_whole_region: true
+          pods:
+          - pods
+          - pods
+          azs:
+          - azs
+          - azs
+          region_code: region_code
+      properties:
+        regional_disruptor_specifications:
+          description: |-
+            regional_disruptor_specifications specify how regions are to be
+            disrupted. Any Cluster region that is not specified here will not be
+            disrupted. A cluster region that was previously disrupted but is not listed
+            here will be removed from disruption. To stop all disruptions, set this
+            to an empty list or omit it from the request.
+          items:
+            $ref: '#/components/schemas/RegionalDisruptorSpecification'
+          type: array
       type: object
     UpdateClusterSpecification:
       example:
@@ -16999,6 +17680,38 @@ components:
         upgrade_status:
           $ref: '#/components/schemas/ClusterUpgradeStatus.Type'
       type: object
+    UpdateEgressPrivateEndpointBody:
+      example:
+        domain_names:
+        - example.com
+        - api.example.com
+      properties:
+        domain_names:
+          description: domain_names are the domain names to associate with the egress
+            private endpoint.
+          items:
+            type: string
+          type: array
+      required:
+      - domain_names
+      title: UpdateEgressPrivateEndpointRequest
+      type: object
+    UpdateEgressPrivateEndpointDomainNamesBody:
+      example:
+        domain_names:
+        - example.com
+        - api.example.com
+      properties:
+        domain_names:
+          description: domain_names are the domain names to associate with the egress
+            private endpoint.
+          items:
+            type: string
+          type: array
+      required:
+      - domain_names
+      title: UpdateEgressPrivateEndpointRequest
+      type: object
     UpdateFolderSpecification:
       description: Set `parent_id` to empty string '' or 'root' to move a folder to
         the root level.
@@ -17020,6 +17733,74 @@ components:
           type: string
         parent_id:
           type: string
+      type: object
+    UpdateGroupBody:
+      example:
+        displayName: Test SCIM
+        id: 23a35c27-23d3-4c03-b4c5-6443c09e7173
+        members:
+        - display: croach@example.com
+          value: 45a35c27-23d3-4d03-c4c5-9043c09e7175
+        schemas:
+        - urn:ietf:params:scim:schemas:core:2.0:Group
+      properties:
+        displayName:
+          type: string
+        externalId:
+          type: string
+        members:
+          items:
+            $ref: '#/components/schemas/ScimResource'
+          type: array
+        schemas:
+          items:
+            type: string
+          type: array
+      required:
+      - displayName
+      - schemas
+      title: UpdateGroupRequest
+      type: object
+    UpdateJWTIssuerBody:
+      example:
+        audience: 1234567890abcd
+        issuer_url: https://jwt-issuer.example.com
+        jwks: "{\"keys\":[{\"e\":\"AQAB\",\"use\":\"sig\",\"kty\":\"RSA\",\"alg\"\
+          :\"RS256\",\"n\":\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\"\
+          ,\"kid\":\"9341dedeee2d1869b657fa930300082fe26b3d92\"}]}"
+        claim: email
+        identity_map:
+        - token_identity: /^sso_(.*)$
+          cc_identity: \1
+        - token_identity: /^sso_(.*)$
+          cc_identity: \1
+      properties:
+        audience:
+          example: 1234567890abcd
+          title: The intended audience for consuming the JWT
+          type: string
+        claim:
+          example: email
+          title: Used to identify the user from the external Identity Provider. Defaults
+            to "sub"
+          type: string
+        identity_map:
+          items:
+            $ref: '#/components/schemas/JWTIssuerIdentityMapEntry'
+          title: A list of mappings to map the external token identity into CockroachDB
+            Cloud
+          type: array
+        issuer_url:
+          example: https://jwt-issuer.example.com
+          title: The URL of the server issuing JWTs
+          type: string
+        jwks:
+          example: "{\"keys\":[{\"e\":\"AQAB\",\"use\":\"sig\",\"kty\":\"RSA\",\"\
+            alg\":\"RS256\",\"n\":\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\"\
+            ,\"kid\":\"9341dedeee2d1869b657fa930300082fe26b3d92\"}]}"
+          title: A set of public keys (JWKS) used to verify a JWT
+          type: string
+      title: UpdateJWTIssuerRequest
       type: object
     UpdatePhysicalReplicationStreamSpec:
       example:
@@ -17044,6 +17825,16 @@ components:
         status:
           $ref: '#/components/schemas/ReplicationStreamStatus.Type'
       type: object
+    UpdateSQLUserPasswordBody:
+      example:
+        password: example_new_password
+      properties:
+        password:
+          type: string
+      required:
+      - password
+      title: UpdateSQLUserPasswordRequest
+      type: object
     UpdateServiceAccountSpecification:
       example:
         description: new description
@@ -17055,6 +17846,40 @@ components:
         name:
           description: name of the service account.
           type: string
+      type: object
+    UpdateUserBody:
+      example:
+        active: true
+        emails:
+        - display: croach@example.com
+          primary: true
+          type: work
+          value: croach@example.com
+        name:
+          familyName: Roach
+          givenName: Carl
+        schemas:
+        - urn:ietf:params:scim:schemas:core:2.0:User
+      properties:
+        active:
+          type: boolean
+        displayName:
+          type: string
+        emails:
+          items:
+            $ref: '#/components/schemas/ScimEmail'
+          type: array
+        externalId:
+          type: string
+        name:
+          $ref: '#/components/schemas/ScimName'
+        schemas:
+          items:
+            type: string
+          type: array
+        userName:
+          type: string
+      title: UpdateUserRequest
       type: object
     UpgradeType.Type:
       enum:
@@ -17136,423 +17961,6 @@ components:
       - roles
       - user_id
       type: object
-    UpdateGroupRequest:
-      example:
-        displayName: Test SCIM
-        id: 23a35c27-23d3-4c03-b4c5-6443c09e7173
-        members:
-        - display: croach@example.com
-          value: 45a35c27-23d3-4d03-c4c5-9043c09e7175
-        schemas:
-        - urn:ietf:params:scim:schemas:core:2.0:Group
-      properties:
-        displayName:
-          type: string
-        externalId:
-          type: string
-        members:
-          items:
-            $ref: '#/components/schemas/ScimResource'
-          type: array
-        schemas:
-          items:
-            type: string
-          type: array
-      required:
-      - displayName
-      - schemas
-      title: UpdateGroupRequest
-      type: object
-    PatchGroupRequest:
-      example:
-        Operations:
-        - op: replace
-          path: displayName
-          value: Updated Group Name
-        - op: replace
-          path: externalId
-          value: ext-123
-        - op: remove
-          path: members
-        - op: add
-          path: externalId
-          value: new-external-id
-        - op: add
-          path: members
-          value:
-          - value: 45a35c27-23d3-4d03-c4c5-9043c09e7175
-        schemas:
-        - urn:ietf:params:scim:api:messages:2.0:PatchOp
-      properties:
-        Operations:
-          items:
-            $ref: '#/components/schemas/ScimOperations'
-          type: array
-        schemas:
-          description: |-
-            A list of one or more URIs identifying SCIM schemas that define the structure
-            of the attributes in the request. The only supported schema at this time is
-            "urn:ietf:params:scim:api:messages:2.0:PatchOp".
-          items:
-            type: string
-          type: array
-      required:
-      - Operations
-      - schemas
-      title: PatchGroupRequest
-      type: object
-    GetGroupRequest:
-      example:
-        attributes: attributes
-        excludedAttributes: excludedAttributes
-      properties:
-        attributes:
-          type: string
-        excludedAttributes:
-          type: string
-      title: GetGroupRequest
-      type: object
-    UpdateUserRequest:
-      example:
-        active: true
-        emails:
-        - display: croach@example.com
-          primary: true
-          type: work
-          value: croach@example.com
-        name:
-          familyName: Roach
-          givenName: Carl
-        schemas:
-        - urn:ietf:params:scim:schemas:core:2.0:User
-      properties:
-        active:
-          type: boolean
-        displayName:
-          type: string
-        emails:
-          items:
-            $ref: '#/components/schemas/ScimEmail'
-          type: array
-        externalId:
-          type: string
-        name:
-          $ref: '#/components/schemas/ScimName'
-        schemas:
-          items:
-            type: string
-          type: array
-        userName:
-          type: string
-      title: UpdateUserRequest
-      type: object
-    PatchUserRequest:
-      example:
-        Operations:
-        - op: replace
-          path: userName
-          value: newUserName
-        - op: replace
-          value:
-            displayName: New Name
-            emails:
-            - primary: true
-              value: new@example.com
-        - op: remove
-          path: externalId
-        schemas:
-        - urn:ietf:params:scim:api:messages:2.0:PatchOp
-      properties:
-        Operations:
-          items:
-            $ref: '#/components/schemas/ScimOperations'
-          type: array
-        schemas:
-          description: |-
-            A list of one or more URIs identifying SCIM schemas that define the structure
-            of the attributes in the request. The only supported schema at this time is
-            "urn:ietf:params:scim:api:messages:2.0:PatchOp".
-          items:
-            type: string
-          type: array
-      required:
-      - Operations
-      - schemas
-      title: PatchUserRequest
-      type: object
-    GetUserRequest:
-      example:
-        attributes: attributes
-        excludedAttributes: excludedAttributes
-      properties:
-        attributes:
-          type: string
-        excludedAttributes:
-          type: string
-      title: GetUserRequest
-      type: object
-    CreateBlackoutWindowRequest:
-      example:
-        cluster_id: 12345678-1234-1234-1234-123456789012
-        end_time: 2025-10-15T06:00:00Z
-        start_time: 2025-10-15T00:00:00Z
-      properties:
-        end_time:
-          description: |-
-            The end time of the blackout window (UTC).
-            Can be up to 14 days after the start time.
-            Must not be more than three months after the current time.
-          format: date-time
-          type: string
-        start_time:
-          description: |-
-            The start time of the blackout window (UTC).
-            Must be scheduled at least 7 days in advance.
-          format: date-time
-          type: string
-      required:
-      - end_time
-      - start_time
-      title: CreateBlackoutWindowRequest
-      type: object
-    UpdateBlackoutWindowRequest:
-      example:
-        blackout_window_id: 12345678-1234-1234-1234-123456789012
-        cluster_id: 12345678-1234-1234-1234-123456789012
-        end_time: 2025-10-15T06:00:00Z
-        start_time: 2025-10-15T00:00:00Z
-      properties:
-        end_time:
-          description: |-
-            Optional new UTC end time for the blackout window.
-            Can be up to 14 days after the start time.
-            Must not be more than three months after the current time.
-          format: date-time
-          type: string
-        start_time:
-          description: |-
-            Optional new UTC start time for the blackout window.
-            Must be scheduled at least 7 days in advance.
-          format: date-time
-          type: string
-      title: UpdateBlackoutWindowRequest
-      type: object
-    SetClientCACertRequest:
-      example:
-        x509_pem_cert: '-----BEGIN CERTIFICATE-----...'
-      properties:
-        x509_pem_cert:
-          type: string
-      required:
-      - x509_pem_cert
-      title: SetClientCACertRequest
-      type: object
-    UpdateClientCACertRequest:
-      example:
-        x509_pem_cert: '-----BEGIN CERTIFICATE-----...'
-      properties:
-        x509_pem_cert:
-          type: string
-      title: UpdateClientCACertRequest
-      type: object
-    CMEKClusterSpecification:
-      example:
-        region_specs:
-        - key_spec:
-            auth_principal: arn:aws:iam::account:role/role-name-with-path
-            type: AWS_KMS
-            uri: arn:aws:kms:us-west-2:111122223333:key/id-of-kms-key
-          region: us-central1
-      properties:
-        region_specs:
-          items:
-            $ref: '#/components/schemas/CMEKRegionSpecification'
-          type: array
-      required:
-      - region_specs
-      title: CMEKClusterSpecification
-      type: object
-    UpdateCMEKStatusRequest:
-      example:
-        action: REVOKE
-      properties:
-        action:
-          $ref: '#/components/schemas/CMEKCustomerAction'
-      required:
-      - action
-      title: UpdateCMEKStatusRequest
-      type: object
-    CreateDatabaseRequest:
-      example:
-        name: example_database_name
-      properties:
-        name:
-          type: string
-      required:
-      - name
-      title: CreateDatabaseRequest
-      type: object
-    UpdateDatabaseRequest:
-      example:
-        name: example_database_name
-        new_name: example_new_database_name
-      properties:
-        name:
-          type: string
-        new_name:
-          type: string
-      required:
-      - name
-      - new_name
-      title: UpdateDatabaseRequest
-      type: object
-    UpdateDatabaseRequest_1:
-      example:
-        name: example_database_name
-        new_name: example_new_database_name
-      properties:
-        new_name:
-          type: string
-      required:
-      - new_name
-      title: UpdateDatabaseRequest
-      type: object
-    CockroachCloud_UpdateClusterDisruption_request:
-      properties:
-        regional_disruptor_specifications:
-          description: |-
-            regional_disruptor_specifications specify how regions are to be
-            disrupted. Any Cluster region that is not specified here will not be
-            disrupted. A cluster region that was previously disrupted but is not listed
-            here will be removed from disruption. To stop all disruptions, set this
-            to an empty list or omit it from the request.
-          items:
-            $ref: '#/components/schemas/RegionalDisruptorSpecification'
-          type: array
-      type: object
-    EnableLogExportRequest:
-      example:
-        auth_principal: my-gcp-project-id
-        groups:
-        - channels:
-          - OPS
-          - HEALTH
-          log_name: devops
-          min_level: WARNING
-        log_name: default
-        omitted_channels:
-        - SESSIONS
-        - SQL_PERF
-        redact: true
-        shared_key: shared-key
-        type: GCP_CLOUD_LOGGING
-      properties:
-        auth_principal:
-          title: |-
-            auth_principal is used in different contexts based on integration.
-            CloudWatch: AWS Role ARN that identifies a role
-            that the cluster account can assume to write to CloudWatch
-            GCP Cloud Logging: GCP Project ID that the cluster service account
-            has permissions to write to for cloud logging.
-            Azure Log Analytics: CustomerID or WorkspaceID
-          type: string
-        aws_external_id:
-          description: |-
-            aws_external_id to include when assuming the IAM role specified by role_arn.
-            Optional. A specific value may be required by the role's trust policy.
-            Only supported for Advanced clusters on AWS. If provided for a Standard cluster,
-            the request is rejected.
-          type: string
-        azure_shared_key:
-          description: |-
-            The primary or the secondary connected sources client authentication key.
-            This is used to export logs to Azure Log Analytics.
-          type: string
-        groups:
-          description: |-
-            groups is a collection of log group configurations that allows the
-            customer to define collections of CRDB log channels that are aggregated
-            separately at the target sink.
-          items:
-            $ref: '#/components/schemas/LogExportGroup'
-          type: array
-        log_name:
-          description: log_name is an identifier for the logs in the customer's log
-            sink.
-          type: string
-        omitted_channels:
-          description: |-
-            omitted_channels is a list of channels that the user does not want to
-            export logs for.
-          items:
-            type: string
-          type: array
-        redact:
-          description: |-
-            redact allows the customer to set a default redaction policy for
-            logs before they are exported to the target sink. If a group config
-            omits a redact flag and this one is set to `true`, then that group
-            will receive redacted logs.
-          type: boolean
-        region:
-          description: |-
-            region allows the customer to override the destination region for
-            all logs for a cluster.
-          type: string
-        type:
-          $ref: '#/components/schemas/LogExportType'
-      required:
-      - auth_principal
-      - log_name
-      - type
-      title: EnableLogExportRequest
-      type: object
-    EnableCloudWatchMetricExportRequest:
-      example:
-        external_id: example_external_id
-        log_group_name: example
-        role_arn: arn:aws:iam::account:role/ExampleRole
-        target_region: us-east-1
-      properties:
-        external_id:
-          description: |-
-            external_id to include when assuming the IAM role specified by role_arn.
-            Optional. A specific value may be required by the role's trust policy.
-            Only supported for Advanced clusters. If provided for a Standard cluster,
-            the request is rejected.
-          type: string
-        log_group_name:
-          description: log_group_name is the customized log group name.
-          type: string
-        role_arn:
-          description: |-
-            role_arn is the IAM role used to upload metric segments to the
-            target AWS account.
-          type: string
-        target_region:
-          description: |-
-            target_region specifies the specific AWS region that the metrics will
-            be exported to.
-          type: string
-      required:
-      - role_arn
-      title: EnableCloudWatchMetricExportRequest
-      type: object
-    EnableDatadogMetricExportRequest:
-      example:
-        api_key: datadog_api_key
-        site: US1
-      properties:
-        api_key:
-          description: api_key is a Datadog API key.
-          type: string
-        site:
-          $ref: '#/components/schemas/DatadogSite.Type'
-      required:
-      - api_key
-      - site
-      title: EnableDatadogMetricExportRequest
-      type: object
     AllowlistEntry_1:
       example:
         cidr_ip: 192.168.1.1
@@ -17571,328 +17979,6 @@ components:
       - sql
       - ui
       title: AllowlistEntry
-      type: object
-    SetAwsEndpointConnectionStateRequest:
-      example:
-        status: AVAILABLE
-      properties:
-        status:
-          $ref: '#/components/schemas/SetAWSEndpointConnectionStatus.Type'
-      required:
-      - status
-      title: SetAwsEndpointConnectionStateRequest
-      type: object
-    CreateEgressPrivateEndpointRequest:
-      example:
-        region: us-east-1
-        target_service_identifier: arn:aws:s3:::example-bucket
-        target_service_type: MSK_SASL_IAM
-      properties:
-        region:
-          description: region represents the region that the endpoint will be created
-            in.
-          type: string
-        target_service_identifier:
-          description: |-
-            target_service_identifier represents the identifier of the target service.
-            User-visible in CRL and CSP consoles as the "thing" the user is telling us to connect to,
-            i.e. Service Name for AWS, Service Attachment for GCP, or ARN for AWS MSK.
-          type: string
-        target_service_type:
-          $ref: '#/components/schemas/EgressPrivateEndpointTargetServiceType.Type'
-      required:
-      - region
-      - target_service_identifier
-      - target_service_type
-      title: CreateEgressPrivateEndpointRequest
-      type: object
-    UpdateEgressPrivateEndpointRequest:
-      example:
-        domain_names:
-        - example.com
-        - api.example.com
-      properties:
-        domain_names:
-          description: domain_names are the domain names to associate with the egress
-            private endpoint.
-          items:
-            type: string
-          type: array
-      required:
-      - domain_names
-      title: UpdateEgressPrivateEndpointRequest
-      type: object
-    AddEgressRuleRequest:
-      example:
-        cluster_id: 35c4abb2-bb66-46d7-afed-25ebef5ed100
-        description: egress for GCP storage buckets
-        destination: storage.googleapis.com
-        name: roach-buckets
-        ports:
-        - 443
-        - 80
-        type: FQDN
-      properties:
-        description:
-          description: description is text that serves to document the rules purpose.
-          type: string
-        destination:
-          description: |-
-            destination is the endpoint (or subnetwork if CIDR) to which traffic is
-            allowed.
-          type: string
-        idempotency_key:
-          description: |-
-            idempotency_key uniquely identifies this request. If not set, it will be
-            set by the server.
-          type: string
-        name:
-          description: name is the name of the egress rule.
-          type: string
-        paths:
-          description: |-
-            Deprecated: This field is ignored and will be removed in the next version.
-            paths are the allowed URL paths. If empty, all paths are allowed. Only
-            valid if Type="FQDN".
-          items:
-            type: string
-          type: array
-        ports:
-          description: |-
-            ports are the allowed ports for TCP protocol. If Empty, all ports are
-            allowed.
-          items:
-            format: int32
-            type: integer
-          type: array
-        type:
-          description: |-
-            type classifies the Destination field. Valid types include: "FQDN",
-            "CIDR".
-          type: string
-      required:
-      - description
-      - destination
-      - name
-      - type
-      title: AddEgressRuleRequest
-      type: object
-    SetEgressTrafficPolicyRequest:
-      example:
-        idempotency_key: idempotency_key
-        allow_all: true
-      properties:
-        allow_all:
-          description: |-
-            allow_all, if true results in unrestricted egress traffic. If false, egress
-            traffic is set to default-deny and is managed via the Egress Rule
-            Management API.
-          type: boolean
-        idempotency_key:
-          description: |-
-            idempotency_key uniquely identifies this request. If not set, it will be
-            set by the server.
-          type: string
-      required:
-      - allow_all
-      title: SetEgressTrafficPolicyRequest
-      type: object
-    EditEgressRuleRequest:
-      example:
-        cluster_id: 35c4abb2-bb66-46d7-afed-25ebef5ed100
-        ports:
-        - 443
-        - 80
-        rule_id: 35c4abb2-bb66-46d7-afed-25ebef5ed2aa
-      properties:
-        description:
-          description: description is text that serves to document the rules purpose.
-          type: string
-        destination:
-          description: |-
-            destination is a CIDR range or fully-qualified domain name to which
-            outgoing traffic should be allowed. This field is required.
-          type: string
-        idempotency_key:
-          description: |-
-            idempotency_key uniquely identifies this request. If not set, it will be
-            set by the server.
-          type: string
-        paths:
-          description: |-
-            Deprecated: This field is ignored and will be removed in the next version.
-            paths are the allowed URL paths. If empty, all paths are allowed. Only
-            valid if Type="FQDN".
-          items:
-            type: string
-          type: array
-        ports:
-          description: |-
-            ports are the allowed ports for TCP protocol. If empty, all ports are
-            allowed.
-          items:
-            format: int32
-            type: integer
-          type: array
-        type:
-          description: |-
-            type is the destination type of this rule. Example values are
-            FQDN or CIDR. This field is required.
-          type: string
-      title: EditEgressRuleRequest
-      type: object
-    AddPrivateEndpointConnectionRequest:
-      example:
-        cluster_id: 35c4abb2-bb66-46d7-afed-25ebef5ed2aa
-        endpoint_id: e-65de2gf3
-      properties:
-        endpoint_id:
-          description: |-
-            endpoint_id is the id of the private endpoint associated with a cluster's
-            private endpoint service. The private endpoint is customer-created and
-            its id is generated by the cloud provider at endpoint creation time.
-          type: string
-      required:
-      - endpoint_id
-      title: AddPrivateEndpointConnectionRequest
-      type: object
-    AddPrivateEndpointTrustedOwnerRequest:
-      example:
-        external_owner_id: "012345678901"
-        type: AWS_ACCOUNT_ID
-      properties:
-        external_owner_id:
-          description: |-
-            external_owner_id is the identifier of the owner within the cloud provider
-            for private endpoint connections. A wildcard character ("*") can be used to
-            denote all owners.
-          type: string
-        type:
-          $ref: '#/components/schemas/PrivateEndpointTrustedOwnerType.Type'
-      required:
-      - external_owner_id
-      - type
-      title: AddPrivateEndpointTrustedOwnerRequest
-      type: object
-    CreateSQLUserRequest:
-      example:
-        name: example_username
-        password: example_password
-      properties:
-        name:
-          type: string
-        password:
-          type: string
-      required:
-      - name
-      - password
-      title: CreateSQLUserRequest
-      type: object
-    UpdateSQLUserPasswordRequest:
-      example:
-        password: example_new_password
-      properties:
-        password:
-          type: string
-      required:
-      - password
-      title: UpdateSQLUserPasswordRequest
-      type: object
-    CockroachCloud_CreateRestore_request:
-      example:
-        backup_id: 1234abcd-1234-1234-abcd-12345678abcd
-        destination_cluster_id: 12345678-1234-1234-1234-123456789012
-        objects:
-        - database: database1
-          schema: schema1
-          table: table1
-        - database: database1
-          schema: schema1
-          table: table2
-        restore_opts:
-          into_db: database2
-          schema_only: true
-        type: TABLE
-      properties:
-        backup_id:
-          description: |-
-            The ID of the backup from which data will be restored.
-            If backup_id is not set, the restore will use the latest
-            available backup from source_cluster_id.
-          type: string
-        objects:
-          description: |-
-            The list of objects to restore. Required when type is DATABASE
-            or TABLE.
-          items:
-            $ref: '#/components/schemas/RestoreItem'
-          type: array
-        restore_opts:
-          $ref: '#/components/schemas/RestoreOpts'
-        source_cluster_id:
-          description: The ID of the cluster containing the backup to be restored.
-          type: string
-        type:
-          $ref: '#/components/schemas/RestoreType.Type'
-      required:
-      - type
-      type: object
-    UpdateJWTIssuerRequest:
-      example:
-        audience: 1234567890abcd
-        issuer_url: https://jwt-issuer.example.com
-        jwks: "{\"keys\":[{\"e\":\"AQAB\",\"use\":\"sig\",\"kty\":\"RSA\",\"alg\"\
-          :\"RS256\",\"n\":\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\"\
-          ,\"kid\":\"9341dedeee2d1869b657fa930300082fe26b3d92\"}]}"
-        claim: email
-        identity_map:
-        - token_identity: /^sso_(.*)$
-          cc_identity: \1
-        - token_identity: /^sso_(.*)$
-          cc_identity: \1
-      properties:
-        audience:
-          example: 1234567890abcd
-          title: The intended audience for consuming the JWT
-          type: string
-        claim:
-          example: email
-          title: Used to identify the user from the external Identity Provider. Defaults
-            to "sub"
-          type: string
-        identity_map:
-          items:
-            $ref: '#/components/schemas/JWTIssuerIdentityMapEntry'
-          title: A list of mappings to map the external token identity into CockroachDB
-            Cloud
-          type: array
-        issuer_url:
-          example: https://jwt-issuer.example.com
-          title: The URL of the server issuing JWTs
-          type: string
-        jwks:
-          example: "{\"keys\":[{\"e\":\"AQAB\",\"use\":\"sig\",\"kty\":\"RSA\",\"\
-            alg\":\"RS256\",\"n\":\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\"\
-            ,\"kid\":\"9341dedeee2d1869b657fa930300082fe26b3d92\"}]}"
-          title: A set of public keys (JWKS) used to verify a JWT
-          type: string
-      title: UpdateJWTIssuerRequest
-      type: object
-    CockroachCloud_SetRolesForUser_request:
-      example:
-        roles:
-        - name: CLUSTER_ADMIN
-          resource:
-            id: example_cluster_id
-            type: CLUSTER
-        user_id: 12345678-1234-1234-1234-123456789012
-      properties:
-        roles:
-          items:
-            $ref: '#/components/schemas/BuiltInRole'
-          type: array
-      required:
-      - roles
       type: object
   securitySchemes:
     Bearer:

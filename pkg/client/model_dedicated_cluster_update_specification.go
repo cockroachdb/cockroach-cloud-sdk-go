@@ -23,6 +23,8 @@ type DedicatedClusterUpdateSpecification struct {
 	// This field should contain the CMEK specs for newly added regions. If a CMEK spec is provided for an existing region, the request is invalid and will fail.
 	CmekRegionSpecs *[]CMEKRegionSpecification            `json:"cmek_region_specs,omitempty"`
 	Hardware        *DedicatedHardwareUpdateSpecification `json:"hardware,omitempty"`
+	// region_machine_specs updates machine types per region. Only regions named in this map are affected; unnamed regions retain their current machine type. Use this to add a new region with a distinct machine type or to resize an existing region independently of others. Mutually exclusive with hardware.machine_spec.
+	RegionMachineSpecs *map[string]DedicatedMachineTypeSpecification `json:"region_machine_specs,omitempty"`
 	// Region keys should match the cloud provider's zone code. For example, for Oregon, set region_name to \"us-west2\" for GCP and \"us-west-2\" for AWS. Values represent the node count.
 	RegionNodes *map[string]int32 `json:"region_nodes,omitempty"`
 }
@@ -62,6 +64,20 @@ func (o *DedicatedClusterUpdateSpecification) GetHardware() DedicatedHardwareUpd
 // SetHardware gets a reference to the given DedicatedHardwareUpdateSpecification and assigns it to the Hardware field.
 func (o *DedicatedClusterUpdateSpecification) SetHardware(v DedicatedHardwareUpdateSpecification) {
 	o.Hardware = &v
+}
+
+// GetRegionMachineSpecs returns the RegionMachineSpecs field value if set, zero value otherwise.
+func (o *DedicatedClusterUpdateSpecification) GetRegionMachineSpecs() map[string]DedicatedMachineTypeSpecification {
+	if o == nil || o.RegionMachineSpecs == nil {
+		var ret map[string]DedicatedMachineTypeSpecification
+		return ret
+	}
+	return *o.RegionMachineSpecs
+}
+
+// SetRegionMachineSpecs gets a reference to the given map[string]DedicatedMachineTypeSpecification and assigns it to the RegionMachineSpecs field.
+func (o *DedicatedClusterUpdateSpecification) SetRegionMachineSpecs(v map[string]DedicatedMachineTypeSpecification) {
+	o.RegionMachineSpecs = &v
 }
 
 // GetRegionNodes returns the RegionNodes field value if set, zero value otherwise.

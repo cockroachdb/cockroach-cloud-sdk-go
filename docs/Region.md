@@ -4,12 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**DiskIops** | Pointer to **int32** | disk_iops is the provisioned disk I/O operations per second for nodes in this region. Only meaningful for Advanced clusters on AWS; for GCP and Azure the cloud provider chooses based on disk size. | [optional] 
 **InternalDns** | **string** | internal_dns is the internal DNS name of the cluster within the cloud provider&#39;s network. It is used to connect to the cluster with AWS PrivateLink, Azure Private Link, and GCP VPC Peering, but not GCP Private Service Connect. | 
+**MachineType** | Pointer to **string** | machine_type is the machine type identifier within the cloud provider for nodes in this region (e.g. m5.xlarge, n2-standard-4). May differ across regions in a heterogeneous Advanced cluster. Only populated for Advanced clusters. | [optional] 
 **Name** | **string** |  | 
 **NodeCount** | **int32** | node_count will be 0 for Serverless clusters. | 
+**NumVirtualCpus** | Pointer to **int32** | num_virtual_cpus is the number of virtual CPUs per node in this region, derived from machine_type. Only populated for Advanced clusters. | [optional] 
 **Primary** | Pointer to **bool** | primary is true only for the primary region in a Multi Region Serverless cluster. | [optional] 
 **PrivateEndpointDns** | **string** | private_endpoint_dns is the DNS name of the cluster which is used to connect to the cluster with GCP Private Service Connect. | 
-**S3VpcEndpointId** | Pointer to **string** | Preview: s3_vpc_endpoint_id is the ID of the AWS S3 VPC gateway endpoint associated with this cluster region. This can be used to configure S3 bucket policies that restrict access to traffic from this VPC endpoint. Only populated for Advanced clusters on AWS. | [optional] 
+**S3VpcEndpointId** | Pointer to **string** | s3_vpc_endpoint_id is the ID of the AWS S3 VPC gateway endpoint associated with this cluster region. This can be used to configure S3 bucket policies that restrict access to traffic from this VPC endpoint. Only populated for Advanced clusters on AWS. | [optional] 
 **SqlDns** | **string** | sql_dns is the DNS name of SQL interface of the cluster. It is used to connect to the cluster with IP allowlisting. | 
 **UiDns** | **string** | ui_dns is the DNS name used when connecting to the DB Console for the cluster. | 
 
@@ -32,6 +35,18 @@ NewRegionWithDefaults instantiates a new Region object.
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set.
 
+### GetDiskIops
+
+`func (o *Region) GetDiskIops() int32`
+
+GetDiskIops returns the DiskIops field if non-nil, zero value otherwise.
+
+### SetDiskIops
+
+`func (o *Region) SetDiskIops(v int32)`
+
+SetDiskIops sets DiskIops field to given value.
+
 ### GetInternalDns
 
 `func (o *Region) GetInternalDns() string`
@@ -43,6 +58,18 @@ GetInternalDns returns the InternalDns field if non-nil, zero value otherwise.
 `func (o *Region) SetInternalDns(v string)`
 
 SetInternalDns sets InternalDns field to given value.
+
+### GetMachineType
+
+`func (o *Region) GetMachineType() string`
+
+GetMachineType returns the MachineType field if non-nil, zero value otherwise.
+
+### SetMachineType
+
+`func (o *Region) SetMachineType(v string)`
+
+SetMachineType sets MachineType field to given value.
 
 ### GetName
 
@@ -67,6 +94,18 @@ GetNodeCount returns the NodeCount field if non-nil, zero value otherwise.
 `func (o *Region) SetNodeCount(v int32)`
 
 SetNodeCount sets NodeCount field to given value.
+
+### GetNumVirtualCpus
+
+`func (o *Region) GetNumVirtualCpus() int32`
+
+GetNumVirtualCpus returns the NumVirtualCpus field if non-nil, zero value otherwise.
+
+### SetNumVirtualCpus
+
+`func (o *Region) SetNumVirtualCpus(v int32)`
+
+SetNumVirtualCpus sets NumVirtualCpus field to given value.
 
 ### GetPrimary
 

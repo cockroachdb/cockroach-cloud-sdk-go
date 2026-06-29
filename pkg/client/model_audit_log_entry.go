@@ -41,8 +41,9 @@ type AuditLogEntry struct {
 	// ServiceAccountName is the name of the service account that triggered this log entry. If it was not a service account, it will be empty.
 	ServiceAccountName *string `json:"service_account_name,omitempty"`
 	// SessionId is an ID that can be used to correlate this log entry with others that are emitted as part of the same user session, typically for users interacting through the UI. It should be treated as an opaque string with no guaranteed structure.
-	SessionId *string         `json:"session_id,omitempty"`
-	Source    *AuditLogSource `json:"source,omitempty"`
+	SessionId       *string          `json:"session_id,omitempty"`
+	Source          *AuditLogSource  `json:"source,omitempty"`
+	SystemActorName *SystemActorName `json:"system_actor_name,omitempty"`
 	// TraceId is an ID that can be used to correlate this log entry with others that are emitted as part of the same process. It should be treated as an opaque string with no guaranteed structure.
 	TraceId *string `json:"trace_id,omitempty"`
 	// UserEmail is the email address of the user that triggered this log entry. If it was not a human user, it will be empty.
@@ -210,6 +211,20 @@ func (o *AuditLogEntry) GetSource() AuditLogSource {
 // SetSource gets a reference to the given AuditLogSource and assigns it to the Source field.
 func (o *AuditLogEntry) SetSource(v AuditLogSource) {
 	o.Source = &v
+}
+
+// GetSystemActorName returns the SystemActorName field value if set, zero value otherwise.
+func (o *AuditLogEntry) GetSystemActorName() SystemActorName {
+	if o == nil || o.SystemActorName == nil {
+		var ret SystemActorName
+		return ret
+	}
+	return *o.SystemActorName
+}
+
+// SetSystemActorName gets a reference to the given SystemActorName and assigns it to the SystemActorName field.
+func (o *AuditLogEntry) SetSystemActorName(v SystemActorName) {
+	o.SystemActorName = &v
 }
 
 // GetTraceId returns the TraceId field value if set, zero value otherwise.

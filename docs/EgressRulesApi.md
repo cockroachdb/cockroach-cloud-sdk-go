@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## AddEgressRule
 
-> AddEgressRuleResponse AddEgressRule(ctx, clusterId).AddEgressRuleRequest(addEgressRuleRequest).Execute()
+> AddEgressRuleResponse AddEgressRule(ctx, clusterId).AddEgressRuleBody(addEgressRuleBody).Execute()
 
 Add an egress rule
 
@@ -38,11 +38,11 @@ import (
 
 func main() {
     clusterId := "clusterId_example" // string | cluster_id identifies the cluster to which this egress rule applies.
-    addEgressRuleRequest := *openapiclient.NewAddEgressRuleRequest("Description_example", "Destination_example", "Name_example", "Type_example") // AddEgressRuleRequest | 
+    addEgressRuleBody := *openapiclient.NewAddEgressRuleBody("Description_example", "Destination_example", "Name_example", "Type_example") // AddEgressRuleBody | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
-    resp, r, err := api_client.EgressRulesApi.AddEgressRule(context.Background(), clusterId).AddEgressRuleRequest(addEgressRuleRequest).Execute()
+    resp, r, err := api_client.EgressRulesApi.AddEgressRule(context.Background(), clusterId).AddEgressRuleBody(addEgressRuleBody).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `EgressRulesApi.AddEgressRule``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -65,7 +65,7 @@ Name | Type | Description  | Notes
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **addEgressRuleRequest** | [**AddEgressRuleRequest**](AddEgressRuleRequest.md) |  | 
+ **addEgressRuleBody** | [**AddEgressRuleBody**](AddEgressRuleBody.md) |  | 
 
 ### Return type
 
@@ -161,7 +161,7 @@ Name | Type | Description  | Notes
 
 ## EditEgressRule
 
-> EditEgressRuleResponse EditEgressRule(ctx, clusterId, ruleId).EditEgressRuleRequest(editEgressRuleRequest).Execute()
+> EditEgressRuleResponse EditEgressRule(ctx, clusterId, ruleId).EditEgressRuleBody(editEgressRuleBody).Execute()
 
 Edit an existing egress rule
 
@@ -185,11 +185,11 @@ import (
 func main() {
     clusterId := "clusterId_example" // string | cluster_id uniquely identifies the cluster owning the egress rule.
     ruleId := "ruleId_example" // string | rule_id is the UUID of an existing egress rule. This field is required.
-    editEgressRuleRequest := *openapiclient.NewEditEgressRuleRequest() // EditEgressRuleRequest | 
+    editEgressRuleBody := *openapiclient.NewEditEgressRuleBody() // EditEgressRuleBody | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
-    resp, r, err := api_client.EgressRulesApi.EditEgressRule(context.Background(), clusterId, ruleId).EditEgressRuleRequest(editEgressRuleRequest).Execute()
+    resp, r, err := api_client.EgressRulesApi.EditEgressRule(context.Background(), clusterId, ruleId).EditEgressRuleBody(editEgressRuleBody).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `EgressRulesApi.EditEgressRule``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -214,7 +214,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
 
- **editEgressRuleRequest** | [**EditEgressRuleRequest**](EditEgressRuleRequest.md) |  | 
+ **editEgressRuleBody** | [**EditEgressRuleBody**](EditEgressRuleBody.md) |  | 
 
 ### Return type
 
@@ -388,7 +388,7 @@ Name | Type | Description  | Notes
 
 ## SetEgressTrafficPolicy
 
-> map[string]interface{} SetEgressTrafficPolicy(ctx, clusterId).SetEgressTrafficPolicyRequest(setEgressTrafficPolicyRequest).Execute()
+> map[string]interface{} SetEgressTrafficPolicy(ctx, clusterId).SetEgressTrafficPolicyBody(setEgressTrafficPolicyBody).Execute()
 
 Outbound traffic management
 
@@ -411,11 +411,11 @@ import (
 
 func main() {
     clusterId := "clusterId_example" // string | cluster_id identifies the cluster whose egress policy will be updated.
-    setEgressTrafficPolicyRequest := *openapiclient.NewSetEgressTrafficPolicyRequest(false) // SetEgressTrafficPolicyRequest | 
+    setEgressTrafficPolicyBody := *openapiclient.NewSetEgressTrafficPolicyBody(false) // SetEgressTrafficPolicyBody | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
-    resp, r, err := api_client.EgressRulesApi.SetEgressTrafficPolicy(context.Background(), clusterId).SetEgressTrafficPolicyRequest(setEgressTrafficPolicyRequest).Execute()
+    resp, r, err := api_client.EgressRulesApi.SetEgressTrafficPolicy(context.Background(), clusterId).SetEgressTrafficPolicyBody(setEgressTrafficPolicyBody).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `EgressRulesApi.SetEgressTrafficPolicy``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -438,7 +438,7 @@ Name | Type | Description  | Notes
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **setEgressTrafficPolicyRequest** | [**SetEgressTrafficPolicyRequest**](SetEgressTrafficPolicyRequest.md) |  | 
+ **setEgressTrafficPolicyBody** | [**SetEgressTrafficPolicyBody**](SetEgressTrafficPolicyBody.md) |  | 
 
 ### Return type
 

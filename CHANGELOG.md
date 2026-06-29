@@ -7,8 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [8.0.0] - 2026-06-29
+
 ### Added
 
+- Add new audit log actions for MFA management (enable/disable enforcement, enroll, reset,
+  regenerate recovery codes) and Migration Assistant lifecycle, plus new audit log sources
+  (CC API, CLI, UI, internal, MCP, SSH gateway).
+- Add `SystemActorName` to audit log entries to identify system-initiated actions.
+- Add machine-level region configuration to dedicated clusters via `RegionMachineSpecs` on the
+  cluster create/update specifications and `DiskIops`, `MachineType`, and `NumVirtualCpus` on the
+  `Region` model.
+- Add `EnableSendingQueue` option to log export configuration.
+- Add `STATUS_STALE` private endpoint connection status.
 - Added `sync-fork.yml`: on every push to upstream main (and via manual workflow_dispatch), pushes
   upstream main to `crl-gh-actions-pr-bot`'s fork main using the cockroachdb/actions `sync-fork`
   reusable workflow.
@@ -28,6 +39,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Breaking Change: Rename request body types from `*Request` to `*Body` (for example
+  `CreateSQLUserRequest` to `CreateSQLUserBody`, `UpdateDatabaseRequest` to `EditDatabaseBody`,
+  `GetGroupRequest` to `GetGroup2Body`).
 - Update the OpenAPI sync workflow to request the managed-service PR author as a
   reviewer on the generated SDK PR.
 - Updated release workflow to trigger ccloud-private CLI sync using workflow_dispatch
