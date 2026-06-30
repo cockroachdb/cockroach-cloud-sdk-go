@@ -342,7 +342,7 @@ update_changelog() {
     --output-format stream-json \
     --verbose \
     --max-turns 15 \
-    --allowedTools "Read,Edit(CHANGELOG.md),Bash(git:diff:*),Bash(printenv BASE_BRANCH)" \
+    --allowedTools "Read,Edit(CHANGELOG.md),Bash(git:diff:*),Bash(printenv BASE_BRANCH),Bash(sed:-n:*)" \
     < "$prompt_file" \
     | tee "$output_file" || {
       echo "::endgroup::"
