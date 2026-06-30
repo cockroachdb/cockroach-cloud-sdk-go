@@ -602,62 +602,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "Operations": {
-                    "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/ScimOperations"
-                    }
-                  },
-                  "schemas": {
-                    "description": "A list of one or more URIs identifying SCIM schemas that define the structure\nof the attributes in the request. The only supported schema at this time is\n\"urn:ietf:params:scim:api:messages:2.0:PatchOp\".",
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "example": {
-                  "Operations": [
-                    {
-                      "op": "replace",
-                      "path": "displayName",
-                      "value": "Updated Group Name"
-                    },
-                    {
-                      "op": "replace",
-                      "path": "externalId",
-                      "value": "ext-123"
-                    },
-                    {
-                      "op": "remove",
-                      "path": "members"
-                    },
-                    {
-                      "op": "add",
-                      "path": "externalId",
-                      "value": "new-external-id"
-                    },
-                    {
-                      "op": "add",
-                      "path": "members",
-                      "value": [
-                        {
-                          "value": "45a35c27-23d3-4d03-c4c5-9043c09e7175"
-                        }
-                      ]
-                    }
-                  ],
-                  "schemas": [
-                    "urn:ietf:params:scim:api:messages:2.0:PatchOp"
-                  ]
-                },
-                "required": [
-                  "schemas",
-                  "Operations"
-                ],
-                "title": "PatchGroupRequest"
+                "$ref": "#/components/schemas/PatchGroupBody"
               }
             }
           }
@@ -753,45 +698,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "displayName": {
-                    "type": "string"
-                  },
-                  "externalId": {
-                    "type": "string"
-                  },
-                  "members": {
-                    "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/ScimResource"
-                    }
-                  },
-                  "schemas": {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "example": {
-                  "displayName": "Test SCIM",
-                  "id": "23a35c27-23d3-4c03-b4c5-6443c09e7173",
-                  "members": [
-                    {
-                      "display": "croach@example.com",
-                      "value": "45a35c27-23d3-4d03-c4c5-9043c09e7175"
-                    }
-                  ],
-                  "schemas": [
-                    "urn:ietf:params:scim:schemas:core:2.0:Group"
-                  ]
-                },
-                "required": [
-                  "schemas",
-                  "displayName"
-                ],
-                "title": "UpdateGroupRequest"
+                "$ref": "#/components/schemas/UpdateGroupBody"
               }
             }
           }
@@ -889,16 +796,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "attributes": {
-                    "type": "string"
-                  },
-                  "excludedAttributes": {
-                    "type": "string"
-                  }
-                },
-                "title": "GetGroupRequest"
+                "$ref": "#/components/schemas/SearchGroupBody"
               }
             }
           }
@@ -994,16 +892,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "attributes": {
-                    "type": "string"
-                  },
-                  "excludedAttributes": {
-                    "type": "string"
-                  }
-                },
-                "title": "GetGroupRequest"
+                "$ref": "#/components/schemas/GetGroup2Body"
               }
             }
           }
@@ -2138,55 +2027,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "Operations": {
-                    "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/ScimOperations"
-                    }
-                  },
-                  "schemas": {
-                    "description": "A list of one or more URIs identifying SCIM schemas that define the structure\nof the attributes in the request. The only supported schema at this time is\n\"urn:ietf:params:scim:api:messages:2.0:PatchOp\".",
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "example": {
-                  "Operations": [
-                    {
-                      "op": "replace",
-                      "path": "userName",
-                      "value": "newUserName"
-                    },
-                    {
-                      "op": "replace",
-                      "value": {
-                        "displayName": "New Name",
-                        "emails": [
-                          {
-                            "primary": true,
-                            "value": "new@example.com"
-                          }
-                        ]
-                      }
-                    },
-                    {
-                      "op": "remove",
-                      "path": "externalId"
-                    }
-                  ],
-                  "schemas": [
-                    "urn:ietf:params:scim:api:messages:2.0:PatchOp"
-                  ]
-                },
-                "required": [
-                  "schemas",
-                  "Operations"
-                ],
-                "title": "PatchUserRequest"
+                "$ref": "#/components/schemas/PatchUserBody"
               }
             }
           }
@@ -2282,55 +2123,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "active": {
-                    "type": "boolean"
-                  },
-                  "displayName": {
-                    "type": "string"
-                  },
-                  "emails": {
-                    "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/ScimEmail"
-                    }
-                  },
-                  "externalId": {
-                    "type": "string"
-                  },
-                  "name": {
-                    "$ref": "#/components/schemas/ScimName"
-                  },
-                  "schemas": {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    }
-                  },
-                  "userName": {
-                    "type": "string"
-                  }
-                },
-                "example": {
-                  "active": true,
-                  "emails": [
-                    {
-                      "display": "croach@example.com",
-                      "primary": true,
-                      "type": "work",
-                      "value": "croach@example.com"
-                    }
-                  ],
-                  "name": {
-                    "familyName": "Roach",
-                    "givenName": "Carl"
-                  },
-                  "schemas": [
-                    "urn:ietf:params:scim:schemas:core:2.0:User"
-                  ]
-                },
-                "title": "UpdateUserRequest"
+                "$ref": "#/components/schemas/UpdateUserBody"
               }
             }
           }
@@ -2428,16 +2221,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "attributes": {
-                    "type": "string"
-                  },
-                  "excludedAttributes": {
-                    "type": "string"
-                  }
-                },
-                "title": "GetUserRequest"
+                "$ref": "#/components/schemas/SearchUserBody"
               }
             }
           }
@@ -2533,16 +2317,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "attributes": {
-                    "type": "string"
-                  },
-                  "excludedAttributes": {
-                    "type": "string"
-                  }
-                },
-                "title": "GetUserRequest"
+                "$ref": "#/components/schemas/GetUser2Body"
               }
             }
           }
@@ -4464,29 +4239,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "end_time": {
-                    "description": "The end time of the blackout window (UTC).\nCan be up to 14 days after the start time.\nMust not be more than three months after the current time.",
-                    "type": "string",
-                    "format": "date-time"
-                  },
-                  "start_time": {
-                    "description": "The start time of the blackout window (UTC).\nMust be scheduled at least 7 days in advance.",
-                    "type": "string",
-                    "format": "date-time"
-                  }
-                },
-                "example": {
-                  "cluster_id": "12345678-1234-1234-1234-123456789012",
-                  "end_time": "2025-10-15T06:00:00Z",
-                  "start_time": "2025-10-15T00:00:00Z"
-                },
-                "required": [
-                  "start_time",
-                  "end_time"
-                ],
-                "title": "CreateBlackoutWindowRequest"
+                "$ref": "#/components/schemas/CreateBlackoutWindowBody"
               }
             }
           }
@@ -4798,26 +4551,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "end_time": {
-                    "description": "Optional new UTC end time for the blackout window.\nCan be up to 14 days after the start time.\nMust not be more than three months after the current time.",
-                    "type": "string",
-                    "format": "date-time"
-                  },
-                  "start_time": {
-                    "description": "Optional new UTC start time for the blackout window.\nMust be scheduled at least 7 days in advance.",
-                    "type": "string",
-                    "format": "date-time"
-                  }
-                },
-                "example": {
-                  "blackout_window_id": "12345678-1234-1234-1234-123456789012",
-                  "cluster_id": "12345678-1234-1234-1234-123456789012",
-                  "end_time": "2025-10-15T06:00:00Z",
-                  "start_time": "2025-10-15T00:00:00Z"
-                },
-                "title": "UpdateBlackoutWindowRequest"
+                "$ref": "#/components/schemas/UpdateBlackoutWindowBody"
               }
             }
           }
@@ -5093,16 +4827,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "x509_pem_cert": {
-                    "type": "string"
-                  }
-                },
-                "example": {
-                  "x509_pem_cert": "-----BEGIN CERTIFICATE-----..."
-                },
-                "title": "UpdateClientCACertRequest"
+                "$ref": "#/components/schemas/UpdateClientCACertBody"
               }
             }
           }
@@ -5198,19 +4923,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "x509_pem_cert": {
-                    "type": "string"
-                  }
-                },
-                "example": {
-                  "x509_pem_cert": "-----BEGIN CERTIFICATE-----..."
-                },
-                "required": [
-                  "x509_pem_cert"
-                ],
-                "title": "SetClientCACertRequest"
+                "$ref": "#/components/schemas/SetClientCACertBody"
               }
             }
           }
@@ -5394,19 +5107,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "action": {
-                    "$ref": "#/components/schemas/CMEKCustomerAction"
-                  }
-                },
-                "example": {
-                  "action": "REVOKE"
-                },
-                "required": [
-                  "action"
-                ],
-                "title": "UpdateCMEKStatusRequest"
+                "$ref": "#/components/schemas/UpdateCMEKStatusBody"
               }
             }
           }
@@ -5502,31 +5203,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "region_specs": {
-                    "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/CMEKRegionSpecification"
-                    }
-                  }
-                },
-                "example": {
-                  "region_specs": [
-                    {
-                      "key_spec": {
-                        "auth_principal": "arn:aws:iam::account:role/role-name-with-path",
-                        "type": "AWS_KMS",
-                        "uri": "arn:aws:kms:us-west-2:111122223333:key/id-of-kms-key"
-                      },
-                      "region": "us-central1"
-                    }
-                  ]
-                },
-                "required": [
-                  "region_specs"
-                ],
-                "title": "CMEKClusterSpecification"
+                "$ref": "#/components/schemas/EnableCMEKSpecBody"
               }
             }
           }
@@ -5622,31 +5299,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "region_specs": {
-                    "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/CMEKRegionSpecification"
-                    }
-                  }
-                },
-                "example": {
-                  "region_specs": [
-                    {
-                      "key_spec": {
-                        "auth_principal": "arn:aws:iam::account:role/role-name-with-path",
-                        "type": "AWS_KMS",
-                        "uri": "arn:aws:kms:us-west-2:111122223333:key/id-of-kms-key"
-                      },
-                      "region": "us-central1"
-                    }
-                  ]
-                },
-                "required": [
-                  "region_specs"
-                ],
-                "title": "CMEKClusterSpecification"
+                "$ref": "#/components/schemas/UpdateCMEKSpecBody"
               }
             }
           }
@@ -5981,24 +5634,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "name": {
-                    "type": "string"
-                  },
-                  "new_name": {
-                    "type": "string"
-                  }
-                },
-                "example": {
-                  "name": "example_database_name",
-                  "new_name": "example_new_database_name"
-                },
-                "required": [
-                  "new_name",
-                  "name"
-                ],
-                "title": "UpdateDatabaseRequest"
+                "$ref": "#/components/schemas/EditDatabaseBody"
               }
             }
           }
@@ -6094,19 +5730,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "name": {
-                    "type": "string"
-                  }
-                },
-                "example": {
-                  "name": "example_database_name"
-                },
-                "required": [
-                  "name"
-                ],
-                "title": "CreateDatabaseRequest"
+                "$ref": "#/components/schemas/CreateDatabaseBody"
               }
             }
           }
@@ -6306,20 +5930,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "new_name": {
-                    "type": "string"
-                  }
-                },
-                "example": {
-                  "name": "example_database_name",
-                  "new_name": "example_new_database_name"
-                },
-                "required": [
-                  "new_name"
-                ],
-                "title": "UpdateDatabaseRequest"
+                "$ref": "#/components/schemas/EditDatabaseBody"
               }
             }
           }
@@ -6511,16 +6122,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "regional_disruptor_specifications": {
-                    "description": "regional_disruptor_specifications specify how regions are to be\ndisrupted. Any Cluster region that is not specified here will not be\ndisrupted. A cluster region that was previously disrupted but is not listed\nhere will be removed from disruption. To stop all disruptions, set this\nto an empty list or omit it from the request.",
-                    "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/RegionalDisruptorSpecification"
-                    }
-                  }
-                }
+                "$ref": "#/components/schemas/UpdateClusterDisruptionBody"
               }
             }
           }
@@ -6808,77 +6410,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "auth_principal": {
-                    "type": "string",
-                    "title": "auth_principal is used in different contexts based on integration.\nCloudWatch: AWS Role ARN that identifies a role\nthat the cluster account can assume to write to CloudWatch\nGCP Cloud Logging: GCP Project ID that the cluster service account\nhas permissions to write to for cloud logging.\nAzure Log Analytics: CustomerID or WorkspaceID"
-                  },
-                  "aws_external_id": {
-                    "description": "aws_external_id to include when assuming the IAM role specified by role_arn.\nOptional. A specific value may be required by the role's trust policy.\nOnly supported for Advanced clusters on AWS. If provided for a Standard cluster,\nthe request is rejected.",
-                    "type": "string"
-                  },
-                  "azure_shared_key": {
-                    "description": "The primary or the secondary connected sources client authentication key.\nThis is used to export logs to Azure Log Analytics.",
-                    "type": "string"
-                  },
-                  "groups": {
-                    "description": "groups is a collection of log group configurations that allows the\ncustomer to define collections of CRDB log channels that are aggregated\nseparately at the target sink.",
-                    "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/LogExportGroup"
-                    }
-                  },
-                  "log_name": {
-                    "description": "log_name is an identifier for the logs in the customer's log sink.",
-                    "type": "string"
-                  },
-                  "omitted_channels": {
-                    "description": "omitted_channels is a list of channels that the user does not want to\nexport logs for.",
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    }
-                  },
-                  "redact": {
-                    "description": "redact allows the customer to set a default redaction policy for\nlogs before they are exported to the target sink. If a group config\nomits a redact flag and this one is set to `true`, then that group\nwill receive redacted logs.",
-                    "type": "boolean"
-                  },
-                  "region": {
-                    "description": "region allows the customer to override the destination region for\nall logs for a cluster.",
-                    "type": "string"
-                  },
-                  "type": {
-                    "$ref": "#/components/schemas/LogExportType"
-                  }
-                },
-                "example": {
-                  "auth_principal": "my-gcp-project-id",
-                  "groups": [
-                    {
-                      "channels": [
-                        "OPS",
-                        "HEALTH"
-                      ],
-                      "log_name": "devops",
-                      "min_level": "WARNING"
-                    }
-                  ],
-                  "log_name": "default",
-                  "omitted_channels": [
-                    "SESSIONS",
-                    "SQL_PERF"
-                  ],
-                  "redact": true,
-                  "shared_key": "shared-key",
-                  "type": "GCP_CLOUD_LOGGING"
-                },
-                "required": [
-                  "type",
-                  "log_name",
-                  "auth_principal"
-                ],
-                "title": "EnableLogExportRequest"
+                "$ref": "#/components/schemas/EnableLogExportBody"
               }
             }
           }
@@ -7436,35 +6968,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "external_id": {
-                    "description": "external_id to include when assuming the IAM role specified by role_arn.\nOptional. A specific value may be required by the role's trust policy.\nOnly supported for Advanced clusters. If provided for a Standard cluster,\nthe request is rejected.",
-                    "type": "string"
-                  },
-                  "log_group_name": {
-                    "description": "log_group_name is the customized log group name.",
-                    "type": "string"
-                  },
-                  "role_arn": {
-                    "description": "role_arn is the IAM role used to upload metric segments to the\ntarget AWS account.",
-                    "type": "string"
-                  },
-                  "target_region": {
-                    "description": "target_region specifies the specific AWS region that the metrics will\nbe exported to.",
-                    "type": "string"
-                  }
-                },
-                "example": {
-                  "external_id": "example_external_id",
-                  "log_group_name": "example",
-                  "role_arn": "arn:aws:iam::account:role/ExampleRole",
-                  "target_region": "us-east-1"
-                },
-                "required": [
-                  "role_arn"
-                ],
-                "title": "EnableCloudWatchMetricExportRequest"
+                "$ref": "#/components/schemas/EnableCloudWatchMetricExportBody"
               }
             }
           }
@@ -7752,25 +7256,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "api_key": {
-                    "description": "api_key is a Datadog API key.",
-                    "type": "string"
-                  },
-                  "site": {
-                    "$ref": "#/components/schemas/DatadogSite.Type"
-                  }
-                },
-                "example": {
-                  "api_key": "datadog_api_key",
-                  "site": "US1"
-                },
-                "required": [
-                  "site",
-                  "api_key"
-                ],
-                "title": "EnableDatadogMetricExportRequest"
+                "$ref": "#/components/schemas/EnableDatadogMetricExportBody"
               }
             }
           }
@@ -8849,19 +8335,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "status": {
-                    "$ref": "#/components/schemas/SetAWSEndpointConnectionStatus.Type"
-                  }
-                },
-                "example": {
-                  "status": "AVAILABLE"
-                },
-                "required": [
-                  "status"
-                ],
-                "title": "SetAwsEndpointConnectionStateRequest"
+                "$ref": "#/components/schemas/SetAwsEndpointConnectionStateBody"
               }
             }
           }
@@ -9088,31 +8562,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "region": {
-                    "description": "region represents the region that the endpoint will be created in.",
-                    "type": "string"
-                  },
-                  "target_service_identifier": {
-                    "description": "target_service_identifier represents the identifier of the target service.\nUser-visible in CRL and CSP consoles as the \"thing\" the user is telling us to connect to,\ni.e. Service Name for AWS, Service Attachment for GCP, or ARN for AWS MSK.",
-                    "type": "string"
-                  },
-                  "target_service_type": {
-                    "$ref": "#/components/schemas/EgressPrivateEndpointTargetServiceType.Type"
-                  }
-                },
-                "example": {
-                  "region": "us-east-1",
-                  "target_service_identifier": "arn:aws:s3:::example-bucket",
-                  "target_service_type": "MSK_SASL_IAM"
-                },
-                "required": [
-                  "region",
-                  "target_service_identifier",
-                  "target_service_type"
-                ],
-                "title": "CreateEgressPrivateEndpointRequest"
+                "$ref": "#/components/schemas/CreateEgressPrivateEndpointBody"
               }
             }
           }
@@ -9430,26 +8880,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "domain_names": {
-                    "description": "domain_names are the domain names to associate with the egress private endpoint.",
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "example": {
-                  "domain_names": [
-                    "example.com",
-                    "api.example.com"
-                  ]
-                },
-                "required": [
-                  "domain_names"
-                ],
-                "title": "UpdateEgressPrivateEndpointRequest"
+                "$ref": "#/components/schemas/UpdateEgressPrivateEndpointBody"
               }
             }
           }
@@ -9563,26 +8994,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "domain_names": {
-                    "description": "domain_names are the domain names to associate with the egress private endpoint.",
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "example": {
-                  "domain_names": [
-                    "example.com",
-                    "api.example.com"
-                  ]
-                },
-                "required": [
-                  "domain_names"
-                ],
-                "title": "UpdateEgressPrivateEndpointRequest"
+                "$ref": "#/components/schemas/UpdateEgressPrivateEndpointDomainNamesBody"
               }
             }
           }
@@ -9816,62 +9228,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "description": {
-                    "description": "description is text that serves to document the rules purpose.",
-                    "type": "string"
-                  },
-                  "destination": {
-                    "description": "destination is the endpoint (or subnetwork if CIDR) to which traffic is\nallowed.",
-                    "type": "string"
-                  },
-                  "idempotency_key": {
-                    "description": "idempotency_key uniquely identifies this request. If not set, it will be\nset by the server.",
-                    "type": "string"
-                  },
-                  "name": {
-                    "description": "name is the name of the egress rule.",
-                    "type": "string"
-                  },
-                  "paths": {
-                    "description": "Deprecated: This field is ignored and will be removed in the next version.\npaths are the allowed URL paths. If empty, all paths are allowed. Only\nvalid if Type=\"FQDN\".",
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    }
-                  },
-                  "ports": {
-                    "description": "ports are the allowed ports for TCP protocol. If Empty, all ports are\nallowed.",
-                    "type": "array",
-                    "items": {
-                      "format": "int32",
-                      "type": "integer"
-                    }
-                  },
-                  "type": {
-                    "description": "type classifies the Destination field. Valid types include: \"FQDN\",\n\"CIDR\".",
-                    "type": "string"
-                  }
-                },
-                "example": {
-                  "cluster_id": "35c4abb2-bb66-46d7-afed-25ebef5ed100",
-                  "description": "egress for GCP storage buckets",
-                  "destination": "storage.googleapis.com",
-                  "name": "roach-buckets",
-                  "ports": [
-                    443,
-                    80
-                  ],
-                  "type": "FQDN"
-                },
-                "required": [
-                  "name",
-                  "type",
-                  "destination",
-                  "description"
-                ],
-                "title": "AddEgressRuleRequest"
+                "$ref": "#/components/schemas/AddEgressRuleBody"
               }
             }
           }
@@ -9976,21 +9333,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "allow_all": {
-                    "description": "allow_all, if true results in unrestricted egress traffic. If false, egress\ntraffic is set to default-deny and is managed via the Egress Rule\nManagement API.",
-                    "type": "boolean"
-                  },
-                  "idempotency_key": {
-                    "description": "idempotency_key uniquely identifies this request. If not set, it will be\nset by the server.",
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "allow_all"
-                ],
-                "title": "SetEgressTrafficPolicyRequest"
+                "$ref": "#/components/schemas/SetEgressTrafficPolicyBody"
               }
             }
           }
@@ -10316,49 +9659,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "description": {
-                    "description": "description is text that serves to document the rules purpose.",
-                    "type": "string"
-                  },
-                  "destination": {
-                    "description": "destination is a CIDR range or fully-qualified domain name to which\noutgoing traffic should be allowed. This field is required.",
-                    "type": "string"
-                  },
-                  "idempotency_key": {
-                    "description": "idempotency_key uniquely identifies this request. If not set, it will be\nset by the server.",
-                    "type": "string"
-                  },
-                  "paths": {
-                    "description": "Deprecated: This field is ignored and will be removed in the next version.\npaths are the allowed URL paths. If empty, all paths are allowed. Only\nvalid if Type=\"FQDN\".",
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    }
-                  },
-                  "ports": {
-                    "description": "ports are the allowed ports for TCP protocol. If empty, all ports are\nallowed.",
-                    "type": "array",
-                    "items": {
-                      "format": "int32",
-                      "type": "integer"
-                    }
-                  },
-                  "type": {
-                    "description": "type is the destination type of this rule. Example values are\nFQDN or CIDR. This field is required.",
-                    "type": "string"
-                  }
-                },
-                "example": {
-                  "cluster_id": "35c4abb2-bb66-46d7-afed-25ebef5ed100",
-                  "ports": [
-                    443,
-                    80
-                  ],
-                  "rule_id": "35c4abb2-bb66-46d7-afed-25ebef5ed2aa"
-                },
-                "title": "EditEgressRuleRequest"
+                "$ref": "#/components/schemas/EditEgressRuleBody"
               }
             }
           }
@@ -10556,21 +9857,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "endpoint_id": {
-                    "description": "endpoint_id is the id of the private endpoint associated with a cluster's\nprivate endpoint service. The private endpoint is customer-created and\nits id is generated by the cloud provider at endpoint creation time.",
-                    "type": "string"
-                  }
-                },
-                "example": {
-                  "cluster_id": "35c4abb2-bb66-46d7-afed-25ebef5ed2aa",
-                  "endpoint_id": "e-65de2gf3"
-                },
-                "required": [
-                  "endpoint_id"
-                ],
-                "title": "AddPrivateEndpointConnectionRequest"
+                "$ref": "#/components/schemas/AddPrivateEndpointConnectionBody"
               }
             }
           }
@@ -11048,25 +10335,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "external_owner_id": {
-                    "description": "external_owner_id is the identifier of the owner within the cloud provider\nfor private endpoint connections. A wildcard character (\"*\") can be used to\ndenote all owners.",
-                    "type": "string"
-                  },
-                  "type": {
-                    "$ref": "#/components/schemas/PrivateEndpointTrustedOwnerType.Type"
-                  }
-                },
-                "example": {
-                  "external_owner_id": "012345678901",
-                  "type": "AWS_ACCOUNT_ID"
-                },
-                "required": [
-                  "type",
-                  "external_owner_id"
-                ],
-                "title": "AddPrivateEndpointTrustedOwnerRequest"
+                "$ref": "#/components/schemas/AddPrivateEndpointTrustedOwnerBody"
               }
             }
           }
@@ -11868,24 +11137,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "name": {
-                    "type": "string"
-                  },
-                  "password": {
-                    "type": "string"
-                  }
-                },
-                "example": {
-                  "name": "example_username",
-                  "password": "example_password"
-                },
-                "required": [
-                  "name",
-                  "password"
-                ],
-                "title": "CreateSQLUserRequest"
+                "$ref": "#/components/schemas/CreateSQLUserBody"
               }
             }
           }
@@ -12087,19 +11339,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "password": {
-                    "type": "string"
-                  }
-                },
-                "example": {
-                  "password": "example_new_password"
-                },
-                "required": [
-                  "password"
-                ],
-                "title": "UpdateSQLUserPasswordRequest"
+                "$ref": "#/components/schemas/UpdateSQLUserPasswordBody"
               }
             }
           }
@@ -12394,54 +11634,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "backup_id": {
-                    "description": "The ID of the backup from which data will be restored.\nIf backup_id is not set, the restore will use the latest\navailable backup from source_cluster_id.",
-                    "type": "string"
-                  },
-                  "objects": {
-                    "description": "The list of objects to restore. Required when type is DATABASE\nor TABLE.",
-                    "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/RestoreItem"
-                    }
-                  },
-                  "restore_opts": {
-                    "$ref": "#/components/schemas/RestoreOpts"
-                  },
-                  "source_cluster_id": {
-                    "description": "The ID of the cluster containing the backup to be restored.",
-                    "type": "string"
-                  },
-                  "type": {
-                    "$ref": "#/components/schemas/RestoreType.Type"
-                  }
-                },
-                "example": {
-                  "backup_id": "1234abcd-1234-1234-abcd-12345678abcd",
-                  "destination_cluster_id": "12345678-1234-1234-1234-123456789012",
-                  "objects": [
-                    {
-                      "database": "database1",
-                      "schema": "schema1",
-                      "table": "table1"
-                    },
-                    {
-                      "database": "database1",
-                      "schema": "schema1",
-                      "table": "table2"
-                    }
-                  ],
-                  "restore_opts": {
-                    "into_db": "database2",
-                    "schema_only": true
-                  },
-                  "type": "TABLE"
-                },
-                "required": [
-                  "type"
-                ]
+                "$ref": "#/components/schemas/CreateRestoreBody"
               }
             }
           }
@@ -13178,7 +12371,7 @@
           {
             "name": "start_time",
             "in": "query",
-            "description": "start_time filters the response to invoices whose billing period started at or after this time (inclusive).\nDefaults to organization creation time if omitted.",
+            "description": "start_time filters the response to invoices whose billing period started at or after this time (inclusive).\nMust be in RFC3339 format (e.g., 2024-01-01T00:00:00Z). Defaults to organization creation time if omitted.",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -13187,7 +12380,7 @@
           {
             "name": "end_time",
             "in": "query",
-            "description": "end_time filters the response to invoices whose billing period ended at or before this time (exclusive).\nDefaults to current time if omitted.",
+            "description": "end_time filters the response to invoices whose billing period ended at or before this time (exclusive).\nMust be in RFC3339 format (e.g., 2024-12-31T23:59:59Z). Defaults to current time if omitted.",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -13779,37 +12972,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "audience": {
-                    "type": "string",
-                    "example": "1234567890abcd",
-                    "title": "The intended audience for consuming the JWT"
-                  },
-                  "claim": {
-                    "type": "string",
-                    "example": "email",
-                    "title": "Used to identify the user from the external Identity Provider. Defaults to \"sub\""
-                  },
-                  "identity_map": {
-                    "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/JWTIssuerIdentityMapEntry"
-                    },
-                    "title": "A list of mappings to map the external token identity into CockroachDB Cloud"
-                  },
-                  "issuer_url": {
-                    "type": "string",
-                    "example": "https://jwt-issuer.example.com",
-                    "title": "The URL of the server issuing JWTs"
-                  },
-                  "jwks": {
-                    "type": "string",
-                    "example": "{\"keys\":[{\"e\":\"AQAB\",\"use\":\"sig\",\"kty\":\"RSA\",\"alg\":\"RS256\",\"n\":\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\",\"kid\":\"9341dedeee2d1869b657fa930300082fe26b3d92\"}]}",
-                    "title": "A set of public keys (JWKS) used to verify a JWT"
-                  }
-                },
-                "title": "UpdateJWTIssuerRequest"
+                "$ref": "#/components/schemas/UpdateJWTIssuerBody"
               }
             }
           }
@@ -14636,30 +13799,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "roles": {
-                    "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/BuiltInRole"
-                    }
-                  }
-                },
-                "example": {
-                  "roles": [
-                    {
-                      "name": "CLUSTER_ADMIN",
-                      "resource": {
-                        "id": "example_cluster_id",
-                        "type": "CLUSTER"
-                      }
-                    }
-                  ],
-                  "user_id": "12345678-1234-1234-1234-123456789012"
-                },
-                "required": [
-                  "roles"
-                ]
+                "$ref": "#/components/schemas/SetRolesForUserBody"
               }
             }
           }
@@ -15630,6 +14770,64 @@
           "availability_zone_ids"
         ]
       },
+      "AddEgressRuleBody": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "description": "description is text that serves to document the rules purpose.",
+            "type": "string"
+          },
+          "destination": {
+            "description": "destination is the endpoint (or subnetwork if CIDR) to which traffic is\nallowed.",
+            "type": "string"
+          },
+          "idempotency_key": {
+            "description": "idempotency_key uniquely identifies this request. If not set, it will be\nset by the server.",
+            "type": "string"
+          },
+          "name": {
+            "description": "name is the name of the egress rule.",
+            "type": "string"
+          },
+          "paths": {
+            "description": "Deprecated: This field is ignored and will be removed in the next version.\npaths are the allowed URL paths. If empty, all paths are allowed. Only\nvalid if Type=\"FQDN\".",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "ports": {
+            "description": "ports are the allowed ports for TCP protocol. If Empty, all ports are\nallowed.",
+            "type": "array",
+            "items": {
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          "type": {
+            "description": "type classifies the Destination field. Valid types include: \"FQDN\",\n\"CIDR\".",
+            "type": "string"
+          }
+        },
+        "example": {
+          "cluster_id": "35c4abb2-bb66-46d7-afed-25ebef5ed100",
+          "description": "egress for GCP storage buckets",
+          "destination": "storage.googleapis.com",
+          "name": "roach-buckets",
+          "ports": [
+            443,
+            80
+          ],
+          "type": "FQDN"
+        },
+        "required": [
+          "name",
+          "type",
+          "destination",
+          "description"
+        ],
+        "title": "AddEgressRuleRequest"
+      },
       "AddEgressRuleResponse": {
         "type": "object",
         "properties": {
@@ -15679,6 +14877,44 @@
         ],
         "title": "AddJWTIssuerRequest"
       },
+      "AddPrivateEndpointConnectionBody": {
+        "type": "object",
+        "properties": {
+          "endpoint_id": {
+            "description": "endpoint_id is the id of the private endpoint associated with a cluster's\nprivate endpoint service. The private endpoint is customer-created and\nits id is generated by the cloud provider at endpoint creation time.",
+            "type": "string"
+          }
+        },
+        "example": {
+          "cluster_id": "35c4abb2-bb66-46d7-afed-25ebef5ed2aa",
+          "endpoint_id": "e-65de2gf3"
+        },
+        "required": [
+          "endpoint_id"
+        ],
+        "title": "AddPrivateEndpointConnectionRequest"
+      },
+      "AddPrivateEndpointTrustedOwnerBody": {
+        "type": "object",
+        "properties": {
+          "external_owner_id": {
+            "description": "external_owner_id is the identifier of the owner within the cloud provider\nfor private endpoint connections. A wildcard character (\"*\") can be used to\ndenote all owners.",
+            "type": "string"
+          },
+          "type": {
+            "$ref": "#/components/schemas/PrivateEndpointTrustedOwnerType.Type"
+          }
+        },
+        "example": {
+          "external_owner_id": "012345678901",
+          "type": "AWS_ACCOUNT_ID"
+        },
+        "required": [
+          "type",
+          "external_owner_id"
+        ],
+        "title": "AddPrivateEndpointTrustedOwnerRequest"
+      },
       "AddPrivateEndpointTrustedOwnerResponse": {
         "type": "object",
         "properties": {
@@ -15726,11 +14962,11 @@
         "title": "AllowlistEntry"
       },
       "Any": {
-        "description": "`Any` contains an arbitrary serialized protocol buffer message along with a\nURL that describes the type of the serialized message.\n\nProtobuf library provides support to pack/unpack Any values in the form\nof utility functions or additional generated methods of the Any type.\n\nExample 1: Pack and unpack a message in C++.\n\n    Foo foo = ...;\n    Any any;\n    any.PackFrom(foo);\n    ...\n    if (any.UnpackTo(&foo)) {\n      ...\n    }\n\nExample 2: Pack and unpack a message in Java.\n\n    Foo foo = ...;\n    Any any = Any.pack(foo);\n    ...\n    if (any.is(Foo.class)) {\n      foo = any.unpack(Foo.class);\n    }\n    // or ...\n    if (any.isSameTypeAs(Foo.getDefaultInstance())) {\n      foo = any.unpack(Foo.getDefaultInstance());\n    }\n\n Example 3: Pack and unpack a message in Python.\n\n    foo = Foo(...)\n    any = Any()\n    any.Pack(foo)\n    ...\n    if any.Is(Foo.DESCRIPTOR):\n      any.Unpack(foo)\n      ...\n\n Example 4: Pack and unpack a message in Go\n\n     foo := &pb.Foo{...}\n     any, err := anypb.New(foo)\n     if err != nil {\n       ...\n     }\n     ...\n     foo := &pb.Foo{}\n     if err := any.UnmarshalTo(foo); err != nil {\n       ...\n     }\n\nThe pack methods provided by protobuf library will by default use\n'type.googleapis.com/full.type.name' as the type URL and the unpack\nmethods only use the fully qualified type name after the last '/'\nin the type URL, for example \"foo.bar.com/x/y.z\" will yield type\nname \"y.z\".\n\nJSON\n====\nThe JSON representation of an `Any` value uses the regular\nrepresentation of the deserialized, embedded message, with an\nadditional field `@type` which contains the type URL. Example:\n\n    package google.profile;\n    message Person {\n      string first_name = 1;\n      string last_name = 2;\n    }\n\n    {\n      \"@type\": \"type.googleapis.com/google.profile.Person\",\n      \"firstName\": <string>,\n      \"lastName\": <string>\n    }\n\nIf the embedded message type is well-known and has a custom JSON\nrepresentation, that representation will be embedded adding a field\n`value` which holds the custom JSON in addition to the `@type`\nfield. Example (for message [google.protobuf.Duration][]):\n\n    {\n      \"@type\": \"type.googleapis.com/google.protobuf.Duration\",\n      \"value\": \"1.212s\"\n    }",
+        "description": "`Any` contains an arbitrary serialized protocol buffer message along with a\nURL that describes the type of the serialized message.\n\nIn its binary encoding, an `Any` is an ordinary message; but in other wire\nforms like JSON, it has a special encoding. The format of the type URL is\ndescribed on the `type_url` field.\n\nProtobuf APIs provide utilities to interact with `Any` values:\n\n- A 'pack' operation accepts a message and constructs a generic `Any` wrapper\n  around it.\n- An 'unpack' operation reads the content of an `Any` message, either into an\n  existing message or a new one. Unpack operations must check the type of the\n  value they unpack against the declared `type_url`.\n- An 'is' operation decides whether an `Any` contains a message of the given\n  type, i.e. whether it can 'unpack' that type.\n\nThe JSON format representation of an `Any` follows one of these cases:\n\n- For types without special-cased JSON encodings, the JSON format\n  representation of the `Any` is the same as that of the message, with an\n  additional `@type` field which contains the type URL.\n- For types with special-cased JSON encodings (typically called 'well-known'\n  types, listed in https://protobuf.dev/programming-guides/json/#any), the\n  JSON format representation has a key `@type` which contains the type URL\n  and a key `value` which contains the JSON-serialized value.\n\nThe text format representation of an `Any` is like a message with one field\nwhose name is the type URL in brackets. For example, an `Any` containing a\n`foo.Bar` message may be written `[type.googleapis.com/foo.Bar] { a: 2 }`.",
         "type": "object",
         "properties": {
           "@type": {
-            "description": "A URL/resource name that uniquely identifies the type of the serialized\nprotocol buffer message. This string must contain at least\none \"/\" character. The last segment of the URL's path must represent\nthe fully qualified name of the type (as in\n`path/google.protobuf.Duration`). The name should be in a canonical form\n(e.g., leading \".\" is not accepted).\n\nIn practice, teams usually precompile into the binary all types that they\nexpect it to use in the context of Any. However, for URLs which use the\nscheme `http`, `https`, or no scheme, one can optionally set up a type\nserver that maps type URLs to message definitions as follows:\n\n* If no scheme is provided, `https` is assumed.\n* An HTTP GET on the URL must yield a [google.protobuf.Type][]\n  value in binary format, or produce an error.\n* Applications are allowed to cache lookup results based on the\n  URL, or have them precompiled into a binary to avoid any\n  lookup. Therefore, binary compatibility needs to be preserved\n  on changes to types. (Use versioned type names to manage\n  breaking changes.)\n\nNote: this functionality is not currently available in the official\nprotobuf release, and it is not used for type URLs beginning with\ntype.googleapis.com. As of May 2023, there are no widely used type server\nimplementations and no plans to implement one.\n\nSchemes other than `http`, `https` (or the empty scheme) might be\nused with implementation specific semantics.",
+            "description": "Identifies the type of the serialized Protobuf message with a URI reference\nconsisting of a prefix ending in a slash and the fully-qualified type name.\n\nExample: type.googleapis.com/google.protobuf.StringValue\n\nThis string must contain at least one `/` character, and the content after\nthe last `/` must be the fully-qualified name of the type in canonical\nform, without a leading dot. Do not write a scheme on these URI references\nso that clients do not attempt to contact them.\n\nThe prefix is arbitrary and Protobuf implementations are expected to\nsimply strip off everything up to and including the last `/` to identify\nthe type. `type.googleapis.com/` is a common default prefix that some\nlegacy implementations require. This prefix does not indicate the origin of\nthe type, and URIs containing it are not expected to respond to any\nrequests.\n\nAll type URL strings must be legal URI references with the additional\nrestriction (for the text format) that the content of the reference\nmust consist only of alphanumeric characters, percent-encoded escapes, and\ncharacters in the following set (not including the outer backticks):\n`/-.~_!$&()*+,;=`. Despite our allowing percent encodings, implementations\nshould not unescape them to prevent confusion with existing parsers. For\nexample, `type.googleapis.com%2FFoo` should be rejected.\n\nIn the original design of `Any`, the possibility of launching a type\nresolution service at these type URLs was considered but Protobuf never\nimplemented one and considers contacting these URLs to be problematic and\na potential security issue. Do not attempt to contact type URLs.",
             "type": "string"
           }
         },
@@ -15875,7 +15111,14 @@
           "AUDIT_LOG_ACTION_UPDATE_CLUSTER_DISRUPTION",
           "AUDIT_LOG_ACTION_SET_CLUSTER_SETTING",
           "AUDIT_LOG_ACTION_EVICT_BYOC_CLUSTER",
-          "AUDIT_LOG_ACTION_MCP_OAUTH_CONSENT"
+          "AUDIT_LOG_ACTION_MCP_OAUTH_CONSENT",
+          "AUDIT_LOG_ACTION_ENABLE_MFA_ENFORCEMENT",
+          "AUDIT_LOG_ACTION_DISABLE_MFA_ENFORCEMENT",
+          "AUDIT_LOG_ACTION_RESET_USER_MFA",
+          "AUDIT_LOG_ACTION_ENROLL_USER_MFA",
+          "AUDIT_LOG_ACTION_REGENERATE_RECOVERY_CODES",
+          "AUDIT_LOG_ACTION_CREATE_MIGRATION_ASSISTANT",
+          "AUDIT_LOG_ACTION_DELETE_MIGRATION_ASSISTANT"
         ]
       },
       "AuditLogEntry": {
@@ -15924,6 +15167,9 @@
           "source": {
             "$ref": "#/components/schemas/AuditLogSource"
           },
+          "system_actor_name": {
+            "$ref": "#/components/schemas/SystemActorName"
+          },
           "trace_id": {
             "description": "TraceId is an ID that can be used to correlate this log entry with others\nthat are emitted as part of the same process. It should be treated as an\nopaque string with no guaranteed structure.",
             "type": "string"
@@ -15949,7 +15195,8 @@
           "AUDIT_LOG_SOURCE_CLI",
           "AUDIT_LOG_SOURCE_UI",
           "AUDIT_LOG_SOURCE_INTERNAL",
-          "AUDIT_LOG_SOURCE_MCP"
+          "AUDIT_LOG_SOURCE_MCP",
+          "AUDIT_LOG_SOURCE_SSH_GATEWAY"
         ]
       },
       "Aws": {
@@ -16777,6 +16024,31 @@
           "secret"
         ]
       },
+      "CreateBlackoutWindowBody": {
+        "type": "object",
+        "properties": {
+          "end_time": {
+            "description": "The end time of the blackout window (UTC).\nCan be up to 14 days after the start time.\nMust not be more than three months after the current time.",
+            "type": "string",
+            "format": "date-time"
+          },
+          "start_time": {
+            "description": "The start time of the blackout window (UTC).\nMust be scheduled at least 7 days in advance.",
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "example": {
+          "cluster_id": "12345678-1234-1234-1234-123456789012",
+          "end_time": "2025-10-15T06:00:00Z",
+          "start_time": "2025-10-15T00:00:00Z"
+        },
+        "required": [
+          "start_time",
+          "end_time"
+        ],
+        "title": "CreateBlackoutWindowRequest"
+      },
       "CreateClusterRequest": {
         "type": "object",
         "properties": {
@@ -16843,6 +16115,48 @@
             "$ref": "#/components/schemas/ServerlessClusterCreateSpecification"
           }
         }
+      },
+      "CreateDatabaseBody": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "name": "example_database_name"
+        },
+        "required": [
+          "name"
+        ],
+        "title": "CreateDatabaseRequest"
+      },
+      "CreateEgressPrivateEndpointBody": {
+        "type": "object",
+        "properties": {
+          "region": {
+            "description": "region represents the region that the endpoint will be created in.",
+            "type": "string"
+          },
+          "target_service_identifier": {
+            "description": "target_service_identifier represents the identifier of the target service.\nUser-visible in CRL and CSP consoles as the \"thing\" the user is telling us to connect to,\ni.e. Service Name for AWS, Service Attachment for GCP, or ARN for AWS MSK.",
+            "type": "string"
+          },
+          "target_service_type": {
+            "$ref": "#/components/schemas/EgressPrivateEndpointTargetServiceType.Type"
+          }
+        },
+        "example": {
+          "region": "us-east-1",
+          "target_service_identifier": "arn:aws:s3:::example-bucket",
+          "target_service_type": "MSK_SASL_IAM"
+        },
+        "required": [
+          "region",
+          "target_service_identifier",
+          "target_service_type"
+        ],
+        "title": "CreateEgressPrivateEndpointRequest"
       },
       "CreateFolderRequest": {
         "type": "object",
@@ -16922,6 +16236,76 @@
           "primary_cluster_id",
           "standby_cluster_id"
         ]
+      },
+      "CreateRestoreBody": {
+        "type": "object",
+        "properties": {
+          "backup_id": {
+            "description": "The ID of the backup from which data will be restored.\nIf backup_id is not set, the restore will use the latest\navailable backup from source_cluster_id.",
+            "type": "string"
+          },
+          "objects": {
+            "description": "The list of objects to restore. Required when type is DATABASE\nor TABLE.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RestoreItem"
+            }
+          },
+          "restore_opts": {
+            "$ref": "#/components/schemas/RestoreOpts"
+          },
+          "source_cluster_id": {
+            "description": "The ID of the cluster containing the backup to be restored.",
+            "type": "string"
+          },
+          "type": {
+            "$ref": "#/components/schemas/RestoreType.Type"
+          }
+        },
+        "example": {
+          "backup_id": "1234abcd-1234-1234-abcd-12345678abcd",
+          "destination_cluster_id": "12345678-1234-1234-1234-123456789012",
+          "objects": [
+            {
+              "database": "database1",
+              "schema": "schema1",
+              "table": "table1"
+            },
+            {
+              "database": "database1",
+              "schema": "schema1",
+              "table": "table2"
+            }
+          ],
+          "restore_opts": {
+            "into_db": "database2",
+            "schema_only": true
+          },
+          "type": "TABLE"
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "CreateSQLUserBody": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "name": "example_username",
+          "password": "example_password"
+        },
+        "required": [
+          "name",
+          "password"
+        ],
+        "title": "CreateSQLUserRequest"
       },
       "CreateServiceAccountRequest": {
         "type": "object",
@@ -17170,6 +16554,13 @@
           "network_visibility": {
             "$ref": "#/components/schemas/NetworkVisibility.Type"
           },
+          "region_machine_specs": {
+            "description": "region_machine_specs configures a machine type per region, producing a\ncluster whose regions may use different machine types. Keys are region\ncodes (matching region_nodes) and values select a machine type by\nmachine_type or num_virtual_cpus. When set, every region in region_nodes\nmust have a corresponding entry, and hardware.machine_spec must be\nomitted (the two fields are mutually exclusive). hardware.storage_gib\nand hardware.disk_iops continue to apply cluster-wide.",
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/DedicatedMachineTypeSpecification"
+            }
+          },
           "region_nodes": {
             "description": "Region keys should match the cloud provider's zone code.\nFor example, for Oregon, set region_name to \"us-west2\" for\nGCP and \"us-west-2\" for AWS. Values represent the node count.",
             "type": "object",
@@ -17204,6 +16595,13 @@
           },
           "hardware": {
             "$ref": "#/components/schemas/DedicatedHardwareUpdateSpecification"
+          },
+          "region_machine_specs": {
+            "description": "region_machine_specs updates machine types per region. Only regions named\nin this map are affected; unnamed regions retain their current machine\ntype. Use this to add a new region with a distinct machine type or to\nresize an existing region independently of others. Mutually exclusive\nwith hardware.machine_spec.",
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/DedicatedMachineTypeSpecification"
+            }
           },
           "region_nodes": {
             "description": "Region keys should match the cloud provider's zone code.\nFor example, for Oregon, set region_name to \"us-west2\" for\nGCP and \"us-west-2\" for AWS. Values represent the node count.",
@@ -17252,6 +16650,7 @@
         ]
       },
       "DedicatedHardwareCreateSpecification": {
+        "description": "Exactly one of machine_spec or DedicatedClusterCreateSpecification.region_machine_specs must be provided. For the standard (non-limited-access) cluster creation flow, machine_spec is effectively required; it may only be omitted by callers using the limited-access region_machine_specs field.",
         "type": "object",
         "properties": {
           "disk_iops": {
@@ -17269,7 +16668,6 @@
           }
         },
         "required": [
-          "machine_spec",
           "storage_gib"
         ]
       },
@@ -17338,6 +16736,71 @@
           "ENABLED",
           "DISABLED"
         ]
+      },
+      "EditDatabaseBody": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "new_name": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "name": "example_database_name",
+          "new_name": "example_new_database_name"
+        },
+        "required": [
+          "new_name",
+          "name"
+        ],
+        "title": "UpdateDatabaseRequest"
+      },
+      "EditEgressRuleBody": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "description": "description is text that serves to document the rules purpose.",
+            "type": "string"
+          },
+          "destination": {
+            "description": "destination is a CIDR range or fully-qualified domain name to which\noutgoing traffic should be allowed. This field is required.",
+            "type": "string"
+          },
+          "idempotency_key": {
+            "description": "idempotency_key uniquely identifies this request. If not set, it will be\nset by the server.",
+            "type": "string"
+          },
+          "paths": {
+            "description": "Deprecated: This field is ignored and will be removed in the next version.\npaths are the allowed URL paths. If empty, all paths are allowed. Only\nvalid if Type=\"FQDN\".",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "ports": {
+            "description": "ports are the allowed ports for TCP protocol. If empty, all ports are\nallowed.",
+            "type": "array",
+            "items": {
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          "type": {
+            "description": "type is the destination type of this rule. Example values are\nFQDN or CIDR. This field is required.",
+            "type": "string"
+          }
+        },
+        "example": {
+          "cluster_id": "35c4abb2-bb66-46d7-afed-25ebef5ed100",
+          "ports": [
+            443,
+            80
+          ],
+          "rule_id": "35c4abb2-bb66-46d7-afed-25ebef5ed2aa"
+        },
+        "title": "EditEgressRuleRequest"
       },
       "EditEgressRuleResponse": {
         "type": "object",
@@ -17434,7 +16897,7 @@
           "MSK_SASL_IAM",
           "MSK_TLS"
         ],
-        "title": "- UNSPECIFIED: UNSPECIFIED represents an unspecified target service type.\n - PRIVATE_SERVICE: PRIVATE_SERVICE represents any private service, such as a GCP service attachment, or an AWS VPC endpoint service.\n - MSK_SASL_SCRAM: MSK_SASL_SCRAM represents the managed Kafka service in AWS, with SASL/SCRAM auth\n - MSK_SASL_IAM: MSK_SASL_IAM represents the managed Kafka service in AWS, with SASL/IAM auth\n - MSK_TLS: MSK_TLS represents the managed Kafka service in AWS, with TLS auth"
+        "title": "- PRIVATE_SERVICE: PRIVATE_SERVICE represents any private service, such as a GCP service attachment, or an AWS VPC endpoint service.\n - MSK_SASL_SCRAM: MSK_SASL_SCRAM represents the managed Kafka service in AWS, with SASL/SCRAM auth\n - MSK_SASL_IAM: MSK_SASL_IAM represents the managed Kafka service in AWS, with SASL/IAM auth\n - MSK_TLS: MSK_TLS represents the managed Kafka service in AWS, with TLS auth"
       },
       "EgressRule": {
         "description": "EgressRule represents a network egress rule.",
@@ -17515,6 +16978,158 @@
           "DEFAULT_DENY",
           "UPDATING"
         ]
+      },
+      "EnableCMEKSpecBody": {
+        "type": "object",
+        "properties": {
+          "region_specs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CMEKRegionSpecification"
+            }
+          }
+        },
+        "example": {
+          "region_specs": [
+            {
+              "key_spec": {
+                "auth_principal": "arn:aws:iam::account:role/role-name-with-path",
+                "type": "AWS_KMS",
+                "uri": "arn:aws:kms:us-west-2:111122223333:key/id-of-kms-key"
+              },
+              "region": "us-central1"
+            }
+          ]
+        },
+        "required": [
+          "region_specs"
+        ],
+        "title": "CMEKClusterSpecification"
+      },
+      "EnableCloudWatchMetricExportBody": {
+        "type": "object",
+        "properties": {
+          "external_id": {
+            "description": "external_id to include when assuming the IAM role specified by role_arn.\nOptional. A specific value may be required by the role's trust policy.\nOnly supported for Advanced clusters. If provided for a Standard cluster,\nthe request is rejected.",
+            "type": "string"
+          },
+          "log_group_name": {
+            "description": "log_group_name is the customized log group name.",
+            "type": "string"
+          },
+          "role_arn": {
+            "description": "role_arn is the IAM role used to upload metric segments to the\ntarget AWS account.",
+            "type": "string"
+          },
+          "target_region": {
+            "description": "target_region specifies the specific AWS region that the metrics will\nbe exported to.",
+            "type": "string"
+          }
+        },
+        "example": {
+          "external_id": "example_external_id",
+          "log_group_name": "example",
+          "role_arn": "arn:aws:iam::account:role/ExampleRole",
+          "target_region": "us-east-1"
+        },
+        "required": [
+          "role_arn"
+        ],
+        "title": "EnableCloudWatchMetricExportRequest"
+      },
+      "EnableDatadogMetricExportBody": {
+        "type": "object",
+        "properties": {
+          "api_key": {
+            "description": "api_key is a Datadog API key.",
+            "type": "string"
+          },
+          "site": {
+            "$ref": "#/components/schemas/DatadogSite.Type"
+          }
+        },
+        "example": {
+          "api_key": "datadog_api_key",
+          "site": "US1"
+        },
+        "required": [
+          "site",
+          "api_key"
+        ],
+        "title": "EnableDatadogMetricExportRequest"
+      },
+      "EnableLogExportBody": {
+        "type": "object",
+        "properties": {
+          "auth_principal": {
+            "type": "string",
+            "title": "auth_principal is used in different contexts based on integration.\nCloudWatch: AWS Role ARN that identifies a role\nthat the cluster account can assume to write to CloudWatch\nGCP Cloud Logging: GCP Project ID that the cluster service account\nhas permissions to write to for cloud logging.\nAzure Log Analytics: CustomerID or WorkspaceID"
+          },
+          "aws_external_id": {
+            "description": "aws_external_id to include when assuming the IAM role specified by role_arn.\nOptional. A specific value may be required by the role's trust policy.\nOnly supported for Advanced clusters on AWS. If provided for a Standard cluster,\nthe request is rejected.",
+            "type": "string"
+          },
+          "azure_shared_key": {
+            "description": "The primary or the secondary connected sources client authentication key.\nThis is used to export logs to Azure Log Analytics.",
+            "type": "string"
+          },
+          "groups": {
+            "description": "groups is a collection of log group configurations that allows the\ncustomer to define collections of CRDB log channels that are aggregated\nseparately at the target sink.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LogExportGroup"
+            }
+          },
+          "log_name": {
+            "description": "log_name is an identifier for the logs in the customer's log sink.",
+            "type": "string"
+          },
+          "omitted_channels": {
+            "description": "omitted_channels is a list of channels that the user does not want to\nexport logs for.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "redact": {
+            "description": "redact allows the customer to set a default redaction policy for\nlogs before they are exported to the target sink. If a group config\nomits a redact flag and this one is set to `true`, then that group\nwill receive redacted logs.",
+            "type": "boolean"
+          },
+          "region": {
+            "description": "region allows the customer to override the destination region for\nall logs for a cluster.",
+            "type": "string"
+          },
+          "type": {
+            "$ref": "#/components/schemas/LogExportType"
+          }
+        },
+        "example": {
+          "auth_principal": "my-gcp-project-id",
+          "groups": [
+            {
+              "channels": [
+                "OPS",
+                "HEALTH"
+              ],
+              "log_name": "devops",
+              "min_level": "WARNING"
+            }
+          ],
+          "log_name": "default",
+          "omitted_channels": [
+            "SESSIONS",
+            "SQL_PERF"
+          ],
+          "redact": true,
+          "shared_key": "shared-key",
+          "type": "GCP_CLOUD_LOGGING"
+        },
+        "required": [
+          "type",
+          "log_name",
+          "auth_principal"
+        ],
+        "title": "EnableLogExportRequest"
       },
       "FolderResource": {
         "description": "FolderResource describes a resource, and includes info about its lineage (parent/ancestors).",
@@ -17652,6 +17267,18 @@
           "rule"
         ],
         "title": "GetEgressRuleResponse"
+      },
+      "GetGroup2Body": {
+        "type": "object",
+        "properties": {
+          "attributes": {
+            "type": "string"
+          },
+          "excludedAttributes": {
+            "type": "string"
+          }
+        },
+        "title": "GetGroupRequest"
       },
       "GetGroupsRequest": {
         "type": "object",
@@ -17846,6 +17473,18 @@
           "authenticationSchemes"
         ],
         "title": "GetServiceProviderConfigResponse"
+      },
+      "GetUser2Body": {
+        "type": "object",
+        "properties": {
+          "attributes": {
+            "type": "string"
+          },
+          "excludedAttributes": {
+            "type": "string"
+          }
+        },
+        "title": "GetUserRequest"
       },
       "GetUsersRequest": {
         "type": "object",
@@ -18553,6 +18192,10 @@
               "type": "string"
             }
           },
+          "enable_sending_queue": {
+            "description": "enable_sending_queue enables the sending queue for logs in this\ngroup. Only one group can have enable_sending_queue enabled.",
+            "type": "boolean"
+          },
           "log_name": {
             "description": "log_name is the name of the group, reflected in the log sink.",
             "type": "string"
@@ -18720,6 +18363,115 @@
           "CLUSTER_MONITOR",
           "BILLING_VIEWER"
         ]
+      },
+      "PatchGroupBody": {
+        "type": "object",
+        "properties": {
+          "Operations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ScimOperations"
+            }
+          },
+          "schemas": {
+            "description": "A list of one or more URIs identifying SCIM schemas that define the structure\nof the attributes in the request. The only supported schema at this time is\n\"urn:ietf:params:scim:api:messages:2.0:PatchOp\".",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "example": {
+          "Operations": [
+            {
+              "op": "replace",
+              "path": "displayName",
+              "value": "Updated Group Name"
+            },
+            {
+              "op": "replace",
+              "path": "externalId",
+              "value": "ext-123"
+            },
+            {
+              "op": "remove",
+              "path": "members"
+            },
+            {
+              "op": "add",
+              "path": "externalId",
+              "value": "new-external-id"
+            },
+            {
+              "op": "add",
+              "path": "members",
+              "value": [
+                {
+                  "value": "45a35c27-23d3-4d03-c4c5-9043c09e7175"
+                }
+              ]
+            }
+          ],
+          "schemas": [
+            "urn:ietf:params:scim:api:messages:2.0:PatchOp"
+          ]
+        },
+        "required": [
+          "schemas",
+          "Operations"
+        ],
+        "title": "PatchGroupRequest"
+      },
+      "PatchUserBody": {
+        "type": "object",
+        "properties": {
+          "Operations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ScimOperations"
+            }
+          },
+          "schemas": {
+            "description": "A list of one or more URIs identifying SCIM schemas that define the structure\nof the attributes in the request. The only supported schema at this time is\n\"urn:ietf:params:scim:api:messages:2.0:PatchOp\".",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "example": {
+          "Operations": [
+            {
+              "op": "replace",
+              "path": "userName",
+              "value": "newUserName"
+            },
+            {
+              "op": "replace",
+              "value": {
+                "displayName": "New Name",
+                "emails": [
+                  {
+                    "primary": true,
+                    "value": "new@example.com"
+                  }
+                ]
+              }
+            },
+            {
+              "op": "remove",
+              "path": "externalId"
+            }
+          ],
+          "schemas": [
+            "urn:ietf:params:scim:api:messages:2.0:PatchOp"
+          ]
+        },
+        "required": [
+          "schemas",
+          "Operations"
+        ],
+        "title": "PatchUserRequest"
       },
       "PathSegment": {
         "type": "object",
@@ -18900,7 +18652,7 @@
         ]
       },
       "PrivateEndpointConnectionStatus": {
-        "description": "PrivateEndpointConnectionStatus enumerates the possible statuses\nfor the private endpoints connection.",
+        "description": "PrivateEndpointConnectionStatus enumerates the possible statuses\nfor the private endpoints connection.\n\n - STATUS_STALE: Indicates that the endpoint was deleted outside of CockroachDB Cloud. Delete the endpoint\nthrough the Cloud API or Console to manually remove the connection entry.",
         "type": "string",
         "enum": [
           "STATUS_PENDING",
@@ -18910,7 +18662,8 @@
           "STATUS_DELETED",
           "STATUS_REJECTED",
           "STATUS_FAILED",
-          "STATUS_EXPIRED"
+          "STATUS_EXPIRED",
+          "STATUS_STALE"
         ]
       },
       "PrivateEndpointConnections": {
@@ -19073,8 +18826,17 @@
       "Region": {
         "type": "object",
         "properties": {
+          "disk_iops": {
+            "description": "disk_iops is the provisioned disk I/O operations per second for nodes\nin this region. Only meaningful for Advanced clusters on AWS; for GCP\nand Azure the cloud provider chooses based on disk size.",
+            "type": "integer",
+            "format": "int32"
+          },
           "internal_dns": {
             "description": "internal_dns is the internal DNS name of the cluster within the cloud\nprovider's network. It is used to connect to the cluster with AWS\nPrivateLink, Azure Private Link, and GCP VPC Peering, but not GCP Private\nService Connect.",
+            "type": "string"
+          },
+          "machine_type": {
+            "description": "machine_type is the machine type identifier within the cloud provider\nfor nodes in this region (e.g. m5.xlarge, n2-standard-4). May differ\nacross regions in a heterogeneous Advanced cluster. Only populated for\nAdvanced clusters.",
             "type": "string"
           },
           "name": {
@@ -19082,6 +18844,11 @@
           },
           "node_count": {
             "description": "node_count will be 0 for Serverless clusters.",
+            "type": "integer",
+            "format": "int32"
+          },
+          "num_virtual_cpus": {
+            "description": "num_virtual_cpus is the number of virtual CPUs per node in this region,\nderived from machine_type. Only populated for Advanced clusters.",
             "type": "integer",
             "format": "int32"
           },
@@ -19094,7 +18861,7 @@
             "type": "string"
           },
           "s3_vpc_endpoint_id": {
-            "description": "Preview: s3_vpc_endpoint_id is the ID of the AWS S3 VPC gateway endpoint\nassociated with this cluster region. This can be used to configure\nS3 bucket policies that restrict access to traffic from this\nVPC endpoint. Only populated for Advanced clusters on AWS.",
+            "description": "s3_vpc_endpoint_id is the ID of the AWS S3 VPC gateway endpoint\nassociated with this cluster region. This can be used to configure\nS3 bucket policies that restrict access to traffic from this\nVPC endpoint. Only populated for Advanced clusters on AWS.",
             "type": "string"
           },
           "sql_dns": {
@@ -19764,6 +19531,30 @@
         ],
         "title": "ScimUser"
       },
+      "SearchGroupBody": {
+        "type": "object",
+        "properties": {
+          "attributes": {
+            "type": "string"
+          },
+          "excludedAttributes": {
+            "type": "string"
+          }
+        },
+        "title": "GetGroupRequest"
+      },
+      "SearchUserBody": {
+        "type": "object",
+        "properties": {
+          "attributes": {
+            "type": "string"
+          },
+          "excludedAttributes": {
+            "type": "string"
+          }
+        },
+        "title": "GetUserRequest"
+      },
       "ServerlessClusterConfig": {
         "type": "object",
         "properties": {
@@ -19909,6 +19700,79 @@
           "REJECTED"
         ]
       },
+      "SetAwsEndpointConnectionStateBody": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "$ref": "#/components/schemas/SetAWSEndpointConnectionStatus.Type"
+          }
+        },
+        "example": {
+          "status": "AVAILABLE"
+        },
+        "required": [
+          "status"
+        ],
+        "title": "SetAwsEndpointConnectionStateRequest"
+      },
+      "SetClientCACertBody": {
+        "type": "object",
+        "properties": {
+          "x509_pem_cert": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "x509_pem_cert": "-----BEGIN CERTIFICATE-----..."
+        },
+        "required": [
+          "x509_pem_cert"
+        ],
+        "title": "SetClientCACertRequest"
+      },
+      "SetEgressTrafficPolicyBody": {
+        "type": "object",
+        "properties": {
+          "allow_all": {
+            "description": "allow_all, if true results in unrestricted egress traffic. If false, egress\ntraffic is set to default-deny and is managed via the Egress Rule\nManagement API.",
+            "type": "boolean"
+          },
+          "idempotency_key": {
+            "description": "idempotency_key uniquely identifies this request. If not set, it will be\nset by the server.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "allow_all"
+        ],
+        "title": "SetEgressTrafficPolicyRequest"
+      },
+      "SetRolesForUserBody": {
+        "type": "object",
+        "properties": {
+          "roles": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BuiltInRole"
+            }
+          }
+        },
+        "example": {
+          "roles": [
+            {
+              "name": "CLUSTER_ADMIN",
+              "resource": {
+                "id": "example_cluster_id",
+                "type": "CLUSTER"
+              }
+            }
+          ],
+          "user_id": "12345678-1234-1234-1234-123456789012"
+        },
+        "required": [
+          "roles"
+        ]
+      },
       "Status": {
         "type": "object",
         "properties": {
@@ -19926,6 +19790,13 @@
             "type": "string"
           }
         }
+      },
+      "SystemActorName": {
+        "description": "SystemActorName identifies a system process that triggered an audit log\nentry when the action was not initiated by a human user or service account.",
+        "type": "string",
+        "enum": [
+          "SYSTEM_ACTOR_NAME_SYSTEM"
+        ]
       },
       "UpdateApiKeySpecification": {
         "type": "object",
@@ -19962,6 +19833,94 @@
           "enabled": true,
           "frequency_minutes": 60,
           "retention_days": 7
+        }
+      },
+      "UpdateBlackoutWindowBody": {
+        "type": "object",
+        "properties": {
+          "end_time": {
+            "description": "Optional new UTC end time for the blackout window.\nCan be up to 14 days after the start time.\nMust not be more than three months after the current time.",
+            "type": "string",
+            "format": "date-time"
+          },
+          "start_time": {
+            "description": "Optional new UTC start time for the blackout window.\nMust be scheduled at least 7 days in advance.",
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "example": {
+          "blackout_window_id": "12345678-1234-1234-1234-123456789012",
+          "cluster_id": "12345678-1234-1234-1234-123456789012",
+          "end_time": "2025-10-15T06:00:00Z",
+          "start_time": "2025-10-15T00:00:00Z"
+        },
+        "title": "UpdateBlackoutWindowRequest"
+      },
+      "UpdateCMEKSpecBody": {
+        "type": "object",
+        "properties": {
+          "region_specs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CMEKRegionSpecification"
+            }
+          }
+        },
+        "example": {
+          "region_specs": [
+            {
+              "key_spec": {
+                "auth_principal": "arn:aws:iam::account:role/role-name-with-path",
+                "type": "AWS_KMS",
+                "uri": "arn:aws:kms:us-west-2:111122223333:key/id-of-kms-key"
+              },
+              "region": "us-central1"
+            }
+          ]
+        },
+        "required": [
+          "region_specs"
+        ],
+        "title": "CMEKClusterSpecification"
+      },
+      "UpdateCMEKStatusBody": {
+        "type": "object",
+        "properties": {
+          "action": {
+            "$ref": "#/components/schemas/CMEKCustomerAction"
+          }
+        },
+        "example": {
+          "action": "REVOKE"
+        },
+        "required": [
+          "action"
+        ],
+        "title": "UpdateCMEKStatusRequest"
+      },
+      "UpdateClientCACertBody": {
+        "type": "object",
+        "properties": {
+          "x509_pem_cert": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "x509_pem_cert": "-----BEGIN CERTIFICATE-----..."
+        },
+        "title": "UpdateClientCACertRequest"
+      },
+      "UpdateClusterDisruptionBody": {
+        "type": "object",
+        "properties": {
+          "regional_disruptor_specifications": {
+            "description": "regional_disruptor_specifications specify how regions are to be\ndisrupted. Any Cluster region that is not specified here will not be\ndisrupted. A cluster region that was previously disrupted but is not listed\nhere will be removed from disruption. To stop all disruptions, set this\nto an empty list or omit it from the request.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RegionalDisruptorSpecification"
+            }
+          }
         }
       },
       "UpdateClusterSpecification": {
@@ -20012,6 +19971,50 @@
           }
         }
       },
+      "UpdateEgressPrivateEndpointBody": {
+        "type": "object",
+        "properties": {
+          "domain_names": {
+            "description": "domain_names are the domain names to associate with the egress private endpoint.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "example": {
+          "domain_names": [
+            "example.com",
+            "api.example.com"
+          ]
+        },
+        "required": [
+          "domain_names"
+        ],
+        "title": "UpdateEgressPrivateEndpointRequest"
+      },
+      "UpdateEgressPrivateEndpointDomainNamesBody": {
+        "type": "object",
+        "properties": {
+          "domain_names": {
+            "description": "domain_names are the domain names to associate with the egress private endpoint.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "example": {
+          "domain_names": [
+            "example.com",
+            "api.example.com"
+          ]
+        },
+        "required": [
+          "domain_names"
+        ],
+        "title": "UpdateEgressPrivateEndpointRequest"
+      },
       "UpdateFolderSpecification": {
         "description": "Set `parent_id` to empty string '' or 'root' to move a folder to the root level.",
         "type": "object",
@@ -20035,6 +20038,80 @@
           "parent_id": "12345678-1234-1234-1234-123456789012"
         }
       },
+      "UpdateGroupBody": {
+        "type": "object",
+        "properties": {
+          "displayName": {
+            "type": "string"
+          },
+          "externalId": {
+            "type": "string"
+          },
+          "members": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ScimResource"
+            }
+          },
+          "schemas": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "example": {
+          "displayName": "Test SCIM",
+          "id": "23a35c27-23d3-4c03-b4c5-6443c09e7173",
+          "members": [
+            {
+              "display": "croach@example.com",
+              "value": "45a35c27-23d3-4d03-c4c5-9043c09e7175"
+            }
+          ],
+          "schemas": [
+            "urn:ietf:params:scim:schemas:core:2.0:Group"
+          ]
+        },
+        "required": [
+          "schemas",
+          "displayName"
+        ],
+        "title": "UpdateGroupRequest"
+      },
+      "UpdateJWTIssuerBody": {
+        "type": "object",
+        "properties": {
+          "audience": {
+            "type": "string",
+            "example": "1234567890abcd",
+            "title": "The intended audience for consuming the JWT"
+          },
+          "claim": {
+            "type": "string",
+            "example": "email",
+            "title": "Used to identify the user from the external Identity Provider. Defaults to \"sub\""
+          },
+          "identity_map": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JWTIssuerIdentityMapEntry"
+            },
+            "title": "A list of mappings to map the external token identity into CockroachDB Cloud"
+          },
+          "issuer_url": {
+            "type": "string",
+            "example": "https://jwt-issuer.example.com",
+            "title": "The URL of the server issuing JWTs"
+          },
+          "jwks": {
+            "type": "string",
+            "example": "{\"keys\":[{\"e\":\"AQAB\",\"use\":\"sig\",\"kty\":\"RSA\",\"alg\":\"RS256\",\"n\":\"tid8bJCI5FxtvMiVHq8pRZBGIPaG9mEa1akpIC9munzxA3mWoc-KoR1TGkocu76WFthaZnPS31WJbRVChU6g4EMIg7E8Ltpxifk1PQu0qqbLcpnoI62ojsB7l_Z_lkls0NUzTuKGMMtNoJsDrL1BT0UzcnWerh2PwzDAMpfPgafWdT2IYGTx1gNLcNOWpPhDgMSQqUmIPwCmxdan4i4OMd7lJYQ1WQlN8VnQgbRgHrm1zImY6MPqho9jW3Ub5FwGbunwCDrP9a2dD_5Iwm7_lR82iB4BGlu28WxFn0fm5DgZAeAFSGKE1xblC97WrjnPh2XYTx6pxsea_Hn71VcNSQ\",\"kid\":\"9341dedeee2d1869b657fa930300082fe26b3d92\"}]}",
+            "title": "A set of public keys (JWKS) used to verify a JWT"
+          }
+        },
+        "title": "UpdateJWTIssuerRequest"
+      },
       "UpdatePhysicalReplicationStreamSpec": {
         "type": "object",
         "properties": {
@@ -20052,6 +20129,21 @@
           "status": "FAILING_OVER"
         }
       },
+      "UpdateSQLUserPasswordBody": {
+        "type": "object",
+        "properties": {
+          "password": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "password": "example_new_password"
+        },
+        "required": [
+          "password"
+        ],
+        "title": "UpdateSQLUserPasswordRequest"
+      },
       "UpdateServiceAccountSpecification": {
         "type": "object",
         "properties": {
@@ -20068,6 +20160,57 @@
           "description": "new description",
           "name": "new name"
         }
+      },
+      "UpdateUserBody": {
+        "type": "object",
+        "properties": {
+          "active": {
+            "type": "boolean"
+          },
+          "displayName": {
+            "type": "string"
+          },
+          "emails": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ScimEmail"
+            }
+          },
+          "externalId": {
+            "type": "string"
+          },
+          "name": {
+            "$ref": "#/components/schemas/ScimName"
+          },
+          "schemas": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "userName": {
+            "type": "string"
+          }
+        },
+        "example": {
+          "active": true,
+          "emails": [
+            {
+              "display": "croach@example.com",
+              "primary": true,
+              "type": "work",
+              "value": "croach@example.com"
+            }
+          ],
+          "name": {
+            "familyName": "Roach",
+            "givenName": "Carl"
+          },
+          "schemas": [
+            "urn:ietf:params:scim:schemas:core:2.0:User"
+          ]
+        },
+        "title": "UpdateUserRequest"
       },
       "UpgradeType.Type": {
         "type": "string",

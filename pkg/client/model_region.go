@@ -20,16 +20,22 @@ package client
 
 // Region struct for Region.
 type Region struct {
+	// disk_iops is the provisioned disk I/O operations per second for nodes in this region. Only meaningful for Advanced clusters on AWS; for GCP and Azure the cloud provider chooses based on disk size.
+	DiskIops *int32 `json:"disk_iops,omitempty"`
 	// internal_dns is the internal DNS name of the cluster within the cloud provider's network. It is used to connect to the cluster with AWS PrivateLink, Azure Private Link, and GCP VPC Peering, but not GCP Private Service Connect.
 	InternalDns string `json:"internal_dns"`
-	Name        string `json:"name"`
+	// machine_type is the machine type identifier within the cloud provider for nodes in this region (e.g. m5.xlarge, n2-standard-4). May differ across regions in a heterogeneous Advanced cluster. Only populated for Advanced clusters.
+	MachineType *string `json:"machine_type,omitempty"`
+	Name        string  `json:"name"`
 	// node_count will be 0 for Serverless clusters.
 	NodeCount int32 `json:"node_count"`
+	// num_virtual_cpus is the number of virtual CPUs per node in this region, derived from machine_type. Only populated for Advanced clusters.
+	NumVirtualCpus *int32 `json:"num_virtual_cpus,omitempty"`
 	// primary is true only for the primary region in a Multi Region Serverless cluster.
 	Primary *bool `json:"primary,omitempty"`
 	// private_endpoint_dns is the DNS name of the cluster which is used to connect to the cluster with GCP Private Service Connect.
 	PrivateEndpointDns string `json:"private_endpoint_dns"`
-	// Preview: s3_vpc_endpoint_id is the ID of the AWS S3 VPC gateway endpoint associated with this cluster region. This can be used to configure S3 bucket policies that restrict access to traffic from this VPC endpoint. Only populated for Advanced clusters on AWS.
+	// s3_vpc_endpoint_id is the ID of the AWS S3 VPC gateway endpoint associated with this cluster region. This can be used to configure S3 bucket policies that restrict access to traffic from this VPC endpoint. Only populated for Advanced clusters on AWS.
 	S3VpcEndpointId *string `json:"s3_vpc_endpoint_id,omitempty"`
 	// sql_dns is the DNS name of SQL interface of the cluster. It is used to connect to the cluster with IP allowlisting.
 	SqlDns string `json:"sql_dns"`
@@ -60,6 +66,20 @@ func NewRegionWithDefaults() *Region {
 	return &p
 }
 
+// GetDiskIops returns the DiskIops field value if set, zero value otherwise.
+func (o *Region) GetDiskIops() int32 {
+	if o == nil || o.DiskIops == nil {
+		var ret int32
+		return ret
+	}
+	return *o.DiskIops
+}
+
+// SetDiskIops gets a reference to the given int32 and assigns it to the DiskIops field.
+func (o *Region) SetDiskIops(v int32) {
+	o.DiskIops = &v
+}
+
 // GetInternalDns returns the InternalDns field value.
 func (o *Region) GetInternalDns() string {
 	if o == nil {
@@ -73,6 +93,20 @@ func (o *Region) GetInternalDns() string {
 // SetInternalDns sets field value.
 func (o *Region) SetInternalDns(v string) {
 	o.InternalDns = v
+}
+
+// GetMachineType returns the MachineType field value if set, zero value otherwise.
+func (o *Region) GetMachineType() string {
+	if o == nil || o.MachineType == nil {
+		var ret string
+		return ret
+	}
+	return *o.MachineType
+}
+
+// SetMachineType gets a reference to the given string and assigns it to the MachineType field.
+func (o *Region) SetMachineType(v string) {
+	o.MachineType = &v
 }
 
 // GetName returns the Name field value.
@@ -103,6 +137,20 @@ func (o *Region) GetNodeCount() int32 {
 // SetNodeCount sets field value.
 func (o *Region) SetNodeCount(v int32) {
 	o.NodeCount = v
+}
+
+// GetNumVirtualCpus returns the NumVirtualCpus field value if set, zero value otherwise.
+func (o *Region) GetNumVirtualCpus() int32 {
+	if o == nil || o.NumVirtualCpus == nil {
+		var ret int32
+		return ret
+	}
+	return *o.NumVirtualCpus
+}
+
+// SetNumVirtualCpus gets a reference to the given int32 and assigns it to the NumVirtualCpus field.
+func (o *Region) SetNumVirtualCpus(v int32) {
+	o.NumVirtualCpus = &v
 }
 
 // GetPrimary returns the Primary field value if set, zero value otherwise.

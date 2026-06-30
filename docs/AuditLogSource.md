@@ -12,6 +12,8 @@
 
 * `MCP` (value: `"AUDIT_LOG_SOURCE_MCP"`)
 
+* `SSH_GATEWAY` (value: `"AUDIT_LOG_SOURCE_SSH_GATEWAY"`)
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **ServiceAccountName** | Pointer to **string** | ServiceAccountName is the name of the service account that triggered this log entry. If it was not a service account, it will be empty. | [optional] 
 **SessionId** | Pointer to **string** | SessionId is an ID that can be used to correlate this log entry with others that are emitted as part of the same user session, typically for users interacting through the UI. It should be treated as an opaque string with no guaranteed structure. | [optional] 
 **Source** | Pointer to [**AuditLogSource**](AuditLogSource.md) |  | [optional] 
+**SystemActorName** | Pointer to [**SystemActorName**](SystemActorName.md) |  | [optional] 
 **TraceId** | Pointer to **string** | TraceId is an ID that can be used to correlate this log entry with others that are emitted as part of the same process. It should be treated as an opaque string with no guaranteed structure. | [optional] 
 **UserEmail** | Pointer to **string** | UserEmail is the email address of the user that triggered this log entry. If it was not a human user, it will be empty. | [optional] 
 
@@ -160,6 +161,18 @@ GetSource returns the Source field if non-nil, zero value otherwise.
 `func (o *AuditLogEntry) SetSource(v AuditLogSource)`
 
 SetSource sets Source field to given value.
+
+### GetSystemActorName
+
+`func (o *AuditLogEntry) GetSystemActorName() SystemActorName`
+
+GetSystemActorName returns the SystemActorName field if non-nil, zero value otherwise.
+
+### SetSystemActorName
+
+`func (o *AuditLogEntry) SetSystemActorName(v SystemActorName)`
+
+SetSystemActorName sets SystemActorName field to given value.
 
 ### GetTraceId
 

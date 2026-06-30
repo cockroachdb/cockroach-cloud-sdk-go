@@ -377,7 +377,7 @@ Name | Type | Description  | Notes
 
 ## GetGroup2
 
-> ScimGroup GetGroup2(ctx, id).GetGroupRequest(getGroupRequest).Execute()
+> ScimGroup GetGroup2(ctx, id).GetGroup2Body(getGroup2Body).Execute()
 
 Search a group by ID (Deprecated)
 
@@ -399,11 +399,11 @@ import (
 
 func main() {
     id := "id_example" // string | 
-    getGroupRequest := *openapiclient.NewGetGroupRequest() // GetGroupRequest | 
+    getGroup2Body := *openapiclient.NewGetGroup2Body() // GetGroup2Body | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
-    resp, r, err := api_client.SCIMApi.GetGroup2(context.Background(), id).GetGroupRequest(getGroupRequest).Execute()
+    resp, r, err := api_client.SCIMApi.GetGroup2(context.Background(), id).GetGroup2Body(getGroup2Body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SCIMApi.GetGroup2``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -426,7 +426,7 @@ Name | Type | Description  | Notes
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **getGroupRequest** | [**GetGroupRequest**](GetGroupRequest.md) |  | 
+ **getGroup2Body** | [**GetGroup2Body**](GetGroup2Body.md) |  | 
 
 ### Return type
 
@@ -1001,7 +1001,7 @@ Name | Type | Description  | Notes
 
 ## GetUser2
 
-> ScimUser GetUser2(ctx, id).GetUserRequest(getUserRequest).Execute()
+> ScimUser GetUser2(ctx, id).GetUser2Body(getUser2Body).Execute()
 
 Search for a user by ID (Deprecated)
 
@@ -1023,11 +1023,11 @@ import (
 
 func main() {
     id := "id_example" // string | 
-    getUserRequest := *openapiclient.NewGetUserRequest() // GetUserRequest | 
+    getUser2Body := *openapiclient.NewGetUser2Body() // GetUser2Body | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
-    resp, r, err := api_client.SCIMApi.GetUser2(context.Background(), id).GetUserRequest(getUserRequest).Execute()
+    resp, r, err := api_client.SCIMApi.GetUser2(context.Background(), id).GetUser2Body(getUser2Body).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SCIMApi.GetUser2``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1050,7 +1050,7 @@ Name | Type | Description  | Notes
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **getUserRequest** | [**GetUserRequest**](GetUserRequest.md) |  | 
+ **getUser2Body** | [**GetUser2Body**](GetUser2Body.md) |  | 
 
 ### Return type
 
@@ -1214,7 +1214,7 @@ Name | Type | Description  | Notes
 
 ## PatchGroup
 
-> ScimGroup PatchGroup(ctx, id).PatchGroupRequest(patchGroupRequest).Execute()
+> ScimGroup PatchGroup(ctx, id).PatchGroupBody(patchGroupBody).Execute()
 
 Patch a group by supplying partial updates
 
@@ -1238,11 +1238,11 @@ import (
 
 func main() {
     id := "id_example" // string | 
-    patchGroupRequest := *openapiclient.NewPatchGroupRequest([]openapiclient.ScimOperations{*openapiclient.NewScimOperations("Op_example")}, []string{"Schemas_example"}) // PatchGroupRequest | 
+    patchGroupBody := *openapiclient.NewPatchGroupBody([]openapiclient.ScimOperations{*openapiclient.NewScimOperations("Op_example")}, []string{"Schemas_example"}) // PatchGroupBody | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
-    resp, r, err := api_client.SCIMApi.PatchGroup(context.Background(), id).PatchGroupRequest(patchGroupRequest).Execute()
+    resp, r, err := api_client.SCIMApi.PatchGroup(context.Background(), id).PatchGroupBody(patchGroupBody).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SCIMApi.PatchGroup``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1265,7 +1265,7 @@ Name | Type | Description  | Notes
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **patchGroupRequest** | [**PatchGroupRequest**](PatchGroupRequest.md) |  | 
+ **patchGroupBody** | [**PatchGroupBody**](PatchGroupBody.md) |  | 
 
 ### Return type
 
@@ -1286,7 +1286,7 @@ Name | Type | Description  | Notes
 
 ## PatchUser
 
-> ScimUser PatchUser(ctx, id).PatchUserRequest(patchUserRequest).Execute()
+> ScimUser PatchUser(ctx, id).PatchUserBody(patchUserBody).Execute()
 
 Patch a user by supplying partial updates
 
@@ -1310,11 +1310,11 @@ import (
 
 func main() {
     id := "id_example" // string | 
-    patchUserRequest := *openapiclient.NewPatchUserRequest([]openapiclient.ScimOperations{*openapiclient.NewScimOperations("Op_example")}, []string{"Schemas_example"}) // PatchUserRequest | 
+    patchUserBody := *openapiclient.NewPatchUserBody([]openapiclient.ScimOperations{*openapiclient.NewScimOperations("Op_example")}, []string{"Schemas_example"}) // PatchUserBody | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
-    resp, r, err := api_client.SCIMApi.PatchUser(context.Background(), id).PatchUserRequest(patchUserRequest).Execute()
+    resp, r, err := api_client.SCIMApi.PatchUser(context.Background(), id).PatchUserBody(patchUserBody).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SCIMApi.PatchUser``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1337,7 +1337,7 @@ Name | Type | Description  | Notes
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **patchUserRequest** | [**PatchUserRequest**](PatchUserRequest.md) |  | 
+ **patchUserBody** | [**PatchUserBody**](PatchUserBody.md) |  | 
 
 ### Return type
 
@@ -1358,7 +1358,7 @@ Name | Type | Description  | Notes
 
 ## SearchGroup
 
-> ScimGroup SearchGroup(ctx, id).GetGroupRequest(getGroupRequest).Execute()
+> ScimGroup SearchGroup(ctx, id).SearchGroupBody(searchGroupBody).Execute()
 
 Search a group by ID
 
@@ -1382,11 +1382,11 @@ import (
 
 func main() {
     id := "id_example" // string | 
-    getGroupRequest := *openapiclient.NewGetGroupRequest() // GetGroupRequest | 
+    searchGroupBody := *openapiclient.NewSearchGroupBody() // SearchGroupBody | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
-    resp, r, err := api_client.SCIMApi.SearchGroup(context.Background(), id).GetGroupRequest(getGroupRequest).Execute()
+    resp, r, err := api_client.SCIMApi.SearchGroup(context.Background(), id).SearchGroupBody(searchGroupBody).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SCIMApi.SearchGroup``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1409,7 +1409,7 @@ Name | Type | Description  | Notes
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **getGroupRequest** | [**GetGroupRequest**](GetGroupRequest.md) |  | 
+ **searchGroupBody** | [**SearchGroupBody**](SearchGroupBody.md) |  | 
 
 ### Return type
 
@@ -1499,7 +1499,7 @@ Name | Type | Description  | Notes
 
 ## SearchUser
 
-> ScimUser SearchUser(ctx, id).GetUserRequest(getUserRequest).Execute()
+> ScimUser SearchUser(ctx, id).SearchUserBody(searchUserBody).Execute()
 
 Search for a user by ID
 
@@ -1523,11 +1523,11 @@ import (
 
 func main() {
     id := "id_example" // string | 
-    getUserRequest := *openapiclient.NewGetUserRequest() // GetUserRequest | 
+    searchUserBody := *openapiclient.NewSearchUserBody() // SearchUserBody | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
-    resp, r, err := api_client.SCIMApi.SearchUser(context.Background(), id).GetUserRequest(getUserRequest).Execute()
+    resp, r, err := api_client.SCIMApi.SearchUser(context.Background(), id).SearchUserBody(searchUserBody).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SCIMApi.SearchUser``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1550,7 +1550,7 @@ Name | Type | Description  | Notes
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **getUserRequest** | [**GetUserRequest**](GetUserRequest.md) |  | 
+ **searchUserBody** | [**SearchUserBody**](SearchUserBody.md) |  | 
 
 ### Return type
 
@@ -1640,7 +1640,7 @@ Name | Type | Description  | Notes
 
 ## UpdateGroup
 
-> ScimGroup UpdateGroup(ctx, id).UpdateGroupRequest(updateGroupRequest).Execute()
+> ScimGroup UpdateGroup(ctx, id).UpdateGroupBody(updateGroupBody).Execute()
 
 Update a group by supplying all values of the user object
 
@@ -1662,11 +1662,11 @@ import (
 
 func main() {
     id := "id_example" // string | 
-    updateGroupRequest := *openapiclient.NewUpdateGroupRequest("DisplayName_example", []string{"Schemas_example"}) // UpdateGroupRequest | 
+    updateGroupBody := *openapiclient.NewUpdateGroupBody("DisplayName_example", []string{"Schemas_example"}) // UpdateGroupBody | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
-    resp, r, err := api_client.SCIMApi.UpdateGroup(context.Background(), id).UpdateGroupRequest(updateGroupRequest).Execute()
+    resp, r, err := api_client.SCIMApi.UpdateGroup(context.Background(), id).UpdateGroupBody(updateGroupBody).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SCIMApi.UpdateGroup``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1689,7 +1689,7 @@ Name | Type | Description  | Notes
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateGroupRequest** | [**UpdateGroupRequest**](UpdateGroupRequest.md) |  | 
+ **updateGroupBody** | [**UpdateGroupBody**](UpdateGroupBody.md) |  | 
 
 ### Return type
 
@@ -1710,7 +1710,7 @@ Name | Type | Description  | Notes
 
 ## UpdateUser
 
-> ScimUser UpdateUser(ctx, id).UpdateUserRequest(updateUserRequest).Execute()
+> ScimUser UpdateUser(ctx, id).UpdateUserBody(updateUserBody).Execute()
 
 Update a user by supplying all values of the user object
 
@@ -1732,11 +1732,11 @@ import (
 
 func main() {
     id := "id_example" // string | 
-    updateUserRequest := *openapiclient.NewUpdateUserRequest() // UpdateUserRequest | 
+    updateUserBody := *openapiclient.NewUpdateUserBody() // UpdateUserBody | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
-    resp, r, err := api_client.SCIMApi.UpdateUser(context.Background(), id).UpdateUserRequest(updateUserRequest).Execute()
+    resp, r, err := api_client.SCIMApi.UpdateUser(context.Background(), id).UpdateUserBody(updateUserBody).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `SCIMApi.UpdateUser``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1759,7 +1759,7 @@ Name | Type | Description  | Notes
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateUserRequest** | [**UpdateUserRequest**](UpdateUserRequest.md) |  | 
+ **updateUserBody** | [**UpdateUserBody**](UpdateUserBody.md) |  | 
 
 ### Return type
 
