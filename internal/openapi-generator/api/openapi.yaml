@@ -9237,7 +9237,7 @@ paths:
         style: form
       - description: |-
           start_time filters the response to invoices whose billing period started at or after this time (inclusive).
-          Defaults to organization creation time if omitted.
+          Must be in RFC3339 format (e.g., 2024-01-01T00:00:00Z). Defaults to organization creation time if omitted.
         explode: true
         in: query
         name: start_time
@@ -9248,7 +9248,7 @@ paths:
         style: form
       - description: |-
           end_time filters the response to invoices whose billing period ended at or before this time (exclusive).
-          Defaults to current time if omitted.
+          Must be in RFC3339 format (e.g., 2024-12-31T23:59:59Z). Defaults to current time if omitted.
         explode: true
         in: query
         name: end_time
@@ -11409,6 +11409,11 @@ components:
       - AUDIT_LOG_ACTION_SET_CLUSTER_SETTING
       - AUDIT_LOG_ACTION_EVICT_BYOC_CLUSTER
       - AUDIT_LOG_ACTION_MCP_OAUTH_CONSENT
+      - AUDIT_LOG_ACTION_ENABLE_MFA_ENFORCEMENT
+      - AUDIT_LOG_ACTION_DISABLE_MFA_ENFORCEMENT
+      - AUDIT_LOG_ACTION_RESET_USER_MFA
+      - AUDIT_LOG_ACTION_ENROLL_USER_MFA
+      - AUDIT_LOG_ACTION_REGENERATE_RECOVERY_CODES
       type: string
     AuditLogEntry:
       description: |-
@@ -11422,6 +11427,7 @@ components:
           ip_address: ip_address
         trace_id: trace_id
         user_email: user_email
+        system_actor_name: null
         created_at: 2000-01-23T04:56:07.000+00:00
         session_id: session_id
         source: null
@@ -11475,6 +11481,8 @@ components:
           type: string
         source:
           $ref: '#/components/schemas/AuditLogSource'
+        system_actor_name:
+          $ref: '#/components/schemas/SystemActorName'
         trace_id:
           description: |-
             TraceId is an ID that can be used to correlate this log entry with others
@@ -11501,6 +11509,7 @@ components:
       - AUDIT_LOG_SOURCE_UI
       - AUDIT_LOG_SOURCE_INTERNAL
       - AUDIT_LOG_SOURCE_MCP
+      - AUDIT_LOG_SOURCE_SSH_GATEWAY
       type: string
     Aws:
       example:
@@ -14356,6 +14365,7 @@ components:
             ip_address: ip_address
           trace_id: trace_id
           user_email: user_email
+          system_actor_name: null
           created_at: 2000-01-23T04:56:07.000+00:00
           session_id: session_id
           source: null
@@ -14370,6 +14380,7 @@ components:
             ip_address: ip_address
           trace_id: trace_id
           user_email: user_email
+          system_actor_name: null
           created_at: 2000-01-23T04:56:07.000+00:00
           session_id: session_id
           source: null
@@ -15305,12 +15316,14 @@ components:
             - channels
             log_name: log_name
             redact: true
+            enable_sending_queue: true
             min_level: null
           - channels:
             - channels
             - channels
             log_name: log_name
             redact: true
+            enable_sending_queue: true
             min_level: null
           region: region
           type: null
@@ -15352,12 +15365,14 @@ components:
           - channels
           log_name: log_name
           redact: true
+          enable_sending_queue: true
           min_level: null
         - channels:
           - channels
           - channels
           log_name: log_name
           redact: true
+          enable_sending_queue: true
           min_level: null
         region: region
         type: null
@@ -15424,6 +15439,7 @@ components:
         - channels
         log_name: log_name
         redact: true
+        enable_sending_queue: true
         min_level: null
       properties:
         channels:
@@ -15433,6 +15449,11 @@ components:
           items:
             type: string
           type: array
+        enable_sending_queue:
+          description: |-
+            enable_sending_queue enables the sending queue for logs in this
+            group. Only one group can have enable_sending_queue enabled.
+          type: boolean
         log_name:
           description: "log_name is the name of the group, reflected in the log sink."
           type: string
@@ -15823,6 +15844,9 @@ components:
       description: |-
         PrivateEndpointConnectionStatus enumerates the possible statuses
         for the private endpoints connection.
+
+         - STATUS_STALE: Indicates that the endpoint was deleted outside of CockroachDB Cloud. Delete the endpoint
+        through the Cloud API or Console to manually remove the connection entry.
       enum:
       - STATUS_PENDING
       - STATUS_PENDING_ACCEPTANCE
@@ -15832,6 +15856,7 @@ components:
       - STATUS_REJECTED
       - STATUS_FAILED
       - STATUS_EXPIRED
+      - STATUS_STALE
       type: string
     PrivateEndpointConnections:
       example:
@@ -16060,7 +16085,7 @@ components:
           type: string
         s3_vpc_endpoint_id:
           description: |-
-            Preview: s3_vpc_endpoint_id is the ID of the AWS S3 VPC gateway endpoint
+            s3_vpc_endpoint_id is the ID of the AWS S3 VPC gateway endpoint
             associated with this cluster region. This can be used to configure
             S3 bucket policies that restrict access to traffic from this
             VPC endpoint. Only populated for Advanced clusters on AWS.
@@ -16922,6 +16947,13 @@ components:
         message:
           type: string
       type: object
+    SystemActorName:
+      description: |-
+        SystemActorName identifies a system process that triggered an audit log
+        entry when the action was not initiated by a human user or service account.
+      enum:
+      - SYSTEM_ACTOR_NAME_SYSTEM
+      type: string
     UpdateApiKeySpecification:
       example:
         name: new name

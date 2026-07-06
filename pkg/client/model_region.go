@@ -29,7 +29,7 @@ type Region struct {
 	Primary *bool `json:"primary,omitempty"`
 	// private_endpoint_dns is the DNS name of the cluster which is used to connect to the cluster with GCP Private Service Connect.
 	PrivateEndpointDns string `json:"private_endpoint_dns"`
-	// Preview: s3_vpc_endpoint_id is the ID of the AWS S3 VPC gateway endpoint associated with this cluster region. This can be used to configure S3 bucket policies that restrict access to traffic from this VPC endpoint. Only populated for Advanced clusters on AWS.
+	// s3_vpc_endpoint_id is the ID of the AWS S3 VPC gateway endpoint associated with this cluster region. This can be used to configure S3 bucket policies that restrict access to traffic from this VPC endpoint. Only populated for Advanced clusters on AWS.
 	S3VpcEndpointId *string `json:"s3_vpc_endpoint_id,omitempty"`
 	// sql_dns is the DNS name of SQL interface of the cluster. It is used to connect to the cluster with IP allowlisting.
 	SqlDns string `json:"sql_dns"`

@@ -22,7 +22,7 @@ import (
 	"fmt"
 )
 
-// PrivateEndpointConnectionStatus PrivateEndpointConnectionStatus enumerates the possible statuses for the private endpoints connection.
+// PrivateEndpointConnectionStatus PrivateEndpointConnectionStatus enumerates the possible statuses for the private endpoints connection.   - STATUS_STALE: Indicates that the endpoint was deleted outside of CockroachDB Cloud. Delete the endpoint through the Cloud API or Console to manually remove the connection entry.
 type PrivateEndpointConnectionStatus string
 
 // List of PrivateEndpointConnectionStatus.
@@ -35,6 +35,7 @@ const (
 	PRIVATEENDPOINTCONNECTIONSTATUS_REJECTED           PrivateEndpointConnectionStatus = "STATUS_REJECTED"
 	PRIVATEENDPOINTCONNECTIONSTATUS_FAILED             PrivateEndpointConnectionStatus = "STATUS_FAILED"
 	PRIVATEENDPOINTCONNECTIONSTATUS_EXPIRED            PrivateEndpointConnectionStatus = "STATUS_EXPIRED"
+	PRIVATEENDPOINTCONNECTIONSTATUS_STALE              PrivateEndpointConnectionStatus = "STATUS_STALE"
 )
 
 // All allowed values of PrivateEndpointConnectionStatus enum.
@@ -47,6 +48,7 @@ var AllowedPrivateEndpointConnectionStatusEnumValues = []PrivateEndpointConnecti
 	"STATUS_REJECTED",
 	"STATUS_FAILED",
 	"STATUS_EXPIRED",
+	"STATUS_STALE",
 }
 
 // NewPrivateEndpointConnectionStatusFromValue returns a pointer to a valid PrivateEndpointConnectionStatus

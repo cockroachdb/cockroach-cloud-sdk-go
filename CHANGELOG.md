@@ -9,6 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Add new audit log actions for MFA management (enable/disable enforcement, enroll, reset,
+  regenerate recovery codes), plus new audit log sources (CC API, CLI, UI, internal, MCP, SSH gateway).
+- Add `SystemActorName` to audit log entries to identify system-initiated actions.
+- Add `EnableSendingQueue` option to log export configuration.
+- Add `STATUS_STALE` private endpoint connection status.
 - Added `sync-fork.yml`: on every push to upstream main (and via manual workflow_dispatch), pushes
   upstream main to `crl-gh-actions-pr-bot`'s fork main using the cockroachdb/actions `sync-fork`
   reusable workflow.

@@ -240,6 +240,7 @@ docs/SetAwsEndpointConnectionStateRequest.md
 docs/SetClientCACertRequest.md
 docs/SetEgressTrafficPolicyRequest.md
 docs/Status.md
+docs/SystemActorName.md
 docs/UpdateApiKeySpecification.md
 docs/UpdateBackupConfigurationSpec.md
 docs/UpdateBlackoutWindowRequest.md
@@ -474,6 +475,7 @@ model_set_client_ca_cert_request.go
 model_set_egress_traffic_policy_request.go
 model_sql_user.go
 model_status.go
+model_system_actor_name.go
 model_update_api_key_specification.go
 model_update_backup_configuration_spec.go
 model_update_blackout_window_request.go

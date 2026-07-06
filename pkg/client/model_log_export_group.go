@@ -22,6 +22,8 @@ package client
 type LogExportGroup struct {
 	// channels is a list of CRDB log channels to include in this group.
 	Channels []string `json:"channels"`
+	// enable_sending_queue enables the sending queue for logs in this group. Only one group can have enable_sending_queue enabled.
+	EnableSendingQueue *bool `json:"enable_sending_queue,omitempty"`
 	// log_name is the name of the group, reflected in the log sink.
 	LogName  string        `json:"log_name"`
 	MinLevel *LogLevelType `json:"min_level,omitempty"`
@@ -61,6 +63,20 @@ func (o *LogExportGroup) GetChannels() []string {
 // SetChannels sets field value.
 func (o *LogExportGroup) SetChannels(v []string) {
 	o.Channels = v
+}
+
+// GetEnableSendingQueue returns the EnableSendingQueue field value if set, zero value otherwise.
+func (o *LogExportGroup) GetEnableSendingQueue() bool {
+	if o == nil || o.EnableSendingQueue == nil {
+		var ret bool
+		return ret
+	}
+	return *o.EnableSendingQueue
+}
+
+// SetEnableSendingQueue gets a reference to the given bool and assigns it to the EnableSendingQueue field.
+func (o *LogExportGroup) SetEnableSendingQueue(v bool) {
+	o.EnableSendingQueue = &v
 }
 
 // GetLogName returns the LogName field value.

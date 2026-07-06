@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **NodeCount** | **int32** | node_count will be 0 for Serverless clusters. | 
 **Primary** | Pointer to **bool** | primary is true only for the primary region in a Multi Region Serverless cluster. | [optional] 
 **PrivateEndpointDns** | **string** | private_endpoint_dns is the DNS name of the cluster which is used to connect to the cluster with GCP Private Service Connect. | 
-**S3VpcEndpointId** | Pointer to **string** | Preview: s3_vpc_endpoint_id is the ID of the AWS S3 VPC gateway endpoint associated with this cluster region. This can be used to configure S3 bucket policies that restrict access to traffic from this VPC endpoint. Only populated for Advanced clusters on AWS. | [optional] 
+**S3VpcEndpointId** | Pointer to **string** | s3_vpc_endpoint_id is the ID of the AWS S3 VPC gateway endpoint associated with this cluster region. This can be used to configure S3 bucket policies that restrict access to traffic from this VPC endpoint. Only populated for Advanced clusters on AWS. | [optional] 
 **SqlDns** | **string** | sql_dns is the DNS name of SQL interface of the cluster. It is used to connect to the cluster with IP allowlisting. | 
 **UiDns** | **string** | ui_dns is the DNS name used when connecting to the DB Console for the cluster. | 
 

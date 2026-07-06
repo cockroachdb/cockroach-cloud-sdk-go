@@ -2334,10 +2334,10 @@ type ListInvoicesOptions struct {
 	// Filters the response to only include invoices with the specified status. This will be sent as a query parameter on the GET request. If not specified, both Finalized and Draft invoices will be included.
 	Status *string
 
-	// start_time filters the response to invoices whose billing period started at or after this time (inclusive). Defaults to organization creation time if omitted.
+	// start_time filters the response to invoices whose billing period started at or after this time (inclusive). Must be in RFC3339 format (e.g., 2024-01-01T00:00:00Z). Defaults to organization creation time if omitted.
 	StartTime *time.Time
 
-	// end_time filters the response to invoices whose billing period ended at or before this time (exclusive). Defaults to current time if omitted.
+	// end_time filters the response to invoices whose billing period ended at or before this time (exclusive). Must be in RFC3339 format (e.g., 2024-12-31T23:59:59Z). Defaults to current time if omitted.
 	EndTime *time.Time
 }
 

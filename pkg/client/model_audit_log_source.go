@@ -27,11 +27,12 @@ type AuditLogSource string
 
 // List of AuditLogSource.
 const (
-	AUDITLOGSOURCE_CC_API   AuditLogSource = "AUDIT_LOG_SOURCE_CC_API"
-	AUDITLOGSOURCE_CLI      AuditLogSource = "AUDIT_LOG_SOURCE_CLI"
-	AUDITLOGSOURCE_UI       AuditLogSource = "AUDIT_LOG_SOURCE_UI"
-	AUDITLOGSOURCE_INTERNAL AuditLogSource = "AUDIT_LOG_SOURCE_INTERNAL"
-	AUDITLOGSOURCE_MCP      AuditLogSource = "AUDIT_LOG_SOURCE_MCP"
+	AUDITLOGSOURCE_CC_API      AuditLogSource = "AUDIT_LOG_SOURCE_CC_API"
+	AUDITLOGSOURCE_CLI         AuditLogSource = "AUDIT_LOG_SOURCE_CLI"
+	AUDITLOGSOURCE_UI          AuditLogSource = "AUDIT_LOG_SOURCE_UI"
+	AUDITLOGSOURCE_INTERNAL    AuditLogSource = "AUDIT_LOG_SOURCE_INTERNAL"
+	AUDITLOGSOURCE_MCP         AuditLogSource = "AUDIT_LOG_SOURCE_MCP"
+	AUDITLOGSOURCE_SSH_GATEWAY AuditLogSource = "AUDIT_LOG_SOURCE_SSH_GATEWAY"
 )
 
 // All allowed values of AuditLogSource enum.
@@ -41,6 +42,7 @@ var AllowedAuditLogSourceEnumValues = []AuditLogSource{
 	"AUDIT_LOG_SOURCE_UI",
 	"AUDIT_LOG_SOURCE_INTERNAL",
 	"AUDIT_LOG_SOURCE_MCP",
+	"AUDIT_LOG_SOURCE_SSH_GATEWAY",
 }
 
 // NewAuditLogSourceFromValue returns a pointer to a valid AuditLogSource
