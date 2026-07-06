@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CmekRegionSpecs** | Pointer to [**[]CMEKRegionSpecification**](CMEKRegionSpecification.md) | This field should contain the CMEK specs for newly added regions. If a CMEK spec is provided for an existing region, the request is invalid and will fail. | [optional] 
 **Hardware** | Pointer to [**DedicatedHardwareUpdateSpecification**](DedicatedHardwareUpdateSpecification.md) |  | [optional] 
+**RegionMachineSpecs** | Pointer to [**map[string]DedicatedMachineTypeSpecification**](DedicatedMachineTypeSpecification.md) | region_machine_specs updates machine types per region. Only regions named in this map are affected; unnamed regions retain their current machine type. Use this to add a new region with a distinct machine type or to resize an existing region independently of others. Mutually exclusive with hardware.machine_spec. | [optional] 
 **RegionNodes** | Pointer to **map[string]int32** | Region keys should match the cloud provider&#39;s zone code. For example, for Oregon, set region_name to \&quot;us-west2\&quot; for GCP and \&quot;us-west-2\&quot; for AWS. Values represent the node count. | [optional] 
 
 ## Methods
@@ -42,6 +43,18 @@ GetHardware returns the Hardware field if non-nil, zero value otherwise.
 `func (o *DedicatedClusterUpdateSpecification) SetHardware(v DedicatedHardwareUpdateSpecification)`
 
 SetHardware sets Hardware field to given value.
+
+### GetRegionMachineSpecs
+
+`func (o *DedicatedClusterUpdateSpecification) GetRegionMachineSpecs() map[string]DedicatedMachineTypeSpecification`
+
+GetRegionMachineSpecs returns the RegionMachineSpecs field if non-nil, zero value otherwise.
+
+### SetRegionMachineSpecs
+
+`func (o *DedicatedClusterUpdateSpecification) SetRegionMachineSpecs(v map[string]DedicatedMachineTypeSpecification)`
+
+SetRegionMachineSpecs sets RegionMachineSpecs field to given value.
 
 ### GetRegionNodes
 

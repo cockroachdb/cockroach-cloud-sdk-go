@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **CockroachVersion** | Pointer to **string** | The CockroachDB major version for the cluster. i.e. v24.1  The latest version is used if omitted. The version passed must be one of the currently supported versions. | [optional] 
 **Hardware** | [**DedicatedHardwareCreateSpecification**](DedicatedHardwareCreateSpecification.md) |  | 
 **NetworkVisibility** | Pointer to [**NetworkVisibilityType**](NetworkVisibilityType.md) |  | [optional] 
+**RegionMachineSpecs** | Pointer to [**map[string]DedicatedMachineTypeSpecification**](DedicatedMachineTypeSpecification.md) | region_machine_specs configures a machine type per region, producing a cluster whose regions may use different machine types. Keys are region codes (matching region_nodes) and values select a machine type by machine_type or num_virtual_cpus. When set, every region in region_nodes must have a corresponding entry, and hardware.machine_spec must be omitted (the two fields are mutually exclusive). hardware.storage_gib and hardware.disk_iops continue to apply cluster-wide. | [optional] 
 **RegionNodes** | **map[string]int32** | Region keys should match the cloud provider&#39;s zone code. For example, for Oregon, set region_name to \&quot;us-west2\&quot; for GCP and \&quot;us-west-2\&quot; for AWS. Values represent the node count. | 
 **RestrictEgressTraffic** | Pointer to **bool** | Preview: restrict_egress_traffic if set, results in an egress traffic policy of default-deny at creation time. | [optional] 
 **SupportsClusterVirtualization** | Pointer to **bool** |  | [optional] 
@@ -78,6 +79,18 @@ GetNetworkVisibility returns the NetworkVisibility field if non-nil, zero value 
 `func (o *DedicatedClusterCreateSpecification) SetNetworkVisibility(v NetworkVisibilityType)`
 
 SetNetworkVisibility sets NetworkVisibility field to given value.
+
+### GetRegionMachineSpecs
+
+`func (o *DedicatedClusterCreateSpecification) GetRegionMachineSpecs() map[string]DedicatedMachineTypeSpecification`
+
+GetRegionMachineSpecs returns the RegionMachineSpecs field if non-nil, zero value otherwise.
+
+### SetRegionMachineSpecs
+
+`func (o *DedicatedClusterCreateSpecification) SetRegionMachineSpecs(v map[string]DedicatedMachineTypeSpecification)`
+
+SetRegionMachineSpecs sets RegionMachineSpecs field to given value.
 
 ### GetRegionNodes
 

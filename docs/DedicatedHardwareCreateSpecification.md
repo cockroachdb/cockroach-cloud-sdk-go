@@ -5,14 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **DiskIops** | Pointer to **int32** | disk_iops is the number of disk I/O operations per second that are permitted on each node in an AWS cluster. Set to zero or omit this field to use the cloud provider-specific default based on machine type and storage size. The value returned in the response may differ from the requested value. For GCP and Azure clusters, this value is ignored and the cloud provider default is used. | [optional] 
-**MachineSpec** | [**DedicatedMachineTypeSpecification**](DedicatedMachineTypeSpecification.md) |  | 
+**MachineSpec** | Pointer to [**DedicatedMachineTypeSpecification**](DedicatedMachineTypeSpecification.md) |  | [optional] 
 **StorageGib** | **int32** | storage_gib is the number of storage GiB per node in the cluster. Zero indicates default to the lowest storage GiB available given machine specs. | 
 
 ## Methods
 
 ### NewDedicatedHardwareCreateSpecification
 
-`func NewDedicatedHardwareCreateSpecification(machineSpec DedicatedMachineTypeSpecification, storageGib int32, ) *DedicatedHardwareCreateSpecification`
+`func NewDedicatedHardwareCreateSpecification(storageGib int32, ) *DedicatedHardwareCreateSpecification`
 
 NewDedicatedHardwareCreateSpecification instantiates a new DedicatedHardwareCreateSpecification object.
 This constructor will assign default values to properties that have it defined,

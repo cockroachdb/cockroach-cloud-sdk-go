@@ -18,11 +18,11 @@
 
 package client
 
-// DedicatedHardwareCreateSpecification struct for DedicatedHardwareCreateSpecification.
+// DedicatedHardwareCreateSpecification Exactly one of machine_spec or DedicatedClusterCreateSpecification.region_machine_specs must be provided. For the standard (non-limited-access) cluster creation flow, machine_spec is effectively required; it may only be omitted by callers using the limited-access region_machine_specs field..
 type DedicatedHardwareCreateSpecification struct {
 	// disk_iops is the number of disk I/O operations per second that are permitted on each node in an AWS cluster. Set to zero or omit this field to use the cloud provider-specific default based on machine type and storage size. The value returned in the response may differ from the requested value. For GCP and Azure clusters, this value is ignored and the cloud provider default is used.
-	DiskIops    *int32                            `json:"disk_iops,omitempty"`
-	MachineSpec DedicatedMachineTypeSpecification `json:"machine_spec"`
+	DiskIops    *int32                             `json:"disk_iops,omitempty"`
+	MachineSpec *DedicatedMachineTypeSpecification `json:"machine_spec,omitempty"`
 	// storage_gib is the number of storage GiB per node in the cluster. Zero indicates default to the lowest storage GiB available given machine specs.
 	StorageGib int32 `json:"storage_gib"`
 }
@@ -31,9 +31,8 @@ type DedicatedHardwareCreateSpecification struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDedicatedHardwareCreateSpecification(machineSpec DedicatedMachineTypeSpecification, storageGib int32) *DedicatedHardwareCreateSpecification {
+func NewDedicatedHardwareCreateSpecification(storageGib int32) *DedicatedHardwareCreateSpecification {
 	p := DedicatedHardwareCreateSpecification{}
-	p.MachineSpec = machineSpec
 	p.StorageGib = storageGib
 	return &p
 }
@@ -60,19 +59,18 @@ func (o *DedicatedHardwareCreateSpecification) SetDiskIops(v int32) {
 	o.DiskIops = &v
 }
 
-// GetMachineSpec returns the MachineSpec field value.
+// GetMachineSpec returns the MachineSpec field value if set, zero value otherwise.
 func (o *DedicatedHardwareCreateSpecification) GetMachineSpec() DedicatedMachineTypeSpecification {
-	if o == nil {
+	if o == nil || o.MachineSpec == nil {
 		var ret DedicatedMachineTypeSpecification
 		return ret
 	}
-
-	return o.MachineSpec
+	return *o.MachineSpec
 }
 
-// SetMachineSpec sets field value.
+// SetMachineSpec gets a reference to the given DedicatedMachineTypeSpecification and assigns it to the MachineSpec field.
 func (o *DedicatedHardwareCreateSpecification) SetMachineSpec(v DedicatedMachineTypeSpecification) {
-	o.MachineSpec = v
+	o.MachineSpec = &v
 }
 
 // GetStorageGib returns the StorageGib field value.
