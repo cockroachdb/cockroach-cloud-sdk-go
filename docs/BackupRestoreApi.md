@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## CreateRestore
 
-> Restore CreateRestore(ctx, destinationClusterId).CockroachCloudCreateRestoreRequest(cockroachCloudCreateRestoreRequest).Execute()
+> Restore CreateRestore(ctx, destinationClusterId).CreateRestoreBody(createRestoreBody).Execute()
 
 Create a restore
 
@@ -38,11 +38,11 @@ import (
 
 func main() {
     destinationClusterId := "destinationClusterId_example" // string | The ID of the cluster where the backup will be restored.
-    cockroachCloudCreateRestoreRequest := *openapiclient.NewCockroachCloudCreateRestoreRequest(openapiclient.RestoreType.Type("CLUSTER")) // CockroachCloudCreateRestoreRequest | 
+    createRestoreBody := *openapiclient.NewCreateRestoreBody(openapiclient.RestoreType.Type("CLUSTER")) // CreateRestoreBody | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
-    resp, r, err := api_client.BackupRestoreApi.CreateRestore(context.Background(), destinationClusterId).CockroachCloudCreateRestoreRequest(cockroachCloudCreateRestoreRequest).Execute()
+    resp, r, err := api_client.BackupRestoreApi.CreateRestore(context.Background(), destinationClusterId).CreateRestoreBody(createRestoreBody).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `BackupRestoreApi.CreateRestore``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -65,7 +65,7 @@ Name | Type | Description  | Notes
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **cockroachCloudCreateRestoreRequest** | [**CockroachCloudCreateRestoreRequest**](CockroachCloudCreateRestoreRequest.md) |  | 
+ **createRestoreBody** | [**CreateRestoreBody**](CreateRestoreBody.md) |  | 
 
 ### Return type
 

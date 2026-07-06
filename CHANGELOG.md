@@ -13,7 +13,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   cluster create/update specifications and `DiskIops`, `MachineType`, and `NumVirtualCpus` on the
   `Region` model.
 - Add new audit log actions for MFA management (enable/disable enforcement, enroll, reset,
-  regenerate recovery codes), plus new audit log sources (CC API, CLI, UI, internal, MCP, SSH gateway).
+  regenerate recovery codes) and Migration Assistant lifecycle, plus new audit log sources
+  (CC API, CLI, UI, internal, MCP, SSH gateway).
 - Add `SystemActorName` to audit log entries to identify system-initiated actions.
 - Add `EnableSendingQueue` option to log export configuration.
 - Add `STATUS_STALE` private endpoint connection status.
@@ -36,6 +37,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Breaking Change: Rename request body types from `*Request` to `*Body` (for example
+  `CreateSQLUserRequest` to `CreateSQLUserBody`, `UpdateDatabaseRequest` to `EditDatabaseBody`,
+  `GetGroupRequest` to `GetGroup2Body`).
 - Breaking Change: `machine_spec` is now optional on `DedicatedHardwareCreateSpecification`
   (exactly one of `machine_spec` or `region_machine_specs` must be provided). `MachineSpec` is
   now a pointer and `NewDedicatedHardwareCreateSpecification` no longer takes a `machineSpec`

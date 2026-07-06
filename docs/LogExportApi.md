@@ -82,7 +82,7 @@ Name | Type | Description  | Notes
 
 ## EnableLogExport
 
-> LogExportClusterInfo EnableLogExport(ctx, clusterId).EnableLogExportRequest(enableLogExportRequest).Execute()
+> LogExportClusterInfo EnableLogExport(ctx, clusterId).EnableLogExportBody(enableLogExportBody).Execute()
 
 Create or update the Log Export configuration for a cluster
 
@@ -106,11 +106,11 @@ import (
 
 func main() {
     clusterId := "clusterId_example" // string | 
-    enableLogExportRequest := *openapiclient.NewEnableLogExportRequest("AuthPrincipal_example", "LogName_example", openapiclient.LogExportType("AWS_CLOUDWATCH")) // EnableLogExportRequest | 
+    enableLogExportBody := *openapiclient.NewEnableLogExportBody("AuthPrincipal_example", "LogName_example", openapiclient.LogExportType("AWS_CLOUDWATCH")) // EnableLogExportBody | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
-    resp, r, err := api_client.LogExportApi.EnableLogExport(context.Background(), clusterId).EnableLogExportRequest(enableLogExportRequest).Execute()
+    resp, r, err := api_client.LogExportApi.EnableLogExport(context.Background(), clusterId).EnableLogExportBody(enableLogExportBody).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `LogExportApi.EnableLogExport``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -133,7 +133,7 @@ Name | Type | Description  | Notes
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **enableLogExportRequest** | [**EnableLogExportRequest**](EnableLogExportRequest.md) |  | 
+ **enableLogExportBody** | [**EnableLogExportBody**](EnableLogExportBody.md) |  | 
 
 ### Return type
 

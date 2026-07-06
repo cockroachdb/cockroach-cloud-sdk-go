@@ -387,7 +387,7 @@ Name | Type | Description  | Notes
 
 ## SetRolesForUser
 
-> GetAllRolesForUserResponse SetRolesForUser(ctx, userId).CockroachCloudSetRolesForUserRequest(cockroachCloudSetRolesForUserRequest).Execute()
+> GetAllRolesForUserResponse SetRolesForUser(ctx, userId).SetRolesForUserBody(setRolesForUserBody).Execute()
 
 Replace the roles for a user or service account with exactly those provided
 
@@ -410,11 +410,11 @@ import (
 
 func main() {
     userId := "userId_example" // string | 
-    cockroachCloudSetRolesForUserRequest := *openapiclient.NewCockroachCloudSetRolesForUserRequest([]openapiclient.BuiltInRole{*openapiclient.NewBuiltInRole(openapiclient.OrganizationUserRole.Type("BILLING_COORDINATOR"), *openapiclient.NewResource(openapiclient.ResourceType.Type("ORGANIZATION")))}) // CockroachCloudSetRolesForUserRequest | 
+    setRolesForUserBody := *openapiclient.NewSetRolesForUserBody([]openapiclient.BuiltInRole{*openapiclient.NewBuiltInRole(openapiclient.OrganizationUserRole.Type("BILLING_COORDINATOR"), *openapiclient.NewResource(openapiclient.ResourceType.Type("ORGANIZATION")))}) // SetRolesForUserBody | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
-    resp, r, err := api_client.RoleManagementApi.SetRolesForUser(context.Background(), userId).CockroachCloudSetRolesForUserRequest(cockroachCloudSetRolesForUserRequest).Execute()
+    resp, r, err := api_client.RoleManagementApi.SetRolesForUser(context.Background(), userId).SetRolesForUserBody(setRolesForUserBody).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `RoleManagementApi.SetRolesForUser``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -437,7 +437,7 @@ Name | Type | Description  | Notes
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **cockroachCloudSetRolesForUserRequest** | [**CockroachCloudSetRolesForUserRequest**](CockroachCloudSetRolesForUserRequest.md) |  | 
+ **setRolesForUserBody** | [**SetRolesForUserBody**](SetRolesForUserBody.md) |  | 
 
 ### Return type
 

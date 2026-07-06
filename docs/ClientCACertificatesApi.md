@@ -151,7 +151,7 @@ Name | Type | Description  | Notes
 
 ## SetClientCACert
 
-> ClientCACertInfo SetClientCACert(ctx, clusterId).SetClientCACertRequest(setClientCACertRequest).Execute()
+> ClientCACertInfo SetClientCACert(ctx, clusterId).SetClientCACertBody(setClientCACertBody).Execute()
 
 Set Client CA Cert for a cluster
 
@@ -174,11 +174,11 @@ import (
 
 func main() {
     clusterId := "clusterId_example" // string | 
-    setClientCACertRequest := *openapiclient.NewSetClientCACertRequest("X509PemCert_example") // SetClientCACertRequest | 
+    setClientCACertBody := *openapiclient.NewSetClientCACertBody("X509PemCert_example") // SetClientCACertBody | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
-    resp, r, err := api_client.ClientCACertificatesApi.SetClientCACert(context.Background(), clusterId).SetClientCACertRequest(setClientCACertRequest).Execute()
+    resp, r, err := api_client.ClientCACertificatesApi.SetClientCACert(context.Background(), clusterId).SetClientCACertBody(setClientCACertBody).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ClientCACertificatesApi.SetClientCACert``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -201,7 +201,7 @@ Name | Type | Description  | Notes
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **setClientCACertRequest** | [**SetClientCACertRequest**](SetClientCACertRequest.md) |  | 
+ **setClientCACertBody** | [**SetClientCACertBody**](SetClientCACertBody.md) |  | 
 
 ### Return type
 
@@ -222,7 +222,7 @@ Name | Type | Description  | Notes
 
 ## UpdateClientCACert
 
-> ClientCACertInfo UpdateClientCACert(ctx, clusterId).UpdateClientCACertRequest(updateClientCACertRequest).Execute()
+> ClientCACertInfo UpdateClientCACert(ctx, clusterId).UpdateClientCACertBody(updateClientCACertBody).Execute()
 
 Update Client CA Cert for a cluster
 
@@ -245,11 +245,11 @@ import (
 
 func main() {
     clusterId := "clusterId_example" // string | 
-    updateClientCACertRequest := *openapiclient.NewUpdateClientCACertRequest() // UpdateClientCACertRequest | 
+    updateClientCACertBody := *openapiclient.NewUpdateClientCACertBody() // UpdateClientCACertBody | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
-    resp, r, err := api_client.ClientCACertificatesApi.UpdateClientCACert(context.Background(), clusterId).UpdateClientCACertRequest(updateClientCACertRequest).Execute()
+    resp, r, err := api_client.ClientCACertificatesApi.UpdateClientCACert(context.Background(), clusterId).UpdateClientCACertBody(updateClientCACertBody).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ClientCACertificatesApi.UpdateClientCACert``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -272,7 +272,7 @@ Name | Type | Description  | Notes
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **updateClientCACertRequest** | [**UpdateClientCACertRequest**](UpdateClientCACertRequest.md) |  | 
+ **updateClientCACertBody** | [**UpdateClientCACertBody**](UpdateClientCACertBody.md) |  | 
 
 ### Return type
 

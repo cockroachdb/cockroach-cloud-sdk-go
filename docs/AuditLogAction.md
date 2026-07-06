@@ -208,6 +208,10 @@
 
 * `REGENERATE_RECOVERY_CODES` (value: `"AUDIT_LOG_ACTION_REGENERATE_RECOVERY_CODES"`)
 
+* `CREATE_MIGRATION_ASSISTANT` (value: `"AUDIT_LOG_ACTION_CREATE_MIGRATION_ASSISTANT"`)
+
+* `DELETE_MIGRATION_ASSISTANT` (value: `"AUDIT_LOG_ACTION_DELETE_MIGRATION_ASSISTANT"`)
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
