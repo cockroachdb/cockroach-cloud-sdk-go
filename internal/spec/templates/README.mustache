@@ -18,18 +18,18 @@ For more information, please visit [{{{infoUrl}}}]({{{infoUrl}}})
 Install the package:
 
 ```shell
-go get github.com/cockroachdb/cockroach-cloud-sdk-go/v7
+go get github.com/cockroachdb/cockroach-cloud-sdk-go/v8
 ```
 
 Import the package:
 
 ```golang
-import "github.com/cockroachdb/cockroach-cloud-sdk-go/v7/pkg/{{packageName}}"
+import "github.com/cockroachdb/cockroach-cloud-sdk-go/v8/pkg/{{packageName}}"
 ```
 
 ## Example Client Usage
 
-```golang 
+```golang
 // Create a default Configuration object.
 clientConfig := {{packageName}}.NewConfiguration(apiKey)
 
@@ -45,9 +45,9 @@ optionalParams := &{{packageName}}.OperationOptions{...}
 
 // Execute the request
 apiResponse, httpResponse, err := := service.Operation(
-	context.Background(), 
-	requiredPathParam, 
-	requiredRequest, 
+	context.Background(),
+	requiredPathParam,
+	requiredRequest,
 	optionalParams,
 )
 if err != nil {

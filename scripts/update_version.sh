@@ -21,7 +21,7 @@ check_required_env VERSION || exit 1
 
 log_info "Updating version to $VERSION in config and documentation files..."
 
-# Extract major version from VERSION (e.g., 7.0.0 -> 7)
+# Extract major version from VERSION (e.g., 8.0.0 -> 8)
 MAJOR_VERSION=$(echo "$VERSION" | cut --delimiter=. --fields=1)
 
 # Update go.mod module path to match major version
