@@ -212,6 +212,8 @@
 
 * `DELETE_MIGRATION_ASSISTANT` (value: `"AUDIT_LOG_ACTION_DELETE_MIGRATION_ASSISTANT"`)
 
+* `UPDATE_BACKUP_CONFIGURATION` (value: `"AUDIT_LOG_ACTION_UPDATE_BACKUP_CONFIGURATION"`)
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

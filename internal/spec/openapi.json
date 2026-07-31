@@ -8011,7 +8011,7 @@
       "get": {
         "operationId": "CockroachCloud_ListAwsEndpointConnections",
         "summary": "List all AwsEndpointConnections for a cluster",
-        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n- CLUSTER_DEVELOPER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -8204,7 +8204,7 @@
       "get": {
         "operationId": "CockroachCloud_ListEgressPrivateEndpoints",
         "summary": "List egress private endpoints",
-        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n- CLUSTER_DEVELOPER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -8530,7 +8530,7 @@
       "get": {
         "operationId": "CockroachCloud_GetEgressPrivateEndpoint",
         "summary": "Get egress private endpoint",
-        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n- CLUSTER_DEVELOPER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -9504,7 +9504,7 @@
       "get": {
         "operationId": "CockroachCloud_ListPrivateEndpointConnections",
         "summary": "List all connections to a cluster's private endpoint service.",
-        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n- CLUSTER_DEVELOPER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -9800,7 +9800,7 @@
       "get": {
         "operationId": "CockroachCloud_ListPrivateEndpointServices",
         "summary": "List all PrivateEndpointServices for a cluster",
-        "description": "The internal_dns property from the regions field in the ListClusters response can be used to connect to PrivateEndpointServices.\n\nCan be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "The internal_dns property from the regions field in the ListClusters response can be used to connect to PrivateEndpointServices.\n\nCan be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n- CLUSTER_DEVELOPER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -10719,6 +10719,291 @@
           {
             "lang": "Shell + Curl",
             "source": "curl --request GET \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/restores/{restore_id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+          }
+        ]
+      }
+    },
+    "/api/v1/clusters/{cluster_id}/runtime-scanning": {
+      "delete": {
+        "operationId": "CockroachCloud_DisableClusterRuntimeScanning",
+        "summary": "Disable runtime scanning on a cluster.",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "parameters": [
+          {
+            "name": "cluster_id",
+            "in": "path",
+            "description": "cluster_id is the ID of the cluster.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RuntimeScanningInfo"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Runtime Scanning"],
+        "x-badges": [
+          {
+            "color": "red",
+            "label": "LIMITED ACCESS"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request DELETE \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/runtime-scanning \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+          }
+        ]
+      },
+      "get": {
+        "operationId": "CockroachCloud_GetClusterRuntimeScanning",
+        "summary": "Get the runtime scanning status of a cluster.",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n- CLUSTER_DEVELOPER\n",
+        "parameters": [
+          {
+            "name": "cluster_id",
+            "in": "path",
+            "description": "cluster_id is the ID of the cluster.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RuntimeScanningInfo"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Runtime Scanning"],
+        "x-badges": [
+          {
+            "color": "red",
+            "label": "LIMITED ACCESS"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request GET \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/runtime-scanning \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+          }
+        ]
+      },
+      "post": {
+        "operationId": "CockroachCloud_EnableClusterRuntimeScanning",
+        "summary": "Enable runtime scanning on a cluster.",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "parameters": [
+          {
+            "name": "cluster_id",
+            "in": "path",
+            "description": "cluster_id is the ID of the cluster.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EnableClusterRuntimeScanningBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RuntimeScanningInfo"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Runtime Scanning"],
+        "x-badges": [
+          {
+            "color": "red",
+            "label": "LIMITED ACCESS"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/runtime-scanning \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"type\":\"WIZ\"}'"
           }
         ]
       }
@@ -13350,12 +13635,13 @@
     "/api/v1/roles/{user_id}": {
       "get": {
         "operationId": "CockroachCloud_GetAllRolesForUser",
-        "summary": "Get all Role Grants for a user",
-        "description": "Can be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n- CLUSTER_ADMIN\n- FOLDER_ADMIN\n",
+        "summary": "Get all role grants for a user, service account, or group",
+        "description": "Get all role grants for a user, service account, or group by providing its ID in the user_id path parameter.\n\nCan be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n- CLUSTER_ADMIN\n- FOLDER_ADMIN\n",
         "parameters": [
           {
             "name": "user_id",
             "in": "path",
+            "description": "user_id is the ID of the user, service account, or group whose roles are\nbeing retrieved.",
             "required": true,
             "schema": {
               "type": "string"
@@ -13434,12 +13720,13 @@
       },
       "put": {
         "operationId": "CockroachCloud_SetRolesForUser",
-        "summary": "Replace the roles for a user or service account with exactly those provided",
-        "description": "Replace the entire role set for a user or service account by providing its user_id or service_account_id.\n\nRoles that will be removed or added as a result of this call must follow the CC rules for role assignment:\nhttps://www.cockroachlabs.com/docs/cockroachcloud/authorization#organization-user-roles",
+        "summary": "Replace the roles for a user, service account, or group with exactly those provided",
+        "description": "Replace the entire role set for a user, service account, or group by providing its ID in the user_id path parameter.\n\nRoles that will be removed or added as a result of this call must follow the CC rules for role assignment:\nhttps://www.cockroachlabs.com/docs/cockroachcloud/authorization#organization-user-roles",
         "parameters": [
           {
             "name": "user_id",
             "in": "path",
+            "description": "user_id is the ID of the user, service account, or group.",
             "required": true,
             "schema": {
               "type": "string"
@@ -13530,12 +13817,13 @@
     "/api/v1/roles/{user_id}/{resource_type}/{resource_id}/{role_name}": {
       "delete": {
         "operationId": "CockroachCloud_RemoveUserFromRole",
-        "summary": "Remove a role from a user or service account",
-        "description": "Remove a single role from a user or service account by providing its user_id or service_account_id.\n\nRoles that will be removed as a result of this call must follow the CC rules for role assignment:\nhttps://www.cockroachlabs.com/docs/cockroachcloud/authorization#organization-user-roles",
+        "summary": "Remove a role from a user, service account, or group",
+        "description": "Remove a single role from a user, service account, or group by providing its ID in the user_id path parameter. A principal's last remaining role cannot be removed; because groups do not hold the implicit Org Member role that users and service accounts have, a group must always retain at least one other role.\n\nRoles that will be removed as a result of this call must follow the CC rules for role assignment:\nhttps://www.cockroachlabs.com/docs/cockroachcloud/authorization#organization-user-roles",
         "parameters": [
           {
             "name": "user_id",
             "in": "path",
+            "description": "user_id is the ID of the user, service account, or group to remove the role\nfrom.",
             "required": true,
             "schema": {
               "type": "string"
@@ -13544,6 +13832,7 @@
           {
             "name": "resource_type",
             "in": "path",
+            "description": "resource_type is the type of resource the role applies to.",
             "required": true,
             "schema": {
               "type": "string",
@@ -13553,6 +13842,7 @@
           {
             "name": "resource_id",
             "in": "path",
+            "description": "resource_id is the ID of the resource the role applies to. Pass an empty\nstring for organization-scoped roles.",
             "required": true,
             "schema": {
               "type": "string"
@@ -13561,6 +13851,7 @@
           {
             "name": "role_name",
             "in": "path",
+            "description": "role_name is the role to revoke.",
             "required": true,
             "schema": {
               "type": "string",
@@ -13653,12 +13944,13 @@
       },
       "post": {
         "operationId": "CockroachCloud_AddUserToRole",
-        "summary": "Add a role to a user or service account",
-        "description": "Add a single role to a user or service account by providing its user_id or service_account_id.\n\nRoles that will be added as a result of this call must follow the CC rules for role assignment:\nhttps://www.cockroachlabs.com/docs/cockroachcloud/authorization#organization-user-roles",
+        "summary": "Add a role to a user, service account, or group",
+        "description": "Add a single role to a user, service account, or group by providing its ID in the user_id path parameter.\n\nRoles that will be added as a result of this call must follow the CC rules for role assignment:\nhttps://www.cockroachlabs.com/docs/cockroachcloud/authorization#organization-user-roles",
         "parameters": [
           {
             "name": "user_id",
             "in": "path",
+            "description": "user_id is the ID of the user, service account, or group to add the role to.",
             "required": true,
             "schema": {
               "type": "string"
@@ -13667,6 +13959,7 @@
           {
             "name": "resource_type",
             "in": "path",
+            "description": "resource_type is the type of resource the role applies to.",
             "required": true,
             "schema": {
               "type": "string",
@@ -13676,6 +13969,7 @@
           {
             "name": "resource_id",
             "in": "path",
+            "description": "resource_id is the ID of the resource the role applies to. Pass an empty\nstring for organization-scoped roles.",
             "required": true,
             "schema": {
               "type": "string"
@@ -13684,6 +13978,7 @@
           {
             "name": "role_name",
             "in": "path",
+            "description": "role_name is the role to grant.",
             "required": true,
             "schema": {
               "type": "string",
@@ -13812,6 +14107,40 @@
               "type": "string",
               "enum": ["ASC", "DESC"]
             }
+          },
+          {
+            "name": "service_account_name",
+            "in": "query",
+            "description": "Optional case-insensitive filter for service account name.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "roles",
+            "in": "query",
+            "description": "If specified, only service accounts holding at least one of these roles\n(either directly or via a group) are returned.\n\n - FOLDER_ADMIN: Preview: A folder admin role.\n - FOLDER_MOVER: Preview: A folder mover role.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "enum": [
+                  "BILLING_COORDINATOR",
+                  "ORG_ADMIN",
+                  "ORG_MEMBER",
+                  "CLUSTER_ADMIN",
+                  "CLUSTER_OPERATOR_WRITER",
+                  "CLUSTER_DEVELOPER",
+                  "CLUSTER_CREATOR",
+                  "FOLDER_ADMIN",
+                  "FOLDER_MOVER",
+                  "METRICS_VIEWER",
+                  "CLUSTER_MONITOR",
+                  "BILLING_VIEWER"
+                ],
+                "type": "string"
+              }
+            },
+            "explode": true
           }
         ],
         "responses": {
@@ -13886,7 +14215,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request GET \\\n  --url 'https://cockroachlabs.cloud/api/v1/service-accounts?pagination.page=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.as_of_time=SOME_STRING_VALUE&pagination.sort_order=SOME_STRING_VALUE' \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+            "source": "curl --request GET \\\n  --url 'https://cockroachlabs.cloud/api/v1/service-accounts?pagination.page=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.as_of_time=SOME_STRING_VALUE&pagination.sort_order=SOME_STRING_VALUE&service_account_name=SOME_STRING_VALUE&roles=SOME_ARRAY_VALUE' \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
           }
         ]
       },
@@ -14707,7 +15036,8 @@
           "AUDIT_LOG_ACTION_ENROLL_USER_MFA",
           "AUDIT_LOG_ACTION_REGENERATE_RECOVERY_CODES",
           "AUDIT_LOG_ACTION_CREATE_MIGRATION_ASSISTANT",
-          "AUDIT_LOG_ACTION_DELETE_MIGRATION_ASSISTANT"
+          "AUDIT_LOG_ACTION_DELETE_MIGRATION_ASSISTANT",
+          "AUDIT_LOG_ACTION_UPDATE_BACKUP_CONFIGURATION"
         ]
       },
       "AuditLogEntry": {
@@ -15379,6 +15709,7 @@
         "enum": ["CREATING", "CREATED", "CREATION_FAILED", "DELETED", "LOCKED"]
       },
       "ClusterStatus.Type": {
+        "description": " - UNSPECIFIED: No ongoing operation. The cluster is running normally.\n - CRDB_MAJOR_UPGRADE_RUNNING: A major CockroachDB version upgrade is in progress.\n - CRDB_MAJOR_UPGRADE_FAILED: A major CockroachDB version upgrade has failed.\n - CRDB_MAJOR_ROLLBACK_RUNNING: A major CockroachDB version rollback is in progress.\n - CRDB_MAJOR_ROLLBACK_FAILED: A major CockroachDB version rollback has failed.\n - CRDB_PATCH_RUNNING: A CockroachDB patch version update is in progress.\n - CRDB_PATCH_FAILED: A CockroachDB patch version update has failed.\n - CRDB_SCALE_RUNNING: A cluster scale operation is in progress.\n - CRDB_SCALE_FAILED: A cluster scale operation has failed.\n - MAINTENANCE_RUNNING: A cluster maintenance operation is in progress.\n - CRDB_INSTANCE_UPDATE_RUNNING: A cluster instance update is in progress.\n - CRDB_INSTANCE_UPDATE_FAILED: A cluster instance update has failed.\n - CRDB_EDIT_CLUSTER_RUNNING: A cluster edit operation is in progress.\n - CRDB_EDIT_CLUSTER_FAILED: A cluster edit operation has failed.\n - CRDB_CMEK_OPERATION_RUNNING: A CMEK key operation is in progress.\n - CRDB_CMEK_OPERATION_FAILED: A CMEK key operation has failed.\n - TENANT_RESTORE_RUNNING: A tenant restore operation is in progress.\n - TENANT_RESTORE_FAILED: A tenant restore operation has failed.\n - CRDB_LOG_EXPORT_OPERATION_RUNNING: A log export configuration operation is in progress.\n - CRDB_LOG_EXPORT_OPERATION_FAILED: A log export configuration operation has failed.\n - CRDB_CLUSTER_DISRUPTION_RUNNING: A cluster disruption operation is in progress.\n - CRDB_CLUSTER_DISRUPTION_FAILED: A cluster disruption operation has failed.\n - CRDB_REPAVE_RUNNING: A cluster node repave operation is in progress.\n - CRDB_REPAVE_FAILED: A cluster node repave operation has failed.\n - CRDB_CUSTOM_CLIENT_CA_RUNNING: A custom client CA certificate operation is in progress.\n - CRDB_CUSTOM_CLIENT_CA_FAILED: A custom client CA certificate operation has failed.\n - DEDICATED_FULL_CLUSTER_RESTORE_RUNNING: A dedicated cluster full restore is in progress.\n - DEDICATED_FULL_CLUSTER_RESTORE_FAILED: A dedicated cluster full restore has failed.",
         "type": "string",
         "enum": [
           "UNSPECIFIED",
@@ -16472,6 +16803,20 @@
         "required": ["role_arn"],
         "title": "EnableCloudWatchMetricExportRequest"
       },
+      "EnableClusterRuntimeScanningBody": {
+        "description": "EnableClusterRuntimeScanningRequest is used to enable runtime scanning on a\ncluster.",
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/RuntimeScanning.Type"
+          }
+        },
+        "example": {
+          "type": "WIZ"
+        },
+        "required": ["type"],
+        "title": "EnableClusterRuntimeScanningRequest"
+      },
       "EnableDatadogMetricExportBody": {
         "type": "object",
         "properties": {
@@ -16494,15 +16839,43 @@
         "type": "object",
         "properties": {
           "auth_principal": {
-            "type": "string",
-            "title": "auth_principal is used in different contexts based on integration.\nCloudWatch: AWS Role ARN that identifies a role\nthat the cluster account can assume to write to CloudWatch\nGCP Cloud Logging: GCP Project ID that the cluster service account\nhas permissions to write to for cloud logging.\nAzure Log Analytics: CustomerID or WorkspaceID"
+            "description": "auth_principal is used in different contexts based on integration.\nCloudWatch: AWS Role ARN that identifies a role\nthat the cluster account can assume to write to CloudWatch\nGCP Cloud Logging: GCP Project ID that the cluster service account\nhas permissions to write to for cloud logging.\nAzure Log Analytics (AZURE_LOG_ANALYTICS): CustomerID or WorkspaceID.\nRequired for AWS_CLOUDWATCH, GCP_CLOUD_LOGGING, and AZURE_LOG_ANALYTICS.\nNot used for AZURE_LOG_ANALYTICS_V2 or OTLP_HTTP. OTLP_HTTP authenticates\nvia otlp_headers (see otlp_endpoint / otlp_headers).",
+            "type": "string"
           },
           "aws_external_id": {
             "description": "aws_external_id to include when assuming the IAM role specified by role_arn.\nOptional. A specific value may be required by the role's trust policy.\nOnly supported for Advanced clusters on AWS. If provided for a Standard cluster,\nthe request is rejected.",
             "type": "string"
           },
+          "azure_client_id": {
+            "description": "Azure client ID for the app registration used by the Logs Ingestion API.\nRequired when type is AZURE_LOG_ANALYTICS_V2.",
+            "type": "string"
+          },
+          "azure_client_secret": {
+            "description": "Azure client secret for the app registration used by the Logs Ingestion API.\nRequired when type is AZURE_LOG_ANALYTICS_V2.",
+            "type": "string"
+          },
+          "azure_dce_endpoint": {
+            "description": "Logs ingestion endpoint of the Azure Data Collection Endpoint (DCE). For\nexample, https://{dce-name}.{region}.ingest.monitor.azure.com.\nRequired when type is AZURE_LOG_ANALYTICS_V2.",
+            "type": "string"
+          },
+          "azure_dcr_immutable_id": {
+            "description": "Immutable ID of the Azure Data Collection Rule (DCR), for example dcr-...\nRequired when type is AZURE_LOG_ANALYTICS_V2.",
+            "type": "string"
+          },
+          "azure_dcr_resource_id": {
+            "description": "Full ARM resource ID of the Azure Data Collection Rule (DCR). Cockroach\nCloud reads and updates this DCR to add streams for each configured log\ngroup. For example,\n/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.Insights/dataCollectionRules/{dcr-name}.\nRequired when type is AZURE_LOG_ANALYTICS_V2.",
+            "type": "string"
+          },
           "azure_shared_key": {
-            "description": "The primary or the secondary connected sources client authentication key.\nThis is used to export logs to Azure Log Analytics.",
+            "description": "The primary or the secondary connected sources client authentication key.\nThis is used to export logs to Azure Log Analytics via the legacy\nHTTP Data Collector API. Deprecated: use azure_client_secret instead.",
+            "type": "string"
+          },
+          "azure_tenant_id": {
+            "description": "Azure tenant ID for the app registration used by the Logs Ingestion API.\nRequired when type is AZURE_LOG_ANALYTICS_V2.",
+            "type": "string"
+          },
+          "azure_workspace_resource_id": {
+            "description": "Full ARM resource ID of the Log Analytics workspace. Cockroach Cloud creates\nor updates the required custom tables for each configured log group. For\nexample, /subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.OperationalInsights/workspaces/{workspace-name}.\nRequired when type is AZURE_LOG_ANALYTICS_V2.",
             "type": "string"
           },
           "groups": {
@@ -16513,13 +16886,24 @@
             }
           },
           "log_name": {
-            "description": "log_name is an identifier for the logs in the customer's log sink.",
+            "description": "log_name is an identifier for the logs in the customer's log sink. For\nAZURE_LOG_ANALYTICS_V2, it must start with a letter and contain only\nletters, digits, and underscores.",
             "type": "string"
           },
           "omitted_channels": {
             "description": "omitted_channels is a list of channels that the user does not want to\nexport logs for.",
             "type": "array",
             "items": {
+              "type": "string"
+            }
+          },
+          "otlp_endpoint": {
+            "description": "otlp_endpoint is the OTLP/HTTP URL for the OTLP_HTTP sink type. Customers\nmay provide either a base endpoint or a full /v1/logs endpoint. Required\nwhen type is OTLP_HTTP.",
+            "type": "string"
+          },
+          "otlp_headers": {
+            "description": "otlp_headers are auth headers (name->value) for the OTLP_HTTP sink, e.g.\n{\"authorization\": \"Bearer ...\"}. Write-only: values are stored securely and\nnever returned. For existing OTLP_HTTP configurations, omitting this field\nor sending an empty map preserves the stored headers; sending a non-empty map\nreplaces them.",
+            "type": "object",
+            "additionalProperties": {
               "type": "string"
             }
           },
@@ -16550,7 +16934,7 @@
           "shared_key": "shared-key",
           "type": "GCP_CLOUD_LOGGING"
         },
-        "required": ["type", "log_name", "auth_principal"],
+        "required": ["type", "log_name"],
         "title": "EnableLogExportRequest"
       },
       "FolderResource": {
@@ -17469,6 +17853,13 @@
             "type": "string",
             "format": "date-time"
           },
+          "delivery_status": {
+            "$ref": "#/components/schemas/LogExportDeliveryStatus"
+          },
+          "delivery_status_message": {
+            "description": "Descriptive error message when delivery_status is DELIVERY_UNHEALTHY.\nOnly populated for OTLP_HTTP sinks.",
+            "type": "string"
+          },
           "spec": {
             "$ref": "#/components/schemas/LogExportClusterSpecification"
           },
@@ -17489,30 +17880,69 @@
         "type": "object",
         "properties": {
           "auth_principal": {
-            "description": "auth_principal is either the AWS Role ARN that identifies a role\nthat the cluster account can assume to write to CloudWatch or the\nGCP Project ID that the cluster service account has permissions to\nwrite to for cloud logging.",
+            "description": "auth_principal is used in different contexts based on integration.\nCloudWatch: AWS Role ARN that identifies a role\nthat the cluster account can assume to write to CloudWatch\nGCP Cloud Logging: GCP Project ID that the cluster service account\nhas permissions to write to for cloud logging.\nAzure Log Analytics (AZURE_LOG_ANALYTICS): CustomerID or WorkspaceID.\nThis field is empty for AZURE_LOG_ANALYTICS_V2 and OTLP_HTTP. OTLP_HTTP\nauthenticates using the headers supplied when the integration is enabled.",
             "type": "string"
           },
           "aws_external_id": {
             "description": "aws_external_id, if set, is included when assuming the IAM role. Supported for\nAdvanced clusters on AWS only.",
             "type": "string"
           },
+          "azure_client_id": {
+            "description": "Azure client ID for the app registration used by the Logs Ingestion API.",
+            "type": "string"
+          },
+          "azure_client_secret": {
+            "description": "Azure client secret for the app registration used by the Logs Ingestion API.",
+            "type": "string"
+          },
+          "azure_dce_endpoint": {
+            "description": "Logs ingestion endpoint of the Azure Data Collection Endpoint (DCE). For\nexample, https://{dce-name}.{region}.ingest.monitor.azure.com.",
+            "type": "string"
+          },
+          "azure_dcr_immutable_id": {
+            "description": "Immutable ID of the Azure Data Collection Rule (DCR), for example dcr-...",
+            "type": "string"
+          },
+          "azure_dcr_resource_id": {
+            "description": "Full ARM resource ID of the Azure Data Collection Rule (DCR). Cockroach\nCloud reads and updates this DCR to add streams for each configured log\ngroup. For example,\n/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.Insights/dataCollectionRules/{dcr-name}.",
+            "type": "string"
+          },
           "azure_shared_key": {
-            "description": "The primary or the secondary connected sources client authentication key.\nThis is used to export logs to Azure Log Analytics.",
+            "description": "The primary or the secondary connected sources client authentication key.\nThis is used to export logs to Azure Log Analytics via the legacy\nHTTP Data Collector API. Deprecated: use azure_client_secret instead.",
+            "type": "string"
+          },
+          "azure_tenant_id": {
+            "description": "Azure tenant ID for the app registration used by the Logs Ingestion API.",
+            "type": "string"
+          },
+          "azure_workspace_resource_id": {
+            "description": "Full ARM resource ID of the Log Analytics workspace. Cockroach Cloud creates\nor updates the required custom tables for each configured log group. For\nexample, /subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.OperationalInsights/workspaces/{workspace-name}.",
             "type": "string"
           },
           "groups": {
-            "description": "groups is a collection of log group configurations to customize\nwhich CRDB channels get aggregated into different groups at the\ntarget sink. Unconfigured channels will be sent to the default\nlocations via the settings above.",
+            "description": "groups is a collection of log group configurations to customize\nwhich CRDB channels get aggregated into different groups at the\ntarget sink. Unconfigured channels will be sent to the default\nlocations using the top-level log export settings.",
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/LogExportGroup"
             }
           },
           "log_name": {
-            "description": "log_name is an identifier for the logs in the customer's log sink.",
+            "description": "log_name is an identifier for the logs in the customer's log sink. For\nAZURE_LOG_ANALYTICS_V2, it must start with a letter and contain only\nletters, digits, and underscores.",
             "type": "string"
           },
           "omitted_channels": {
             "description": "omitted_channels is a list of channels that the user does not want to\nexport logs for.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "otlp_endpoint": {
+            "description": "otlp_endpoint is the OTLP/HTTP URL for the OTLP_HTTP sink type.\nThis field accepts either a base endpoint or a full /v1/logs endpoint.",
+            "type": "string"
+          },
+          "otlp_header_names": {
+            "description": "otlp_header_names lists the configured OTLP auth header names; values are\nnever returned.",
             "type": "array",
             "items": {
               "type": "string"
@@ -17531,6 +17961,11 @@
           }
         }
       },
+      "LogExportDeliveryStatus": {
+        "description": "LogExportDeliveryStatus reports whether logs are reaching the customer's\ndestination. This is independent of LogExportStatus, which reports whether\nthe integration is configured and running. Delivery health is currently\nreported only for OTLP_HTTP sinks.\n\n - DELIVERY_HEALTHY: The destination is receiving log records normally.\n - DELIVERY_UNHEALTHY: The destination is rejecting or failing to receive a substantial fraction\nof log records. The cause is intentionally not distinguished — it may be\ninvalid credentials, a wrong endpoint, or a transient outage.",
+        "type": "string",
+        "enum": ["DELIVERY_HEALTHY", "DELIVERY_UNHEALTHY"]
+      },
       "LogExportGroup": {
         "description": "LogExportGroup contains an export configuration for a single\nlog group which can route logs for a subset of CRDB channels.",
         "type": "object",
@@ -17547,7 +17982,7 @@
             "type": "boolean"
           },
           "log_name": {
-            "description": "log_name is the name of the group, reflected in the log sink.",
+            "description": "log_name is the name of the group, reflected in the log sink. For\nAZURE_LOG_ANALYTICS_V2, it must start with a letter and contain only\nletters, digits, and underscores.",
             "type": "string"
           },
           "min_level": {
@@ -17574,9 +18009,15 @@
         ]
       },
       "LogExportType": {
-        "description": "LogExportType encodes the cloud selection that we're exporting to\nalong with the cloud logging platform.\n\nCurrently, each cloud has a single logging platform.",
+        "description": "LogExportType identifies the destination used for exported logs.\nCloud-native destinations use their provider's logging service, while\nOTLP_HTTP sends logs to a customer-configured OTLP/HTTP endpoint.\n\n - AZURE_LOG_ANALYTICS: AZURE_LOG_ANALYTICS is the legacy Azure export path via the HTTP Data\nCollector API (retiring 2026-09-14). Deprecated: use\nAZURE_LOG_ANALYTICS_V2 instead.\n - AZURE_LOG_ANALYTICS_V2: AZURE_LOG_ANALYTICS_V2 exports to Azure Monitor via the Logs Ingestion API\nand DCR-based ingestion, replacing the deprecated AZURE_LOG_ANALYTICS path\nthat uses the HTTP Data Collector API (retiring 2026-09-14). V2 authenticates\nwith a tenant/client/secret + DCR endpoint and rule, whereas the legacy type\nuses a workspace ID + shared key.",
         "type": "string",
-        "enum": ["AWS_CLOUDWATCH", "GCP_CLOUD_LOGGING", "AZURE_LOG_ANALYTICS"]
+        "enum": [
+          "AWS_CLOUDWATCH",
+          "GCP_CLOUD_LOGGING",
+          "AZURE_LOG_ANALYTICS",
+          "AZURE_LOG_ANALYTICS_V2",
+          "OTLP_HTTP"
+        ]
       },
       "LogLevel.Type": {
         "description": " - UNSPECIFIED: The unspecified log level includes all logs.\n - WARNING: The WARNING severity is used for situations which may require\nspecial handling, where normal operation is expected to resume\nautomatically.\n - ERROR: The ERROR severity is used for situations that require special\nhandling, where normal operation could not proceed as expected.\nOther operations can continue mostly unaffected.\n - FATAL: The FATAL severity is used for situations that require an\nimmediate, hard server shutdown. A report is also sent to\ntelemetry if telemetry is enabled.",
@@ -18385,6 +18826,25 @@
         "type": "string",
         "enum": ["CLUSTER", "DATABASE", "TABLE"]
       },
+      "RuntimeScanning.Type": {
+        "description": " - NONE: NONE indicates runtime scanning is disabled; no agent is enforced.\n - WIZ: WIZ indicates runtime scanning is enforced using the Wiz agent.",
+        "type": "string",
+        "enum": ["NONE", "WIZ"]
+      },
+      "RuntimeScanningInfo": {
+        "description": "RuntimeScanningInfo describes the runtime scanning configuration of a cluster.\nIt is returned by the get, enable, and disable runtime scanning endpoints.",
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/RuntimeScanning.Type"
+          }
+        },
+        "example": {
+          "type": "WIZ"
+        },
+        "required": ["type"],
+        "title": "RuntimeScanningInfo"
+      },
       "SQLUser": {
         "type": "object",
         "properties": {
@@ -18955,6 +19415,7 @@
         "type": "object",
         "properties": {
           "roles": {
+            "description": "roles is the complete set of roles for the user, service account, or group.",
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/BuiltInRole"
@@ -19431,12 +19892,14 @@
         "type": "object",
         "properties": {
           "roles": {
+            "description": "roles is the complete set of roles for the user, service account, or group.",
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/BuiltInRole"
             }
           },
           "user_id": {
+            "description": "user_id is the ID of the user, service account, or group.",
             "type": "string"
           }
         },
@@ -19559,6 +20022,9 @@
     },
     {
       "name": "Multifactor Authentication"
+    },
+    {
+      "name": "Runtime Scanning"
     }
   ],
   "externalDocs": {

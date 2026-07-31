@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Roles** | [**[]BuiltInRole**](BuiltInRole.md) |  | 
-**UserId** | **string** |  | 
+**Roles** | [**[]BuiltInRole**](BuiltInRole.md) | roles is the complete set of roles for the user, service account, or group. | 
+**UserId** | **string** | user_id is the ID of the user, service account, or group. | 
 
 ## Methods
 

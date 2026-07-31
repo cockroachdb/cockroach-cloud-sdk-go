@@ -4,12 +4,12 @@ All URIs are relative to *https://cockroachlabs.cloud*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**AddUserToRole**](RoleManagementApi.md#AddUserToRole) | **Post** /api/v1/roles/{user_id}/{resource_type}/{resource_id}/{role_name} | Add a role to a user or service account
-[**GetAllRolesForUser**](RoleManagementApi.md#GetAllRolesForUser) | **Get** /api/v1/roles/{user_id} | Get all Role Grants for a user
+[**AddUserToRole**](RoleManagementApi.md#AddUserToRole) | **Post** /api/v1/roles/{user_id}/{resource_type}/{resource_id}/{role_name} | Add a role to a user, service account, or group
+[**GetAllRolesForUser**](RoleManagementApi.md#GetAllRolesForUser) | **Get** /api/v1/roles/{user_id} | Get all role grants for a user, service account, or group
 [**GetPersonUsersByEmail**](RoleManagementApi.md#GetPersonUsersByEmail) | **Get** /api/v1/users/persons-by-email | Search person users by email address
 [**ListRoleGrants**](RoleManagementApi.md#ListRoleGrants) | **Get** /api/v1/roles | List all RoleGrants
-[**RemoveUserFromRole**](RoleManagementApi.md#RemoveUserFromRole) | **Delete** /api/v1/roles/{user_id}/{resource_type}/{resource_id}/{role_name} | Remove a role from a user or service account
-[**SetRolesForUser**](RoleManagementApi.md#SetRolesForUser) | **Put** /api/v1/roles/{user_id} | Replace the roles for a user or service account with exactly those provided
+[**RemoveUserFromRole**](RoleManagementApi.md#RemoveUserFromRole) | **Delete** /api/v1/roles/{user_id}/{resource_type}/{resource_id}/{role_name} | Remove a role from a user, service account, or group
+[**SetRolesForUser**](RoleManagementApi.md#SetRolesForUser) | **Put** /api/v1/roles/{user_id} | Replace the roles for a user, service account, or group with exactly those provided
 
 
 
@@ -17,9 +17,9 @@ Method | HTTP request | Description
 
 > GetAllRolesForUserResponse AddUserToRole(ctx, userId, resourceType, resourceId, roleName).Execute()
 
-Add a role to a user or service account
+Add a role to a user, service account, or group
 
-Add a single role to a user or service account by providing its user_id or service_account_id.
+Add a single role to a user, service account, or group by providing its ID in the user_id path parameter.
 
 Roles that will be added as a result of this call must follow the CC rules for role assignment:
 https://www.cockroachlabs.com/docs/cockroachcloud/authorization#organization-user-roles
@@ -37,10 +37,10 @@ import (
 )
 
 func main() {
-    userId := "userId_example" // string | 
-    resourceType := "resourceType_example" // string | 
-    resourceId := "resourceId_example" // string | 
-    roleName := "roleName_example" // string | 
+    userId := "userId_example" // string | user_id is the ID of the user, service account, or group to add the role to.
+    resourceType := "resourceType_example" // string | resource_type is the type of resource the role applies to.
+    resourceId := "resourceId_example" // string | resource_id is the ID of the resource the role applies to. Pass an empty string for organization-scoped roles.
+    roleName := "roleName_example" // string | role_name is the role to grant.
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
@@ -59,10 +59,10 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **string** |  | 
-**resourceType** | **string** |  | 
-**resourceId** | **string** |  | 
-**roleName** | **string** |  | 
+**userId** | **string** | user_id is the ID of the user, service account, or group to add the role to. | 
+**resourceType** | **string** | resource_type is the type of resource the role applies to. | 
+**resourceId** | **string** | resource_id is the ID of the resource the role applies to. Pass an empty string for organization-scoped roles. | 
+**roleName** | **string** | role_name is the role to grant. | 
 
 ### Other Parameters
 
@@ -95,7 +95,9 @@ Name | Type | Description  | Notes
 
 > GetAllRolesForUserResponse GetAllRolesForUser(ctx, userId).Execute()
 
-Get all Role Grants for a user
+Get all role grants for a user, service account, or group
+
+Get all role grants for a user, service account, or group by providing its ID in the user_id path parameter.
 
 Can be used by the following roles assigned at the organization scope:
 - ORG_ADMIN
@@ -116,7 +118,7 @@ import (
 )
 
 func main() {
-    userId := "userId_example" // string | 
+    userId := "userId_example" // string | user_id is the ID of the user, service account, or group whose roles are being retrieved.
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
@@ -135,7 +137,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **string** |  | 
+**userId** | **string** | user_id is the ID of the user, service account, or group whose roles are being retrieved. | 
 
 ### Other Parameters
 
@@ -311,9 +313,9 @@ Name | Type | Description  | Notes
 
 > GetAllRolesForUserResponse RemoveUserFromRole(ctx, userId, resourceType, resourceId, roleName).Execute()
 
-Remove a role from a user or service account
+Remove a role from a user, service account, or group
 
-Remove a single role from a user or service account by providing its user_id or service_account_id.
+Remove a single role from a user, service account, or group by providing its ID in the user_id path parameter. A principal's last remaining role cannot be removed; because groups do not hold the implicit Org Member role that users and service accounts have, a group must always retain at least one other role.
 
 Roles that will be removed as a result of this call must follow the CC rules for role assignment:
 https://www.cockroachlabs.com/docs/cockroachcloud/authorization#organization-user-roles
@@ -331,10 +333,10 @@ import (
 )
 
 func main() {
-    userId := "userId_example" // string | 
-    resourceType := "resourceType_example" // string | 
-    resourceId := "resourceId_example" // string | 
-    roleName := "roleName_example" // string | 
+    userId := "userId_example" // string | user_id is the ID of the user, service account, or group to remove the role from.
+    resourceType := "resourceType_example" // string | resource_type is the type of resource the role applies to.
+    resourceId := "resourceId_example" // string | resource_id is the ID of the resource the role applies to. Pass an empty string for organization-scoped roles.
+    roleName := "roleName_example" // string | role_name is the role to revoke.
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
@@ -353,10 +355,10 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **string** |  | 
-**resourceType** | **string** |  | 
-**resourceId** | **string** |  | 
-**roleName** | **string** |  | 
+**userId** | **string** | user_id is the ID of the user, service account, or group to remove the role from. | 
+**resourceType** | **string** | resource_type is the type of resource the role applies to. | 
+**resourceId** | **string** | resource_id is the ID of the resource the role applies to. Pass an empty string for organization-scoped roles. | 
+**roleName** | **string** | role_name is the role to revoke. | 
 
 ### Other Parameters
 
@@ -389,9 +391,9 @@ Name | Type | Description  | Notes
 
 > GetAllRolesForUserResponse SetRolesForUser(ctx, userId).SetRolesForUserBody(setRolesForUserBody).Execute()
 
-Replace the roles for a user or service account with exactly those provided
+Replace the roles for a user, service account, or group with exactly those provided
 
-Replace the entire role set for a user or service account by providing its user_id or service_account_id.
+Replace the entire role set for a user, service account, or group by providing its ID in the user_id path parameter.
 
 Roles that will be removed or added as a result of this call must follow the CC rules for role assignment:
 https://www.cockroachlabs.com/docs/cockroachcloud/authorization#organization-user-roles
@@ -409,7 +411,7 @@ import (
 )
 
 func main() {
-    userId := "userId_example" // string | 
+    userId := "userId_example" // string | user_id is the ID of the user, service account, or group.
     setRolesForUserBody := *openapiclient.NewSetRolesForUserBody([]openapiclient.BuiltInRole{*openapiclient.NewBuiltInRole(openapiclient.OrganizationUserRole.Type("BILLING_COORDINATOR"), *openapiclient.NewResource(openapiclient.ResourceType.Type("ORGANIZATION")))}) // SetRolesForUserBody | 
 
     configuration := openapiclient.NewConfiguration()
@@ -429,7 +431,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**userId** | **string** |  | 
+**userId** | **string** | user_id is the ID of the user, service account, or group. | 
 
 ### Other Parameters
 

@@ -18,41 +18,40 @@
 
 package client
 
-// SetRolesForUserBody struct for SetRolesForUserBody.
-type SetRolesForUserBody struct {
-	// roles is the complete set of roles for the user, service account, or group.
-	Roles []BuiltInRole `json:"roles"`
+// RuntimeScanningInfo RuntimeScanningInfo describes the runtime scanning configuration of a cluster. It is returned by the get, enable, and disable runtime scanning endpoints..
+type RuntimeScanningInfo struct {
+	Type RuntimeScanningType `json:"type"`
 }
 
-// NewSetRolesForUserBody instantiates a new SetRolesForUserBody object.
+// NewRuntimeScanningInfo instantiates a new RuntimeScanningInfo object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSetRolesForUserBody(roles []BuiltInRole) *SetRolesForUserBody {
-	p := SetRolesForUserBody{}
-	p.Roles = roles
+func NewRuntimeScanningInfo(type_ RuntimeScanningType) *RuntimeScanningInfo {
+	p := RuntimeScanningInfo{}
+	p.Type = type_
 	return &p
 }
 
-// NewSetRolesForUserBodyWithDefaults instantiates a new SetRolesForUserBody object.
+// NewRuntimeScanningInfoWithDefaults instantiates a new RuntimeScanningInfo object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewSetRolesForUserBodyWithDefaults() *SetRolesForUserBody {
-	p := SetRolesForUserBody{}
+func NewRuntimeScanningInfoWithDefaults() *RuntimeScanningInfo {
+	p := RuntimeScanningInfo{}
 	return &p
 }
 
-// GetRoles returns the Roles field value.
-func (o *SetRolesForUserBody) GetRoles() []BuiltInRole {
+// GetType returns the Type field value.
+func (o *RuntimeScanningInfo) GetType() RuntimeScanningType {
 	if o == nil {
-		var ret []BuiltInRole
+		var ret RuntimeScanningType
 		return ret
 	}
 
-	return o.Roles
+	return o.Type
 }
 
-// SetRoles sets field value.
-func (o *SetRolesForUserBody) SetRoles(v []BuiltInRole) {
-	o.Roles = v
+// SetType sets field value.
+func (o *RuntimeScanningInfo) SetType(v RuntimeScanningType) {
+	o.Type = v
 }

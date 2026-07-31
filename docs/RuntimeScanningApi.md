@@ -1,23 +1,22 @@
-# LogExport
+# RuntimeScanning
 
 All URIs are relative to *https://cockroachlabs.cloud*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**DeleteLogExport**](LogExportApi.md#DeleteLogExport) | **Delete** /api/v1/clusters/{cluster_id}/logexport | Delete the Log Export configuration for a cluster
-[**EnableLogExport**](LogExportApi.md#EnableLogExport) | **Post** /api/v1/clusters/{cluster_id}/logexport | Create or update the Log Export configuration for a cluster
-[**GetLogExportInfo**](LogExportApi.md#GetLogExportInfo) | **Get** /api/v1/clusters/{cluster_id}/logexport | Get the Log Export configuration for a cluster
+[**DisableClusterRuntimeScanning**](RuntimeScanningApi.md#DisableClusterRuntimeScanning) | **Delete** /api/v1/clusters/{cluster_id}/runtime-scanning | Disable runtime scanning on a cluster.
+[**EnableClusterRuntimeScanning**](RuntimeScanningApi.md#EnableClusterRuntimeScanning) | **Post** /api/v1/clusters/{cluster_id}/runtime-scanning | Enable runtime scanning on a cluster.
+[**GetClusterRuntimeScanning**](RuntimeScanningApi.md#GetClusterRuntimeScanning) | **Get** /api/v1/clusters/{cluster_id}/runtime-scanning | Get the runtime scanning status of a cluster.
 
 
 
-## DeleteLogExport
+## DisableClusterRuntimeScanning
 
-> LogExportClusterInfo DeleteLogExport(ctx, clusterId).Execute()
+> RuntimeScanningInfo DisableClusterRuntimeScanning(ctx, clusterId).Execute()
 
-Delete the Log Export configuration for a cluster
+Disable runtime scanning on a cluster.
 
 Can be used by the following roles assigned at the organization, folder or cluster scope:
-- ORG_ADMIN
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
 
@@ -35,17 +34,17 @@ import (
 )
 
 func main() {
-    clusterId := "clusterId_example" // string | 
+    clusterId := "clusterId_example" // string | cluster_id is the ID of the cluster.
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
-    resp, r, err := api_client.LogExportApi.DeleteLogExport(context.Background(), clusterId).Execute()
+    resp, r, err := api_client.RuntimeScanningApi.DisableClusterRuntimeScanning(context.Background(), clusterId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `LogExportApi.DeleteLogExport``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `RuntimeScanningApi.DisableClusterRuntimeScanning``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `DeleteLogExport`: LogExportClusterInfo
-    fmt.Fprintf(os.Stdout, "Response from `LogExportApi.DeleteLogExport`: %v\n", resp)
+    // response from `DisableClusterRuntimeScanning`: RuntimeScanningInfo
+    fmt.Fprintf(os.Stdout, "Response from `RuntimeScanningApi.DisableClusterRuntimeScanning`: %v\n", resp)
 }
 ```
 
@@ -54,7 +53,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**clusterId** | **string** |  | 
+**clusterId** | **string** | cluster_id is the ID of the cluster. | 
 
 ### Other Parameters
 
@@ -65,7 +64,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**LogExportClusterInfo**](LogExportClusterInfo.md)
+[**RuntimeScanningInfo**](RuntimeScanningInfo.md)
 
 ### Authorization
 
@@ -80,14 +79,13 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## EnableLogExport
+## EnableClusterRuntimeScanning
 
-> LogExportClusterInfo EnableLogExport(ctx, clusterId).EnableLogExportBody(enableLogExportBody).Execute()
+> RuntimeScanningInfo EnableClusterRuntimeScanning(ctx, clusterId).EnableClusterRuntimeScanningBody(enableClusterRuntimeScanningBody).Execute()
 
-Create or update the Log Export configuration for a cluster
+Enable runtime scanning on a cluster.
 
 Can be used by the following roles assigned at the organization, folder or cluster scope:
-- ORG_ADMIN
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
 
@@ -105,18 +103,18 @@ import (
 )
 
 func main() {
-    clusterId := "clusterId_example" // string | 
-    enableLogExportBody := *openapiclient.NewEnableLogExportBody("LogName_example", openapiclient.LogExportType("AWS_CLOUDWATCH")) // EnableLogExportBody | 
+    clusterId := "clusterId_example" // string | cluster_id is the ID of the cluster.
+    enableClusterRuntimeScanningBody := *openapiclient.NewEnableClusterRuntimeScanningBody(openapiclient.RuntimeScanning.Type("NONE")) // EnableClusterRuntimeScanningBody | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
-    resp, r, err := api_client.LogExportApi.EnableLogExport(context.Background(), clusterId).EnableLogExportBody(enableLogExportBody).Execute()
+    resp, r, err := api_client.RuntimeScanningApi.EnableClusterRuntimeScanning(context.Background(), clusterId).EnableClusterRuntimeScanningBody(enableClusterRuntimeScanningBody).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `LogExportApi.EnableLogExport``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `RuntimeScanningApi.EnableClusterRuntimeScanning``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `EnableLogExport`: LogExportClusterInfo
-    fmt.Fprintf(os.Stdout, "Response from `LogExportApi.EnableLogExport`: %v\n", resp)
+    // response from `EnableClusterRuntimeScanning`: RuntimeScanningInfo
+    fmt.Fprintf(os.Stdout, "Response from `RuntimeScanningApi.EnableClusterRuntimeScanning`: %v\n", resp)
 }
 ```
 
@@ -125,7 +123,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**clusterId** | **string** |  | 
+**clusterId** | **string** | cluster_id is the ID of the cluster. | 
 
 ### Other Parameters
 
@@ -133,11 +131,11 @@ Name | Type | Description  | Notes
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **enableLogExportBody** | [**EnableLogExportBody**](EnableLogExportBody.md) |  | 
+ **enableClusterRuntimeScanningBody** | [**EnableClusterRuntimeScanningBody**](EnableClusterRuntimeScanningBody.md) |  | 
 
 ### Return type
 
-[**LogExportClusterInfo**](LogExportClusterInfo.md)
+[**RuntimeScanningInfo**](RuntimeScanningInfo.md)
 
 ### Authorization
 
@@ -152,17 +150,16 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## GetLogExportInfo
+## GetClusterRuntimeScanning
 
-> LogExportClusterInfo GetLogExportInfo(ctx, clusterId).Execute()
+> RuntimeScanningInfo GetClusterRuntimeScanning(ctx, clusterId).Execute()
 
-Get the Log Export configuration for a cluster
+Get the runtime scanning status of a cluster.
 
 Can be used by the following roles assigned at the organization, folder or cluster scope:
-- ORG_ADMIN
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
-- METRICS_VIEWER
+- CLUSTER_DEVELOPER
 
 
 ### Example
@@ -178,17 +175,17 @@ import (
 )
 
 func main() {
-    clusterId := "clusterId_example" // string | 
+    clusterId := "clusterId_example" // string | cluster_id is the ID of the cluster.
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
-    resp, r, err := api_client.LogExportApi.GetLogExportInfo(context.Background(), clusterId).Execute()
+    resp, r, err := api_client.RuntimeScanningApi.GetClusterRuntimeScanning(context.Background(), clusterId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `LogExportApi.GetLogExportInfo``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `RuntimeScanningApi.GetClusterRuntimeScanning``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `GetLogExportInfo`: LogExportClusterInfo
-    fmt.Fprintf(os.Stdout, "Response from `LogExportApi.GetLogExportInfo`: %v\n", resp)
+    // response from `GetClusterRuntimeScanning`: RuntimeScanningInfo
+    fmt.Fprintf(os.Stdout, "Response from `RuntimeScanningApi.GetClusterRuntimeScanning`: %v\n", resp)
 }
 ```
 
@@ -197,7 +194,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**clusterId** | **string** |  | 
+**clusterId** | **string** | cluster_id is the ID of the cluster. | 
 
 ### Other Parameters
 
@@ -208,7 +205,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**LogExportClusterInfo**](LogExportClusterInfo.md)
+[**RuntimeScanningInfo**](RuntimeScanningInfo.md)
 
 ### Authorization
 

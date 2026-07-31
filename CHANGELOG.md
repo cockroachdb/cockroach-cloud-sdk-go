@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [9.0.0] - 2026-07-31
+
+### Added
+
+- Add runtime scanning management operations (EnableClusterRuntimeScanning,
+  GetClusterRuntimeScanning, DisableClusterRuntimeScanning).
+- Add support for Azure Log Analytics V2 and OTLP HTTP log export destinations,
+  including log delivery health status.
+- Add name and role filtering to ListServiceAccounts.
+- Add role management support for groups, in addition to users and service accounts.
+- Add the `UPDATE_BACKUP_CONFIGURATION` audit log action.
+
+### Changed
+
+- Breaking Change: Make `auth_principal` optional in log export configuration;
+  `NewEnableLogExportBody` no longer accepts it as a parameter.
+
 ### Fixed
 
 - Fix the OpenAPI sync workflow's changelog generation step, which failed on large

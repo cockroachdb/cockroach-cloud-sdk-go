@@ -383,6 +383,7 @@ List all AwsEndpointConnections for a cluster
 Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
+- CLUSTER_DEVELOPER
 
 
 ### Example
@@ -452,6 +453,7 @@ List all connections to a cluster's private endpoint service.
 Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
+- CLUSTER_DEVELOPER
 
 
 ### Example
@@ -523,6 +525,7 @@ The internal_dns property from the regions field in the ListClusters response ca
 Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
+- CLUSTER_DEVELOPER
 
 
 ### Example

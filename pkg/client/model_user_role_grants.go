@@ -20,8 +20,10 @@ package client
 
 // UserRoleGrants struct for UserRoleGrants.
 type UserRoleGrants struct {
-	Roles  []BuiltInRole `json:"roles"`
-	UserId string        `json:"user_id"`
+	// roles is the complete set of roles for the user, service account, or group.
+	Roles []BuiltInRole `json:"roles"`
+	// user_id is the ID of the user, service account, or group.
+	UserId string `json:"user_id"`
 }
 
 // NewUserRoleGrants instantiates a new UserRoleGrants object.

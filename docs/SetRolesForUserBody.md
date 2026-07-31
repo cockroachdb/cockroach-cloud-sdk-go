@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Roles** | [**[]BuiltInRole**](BuiltInRole.md) |  | 
+**Roles** | [**[]BuiltInRole**](BuiltInRole.md) | roles is the complete set of roles for the user, service account, or group. | 
 
 ## Methods
 
