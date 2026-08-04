@@ -13765,13 +13765,15 @@ components:
         type: GCP_CLOUD_LOGGING
       properties:
         auth_principal:
-          title: |-
+          description: |-
             auth_principal is used in different contexts based on integration.
             CloudWatch: AWS Role ARN that identifies a role
             that the cluster account can assume to write to CloudWatch
             GCP Cloud Logging: GCP Project ID that the cluster service account
             has permissions to write to for cloud logging.
-            Azure Log Analytics: CustomerID or WorkspaceID
+            Azure Log Analytics (AZURE_LOG_ANALYTICS): CustomerID or WorkspaceID.
+            Required for AWS_CLOUDWATCH, GCP_CLOUD_LOGGING, and AZURE_LOG_ANALYTICS.
+            Not used for AZURE_LOG_ANALYTICS_V2.
           type: string
         aws_external_id:
           description: |-
@@ -13780,10 +13782,52 @@ components:
             Only supported for Advanced clusters on AWS. If provided for a Standard cluster,
             the request is rejected.
           type: string
+        azure_client_id:
+          description: |-
+            Azure client ID for the app registration used by the Logs Ingestion API.
+            Required when type is AZURE_LOG_ANALYTICS_V2.
+          type: string
+        azure_client_secret:
+          description: |-
+            Azure client secret for the app registration used by the Logs Ingestion API.
+            Required when type is AZURE_LOG_ANALYTICS_V2.
+          type: string
+        azure_dce_endpoint:
+          description: |-
+            Logs ingestion endpoint of the Azure Data Collection Endpoint (DCE). For
+            example, https://{dce-name}.{region}.ingest.monitor.azure.com.
+            Required when type is AZURE_LOG_ANALYTICS_V2.
+          type: string
+        azure_dcr_immutable_id:
+          description: |-
+            Immutable ID of the Azure Data Collection Rule (DCR), for example dcr-...
+            Required when type is AZURE_LOG_ANALYTICS_V2.
+          type: string
+        azure_dcr_resource_id:
+          description: |-
+            Full ARM resource ID of the Azure Data Collection Rule (DCR). Cockroach
+            Cloud reads and updates this DCR to add streams for each configured log
+            group. For example,
+            /subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.Insights/dataCollectionRules/{dcr-name}.
+            Required when type is AZURE_LOG_ANALYTICS_V2.
+          type: string
         azure_shared_key:
           description: |-
             The primary or the secondary connected sources client authentication key.
-            This is used to export logs to Azure Log Analytics.
+            This is used to export logs to Azure Log Analytics via the legacy
+            HTTP Data Collector API. Deprecated: use azure_client_secret instead.
+          type: string
+        azure_tenant_id:
+          description: |-
+            Azure tenant ID for the app registration used by the Logs Ingestion API.
+            Required when type is AZURE_LOG_ANALYTICS_V2.
+          type: string
+        azure_workspace_resource_id:
+          description: |-
+            Full ARM resource ID of the Log Analytics workspace. Cockroach Cloud creates
+            or updates the required custom tables for each configured log group. For
+            example, /subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.OperationalInsights/workspaces/{workspace-name}.
+            Required when type is AZURE_LOG_ANALYTICS_V2.
           type: string
         groups:
           description: |-
@@ -13794,8 +13838,10 @@ components:
             $ref: '#/components/schemas/LogExportGroup'
           type: array
         log_name:
-          description: log_name is an identifier for the logs in the customer's log
-            sink.
+          description: |-
+            log_name is an identifier for the logs in the customer's log sink. For
+            AZURE_LOG_ANALYTICS_V2, it must start with a letter and contain only
+            letters, digits, and underscores.
           type: string
         omitted_channels:
           description: |-
@@ -13819,7 +13865,6 @@ components:
         type:
           $ref: '#/components/schemas/LogExportType'
       required:
-      - auth_principal
       - log_name
       - type
       title: EnableLogExportRequest
@@ -15978,13 +16023,11 @@ components:
         created_at: 2000-01-23T04:56:07.000+00:00
         user_message: user_message
         spec:
-          omitted_channels:
-          - omitted_channels
-          - omitted_channels
           aws_external_id: aws_external_id
           auth_principal: auth_principal
           log_name: log_name
           redact: true
+          azure_workspace_resource_id: azure_workspace_resource_id
           groups:
           - channels:
             - channels
@@ -16000,9 +16043,18 @@ components:
             redact: true
             enable_sending_queue: true
             min_level: null
-          region: region
+          azure_dce_endpoint: azure_dce_endpoint
           type: null
+          azure_client_id: azure_client_id
+          omitted_channels:
+          - omitted_channels
+          - omitted_channels
+          azure_dcr_immutable_id: azure_dcr_immutable_id
+          azure_dcr_resource_id: azure_dcr_resource_id
+          region: region
+          azure_client_secret: azure_client_secret
           azure_shared_key: azure_shared_key
+          azure_tenant_id: azure_tenant_id
         status: null
       properties:
         cluster_id:
@@ -16027,13 +16079,11 @@ components:
         this data via the API and also receive it back when inspecting the
         state of their log export configuration.
       example:
-        omitted_channels:
-        - omitted_channels
-        - omitted_channels
         aws_external_id: aws_external_id
         auth_principal: auth_principal
         log_name: log_name
         redact: true
+        azure_workspace_resource_id: azure_workspace_resource_id
         groups:
         - channels:
           - channels
@@ -16049,26 +16099,73 @@ components:
           redact: true
           enable_sending_queue: true
           min_level: null
-        region: region
+        azure_dce_endpoint: azure_dce_endpoint
         type: null
+        azure_client_id: azure_client_id
+        omitted_channels:
+        - omitted_channels
+        - omitted_channels
+        azure_dcr_immutable_id: azure_dcr_immutable_id
+        azure_dcr_resource_id: azure_dcr_resource_id
+        region: region
+        azure_client_secret: azure_client_secret
         azure_shared_key: azure_shared_key
+        azure_tenant_id: azure_tenant_id
       properties:
         auth_principal:
           description: |-
-            auth_principal is either the AWS Role ARN that identifies a role
-            that the cluster account can assume to write to CloudWatch or the
-            GCP Project ID that the cluster service account has permissions to
-            write to for cloud logging.
+            auth_principal is used in different contexts based on integration.
+            CloudWatch: AWS Role ARN that identifies a role
+            that the cluster account can assume to write to CloudWatch
+            GCP Cloud Logging: GCP Project ID that the cluster service account
+            has permissions to write to for cloud logging.
+            Azure Log Analytics (AZURE_LOG_ANALYTICS): CustomerID or WorkspaceID.
+            Not used for AZURE_LOG_ANALYTICS_V2.
           type: string
         aws_external_id:
           description: |-
             aws_external_id, if set, is included when assuming the IAM role. Supported for
             Advanced clusters on AWS only.
           type: string
+        azure_client_id:
+          description: Azure client ID for the app registration used by the Logs Ingestion
+            API.
+          type: string
+        azure_client_secret:
+          description: Azure client secret for the app registration used by the Logs
+            Ingestion API.
+          type: string
+        azure_dce_endpoint:
+          description: |-
+            Logs ingestion endpoint of the Azure Data Collection Endpoint (DCE). For
+            example, https://{dce-name}.{region}.ingest.monitor.azure.com.
+          type: string
+        azure_dcr_immutable_id:
+          description: "Immutable ID of the Azure Data Collection Rule (DCR), for\
+            \ example dcr-..."
+          type: string
+        azure_dcr_resource_id:
+          description: |-
+            Full ARM resource ID of the Azure Data Collection Rule (DCR). Cockroach
+            Cloud reads and updates this DCR to add streams for each configured log
+            group. For example,
+            /subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.Insights/dataCollectionRules/{dcr-name}.
+          type: string
         azure_shared_key:
           description: |-
             The primary or the secondary connected sources client authentication key.
-            This is used to export logs to Azure Log Analytics.
+            This is used to export logs to Azure Log Analytics via the legacy
+            HTTP Data Collector API. Deprecated: use azure_client_secret instead.
+          type: string
+        azure_tenant_id:
+          description: Azure tenant ID for the app registration used by the Logs Ingestion
+            API.
+          type: string
+        azure_workspace_resource_id:
+          description: |-
+            Full ARM resource ID of the Log Analytics workspace. Cockroach Cloud creates
+            or updates the required custom tables for each configured log group. For
+            example, /subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.OperationalInsights/workspaces/{workspace-name}.
           type: string
         groups:
           description: |-
@@ -16080,8 +16177,10 @@ components:
             $ref: '#/components/schemas/LogExportGroup'
           type: array
         log_name:
-          description: log_name is an identifier for the logs in the customer's log
-            sink.
+          description: |-
+            log_name is an identifier for the logs in the customer's log sink. For
+            AZURE_LOG_ANALYTICS_V2, it must start with a letter and contain only
+            letters, digits, and underscores.
           type: string
         omitted_channels:
           description: |-
@@ -16130,7 +16229,10 @@ components:
             group. Only one group can have enable_sending_queue enabled.
           type: boolean
         log_name:
-          description: "log_name is the name of the group, reflected in the log sink."
+          description: |-
+            log_name is the name of the group, reflected in the log sink. For
+            AZURE_LOG_ANALYTICS_V2, it must start with a letter and contain only
+            letters, digits, and underscores.
           type: string
         min_level:
           $ref: '#/components/schemas/LogLevel.Type'
@@ -16163,10 +16265,20 @@ components:
         along with the cloud logging platform.
 
         Currently, each cloud has a single logging platform.
+
+         - AZURE_LOG_ANALYTICS: AZURE_LOG_ANALYTICS is the legacy Azure export path via Fluent Bit's HTTP
+        Data Collector API (retiring 2026-09-14). Deprecated: use
+        AZURE_LOG_ANALYTICS_V2 instead.
+         - AZURE_LOG_ANALYTICS_V2: AZURE_LOG_ANALYTICS_V2 exports to Azure Monitor via the Logs Ingestion API
+        and DCR-based ingestion (OTel pipeline), replacing the deprecated
+        AZURE_LOG_ANALYTICS path that uses Fluent Bit's HTTP Data Collector API
+        (retiring 2026-09-14). V2 authenticates with a tenant/client/secret + DCR
+        endpoint and rule, whereas the legacy type uses a workspace ID + shared key.
       enum:
       - AWS_CLOUDWATCH
       - GCP_CLOUD_LOGGING
       - AZURE_LOG_ANALYTICS
+      - AZURE_LOG_ANALYTICS_V2
       type: string
     LogLevel.Type:
       description: |2-

@@ -9,14 +9,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Add Azure Log Analytics v2 log export support (`AZURE_LOG_ANALYTICS_V2`) with Azure workspace and Data Collection Rule configuration fields.
 - Add per-cluster runtime scanning operations (EnableClusterRuntimeScanning, GetClusterRuntimeScanning, DisableClusterRuntimeScanning).
 - Add `name_filter` and `role_filter` query parameters to ListServiceAccounts.
 - Add `UPDATE_BACKUP_CONFIGURATION` audit log action.
 
 ### Changed
 
+- Breaking Change: `AuthPrincipal` is no longer required for `EnableLogExport`. `NewEnableLogExportBody` no longer takes `authPrincipal`, and `AuthPrincipal` is now a pointer.
 - Update role management operation descriptions to reflect support for groups in addition to users and service accounts.
 - Grant `CLUSTER_DEVELOPER` role read access to private endpoint operations (ListAwsEndpointConnections, ListEgressPrivateEndpoints, GetEgressPrivateEndpoint, ListPrivateEndpointConnections, ListPrivateEndpointServices).
+
+### Deprecated
+
+- Deprecate the `AZURE_LOG_ANALYTICS` log export type; use `AZURE_LOG_ANALYTICS_V2` instead.
+- Deprecate `azure_shared_key` on log export configuration; use the Azure Log Analytics v2 (Data Collection Rule) fields instead.
 
 ### Fixed
 

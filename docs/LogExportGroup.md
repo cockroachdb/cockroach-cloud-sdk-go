@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Channels** | **[]string** | channels is a list of CRDB log channels to include in this group. | 
 **EnableSendingQueue** | Pointer to **bool** | enable_sending_queue enables the sending queue for logs in this group. Only one group can have enable_sending_queue enabled. | [optional] 
-**LogName** | **string** | log_name is the name of the group, reflected in the log sink. | 
+**LogName** | **string** | log_name is the name of the group, reflected in the log sink. For AZURE_LOG_ANALYTICS_V2, it must start with a letter and contain only letters, digits, and underscores. | 
 **MinLevel** | Pointer to [**LogLevelType**](LogLevelType.md) |  | [optional] 
 **Redact** | Pointer to **bool** | redact is a boolean that governs whether this log group should aggregate redacted logs. Redaction settings will inherit from the cluster log export defaults if unset. | [optional] 
 

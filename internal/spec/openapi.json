@@ -16838,15 +16838,43 @@
         "type": "object",
         "properties": {
           "auth_principal": {
-            "type": "string",
-            "title": "auth_principal is used in different contexts based on integration.\nCloudWatch: AWS Role ARN that identifies a role\nthat the cluster account can assume to write to CloudWatch\nGCP Cloud Logging: GCP Project ID that the cluster service account\nhas permissions to write to for cloud logging.\nAzure Log Analytics: CustomerID or WorkspaceID"
+            "description": "auth_principal is used in different contexts based on integration.\nCloudWatch: AWS Role ARN that identifies a role\nthat the cluster account can assume to write to CloudWatch\nGCP Cloud Logging: GCP Project ID that the cluster service account\nhas permissions to write to for cloud logging.\nAzure Log Analytics (AZURE_LOG_ANALYTICS): CustomerID or WorkspaceID.\nRequired for AWS_CLOUDWATCH, GCP_CLOUD_LOGGING, and AZURE_LOG_ANALYTICS.\nNot used for AZURE_LOG_ANALYTICS_V2.",
+            "type": "string"
           },
           "aws_external_id": {
             "description": "aws_external_id to include when assuming the IAM role specified by role_arn.\nOptional. A specific value may be required by the role's trust policy.\nOnly supported for Advanced clusters on AWS. If provided for a Standard cluster,\nthe request is rejected.",
             "type": "string"
           },
+          "azure_client_id": {
+            "description": "Azure client ID for the app registration used by the Logs Ingestion API.\nRequired when type is AZURE_LOG_ANALYTICS_V2.",
+            "type": "string"
+          },
+          "azure_client_secret": {
+            "description": "Azure client secret for the app registration used by the Logs Ingestion API.\nRequired when type is AZURE_LOG_ANALYTICS_V2.",
+            "type": "string"
+          },
+          "azure_dce_endpoint": {
+            "description": "Logs ingestion endpoint of the Azure Data Collection Endpoint (DCE). For\nexample, https://{dce-name}.{region}.ingest.monitor.azure.com.\nRequired when type is AZURE_LOG_ANALYTICS_V2.",
+            "type": "string"
+          },
+          "azure_dcr_immutable_id": {
+            "description": "Immutable ID of the Azure Data Collection Rule (DCR), for example dcr-...\nRequired when type is AZURE_LOG_ANALYTICS_V2.",
+            "type": "string"
+          },
+          "azure_dcr_resource_id": {
+            "description": "Full ARM resource ID of the Azure Data Collection Rule (DCR). Cockroach\nCloud reads and updates this DCR to add streams for each configured log\ngroup. For example,\n/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.Insights/dataCollectionRules/{dcr-name}.\nRequired when type is AZURE_LOG_ANALYTICS_V2.",
+            "type": "string"
+          },
           "azure_shared_key": {
-            "description": "The primary or the secondary connected sources client authentication key.\nThis is used to export logs to Azure Log Analytics.",
+            "description": "The primary or the secondary connected sources client authentication key.\nThis is used to export logs to Azure Log Analytics via the legacy\nHTTP Data Collector API. Deprecated: use azure_client_secret instead.",
+            "type": "string"
+          },
+          "azure_tenant_id": {
+            "description": "Azure tenant ID for the app registration used by the Logs Ingestion API.\nRequired when type is AZURE_LOG_ANALYTICS_V2.",
+            "type": "string"
+          },
+          "azure_workspace_resource_id": {
+            "description": "Full ARM resource ID of the Log Analytics workspace. Cockroach Cloud creates\nor updates the required custom tables for each configured log group. For\nexample, /subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.OperationalInsights/workspaces/{workspace-name}.\nRequired when type is AZURE_LOG_ANALYTICS_V2.",
             "type": "string"
           },
           "groups": {
@@ -16857,7 +16885,7 @@
             }
           },
           "log_name": {
-            "description": "log_name is an identifier for the logs in the customer's log sink.",
+            "description": "log_name is an identifier for the logs in the customer's log sink. For\nAZURE_LOG_ANALYTICS_V2, it must start with a letter and contain only\nletters, digits, and underscores.",
             "type": "string"
           },
           "omitted_channels": {
@@ -16894,7 +16922,7 @@
           "shared_key": "shared-key",
           "type": "GCP_CLOUD_LOGGING"
         },
-        "required": ["type", "log_name", "auth_principal"],
+        "required": ["type", "log_name"],
         "title": "EnableLogExportRequest"
       },
       "FolderResource": {
@@ -17833,15 +17861,43 @@
         "type": "object",
         "properties": {
           "auth_principal": {
-            "description": "auth_principal is either the AWS Role ARN that identifies a role\nthat the cluster account can assume to write to CloudWatch or the\nGCP Project ID that the cluster service account has permissions to\nwrite to for cloud logging.",
+            "description": "auth_principal is used in different contexts based on integration.\nCloudWatch: AWS Role ARN that identifies a role\nthat the cluster account can assume to write to CloudWatch\nGCP Cloud Logging: GCP Project ID that the cluster service account\nhas permissions to write to for cloud logging.\nAzure Log Analytics (AZURE_LOG_ANALYTICS): CustomerID or WorkspaceID.\nNot used for AZURE_LOG_ANALYTICS_V2.",
             "type": "string"
           },
           "aws_external_id": {
             "description": "aws_external_id, if set, is included when assuming the IAM role. Supported for\nAdvanced clusters on AWS only.",
             "type": "string"
           },
+          "azure_client_id": {
+            "description": "Azure client ID for the app registration used by the Logs Ingestion API.",
+            "type": "string"
+          },
+          "azure_client_secret": {
+            "description": "Azure client secret for the app registration used by the Logs Ingestion API.",
+            "type": "string"
+          },
+          "azure_dce_endpoint": {
+            "description": "Logs ingestion endpoint of the Azure Data Collection Endpoint (DCE). For\nexample, https://{dce-name}.{region}.ingest.monitor.azure.com.",
+            "type": "string"
+          },
+          "azure_dcr_immutable_id": {
+            "description": "Immutable ID of the Azure Data Collection Rule (DCR), for example dcr-...",
+            "type": "string"
+          },
+          "azure_dcr_resource_id": {
+            "description": "Full ARM resource ID of the Azure Data Collection Rule (DCR). Cockroach\nCloud reads and updates this DCR to add streams for each configured log\ngroup. For example,\n/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.Insights/dataCollectionRules/{dcr-name}.",
+            "type": "string"
+          },
           "azure_shared_key": {
-            "description": "The primary or the secondary connected sources client authentication key.\nThis is used to export logs to Azure Log Analytics.",
+            "description": "The primary or the secondary connected sources client authentication key.\nThis is used to export logs to Azure Log Analytics via the legacy\nHTTP Data Collector API. Deprecated: use azure_client_secret instead.",
+            "type": "string"
+          },
+          "azure_tenant_id": {
+            "description": "Azure tenant ID for the app registration used by the Logs Ingestion API.",
+            "type": "string"
+          },
+          "azure_workspace_resource_id": {
+            "description": "Full ARM resource ID of the Log Analytics workspace. Cockroach Cloud creates\nor updates the required custom tables for each configured log group. For\nexample, /subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.OperationalInsights/workspaces/{workspace-name}.",
             "type": "string"
           },
           "groups": {
@@ -17852,7 +17908,7 @@
             }
           },
           "log_name": {
-            "description": "log_name is an identifier for the logs in the customer's log sink.",
+            "description": "log_name is an identifier for the logs in the customer's log sink. For\nAZURE_LOG_ANALYTICS_V2, it must start with a letter and contain only\nletters, digits, and underscores.",
             "type": "string"
           },
           "omitted_channels": {
@@ -17891,7 +17947,7 @@
             "type": "boolean"
           },
           "log_name": {
-            "description": "log_name is the name of the group, reflected in the log sink.",
+            "description": "log_name is the name of the group, reflected in the log sink. For\nAZURE_LOG_ANALYTICS_V2, it must start with a letter and contain only\nletters, digits, and underscores.",
             "type": "string"
           },
           "min_level": {
@@ -17918,9 +17974,14 @@
         ]
       },
       "LogExportType": {
-        "description": "LogExportType encodes the cloud selection that we're exporting to\nalong with the cloud logging platform.\n\nCurrently, each cloud has a single logging platform.",
+        "description": "LogExportType encodes the cloud selection that we're exporting to\nalong with the cloud logging platform.\n\nCurrently, each cloud has a single logging platform.\n\n - AZURE_LOG_ANALYTICS: AZURE_LOG_ANALYTICS is the legacy Azure export path via Fluent Bit's HTTP\nData Collector API (retiring 2026-09-14). Deprecated: use\nAZURE_LOG_ANALYTICS_V2 instead.\n - AZURE_LOG_ANALYTICS_V2: AZURE_LOG_ANALYTICS_V2 exports to Azure Monitor via the Logs Ingestion API\nand DCR-based ingestion (OTel pipeline), replacing the deprecated\nAZURE_LOG_ANALYTICS path that uses Fluent Bit's HTTP Data Collector API\n(retiring 2026-09-14). V2 authenticates with a tenant/client/secret + DCR\nendpoint and rule, whereas the legacy type uses a workspace ID + shared key.",
         "type": "string",
-        "enum": ["AWS_CLOUDWATCH", "GCP_CLOUD_LOGGING", "AZURE_LOG_ANALYTICS"]
+        "enum": [
+          "AWS_CLOUDWATCH",
+          "GCP_CLOUD_LOGGING",
+          "AZURE_LOG_ANALYTICS",
+          "AZURE_LOG_ANALYTICS_V2"
+        ]
       },
       "LogLevel.Type": {
         "description": " - UNSPECIFIED: The unspecified log level includes all logs.\n - WARNING: The WARNING severity is used for situations which may require\nspecial handling, where normal operation is expected to resume\nautomatically.\n - ERROR: The ERROR severity is used for situations that require special\nhandling, where normal operation could not proceed as expected.\nOther operations can continue mostly unaffected.\n - FATAL: The FATAL severity is used for situations that require an\nimmediate, hard server shutdown. A report is also sent to\ntelemetry if telemetry is enabled.",
