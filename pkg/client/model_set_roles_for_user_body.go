@@ -20,6 +20,7 @@ package client
 
 // SetRolesForUserBody struct for SetRolesForUserBody.
 type SetRolesForUserBody struct {
+	// roles is the complete set of roles for the user, service account, or group.
 	Roles []BuiltInRole `json:"roles"`
 }
 

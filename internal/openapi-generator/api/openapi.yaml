@@ -6098,6 +6098,7 @@ paths:
         Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
+        - CLUSTER_DEVELOPER
       operationId: CockroachCloud_ListAwsEndpointConnections
       parameters:
       - description: cluster_id is the ID for the cluster.
@@ -6245,6 +6246,7 @@ paths:
         Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
+        - CLUSTER_DEVELOPER
       operationId: CockroachCloud_ListEgressPrivateEndpoints
       parameters:
       - description: cluster_id identifies the CockroachDB Cloud cluster whose egress
@@ -6499,6 +6501,7 @@ paths:
         Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
+        - CLUSTER_DEVELOPER
       operationId: CockroachCloud_GetEgressPrivateEndpoint
       parameters:
       - description: cluster_id identifies the CockroachDB Cloud cluster owning the
@@ -7247,6 +7250,7 @@ paths:
         Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
+        - CLUSTER_DEVELOPER
       operationId: CockroachCloud_ListPrivateEndpointConnections
       parameters:
       - description: cluster_id is the ID for the cluster.
@@ -7472,6 +7476,7 @@ paths:
         Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
+        - CLUSTER_DEVELOPER
       operationId: CockroachCloud_ListPrivateEndpointServices
       parameters:
       - description: cluster_id is the ID for the cluster.
@@ -10238,13 +10243,18 @@ paths:
   /api/v1/roles/{user_id}:
     get:
       description: |
+        Get all role grants for a user, service account, or group by providing its ID in the user_id path parameter.
+
         Can be used by the following roles assigned at the organization scope:
         - ORG_ADMIN
         - CLUSTER_ADMIN
         - FOLDER_ADMIN
       operationId: CockroachCloud_GetAllRolesForUser
       parameters:
-      - explode: false
+      - description: |-
+          user_id is the ID of the user, service account, or group whose roles are
+          being retrieved.
+        explode: false
         in: path
         name: user_id
         required: true
@@ -10290,7 +10300,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
-      summary: Get all Role Grants for a user
+      summary: "Get all role grants for a user, service account, or group"
       tags:
       - Role Management
       x-codeSamples:
@@ -10301,13 +10311,14 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     put:
       description: |-
-        Replace the entire role set for a user or service account by providing its user_id or service_account_id.
+        Replace the entire role set for a user, service account, or group by providing its ID in the user_id path parameter.
 
         Roles that will be removed or added as a result of this call must follow the CC rules for role assignment:
         https://www.cockroachlabs.com/docs/cockroachcloud/authorization#organization-user-roles
       operationId: CockroachCloud_SetRolesForUser
       parameters:
-      - explode: false
+      - description: "user_id is the ID of the user, service account, or group."
+        explode: false
         in: path
         name: user_id
         required: true
@@ -10359,8 +10370,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
-      summary: Replace the roles for a user or service account with exactly those
-        provided
+      summary: "Replace the roles for a user, service account, or group with exactly\
+        \ those provided"
       tags:
       - Role Management
       x-codeSamples:
@@ -10373,20 +10384,24 @@ paths:
   /api/v1/roles/{user_id}/{resource_type}/{resource_id}/{role_name}:
     delete:
       description: |-
-        Remove a single role from a user or service account by providing its user_id or service_account_id.
+        Remove a single role from a user, service account, or group by providing its ID in the user_id path parameter. A principal's last remaining role cannot be removed; because groups do not hold the implicit Org Member role that users and service accounts have, a group must always retain at least one other role.
 
         Roles that will be removed as a result of this call must follow the CC rules for role assignment:
         https://www.cockroachlabs.com/docs/cockroachcloud/authorization#organization-user-roles
       operationId: CockroachCloud_RemoveUserFromRole
       parameters:
-      - explode: false
+      - description: |-
+          user_id is the ID of the user, service account, or group to remove the role
+          from.
+        explode: false
         in: path
         name: user_id
         required: true
         schema:
           type: string
         style: simple
-      - explode: false
+      - description: resource_type is the type of resource the role applies to.
+        explode: false
         in: path
         name: resource_type
         required: true
@@ -10397,14 +10412,18 @@ paths:
           - FOLDER
           type: string
         style: simple
-      - explode: false
+      - description: |-
+          resource_id is the ID of the resource the role applies to. Pass an empty
+          string for organization-scoped roles.
+        explode: false
         in: path
         name: resource_id
         required: true
         schema:
           type: string
         style: simple
-      - explode: false
+      - description: role_name is the role to revoke.
+        explode: false
         in: path
         name: role_name
         required: true
@@ -10463,7 +10482,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
-      summary: Remove a role from a user or service account
+      summary: "Remove a role from a user, service account, or group"
       tags:
       - Role Management
       x-codeSamples:
@@ -10474,20 +10493,23 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     post:
       description: |-
-        Add a single role to a user or service account by providing its user_id or service_account_id.
+        Add a single role to a user, service account, or group by providing its ID in the user_id path parameter.
 
         Roles that will be added as a result of this call must follow the CC rules for role assignment:
         https://www.cockroachlabs.com/docs/cockroachcloud/authorization#organization-user-roles
       operationId: CockroachCloud_AddUserToRole
       parameters:
-      - explode: false
+      - description: "user_id is the ID of the user, service account, or group to\
+          \ add the role to."
+        explode: false
         in: path
         name: user_id
         required: true
         schema:
           type: string
         style: simple
-      - explode: false
+      - description: resource_type is the type of resource the role applies to.
+        explode: false
         in: path
         name: resource_type
         required: true
@@ -10498,14 +10520,18 @@ paths:
           - FOLDER
           type: string
         style: simple
-      - explode: false
+      - description: |-
+          resource_id is the ID of the resource the role applies to. Pass an empty
+          string for organization-scoped roles.
+        explode: false
         in: path
         name: resource_id
         required: true
         schema:
           type: string
         style: simple
-      - explode: false
+      - description: role_name is the role to grant.
+        explode: false
         in: path
         name: role_name
         required: true
@@ -10564,7 +10590,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Status'
           description: An unexpected error response.
-      summary: Add a role to a user or service account
+      summary: "Add a role to a user, service account, or group"
       tags:
       - Role Management
       x-codeSamples:
@@ -11450,6 +11476,7 @@ components:
       - AUDIT_LOG_ACTION_REGENERATE_RECOVERY_CODES
       - AUDIT_LOG_ACTION_CREATE_MIGRATION_ASSISTANT
       - AUDIT_LOG_ACTION_DELETE_MIGRATION_ASSISTANT
+      - AUDIT_LOG_ACTION_UPDATE_BACKUP_CONFIGURATION
       type: string
     AuditLogEntry:
       description: |-
@@ -17490,6 +17517,8 @@ components:
         user_id: 12345678-1234-1234-1234-123456789012
       properties:
         roles:
+          description: "roles is the complete set of roles for the user, service account,\
+            \ or group."
           items:
             $ref: '#/components/schemas/BuiltInRole'
           type: array
@@ -17952,10 +17981,13 @@ components:
         user_id: 12345678-1234-1234-1234-123456789012
       properties:
         roles:
+          description: "roles is the complete set of roles for the user, service account,\
+            \ or group."
           items:
             $ref: '#/components/schemas/BuiltInRole'
           type: array
         user_id:
+          description: "user_id is the ID of the user, service account, or group."
           type: string
       required:
       - roles

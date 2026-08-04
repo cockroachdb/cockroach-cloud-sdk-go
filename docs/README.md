@@ -166,12 +166,12 @@ API | Method | HTTP request | Description
 [PrivateEndpointServicesApi](docs/PrivateEndpointServicesApi.md) | **ListPrivateEndpointTrustedOwners** | **Get** /api/v1/clusters/{cluster_id}/networking/private-endpoint-trusted-owners | List all private endpoint trusted owners for a cluster
 [PrivateEndpointServicesApi](docs/PrivateEndpointServicesApi.md) | **RemovePrivateEndpointTrustedOwner** | **Delete** /api/v1/clusters/{cluster_id}/networking/private-endpoint-trusted-owners/{owner_id} | Remove a private endpoint trusted owner from a cluster
 [PrivateEndpointServicesApi](docs/PrivateEndpointServicesApi.md) | **SetAwsEndpointConnectionState** | **Patch** /api/v1/clusters/{cluster_id}/networking/aws-endpoint-connections/{endpoint_id} | Set the AWS Endpoint Connection state
-[RoleManagementApi](docs/RoleManagementApi.md) | **AddUserToRole** | **Post** /api/v1/roles/{user_id}/{resource_type}/{resource_id}/{role_name} | Add a role to a user or service account
-[RoleManagementApi](docs/RoleManagementApi.md) | **GetAllRolesForUser** | **Get** /api/v1/roles/{user_id} | Get all Role Grants for a user
+[RoleManagementApi](docs/RoleManagementApi.md) | **AddUserToRole** | **Post** /api/v1/roles/{user_id}/{resource_type}/{resource_id}/{role_name} | Add a role to a user, service account, or group
+[RoleManagementApi](docs/RoleManagementApi.md) | **GetAllRolesForUser** | **Get** /api/v1/roles/{user_id} | Get all role grants for a user, service account, or group
 [RoleManagementApi](docs/RoleManagementApi.md) | **GetPersonUsersByEmail** | **Get** /api/v1/users/persons-by-email | Search person users by email address
 [RoleManagementApi](docs/RoleManagementApi.md) | **ListRoleGrants** | **Get** /api/v1/roles | List all RoleGrants
-[RoleManagementApi](docs/RoleManagementApi.md) | **RemoveUserFromRole** | **Delete** /api/v1/roles/{user_id}/{resource_type}/{resource_id}/{role_name} | Remove a role from a user or service account
-[RoleManagementApi](docs/RoleManagementApi.md) | **SetRolesForUser** | **Put** /api/v1/roles/{user_id} | Replace the roles for a user or service account with exactly those provided
+[RoleManagementApi](docs/RoleManagementApi.md) | **RemoveUserFromRole** | **Delete** /api/v1/roles/{user_id}/{resource_type}/{resource_id}/{role_name} | Remove a role from a user, service account, or group
+[RoleManagementApi](docs/RoleManagementApi.md) | **SetRolesForUser** | **Put** /api/v1/roles/{user_id} | Replace the roles for a user, service account, or group with exactly those provided
 [SCIMApi](docs/SCIMApi.md) | **CreateGroup** | **Post** /api/scim/v2/Groups | Create a group
 [SCIMApi](docs/SCIMApi.md) | **CreateUser** | **Post** /api/scim/v2/Users | Create a user
 [SCIMApi](docs/SCIMApi.md) | **DeleteGroup** | **Delete** /api/scim/v2/Groups/{id} | Delete a group based on ID
@@ -212,3 +212,4 @@ API | Method | HTTP request | Description
 
 ## Author
 support@cockroachlabs.com
+

@@ -8220,7 +8220,7 @@
       "get": {
         "operationId": "CockroachCloud_ListAwsEndpointConnections",
         "summary": "List all AwsEndpointConnections for a cluster",
-        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n- CLUSTER_DEVELOPER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -8417,7 +8417,7 @@
       "get": {
         "operationId": "CockroachCloud_ListEgressPrivateEndpoints",
         "summary": "List egress private endpoints",
-        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n- CLUSTER_DEVELOPER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -8752,7 +8752,7 @@
       "get": {
         "operationId": "CockroachCloud_GetEgressPrivateEndpoint",
         "summary": "Get egress private endpoint",
-        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n- CLUSTER_DEVELOPER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -9747,7 +9747,7 @@
       "get": {
         "operationId": "CockroachCloud_ListPrivateEndpointConnections",
         "summary": "List all connections to a cluster's private endpoint service.",
-        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n- CLUSTER_DEVELOPER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -10049,7 +10049,7 @@
       "get": {
         "operationId": "CockroachCloud_ListPrivateEndpointServices",
         "summary": "List all PrivateEndpointServices for a cluster",
-        "description": "The internal_dns property from the regions field in the ListClusters response can be used to connect to PrivateEndpointServices.\n\nCan be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "description": "The internal_dns property from the regions field in the ListClusters response can be used to connect to PrivateEndpointServices.\n\nCan be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n- CLUSTER_DEVELOPER\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -13696,12 +13696,13 @@
     "/api/v1/roles/{user_id}": {
       "get": {
         "operationId": "CockroachCloud_GetAllRolesForUser",
-        "summary": "Get all Role Grants for a user",
-        "description": "Can be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n- CLUSTER_ADMIN\n- FOLDER_ADMIN\n",
+        "summary": "Get all role grants for a user, service account, or group",
+        "description": "Get all role grants for a user, service account, or group by providing its ID in the user_id path parameter.\n\nCan be used by the following roles assigned at the organization scope:\n- ORG_ADMIN\n- CLUSTER_ADMIN\n- FOLDER_ADMIN\n",
         "parameters": [
           {
             "name": "user_id",
             "in": "path",
+            "description": "user_id is the ID of the user, service account, or group whose roles are\nbeing retrieved.",
             "required": true,
             "schema": {
               "type": "string"
@@ -13782,12 +13783,13 @@
       },
       "put": {
         "operationId": "CockroachCloud_SetRolesForUser",
-        "summary": "Replace the roles for a user or service account with exactly those provided",
-        "description": "Replace the entire role set for a user or service account by providing its user_id or service_account_id.\n\nRoles that will be removed or added as a result of this call must follow the CC rules for role assignment:\nhttps://www.cockroachlabs.com/docs/cockroachcloud/authorization#organization-user-roles",
+        "summary": "Replace the roles for a user, service account, or group with exactly those provided",
+        "description": "Replace the entire role set for a user, service account, or group by providing its ID in the user_id path parameter.\n\nRoles that will be removed or added as a result of this call must follow the CC rules for role assignment:\nhttps://www.cockroachlabs.com/docs/cockroachcloud/authorization#organization-user-roles",
         "parameters": [
           {
             "name": "user_id",
             "in": "path",
+            "description": "user_id is the ID of the user, service account, or group.",
             "required": true,
             "schema": {
               "type": "string"
@@ -13880,12 +13882,13 @@
     "/api/v1/roles/{user_id}/{resource_type}/{resource_id}/{role_name}": {
       "delete": {
         "operationId": "CockroachCloud_RemoveUserFromRole",
-        "summary": "Remove a role from a user or service account",
-        "description": "Remove a single role from a user or service account by providing its user_id or service_account_id.\n\nRoles that will be removed as a result of this call must follow the CC rules for role assignment:\nhttps://www.cockroachlabs.com/docs/cockroachcloud/authorization#organization-user-roles",
+        "summary": "Remove a role from a user, service account, or group",
+        "description": "Remove a single role from a user, service account, or group by providing its ID in the user_id path parameter. A principal's last remaining role cannot be removed; because groups do not hold the implicit Org Member role that users and service accounts have, a group must always retain at least one other role.\n\nRoles that will be removed as a result of this call must follow the CC rules for role assignment:\nhttps://www.cockroachlabs.com/docs/cockroachcloud/authorization#organization-user-roles",
         "parameters": [
           {
             "name": "user_id",
             "in": "path",
+            "description": "user_id is the ID of the user, service account, or group to remove the role\nfrom.",
             "required": true,
             "schema": {
               "type": "string"
@@ -13894,6 +13897,7 @@
           {
             "name": "resource_type",
             "in": "path",
+            "description": "resource_type is the type of resource the role applies to.",
             "required": true,
             "schema": {
               "type": "string",
@@ -13907,6 +13911,7 @@
           {
             "name": "resource_id",
             "in": "path",
+            "description": "resource_id is the ID of the resource the role applies to. Pass an empty\nstring for organization-scoped roles.",
             "required": true,
             "schema": {
               "type": "string"
@@ -13915,6 +13920,7 @@
           {
             "name": "role_name",
             "in": "path",
+            "description": "role_name is the role to revoke.",
             "required": true,
             "schema": {
               "type": "string",
@@ -14009,12 +14015,13 @@
       },
       "post": {
         "operationId": "CockroachCloud_AddUserToRole",
-        "summary": "Add a role to a user or service account",
-        "description": "Add a single role to a user or service account by providing its user_id or service_account_id.\n\nRoles that will be added as a result of this call must follow the CC rules for role assignment:\nhttps://www.cockroachlabs.com/docs/cockroachcloud/authorization#organization-user-roles",
+        "summary": "Add a role to a user, service account, or group",
+        "description": "Add a single role to a user, service account, or group by providing its ID in the user_id path parameter.\n\nRoles that will be added as a result of this call must follow the CC rules for role assignment:\nhttps://www.cockroachlabs.com/docs/cockroachcloud/authorization#organization-user-roles",
         "parameters": [
           {
             "name": "user_id",
             "in": "path",
+            "description": "user_id is the ID of the user, service account, or group to add the role to.",
             "required": true,
             "schema": {
               "type": "string"
@@ -14023,6 +14030,7 @@
           {
             "name": "resource_type",
             "in": "path",
+            "description": "resource_type is the type of resource the role applies to.",
             "required": true,
             "schema": {
               "type": "string",
@@ -14036,6 +14044,7 @@
           {
             "name": "resource_id",
             "in": "path",
+            "description": "resource_id is the ID of the resource the role applies to. Pass an empty\nstring for organization-scoped roles.",
             "required": true,
             "schema": {
               "type": "string"
@@ -14044,6 +14053,7 @@
           {
             "name": "role_name",
             "in": "path",
+            "description": "role_name is the role to grant.",
             "required": true,
             "schema": {
               "type": "string",
@@ -15118,7 +15128,8 @@
           "AUDIT_LOG_ACTION_ENROLL_USER_MFA",
           "AUDIT_LOG_ACTION_REGENERATE_RECOVERY_CODES",
           "AUDIT_LOG_ACTION_CREATE_MIGRATION_ASSISTANT",
-          "AUDIT_LOG_ACTION_DELETE_MIGRATION_ASSISTANT"
+          "AUDIT_LOG_ACTION_DELETE_MIGRATION_ASSISTANT",
+          "AUDIT_LOG_ACTION_UPDATE_BACKUP_CONFIGURATION"
         ]
       },
       "AuditLogEntry": {
@@ -19751,6 +19762,7 @@
         "type": "object",
         "properties": {
           "roles": {
+            "description": "roles is the complete set of roles for the user, service account, or group.",
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/BuiltInRole"
@@ -20257,12 +20269,14 @@
         "type": "object",
         "properties": {
           "roles": {
+            "description": "roles is the complete set of roles for the user, service account, or group.",
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/BuiltInRole"
             }
           },
           "user_id": {
+            "description": "user_id is the ID of the user, service account, or group.",
             "type": "string"
           }
         },

@@ -343,17 +343,17 @@ type Service interface {
 	// RoleManagement
 	//
 
-	// Add a role to a user or service account
+	// Add a role to a user, service account, or group
 	AddUserToRole(ctx _context.Context, userId string, resourceType string, resourceId string, roleName string) (*GetAllRolesForUserResponse, *_nethttp.Response, error)
-	// Get all Role Grants for a user
+	// Get all role grants for a user, service account, or group
 	GetAllRolesForUser(ctx _context.Context, userId string) (*GetAllRolesForUserResponse, *_nethttp.Response, error)
 	// Search person users by email address
 	GetPersonUsersByEmail(ctx _context.Context, email *string) (*GetPersonUsersByEmailResponse, *_nethttp.Response, error)
 	// List all RoleGrants
 	ListRoleGrants(ctx _context.Context, options *ListRoleGrantsOptions) (*ListRoleGrantsResponse, *_nethttp.Response, error)
-	// Remove a role from a user or service account
+	// Remove a role from a user, service account, or group
 	RemoveUserFromRole(ctx _context.Context, userId string, resourceType string, resourceId string, roleName string) (*GetAllRolesForUserResponse, *_nethttp.Response, error)
-	// Replace the roles for a user or service account with exactly those provided
+	// Replace the roles for a user, service account, or group with exactly those provided
 	SetRolesForUser(ctx _context.Context, userId string, setRolesForUserBody *SetRolesForUserBody) (*GetAllRolesForUserResponse, *_nethttp.Response, error)
 
 	//
