@@ -141,7 +141,7 @@ func (a *ServiceImpl) {{nickname}}(
 	{{^required}}
 	if options.{{#lambda.titlecase}}{{paramName}}{{/lambda.titlecase}} != nil {
 	{{#isCollectionFormatMulti}}
-		t := *{{paramName}}
+		t := *options.{{#lambda.titlecase}}{{paramName}}{{/lambda.titlecase}}
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
