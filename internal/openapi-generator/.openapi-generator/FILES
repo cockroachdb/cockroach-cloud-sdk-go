@@ -108,6 +108,7 @@ docs/EgressRulesApi.md
 docs/EgressTrafficPolicyType.md
 docs/EnableCMEKSpecBody.md
 docs/EnableCloudWatchMetricExportBody.md
+docs/EnableClusterRuntimeScanningBody.md
 docs/EnableDatadogMetricExportBody.md
 docs/EnableLogExportBody.md
 docs/FolderResource.md
@@ -210,6 +211,9 @@ docs/RestoreOpts.md
 docs/RestoreStatusType.md
 docs/RestoreTypeType.md
 docs/RoleManagementApi.md
+docs/RuntimeScanningApi.md
+docs/RuntimeScanningInfo.md
+docs/RuntimeScanningType.md
 docs/SCIMApi.md
 docs/SQLUser.md
 docs/SQLUsersApi.md
@@ -358,6 +362,7 @@ model_egress_private_endpoint_target_service_type_type.go
 model_egress_rule.go
 model_egress_traffic_policy_type.go
 model_enable_cloud_watch_metric_export_body.go
+model_enable_cluster_runtime_scanning_body.go
 model_enable_cmek_spec_body.go
 model_enable_datadog_metric_export_body.go
 model_enable_log_export_body.go
@@ -451,6 +456,8 @@ model_restore_item.go
 model_restore_opts.go
 model_restore_status_type.go
 model_restore_type_type.go
+model_runtime_scanning_info.go
+model_runtime_scanning_type.go
 model_scim_authentication_scheme.go
 model_scim_bulk_support.go
 model_scim_change_password_support.go

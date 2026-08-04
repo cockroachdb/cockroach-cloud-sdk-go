@@ -172,6 +172,9 @@ API | Method | HTTP request | Description
 [RoleManagementApi](docs/RoleManagementApi.md) | **ListRoleGrants** | **Get** /api/v1/roles | List all RoleGrants
 [RoleManagementApi](docs/RoleManagementApi.md) | **RemoveUserFromRole** | **Delete** /api/v1/roles/{user_id}/{resource_type}/{resource_id}/{role_name} | Remove a role from a user, service account, or group
 [RoleManagementApi](docs/RoleManagementApi.md) | **SetRolesForUser** | **Put** /api/v1/roles/{user_id} | Replace the roles for a user, service account, or group with exactly those provided
+[RuntimeScanningApi](docs/RuntimeScanningApi.md) | **DisableClusterRuntimeScanning** | **Delete** /api/v1/clusters/{cluster_id}/runtime-scanning | Disable runtime scanning on a cluster.
+[RuntimeScanningApi](docs/RuntimeScanningApi.md) | **EnableClusterRuntimeScanning** | **Post** /api/v1/clusters/{cluster_id}/runtime-scanning | Enable runtime scanning on a cluster.
+[RuntimeScanningApi](docs/RuntimeScanningApi.md) | **GetClusterRuntimeScanning** | **Get** /api/v1/clusters/{cluster_id}/runtime-scanning | Get the runtime scanning status of a cluster.
 [SCIMApi](docs/SCIMApi.md) | **CreateGroup** | **Post** /api/scim/v2/Groups | Create a group
 [SCIMApi](docs/SCIMApi.md) | **CreateUser** | **Post** /api/scim/v2/Users | Create a user
 [SCIMApi](docs/SCIMApi.md) | **DeleteGroup** | **Delete** /api/scim/v2/Groups/{id} | Delete a group based on ID

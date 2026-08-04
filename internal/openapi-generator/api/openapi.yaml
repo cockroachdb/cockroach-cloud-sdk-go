@@ -47,6 +47,7 @@ tags:
 - name: Backup/Restore
 - name: Egress Private Endpoints
 - name: Multifactor Authentication
+- name: Runtime Scanning
 paths:
   /api/scim/v2/Groups:
     get:
@@ -8192,6 +8193,213 @@ paths:
           curl --request GET \
             --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/restores/{restore_id} \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+  /api/v1/clusters/{cluster_id}/runtime-scanning:
+    delete:
+      description: |
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
+      operationId: CockroachCloud_DisableClusterRuntimeScanning
+      parameters:
+      - description: cluster_id is the ID of the cluster.
+        explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RuntimeScanningInfo'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Disable runtime scanning on a cluster.
+      tags:
+      - Runtime Scanning
+      x-badges:
+      - color: red
+        label: LIMITED ACCESS
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request DELETE \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/runtime-scanning \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+    get:
+      description: |
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
+        - CLUSTER_DEVELOPER
+      operationId: CockroachCloud_GetClusterRuntimeScanning
+      parameters:
+      - description: cluster_id is the ID of the cluster.
+        explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RuntimeScanningInfo'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Get the runtime scanning status of a cluster.
+      tags:
+      - Runtime Scanning
+      x-badges:
+      - color: red
+        label: LIMITED ACCESS
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request GET \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/runtime-scanning \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+    post:
+      description: |
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
+      operationId: CockroachCloud_EnableClusterRuntimeScanning
+      parameters:
+      - description: cluster_id is the ID of the cluster.
+        explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnableClusterRuntimeScanningBody'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RuntimeScanningInfo'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Enable runtime scanning on a cluster.
+      tags:
+      - Runtime Scanning
+      x-badges:
+      - color: red
+        label: LIMITED ACCESS
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request POST \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/runtime-scanning \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
+            --json '{"type":"WIZ"}'
   /api/v1/clusters/{cluster_id}/sql-users:
     get:
       description: |
@@ -13511,6 +13719,19 @@ components:
       - role_arn
       title: EnableCloudWatchMetricExportRequest
       type: object
+    EnableClusterRuntimeScanningBody:
+      description: |-
+        EnableClusterRuntimeScanningRequest is used to enable runtime scanning on a
+        cluster.
+      example:
+        type: WIZ
+      properties:
+        type:
+          $ref: '#/components/schemas/RuntimeScanning.Type'
+      required:
+      - type
+      title: EnableClusterRuntimeScanningRequest
+      type: object
     EnableDatadogMetricExportBody:
       example:
         api_key: datadog_api_key
@@ -16907,6 +17128,27 @@ components:
       - DATABASE
       - TABLE
       type: string
+    RuntimeScanning.Type:
+      description: |2-
+         - NONE: NONE indicates runtime scanning is disabled; no agent is enforced.
+         - WIZ: WIZ indicates runtime scanning is enforced using the Wiz agent.
+      enum:
+      - NONE
+      - WIZ
+      type: string
+    RuntimeScanningInfo:
+      description: |-
+        RuntimeScanningInfo describes the runtime scanning configuration of a cluster.
+        It is returned by the get, enable, and disable runtime scanning endpoints.
+      example:
+        type: WIZ
+      properties:
+        type:
+          $ref: '#/components/schemas/RuntimeScanning.Type'
+      required:
+      - type
+      title: RuntimeScanningInfo
+      type: object
     SQLUser:
       example:
         name: name

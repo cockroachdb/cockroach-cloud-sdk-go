@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Add per-cluster runtime scanning operations (EnableClusterRuntimeScanning, GetClusterRuntimeScanning, DisableClusterRuntimeScanning).
 - Add `name_filter` and `role_filter` query parameters to ListServiceAccounts.
 - Add `UPDATE_BACKUP_CONFIGURATION` audit log action.
 

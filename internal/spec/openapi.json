@@ -10723,6 +10723,291 @@
         ]
       }
     },
+    "/api/v1/clusters/{cluster_id}/runtime-scanning": {
+      "delete": {
+        "operationId": "CockroachCloud_DisableClusterRuntimeScanning",
+        "summary": "Disable runtime scanning on a cluster.",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "parameters": [
+          {
+            "name": "cluster_id",
+            "in": "path",
+            "description": "cluster_id is the ID of the cluster.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RuntimeScanningInfo"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Runtime Scanning"],
+        "x-badges": [
+          {
+            "color": "red",
+            "label": "LIMITED ACCESS"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request DELETE \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/runtime-scanning \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+          }
+        ]
+      },
+      "get": {
+        "operationId": "CockroachCloud_GetClusterRuntimeScanning",
+        "summary": "Get the runtime scanning status of a cluster.",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n- CLUSTER_DEVELOPER\n",
+        "parameters": [
+          {
+            "name": "cluster_id",
+            "in": "path",
+            "description": "cluster_id is the ID of the cluster.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RuntimeScanningInfo"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Runtime Scanning"],
+        "x-badges": [
+          {
+            "color": "red",
+            "label": "LIMITED ACCESS"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request GET \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/runtime-scanning \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+          }
+        ]
+      },
+      "post": {
+        "operationId": "CockroachCloud_EnableClusterRuntimeScanning",
+        "summary": "Enable runtime scanning on a cluster.",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "parameters": [
+          {
+            "name": "cluster_id",
+            "in": "path",
+            "description": "cluster_id is the ID of the cluster.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EnableClusterRuntimeScanningBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RuntimeScanningInfo"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Runtime Scanning"],
+        "x-badges": [
+          {
+            "color": "red",
+            "label": "LIMITED ACCESS"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/runtime-scanning \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"type\":\"WIZ\"}'"
+          }
+        ]
+      }
+    },
     "/api/v1/clusters/{cluster_id}/sql-users": {
       "get": {
         "operationId": "CockroachCloud_ListSQLUsers",
@@ -16517,6 +16802,20 @@
         "required": ["role_arn"],
         "title": "EnableCloudWatchMetricExportRequest"
       },
+      "EnableClusterRuntimeScanningBody": {
+        "description": "EnableClusterRuntimeScanningRequest is used to enable runtime scanning on a\ncluster.",
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/RuntimeScanning.Type"
+          }
+        },
+        "example": {
+          "type": "WIZ"
+        },
+        "required": ["type"],
+        "title": "EnableClusterRuntimeScanningRequest"
+      },
       "EnableDatadogMetricExportBody": {
         "type": "object",
         "properties": {
@@ -18430,6 +18729,25 @@
         "type": "string",
         "enum": ["CLUSTER", "DATABASE", "TABLE"]
       },
+      "RuntimeScanning.Type": {
+        "description": " - NONE: NONE indicates runtime scanning is disabled; no agent is enforced.\n - WIZ: WIZ indicates runtime scanning is enforced using the Wiz agent.",
+        "type": "string",
+        "enum": ["NONE", "WIZ"]
+      },
+      "RuntimeScanningInfo": {
+        "description": "RuntimeScanningInfo describes the runtime scanning configuration of a cluster.\nIt is returned by the get, enable, and disable runtime scanning endpoints.",
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/RuntimeScanning.Type"
+          }
+        },
+        "example": {
+          "type": "WIZ"
+        },
+        "required": ["type"],
+        "title": "RuntimeScanningInfo"
+      },
       "SQLUser": {
         "type": "object",
         "properties": {
@@ -19607,6 +19925,9 @@
     },
     {
       "name": "Multifactor Authentication"
+    },
+    {
+      "name": "Runtime Scanning"
     }
   ],
   "externalDocs": {
