@@ -16838,7 +16838,7 @@
         "type": "object",
         "properties": {
           "auth_principal": {
-            "description": "auth_principal is used in different contexts based on integration.\nCloudWatch: AWS Role ARN that identifies a role\nthat the cluster account can assume to write to CloudWatch\nGCP Cloud Logging: GCP Project ID that the cluster service account\nhas permissions to write to for cloud logging.\nAzure Log Analytics (AZURE_LOG_ANALYTICS): CustomerID or WorkspaceID.\nRequired for AWS_CLOUDWATCH, GCP_CLOUD_LOGGING, and AZURE_LOG_ANALYTICS.\nNot used for AZURE_LOG_ANALYTICS_V2.",
+            "description": "auth_principal is used in different contexts based on integration.\nCloudWatch: AWS Role ARN that identifies a role\nthat the cluster account can assume to write to CloudWatch\nGCP Cloud Logging: GCP Project ID that the cluster service account\nhas permissions to write to for cloud logging.\nAzure Log Analytics (AZURE_LOG_ANALYTICS): CustomerID or WorkspaceID.\nRequired for AWS_CLOUDWATCH, GCP_CLOUD_LOGGING, and AZURE_LOG_ANALYTICS.\nNot used for AZURE_LOG_ANALYTICS_V2 or OTLP_HTTP. OTLP_HTTP authenticates\nvia otlp_headers (see otlp_endpoint / otlp_headers).",
             "type": "string"
           },
           "aws_external_id": {
@@ -16892,6 +16892,17 @@
             "description": "omitted_channels is a list of channels that the user does not want to\nexport logs for.",
             "type": "array",
             "items": {
+              "type": "string"
+            }
+          },
+          "otlp_endpoint": {
+            "description": "otlp_endpoint is the OTLP/HTTP URL for the OTLP_HTTP sink type. Customers\nmay provide either a base endpoint or a full /v1/logs endpoint. Required\nwhen type is OTLP_HTTP.",
+            "type": "string"
+          },
+          "otlp_headers": {
+            "description": "otlp_headers are auth headers (name->value) for the OTLP_HTTP sink, e.g.\n{\"authorization\": \"Bearer ...\"}. Write-only: values are stored securely and\nnever returned. For existing OTLP_HTTP configurations, omitting this field\nor sending an empty map preserves the stored headers; sending a non-empty map\nreplaces them.",
+            "type": "object",
+            "additionalProperties": {
               "type": "string"
             }
           },
@@ -17841,6 +17852,13 @@
             "type": "string",
             "format": "date-time"
           },
+          "delivery_status": {
+            "$ref": "#/components/schemas/LogExportDeliveryStatus"
+          },
+          "delivery_status_message": {
+            "description": "Descriptive error message when delivery_status is DELIVERY_UNHEALTHY.\nOnly populated for OTLP_HTTP sinks.",
+            "type": "string"
+          },
           "spec": {
             "$ref": "#/components/schemas/LogExportClusterSpecification"
           },
@@ -17861,7 +17879,7 @@
         "type": "object",
         "properties": {
           "auth_principal": {
-            "description": "auth_principal is used in different contexts based on integration.\nCloudWatch: AWS Role ARN that identifies a role\nthat the cluster account can assume to write to CloudWatch\nGCP Cloud Logging: GCP Project ID that the cluster service account\nhas permissions to write to for cloud logging.\nAzure Log Analytics (AZURE_LOG_ANALYTICS): CustomerID or WorkspaceID.\nNot used for AZURE_LOG_ANALYTICS_V2.",
+            "description": "auth_principal is used in different contexts based on integration.\nCloudWatch: AWS Role ARN that identifies a role\nthat the cluster account can assume to write to CloudWatch\nGCP Cloud Logging: GCP Project ID that the cluster service account\nhas permissions to write to for cloud logging.\nAzure Log Analytics (AZURE_LOG_ANALYTICS): CustomerID or WorkspaceID.\nThis field is empty for AZURE_LOG_ANALYTICS_V2 and OTLP_HTTP. OTLP_HTTP\nauthenticates using the headers supplied when the integration is enabled.",
             "type": "string"
           },
           "aws_external_id": {
@@ -17901,7 +17919,7 @@
             "type": "string"
           },
           "groups": {
-            "description": "groups is a collection of log group configurations to customize\nwhich CRDB channels get aggregated into different groups at the\ntarget sink. Unconfigured channels will be sent to the default\nlocations via the settings above.",
+            "description": "groups is a collection of log group configurations to customize\nwhich CRDB channels get aggregated into different groups at the\ntarget sink. Unconfigured channels will be sent to the default\nlocations using the top-level log export settings.",
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/LogExportGroup"
@@ -17913,6 +17931,17 @@
           },
           "omitted_channels": {
             "description": "omitted_channels is a list of channels that the user does not want to\nexport logs for.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "otlp_endpoint": {
+            "description": "otlp_endpoint is the OTLP/HTTP URL for the OTLP_HTTP sink type.\nThis field accepts either a base endpoint or a full /v1/logs endpoint.",
+            "type": "string"
+          },
+          "otlp_header_names": {
+            "description": "otlp_header_names lists the configured OTLP auth header names; values are\nnever returned.",
             "type": "array",
             "items": {
               "type": "string"
@@ -17930,6 +17959,11 @@
             "$ref": "#/components/schemas/LogExportType"
           }
         }
+      },
+      "LogExportDeliveryStatus": {
+        "description": "LogExportDeliveryStatus reports whether logs are reaching the customer's\ndestination. This is independent of LogExportStatus, which reports whether\nthe integration is configured and running. Delivery health is currently\nreported only for OTLP_HTTP sinks.\n\n - DELIVERY_HEALTHY: The destination is receiving log records normally.\n - DELIVERY_UNHEALTHY: The destination is rejecting or failing to receive a substantial fraction\nof log records. The cause is intentionally not distinguished — it may be\ninvalid credentials, a wrong endpoint, or a transient outage.",
+        "type": "string",
+        "enum": ["DELIVERY_HEALTHY", "DELIVERY_UNHEALTHY"]
       },
       "LogExportGroup": {
         "description": "LogExportGroup contains an export configuration for a single\nlog group which can route logs for a subset of CRDB channels.",
@@ -17974,13 +18008,14 @@
         ]
       },
       "LogExportType": {
-        "description": "LogExportType encodes the cloud selection that we're exporting to\nalong with the cloud logging platform.\n\nCurrently, each cloud has a single logging platform.\n\n - AZURE_LOG_ANALYTICS: AZURE_LOG_ANALYTICS is the legacy Azure export path via Fluent Bit's HTTP\nData Collector API (retiring 2026-09-14). Deprecated: use\nAZURE_LOG_ANALYTICS_V2 instead.\n - AZURE_LOG_ANALYTICS_V2: AZURE_LOG_ANALYTICS_V2 exports to Azure Monitor via the Logs Ingestion API\nand DCR-based ingestion (OTel pipeline), replacing the deprecated\nAZURE_LOG_ANALYTICS path that uses Fluent Bit's HTTP Data Collector API\n(retiring 2026-09-14). V2 authenticates with a tenant/client/secret + DCR\nendpoint and rule, whereas the legacy type uses a workspace ID + shared key.",
+        "description": "LogExportType identifies the destination used for exported logs.\nCloud-native destinations use their provider's logging service, while\nOTLP_HTTP sends logs to a customer-configured OTLP/HTTP endpoint.\n\n - AZURE_LOG_ANALYTICS: AZURE_LOG_ANALYTICS is the legacy Azure export path via the HTTP Data\nCollector API (retiring 2026-09-14). Deprecated: use\nAZURE_LOG_ANALYTICS_V2 instead.\n - AZURE_LOG_ANALYTICS_V2: AZURE_LOG_ANALYTICS_V2 exports to Azure Monitor via the Logs Ingestion API\nand DCR-based ingestion, replacing the deprecated AZURE_LOG_ANALYTICS path\nthat uses the HTTP Data Collector API (retiring 2026-09-14). V2 authenticates\nwith a tenant/client/secret + DCR endpoint and rule, whereas the legacy type\nuses a workspace ID + shared key.",
         "type": "string",
         "enum": [
           "AWS_CLOUDWATCH",
           "GCP_CLOUD_LOGGING",
           "AZURE_LOG_ANALYTICS",
-          "AZURE_LOG_ANALYTICS_V2"
+          "AZURE_LOG_ANALYTICS_V2",
+          "OTLP_HTTP"
         ]
       },
       "LogLevel.Type": {

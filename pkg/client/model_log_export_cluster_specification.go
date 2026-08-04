@@ -20,7 +20,7 @@ package client
 
 // LogExportClusterSpecification LogExportClusterSpecification contains all the data necessary to configure log export for an individual cluster. Users would supply this data via the API and also receive it back when inspecting the state of their log export configuration..
 type LogExportClusterSpecification struct {
-	// auth_principal is used in different contexts based on integration. CloudWatch: AWS Role ARN that identifies a role that the cluster account can assume to write to CloudWatch GCP Cloud Logging: GCP Project ID that the cluster service account has permissions to write to for cloud logging. Azure Log Analytics (AZURE_LOG_ANALYTICS): CustomerID or WorkspaceID. Not used for AZURE_LOG_ANALYTICS_V2.
+	// auth_principal is used in different contexts based on integration. CloudWatch: AWS Role ARN that identifies a role that the cluster account can assume to write to CloudWatch GCP Cloud Logging: GCP Project ID that the cluster service account has permissions to write to for cloud logging. Azure Log Analytics (AZURE_LOG_ANALYTICS): CustomerID or WorkspaceID. This field is empty for AZURE_LOG_ANALYTICS_V2 and OTLP_HTTP. OTLP_HTTP authenticates using the headers supplied when the integration is enabled.
 	AuthPrincipal *string `json:"auth_principal,omitempty"`
 	// aws_external_id, if set, is included when assuming the IAM role. Supported for Advanced clusters on AWS only.
 	AwsExternalId *string `json:"aws_external_id,omitempty"`
@@ -40,12 +40,16 @@ type LogExportClusterSpecification struct {
 	AzureTenantId *string `json:"azure_tenant_id,omitempty"`
 	// Full ARM resource ID of the Log Analytics workspace. Cockroach Cloud creates or updates the required custom tables for each configured log group. For example, /subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.OperationalInsights/workspaces/{workspace-name}.
 	AzureWorkspaceResourceId *string `json:"azure_workspace_resource_id,omitempty"`
-	// groups is a collection of log group configurations to customize which CRDB channels get aggregated into different groups at the target sink. Unconfigured channels will be sent to the default locations via the settings above.
+	// groups is a collection of log group configurations to customize which CRDB channels get aggregated into different groups at the target sink. Unconfigured channels will be sent to the default locations using the top-level log export settings.
 	Groups *[]LogExportGroup `json:"groups,omitempty"`
 	// log_name is an identifier for the logs in the customer's log sink. For AZURE_LOG_ANALYTICS_V2, it must start with a letter and contain only letters, digits, and underscores.
 	LogName *string `json:"log_name,omitempty"`
 	// omitted_channels is a list of channels that the user does not want to export logs for.
 	OmittedChannels *[]string `json:"omitted_channels,omitempty"`
+	// otlp_endpoint is the OTLP/HTTP URL for the OTLP_HTTP sink type. This field accepts either a base endpoint or a full /v1/logs endpoint.
+	OtlpEndpoint *string `json:"otlp_endpoint,omitempty"`
+	// otlp_header_names lists the configured OTLP auth header names; values are never returned.
+	OtlpHeaderNames *[]string `json:"otlp_header_names,omitempty"`
 	// redact controls whether logs are redacted before forwarding to customer sinks. By default they are not redacted.
 	Redact *bool `json:"redact,omitempty"`
 	// region controls whether all logs are sent to a specific region in the customer sink. By default, logs will remain their region of origin depending on the cluster node's region.
@@ -242,6 +246,34 @@ func (o *LogExportClusterSpecification) GetOmittedChannels() []string {
 // SetOmittedChannels gets a reference to the given []string and assigns it to the OmittedChannels field.
 func (o *LogExportClusterSpecification) SetOmittedChannels(v []string) {
 	o.OmittedChannels = &v
+}
+
+// GetOtlpEndpoint returns the OtlpEndpoint field value if set, zero value otherwise.
+func (o *LogExportClusterSpecification) GetOtlpEndpoint() string {
+	if o == nil || o.OtlpEndpoint == nil {
+		var ret string
+		return ret
+	}
+	return *o.OtlpEndpoint
+}
+
+// SetOtlpEndpoint gets a reference to the given string and assigns it to the OtlpEndpoint field.
+func (o *LogExportClusterSpecification) SetOtlpEndpoint(v string) {
+	o.OtlpEndpoint = &v
+}
+
+// GetOtlpHeaderNames returns the OtlpHeaderNames field value if set, zero value otherwise.
+func (o *LogExportClusterSpecification) GetOtlpHeaderNames() []string {
+	if o == nil || o.OtlpHeaderNames == nil {
+		var ret []string
+		return ret
+	}
+	return *o.OtlpHeaderNames
+}
+
+// SetOtlpHeaderNames gets a reference to the given []string and assigns it to the OtlpHeaderNames field.
+func (o *LogExportClusterSpecification) SetOtlpHeaderNames(v []string) {
+	o.OtlpHeaderNames = &v
 }
 
 // GetRedact returns the Redact field value if set, zero value otherwise.

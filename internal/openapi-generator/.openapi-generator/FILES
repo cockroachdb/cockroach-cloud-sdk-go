@@ -164,6 +164,7 @@ docs/ListServiceAccountsResponse.md
 docs/LogExportApi.md
 docs/LogExportClusterInfo.md
 docs/LogExportClusterSpecification.md
+docs/LogExportDeliveryStatus.md
 docs/LogExportGroup.md
 docs/LogExportStatus.md
 docs/LogExportType.md
@@ -415,6 +416,7 @@ model_list_service_accounts_response.go
 model_list_sql_users_response.go
 model_log_export_cluster_info.go
 model_log_export_cluster_specification.go
+model_log_export_delivery_status.go
 model_log_export_group.go
 model_log_export_status.go
 model_log_export_type.go

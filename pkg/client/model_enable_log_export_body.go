@@ -20,7 +20,7 @@ package client
 
 // EnableLogExportBody struct for EnableLogExportBody.
 type EnableLogExportBody struct {
-	// auth_principal is used in different contexts based on integration. CloudWatch: AWS Role ARN that identifies a role that the cluster account can assume to write to CloudWatch GCP Cloud Logging: GCP Project ID that the cluster service account has permissions to write to for cloud logging. Azure Log Analytics (AZURE_LOG_ANALYTICS): CustomerID or WorkspaceID. Required for AWS_CLOUDWATCH, GCP_CLOUD_LOGGING, and AZURE_LOG_ANALYTICS. Not used for AZURE_LOG_ANALYTICS_V2.
+	// auth_principal is used in different contexts based on integration. CloudWatch: AWS Role ARN that identifies a role that the cluster account can assume to write to CloudWatch GCP Cloud Logging: GCP Project ID that the cluster service account has permissions to write to for cloud logging. Azure Log Analytics (AZURE_LOG_ANALYTICS): CustomerID or WorkspaceID. Required for AWS_CLOUDWATCH, GCP_CLOUD_LOGGING, and AZURE_LOG_ANALYTICS. Not used for AZURE_LOG_ANALYTICS_V2 or OTLP_HTTP. OTLP_HTTP authenticates via otlp_headers (see otlp_endpoint / otlp_headers).
 	AuthPrincipal *string `json:"auth_principal,omitempty"`
 	// aws_external_id to include when assuming the IAM role specified by role_arn. Optional. A specific value may be required by the role's trust policy. Only supported for Advanced clusters on AWS. If provided for a Standard cluster, the request is rejected.
 	AwsExternalId *string `json:"aws_external_id,omitempty"`
@@ -46,6 +46,10 @@ type EnableLogExportBody struct {
 	LogName string `json:"log_name"`
 	// omitted_channels is a list of channels that the user does not want to export logs for.
 	OmittedChannels *[]string `json:"omitted_channels,omitempty"`
+	// otlp_endpoint is the OTLP/HTTP URL for the OTLP_HTTP sink type. Customers may provide either a base endpoint or a full /v1/logs endpoint. Required when type is OTLP_HTTP.
+	OtlpEndpoint *string `json:"otlp_endpoint,omitempty"`
+	// otlp_headers are auth headers (name->value) for the OTLP_HTTP sink, e.g. {\"authorization\": \"Bearer ...\"}. Write-only: values are stored securely and never returned. For existing OTLP_HTTP configurations, omitting this field or sending an empty map preserves the stored headers; sending a non-empty map replaces them.
+	OtlpHeaders *map[string]string `json:"otlp_headers,omitempty"`
 	// redact allows the customer to set a default redaction policy for logs before they are exported to the target sink. If a group config omits a redact flag and this one is set to `true`, then that group will receive redacted logs.
 	Redact *bool `json:"redact,omitempty"`
 	// region allows the customer to override the destination region for all logs for a cluster.
@@ -253,6 +257,34 @@ func (o *EnableLogExportBody) GetOmittedChannels() []string {
 // SetOmittedChannels gets a reference to the given []string and assigns it to the OmittedChannels field.
 func (o *EnableLogExportBody) SetOmittedChannels(v []string) {
 	o.OmittedChannels = &v
+}
+
+// GetOtlpEndpoint returns the OtlpEndpoint field value if set, zero value otherwise.
+func (o *EnableLogExportBody) GetOtlpEndpoint() string {
+	if o == nil || o.OtlpEndpoint == nil {
+		var ret string
+		return ret
+	}
+	return *o.OtlpEndpoint
+}
+
+// SetOtlpEndpoint gets a reference to the given string and assigns it to the OtlpEndpoint field.
+func (o *EnableLogExportBody) SetOtlpEndpoint(v string) {
+	o.OtlpEndpoint = &v
+}
+
+// GetOtlpHeaders returns the OtlpHeaders field value if set, zero value otherwise.
+func (o *EnableLogExportBody) GetOtlpHeaders() map[string]string {
+	if o == nil || o.OtlpHeaders == nil {
+		var ret map[string]string
+		return ret
+	}
+	return *o.OtlpHeaders
+}
+
+// SetOtlpHeaders gets a reference to the given map[string]string and assigns it to the OtlpHeaders field.
+func (o *EnableLogExportBody) SetOtlpHeaders(v map[string]string) {
+	o.OtlpHeaders = &v
 }
 
 // GetRedact returns the Redact field value if set, zero value otherwise.

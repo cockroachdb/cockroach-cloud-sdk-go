@@ -13773,7 +13773,8 @@ components:
             has permissions to write to for cloud logging.
             Azure Log Analytics (AZURE_LOG_ANALYTICS): CustomerID or WorkspaceID.
             Required for AWS_CLOUDWATCH, GCP_CLOUD_LOGGING, and AZURE_LOG_ANALYTICS.
-            Not used for AZURE_LOG_ANALYTICS_V2.
+            Not used for AZURE_LOG_ANALYTICS_V2 or OTLP_HTTP. OTLP_HTTP authenticates
+            via otlp_headers (see otlp_endpoint / otlp_headers).
           type: string
         aws_external_id:
           description: |-
@@ -13850,6 +13851,22 @@ components:
           items:
             type: string
           type: array
+        otlp_endpoint:
+          description: |-
+            otlp_endpoint is the OTLP/HTTP URL for the OTLP_HTTP sink type. Customers
+            may provide either a base endpoint or a full /v1/logs endpoint. Required
+            when type is OTLP_HTTP.
+          type: string
+        otlp_headers:
+          additionalProperties:
+            type: string
+          description: |-
+            otlp_headers are auth headers (name->value) for the OTLP_HTTP sink, e.g.
+            {"authorization": "Bearer ..."}. Write-only: values are stored securely and
+            never returned. For existing OTLP_HTTP configurations, omitting this field
+            or sending an empty map preserves the stored headers; sending a non-empty map
+            replaces them.
+          type: object
         redact:
           description: |-
             redact allows the customer to set a default redaction policy for
@@ -16022,6 +16039,8 @@ components:
         updated_at: 2000-01-23T04:56:07.000+00:00
         created_at: 2000-01-23T04:56:07.000+00:00
         user_message: user_message
+        delivery_status_message: delivery_status_message
+        delivery_status: null
         spec:
           aws_external_id: aws_external_id
           auth_principal: auth_principal
@@ -16045,12 +16064,16 @@ components:
             min_level: null
           azure_dce_endpoint: azure_dce_endpoint
           type: null
+          otlp_header_names:
+          - otlp_header_names
+          - otlp_header_names
           azure_client_id: azure_client_id
           omitted_channels:
           - omitted_channels
           - omitted_channels
           azure_dcr_immutable_id: azure_dcr_immutable_id
           azure_dcr_resource_id: azure_dcr_resource_id
+          otlp_endpoint: otlp_endpoint
           region: region
           azure_client_secret: azure_client_secret
           azure_shared_key: azure_shared_key
@@ -16061,6 +16084,13 @@ components:
           type: string
         created_at:
           format: date-time
+          type: string
+        delivery_status:
+          $ref: '#/components/schemas/LogExportDeliveryStatus'
+        delivery_status_message:
+          description: |-
+            Descriptive error message when delivery_status is DELIVERY_UNHEALTHY.
+            Only populated for OTLP_HTTP sinks.
           type: string
         spec:
           $ref: '#/components/schemas/LogExportClusterSpecification'
@@ -16101,12 +16131,16 @@ components:
           min_level: null
         azure_dce_endpoint: azure_dce_endpoint
         type: null
+        otlp_header_names:
+        - otlp_header_names
+        - otlp_header_names
         azure_client_id: azure_client_id
         omitted_channels:
         - omitted_channels
         - omitted_channels
         azure_dcr_immutable_id: azure_dcr_immutable_id
         azure_dcr_resource_id: azure_dcr_resource_id
+        otlp_endpoint: otlp_endpoint
         region: region
         azure_client_secret: azure_client_secret
         azure_shared_key: azure_shared_key
@@ -16120,7 +16154,8 @@ components:
             GCP Cloud Logging: GCP Project ID that the cluster service account
             has permissions to write to for cloud logging.
             Azure Log Analytics (AZURE_LOG_ANALYTICS): CustomerID or WorkspaceID.
-            Not used for AZURE_LOG_ANALYTICS_V2.
+            This field is empty for AZURE_LOG_ANALYTICS_V2 and OTLP_HTTP. OTLP_HTTP
+            authenticates using the headers supplied when the integration is enabled.
           type: string
         aws_external_id:
           description: |-
@@ -16172,7 +16207,7 @@ components:
             groups is a collection of log group configurations to customize
             which CRDB channels get aggregated into different groups at the
             target sink. Unconfigured channels will be sent to the default
-            locations via the settings above.
+            locations using the top-level log export settings.
           items:
             $ref: '#/components/schemas/LogExportGroup'
           type: array
@@ -16186,6 +16221,18 @@ components:
           description: |-
             omitted_channels is a list of channels that the user does not want to
             export logs for.
+          items:
+            type: string
+          type: array
+        otlp_endpoint:
+          description: |-
+            otlp_endpoint is the OTLP/HTTP URL for the OTLP_HTTP sink type.
+            This field accepts either a base endpoint or a full /v1/logs endpoint.
+          type: string
+        otlp_header_names:
+          description: |-
+            otlp_header_names lists the configured OTLP auth header names; values are
+            never returned.
           items:
             type: string
           type: array
@@ -16203,6 +16250,21 @@ components:
         type:
           $ref: '#/components/schemas/LogExportType'
       type: object
+    LogExportDeliveryStatus:
+      description: |-
+        LogExportDeliveryStatus reports whether logs are reaching the customer's
+        destination. This is independent of LogExportStatus, which reports whether
+        the integration is configured and running. Delivery health is currently
+        reported only for OTLP_HTTP sinks.
+
+         - DELIVERY_HEALTHY: The destination is receiving log records normally.
+         - DELIVERY_UNHEALTHY: The destination is rejecting or failing to receive a substantial fraction
+        of log records. The cause is intentionally not distinguished — it may be
+        invalid credentials, a wrong endpoint, or a transient outage.
+      enum:
+      - DELIVERY_HEALTHY
+      - DELIVERY_UNHEALTHY
+      type: string
     LogExportGroup:
       description: |-
         LogExportGroup contains an export configuration for a single
@@ -16261,24 +16323,24 @@ components:
       type: string
     LogExportType:
       description: |-
-        LogExportType encodes the cloud selection that we're exporting to
-        along with the cloud logging platform.
+        LogExportType identifies the destination used for exported logs.
+        Cloud-native destinations use their provider's logging service, while
+        OTLP_HTTP sends logs to a customer-configured OTLP/HTTP endpoint.
 
-        Currently, each cloud has a single logging platform.
-
-         - AZURE_LOG_ANALYTICS: AZURE_LOG_ANALYTICS is the legacy Azure export path via Fluent Bit's HTTP
-        Data Collector API (retiring 2026-09-14). Deprecated: use
+         - AZURE_LOG_ANALYTICS: AZURE_LOG_ANALYTICS is the legacy Azure export path via the HTTP Data
+        Collector API (retiring 2026-09-14). Deprecated: use
         AZURE_LOG_ANALYTICS_V2 instead.
          - AZURE_LOG_ANALYTICS_V2: AZURE_LOG_ANALYTICS_V2 exports to Azure Monitor via the Logs Ingestion API
-        and DCR-based ingestion (OTel pipeline), replacing the deprecated
-        AZURE_LOG_ANALYTICS path that uses Fluent Bit's HTTP Data Collector API
-        (retiring 2026-09-14). V2 authenticates with a tenant/client/secret + DCR
-        endpoint and rule, whereas the legacy type uses a workspace ID + shared key.
+        and DCR-based ingestion, replacing the deprecated AZURE_LOG_ANALYTICS path
+        that uses the HTTP Data Collector API (retiring 2026-09-14). V2 authenticates
+        with a tenant/client/secret + DCR endpoint and rule, whereas the legacy type
+        uses a workspace ID + shared key.
       enum:
       - AWS_CLOUDWATCH
       - GCP_CLOUD_LOGGING
       - AZURE_LOG_ANALYTICS
       - AZURE_LOG_ANALYTICS_V2
+      - OTLP_HTTP
       type: string
     LogLevel.Type:
       description: |2-

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AuthPrincipal** | Pointer to **string** | auth_principal is used in different contexts based on integration. CloudWatch: AWS Role ARN that identifies a role that the cluster account can assume to write to CloudWatch GCP Cloud Logging: GCP Project ID that the cluster service account has permissions to write to for cloud logging. Azure Log Analytics (AZURE_LOG_ANALYTICS): CustomerID or WorkspaceID. Required for AWS_CLOUDWATCH, GCP_CLOUD_LOGGING, and AZURE_LOG_ANALYTICS. Not used for AZURE_LOG_ANALYTICS_V2. | [optional] 
+**AuthPrincipal** | Pointer to **string** | auth_principal is used in different contexts based on integration. CloudWatch: AWS Role ARN that identifies a role that the cluster account can assume to write to CloudWatch GCP Cloud Logging: GCP Project ID that the cluster service account has permissions to write to for cloud logging. Azure Log Analytics (AZURE_LOG_ANALYTICS): CustomerID or WorkspaceID. Required for AWS_CLOUDWATCH, GCP_CLOUD_LOGGING, and AZURE_LOG_ANALYTICS. Not used for AZURE_LOG_ANALYTICS_V2 or OTLP_HTTP. OTLP_HTTP authenticates via otlp_headers (see otlp_endpoint / otlp_headers). | [optional] 
 **AwsExternalId** | Pointer to **string** | aws_external_id to include when assuming the IAM role specified by role_arn. Optional. A specific value may be required by the role&#39;s trust policy. Only supported for Advanced clusters on AWS. If provided for a Standard cluster, the request is rejected. | [optional] 
 **AzureClientId** | Pointer to **string** | Azure client ID for the app registration used by the Logs Ingestion API. Required when type is AZURE_LOG_ANALYTICS_V2. | [optional] 
 **AzureClientSecret** | Pointer to **string** | Azure client secret for the app registration used by the Logs Ingestion API. Required when type is AZURE_LOG_ANALYTICS_V2. | [optional] 
@@ -17,6 +17,8 @@ Name | Type | Description | Notes
 **Groups** | Pointer to [**[]LogExportGroup**](LogExportGroup.md) | groups is a collection of log group configurations that allows the customer to define collections of CRDB log channels that are aggregated separately at the target sink. | [optional] 
 **LogName** | **string** | log_name is an identifier for the logs in the customer&#39;s log sink. For AZURE_LOG_ANALYTICS_V2, it must start with a letter and contain only letters, digits, and underscores. | 
 **OmittedChannels** | Pointer to **[]string** | omitted_channels is a list of channels that the user does not want to export logs for. | [optional] 
+**OtlpEndpoint** | Pointer to **string** | otlp_endpoint is the OTLP/HTTP URL for the OTLP_HTTP sink type. Customers may provide either a base endpoint or a full /v1/logs endpoint. Required when type is OTLP_HTTP. | [optional] 
+**OtlpHeaders** | Pointer to **map[string]string** | otlp_headers are auth headers (name-&gt;value) for the OTLP_HTTP sink, e.g. {\&quot;authorization\&quot;: \&quot;Bearer ...\&quot;}. Write-only: values are stored securely and never returned. For existing OTLP_HTTP configurations, omitting this field or sending an empty map preserves the stored headers; sending a non-empty map replaces them. | [optional] 
 **Redact** | Pointer to **bool** | redact allows the customer to set a default redaction policy for logs before they are exported to the target sink. If a group config omits a redact flag and this one is set to &#x60;true&#x60;, then that group will receive redacted logs. | [optional] 
 **Region** | Pointer to **string** | region allows the customer to override the destination region for all logs for a cluster. | [optional] 
 **Type** | [**LogExportType**](LogExportType.md) |  | 
@@ -195,6 +197,30 @@ GetOmittedChannels returns the OmittedChannels field if non-nil, zero value othe
 `func (o *EnableLogExportBody) SetOmittedChannels(v []string)`
 
 SetOmittedChannels sets OmittedChannels field to given value.
+
+### GetOtlpEndpoint
+
+`func (o *EnableLogExportBody) GetOtlpEndpoint() string`
+
+GetOtlpEndpoint returns the OtlpEndpoint field if non-nil, zero value otherwise.
+
+### SetOtlpEndpoint
+
+`func (o *EnableLogExportBody) SetOtlpEndpoint(v string)`
+
+SetOtlpEndpoint sets OtlpEndpoint field to given value.
+
+### GetOtlpHeaders
+
+`func (o *EnableLogExportBody) GetOtlpHeaders() map[string]string`
+
+GetOtlpHeaders returns the OtlpHeaders field if non-nil, zero value otherwise.
+
+### SetOtlpHeaders
+
+`func (o *EnableLogExportBody) SetOtlpHeaders(v map[string]string)`
+
+SetOtlpHeaders sets OtlpHeaders field to given value.
 
 ### GetRedact
 

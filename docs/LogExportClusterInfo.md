@@ -6,6 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ClusterId** | Pointer to **string** |  | [optional] 
 **CreatedAt** | Pointer to **time.Time** |  | [optional] 
+**DeliveryStatus** | Pointer to [**LogExportDeliveryStatus**](LogExportDeliveryStatus.md) |  | [optional] 
+**DeliveryStatusMessage** | Pointer to **string** | Descriptive error message when delivery_status is DELIVERY_UNHEALTHY. Only populated for OTLP_HTTP sinks. | [optional] 
 **Spec** | Pointer to [**LogExportClusterSpecification**](LogExportClusterSpecification.md) |  | [optional] 
 **Status** | Pointer to [**LogExportStatus**](LogExportStatus.md) |  | [optional] 
 **UpdatedAt** | Pointer to **time.Time** |  | [optional] 
@@ -45,6 +47,30 @@ GetCreatedAt returns the CreatedAt field if non-nil, zero value otherwise.
 `func (o *LogExportClusterInfo) SetCreatedAt(v time.Time)`
 
 SetCreatedAt sets CreatedAt field to given value.
+
+### GetDeliveryStatus
+
+`func (o *LogExportClusterInfo) GetDeliveryStatus() LogExportDeliveryStatus`
+
+GetDeliveryStatus returns the DeliveryStatus field if non-nil, zero value otherwise.
+
+### SetDeliveryStatus
+
+`func (o *LogExportClusterInfo) SetDeliveryStatus(v LogExportDeliveryStatus)`
+
+SetDeliveryStatus sets DeliveryStatus field to given value.
+
+### GetDeliveryStatusMessage
+
+`func (o *LogExportClusterInfo) GetDeliveryStatusMessage() string`
+
+GetDeliveryStatusMessage returns the DeliveryStatusMessage field if non-nil, zero value otherwise.
+
+### SetDeliveryStatusMessage
+
+`func (o *LogExportClusterInfo) SetDeliveryStatusMessage(v string)`
+
+SetDeliveryStatusMessage sets DeliveryStatusMessage field to given value.
 
 ### GetSpec
 
