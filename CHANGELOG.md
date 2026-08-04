@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [9.0.0] - 2026-08-07
+
 ### Added
 
 - Add OTLP/HTTP log export support (`OTLP_HTTP`) with `OtlpEndpoint` and `OtlpHeaders`, plus log delivery health via `DeliveryStatus` and `DeliveryStatusMessage` on `LogExportClusterInfo`.
