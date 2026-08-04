@@ -14109,7 +14109,7 @@
             }
           },
           {
-            "name": "name_filter",
+            "name": "service_account_name",
             "in": "query",
             "description": "Optional case-insensitive filter for service account name.",
             "schema": {
@@ -14117,7 +14117,7 @@
             }
           },
           {
-            "name": "role_filter",
+            "name": "roles",
             "in": "query",
             "description": "If specified, only service accounts holding at least one of these roles\n(either directly or via a group) are returned.\n\n - FOLDER_ADMIN: Preview: A folder admin role.\n - FOLDER_MOVER: Preview: A folder mover role.",
             "schema": {
@@ -14215,7 +14215,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request GET \\\n  --url 'https://cockroachlabs.cloud/api/v1/service-accounts?pagination.page=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.as_of_time=SOME_STRING_VALUE&pagination.sort_order=SOME_STRING_VALUE&name_filter=SOME_STRING_VALUE&role_filter=SOME_ARRAY_VALUE' \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+            "source": "curl --request GET \\\n  --url 'https://cockroachlabs.cloud/api/v1/service-accounts?pagination.page=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.as_of_time=SOME_STRING_VALUE&pagination.sort_order=SOME_STRING_VALUE&service_account_name=SOME_STRING_VALUE&roles=SOME_ARRAY_VALUE' \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
           }
         ]
       },

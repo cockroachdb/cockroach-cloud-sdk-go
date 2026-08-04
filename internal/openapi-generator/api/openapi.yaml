@@ -10856,7 +10856,7 @@ paths:
       - description: Optional case-insensitive filter for service account name.
         explode: true
         in: query
-        name: name_filter
+        name: service_account_name
         required: false
         schema:
           type: string
@@ -10869,7 +10869,7 @@ paths:
            - FOLDER_MOVER: Preview: A folder mover role.
         explode: true
         in: query
-        name: role_filter
+        name: roles
         required: false
         schema:
           items:
@@ -10938,7 +10938,7 @@ paths:
       - lang: Shell + Curl
         source: |-
           curl --request GET \
-            --url 'https://cockroachlabs.cloud/api/v1/service-accounts?pagination.page=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.as_of_time=SOME_STRING_VALUE&pagination.sort_order=SOME_STRING_VALUE&name_filter=SOME_STRING_VALUE&role_filter=SOME_ARRAY_VALUE' \
+            --url 'https://cockroachlabs.cloud/api/v1/service-accounts?pagination.page=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.as_of_time=SOME_STRING_VALUE&pagination.sort_order=SOME_STRING_VALUE&service_account_name=SOME_STRING_VALUE&roles=SOME_ARRAY_VALUE' \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     post:
       description: |

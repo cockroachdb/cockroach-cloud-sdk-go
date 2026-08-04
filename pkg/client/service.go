@@ -20463,10 +20463,10 @@ type ListServiceAccountsOptions struct {
 	PaginationSortOrder *string
 
 	// Optional case-insensitive filter for service account name.
-	NameFilter *string
+	ServiceAccountName *string
 
 	// If specified, only service accounts holding at least one of these roles (either directly or via a group) are returned.   - FOLDER_ADMIN: Preview: A folder admin role.  - FOLDER_MOVER: Preview: A folder mover role.
-	RoleFilter *[]string
+	Roles *[]string
 }
 
 // ListServiceAccounts executes the request.
@@ -20501,18 +20501,18 @@ func (a *ServiceImpl) ListServiceAccounts(
 	if options.PaginationSortOrder != nil {
 		localVarQueryParams.Add("pagination.sort_order", parameterToString(*options.PaginationSortOrder, ""))
 	}
-	if options.NameFilter != nil {
-		localVarQueryParams.Add("name_filter", parameterToString(*options.NameFilter, ""))
+	if options.ServiceAccountName != nil {
+		localVarQueryParams.Add("service_account_name", parameterToString(*options.ServiceAccountName, ""))
 	}
-	if options.RoleFilter != nil {
-		t := *options.RoleFilter
+	if options.Roles != nil {
+		t := *options.Roles
 		if reflect.TypeOf(t).Kind() == reflect.Slice {
 			s := reflect.ValueOf(t)
 			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("role_filter", parameterToString(s.Index(i), "multi"))
+				localVarQueryParams.Add("roles", parameterToString(s.Index(i), "multi"))
 			}
 		} else {
-			localVarQueryParams.Add("role_filter", parameterToString(t, "multi"))
+			localVarQueryParams.Add("roles", parameterToString(t, "multi"))
 		}
 	}
 	// Determine the Content-Type header.

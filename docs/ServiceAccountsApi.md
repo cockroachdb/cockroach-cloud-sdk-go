@@ -219,7 +219,7 @@ Name | Type | Description  | Notes
 
 ## ListServiceAccounts
 
-> ListServiceAccountsResponse ListServiceAccounts(ctx).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).NameFilter(nameFilter).RoleFilter(roleFilter).Execute()
+> ListServiceAccountsResponse ListServiceAccounts(ctx).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).ServiceAccountName(serviceAccountName).Roles(roles).Execute()
 
 List service accounts for an organization
 
@@ -248,12 +248,12 @@ func main() {
     paginationLimit := int32(56) // int32 |  (optional)
     paginationAsOfTime := time.Now() // time.Time |  (optional)
     paginationSortOrder := "paginationSortOrder_example" // string |  - ASC: Sort in ascending order. This is the default unless otherwise specified.  - DESC: Sort in descending order. (optional)
-    nameFilter := "nameFilter_example" // string | Optional case-insensitive filter for service account name. (optional)
-    roleFilter := []string{"RoleFilter_example"} // []string | If specified, only service accounts holding at least one of these roles (either directly or via a group) are returned.   - FOLDER_ADMIN: Preview: A folder admin role.  - FOLDER_MOVER: Preview: A folder mover role. (optional)
+    serviceAccountName := "serviceAccountName_example" // string | Optional case-insensitive filter for service account name. (optional)
+    roles := []string{"Roles_example"} // []string | If specified, only service accounts holding at least one of these roles (either directly or via a group) are returned.   - FOLDER_ADMIN: Preview: A folder admin role.  - FOLDER_MOVER: Preview: A folder mover role. (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
-    resp, r, err := api_client.ServiceAccountsApi.ListServiceAccounts(context.Background()).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).NameFilter(nameFilter).RoleFilter(roleFilter).Execute()
+    resp, r, err := api_client.ServiceAccountsApi.ListServiceAccounts(context.Background()).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).ServiceAccountName(serviceAccountName).Roles(roles).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `ServiceAccountsApi.ListServiceAccounts``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -279,8 +279,8 @@ Name | Type | Description  | Notes
  **paginationLimit** | **int32** |  | 
  **paginationAsOfTime** | **time.Time** |  | 
  **paginationSortOrder** | **string** |  - ASC: Sort in ascending order. This is the default unless otherwise specified.  - DESC: Sort in descending order. | 
- **nameFilter** | **string** | Optional case-insensitive filter for service account name. | 
- **roleFilter** | **[]string** | If specified, only service accounts holding at least one of these roles (either directly or via a group) are returned.   - FOLDER_ADMIN: Preview: A folder admin role.  - FOLDER_MOVER: Preview: A folder mover role. | 
+ **serviceAccountName** | **string** | Optional case-insensitive filter for service account name. | 
+ **roles** | **[]string** | If specified, only service accounts holding at least one of these roles (either directly or via a group) are returned.   - FOLDER_ADMIN: Preview: A folder admin role.  - FOLDER_MOVER: Preview: A folder mover role. | 
 
 ### Return type
 

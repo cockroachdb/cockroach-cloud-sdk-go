@@ -12,7 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add OTLP/HTTP log export support (`OTLP_HTTP`) with `OtlpEndpoint` and `OtlpHeaders`, plus log delivery health via `DeliveryStatus` and `DeliveryStatusMessage` on `LogExportClusterInfo`.
 - Add Azure Log Analytics v2 log export support (`AZURE_LOG_ANALYTICS_V2`) with Azure workspace and Data Collection Rule configuration fields.
 - Add per-cluster runtime scanning operations (EnableClusterRuntimeScanning, GetClusterRuntimeScanning, DisableClusterRuntimeScanning).
-- Add `name_filter` and `role_filter` query parameters to ListServiceAccounts.
+- Add `service_account_name` and `roles` filter query parameters to ListServiceAccounts.
 - Add `UPDATE_BACKUP_CONFIGURATION` audit log action.
 
 ### Changed
