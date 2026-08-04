@@ -24,6 +24,7 @@ import (
 	_ioutil "io/ioutil"
 	_nethttp "net/http"
 	_neturl "net/url"
+	"reflect"
 	"strings"
 	"time"
 )
@@ -20045,6 +20046,12 @@ type ListServiceAccountsOptions struct {
 
 	//  - ASC: Sort in ascending order. This is the default unless otherwise specified.  - DESC: Sort in descending order.
 	PaginationSortOrder *string
+
+	// Optional case-insensitive filter for service account name.
+	NameFilter *string
+
+	// If specified, only service accounts holding at least one of these roles (either directly or via a group) are returned.   - FOLDER_ADMIN: Preview: A folder admin role.  - FOLDER_MOVER: Preview: A folder mover role.
+	RoleFilter *[]string
 }
 
 // ListServiceAccounts executes the request.
@@ -20078,6 +20085,20 @@ func (a *ServiceImpl) ListServiceAccounts(
 	}
 	if options.PaginationSortOrder != nil {
 		localVarQueryParams.Add("pagination.sort_order", parameterToString(*options.PaginationSortOrder, ""))
+	}
+	if options.NameFilter != nil {
+		localVarQueryParams.Add("name_filter", parameterToString(*options.NameFilter, ""))
+	}
+	if options.RoleFilter != nil {
+		t := *options.RoleFilter
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("role_filter", parameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("role_filter", parameterToString(t, "multi"))
+		}
 	}
 	// Determine the Content-Type header.
 	localVarHTTPContentTypes := []string{}

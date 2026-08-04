@@ -10645,6 +10645,42 @@ paths:
           - DESC
           type: string
         style: form
+      - description: Optional case-insensitive filter for service account name.
+        explode: true
+        in: query
+        name: name_filter
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: |-
+          If specified, only service accounts holding at least one of these roles
+          (either directly or via a group) are returned.
+
+           - FOLDER_ADMIN: Preview: A folder admin role.
+           - FOLDER_MOVER: Preview: A folder mover role.
+        explode: true
+        in: query
+        name: role_filter
+        required: false
+        schema:
+          items:
+            enum:
+            - BILLING_COORDINATOR
+            - ORG_ADMIN
+            - ORG_MEMBER
+            - CLUSTER_ADMIN
+            - CLUSTER_OPERATOR_WRITER
+            - CLUSTER_DEVELOPER
+            - CLUSTER_CREATOR
+            - FOLDER_ADMIN
+            - FOLDER_MOVER
+            - METRICS_VIEWER
+            - CLUSTER_MONITOR
+            - BILLING_VIEWER
+            type: string
+          type: array
+        style: form
       responses:
         "200":
           content:
@@ -10694,7 +10730,7 @@ paths:
       - lang: Shell + Curl
         source: |-
           curl --request GET \
-            --url 'https://cockroachlabs.cloud/api/v1/service-accounts?pagination.page=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.as_of_time=SOME_STRING_VALUE&pagination.sort_order=SOME_STRING_VALUE' \
+            --url 'https://cockroachlabs.cloud/api/v1/service-accounts?pagination.page=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.as_of_time=SOME_STRING_VALUE&pagination.sort_order=SOME_STRING_VALUE&name_filter=SOME_STRING_VALUE&role_filter=SOME_ARRAY_VALUE' \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     post:
       description: |
