@@ -3663,7 +3663,9 @@ paths:
         - CLUSTER_OPERATOR_WRITER
       operationId: CockroachCloud_UpdateClientCACert
       parameters:
-      - explode: false
+      - description: cluster_id is the ID of the cluster whose client CA cert is being
+          updated.
+        explode: false
         in: path
         name: cluster_id
         required: true
@@ -3724,7 +3726,7 @@ paths:
           curl --request PATCH \
             --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/client-ca-cert \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
-            --json '{"x509_pem_cert":"-----BEGIN CERTIFICATE-----..."}'
+            --json '{"update_mode":"APPEND","x509_pem_cert":"-----BEGIN CERTIFICATE-----..."}'
     post:
       description: |
         Can be used by the following roles assigned at the organization, folder or cluster scope:
@@ -12333,6 +12335,20 @@ components:
       - PENDING
       - FAILED
       type: string
+    ClientCACertUpdateMode.Type:
+      description: |-
+        - REPLACE: REPLACE overwrites all existing certs with the provided cert. This
+        matches the behavior of the SetClientCACert (POST) endpoint. This is the
+        default when update_mode is omitted.
+         - APPEND: APPEND adds the provided cert to the existing cert bundle. This mode
+        enables no-downtime certificate rotation: append the new cert, roll it
+        out across clients, then REPLACE with only the new cert to drop the old
+        one.
+      enum:
+      - REPLACE
+      - APPEND
+      title: 'Defines the mode used for CA certificate updates:'
+      type: string
     CloudProvider.Type:
       description: |2-
          - GCP: The Google Cloud Platform cloud provider.
@@ -18190,9 +18206,13 @@ components:
       type: object
     UpdateClientCACertBody:
       example:
+        update_mode: APPEND
         x509_pem_cert: '-----BEGIN CERTIFICATE-----...'
       properties:
+        update_mode:
+          $ref: '#/components/schemas/ClientCACertUpdateMode.Type'
         x509_pem_cert:
+          description: x509_pem_cert is the PEM-encoded X.509 CA certificate to apply.
           type: string
       title: UpdateClientCACertRequest
       type: object

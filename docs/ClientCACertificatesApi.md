@@ -244,7 +244,7 @@ import (
 )
 
 func main() {
-    clusterId := "clusterId_example" // string | 
+    clusterId := "clusterId_example" // string | cluster_id is the ID of the cluster whose client CA cert is being updated.
     updateClientCACertBody := *openapiclient.NewUpdateClientCACertBody() // UpdateClientCACertBody | 
 
     configuration := openapiclient.NewConfiguration()
@@ -264,7 +264,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**clusterId** | **string** |  | 
+**clusterId** | **string** | cluster_id is the ID of the cluster whose client CA cert is being updated. | 
 
 ### Other Parameters
 

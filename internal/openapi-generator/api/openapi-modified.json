@@ -4816,6 +4816,7 @@
           {
             "name": "cluster_id",
             "in": "path",
+            "description": "cluster_id is the ID of the cluster whose client CA cert is being updated.",
             "required": true,
             "schema": {
               "type": "string"
@@ -4900,7 +4901,7 @@
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
-            "source": "curl --request PATCH \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/client-ca-cert \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"x509_pem_cert\":\"-----BEGIN CERTIFICATE-----...\"}'"
+            "source": "curl --request PATCH \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/client-ca-cert \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"update_mode\":\"APPEND\",\"x509_pem_cert\":\"-----BEGIN CERTIFICATE-----...\"}'"
           }
         ]
       },
@@ -15895,6 +15896,15 @@
           "FAILED"
         ]
       },
+      "ClientCACertUpdateMode.Type": {
+        "description": "- REPLACE: REPLACE overwrites all existing certs with the provided cert. This\nmatches the behavior of the SetClientCACert (POST) endpoint. This is the\ndefault when update_mode is omitted.\n - APPEND: APPEND adds the provided cert to the existing cert bundle. This mode\nenables no-downtime certificate rotation: append the new cert, roll it\nout across clients, then REPLACE with only the new cert to drop the old\none.",
+        "type": "string",
+        "enum": [
+          "REPLACE",
+          "APPEND"
+        ],
+        "title": "Defines the mode used for CA certificate updates:"
+      },
       "CloudProvider.Type": {
         "description": " - GCP: The Google Cloud Platform cloud provider.\n - AWS: The Amazon Web Services cloud provider.\n - AZURE: The Azure cloud provider.",
         "type": "string",
@@ -20384,11 +20394,16 @@
       "UpdateClientCACertBody": {
         "type": "object",
         "properties": {
+          "update_mode": {
+            "$ref": "#/components/schemas/ClientCACertUpdateMode.Type"
+          },
           "x509_pem_cert": {
+            "description": "x509_pem_cert is the PEM-encoded X.509 CA certificate to apply.",
             "type": "string"
           }
         },
         "example": {
+          "update_mode": "APPEND",
           "x509_pem_cert": "-----BEGIN CERTIFICATE-----..."
         },
         "title": "UpdateClientCACertRequest"

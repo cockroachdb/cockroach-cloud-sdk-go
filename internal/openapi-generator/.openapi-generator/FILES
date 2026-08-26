@@ -44,6 +44,7 @@ docs/CMEKRegionSpecification.md
 docs/CMEKStatus.md
 docs/ClientCACertInfo.md
 docs/ClientCACertStatus.md
+docs/ClientCACertUpdateModeType.md
 docs/ClientCACertificatesApi.md
 docs/CloudProviderRegion.md
 docs/CloudProviderType.md
@@ -299,6 +300,7 @@ model_built_in_from_groups.go
 model_built_in_role.go
 model_client_ca_cert_info.go
 model_client_ca_cert_status.go
+model_client_ca_cert_update_mode_type.go
 model_cloud_provider_region.go
 model_cloud_provider_type.go
 model_cloud_watch_metric_export_info.go
