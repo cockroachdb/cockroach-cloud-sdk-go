@@ -161,6 +161,7 @@ Can be used by the following roles assigned at the organization, folder or clust
 - CLUSTER_OPERATOR_WRITER
 - CLUSTER_DEVELOPER
 - AUDITOR
+- CLUSTER_DATA_ACCESSOR
 
 
 ### Example

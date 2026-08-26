@@ -251,7 +251,7 @@ func main() {
     paginationAsOfTime := time.Now() // time.Time |  (optional)
     paginationSortOrder := "paginationSortOrder_example" // string |  - ASC: Sort in ascending order. This is the default unless otherwise specified.  - DESC: Sort in descending order. (optional)
     serviceAccountName := "serviceAccountName_example" // string | Optional case-insensitive filter for service account name. (optional)
-    roles := []string{"Roles_example"} // []string | If specified, only service accounts holding at least one of these roles (either directly or via a group) are returned.   - FOLDER_ADMIN: Preview: A folder admin role.  - FOLDER_MOVER: Preview: A folder mover role.  - AUDITOR: Limited Access: An auditor role with org-wide, read-only visibility into configuration, identity, authorization, audit logs, and cluster metadata. (optional)
+    roles := []string{"Roles_example"} // []string | If specified, only service accounts holding at least one of these roles (either directly or via a group) are returned.   - FOLDER_ADMIN: Preview: A folder admin role.  - FOLDER_MOVER: Preview: A folder mover role.  - AUDITOR: Limited Access: An auditor role with org-wide, read-only visibility into configuration, identity, authorization, audit logs, and cluster metadata.  - CLUSTER_DATA_ACCESSOR: Limited Access: A cluster data accessor role with SQL and data access to clusters (databases, SQL shell, DB Console) without cluster-management privileges. (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewClient(configuration)
@@ -282,7 +282,7 @@ Name | Type | Description  | Notes
  **paginationAsOfTime** | **time.Time** |  | 
  **paginationSortOrder** | **string** |  - ASC: Sort in ascending order. This is the default unless otherwise specified.  - DESC: Sort in descending order. | 
  **serviceAccountName** | **string** | Optional case-insensitive filter for service account name. | 
- **roles** | **[]string** | If specified, only service accounts holding at least one of these roles (either directly or via a group) are returned.   - FOLDER_ADMIN: Preview: A folder admin role.  - FOLDER_MOVER: Preview: A folder mover role.  - AUDITOR: Limited Access: An auditor role with org-wide, read-only visibility into configuration, identity, authorization, audit logs, and cluster metadata. | 
+ **roles** | **[]string** | If specified, only service accounts holding at least one of these roles (either directly or via a group) are returned.   - FOLDER_ADMIN: Preview: A folder admin role.  - FOLDER_MOVER: Preview: A folder mover role.  - AUDITOR: Limited Access: An auditor role with org-wide, read-only visibility into configuration, identity, authorization, audit logs, and cluster metadata.  - CLUSTER_DATA_ACCESSOR: Limited Access: A cluster data accessor role with SQL and data access to clusters (databases, SQL shell, DB Console) without cluster-management privileges. | 
 
 ### Return type
 

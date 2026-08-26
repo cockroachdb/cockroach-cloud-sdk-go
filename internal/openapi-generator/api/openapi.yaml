@@ -2372,6 +2372,7 @@ paths:
         - METRICS_VIEWER
         - CLUSTER_MONITOR
         - AUDITOR
+        - CLUSTER_DATA_ACCESSOR
       operationId: CockroachCloud_ListClusters
       parameters:
       - description: |-
@@ -2739,6 +2740,7 @@ paths:
         - METRICS_VIEWER
         - CLUSTER_MONITOR
         - AUDITOR
+        - CLUSTER_DATA_ACCESSOR
       operationId: CockroachCloud_GetCluster
       parameters:
       - explode: false
@@ -4076,6 +4078,7 @@ paths:
         - METRICS_VIEWER
         - CLUSTER_MONITOR
         - AUDITOR
+        - CLUSTER_DATA_ACCESSOR
       operationId: CockroachCloud_GetConnectionString
       parameters:
       - explode: false
@@ -4171,6 +4174,7 @@ paths:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
         - CLUSTER_DEVELOPER
+        - CLUSTER_DATA_ACCESSOR
       operationId: CockroachCloud_ListDatabases
       parameters:
       - explode: false
@@ -4269,6 +4273,7 @@ paths:
         Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
+        - CLUSTER_DATA_ACCESSOR
       operationId: CockroachCloud_EditDatabase2
       parameters:
       - explode: false
@@ -4338,6 +4343,7 @@ paths:
         Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
+        - CLUSTER_DATA_ACCESSOR
       operationId: CockroachCloud_CreateDatabase
       parameters:
       - explode: false
@@ -4408,6 +4414,7 @@ paths:
         Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
+        - CLUSTER_DATA_ACCESSOR
       operationId: CockroachCloud_DeleteDatabase
       parameters:
       - explode: false
@@ -4477,6 +4484,7 @@ paths:
         Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
+        - CLUSTER_DATA_ACCESSOR
       operationId: CockroachCloud_EditDatabase
       parameters:
       - explode: false
@@ -7939,6 +7947,7 @@ paths:
         - CLUSTER_OPERATOR_WRITER
         - CLUSTER_DEVELOPER
         - AUDITOR
+        - CLUSTER_DATA_ACCESSOR
       operationId: CockroachCloud_ListClusterNodes
       parameters:
       - explode: false
@@ -8308,6 +8317,7 @@ paths:
         - CLUSTER_OPERATOR_WRITER
         - CLUSTER_DEVELOPER
         - AUDITOR
+        - CLUSTER_DATA_ACCESSOR
       operationId: CockroachCloud_GetClusterRuntimeScanning
       parameters:
       - description: cluster_id is the ID of the cluster.
@@ -8983,6 +8993,7 @@ paths:
         - METRICS_VIEWER
         - CLUSTER_MONITOR
         - AUDITOR
+        - CLUSTER_DATA_ACCESSOR
       operationId: CockroachCloud_ListFolders
       parameters:
       - description: |-
@@ -9227,6 +9238,7 @@ paths:
         - METRICS_VIEWER
         - CLUSTER_MONITOR
         - AUDITOR
+        - CLUSTER_DATA_ACCESSOR
       operationId: CockroachCloud_GetFolder
       parameters:
       - explode: false
@@ -9374,6 +9386,7 @@ paths:
         - METRICS_VIEWER
         - CLUSTER_MONITOR
         - AUDITOR
+        - CLUSTER_DATA_ACCESSOR
       operationId: CockroachCloud_ListFolderContents
       parameters:
       - explode: false
@@ -10701,6 +10714,7 @@ paths:
           - CLUSTER_MONITOR
           - BILLING_VIEWER
           - AUDITOR
+          - CLUSTER_DATA_ACCESSOR
           type: string
         style: simple
       responses:
@@ -10810,6 +10824,7 @@ paths:
           - CLUSTER_MONITOR
           - BILLING_VIEWER
           - AUDITOR
+          - CLUSTER_DATA_ACCESSOR
           type: string
         style: simple
       responses:
@@ -10922,6 +10937,7 @@ paths:
            - FOLDER_ADMIN: Preview: A folder admin role.
            - FOLDER_MOVER: Preview: A folder mover role.
            - AUDITOR: Limited Access: An auditor role with org-wide, read-only visibility into configuration, identity, authorization, audit logs, and cluster metadata.
+           - CLUSTER_DATA_ACCESSOR: Limited Access: A cluster data accessor role with SQL and data access to clusters (databases, SQL shell, DB Console) without cluster-management privileges.
         explode: true
         in: query
         name: roles
@@ -10942,6 +10958,7 @@ paths:
             - CLUSTER_MONITOR
             - BILLING_VIEWER
             - AUDITOR
+            - CLUSTER_DATA_ACCESSOR
             type: string
           type: array
         style: form
@@ -16553,6 +16570,7 @@ components:
          - FOLDER_ADMIN: Preview: A folder admin role.
          - FOLDER_MOVER: Preview: A folder mover role.
          - AUDITOR: Limited Access: An auditor role with org-wide, read-only visibility into configuration, identity, authorization, audit logs, and cluster metadata.
+         - CLUSTER_DATA_ACCESSOR: Limited Access: A cluster data accessor role with SQL and data access to clusters (databases, SQL shell, DB Console) without cluster-management privileges.
       enum:
       - BILLING_COORDINATOR
       - ORG_ADMIN
@@ -16567,6 +16585,7 @@ components:
       - CLUSTER_MONITOR
       - BILLING_VIEWER
       - AUDITOR
+      - CLUSTER_DATA_ACCESSOR
       type: string
     PatchGroupBody:
       example:

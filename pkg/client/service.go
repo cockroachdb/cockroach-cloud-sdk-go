@@ -20465,7 +20465,7 @@ type ListServiceAccountsOptions struct {
 	// Optional case-insensitive filter for service account name.
 	ServiceAccountName *string
 
-	// If specified, only service accounts holding at least one of these roles (either directly or via a group) are returned.   - FOLDER_ADMIN: Preview: A folder admin role.  - FOLDER_MOVER: Preview: A folder mover role.  - AUDITOR: Limited Access: An auditor role with org-wide, read-only visibility into configuration, identity, authorization, audit logs, and cluster metadata.
+	// If specified, only service accounts holding at least one of these roles (either directly or via a group) are returned.   - FOLDER_ADMIN: Preview: A folder admin role.  - FOLDER_MOVER: Preview: A folder mover role.  - AUDITOR: Limited Access: An auditor role with org-wide, read-only visibility into configuration, identity, authorization, audit logs, and cluster metadata.  - CLUSTER_DATA_ACCESSOR: Limited Access: A cluster data accessor role with SQL and data access to clusters (databases, SQL shell, DB Console) without cluster-management privileges.
 	Roles *[]string
 }
 
