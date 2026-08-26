@@ -161,6 +161,7 @@ Retrieves the JWT Issuer configuration
 
 Can be used by the following roles assigned at the organization scope:
 - ORG_ADMIN
+- AUDITOR
 
 
 ### Example
@@ -231,6 +232,7 @@ Lists all the JWT Issuer configurations registered for the CockroachDB Cloud org
 
 Can be used by the following roles assigned at the organization scope:
 - ORG_ADMIN
+- AUDITOR
 
 
 ### Example

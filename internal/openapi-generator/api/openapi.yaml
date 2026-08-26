@@ -54,6 +54,7 @@ paths:
       description: |
         Can be used by the following roles assigned at the organization scope:
         - ORG_ADMIN
+        - AUDITOR
       operationId: CockroachCloud_GetGroups
       parameters:
       - explode: true
@@ -215,6 +216,7 @@ paths:
 
         Can be used by the following roles assigned at the organization scope:
         - ORG_ADMIN
+        - AUDITOR
       operationId: CockroachCloud_SearchGroups
       requestBody:
         content:
@@ -276,6 +278,7 @@ paths:
       description: |
         Can be used by the following roles assigned at the organization scope:
         - ORG_ADMIN
+        - AUDITOR
       operationId: CockroachCloud_GetGroups2
       requestBody:
         content:
@@ -398,6 +401,7 @@ paths:
       description: |
         Can be used by the following roles assigned at the organization scope:
         - ORG_ADMIN
+        - AUDITOR
       operationId: CockroachCloud_GetGroup
       parameters:
       - explode: false
@@ -614,6 +618,7 @@ paths:
 
         Can be used by the following roles assigned at the organization scope:
         - ORG_ADMIN
+        - AUDITOR
       operationId: CockroachCloud_SearchGroup
       parameters:
       - explode: false
@@ -683,6 +688,7 @@ paths:
       description: |
         Can be used by the following roles assigned at the organization scope:
         - ORG_ADMIN
+        - AUDITOR
       operationId: CockroachCloud_GetGroup2
       parameters:
       - explode: false
@@ -1086,6 +1092,7 @@ paths:
       description: |
         Can be used by the following roles assigned at the organization scope:
         - ORG_ADMIN
+        - AUDITOR
       operationId: CockroachCloud_GetUsers
       parameters:
       - explode: true
@@ -1247,6 +1254,7 @@ paths:
 
         Can be used by the following roles assigned at the organization scope:
         - ORG_ADMIN
+        - AUDITOR
       operationId: CockroachCloud_SearchUsers
       requestBody:
         content:
@@ -1308,6 +1316,7 @@ paths:
       description: |
         Can be used by the following roles assigned at the organization scope:
         - ORG_ADMIN
+        - AUDITOR
       operationId: CockroachCloud_GetUsers2
       requestBody:
         content:
@@ -1430,6 +1439,7 @@ paths:
       description: |
         Can be used by the following roles assigned at the organization scope:
         - ORG_ADMIN
+        - AUDITOR
       operationId: CockroachCloud_GetUser
       parameters:
       - explode: false
@@ -1646,6 +1656,7 @@ paths:
 
         Can be used by the following roles assigned at the organization scope:
         - ORG_ADMIN
+        - AUDITOR
       operationId: CockroachCloud_SearchUser
       parameters:
       - explode: false
@@ -1715,6 +1726,7 @@ paths:
       description: |
         Can be used by the following roles assigned at the organization scope:
         - ORG_ADMIN
+        - AUDITOR
       operationId: CockroachCloud_GetUser2
       parameters:
       - explode: false
@@ -1787,6 +1799,7 @@ paths:
         Can be used by the following roles assigned at the organization scope:
         - ORG_ADMIN
         - CLUSTER_ADMIN
+        - AUDITOR
       operationId: CockroachCloud_ListApiKeys
       parameters:
       - description: |-
@@ -2020,6 +2033,7 @@ paths:
         Can be used by the following roles assigned at the organization scope:
         - ORG_ADMIN
         - CLUSTER_ADMIN
+        - AUDITOR
       operationId: CockroachCloud_GetApiKey
       parameters:
       - description: the ID of the api key.
@@ -2158,6 +2172,7 @@ paths:
       description: |
         Can be used by the following roles assigned at the organization scope:
         - ORG_ADMIN
+        - AUDITOR
       operationId: CockroachCloud_ListAuditLogs
       parameters:
       - description: |-
@@ -2356,6 +2371,7 @@ paths:
         - FOLDER_MOVER
         - METRICS_VIEWER
         - CLUSTER_MONITOR
+        - AUDITOR
       operationId: CockroachCloud_ListClusters
       parameters:
       - description: |-
@@ -2722,6 +2738,7 @@ paths:
         - FOLDER_MOVER
         - METRICS_VIEWER
         - CLUSTER_MONITOR
+        - AUDITOR
       operationId: CockroachCloud_GetCluster
       parameters:
       - explode: false
@@ -2856,6 +2873,7 @@ paths:
         Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
+        - AUDITOR
       operationId: CockroachCloud_ListBackups
       parameters:
       - description: The cluster associated with the backups being retrieved.
@@ -2975,6 +2993,7 @@ paths:
         Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
+        - AUDITOR
       operationId: CockroachCloud_GetBackupConfiguration
       parameters:
       - description: The UUID of the cluster that this backup configuration belongs
@@ -3114,6 +3133,7 @@ paths:
         Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
+        - AUDITOR
       operationId: CockroachCloud_ListBlackoutWindows
       parameters:
       - explode: false
@@ -3362,6 +3382,7 @@ paths:
         Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
+        - AUDITOR
       operationId: CockroachCloud_GetBlackoutWindow
       parameters:
       - explode: false
@@ -3777,6 +3798,7 @@ paths:
         Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
+        - AUDITOR
       operationId: CockroachCloud_GetCMEKClusterInfo
       parameters:
       - explode: false
@@ -4053,6 +4075,7 @@ paths:
         - FOLDER_MOVER
         - METRICS_VIEWER
         - CLUSTER_MONITOR
+        - AUDITOR
       operationId: CockroachCloud_GetConnectionString
       parameters:
       - explode: false
@@ -4740,6 +4763,7 @@ paths:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
         - METRICS_VIEWER
+        - AUDITOR
       operationId: CockroachCloud_GetLogExportInfo
       parameters:
       - explode: false
@@ -4941,6 +4965,7 @@ paths:
         Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
+        - AUDITOR
       operationId: CockroachCloud_GetMaintenanceWindow
       parameters:
       - explode: false
@@ -5141,6 +5166,7 @@ paths:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
         - METRICS_VIEWER
+        - AUDITOR
       operationId: CockroachCloud_GetCloudWatchMetricExportInfo
       parameters:
       - explode: false
@@ -5345,6 +5371,7 @@ paths:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
         - METRICS_VIEWER
+        - AUDITOR
       operationId: CockroachCloud_GetDatadogMetricExportInfo
       parameters:
       - explode: false
@@ -5549,6 +5576,7 @@ paths:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
         - METRICS_VIEWER
+        - AUDITOR
       operationId: CockroachCloud_GetPrometheusMetricExportInfo
       parameters:
       - explode: false
@@ -5683,6 +5711,7 @@ paths:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
         - CLUSTER_DEVELOPER
+        - AUDITOR
       operationId: CockroachCloud_ListAllowlistEntries
       parameters:
       - explode: false
@@ -6100,6 +6129,7 @@ paths:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
         - CLUSTER_DEVELOPER
+        - AUDITOR
       operationId: CockroachCloud_ListAwsEndpointConnections
       parameters:
       - description: cluster_id is the ID for the cluster.
@@ -6248,6 +6278,7 @@ paths:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
         - CLUSTER_DEVELOPER
+        - AUDITOR
       operationId: CockroachCloud_ListEgressPrivateEndpoints
       parameters:
       - description: cluster_id identifies the CockroachDB Cloud cluster whose egress
@@ -6503,6 +6534,7 @@ paths:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
         - CLUSTER_DEVELOPER
+        - AUDITOR
       operationId: CockroachCloud_GetEgressPrivateEndpoint
       parameters:
       - description: cluster_id identifies the CockroachDB Cloud cluster owning the
@@ -6753,6 +6785,7 @@ paths:
         Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
+        - AUDITOR
       operationId: CockroachCloud_ListEgressRules
       parameters:
       - description: |-
@@ -7092,6 +7125,7 @@ paths:
         Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
+        - AUDITOR
       operationId: CockroachCloud_GetEgressRule
       parameters:
       - description: cluster_id uniquely identifies the cluster owning the egress
@@ -7252,6 +7286,7 @@ paths:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
         - CLUSTER_DEVELOPER
+        - AUDITOR
       operationId: CockroachCloud_ListPrivateEndpointConnections
       parameters:
       - description: cluster_id is the ID for the cluster.
@@ -7478,6 +7513,7 @@ paths:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
         - CLUSTER_DEVELOPER
+        - AUDITOR
       operationId: CockroachCloud_ListPrivateEndpointServices
       parameters:
       - description: cluster_id is the ID for the cluster.
@@ -7605,6 +7641,7 @@ paths:
         Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
+        - AUDITOR
       operationId: CockroachCloud_ListPrivateEndpointTrustedOwners
       parameters:
       - description: cluster_id is the ID for the cluster.
@@ -7819,6 +7856,7 @@ paths:
         Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
+        - AUDITOR
       operationId: CockroachCloud_GetPrivateEndpointTrustedOwner
       parameters:
       - description: cluster_id is the ID for the cluster.
@@ -7900,6 +7938,7 @@ paths:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
         - CLUSTER_DEVELOPER
+        - AUDITOR
       operationId: CockroachCloud_ListClusterNodes
       parameters:
       - explode: false
@@ -8007,6 +8046,7 @@ paths:
         Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
+        - AUDITOR
       operationId: CockroachCloud_ListRestores
       parameters:
       - description: The ID of the cluster where the restores ran or are currently
@@ -8127,6 +8167,7 @@ paths:
         Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
+        - AUDITOR
       operationId: CockroachCloud_GetRestore
       parameters:
       - description: The ID of the cluster where the restore ran or is currently running.
@@ -8266,6 +8307,7 @@ paths:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
         - CLUSTER_DEVELOPER
+        - AUDITOR
       operationId: CockroachCloud_GetClusterRuntimeScanning
       parameters:
       - description: cluster_id is the ID of the cluster.
@@ -8721,6 +8763,7 @@ paths:
         Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
+        - AUDITOR
       operationId: CockroachCloud_GetClusterVersionDeferral
       parameters:
       - explode: false
@@ -8939,6 +8982,7 @@ paths:
         - FOLDER_MOVER
         - METRICS_VIEWER
         - CLUSTER_MONITOR
+        - AUDITOR
       operationId: CockroachCloud_ListFolders
       parameters:
       - description: |-
@@ -9182,6 +9226,7 @@ paths:
         - FOLDER_MOVER
         - METRICS_VIEWER
         - CLUSTER_MONITOR
+        - AUDITOR
       operationId: CockroachCloud_GetFolder
       parameters:
       - explode: false
@@ -9328,6 +9373,7 @@ paths:
         - FOLDER_MOVER
         - METRICS_VIEWER
         - CLUSTER_MONITOR
+        - AUDITOR
       operationId: CockroachCloud_ListFolderContents
       parameters:
       - explode: false
@@ -9592,6 +9638,7 @@ paths:
 
         Can be used by the following roles assigned at the organization scope:
         - ORG_ADMIN
+        - AUDITOR
       operationId: CockroachCloud_ListJWTIssuers
       parameters:
       - explode: true
@@ -9821,6 +9868,7 @@ paths:
 
         Can be used by the following roles assigned at the organization scope:
         - ORG_ADMIN
+        - AUDITOR
       operationId: CockroachCloud_GetJWTIssuer
       parameters:
       - description: The unique identifier of the JWT Issuer resource
@@ -9964,6 +10012,7 @@ paths:
         Can be used by the following roles assigned at the organization scope:
         - ORG_ADMIN
         - ORG_MEMBER
+        - AUDITOR
       operationId: CockroachCloud_GetOrganizationInfo
       responses:
         "200":
@@ -10362,6 +10411,7 @@ paths:
         - ORG_ADMIN
         - CLUSTER_ADMIN
         - FOLDER_ADMIN
+        - AUDITOR
       operationId: CockroachCloud_ListRoleGrants
       parameters:
       - explode: true
@@ -10457,6 +10507,7 @@ paths:
         - ORG_ADMIN
         - CLUSTER_ADMIN
         - FOLDER_ADMIN
+        - AUDITOR
       operationId: CockroachCloud_GetAllRolesForUser
       parameters:
       - description: |-
@@ -10649,6 +10700,7 @@ paths:
           - METRICS_VIEWER
           - CLUSTER_MONITOR
           - BILLING_VIEWER
+          - AUDITOR
           type: string
         style: simple
       responses:
@@ -10757,6 +10809,7 @@ paths:
           - METRICS_VIEWER
           - CLUSTER_MONITOR
           - BILLING_VIEWER
+          - AUDITOR
           type: string
         style: simple
       responses:
@@ -10815,6 +10868,7 @@ paths:
         Can be used by the following roles assigned at the organization scope:
         - ORG_ADMIN
         - CLUSTER_ADMIN
+        - AUDITOR
       operationId: CockroachCloud_ListServiceAccounts
       parameters:
       - explode: true
@@ -10867,6 +10921,7 @@ paths:
 
            - FOLDER_ADMIN: Preview: A folder admin role.
            - FOLDER_MOVER: Preview: A folder mover role.
+           - AUDITOR: Limited Access: An auditor role with org-wide, read-only visibility into configuration, identity, authorization, audit logs, and cluster metadata.
         explode: true
         in: query
         name: roles
@@ -10886,6 +10941,7 @@ paths:
             - METRICS_VIEWER
             - CLUSTER_MONITOR
             - BILLING_VIEWER
+            - AUDITOR
             type: string
           type: array
         style: form
@@ -11075,6 +11131,7 @@ paths:
         Can be used by the following roles assigned at the organization scope:
         - ORG_ADMIN
         - CLUSTER_ADMIN
+        - AUDITOR
       operationId: CockroachCloud_GetServiceAccount
       parameters:
       - description: The ID of the service account.
@@ -11216,6 +11273,7 @@ paths:
         - ORG_ADMIN
         - CLUSTER_ADMIN
         - FOLDER_ADMIN
+        - AUDITOR
       operationId: CockroachCloud_GetPersonUsersByEmail
       parameters:
       - description: an email address is required.
@@ -16492,6 +16550,7 @@ components:
       description: |2-
          - FOLDER_ADMIN: Preview: A folder admin role.
          - FOLDER_MOVER: Preview: A folder mover role.
+         - AUDITOR: Limited Access: An auditor role with org-wide, read-only visibility into configuration, identity, authorization, audit logs, and cluster metadata.
       enum:
       - BILLING_COORDINATOR
       - ORG_ADMIN
@@ -16505,6 +16564,7 @@ components:
       - METRICS_VIEWER
       - CLUSTER_MONITOR
       - BILLING_VIEWER
+      - AUDITOR
       type: string
     PatchGroupBody:
       example:

@@ -167,6 +167,7 @@ Get a blackout window by its ID for a cluster
 Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
+- AUDITOR
 
 
 ### Example
@@ -239,6 +240,7 @@ List all blackout windows for a cluster
 Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
+- AUDITOR
 
 
 ### Example

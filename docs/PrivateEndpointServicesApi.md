@@ -311,6 +311,7 @@ Get a private endpoint trusted owner entry for a cluster
 Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
+- AUDITOR
 
 
 ### Example
@@ -384,6 +385,7 @@ Can be used by the following roles assigned at the organization, folder or clust
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
 - CLUSTER_DEVELOPER
+- AUDITOR
 
 
 ### Example
@@ -454,6 +456,7 @@ Can be used by the following roles assigned at the organization, folder or clust
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
 - CLUSTER_DEVELOPER
+- AUDITOR
 
 
 ### Example
@@ -526,6 +529,7 @@ Can be used by the following roles assigned at the organization, folder or clust
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
 - CLUSTER_DEVELOPER
+- AUDITOR
 
 
 ### Example
@@ -595,6 +599,7 @@ List all private endpoint trusted owners for a cluster
 Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
+- AUDITOR
 
 
 ### Example

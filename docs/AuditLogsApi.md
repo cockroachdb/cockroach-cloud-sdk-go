@@ -16,6 +16,7 @@ List audit logs
 
 Can be used by the following roles assigned at the organization scope:
 - ORG_ADMIN
+- AUDITOR
 
 
 ### Example

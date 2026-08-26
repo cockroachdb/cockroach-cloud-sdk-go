@@ -93,6 +93,7 @@ Get the backup configuration for a cluster
 Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
+- AUDITOR
 
 
 ### Example
@@ -162,6 +163,7 @@ View a restore job
 Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
+- AUDITOR
 
 
 ### Example
@@ -234,6 +236,7 @@ List cluster backups
 Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
+- AUDITOR
 
 
 ### Example
@@ -317,6 +320,7 @@ List restore jobs
 Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
+- AUDITOR
 
 
 ### Example

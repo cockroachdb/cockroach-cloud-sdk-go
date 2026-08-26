@@ -156,6 +156,7 @@ Get an API Key by ID
 Can be used by the following roles assigned at the organization scope:
 - ORG_ADMIN
 - CLUSTER_ADMIN
+- AUDITOR
 
 
 ### Example
@@ -227,6 +228,7 @@ Sort order: created_at
 Can be used by the following roles assigned at the organization scope:
 - ORG_ADMIN
 - CLUSTER_ADMIN
+- AUDITOR
 
 
 ### Example

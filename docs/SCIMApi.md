@@ -310,6 +310,7 @@ Get a group by ID
 
 Can be used by the following roles assigned at the organization scope:
 - ORG_ADMIN
+- AUDITOR
 
 
 ### Example
@@ -383,6 +384,7 @@ Search a group by ID (Deprecated)
 
 Can be used by the following roles assigned at the organization scope:
 - ORG_ADMIN
+- AUDITOR
 
 
 ### Example
@@ -453,6 +455,7 @@ List groups
 
 Can be used by the following roles assigned at the organization scope:
 - ORG_ADMIN
+- AUDITOR
 
 
 ### Example
@@ -529,6 +532,7 @@ Search groups (Deprecated)
 
 Can be used by the following roles assigned at the organization scope:
 - ORG_ADMIN
+- AUDITOR
 
 
 ### Example
@@ -934,6 +938,7 @@ Get a user by ID
 
 Can be used by the following roles assigned at the organization scope:
 - ORG_ADMIN
+- AUDITOR
 
 
 ### Example
@@ -1007,6 +1012,7 @@ Search for a user by ID (Deprecated)
 
 Can be used by the following roles assigned at the organization scope:
 - ORG_ADMIN
+- AUDITOR
 
 
 ### Example
@@ -1077,6 +1083,7 @@ List Users
 
 Can be used by the following roles assigned at the organization scope:
 - ORG_ADMIN
+- AUDITOR
 
 
 ### Example
@@ -1153,6 +1160,7 @@ Search User (Deprecated)
 
 Can be used by the following roles assigned at the organization scope:
 - ORG_ADMIN
+- AUDITOR
 
 
 ### Example
@@ -1366,6 +1374,7 @@ Similar to GetGroup however search parameters are passed via the POST body. See 
 
 Can be used by the following roles assigned at the organization scope:
 - ORG_ADMIN
+- AUDITOR
 
 
 ### Example
@@ -1438,6 +1447,7 @@ Similar to GetGroups however search parameters are passed via the POST body. See
 
 Can be used by the following roles assigned at the organization scope:
 - ORG_ADMIN
+- AUDITOR
 
 
 ### Example
@@ -1507,6 +1517,7 @@ Similar to GetUser however search parameters are passed via the POST body. See h
 
 Can be used by the following roles assigned at the organization scope:
 - ORG_ADMIN
+- AUDITOR
 
 
 ### Example
@@ -1579,6 +1590,7 @@ Similar to GetUsers however search parameters are passed via the POST body. See 
 
 Can be used by the following roles assigned at the organization scope:
 - ORG_ADMIN
+- AUDITOR
 
 
 ### Example

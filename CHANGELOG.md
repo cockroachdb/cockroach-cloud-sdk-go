@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Add the `AUDITOR` organization user role, which grants org-wide read-only access.
+
 ## [9.0.0] - 2026-08-07
 
 ### Added

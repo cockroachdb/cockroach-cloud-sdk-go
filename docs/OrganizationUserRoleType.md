@@ -1,7 +1,7 @@
 # OrganizationUserRoleType
 
 ## Enum
->  - FOLDER_ADMIN: Preview: A folder admin role.  - FOLDER_MOVER: Preview: A folder mover role.
+>  - FOLDER_ADMIN: Preview: A folder admin role.  - FOLDER_MOVER: Preview: A folder mover role.  - AUDITOR: Limited Access: An auditor role with org-wide, read-only visibility into configuration, identity, authorization, audit logs, and cluster metadata.
 
 * `BILLING_COORDINATOR` (value: `"BILLING_COORDINATOR"`)
 
@@ -26,6 +26,8 @@
 * `CLUSTER_MONITOR` (value: `"CLUSTER_MONITOR"`)
 
 * `BILLING_VIEWER` (value: `"BILLING_VIEWER"`)
+
+* `AUDITOR` (value: `"AUDITOR"`)
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
