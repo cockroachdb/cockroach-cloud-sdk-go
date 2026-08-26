@@ -218,6 +218,10 @@
 
 * `REMOVE_DISPOSABLE_EMAIL_OVERRIDE` (value: `"AUDIT_LOG_ACTION_REMOVE_DISPOSABLE_EMAIL_OVERRIDE"`)
 
+* `CREATE_SA_CREDENTIAL` (value: `"AUDIT_LOG_ACTION_CREATE_SA_CREDENTIAL"`)
+
+* `DELETE_SA_CREDENTIAL` (value: `"AUDIT_LOG_ACTION_DELETE_SA_CREDENTIAL"`)
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

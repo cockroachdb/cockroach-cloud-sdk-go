@@ -76,6 +76,7 @@ docs/CreateGroupRequest.md
 docs/CreatePhysicalReplicationStreamRequest.md
 docs/CreateRestoreBody.md
 docs/CreateSQLUserBody.md
+docs/CreateServiceAccountCredentialBody.md
 docs/CreateServiceAccountRequest.md
 docs/CreateUserRequest.md
 docs/CreateUserResponse.md
@@ -161,6 +162,7 @@ docs/ListPrivateEndpointTrustedOwnersResponse.md
 docs/ListRestoresResponse.md
 docs/ListRoleGrantsResponse.md
 docs/ListSQLUsersResponse.md
+docs/ListServiceAccountCredentialsResponse.md
 docs/ListServiceAccountsResponse.md
 docs/LogExportApi.md
 docs/LogExportClusterInfo.md
@@ -241,6 +243,9 @@ docs/ServerlessClusterConfig.md
 docs/ServerlessClusterCreateSpecification.md
 docs/ServerlessClusterUpdateSpecification.md
 docs/ServiceAccount.md
+docs/ServiceAccountCredential.md
+docs/ServiceAccountCredentialAlgorithmType.md
+docs/ServiceAccountCredentialTypeType.md
 docs/ServiceAccountsApi.md
 docs/SetAWSEndpointConnectionStatusType.md
 docs/SetAwsEndpointConnectionStateBody.md
@@ -336,6 +341,7 @@ model_create_folder_request.go
 model_create_group_request.go
 model_create_physical_replication_stream_request.go
 model_create_restore_body.go
+model_create_service_account_credential_body.go
 model_create_service_account_request.go
 model_create_sql_user_body.go
 model_create_user_request.go
@@ -414,6 +420,7 @@ model_list_major_cluster_versions_response.go
 model_list_private_endpoint_trusted_owners_response.go
 model_list_restores_response.go
 model_list_role_grants_response.go
+model_list_service_account_credentials_response.go
 model_list_service_accounts_response.go
 model_list_sql_users_response.go
 model_log_export_cluster_info.go
@@ -484,6 +491,9 @@ model_serverless_cluster_config.go
 model_serverless_cluster_create_specification.go
 model_serverless_cluster_update_specification.go
 model_service_account.go
+model_service_account_credential.go
+model_service_account_credential_algorithm_type.go
+model_service_account_credential_type_type.go
 model_set_aws_endpoint_connection_state_body.go
 model_set_aws_endpoint_connection_status_type.go
 model_set_client_ca_cert_body.go

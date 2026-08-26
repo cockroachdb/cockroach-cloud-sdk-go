@@ -205,8 +205,11 @@ API | Method | HTTP request | Description
 [SQLUsersApi](docs/SQLUsersApi.md) | **ListSQLUsers** | **Get** /api/v1/clusters/{cluster_id}/sql-users | List SQL users for a cluster
 [SQLUsersApi](docs/SQLUsersApi.md) | **UpdateSQLUserPassword** | **Put** /api/v1/clusters/{cluster_id}/sql-users/{name}/password | Update a SQL user&#39;s password
 [ServiceAccountsApi](docs/ServiceAccountsApi.md) | **CreateServiceAccount** | **Post** /api/v1/service-accounts | Create a service account
+[ServiceAccountsApi](docs/ServiceAccountsApi.md) | **CreateServiceAccountCredential** | **Post** /api/v1/service-accounts/{service_account_id}/credentials | Create an OAuth credential for a service account
 [ServiceAccountsApi](docs/ServiceAccountsApi.md) | **DeleteServiceAccount** | **Delete** /api/v1/service-accounts/{id} | Delete a service account
+[ServiceAccountsApi](docs/ServiceAccountsApi.md) | **DeleteServiceAccountCredential** | **Delete** /api/v1/service-accounts/{service_account_id}/credentials/{credential_id} | Delete a service account&#39;s OAuth credential
 [ServiceAccountsApi](docs/ServiceAccountsApi.md) | **GetServiceAccount** | **Get** /api/v1/service-accounts/{id} | Get a service account by ID
+[ServiceAccountsApi](docs/ServiceAccountsApi.md) | **ListServiceAccountCredentials** | **Get** /api/v1/service-accounts/{service_account_id}/credentials | List a service account&#39;s OAuth credentials
 [ServiceAccountsApi](docs/ServiceAccountsApi.md) | **ListServiceAccounts** | **Get** /api/v1/service-accounts | List service accounts for an organization
 [ServiceAccountsApi](docs/ServiceAccountsApi.md) | **UpdateServiceAccount** | **Patch** /api/v1/service-accounts/{id} | Update a service account
 [VersionDeferralApi](docs/VersionDeferralApi.md) | **GetClusterVersionDeferral** | **Get** /api/v1/clusters/{cluster_id}/version-deferral | Get the version upgrade deferral policy for a cluster.

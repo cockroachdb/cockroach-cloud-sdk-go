@@ -5,8 +5,11 @@ All URIs are relative to *https://cockroachlabs.cloud*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateServiceAccount**](ServiceAccountsApi.md#CreateServiceAccount) | **Post** /api/v1/service-accounts | Create a service account
+[**CreateServiceAccountCredential**](ServiceAccountsApi.md#CreateServiceAccountCredential) | **Post** /api/v1/service-accounts/{service_account_id}/credentials | Create an OAuth credential for a service account
 [**DeleteServiceAccount**](ServiceAccountsApi.md#DeleteServiceAccount) | **Delete** /api/v1/service-accounts/{id} | Delete a service account
+[**DeleteServiceAccountCredential**](ServiceAccountsApi.md#DeleteServiceAccountCredential) | **Delete** /api/v1/service-accounts/{service_account_id}/credentials/{credential_id} | Delete a service account&#39;s OAuth credential
 [**GetServiceAccount**](ServiceAccountsApi.md#GetServiceAccount) | **Get** /api/v1/service-accounts/{id} | Get a service account by ID
+[**ListServiceAccountCredentials**](ServiceAccountsApi.md#ListServiceAccountCredentials) | **Get** /api/v1/service-accounts/{service_account_id}/credentials | List a service account&#39;s OAuth credentials
 [**ListServiceAccounts**](ServiceAccountsApi.md#ListServiceAccounts) | **Get** /api/v1/service-accounts | List service accounts for an organization
 [**UpdateServiceAccount**](ServiceAccountsApi.md#UpdateServiceAccount) | **Patch** /api/v1/service-accounts/{id} | Update a service account
 
@@ -66,6 +69,80 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ServiceAccount**](ServiceAccount.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateServiceAccountCredential
+
+> ServiceAccountCredential CreateServiceAccountCredential(ctx, serviceAccountId).CreateServiceAccountCredentialBody(createServiceAccountCredentialBody).Execute()
+
+Create an OAuth credential for a service account
+
+Can be used by the following roles assigned at the organization scope:
+- ORG_ADMIN
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    "time"
+    openapiclient "./openapi"
+)
+
+func main() {
+    serviceAccountId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | The ID of the service account to create the credential for.
+    createServiceAccountCredentialBody := *openapiclient.NewCreateServiceAccountCredentialBody(openapiclient.ServiceAccountCredentialAlgorithm.Type("RS256"), time.Now(), "ci signer", "-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkq...
+-----END PUBLIC KEY-----
+") // CreateServiceAccountCredentialBody | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.ServiceAccountsApi.CreateServiceAccountCredential(context.Background(), serviceAccountId).CreateServiceAccountCredentialBody(createServiceAccountCredentialBody).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ServiceAccountsApi.CreateServiceAccountCredential``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateServiceAccountCredential`: ServiceAccountCredential
+    fmt.Fprintf(os.Stdout, "Response from `ServiceAccountsApi.CreateServiceAccountCredential`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**serviceAccountId** | **string** | The ID of the service account to create the credential for. | 
+
+### Other Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **createServiceAccountCredentialBody** | [**CreateServiceAccountCredentialBody**](CreateServiceAccountCredentialBody.md) |  | 
+
+### Return type
+
+[**ServiceAccountCredential**](ServiceAccountCredential.md)
 
 ### Authorization
 
@@ -148,6 +225,77 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## DeleteServiceAccountCredential
+
+> ServiceAccountCredential DeleteServiceAccountCredential(ctx, serviceAccountId, credentialId).Execute()
+
+Delete a service account's OAuth credential
+
+Can be used by the following roles assigned at the organization scope:
+- ORG_ADMIN
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    serviceAccountId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | The ID of the service account the credential belongs to.
+    credentialId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | The ID of the credential to delete.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.ServiceAccountsApi.DeleteServiceAccountCredential(context.Background(), serviceAccountId, credentialId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ServiceAccountsApi.DeleteServiceAccountCredential``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DeleteServiceAccountCredential`: ServiceAccountCredential
+    fmt.Fprintf(os.Stdout, "Response from `ServiceAccountsApi.DeleteServiceAccountCredential`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**serviceAccountId** | **string** | The ID of the service account the credential belongs to. | 
+**credentialId** | **string** | The ID of the credential to delete. | 
+
+### Other Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+[**ServiceAccountCredential**](ServiceAccountCredential.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## GetServiceAccount
 
 > ServiceAccount GetServiceAccount(ctx, id).Execute()
@@ -204,6 +352,90 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ServiceAccount**](ServiceAccount.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListServiceAccountCredentials
+
+> ListServiceAccountCredentialsResponse ListServiceAccountCredentials(ctx, serviceAccountId).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).StatusFilter(statusFilter).Execute()
+
+List a service account's OAuth credentials
+
+Sort order: created_at
+
+Can be used by the following roles assigned at the organization scope:
+- ORG_ADMIN
+- CLUSTER_ADMIN
+- AUDITOR
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    "time"
+    openapiclient "./openapi"
+)
+
+func main() {
+    serviceAccountId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | The ID of the service account whose credentials to list.
+    paginationPage := "paginationPage_example" // string |  (optional)
+    paginationLimit := int32(56) // int32 |  (optional)
+    paginationAsOfTime := time.Now() // time.Time |  (optional)
+    paginationSortOrder := "paginationSortOrder_example" // string |  - ASC: Sort in ascending order. This is the default unless otherwise specified.  - DESC: Sort in descending order. (optional)
+    statusFilter := "statusFilter_example" // string | Optional filter by credential status. Defaults to returning all credentials, active and disabled.   - ACTIVE: Only active (not disabled) credentials.  - DISABLED: Only disabled credentials. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.ServiceAccountsApi.ListServiceAccountCredentials(context.Background(), serviceAccountId).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).StatusFilter(statusFilter).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ServiceAccountsApi.ListServiceAccountCredentials``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListServiceAccountCredentials`: ListServiceAccountCredentialsResponse
+    fmt.Fprintf(os.Stdout, "Response from `ServiceAccountsApi.ListServiceAccountCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**serviceAccountId** | **string** | The ID of the service account whose credentials to list. | 
+
+### Other Parameters
+
+Optional parameters can be passed through a pointer to the ListServiceAccountCredentialsOptions struct.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **paginationPage** | **string** |  | 
+ **paginationLimit** | **int32** |  | 
+ **paginationAsOfTime** | **time.Time** |  | 
+ **paginationSortOrder** | **string** |  - ASC: Sort in ascending order. This is the default unless otherwise specified.  - DESC: Sort in descending order. | 
+ **statusFilter** | **string** | Optional filter by credential status. Defaults to returning all credentials, active and disabled.   - ACTIVE: Only active (not disabled) credentials.  - DISABLED: Only disabled credentials. | 
+
+### Return type
+
+[**ListServiceAccountCredentialsResponse**](ListServiceAccountCredentialsResponse.md)
 
 ### Authorization
 
