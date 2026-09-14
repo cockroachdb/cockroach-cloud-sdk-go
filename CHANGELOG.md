@@ -7,6 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [10.0.0] - 2026-09-15
+
+### Added
+
+- Add `EditionType` (`STANDARD`, `MISSION_CRITICAL`) and the `Edition` field on `Cluster` and `CreateClusterSpecification`. Editions are accepted only for organizations enrolled in CockroachDB editions.
+- Add virtual cluster workspace operations (ListVirtualClusterWorkspaces, GetVirtualClusterWorkspace, UpdateVirtualClusterWorkspace) and virtual cluster operations (CreateVirtualCluster, UpdateVirtualCluster), with the `VirtualClusterWorkspace` and `VirtualClusterConfig` models and `Virtual` on `ClusterConfig`.
+- Add host cluster support via `Host` on `ClusterConfig`, `CreateClusterSpecification`, and `UpdateClusterSpecification`, with the `HostClusterConfig`, `HostClusterCreateSpecification`, and `HostClusterUpdateSpecification` models.
+- Add migration assistant operations (CreateMigrationAssistant, GetMigrationAssistant, DeleteMigrationAssistant) and source CA certificate operations (GetMigrationAssistantSourceCACert, UpdateMigrationAssistantSourceCACert, DeleteMigrationAssistantSourceCACert).
+- Add the `COCKROACH_CREDITS` currency type.
+- Add `CREATE_AEGIS_CONNECTOR`, `CREATE_VIRTUAL_CLUSTER_WORKSPACE`, `UPDATE_VIRTUAL_CLUSTER_WORKSPACE`, `DELETE_VIRTUAL_CLUSTER_WORKSPACE`, `UPDATE_MIGRATION_ASSISTANT_CA`, and `DELETE_MIGRATION_ASSISTANT_CA` audit log actions.
+
+### Changed
+
+- Breaking Change: `plan` is no longer required on `Cluster`. `Plan` is now a pointer and `NewCluster` no longer takes `plan`. A cluster reports either a plan or an edition, so clusters on a Continuum edition omit `plan`.
+- Breaking Change: the module path is now `github.com/cockroachdb/cockroach-cloud-sdk-go/v10`. Update imports from `/v9` to `/v10`.
+
 ## [9.1.0] - 2026-08-26
 
 ### Added

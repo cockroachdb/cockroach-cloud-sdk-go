@@ -6,7 +6,7 @@ info:
     url: https://support.cockroachlabs.com
   description: An API for managing CockroachDB Cloud resources
   title: CockroachDB Cloud API
-  version: 2024-09-16
+  version: 2026-09-15
 externalDocs:
   description: Use the CockroachDB Cloud API
   url: https://www.cockroachlabs.com/docs/cockroachcloud/cloud-api.html
@@ -20,11 +20,10 @@ tags:
 - name: Clusters
 - name: Cluster Disruption
 - name: SQL Users
-- name: SQL Privilege Grants
+- name: Migration Assistant
 - name: Databases
 - name: Customer-managed Encryption Keys
 - name: Client CA Certificates
-- name: Cluster SSO
 - name: Log Export
 - name: Metric Export
 - name: Audit Logs
@@ -39,15 +38,12 @@ tags:
 - name: Folders
 - name: Version Deferral
 - name: JWT Issuers
-- name: OpenID Connect Configuration
 - name: Private Endpoint Services
-- name: PCI
 - name: Physical Cluster Replication
-- name: Plan Migrations
 - name: Backup/Restore
 - name: Egress Private Endpoints
-- name: Multifactor Authentication
 - name: Runtime Scanning
+- name: Virtual Cluster Workspaces
 paths:
   /api/scim/v2/Groups:
     get:
@@ -5712,9 +5708,449 @@ paths:
           curl --request POST \
             --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/metricexport/prometheus \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+  /api/v1/clusters/{cluster_id}/migration-assistant:
+    delete:
+      description: |
+        Tears down the deployment and returns the assistant in its DELETING status.
+
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
+        - ORG_ADMIN
+        - CLUSTER_ADMIN
+      operationId: CockroachCloud_DeleteMigrationAssistant
+      parameters:
+      - description: The ID of the cluster whose assistant to delete.
+        explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MigrationAssistant'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Delete the Migration Assistant for a cluster.
+      tags:
+      - Migration Assistant
+      x-badges:
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request DELETE \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/migration-assistant \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+    get:
+      description: |
+        Includes the lifecycle status and, while RUNNING, the URL and sign-in
+        credentials for the assistant; treat the response as sensitive.
+
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
+        - ORG_ADMIN
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
+      operationId: CockroachCloud_GetMigrationAssistant
+      parameters:
+      - description: The ID of the cluster whose assistant to fetch.
+        explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MigrationAssistant'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Get the Migration Assistant for a cluster.
+      tags:
+      - Migration Assistant
+      x-badges:
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request GET \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/migration-assistant \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+    post:
+      description: |
+        The assistant is a per-cluster, dedicated-cluster-only migration tool. Poll
+        GetMigrationAssistant until its status is RUNNING to retrieve the URL and
+        credentials used to sign in, or FAILED to inspect last_error.
+
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
+        - ORG_ADMIN
+        - CLUSTER_ADMIN
+      operationId: CockroachCloud_CreateMigrationAssistant
+      parameters:
+      - description: The ID of the cluster to deploy the assistant on.
+        explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateMigrationAssistantBody'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MigrationAssistant'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Provision a Migration Assistant for a cluster.
+      tags:
+      - Migration Assistant
+      x-badges:
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request POST \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/migration-assistant \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
+            --json '{"cluster_id":"9f8e7d6c-5b4a-3210-fedc-ba9876543210","region":"us-east1"}'
+  /api/v1/clusters/{cluster_id}/migration-assistant/source-ca-cert:
+    delete:
+      description: |
+        Reverts the assistant to the system trust roots and returns the deleted
+        certificate bundle.
+
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
+        - ORG_ADMIN
+        - CLUSTER_ADMIN
+      operationId: CockroachCloud_DeleteMigrationAssistantSourceCACert
+      parameters:
+      - description: The ID of the cluster whose source-database CA certificate to
+          delete.
+        explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MigrationAssistantSourceCACert'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Delete the source-database CA certificate for a cluster's Migration
+        Assistant.
+      tags:
+      - Migration Assistant
+      x-badges:
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request DELETE \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/migration-assistant/source-ca-cert \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+    get:
+      description: |
+        Returns the custom CA certificate bundle the assistant trusts when
+        connecting to its source database. Returns an empty bundle when the
+        assistant uses the system trust roots.
+
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
+        - ORG_ADMIN
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
+      operationId: CockroachCloud_GetMigrationAssistantSourceCACert
+      parameters:
+      - description: The ID of the cluster whose source-database CA certificate to
+          fetch.
+        explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MigrationAssistantSourceCACert'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Get the source-database CA certificate for a cluster's Migration Assistant.
+      tags:
+      - Migration Assistant
+      x-badges:
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request GET \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/migration-assistant/source-ca-cert \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+    patch:
+      description: |
+        Replaces the custom CA certificate bundle the assistant trusts when
+        connecting to its source database. Returns the updated certificate bundle.
+
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
+        - ORG_ADMIN
+        - CLUSTER_ADMIN
+      operationId: CockroachCloud_UpdateMigrationAssistantSourceCACert
+      parameters:
+      - description: The ID of the cluster whose source-database CA certificate to
+          update.
+        explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateMigrationAssistantSourceCACertBody'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MigrationAssistantSourceCACert'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Update the source-database CA certificate for a cluster's Migration
+        Assistant.
+      tags:
+      - Migration Assistant
+      x-badges:
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request PATCH \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/migration-assistant/source-ca-cert \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
+            --json '{"cluster_id":"9f8e7d6c-5b4a-3210-fedc-ba9876543210","x509_pem_cert":"-----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----"}'
   /api/v1/clusters/{cluster_id}/networking/allowlist:
     get:
       description: |
+        Not available on host clusters; the allowlist is managed on the virtual clusters running on the host.
+
         Sort order: CIDR address
 
         Can be used by the following roles assigned at the organization, folder or cluster scope:
@@ -5817,6 +6253,8 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     post:
       description: |
+        Not available on host clusters; the allowlist is managed on the virtual clusters running on the host.
+
         Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
@@ -5887,6 +6325,8 @@ paths:
   /api/v1/clusters/{cluster_id}/networking/allowlist/{cidr_ip}/{cidr_mask}:
     delete:
       description: |
+        Not available on host clusters; the allowlist is managed on the virtual clusters running on the host.
+
         Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
@@ -5964,6 +6404,8 @@ paths:
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
     patch:
       description: |
+        Not available on host clusters; the allowlist is managed on the virtual clusters running on the host.
+
         Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
@@ -6049,6 +6491,8 @@ paths:
             --json '{"cidr_ip":"192.168.1.1","cidr_mask":32,"name":"Example","sql":true,"ui":true}'
     put:
       description: |
+        Not available on host clusters; the allowlist is managed on the virtual clusters running on the host.
+
         Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
@@ -11623,6 +12067,428 @@ paths:
           curl --request GET \
             --url 'https://cockroachlabs.cloud/api/v1/users/persons-by-email?email=SOME_STRING_VALUE' \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+  /api/v1/virtual-cluster-workspaces:
+    get:
+      description: |
+        Sort order: workspace name
+
+        Can be used by the following roles assigned at the organization scope:
+        - ORG_ADMIN
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
+        - CLUSTER_DEVELOPER
+        - CLUSTER_CREATOR
+        - AUDITOR
+      operationId: CockroachCloud_ListVirtualClusterWorkspaces
+      parameters:
+      - explode: true
+        in: query
+        name: pagination.page
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: pagination.limit
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: pagination.as_of_time
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: |2-
+           - ASC: Sort in ascending order. This is the default unless otherwise specified.
+           - DESC: Sort in descending order.
+        explode: true
+        in: query
+        name: pagination.sort_order
+        required: false
+        schema:
+          enum:
+          - ASC
+          - DESC
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListVirtualClusterWorkspacesResponse'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: List workspaces in the organization
+      tags:
+      - Virtual Cluster Workspaces
+      x-badges:
+      - color: green
+        label: CONTINUUM
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request GET \
+            --url 'https://cockroachlabs.cloud/api/v1/virtual-cluster-workspaces?pagination.page=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.as_of_time=SOME_STRING_VALUE&pagination.sort_order=SOME_STRING_VALUE' \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+  /api/v1/virtual-cluster-workspaces/{workspace_id}:
+    get:
+      description: |
+        Can be used by the following roles assigned at the organization scope:
+        - ORG_ADMIN
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
+        - CLUSTER_DEVELOPER
+        - CLUSTER_CREATOR
+        - AUDITOR
+      operationId: CockroachCloud_GetVirtualClusterWorkspace
+      parameters:
+      - description: The unique identifier of the workspace.
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VirtualClusterWorkspace'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Show details for a specific workspace
+      tags:
+      - Virtual Cluster Workspaces
+      x-badges:
+      - color: green
+        label: CONTINUUM
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request GET \
+            --url https://cockroachlabs.cloud/api/v1/virtual-cluster-workspaces/{workspace_id} \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+    patch:
+      description: |-
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
+
+        Changes to a workspace's configuration apply only to virtual clusters created after the change, not to virtual clusters that already exist. To modify existing virtual clusters, see [CockroachCloud_UpdateVirtualCluster](#CockroachCloud_UpdateVirtualCluster).
+
+        The role must be assigned on the host cluster backing the workspace, not on the workspace itself.
+      operationId: CockroachCloud_UpdateVirtualClusterWorkspace
+      parameters:
+      - description: The unique identifier of the workspace.
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateVirtualClusterWorkspaceSpecification'
+        description: The changes to apply to the workspace.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VirtualClusterWorkspace'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Update the configuration of a specific workspace
+      tags:
+      - Virtual Cluster Workspaces
+      x-badges:
+      - color: green
+        label: CONTINUUM
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request PATCH \
+            --url https://cockroachlabs.cloud/api/v1/virtual-cluster-workspaces/{workspace_id} \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
+            --json '{"default_virtual_cpu_burst_limit":8,"name":"production"}'
+  /api/v1/virtual-cluster-workspaces/{workspace_id}/clusters:
+    post:
+      description: |-
+        Can be used by the following roles assigned at the organization or folder scope:
+        - CLUSTER_ADMIN
+        - CLUSTER_CREATOR
+
+        Setting a custom virtual_cpu_burst_limit for this cluster additionally requires a role with edit permission assigned on the host cluster backing the workspace.
+      operationId: CockroachCloud_CreateVirtualCluster
+      parameters:
+      - description: The unique identifier of the workspace to create the cluster
+          in.
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateVirtualClusterBody'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cluster'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Create a virtual cluster in a workspace
+      tags:
+      - Virtual Cluster Workspaces
+      x-badges:
+      - color: green
+        label: CONTINUUM
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request POST \
+            --url https://cockroachlabs.cloud/api/v1/virtual-cluster-workspaces/{workspace_id}/clusters \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
+            --json '{"name":"reporting","primary_region":"us-east-1","regions":["us-east-1","us-west-2"]}'
+  /api/v1/virtual-cluster-workspaces/{workspace_id}/clusters/{cluster_id}:
+    patch:
+      description: |-
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
+
+        Setting a custom virtual_cpu_burst_limit for this cluster additionally requires a role with edit permission assigned on the host cluster backing the workspace, not on the virtual cluster.
+      operationId: CockroachCloud_UpdateVirtualCluster
+      parameters:
+      - description: The unique identifier of the workspace the cluster belongs to.
+        explode: false
+        in: path
+        name: workspace_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The unique identifier of the cluster.
+        explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateVirtualClusterSpecification'
+        description: The changes to apply to the cluster.
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cluster'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Update a specific virtual cluster
+      tags:
+      - Virtual Cluster Workspaces
+      x-badges:
+      - color: green
+        label: CONTINUUM
+      - color: blue
+        label: PREVIEW
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request PATCH \
+            --url https://cockroachlabs.cloud/api/v1/virtual-cluster-workspaces/{workspace_id}/clusters/{cluster_id} \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
+            --json '{"delete_protection":"ENABLED","labels":{"env":"prod","team":"checkout"},"parent_id":"c1c3d0b8-1f3a-4a1e-9a2b-6f0c9d4e8b71","primary_region":"us-east-1","regions":["us-east-1","us-west-2"],"virtual_cpu_burst_limit":8}'
 components:
   requestBodies: {}
   schemas:
@@ -12074,6 +12940,12 @@ components:
       - AUDIT_LOG_ACTION_REMOVE_DISPOSABLE_EMAIL_OVERRIDE
       - AUDIT_LOG_ACTION_CREATE_SA_CREDENTIAL
       - AUDIT_LOG_ACTION_DELETE_SA_CREDENTIAL
+      - AUDIT_LOG_ACTION_CREATE_AEGIS_CONNECTOR
+      - AUDIT_LOG_ACTION_UPDATE_MIGRATION_ASSISTANT_CA
+      - AUDIT_LOG_ACTION_DELETE_MIGRATION_ASSISTANT_CA
+      - AUDIT_LOG_ACTION_CREATE_VIRTUAL_CLUSTER_WORKSPACE
+      - AUDIT_LOG_ACTION_UPDATE_VIRTUAL_CLUSTER_WORKSPACE
+      - AUDIT_LOG_ACTION_DELETE_VIRTUAL_CLUSTER_WORKSPACE
       type: string
     AuditLogEntry:
       description: |-
@@ -12769,6 +13641,8 @@ components:
         deleted_at:
           format: date-time
           type: string
+        edition:
+          $ref: '#/components/schemas/Edition.Type'
         egress_traffic_policy:
           $ref: '#/components/schemas/EgressTrafficPolicy.Type'
         id:
@@ -12817,7 +13691,6 @@ components:
       - labels
       - name
       - operation_status
-      - plan
       - regions
       - state
       - upgrade_status
@@ -12826,8 +13699,12 @@ components:
       properties:
         dedicated:
           $ref: '#/components/schemas/DedicatedHardwareConfig'
+        host:
+          $ref: '#/components/schemas/HostClusterConfig'
         serverless:
           $ref: '#/components/schemas/ServerlessClusterConfig'
+        virtual:
+          $ref: '#/components/schemas/VirtualClusterConfig'
       type: object
     ClusterDisruptionInfo:
       example:
@@ -13181,6 +14058,10 @@ components:
           $ref: '#/components/schemas/DedicatedClusterCreateSpecification'
         delete_protection:
           $ref: '#/components/schemas/DeleteProtectionState.Type'
+        edition:
+          $ref: '#/components/schemas/Edition.Type'
+        host:
+          $ref: '#/components/schemas/HostClusterCreateSpecification'
         labels:
           additionalProperties:
             type: string
@@ -13276,6 +14157,22 @@ components:
       - displayName
       - schemas
       title: CreateGroupRequest
+      type: object
+    CreateMigrationAssistantBody:
+      description: CreateMigrationAssistantRequest provisions a Migration Assistant
+        on a cluster.
+      example:
+        cluster_id: 9f8e7d6c-5b4a-3210-fedc-ba9876543210
+        region: us-east1
+      properties:
+        region:
+          description: |-
+            The cluster region to deploy into. Optional; empty selects a default region
+            (the cluster's first region ordered by locality, which is not necessarily
+            its original primary region). Must be one of the cluster's existing regions.
+            The chosen region is reported as the assistant's deployed_region.
+          type: string
+      title: CreateMigrationAssistantRequest
       type: object
     CreatePhysicalReplicationStreamRequest:
       example:
@@ -13521,10 +14418,65 @@ components:
       - schemas
       title: CreateUserResponse
       type: object
+    CreateVirtualClusterBody:
+      example:
+        name: reporting
+        primary_region: us-east-1
+        regions:
+        - us-east-1
+        - us-west-2
+      properties:
+        delete_protection:
+          $ref: '#/components/schemas/DeleteProtectionState.Type'
+        labels:
+          additionalProperties:
+            type: string
+          description: labels are key-value pairs used to organize and categorize
+            resources.
+          type: object
+        name:
+          description: The name of the cluster.
+          type: string
+        parent_id:
+          description: |-
+            The parent ID is a folder ID. An empty string or "root" will create a
+            cluster at the root level.
+          type: string
+        primary_region:
+          description: |-
+            Specify which region should be made the primary region. This field is
+            required if the cluster spans more than one region, and must be one of the
+            regions the cluster spans.
+          type: string
+        regions:
+          description: |-
+            regions is the subset of the workspace's regions to create this cluster
+            in. Omit to use every region in the workspace. Gives an error if a region
+            is specified that is not in the workspace. Values are the cloud provider's
+            region codes, for example "us-east-1".
+          items:
+            type: string
+          type: array
+        virtual_cpu_burst_limit:
+          description: |-
+            Sets a custom value for the maximum vCPUs this cluster may use at once.
+            Omit to inherit the workspace's default. Setting a custom vCPU burst limit
+            requires edit permission on the workspace.
+          format: int32
+          type: integer
+      required:
+      - name
+      title: CreateVirtualClusterRequest
+      type: object
     Currency.Type:
+      description: |2-
+         - COCKROACH_CREDITS: COCKROACH_CREDITS is the same credits currency as CRDB_CLOUD_CREDITS,
+        reported under its current name. Organizations on Continuum receive this
+        value; all others continue to receive CRDB_CLOUD_CREDITS.
       enum:
       - USD
       - CRDB_CLOUD_CREDITS
+      - COCKROACH_CREDITS
       type: string
     CurrencyAmount:
       example:
@@ -13607,9 +14559,9 @@ components:
           type: string
         cockroach_version:
           description: |-
-            The CockroachDB major version for the cluster. i.e. v24.1  The latest
-            version is used if omitted. The version passed must be one of the currently
-            supported versions.
+            The CockroachDB major version for the cluster. i.e. v24.1. The latest
+            version is used if omitted. The version passed must be one of the
+            [currently supported versions](https://www.cockroachlabs.com/docs/releases/release-support-policy#supported-versions).
           type: string
         hardware:
           $ref: '#/components/schemas/DedicatedHardwareCreateSpecification'
@@ -13909,6 +14861,25 @@ components:
       - rule
       title: EditEgressRuleResponse
       type: object
+    Edition.Type:
+      description: |-
+        A Continuum edition, which determines the capabilities a cluster's license
+        grants. Editions are available only to clusters in Cockroach Continuum
+        organizations, and a request that sets an edition from a non-Continuum
+        organization is rejected. Editions and plans are mutually exclusive, so a
+        cluster reports one or the other, never both.
+
+         - STANDARD: The Standard edition grants the Standard capability set. See
+        [Editions and add-ons](https://www.cockroachlabs.com/docs/continuum/editions-and-add-ons)
+        for the capabilities each edition includes.
+         - MISSION_CRITICAL: The Mission Critical edition grants the Standard capability set plus the
+        Mission Critical capabilities. See
+        [Editions and add-ons](https://www.cockroachlabs.com/docs/continuum/editions-and-add-ons)
+        for the capabilities each edition includes.
+      enum:
+      - STANDARD
+      - MISSION_CRITICAL
+      type: string
     EgressPrivateEndpoint:
       example:
         target_service_type: null
@@ -15049,6 +16020,147 @@ components:
       - schemas
       - totalResults
       title: GetUsersResponse
+      type: object
+    HostClusterConfig:
+      description: HostClusterConfig describes the hardware of a host cluster.
+      example:
+        disk_iops: 1500
+        machine_type: m6i.2xlarge
+        memory_gib: 32
+        num_virtual_cpus: 8
+        storage_gib: 500
+      properties:
+        disk_iops:
+          description: |-
+            disk_iops is the number of disk I/O operations per second that are
+            permitted on each node in the cluster. This value reflects the
+            actual provisioned IOPS, which may differ from the value specified
+            during cluster creation or update. Only AWS clusters support
+            user-specified IOPS; for GCP and Azure clusters, IOPS is
+            determined by the cloud provider based on disk size. A value of
+            zero indicates the cloud provider-specific default.
+          format: int32
+          type: integer
+        machine_type:
+          description: |-
+            machine_type is the machine type identifier within the given cloud
+            provider, ex. m5.xlarge, n2-standard-4.
+          type: string
+        memory_gib:
+          description: memory_gib is the memory GiB per node in the cluster.
+          format: float
+          type: number
+        num_virtual_cpus:
+          description: num_virtual_cpus is the number of virtual CPUs per node in
+            the cluster.
+          format: int32
+          type: integer
+        storage_gib:
+          description: storage_gib is the number of storage GiB per node in the cluster.
+          format: int32
+          type: integer
+      required:
+      - disk_iops
+      - machine_type
+      - memory_gib
+      - num_virtual_cpus
+      - storage_gib
+      type: object
+    HostClusterCreateSpecification:
+      description: |-
+        HostClusterCreateSpecification creates a cluster that holds virtual
+        clusters.
+      example:
+        hardware:
+          machine_spec:
+            machine_type: m6i.2xlarge
+          storage_gib: 500
+        region_nodes:
+          us-east-1: 3
+      properties:
+        cidr_range:
+          description: |-
+            cidr_range is the IPv4 range in CIDR format that will be used by the
+            cluster. This is supported only on GCP, and must have a subnet mask no larger
+            than /19. Defaults to "172.28.0.0/14".
+          type: string
+        cockroach_version:
+          description: |-
+            The CockroachDB major version for the cluster. i.e. v24.1. The latest
+            version is used if omitted. The version passed must be one of the
+            [currently supported versions](https://www.cockroachlabs.com/docs/releases/release-support-policy#supported-versions).
+          type: string
+        hardware:
+          $ref: '#/components/schemas/DedicatedHardwareCreateSpecification'
+        network_visibility:
+          $ref: '#/components/schemas/NetworkVisibility.Type'
+        region_machine_specs:
+          additionalProperties:
+            $ref: '#/components/schemas/DedicatedMachineTypeSpecification'
+          description: |-
+            region_machine_specs configures a machine type per region, producing a
+            cluster whose regions may use different machine types. Keys are region
+            codes (matching region_nodes) and values select a machine type by
+            machine_type or num_virtual_cpus. When set, every region in region_nodes
+            must have a corresponding entry, and hardware.machine_spec must be
+            omitted (the two fields are mutually exclusive). hardware.storage_gib
+            and hardware.disk_iops continue to apply cluster-wide.
+          type: object
+        region_nodes:
+          additionalProperties:
+            format: int32
+            type: integer
+          description: |-
+            Region keys should match the cloud provider's zone code.
+            For example, for Oregon, set region_name to "us-west2" for
+            GCP and "us-west-2" for AWS. Values represent the node count.
+          type: object
+        restrict_egress_traffic:
+          description: |-
+            Preview: restrict_egress_traffic if set, results in an egress traffic policy of
+            default-deny at creation time.
+          type: boolean
+      required:
+      - hardware
+      - region_nodes
+      type: object
+    HostClusterUpdateSpecification:
+      description: |-
+        HostClusterUpdateSpecification updates a cluster that holds virtual
+        clusters.
+      example:
+        region_nodes:
+          us-east-1: 6
+      properties:
+        cmek_region_specs:
+          description: |-
+            This field should contain the CMEK specs for newly added regions. If a
+            CMEK spec is provided for an existing region, the request is invalid and
+            will fail.
+          items:
+            $ref: '#/components/schemas/CMEKRegionSpecification'
+          type: array
+        hardware:
+          $ref: '#/components/schemas/DedicatedHardwareUpdateSpecification'
+        region_machine_specs:
+          additionalProperties:
+            $ref: '#/components/schemas/DedicatedMachineTypeSpecification'
+          description: |-
+            region_machine_specs updates machine types per region. Only regions named
+            in this map are affected; unnamed regions retain their current machine
+            type. Use this to add a new region with a distinct machine type or to
+            resize an existing region independently of others. Mutually exclusive
+            with hardware.machine_spec.
+          type: object
+        region_nodes:
+          additionalProperties:
+            format: int32
+            type: integer
+          description: |-
+            Region keys should match the cloud provider's zone code.
+            For example, for Oregon, set region_name to "us-west2" for
+            GCP and "us-west-2" for AWS. Values represent the node count.
+          type: object
       type: object
     Invoice:
       description: |-
@@ -16487,6 +17599,30 @@ components:
       required:
       - service_accounts
       type: object
+    ListVirtualClusterWorkspacesResponse:
+      example:
+        pagination: {}
+        workspaces:
+        - cloud_provider: AWS
+          created_at: 2026-03-22T20:23:11.285067Z
+          default_virtual_cpu_burst_limit: 4
+          id: 35c4abb2-bb66-46d7-afed-25ebef5ed2aa
+          name: production
+          regions:
+          - us-east-1
+          - us-west-2
+          updated_at: 2026-04-01T09:14:02.114930Z
+      properties:
+        pagination:
+          $ref: '#/components/schemas/KeysetPaginationResponse'
+        workspaces:
+          description: The workspaces in the organization.
+          items:
+            $ref: '#/components/schemas/VirtualClusterWorkspace'
+          type: array
+      required:
+      - workspaces
+      type: object
     LogExportClusterInfo:
       description: |-
         LogExportClusterInfo contains a package of information that fully
@@ -16852,6 +17988,117 @@ components:
       - ENABLING
       - ENABLED
       - ERROR
+      type: string
+    MigrationAssistant:
+      description: |-
+        MigrationAssistant is a per-cluster migration assistant deployment. The url,
+        username, password, and bucket_grantee are populated only while the status is
+        RUNNING. The last_error is populated only when the status is FAILED.
+      example:
+        bucket_grantee: arn:aws:iam::123456789012:role/example-role
+        cluster_id: 9f8e7d6c-5b4a-3210-fedc-ba9876543210
+        created_at: 2026-07-30T18:00:00Z
+        deployed_region: us-east1
+        health: HEALTHY
+        id: 1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d
+        last_error: ""
+        password: example_password
+        status: RUNNING
+        updated_at: 2026-07-30T18:05:00Z
+        url: https://molt-ai.example.crdb.io
+        username: example_username
+      properties:
+        bucket_grantee:
+          description: |-
+            The cloud-native identity the customer must grant bucket access to;
+            populated when the status is RUNNING. Format depends on the cluster's cloud
+            (AWS IAM role ARN, GCP service account email, or Azure object ID).
+          type: string
+        cluster_id:
+          description: The ID of the cluster this assistant is deployed for.
+          type: string
+        created_at:
+          description: Timestamp when the assistant was created.
+          format: date-time
+          type: string
+        deployed_region:
+          description: The cluster region the assistant is deployed in.
+          type: string
+        health:
+          $ref: '#/components/schemas/MigrationAssistantHealth.Type'
+        id:
+          description: The unique ID of the migration assistant.
+          type: string
+        last_error:
+          description: The failure detail; populated when the status is FAILED.
+          type: string
+        password:
+          description: |-
+            The password used to sign in to the assistant; populated when the status is
+            RUNNING.
+          type: string
+        status:
+          $ref: '#/components/schemas/MigrationAssistantStatus.Type'
+        updated_at:
+          description: Timestamp when the assistant was last updated.
+          format: date-time
+          type: string
+        url:
+          description: The URL used to reach the assistant; populated when the status
+            is RUNNING.
+          type: string
+        username:
+          description: |-
+            The username used to sign in to the assistant; populated when the status is
+            RUNNING.
+          type: string
+      required:
+      - cluster_id
+      - created_at
+      - deployed_region
+      - health
+      - id
+      - status
+      - updated_at
+      title: MigrationAssistant
+      type: object
+    MigrationAssistantHealth.Type:
+      description: |2-
+         - NOT_COMPUTED: Health is not computed; the assistant is not RUNNING.
+         - HEALTHY: The assistant is ready and serving.
+         - UNAVAILABLE: The assistant is RUNNING but not currently serving. This is usually
+        transient (for example, its pod is restarting); retry shortly.
+         - UNKNOWN: The live health probe could not be reached, so serving health is not
+        known. This is usually transient; retry shortly.
+      enum:
+      - NOT_COMPUTED
+      - HEALTHY
+      - UNAVAILABLE
+      - UNKNOWN
+      type: string
+    MigrationAssistantSourceCACert:
+      description: |-
+        MigrationAssistantSourceCACert is the CA certificate bundle a Migration
+        Assistant trusts when connecting to its source database.
+      example:
+        x509_pem_cert: '-----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----'
+      properties:
+        x509_pem_cert:
+          description: The PEM-encoded X.509 CA certificate bundle.
+          type: string
+      title: MigrationAssistantSourceCACert
+      type: object
+    MigrationAssistantStatus.Type:
+      description: |2-
+         - PENDING: The assistant has been requested and is being provisioned.
+         - RUNNING: The assistant is ready; its URL and credentials are available.
+         - DELETING: Deletion has been requested and is in progress.
+         - FAILED: A provisioning or deletion operation failed; see last_error.
+      enum:
+      - PENDING
+      - RUNNING
+      - DELETING
+      - FAILED
       type: string
     NetworkVisibility.Type:
       enum:
@@ -18695,15 +19942,17 @@ components:
           $ref: '#/components/schemas/DedicatedClusterUpdateSpecification'
         delete_protection:
           $ref: '#/components/schemas/DeleteProtectionState.Type'
+        host:
+          $ref: '#/components/schemas/HostClusterUpdateSpecification'
         labels:
           additionalProperties:
             type: string
           description: |-
             labels are key-value pairs used to organize and categorize resources.
-            If the labels field is included in the request: Any existing labels on the cluster
-            that are not included will be removed, and any new labels specified will be added.
-            If the labels field is omitted from the request entirely, all existing labels will
-            remain unchanged.
+            If the labels field is included in the request, any existing labels on the cluster
+            that are not included are removed, and any new labels specified are added.
+            If the labels field is omitted from the request entirely, all existing labels remain
+            unchanged.
           type: object
         parent_id:
           description: |-
@@ -18839,6 +20088,21 @@ components:
           type: string
       title: UpdateJWTIssuerRequest
       type: object
+    UpdateMigrationAssistantSourceCACertBody:
+      description: |-
+        UpdateMigrationAssistantSourceCACertRequest replaces the source-database CA
+        certificate bundle for a cluster's Migration Assistant.
+      example:
+        cluster_id: 9f8e7d6c-5b4a-3210-fedc-ba9876543210
+        x509_pem_cert: '-----BEGIN CERTIFICATE-----...-----END CERTIFICATE-----'
+      properties:
+        x509_pem_cert:
+          description: The PEM-encoded X.509 CA certificate bundle to apply.
+          type: string
+      required:
+      - x509_pem_cert
+      title: UpdateMigrationAssistantSourceCACertRequest
+      type: object
     UpdatePhysicalReplicationStreamSpec:
       example:
         failover_at: 2006-01-03T15:04:05Z
@@ -18917,6 +20181,74 @@ components:
         userName:
           type: string
       title: UpdateUserRequest
+      type: object
+    UpdateVirtualClusterSpecification:
+      example:
+        delete_protection: ENABLED
+        labels:
+          env: prod
+          team: checkout
+        parent_id: c1c3d0b8-1f3a-4a1e-9a2b-6f0c9d4e8b71
+        primary_region: us-east-1
+        regions:
+        - us-east-1
+        - us-west-2
+        virtual_cpu_burst_limit: 8
+      properties:
+        delete_protection:
+          $ref: '#/components/schemas/DeleteProtectionState.Type'
+        labels:
+          additionalProperties:
+            type: string
+          description: |-
+            labels are key-value pairs used to organize and categorize resources.
+            If the labels field is included in the request, any existing labels on the cluster
+            that are not included are removed, and any new labels specified are added.
+            If the labels field is omitted from the request entirely, all existing labels remain
+            unchanged.
+          type: object
+        parent_id:
+          description: |-
+            The parent ID is a folder ID. An empty string or "root" moves the cluster
+            to the root level. Omit to leave the cluster where it is.
+          type: string
+        primary_region:
+          description: |-
+            Specify which region should be made the primary region. It must be one the
+            cluster will span, either from the regions above or, when those are
+            omitted, from the regions the cluster already has. When omitted, the
+            current primary region is kept if it is still listed.
+          type: string
+        regions:
+          description: |-
+            The regions the cluster should span, as cloud provider region codes, for
+            example "us-east-1". Get the workspace to see which are available. Omit to
+            leave the current regions alone.
+          items:
+            type: string
+          type: array
+        virtual_cpu_burst_limit:
+          description: |-
+            Sets a custom value for the maximum vCPUs this cluster may use at once.
+            Setting a custom vCPU burst limit requires edit permission on the host
+            cluster backing the workspace. Omit to leave the current limit alone.
+          format: int32
+          type: integer
+      type: object
+    UpdateVirtualClusterWorkspaceSpecification:
+      example:
+        default_virtual_cpu_burst_limit: 8
+        name: production
+      properties:
+        default_virtual_cpu_burst_limit:
+          description: |-
+            Omitted leaves the current default. Applies only to virtual clusters
+            created after this change.
+          format: int32
+          type: integer
+        name:
+          description: Omitted leaves the current name.
+          type: string
       type: object
     UpgradeType.Type:
       enum:
@@ -19000,6 +20332,90 @@ components:
       required:
       - roles
       - user_id
+      type: object
+    VirtualClusterConfig:
+      description: |-
+        VirtualClusterConfig describes a virtual cluster: a tenant running on a
+        customer-owned host cluster, as a member of a workspace.
+      example:
+        routing_id: example-cluster-1533
+        virtual_cpu_burst_limit: 4
+        workspace_id: b7a1c8e2-6d4f-4f9a-9b3e-2c5d8f1a4e70
+      properties:
+        routing_id:
+          description: routing_id is used to identify the cluster in a connection
+            string.
+          type: string
+        virtual_cpu_burst_limit:
+          description: virtual_cpu_burst_limit is a positive integer describing the
+            most vCPUs the cluster can use at once.
+          format: int32
+          type: integer
+        workspace_id:
+          description: workspace_id is the workspace the cluster is currently a member
+            of.
+          type: string
+      required:
+      - routing_id
+      - virtual_cpu_burst_limit
+      - workspace_id
+      title: VirtualClusterConfig
+      type: object
+    VirtualClusterWorkspace:
+      description: |-
+        A workspace is a named handle for the infrastructure a set of virtual
+        clusters runs on.
+      example:
+        cloud_provider: AWS
+        created_at: 2026-03-22T20:23:11.285067Z
+        default_virtual_cpu_burst_limit: 4
+        id: 35c4abb2-bb66-46d7-afed-25ebef5ed2aa
+        name: production
+        regions:
+        - us-east-1
+        - us-west-2
+        updated_at: 2026-04-01T09:14:02.114930Z
+      properties:
+        cloud_provider:
+          $ref: '#/components/schemas/CloudProvider.Type'
+        created_at:
+          description: The date and time the workspace was created.
+          format: date-time
+          type: string
+        default_virtual_cpu_burst_limit:
+          description: |-
+            The vCPU burst limit a virtual cluster gets when its create request does
+            not ask for a specific one. Changing this value in a workspace does not
+            affect clusters that already exist in the workspace, only newly created
+            clusters.
+          format: int32
+          type: integer
+        id:
+          description: The unique identifier of the workspace.
+          type: string
+        name:
+          description: The name of the workspace.
+          type: string
+        regions:
+          description: |-
+            The regions the workspace spans. A virtual cluster created into it may use
+            any subset of these and no others.
+          items:
+            type: string
+          type: array
+        updated_at:
+          description: The date and time the workspace was last modified.
+          format: date-time
+          type: string
+      required:
+      - cloud_provider
+      - created_at
+      - default_virtual_cpu_burst_limit
+      - id
+      - name
+      - regions
+      - updated_at
+      title: VirtualClusterWorkspace
       type: object
     AllowlistEntry_1:
       example:

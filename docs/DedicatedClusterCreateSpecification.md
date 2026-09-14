@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CidrRange** | Pointer to **string** | cidr_range is the IPv4 range in CIDR format that will be used by the cluster. This is supported only on GCP, and must have a subnet mask no larger than /19. Defaults to \&quot;172.28.0.0/14\&quot;. | [optional] 
-**CockroachVersion** | Pointer to **string** | The CockroachDB major version for the cluster. i.e. v24.1  The latest version is used if omitted. The version passed must be one of the currently supported versions. | [optional] 
+**CockroachVersion** | Pointer to **string** | The CockroachDB major version for the cluster. i.e. v24.1. The latest version is used if omitted. The version passed must be one of the [currently supported versions](https://www.cockroachlabs.com/docs/releases/release-support-policy#supported-versions). | [optional] 
 **Hardware** | [**DedicatedHardwareCreateSpecification**](DedicatedHardwareCreateSpecification.md) |  | 
 **NetworkVisibility** | Pointer to [**NetworkVisibilityType**](NetworkVisibilityType.md) |  | [optional] 
 **RegionMachineSpecs** | Pointer to [**map[string]DedicatedMachineTypeSpecification**](DedicatedMachineTypeSpecification.md) | region_machine_specs configures a machine type per region, producing a cluster whose regions may use different machine types. Keys are region codes (matching region_nodes) and values select a machine type by machine_type or num_virtual_cpus. When set, every region in region_nodes must have a corresponding entry, and hardware.machine_spec must be omitted (the two fields are mutually exclusive). hardware.storage_gib and hardware.disk_iops continue to apply cluster-wide. | [optional] 
