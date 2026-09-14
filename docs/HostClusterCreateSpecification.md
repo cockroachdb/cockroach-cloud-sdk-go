@@ -1,0 +1,121 @@
+# HostClusterCreateSpecification
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**CidrRange** | Pointer to **string** | cidr_range is the IPv4 range in CIDR format that will be used by the cluster. This is supported only on GCP, and must have a subnet mask no larger than /19. Defaults to \&quot;172.28.0.0/14\&quot;. | [optional] 
+**CockroachVersion** | Pointer to **string** | The CockroachDB major version for the cluster. i.e. v24.1. The latest version is used if omitted. The version passed must be one of the [currently supported versions](https://www.cockroachlabs.com/docs/releases/release-support-policy#supported-versions). | [optional] 
+**Hardware** | [**DedicatedHardwareCreateSpecification**](DedicatedHardwareCreateSpecification.md) |  | 
+**NetworkVisibility** | Pointer to [**NetworkVisibilityType**](NetworkVisibilityType.md) |  | [optional] 
+**RegionMachineSpecs** | Pointer to [**map[string]DedicatedMachineTypeSpecification**](DedicatedMachineTypeSpecification.md) | region_machine_specs configures a machine type per region, producing a cluster whose regions may use different machine types. Keys are region codes (matching region_nodes) and values select a machine type by machine_type or num_virtual_cpus. When set, every region in region_nodes must have a corresponding entry, and hardware.machine_spec must be omitted (the two fields are mutually exclusive). hardware.storage_gib and hardware.disk_iops continue to apply cluster-wide. | [optional] 
+**RegionNodes** | **map[string]int32** | Region keys should match the cloud provider&#39;s zone code. For example, for Oregon, set region_name to \&quot;us-west2\&quot; for GCP and \&quot;us-west-2\&quot; for AWS. Values represent the node count. | 
+**RestrictEgressTraffic** | Pointer to **bool** | Preview: restrict_egress_traffic if set, results in an egress traffic policy of default-deny at creation time. | [optional] 
+
+## Methods
+
+### NewHostClusterCreateSpecification
+
+`func NewHostClusterCreateSpecification(hardware DedicatedHardwareCreateSpecification, regionNodes map[string]int32, ) *HostClusterCreateSpecification`
+
+NewHostClusterCreateSpecification instantiates a new HostClusterCreateSpecification object.
+This constructor will assign default values to properties that have it defined,
+and makes sure properties required by API are set, but the set of arguments
+will change when the set of required properties is changed.
+
+### NewHostClusterCreateSpecificationWithDefaults
+
+`func NewHostClusterCreateSpecificationWithDefaults() *HostClusterCreateSpecification`
+
+NewHostClusterCreateSpecificationWithDefaults instantiates a new HostClusterCreateSpecification object.
+This constructor will only assign default values to properties that have it defined,
+but it doesn't guarantee that properties required by API are set.
+
+### GetCidrRange
+
+`func (o *HostClusterCreateSpecification) GetCidrRange() string`
+
+GetCidrRange returns the CidrRange field if non-nil, zero value otherwise.
+
+### SetCidrRange
+
+`func (o *HostClusterCreateSpecification) SetCidrRange(v string)`
+
+SetCidrRange sets CidrRange field to given value.
+
+### GetCockroachVersion
+
+`func (o *HostClusterCreateSpecification) GetCockroachVersion() string`
+
+GetCockroachVersion returns the CockroachVersion field if non-nil, zero value otherwise.
+
+### SetCockroachVersion
+
+`func (o *HostClusterCreateSpecification) SetCockroachVersion(v string)`
+
+SetCockroachVersion sets CockroachVersion field to given value.
+
+### GetHardware
+
+`func (o *HostClusterCreateSpecification) GetHardware() DedicatedHardwareCreateSpecification`
+
+GetHardware returns the Hardware field if non-nil, zero value otherwise.
+
+### SetHardware
+
+`func (o *HostClusterCreateSpecification) SetHardware(v DedicatedHardwareCreateSpecification)`
+
+SetHardware sets Hardware field to given value.
+
+### GetNetworkVisibility
+
+`func (o *HostClusterCreateSpecification) GetNetworkVisibility() NetworkVisibilityType`
+
+GetNetworkVisibility returns the NetworkVisibility field if non-nil, zero value otherwise.
+
+### SetNetworkVisibility
+
+`func (o *HostClusterCreateSpecification) SetNetworkVisibility(v NetworkVisibilityType)`
+
+SetNetworkVisibility sets NetworkVisibility field to given value.
+
+### GetRegionMachineSpecs
+
+`func (o *HostClusterCreateSpecification) GetRegionMachineSpecs() map[string]DedicatedMachineTypeSpecification`
+
+GetRegionMachineSpecs returns the RegionMachineSpecs field if non-nil, zero value otherwise.
+
+### SetRegionMachineSpecs
+
+`func (o *HostClusterCreateSpecification) SetRegionMachineSpecs(v map[string]DedicatedMachineTypeSpecification)`
+
+SetRegionMachineSpecs sets RegionMachineSpecs field to given value.
+
+### GetRegionNodes
+
+`func (o *HostClusterCreateSpecification) GetRegionNodes() map[string]int32`
+
+GetRegionNodes returns the RegionNodes field if non-nil, zero value otherwise.
+
+### SetRegionNodes
+
+`func (o *HostClusterCreateSpecification) SetRegionNodes(v map[string]int32)`
+
+SetRegionNodes sets RegionNodes field to given value.
+
+### GetRestrictEgressTraffic
+
+`func (o *HostClusterCreateSpecification) GetRestrictEgressTraffic() bool`
+
+GetRestrictEgressTraffic returns the RestrictEgressTraffic field if non-nil, zero value otherwise.
+
+### SetRestrictEgressTraffic
+
+`func (o *HostClusterCreateSpecification) SetRestrictEgressTraffic(v bool)`
+
+SetRestrictEgressTraffic sets RestrictEgressTraffic field to given value.
+
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

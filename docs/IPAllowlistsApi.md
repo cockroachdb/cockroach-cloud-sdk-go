@@ -18,6 +18,8 @@ Method | HTTP request | Description
 
 Add a new CIDR address to the IP allowlist
 
+Not available on host clusters; the allowlist is managed on the virtual clusters running on the host.
+
 Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
@@ -88,6 +90,8 @@ Name | Type | Description  | Notes
 > AllowlistEntry AddAllowlistEntry2(ctx, clusterId, cidrIp, cidrMask).AllowlistEntry1(allowlistEntry1).Execute()
 
 Add a new CIDR address to the IP allowlist
+
+Not available on host clusters; the allowlist is managed on the virtual clusters running on the host.
 
 Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN
@@ -166,6 +170,8 @@ Name | Type | Description  | Notes
 
 Delete an IP allowlist entry
 
+Not available on host clusters; the allowlist is managed on the virtual clusters running on the host.
+
 Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN
 - CLUSTER_OPERATOR_WRITER
@@ -240,6 +246,8 @@ Name | Type | Description  | Notes
 > ListAllowlistEntriesResponse ListAllowlistEntries(ctx, clusterId).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).Execute()
 
 Get the IP allowlist and propagation status for a cluster
+
+Not available on host clusters; the allowlist is managed on the virtual clusters running on the host.
 
 Sort order: CIDR address
 
@@ -323,6 +331,8 @@ Name | Type | Description  | Notes
 > AllowlistEntry UpdateAllowlistEntry(ctx, clusterId, cidrIp, cidrMask).AllowlistEntry1(allowlistEntry1).Execute()
 
 Update an IP allowlist entry
+
+Not available on host clusters; the allowlist is managed on the virtual clusters running on the host.
 
 Can be used by the following roles assigned at the organization, folder or cluster scope:
 - CLUSTER_ADMIN

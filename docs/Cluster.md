@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **CustomerCloudAccount** | Pointer to [**CustomerCloudAccount**](CustomerCloudAccount.md) |  | [optional] 
 **DeleteProtection** | Pointer to [**DeleteProtectionStateType**](DeleteProtectionStateType.md) |  | [optional] 
 **DeletedAt** | Pointer to **time.Time** |  | [optional] 
+**Edition** | Pointer to [**EditionType**](EditionType.md) |  | [optional] 
 **EgressTrafficPolicy** | Pointer to [**EgressTrafficPolicyType**](EgressTrafficPolicyType.md) |  | [optional] 
 **Id** | **string** |  | 
 **Labels** | **map[string]string** | labels are key-value pairs used to organize and categorize resources. | 
@@ -22,7 +23,7 @@ Name | Type | Description | Notes
 **NetworkVisibility** | Pointer to [**NetworkVisibilityType**](NetworkVisibilityType.md) |  | [optional] 
 **OperationStatus** | [**ClusterStatusType**](ClusterStatusType.md) |  | 
 **ParentId** | Pointer to **string** | Preview: The parent ID is a folder ID. A \&quot;root\&quot; valued parent ID refers to a cluster at the root level. | [optional] 
-**Plan** | [**PlanType**](PlanType.md) |  | 
+**Plan** | Pointer to [**PlanType**](PlanType.md) |  | [optional] 
 **Regions** | [**[]Region**](Region.md) |  | 
 **SqlDns** | Pointer to **string** | sql_dns is the DNS name of SQL interface of the cluster. | [optional] 
 **State** | [**ClusterStateType**](ClusterStateType.md) |  | 
@@ -33,7 +34,7 @@ Name | Type | Description | Notes
 
 ### NewCluster
 
-`func NewCluster(cidrRange string, cloudProvider CloudProviderType, cockroachVersion string, config ClusterConfig, creatorId string, id string, labels map[string]string, name string, operationStatus ClusterStatusType, plan PlanType, regions []Region, state ClusterStateType, upgradeStatus ClusterUpgradeStatusType, ) *Cluster`
+`func NewCluster(cidrRange string, cloudProvider CloudProviderType, cockroachVersion string, config ClusterConfig, creatorId string, id string, labels map[string]string, name string, operationStatus ClusterStatusType, regions []Region, state ClusterStateType, upgradeStatus ClusterUpgradeStatusType, ) *Cluster`
 
 NewCluster instantiates a new Cluster object.
 This constructor will assign default values to properties that have it defined,
@@ -179,6 +180,18 @@ GetDeletedAt returns the DeletedAt field if non-nil, zero value otherwise.
 `func (o *Cluster) SetDeletedAt(v time.Time)`
 
 SetDeletedAt sets DeletedAt field to given value.
+
+### GetEdition
+
+`func (o *Cluster) GetEdition() EditionType`
+
+GetEdition returns the Edition field if non-nil, zero value otherwise.
+
+### SetEdition
+
+`func (o *Cluster) SetEdition(v EditionType)`
+
+SetEdition sets Edition field to given value.
 
 ### GetEgressTrafficPolicy
 

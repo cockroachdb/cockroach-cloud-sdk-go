@@ -73,6 +73,7 @@ docs/CreateDatabaseBody.md
 docs/CreateEgressPrivateEndpointBody.md
 docs/CreateFolderRequest.md
 docs/CreateGroupRequest.md
+docs/CreateMigrationAssistantBody.md
 docs/CreatePhysicalReplicationStreamRequest.md
 docs/CreateRestoreBody.md
 docs/CreateSQLUserBody.md
@@ -80,6 +81,7 @@ docs/CreateServiceAccountCredentialBody.md
 docs/CreateServiceAccountRequest.md
 docs/CreateUserRequest.md
 docs/CreateUserResponse.md
+docs/CreateVirtualClusterBody.md
 docs/CurrencyAmount.md
 docs/CurrencyType.md
 docs/CustomerCloudAccount.md
@@ -100,6 +102,7 @@ docs/DeleteProtectionStateType.md
 docs/EditDatabaseBody.md
 docs/EditEgressRuleBody.md
 docs/EditEgressRuleResponse.md
+docs/EditionType.md
 docs/EgressPrivateEndpoint.md
 docs/EgressPrivateEndpointDomainNamesStateType.md
 docs/EgressPrivateEndpointStateType.md
@@ -133,6 +136,9 @@ docs/GetServiceProviderConfigResponse.md
 docs/GetUser2Body.md
 docs/GetUsersRequest.md
 docs/GetUsersResponse.md
+docs/HostClusterConfig.md
+docs/HostClusterCreateSpecification.md
+docs/HostClusterUpdateSpecification.md
 docs/IPAllowlistsApi.md
 docs/Invoice.md
 docs/InvoiceAdjustment.md
@@ -164,6 +170,7 @@ docs/ListRoleGrantsResponse.md
 docs/ListSQLUsersResponse.md
 docs/ListServiceAccountCredentialsResponse.md
 docs/ListServiceAccountsResponse.md
+docs/ListVirtualClusterWorkspacesResponse.md
 docs/LogExportApi.md
 docs/LogExportClusterInfo.md
 docs/LogExportClusterSpecification.md
@@ -176,6 +183,11 @@ docs/MaintenanceWindow.md
 docs/MaintenanceWindowsApi.md
 docs/MetricExportApi.md
 docs/MetricExportStatusType.md
+docs/MigrationAssistant.md
+docs/MigrationAssistantApi.md
+docs/MigrationAssistantHealthType.md
+docs/MigrationAssistantSourceCACert.md
+docs/MigrationAssistantStatusType.md
 docs/NetworkVisibilityType.md
 docs/Node.md
 docs/NodeStatusType.md
@@ -267,15 +279,21 @@ docs/UpdateEgressPrivateEndpointDomainNamesBody.md
 docs/UpdateFolderSpecification.md
 docs/UpdateGroupBody.md
 docs/UpdateJWTIssuerBody.md
+docs/UpdateMigrationAssistantSourceCACertBody.md
 docs/UpdatePhysicalReplicationStreamSpec.md
 docs/UpdateSQLUserPasswordBody.md
 docs/UpdateServiceAccountSpecification.md
 docs/UpdateUserBody.md
+docs/UpdateVirtualClusterSpecification.md
+docs/UpdateVirtualClusterWorkspaceSpecification.md
 docs/UpgradeTypeType.md
 docs/UsageLimits.md
 docs/UserGroupRoleGrant.md
 docs/UserRoleGrants.md
 docs/VersionDeferralApi.md
+docs/VirtualClusterConfig.md
+docs/VirtualClusterWorkspace.md
+docs/VirtualClusterWorkspacesApi.md
 model_add_egress_rule_body.go
 model_add_egress_rule_response.go
 model_add_jwt_issuer_request.go
@@ -339,6 +357,7 @@ model_create_database_body.go
 model_create_egress_private_endpoint_body.go
 model_create_folder_request.go
 model_create_group_request.go
+model_create_migration_assistant_body.go
 model_create_physical_replication_stream_request.go
 model_create_restore_body.go
 model_create_service_account_credential_body.go
@@ -346,6 +365,7 @@ model_create_service_account_request.go
 model_create_sql_user_body.go
 model_create_user_request.go
 model_create_user_response.go
+model_create_virtual_cluster_body.go
 model_currency_amount.go
 model_currency_type.go
 model_customer_cloud_account.go
@@ -364,6 +384,7 @@ model_delete_protection_state_type.go
 model_edit_database_body.go
 model_edit_egress_rule_body.go
 model_edit_egress_rule_response.go
+model_edition_type.go
 model_egress_private_endpoint.go
 model_egress_private_endpoint_domain_names_state_type.go
 model_egress_private_endpoint_state_type.go
@@ -394,6 +415,9 @@ model_get_service_provider_config_response.go
 model_get_user2_body.go
 model_get_users_request.go
 model_get_users_response.go
+model_host_cluster_config.go
+model_host_cluster_create_specification.go
+model_host_cluster_update_specification.go
 model_invoice.go
 model_invoice_adjustment.go
 model_invoice_item.go
@@ -423,6 +447,7 @@ model_list_role_grants_response.go
 model_list_service_account_credentials_response.go
 model_list_service_accounts_response.go
 model_list_sql_users_response.go
+model_list_virtual_cluster_workspaces_response.go
 model_log_export_cluster_info.go
 model_log_export_cluster_specification.go
 model_log_export_delivery_status.go
@@ -432,6 +457,10 @@ model_log_export_type.go
 model_log_level_type.go
 model_maintenance_window.go
 model_metric_export_status_type.go
+model_migration_assistant.go
+model_migration_assistant_health_type.go
+model_migration_assistant_source_ca_cert.go
+model_migration_assistant_status_type.go
 model_network_visibility_type.go
 model_node.go
 model_node_status_type.go
@@ -515,12 +544,17 @@ model_update_egress_private_endpoint_domain_names_body.go
 model_update_folder_specification.go
 model_update_group_body.go
 model_update_jwt_issuer_body.go
+model_update_migration_assistant_source_ca_cert_body.go
 model_update_physical_replication_stream_spec.go
 model_update_service_account_specification.go
 model_update_sql_user_password_body.go
 model_update_user_body.go
+model_update_virtual_cluster_specification.go
+model_update_virtual_cluster_workspace_specification.go
 model_upgrade_type_type.go
 model_usage_limits.go
 model_user_group_role_grant.go
 model_user_role_grants.go
+model_virtual_cluster_config.go
+model_virtual_cluster_workspace.go
 service.go

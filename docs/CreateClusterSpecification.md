@@ -7,6 +7,8 @@ Name | Type | Description | Notes
 **CustomerCloudAccount** | Pointer to [**CustomerCloudAccount**](CustomerCloudAccount.md) |  | [optional] 
 **Dedicated** | Pointer to [**DedicatedClusterCreateSpecification**](DedicatedClusterCreateSpecification.md) |  | [optional] 
 **DeleteProtection** | Pointer to [**DeleteProtectionStateType**](DeleteProtectionStateType.md) |  | [optional] 
+**Edition** | Pointer to [**EditionType**](EditionType.md) |  | [optional] 
+**Host** | Pointer to [**HostClusterCreateSpecification**](HostClusterCreateSpecification.md) |  | [optional] 
 **Labels** | Pointer to **map[string]string** | labels are key-value pairs used to organize and categorize resources. | [optional] 
 **ParentId** | Pointer to **string** | Preview: The parent ID is a folder ID. An empty string or \&quot;root\&quot; will create a cluster at the root level. | [optional] 
 **Plan** | Pointer to [**PlanType**](PlanType.md) |  | [optional] 
@@ -58,6 +60,30 @@ GetDeleteProtection returns the DeleteProtection field if non-nil, zero value ot
 `func (o *CreateClusterSpecification) SetDeleteProtection(v DeleteProtectionStateType)`
 
 SetDeleteProtection sets DeleteProtection field to given value.
+
+### GetEdition
+
+`func (o *CreateClusterSpecification) GetEdition() EditionType`
+
+GetEdition returns the Edition field if non-nil, zero value otherwise.
+
+### SetEdition
+
+`func (o *CreateClusterSpecification) SetEdition(v EditionType)`
+
+SetEdition sets Edition field to given value.
+
+### GetHost
+
+`func (o *CreateClusterSpecification) GetHost() HostClusterCreateSpecification`
+
+GetHost returns the Host field if non-nil, zero value otherwise.
+
+### SetHost
+
+`func (o *CreateClusterSpecification) SetHost(v HostClusterCreateSpecification)`
+
+SetHost sets Host field to given value.
 
 ### GetLabels
 
