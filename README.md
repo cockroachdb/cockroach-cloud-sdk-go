@@ -58,6 +58,25 @@ if apiResponse != nil {
 }
 ```
 
+## Configuration
+
+`NewConfiguration` takes options that set headers sent with every request:
+
+```golang
+clientConfig := client.NewConfiguration(
+	apiKey,
+	// Required when the API token is a JWT.
+	client.WithVanityName("my-organization"),
+	client.WithUsername("someone@example.com"),
+)
+
+// Any other header can be set directly.
+clientConfig.AddDefaultHeader("X-Example", "value")
+```
+
+A default header holds one value per key, so the last write wins and the header
+replaces any value the request set for itself. Keys are case-insensitive.
+
 ## Documentation for API Endpoints
 
 All URIs are relative to *https://cockroachlabs.cloud*
