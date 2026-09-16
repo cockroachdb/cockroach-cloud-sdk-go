@@ -16,6 +16,16 @@ import (
 const ApiVersion = "{{.}}"
 {{/version}}
 
+// CcClientHeader identifies the calling client to the CockroachDB Cloud API
+// usage log. The server accepts a fixed set of values and falls back to a
+// User-Agent heuristic for anything else.
+const CcClientHeader = "Cc-Client"
+
+// CcClientSDK is the CcClientHeader value for direct users of this SDK.
+// Clients that wrap the SDK, such as the Terraform provider and the ccloud
+// CLI, replace it with their own value using AddDefaultHeader.
+const CcClientSDK = "sdk"
+
 {{#withCustomMiddlewareFunction}}
     // MiddlewareFunction provides way to implement custom middleware.
     type MiddlewareFunction func(*http.Request)
@@ -71,6 +81,7 @@ apiToken:         apiToken,
 {{#version}}
     cfg.AddDefaultHeader("Cc-Version", ApiVersion)
 {{/version}}
+cfg.AddDefaultHeader(CcClientHeader, CcClientSDK)
 
 for _, opt := range opts {
 opt(cfg)
@@ -79,7 +90,11 @@ opt(cfg)
 return cfg
 }
 
-// AddDefaultHeader adds a new HTTP header to the default header in the request.
+// AddDefaultHeader sets an HTTP header sent with every request.
+//
+// A default header holds one value per key, so a later call replaces an
+// earlier one instead of sending a second value, and the header replaces any
+// value the request set for itself. Keys are case-insensitive.
 func (c *Configuration) AddDefaultHeader(key string, value string) {
-c.DefaultHeader[key] = value
+c.DefaultHeader[http.CanonicalHeaderKey(key)] = value
 }

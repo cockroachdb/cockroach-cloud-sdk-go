@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Add the `Cc-Client` header, sent on every request so the CockroachDB Cloud API can attribute usage to the SDK.
+
+### Fixed
+
+- Fix a default header adding a second value when the request already set that header, rather than replacing it.
+- Fix `AddDefaultHeader` treating header keys as case-sensitive.
+
 ## [10.0.0] - 2026-09-15
 
 ### Added
