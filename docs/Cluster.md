@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AccountId** | Pointer to **string** | account_id is a cloud provider account ID representing the CockroachDB cluster. This ID can be used for setting up trust relationships with cloud resources. For GCP clusters, this value is a project name that can be used to construct principal service account names for authentication. | [optional] 
+**AccountId** | Pointer to **string** | account_id identifies the cloud provider account to grant access to when setting up a trust relationship between this cluster and your own cloud resources. Its form follows the cloud provider: an account ID on AWS, a project ID on GCP, and a subscription ID on Azure. On GCP the project ID also forms the principal service account names used for authentication.  Which account this is depends on how the cluster is hosted. An Advanced cluster or a host cluster reports the account it runs in, which is the account to grant access to when configuring CMEK. A virtual cluster reports the account its host cluster runs in, since it shares that hardware. A Basic or Standard cluster runs on hardware shared with other organizations, so it instead reports an account CockroachDB Cloud operates on its behalf, which is the account to grant access to when configuring metrics export or log export.  Empty when no account applies to the cluster, so treat an empty value as \&quot;not applicable\&quot; rather than an error. | [optional] 
 **AzureClusterIdentityClientId** | Pointer to **string** | The client ID of the Azure cluster identity associated with this cluster. This field is only populated for clusters deployed on Azure and is used to support customer-managed encryption keys (CMEK). | [optional] 
 **CidrRange** | **string** | cidr_range is the IPv4 range in CIDR format that will be used by the cluster. It is only set on GCP Advanced tier clusters and is otherwise empty. | 
 **CloudProvider** | [**CloudProviderType**](CloudProviderType.md) |  | 
@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **DeleteProtection** | Pointer to [**DeleteProtectionStateType**](DeleteProtectionStateType.md) |  | [optional] 
 **DeletedAt** | Pointer to **time.Time** |  | [optional] 
 **Edition** | Pointer to [**EditionType**](EditionType.md) |  | [optional] 
+**EgressPrivateEndpointPrincipal** | Pointer to **string** | egress_private_endpoint_principal identifies this cluster to a service it connects to over an egress private endpoint. It is the value that service&#39;s allow list must permit for connection requests from this cluster to be approved. | [optional] 
 **EgressTrafficPolicy** | Pointer to [**EgressTrafficPolicyType**](EgressTrafficPolicyType.md) |  | [optional] 
 **Id** | **string** |  | 
 **Labels** | **map[string]string** | labels are key-value pairs used to organize and categorize resources. | 
@@ -192,6 +193,18 @@ GetEdition returns the Edition field if non-nil, zero value otherwise.
 `func (o *Cluster) SetEdition(v EditionType)`
 
 SetEdition sets Edition field to given value.
+
+### GetEgressPrivateEndpointPrincipal
+
+`func (o *Cluster) GetEgressPrivateEndpointPrincipal() string`
+
+GetEgressPrivateEndpointPrincipal returns the EgressPrivateEndpointPrincipal field if non-nil, zero value otherwise.
+
+### SetEgressPrivateEndpointPrincipal
+
+`func (o *Cluster) SetEgressPrivateEndpointPrincipal(v string)`
+
+SetEgressPrivateEndpointPrincipal sets EgressPrivateEndpointPrincipal field to given value.
 
 ### GetEgressTrafficPolicy
 

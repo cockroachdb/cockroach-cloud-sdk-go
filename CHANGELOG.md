@@ -7,9 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [10.1.0] - 2026-10-27
+
 ### Added
 
 - Add the `Cc-Client` header, sent on every request so the CockroachDB Cloud API can attribute usage to the SDK.
+- Add invoice daily usage reporting through `ListInvoiceDailyUsage`, with charge category, cluster, and line-item models.
+- Add OTLP metric export operations (`EnableOtlpMetricExport`, `GetOtlpMetricExportInfo`, and `DeleteOtlpMetricExport`) and their configuration and status models.
+- Add `egress_private_endpoint_principal` to `Cluster` for identifying clusters to services reached through egress private endpoints.
+- Add audit log actions for disconnecting Aegis connectors and adding, editing, deleting, or being blocked by service account IP allowlists.
+
+### Changed
+
+- Clarify cloud account identifiers and mark heterogeneous machine configuration fields as Limited Access.
+- Group virtual cluster create and update operations with the other cluster operations in generated documentation.
 
 ### Fixed
 

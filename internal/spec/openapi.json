@@ -6417,7 +6417,7 @@
       "get": {
         "operationId": "CockroachCloud_GetMaintenanceWindow",
         "summary": "Get the maintenance window for a cluster",
-        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n- AUDITOR\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n- CLUSTER_DEVELOPER\n- AUDITOR\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -7153,6 +7153,289 @@
           {
             "lang": "Shell + Curl",
             "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/metricexport/datadog \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"api_key\":\"datadog_api_key\",\"site\":\"US1\"}'"
+          }
+        ]
+      }
+    },
+    "/api/v1/clusters/{cluster_id}/metricexport/otlp": {
+      "delete": {
+        "operationId": "CockroachCloud_DeleteOtlpMetricExport",
+        "summary": "Delete the OTLP Metric Export configuration for a cluster",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "parameters": [
+          {
+            "name": "cluster_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteMetricExportResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Metric Export"],
+        "x-badges": [
+          {
+            "color": "red",
+            "label": "LIMITED ACCESS"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request DELETE \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/metricexport/otlp \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+          }
+        ]
+      },
+      "get": {
+        "operationId": "CockroachCloud_GetOtlpMetricExportInfo",
+        "summary": "Get the OTLP Metric Export configuration for a cluster",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n- METRICS_VIEWER\n- AUDITOR\n",
+        "parameters": [
+          {
+            "name": "cluster_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OtlpMetricExportInfo"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Metric Export"],
+        "x-badges": [
+          {
+            "color": "red",
+            "label": "LIMITED ACCESS"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request GET \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/metricexport/otlp \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+          }
+        ]
+      },
+      "post": {
+        "operationId": "CockroachCloud_EnableOtlpMetricExport",
+        "summary": "Create or update the OTLP Metric Export configuration for a cluster",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n",
+        "parameters": [
+          {
+            "name": "cluster_id",
+            "in": "path",
+            "description": "cluster_id is the ID of the cluster to enable OTLP metric export for.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EnableOtlpMetricExportBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OtlpMetricExportInfo"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Metric Export"],
+        "x-badges": [
+          {
+            "color": "red",
+            "label": "LIMITED ACCESS"
+          }
+        ],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request POST \\\n  --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/metricexport/otlp \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \\\n  --json '{\"cloudwatch\":{\"role_arn\":\"arn:aws:iam::account:role/ExampleRole\",\"target_region\":\"us-east-1\"}}'"
           }
         ]
       }
@@ -8882,12 +9165,6 @@
           }
         },
         "tags": ["Egress Private Endpoints"],
-        "x-badges": [
-          {
-            "color": "red",
-            "label": "LIMITED ACCESS"
-          }
-        ],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -8983,12 +9260,6 @@
           }
         },
         "tags": ["Egress Private Endpoints"],
-        "x-badges": [
-          {
-            "color": "red",
-            "label": "LIMITED ACCESS"
-          }
-        ],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -9085,12 +9356,6 @@
           }
         },
         "tags": ["Egress Private Endpoints"],
-        "x-badges": [
-          {
-            "color": "red",
-            "label": "LIMITED ACCESS"
-          }
-        ],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -9185,12 +9450,6 @@
           }
         },
         "tags": ["Egress Private Endpoints"],
-        "x-badges": [
-          {
-            "color": "red",
-            "label": "LIMITED ACCESS"
-          }
-        ],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -9295,12 +9554,6 @@
           }
         },
         "tags": ["Egress Private Endpoints"],
-        "x-badges": [
-          {
-            "color": "red",
-            "label": "LIMITED ACCESS"
-          }
-        ],
         "x-codeSamples": [
           {
             "lang": "Shell + Curl",
@@ -11993,7 +12246,7 @@
       "get": {
         "operationId": "CockroachCloud_GetClusterVersionDeferral",
         "summary": "Get the version upgrade deferral policy for a cluster.",
-        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n- AUDITOR\n",
+        "description": "Can be used by the following roles assigned at the organization, folder or cluster scope:\n- CLUSTER_ADMIN\n- CLUSTER_OPERATOR_WRITER\n- CLUSTER_DEVELOPER\n- AUDITOR\n",
         "parameters": [
           {
             "name": "cluster_id",
@@ -13086,6 +13339,125 @@
           {
             "lang": "Shell + Curl",
             "source": "curl --request GET \\\n  --url https://cockroachlabs.cloud/api/v1/invoices/{invoice_id} \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
+          }
+        ]
+      }
+    },
+    "/api/v1/invoices/{invoice_id}/daily-usage": {
+      "get": {
+        "operationId": "CockroachCloud_ListInvoiceDailyUsage",
+        "summary": "List an invoice's daily usage breakdown",
+        "description": "Returns daily usage line items for an invoice. Each row is a distinct charge for a cluster on a given day, so a cluster may have several rows per day. Invoice-level adjustment rows are also included. Obtain invoice IDs from ListInvoices.\n\nCan be used by the following roles assigned at the organization scope:\n- BILLING_COORDINATOR\n- CLUSTER_ADMIN\n",
+        "parameters": [
+          {
+            "name": "invoice_id",
+            "in": "path",
+            "description": "invoice_id is the unique ID of the invoice (billing period) whose daily\nusage is returned.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pagination.page",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pagination.limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pagination.as_of_time",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "pagination.sort_order",
+            "in": "query",
+            "description": " - ASC: Sort in ascending order. This is the default unless otherwise specified.\n - DESC: Sort in descending order.",
+            "schema": {
+              "type": "string",
+              "enum": ["ASC", "DESC"]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListInvoiceDailyUsageResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Returned when a request field is invalid.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Returned when the token bearer cannot be authenticated.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "403": {
+            "description": "Returned when the user does not have permission to access the resource.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Returned when the resource does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        },
+        "tags": ["Billing"],
+        "x-codeSamples": [
+          {
+            "lang": "Shell + Curl",
+            "source": "curl --request GET \\\n  --url 'https://cockroachlabs.cloud/api/v1/invoices/{invoice_id}/daily-usage?pagination.page=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.as_of_time=SOME_STRING_VALUE&pagination.sort_order=SOME_STRING_VALUE' \\\n  --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'"
           }
         ]
       }
@@ -16010,7 +16382,7 @@
             }
           }
         },
-        "tags": ["Virtual Cluster Workspaces"],
+        "tags": ["Clusters"],
         "x-badges": [
           {
             "color": "green",
@@ -16127,7 +16499,7 @@
             }
           }
         },
-        "tags": ["Virtual Cluster Workspaces"],
+        "tags": ["Clusters"],
         "x-badges": [
           {
             "color": "green",
@@ -16512,7 +16884,12 @@
           "AUDIT_LOG_ACTION_DELETE_MIGRATION_ASSISTANT_CA",
           "AUDIT_LOG_ACTION_CREATE_VIRTUAL_CLUSTER_WORKSPACE",
           "AUDIT_LOG_ACTION_UPDATE_VIRTUAL_CLUSTER_WORKSPACE",
-          "AUDIT_LOG_ACTION_DELETE_VIRTUAL_CLUSTER_WORKSPACE"
+          "AUDIT_LOG_ACTION_DELETE_VIRTUAL_CLUSTER_WORKSPACE",
+          "AUDIT_LOG_ACTION_DISCONNECT_AEGIS_CONNECTOR",
+          "AUDIT_LOG_ACTION_ADD_SERVICE_ACCOUNT_IP_ALLOWLIST",
+          "AUDIT_LOG_ACTION_EDIT_SERVICE_ACCOUNT_IP_ALLOWLIST",
+          "AUDIT_LOG_ACTION_DELETE_SERVICE_ACCOUNT_IP_ALLOWLIST",
+          "AUDIT_LOG_ACTION_SERVICE_ACCOUNT_IP_BLOCKED"
         ]
       },
       "AuditLogEntry": {
@@ -16895,6 +17272,11 @@
           "REVOKE_FAILED"
         ]
       },
+      "ChargeCategory.Type": {
+        "description": " - USAGE: USAGE is a metered charge attributed to a cluster on a specific day.\n - ADJUSTMENT: ADJUSTMENT is an invoice-level credit or charge (e.g. premium support)\nnot tied to a cluster or a specific day.",
+        "type": "string",
+        "enum": ["USAGE", "ADJUSTMENT"]
+      },
       "ClientCACertInfo": {
         "type": "object",
         "properties": {
@@ -16981,7 +17363,7 @@
         "type": "object",
         "properties": {
           "account_id": {
-            "description": "account_id is a cloud provider account ID representing the CockroachDB\ncluster. This ID can be used for setting up trust relationships with cloud\nresources. For GCP clusters, this value is a project name that can be used\nto construct principal service account names for authentication.",
+            "description": "account_id identifies the cloud provider account to grant access to when\nsetting up a trust relationship between this cluster and your own cloud\nresources. Its form follows the cloud provider: an account ID on AWS, a\nproject ID on GCP, and a subscription ID on Azure. On GCP the project ID\nalso forms the principal service account names used for authentication.\n\nWhich account this is depends on how the cluster is hosted. An Advanced\ncluster or a host cluster reports the account it runs in, which is the\naccount to grant access to when configuring CMEK. A virtual cluster\nreports the account its host cluster runs in, since it shares that\nhardware. A Basic or Standard cluster runs on hardware shared with other\norganizations, so it instead reports an account CockroachDB Cloud operates\non its behalf, which is the account to grant access to when configuring\nmetrics export or log export.\n\nEmpty when no account applies to the cluster, so treat an empty value as\n\"not applicable\" rather than an error.",
             "type": "string"
           },
           "azure_cluster_identity_client_id": {
@@ -17020,6 +17402,10 @@
           },
           "edition": {
             "$ref": "#/components/schemas/Edition.Type"
+          },
+          "egress_private_endpoint_principal": {
+            "description": "egress_private_endpoint_principal identifies this cluster to a service it\nconnects to over an egress private endpoint. It is the value that service's\nallow list must permit for connection requests from this cluster to be\napproved.",
+            "type": "string"
           },
           "egress_traffic_policy": {
             "$ref": "#/components/schemas/EgressTrafficPolicy.Type"
@@ -17884,6 +18270,82 @@
           }
         }
       },
+      "DailyUsageCluster": {
+        "description": "DailyUsageCluster identifies the cluster a daily usage row is attributed to.\nIts fields report the cluster's current state rather than its state during\nthe billing period. Use GetCluster for the cluster's full metadata.",
+        "type": "object",
+        "properties": {
+          "cloud_provider": {
+            "$ref": "#/components/schemas/CloudProvider.Type"
+          },
+          "edition": {
+            "$ref": "#/components/schemas/Edition.Type"
+          },
+          "id": {
+            "description": "id is the unique ID of the cluster.",
+            "type": "string"
+          },
+          "name": {
+            "description": "name is the cluster's name. Retained so rows for deleted clusters stay\nhuman-readable.",
+            "type": "string"
+          },
+          "plan_type": {
+            "$ref": "#/components/schemas/Plan.Type"
+          }
+        },
+        "example": {
+          "cloud_provider": "AWS",
+          "id": "b2c3d4e5-0000-0000-0000-000000000000",
+          "name": "prod-cluster",
+          "plan_type": "STANDARD"
+        },
+        "required": ["id", "name", "cloud_provider"]
+      },
+      "DailyUsageLineItem": {
+        "description": "DailyUsageLineItem is the charge carried by a daily usage row, priced along\nthe dimensions daily usage is billed on.",
+        "type": "object",
+        "properties": {
+          "description": {
+            "description": "description is the charge name, or the adjustment name on adjustment rows.",
+            "type": "string"
+          },
+          "locality": {
+            "description": "locality is the region the charge was incurred in. Empty for adjustment rows\nand for charges not attributable to a specific region.",
+            "type": "string"
+          },
+          "quantity": {
+            "description": "quantity is the number of units consumed. Zero for adjustment rows.",
+            "type": "number",
+            "format": "double"
+          },
+          "quantity_unit": {
+            "$ref": "#/components/schemas/QuantityUnit.Type"
+          },
+          "total": {
+            "$ref": "#/components/schemas/CurrencyAmount"
+          },
+          "unit_category": {
+            "$ref": "#/components/schemas/UnitCategory.Type"
+          },
+          "unit_cost": {
+            "description": "unit_cost is the cost per unit. Zero for adjustment rows.",
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "example": {
+          "description": "Request Units",
+          "locality": "us-east-1",
+          "quantity": 1000000,
+          "quantity_unit": "REQUEST_UNITS",
+          "total": {
+            "amount": 0.2,
+            "currency": "USD"
+          },
+          "unit_category": "COMPUTE",
+          "unit_cost": 2e-7
+        },
+        "required": ["description", "quantity", "unit_cost", "total"]
+      },
       "Database": {
         "type": "object",
         "properties": {
@@ -17943,7 +18405,7 @@
             "$ref": "#/components/schemas/NetworkVisibility.Type"
           },
           "region_machine_specs": {
-            "description": "region_machine_specs configures a machine type per region, producing a\ncluster whose regions may use different machine types. Keys are region\ncodes (matching region_nodes) and values select a machine type by\nmachine_type or num_virtual_cpus. When set, every region in region_nodes\nmust have a corresponding entry, and hardware.machine_spec must be\nomitted (the two fields are mutually exclusive). hardware.storage_gib\nand hardware.disk_iops continue to apply cluster-wide.",
+            "description": "Limited Access: region_machine_specs configures a machine type per region, producing a\ncluster whose regions may use different machine types. Keys are region\ncodes (matching region_nodes) and values select a machine type by\nmachine_type or num_virtual_cpus. When set, every region in region_nodes\nmust have a corresponding entry, and hardware.machine_spec must be\nomitted (the two fields are mutually exclusive). hardware.storage_gib\nand hardware.disk_iops continue to apply cluster-wide.",
             "type": "object",
             "additionalProperties": {
               "$ref": "#/components/schemas/DedicatedMachineTypeSpecification"
@@ -17962,6 +18424,7 @@
             "type": "boolean"
           },
           "supports_cluster_virtualization": {
+            "description": "Limited Access",
             "type": "boolean",
             "title": "supports_cluster_virtualization specifies whether an Advanced\ncluster is started with a virtual cluster architecture. This field\nis restricted to Limited Access usage; see our documentation for\ndetails:\nhttps://www.cockroachlabs.com/docs/stable/cluster-virtualization-overview"
           }
@@ -17982,7 +18445,7 @@
             "$ref": "#/components/schemas/DedicatedHardwareUpdateSpecification"
           },
           "region_machine_specs": {
-            "description": "region_machine_specs updates machine types per region. Only regions named\nin this map are affected; unnamed regions retain their current machine\ntype. Use this to add a new region with a distinct machine type or to\nresize an existing region independently of others. Mutually exclusive\nwith hardware.machine_spec.",
+            "description": "Limited Access: region_machine_specs updates machine types per region. Only regions named\nin this map are affected; unnamed regions retain their current machine\ntype. Use this to add a new region with a distinct machine type or to\nresize an existing region independently of others. Mutually exclusive\nwith hardware.machine_spec.",
             "type": "object",
             "additionalProperties": {
               "$ref": "#/components/schemas/DedicatedMachineTypeSpecification"
@@ -18535,6 +18998,22 @@
         "required": ["type", "log_name"],
         "title": "EnableLogExportRequest"
       },
+      "EnableOtlpMetricExportBody": {
+        "description": "EnableOtlpMetricExportRequest configures OTLP metric export for a cluster.",
+        "type": "object",
+        "properties": {
+          "cloudwatch": {
+            "$ref": "#/components/schemas/OtlpMetricExportCloudWatch"
+          }
+        },
+        "example": {
+          "cloudwatch": {
+            "role_arn": "arn:aws:iam::account:role/ExampleRole",
+            "target_region": "us-east-1"
+          }
+        },
+        "title": "EnableOtlpMetricExportRequest"
+      },
       "FolderResource": {
         "description": "FolderResource describes a resource, and includes info about its lineage (parent/ancestors).",
         "type": "object",
@@ -18986,7 +19465,7 @@
             "$ref": "#/components/schemas/NetworkVisibility.Type"
           },
           "region_machine_specs": {
-            "description": "region_machine_specs configures a machine type per region, producing a\ncluster whose regions may use different machine types. Keys are region\ncodes (matching region_nodes) and values select a machine type by\nmachine_type or num_virtual_cpus. When set, every region in region_nodes\nmust have a corresponding entry, and hardware.machine_spec must be\nomitted (the two fields are mutually exclusive). hardware.storage_gib\nand hardware.disk_iops continue to apply cluster-wide.",
+            "description": "Limited Access: region_machine_specs configures a machine type per region, producing a\ncluster whose regions may use different machine types. Keys are region\ncodes (matching region_nodes) and values select a machine type by\nmachine_type or num_virtual_cpus. When set, every region in region_nodes\nmust have a corresponding entry, and hardware.machine_spec must be\nomitted (the two fields are mutually exclusive). hardware.storage_gib\nand hardware.disk_iops continue to apply cluster-wide.",
             "type": "object",
             "additionalProperties": {
               "$ref": "#/components/schemas/DedicatedMachineTypeSpecification"
@@ -19033,7 +19512,7 @@
             "$ref": "#/components/schemas/DedicatedHardwareUpdateSpecification"
           },
           "region_machine_specs": {
-            "description": "region_machine_specs updates machine types per region. Only regions named\nin this map are affected; unnamed regions retain their current machine\ntype. Use this to add a new region with a distinct machine type or to\nresize an existing region independently of others. Mutually exclusive\nwith hardware.machine_spec.",
+            "description": "Limited Access: region_machine_specs updates machine types per region. Only regions named\nin this map are affected; unnamed regions retain their current machine\ntype. Use this to add a new region with a distinct machine type or to\nresize an existing region independently of others. Mutually exclusive\nwith hardware.machine_spec.",
             "type": "object",
             "additionalProperties": {
               "$ref": "#/components/schemas/DedicatedMachineTypeSpecification"
@@ -19132,6 +19611,49 @@
           }
         },
         "required": ["name", "amount"]
+      },
+      "InvoiceDailyUsageItem": {
+        "description": "InvoiceDailyUsageItem is a single row of an invoice's daily usage breakdown.",
+        "type": "object",
+        "properties": {
+          "charge_category": {
+            "$ref": "#/components/schemas/ChargeCategory.Type"
+          },
+          "cluster": {
+            "$ref": "#/components/schemas/DailyUsageCluster"
+          },
+          "line_item": {
+            "$ref": "#/components/schemas/DailyUsageLineItem"
+          },
+          "usage_date": {
+            "description": "usage_date is the day the usage was incurred. Null for adjustment rows.",
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "example": {
+          "charge_category": "USAGE",
+          "cluster": {
+            "cloud_provider": "AWS",
+            "id": "b2c3d4e5-0000-0000-0000-000000000000",
+            "name": "prod-cluster",
+            "plan_type": "STANDARD"
+          },
+          "line_item": {
+            "description": "Request Units",
+            "locality": "us-east-1",
+            "quantity": 1000000,
+            "quantity_unit": "REQUEST_UNITS",
+            "total": {
+              "amount": 0.2,
+              "currency": "USD"
+            },
+            "unit_category": "COMPUTE",
+            "unit_cost": 2e-7
+          },
+          "usage_date": "2026-01-15T00:00:00Z"
+        },
+        "required": ["charge_category", "line_item"]
       },
       "InvoiceItem": {
         "type": "object",
@@ -19449,6 +19971,52 @@
           }
         },
         "required": ["folders"]
+      },
+      "ListInvoiceDailyUsageResponse": {
+        "description": "ListInvoiceDailyUsageResponse is the output of the ListInvoiceDailyUsage\nRPC. Invoice-level details (billing period, totals) are available from\nGetInvoice.",
+        "type": "object",
+        "properties": {
+          "pagination": {
+            "$ref": "#/components/schemas/KeysetPaginationResponse"
+          },
+          "usage_items": {
+            "description": "usage_items contains the daily usage rows for this page. By default, usage\nrows are sorted by usage date and then by cluster, with adjustment rows on\nthe final pages. In descending order, adjustment rows appear first,\nfollowed by usage rows from newest to oldest.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InvoiceDailyUsageItem"
+            }
+          }
+        },
+        "example": {
+          "pagination": {
+            "next_page": "2026-01-16"
+          },
+          "usage_items": [
+            {
+              "charge_category": "USAGE",
+              "cluster": {
+                "cloud_provider": "AWS",
+                "id": "b2c3d4e5-0000-0000-0000-000000000000",
+                "name": "prod-cluster",
+                "plan_type": "STANDARD"
+              },
+              "line_item": {
+                "description": "Request Units",
+                "locality": "us-east-1",
+                "quantity": 1000000,
+                "quantity_unit": "REQUEST_UNITS",
+                "total": {
+                  "amount": 0.2,
+                  "currency": "USD"
+                },
+                "unit_category": "COMPUTE",
+                "unit_cost": 2e-7
+              },
+              "usage_date": "2026-01-15T00:00:00Z"
+            }
+          ]
+        },
+        "required": ["usage_items"]
       },
       "ListInvoicesResponse": {
         "type": "object",
@@ -20009,6 +20577,86 @@
           "CLUSTER_DATA_ACCESSOR"
         ]
       },
+      "OtlpMetricExportCloudWatch": {
+        "description": "OtlpMetricExportCloudWatch configures the CloudWatch OTLP metrics profile.",
+        "type": "object",
+        "properties": {
+          "external_id": {
+            "description": "external_id to include when assuming the IAM role specified by role_arn.\nOptional. A specific value may be required by the role's trust policy.",
+            "type": "string"
+          },
+          "role_arn": {
+            "description": "role_arn is the IAM role assumed to send metrics via SigV4. It requires the\ncloudwatch:PutMetricData permission.",
+            "type": "string"
+          },
+          "target_region": {
+            "description": "target_region specifies the AWS region that metrics are exported to. It\nmust support CloudWatch OTLP ingestion and PromQL. If empty, metrics export\nto each deployment region.",
+            "type": "string"
+          }
+        },
+        "example": {
+          "external_id": "example_external_id",
+          "role_arn": "arn:aws:iam::account:role/ExampleRole",
+          "target_region": "us-east-1"
+        },
+        "required": ["role_arn"],
+        "title": "OtlpMetricExportCloudWatch"
+      },
+      "OtlpMetricExportCloudWatchInfo": {
+        "description": "OtlpMetricExportCloudWatchInfo describes the configured CloudWatch profile.",
+        "type": "object",
+        "properties": {
+          "external_id": {
+            "description": "external_id, if set, is included when assuming the IAM role.",
+            "type": "string"
+          },
+          "role_arn": {
+            "description": "role_arn is the IAM role assumed to send metrics via SigV4.",
+            "type": "string"
+          },
+          "target_region": {
+            "description": "target_region specifies the AWS region that metrics are exported to. If\nempty, metrics export to each deployment region.",
+            "type": "string"
+          }
+        },
+        "example": {
+          "external_id": "example_external_id",
+          "role_arn": "arn:aws:iam::account:role/ExampleRole",
+          "target_region": "us-east-1"
+        },
+        "required": ["role_arn"],
+        "title": "OtlpMetricExportCloudWatchInfo"
+      },
+      "OtlpMetricExportInfo": {
+        "type": "object",
+        "properties": {
+          "cloudwatch": {
+            "$ref": "#/components/schemas/OtlpMetricExportCloudWatchInfo"
+          },
+          "cluster_id": {
+            "description": "cluster_id is the ID of the cluster this metric export is configured for.",
+            "type": "string"
+          },
+          "status": {
+            "$ref": "#/components/schemas/MetricExportStatus.Type"
+          },
+          "user_message": {
+            "description": "user_message is a human-readable description of the current export status.",
+            "type": "string"
+          }
+        },
+        "example": {
+          "cloudwatch": {
+            "role_arn": "arn:aws:iam::account:role/ExampleRole",
+            "target_region": "us-east-1"
+          },
+          "cluster_id": "cluster-id",
+          "status": "ENABLED",
+          "user_message": "Export enabled"
+        },
+        "required": ["cluster_id", "user_message", "status"],
+        "title": "OtlpMetricExportInfo"
+      },
       "PatchGroupBody": {
         "type": "object",
         "properties": {
@@ -20440,7 +21088,7 @@
         "type": "object",
         "properties": {
           "disk_iops": {
-            "description": "disk_iops is the provisioned disk I/O operations per second for nodes\nin this region. Only meaningful for Advanced clusters on AWS; for GCP\nand Azure the cloud provider chooses based on disk size.",
+            "description": "Limited Access: disk_iops is the provisioned disk I/O operations per second for nodes\nin this region. Only meaningful for Advanced clusters on AWS; for GCP\nand Azure the cloud provider chooses based on disk size.",
             "type": "integer",
             "format": "int32"
           },
@@ -20449,7 +21097,7 @@
             "type": "string"
           },
           "machine_type": {
-            "description": "machine_type is the machine type identifier within the cloud provider\nfor nodes in this region (e.g. m5.xlarge, n2-standard-4). May differ\nacross regions in a heterogeneous Advanced cluster. Only populated for\nAdvanced clusters.",
+            "description": "Limited Access: machine_type is the machine type identifier within the cloud provider\nfor nodes in this region (e.g. m5.xlarge, n2-standard-4). May differ\nacross regions in a heterogeneous Advanced cluster. Only populated for\nAdvanced clusters.",
             "type": "string"
           },
           "name": {
@@ -20461,7 +21109,7 @@
             "format": "int32"
           },
           "num_virtual_cpus": {
-            "description": "num_virtual_cpus is the number of virtual CPUs per node in this region,\nderived from machine_type. Only populated for Advanced clusters.",
+            "description": "Limited Access: num_virtual_cpus is the number of virtual CPUs per node in this region,\nderived from machine_type. Only populated for Advanced clusters.",
             "type": "integer",
             "format": "int32"
           },
@@ -21438,6 +22086,17 @@
         "description": "SystemActorName identifies a system process that triggered an audit log\nentry when the action was not initiated by a human user or service account.",
         "type": "string",
         "enum": ["SYSTEM_ACTOR_NAME_SYSTEM"]
+      },
+      "UnitCategory.Type": {
+        "description": " - COMPUTE: COMPUTE is compute usage (e.g. provisioned vCPUs, request units).\n - STORAGE: STORAGE is primary data storage usage.\n - DATA_TRANSFER: DATA_TRANSFER is network data transfer usage.\n - BACKUP_STORAGE: BACKUP_STORAGE is backup storage usage.\n - CHANGEFEED: CHANGEFEED is changefeed (CDC) usage.",
+        "type": "string",
+        "enum": [
+          "COMPUTE",
+          "STORAGE",
+          "DATA_TRANSFER",
+          "BACKUP_STORAGE",
+          "CHANGEFEED"
+        ]
       },
       "UpdateApiKeySpecification": {
         "type": "object",

@@ -4971,6 +4971,7 @@ paths:
         Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
+        - CLUSTER_DEVELOPER
         - AUDITOR
       operationId: CockroachCloud_GetMaintenanceWindow
       parameters:
@@ -5510,6 +5511,213 @@ paths:
             --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/metricexport/datadog \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
             --json '{"api_key":"datadog_api_key","site":"US1"}'
+  /api/v1/clusters/{cluster_id}/metricexport/otlp:
+    delete:
+      description: |
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
+      operationId: CockroachCloud_DeleteOtlpMetricExport
+      parameters:
+      - explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteMetricExportResponse'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Delete the OTLP Metric Export configuration for a cluster
+      tags:
+      - Metric Export
+      x-badges:
+      - color: red
+        label: LIMITED ACCESS
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request DELETE \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/metricexport/otlp \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+    get:
+      description: |
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
+        - METRICS_VIEWER
+        - AUDITOR
+      operationId: CockroachCloud_GetOtlpMetricExportInfo
+      parameters:
+      - explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OtlpMetricExportInfo'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Get the OTLP Metric Export configuration for a cluster
+      tags:
+      - Metric Export
+      x-badges:
+      - color: red
+        label: LIMITED ACCESS
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request GET \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/metricexport/otlp \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+    post:
+      description: |
+        Can be used by the following roles assigned at the organization, folder or cluster scope:
+        - CLUSTER_ADMIN
+        - CLUSTER_OPERATOR_WRITER
+      operationId: CockroachCloud_EnableOtlpMetricExport
+      parameters:
+      - description: cluster_id is the ID of the cluster to enable OTLP metric export
+          for.
+        explode: false
+        in: path
+        name: cluster_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnableOtlpMetricExportBody'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OtlpMetricExportInfo'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: Create or update the OTLP Metric Export configuration for a cluster
+      tags:
+      - Metric Export
+      x-badges:
+      - color: red
+        label: LIMITED ACCESS
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request POST \
+            --url https://cockroachlabs.cloud/api/v1/clusters/{cluster_id}/metricexport/otlp \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN' \
+            --json '{"cloudwatch":{"role_arn":"arn:aws:iam::account:role/ExampleRole","target_region":"us-east-1"}}'
   /api/v1/clusters/{cluster_id}/metricexport/prometheus:
     delete:
       description: |
@@ -6822,9 +7030,6 @@ paths:
       summary: List egress private endpoints
       tags:
       - Egress Private Endpoints
-      x-badges:
-      - color: red
-        label: LIMITED ACCESS
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -6895,9 +7100,6 @@ paths:
       summary: Create an egress private endpoint
       tags:
       - Egress Private Endpoints
-      x-badges:
-      - color: red
-        label: LIMITED ACCESS
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -6973,9 +7175,6 @@ paths:
       summary: Delete an egress private endpoint
       tags:
       - Egress Private Endpoints
-      x-badges:
-      - color: red
-        label: LIMITED ACCESS
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -7051,9 +7250,6 @@ paths:
       summary: Get egress private endpoint
       tags:
       - Egress Private Endpoints
-      x-badges:
-      - color: red
-        label: LIMITED ACCESS
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -7133,9 +7329,6 @@ paths:
       summary: Update egress private endpoint.
       tags:
       - Egress Private Endpoints
-      x-badges:
-      - color: red
-        label: LIMITED ACCESS
       x-codeSamples:
       - lang: Shell + Curl
         source: |-
@@ -9219,6 +9412,7 @@ paths:
         Can be used by the following roles assigned at the organization, folder or cluster scope:
         - CLUSTER_ADMIN
         - CLUSTER_OPERATOR_WRITER
+        - CLUSTER_DEVELOPER
         - AUDITOR
       operationId: CockroachCloud_GetClusterVersionDeferral
       parameters:
@@ -10089,6 +10283,110 @@ paths:
         source: |-
           curl --request GET \
             --url https://cockroachlabs.cloud/api/v1/invoices/{invoice_id} \
+            --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
+  /api/v1/invoices/{invoice_id}/daily-usage:
+    get:
+      description: |
+        Returns daily usage line items for an invoice. Each row is a distinct charge for a cluster on a given day, so a cluster may have several rows per day. Invoice-level adjustment rows are also included. Obtain invoice IDs from ListInvoices.
+
+        Can be used by the following roles assigned at the organization scope:
+        - BILLING_COORDINATOR
+        - CLUSTER_ADMIN
+      operationId: CockroachCloud_ListInvoiceDailyUsage
+      parameters:
+      - description: |-
+          invoice_id is the unique ID of the invoice (billing period) whose daily
+          usage is returned.
+        explode: false
+        in: path
+        name: invoice_id
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: pagination.page
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: pagination.limit
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: pagination.as_of_time
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: |2-
+           - ASC: Sort in ascending order. This is the default unless otherwise specified.
+           - DESC: Sort in descending order.
+        explode: true
+        in: query
+        name: pagination.sort_order
+        required: false
+        schema:
+          enum:
+          - ASC
+          - DESC
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListInvoiceDailyUsageResponse'
+          description: A successful response.
+        "400":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when a request field is invalid.
+        "401":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the token bearer cannot be authenticated.
+        "403":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the user does not have permission to access the
+            resource.
+        "404":
+          content:
+            application/json:
+              schema: {}
+          description: Returned when the resource does not exist.
+        "500":
+          content:
+            application/json:
+              schema: {}
+          description: Server error
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+          description: An unexpected error response.
+      summary: List an invoice's daily usage breakdown
+      tags:
+      - Billing
+      x-codeSamples:
+      - lang: Shell + Curl
+        source: |-
+          curl --request GET \
+            --url 'https://cockroachlabs.cloud/api/v1/invoices/{invoice_id}/daily-usage?pagination.page=SOME_STRING_VALUE&pagination.limit=SOME_INTEGER_VALUE&pagination.as_of_time=SOME_STRING_VALUE&pagination.sort_order=SOME_STRING_VALUE' \
             --header 'Authorization: Bearer REPLACE_BEARER_TOKEN'
   /api/v1/jwt-issuers:
     get:
@@ -12389,7 +12687,7 @@ paths:
           description: An unexpected error response.
       summary: Create a virtual cluster in a workspace
       tags:
-      - Virtual Cluster Workspaces
+      - Clusters
       x-badges:
       - color: green
         label: CONTINUUM
@@ -12476,7 +12774,7 @@ paths:
           description: An unexpected error response.
       summary: Update a specific virtual cluster
       tags:
-      - Virtual Cluster Workspaces
+      - Clusters
       x-badges:
       - color: green
         label: CONTINUUM
@@ -12946,6 +13244,11 @@ components:
       - AUDIT_LOG_ACTION_CREATE_VIRTUAL_CLUSTER_WORKSPACE
       - AUDIT_LOG_ACTION_UPDATE_VIRTUAL_CLUSTER_WORKSPACE
       - AUDIT_LOG_ACTION_DELETE_VIRTUAL_CLUSTER_WORKSPACE
+      - AUDIT_LOG_ACTION_DISCONNECT_AEGIS_CONNECTOR
+      - AUDIT_LOG_ACTION_ADD_SERVICE_ACCOUNT_IP_ALLOWLIST
+      - AUDIT_LOG_ACTION_EDIT_SERVICE_ACCOUNT_IP_ALLOWLIST
+      - AUDIT_LOG_ACTION_DELETE_SERVICE_ACCOUNT_IP_ALLOWLIST
+      - AUDIT_LOG_ACTION_SERVICE_ACCOUNT_IP_BLOCKED
       type: string
     AuditLogEntry:
       description: |-
@@ -13458,6 +13761,15 @@ components:
       - REVOKING
       - REVOKE_FAILED
       type: string
+    ChargeCategory.Type:
+      description: |2-
+         - USAGE: USAGE is a metered charge attributed to a cluster on a specific day.
+         - ADJUSTMENT: ADJUSTMENT is an invoice-level credit or charge (e.g. premium support)
+        not tied to a cluster or a specific day.
+      enum:
+      - USAGE
+      - ADJUSTMENT
+      type: string
     ClientCACertInfo:
       example:
         x509_pem_cert: x509_pem_cert
@@ -13606,10 +13918,23 @@ components:
       properties:
         account_id:
           description: |-
-            account_id is a cloud provider account ID representing the CockroachDB
-            cluster. This ID can be used for setting up trust relationships with cloud
-            resources. For GCP clusters, this value is a project name that can be used
-            to construct principal service account names for authentication.
+            account_id identifies the cloud provider account to grant access to when
+            setting up a trust relationship between this cluster and your own cloud
+            resources. Its form follows the cloud provider: an account ID on AWS, a
+            project ID on GCP, and a subscription ID on Azure. On GCP the project ID
+            also forms the principal service account names used for authentication.
+
+            Which account this is depends on how the cluster is hosted. An Advanced
+            cluster or a host cluster reports the account it runs in, which is the
+            account to grant access to when configuring CMEK. A virtual cluster
+            reports the account its host cluster runs in, since it shares that
+            hardware. A Basic or Standard cluster runs on hardware shared with other
+            organizations, so it instead reports an account CockroachDB Cloud operates
+            on its behalf, which is the account to grant access to when configuring
+            metrics export or log export.
+
+            Empty when no account applies to the cluster, so treat an empty value as
+            "not applicable" rather than an error.
           type: string
         azure_cluster_identity_client_id:
           description: |-
@@ -13643,6 +13968,13 @@ components:
           type: string
         edition:
           $ref: '#/components/schemas/Edition.Type'
+        egress_private_endpoint_principal:
+          description: |-
+            egress_private_endpoint_principal identifies this cluster to a service it
+            connects to over an egress private endpoint. It is the value that service's
+            allow list must permit for connection requests from this cluster to be
+            approved.
+          type: string
         egress_traffic_policy:
           $ref: '#/components/schemas/EgressTrafficPolicy.Type'
         id:
@@ -14503,6 +14835,81 @@ components:
         gcp:
           $ref: '#/components/schemas/GcpCustomerCloudAccount'
       type: object
+    DailyUsageCluster:
+      description: |-
+        DailyUsageCluster identifies the cluster a daily usage row is attributed to.
+        Its fields report the cluster's current state rather than its state during
+        the billing period. Use GetCluster for the cluster's full metadata.
+      example:
+        cloud_provider: AWS
+        id: b2c3d4e5-0000-0000-0000-000000000000
+        name: prod-cluster
+        plan_type: STANDARD
+      properties:
+        cloud_provider:
+          $ref: '#/components/schemas/CloudProvider.Type'
+        edition:
+          $ref: '#/components/schemas/Edition.Type'
+        id:
+          description: id is the unique ID of the cluster.
+          type: string
+        name:
+          description: |-
+            name is the cluster's name. Retained so rows for deleted clusters stay
+            human-readable.
+          type: string
+        plan_type:
+          $ref: '#/components/schemas/Plan.Type'
+      required:
+      - cloud_provider
+      - id
+      - name
+      type: object
+    DailyUsageLineItem:
+      description: |-
+        DailyUsageLineItem is the charge carried by a daily usage row, priced along
+        the dimensions daily usage is billed on.
+      example:
+        description: Request Units
+        locality: us-east-1
+        quantity: 1000000
+        quantity_unit: REQUEST_UNITS
+        total:
+          amount: 0.2
+          currency: USD
+        unit_category: COMPUTE
+        unit_cost: 2.0E-7
+      properties:
+        description:
+          description: "description is the charge name, or the adjustment name on\
+            \ adjustment rows."
+          type: string
+        locality:
+          description: |-
+            locality is the region the charge was incurred in. Empty for adjustment rows
+            and for charges not attributable to a specific region.
+          type: string
+        quantity:
+          description: quantity is the number of units consumed. Zero for adjustment
+            rows.
+          format: double
+          type: number
+        quantity_unit:
+          $ref: '#/components/schemas/QuantityUnit.Type'
+        total:
+          $ref: '#/components/schemas/CurrencyAmount'
+        unit_category:
+          $ref: '#/components/schemas/UnitCategory.Type'
+        unit_cost:
+          description: unit_cost is the cost per unit. Zero for adjustment rows.
+          format: double
+          type: number
+      required:
+      - description
+      - quantity
+      - total
+      - unit_cost
+      type: object
     Database:
       example:
         table_count: 0
@@ -14571,7 +14978,7 @@ components:
           additionalProperties:
             $ref: '#/components/schemas/DedicatedMachineTypeSpecification'
           description: |-
-            region_machine_specs configures a machine type per region, producing a
+            Limited Access: region_machine_specs configures a machine type per region, producing a
             cluster whose regions may use different machine types. Keys are region
             codes (matching region_nodes) and values select a machine type by
             machine_type or num_virtual_cpus. When set, every region in region_nodes
@@ -14594,6 +15001,7 @@ components:
             default-deny at creation time.
           type: boolean
         supports_cluster_virtualization:
+          description: Limited Access
           title: |-
             supports_cluster_virtualization specifies whether an Advanced
             cluster is started with a virtual cluster architecture. This field
@@ -14621,7 +15029,7 @@ components:
           additionalProperties:
             $ref: '#/components/schemas/DedicatedMachineTypeSpecification'
           description: |-
-            region_machine_specs updates machine types per region. Only regions named
+            Limited Access: region_machine_specs updates machine types per region. Only regions named
             in this map are affected; unnamed regions retain their current machine
             type. Use this to add a new region with a distinct machine type or to
             resize an existing region independently of others. Mutually exclusive
@@ -15292,6 +15700,18 @@ components:
       - log_name
       - type
       title: EnableLogExportRequest
+      type: object
+    EnableOtlpMetricExportBody:
+      description: EnableOtlpMetricExportRequest configures OTLP metric export for
+        a cluster.
+      example:
+        cloudwatch:
+          role_arn: arn:aws:iam::account:role/ExampleRole
+          target_region: us-east-1
+      properties:
+        cloudwatch:
+          $ref: '#/components/schemas/OtlpMetricExportCloudWatch'
+      title: EnableOtlpMetricExportRequest
       type: object
     FolderResource:
       description: "FolderResource describes a resource, and includes info about its\
@@ -16098,7 +16518,7 @@ components:
           additionalProperties:
             $ref: '#/components/schemas/DedicatedMachineTypeSpecification'
           description: |-
-            region_machine_specs configures a machine type per region, producing a
+            Limited Access: region_machine_specs configures a machine type per region, producing a
             cluster whose regions may use different machine types. Keys are region
             codes (matching region_nodes) and values select a machine type by
             machine_type or num_virtual_cpus. When set, every region in region_nodes
@@ -16146,7 +16566,7 @@ components:
           additionalProperties:
             $ref: '#/components/schemas/DedicatedMachineTypeSpecification'
           description: |-
-            region_machine_specs updates machine types per region. Only regions named
+            Limited Access: region_machine_specs updates machine types per region. Only regions named
             in this map are affected; unnamed regions retain their current machine
             type. Use this to add a new region with a distinct machine type or to
             resize an existing region independently of others. Mutually exclusive
@@ -16389,6 +16809,43 @@ components:
       required:
       - amount
       - name
+      type: object
+    InvoiceDailyUsageItem:
+      description: InvoiceDailyUsageItem is a single row of an invoice's daily usage
+        breakdown.
+      example:
+        charge_category: USAGE
+        cluster:
+          cloud_provider: AWS
+          id: b2c3d4e5-0000-0000-0000-000000000000
+          name: prod-cluster
+          plan_type: STANDARD
+        line_item:
+          description: Request Units
+          locality: us-east-1
+          quantity: 1000000
+          quantity_unit: REQUEST_UNITS
+          total:
+            amount: 0.2
+            currency: USD
+          unit_category: COMPUTE
+          unit_cost: 2.0E-7
+        usage_date: 2026-01-15T00:00:00Z
+      properties:
+        charge_category:
+          $ref: '#/components/schemas/ChargeCategory.Type'
+        cluster:
+          $ref: '#/components/schemas/DailyUsageCluster'
+        line_item:
+          $ref: '#/components/schemas/DailyUsageLineItem'
+        usage_date:
+          description: usage_date is the day the usage was incurred. Null for adjustment
+            rows.
+          format: date-time
+          type: string
+      required:
+      - charge_category
+      - line_item
       type: object
     InvoiceItem:
       example:
@@ -17006,6 +17463,47 @@ components:
           $ref: '#/components/schemas/KeysetPaginationResponse'
       required:
       - folders
+      type: object
+    ListInvoiceDailyUsageResponse:
+      description: |-
+        ListInvoiceDailyUsageResponse is the output of the ListInvoiceDailyUsage
+        RPC. Invoice-level details (billing period, totals) are available from
+        GetInvoice.
+      example:
+        pagination:
+          next_page: 2026-01-16
+        usage_items:
+        - charge_category: USAGE
+          cluster:
+            cloud_provider: AWS
+            id: b2c3d4e5-0000-0000-0000-000000000000
+            name: prod-cluster
+            plan_type: STANDARD
+          line_item:
+            description: Request Units
+            locality: us-east-1
+            quantity: 1000000
+            quantity_unit: REQUEST_UNITS
+            total:
+              amount: 0.2
+              currency: USD
+            unit_category: COMPUTE
+            unit_cost: 2.0E-7
+          usage_date: 2026-01-15T00:00:00Z
+      properties:
+        pagination:
+          $ref: '#/components/schemas/KeysetPaginationResponse'
+        usage_items:
+          description: |-
+            usage_items contains the daily usage rows for this page. By default, usage
+            rows are sorted by usage date and then by cluster, with adjustment rows on
+            the final pages. In descending order, adjustment rows appear first,
+            followed by usage rows from newest to oldest.
+          items:
+            $ref: '#/components/schemas/InvoiceDailyUsageItem'
+          type: array
+      required:
+      - usage_items
       type: object
     ListInvoicesResponse:
       example:
@@ -18187,6 +18685,84 @@ components:
       - AUDITOR
       - CLUSTER_DATA_ACCESSOR
       type: string
+    OtlpMetricExportCloudWatch:
+      description: OtlpMetricExportCloudWatch configures the CloudWatch OTLP metrics
+        profile.
+      example:
+        external_id: example_external_id
+        role_arn: arn:aws:iam::account:role/ExampleRole
+        target_region: us-east-1
+      properties:
+        external_id:
+          description: |-
+            external_id to include when assuming the IAM role specified by role_arn.
+            Optional. A specific value may be required by the role's trust policy.
+          type: string
+        role_arn:
+          description: |-
+            role_arn is the IAM role assumed to send metrics via SigV4. It requires the
+            cloudwatch:PutMetricData permission.
+          type: string
+        target_region:
+          description: |-
+            target_region specifies the AWS region that metrics are exported to. It
+            must support CloudWatch OTLP ingestion and PromQL. If empty, metrics export
+            to each deployment region.
+          type: string
+      required:
+      - role_arn
+      title: OtlpMetricExportCloudWatch
+      type: object
+    OtlpMetricExportCloudWatchInfo:
+      description: OtlpMetricExportCloudWatchInfo describes the configured CloudWatch
+        profile.
+      example:
+        external_id: example_external_id
+        role_arn: arn:aws:iam::account:role/ExampleRole
+        target_region: us-east-1
+      properties:
+        external_id:
+          description: "external_id, if set, is included when assuming the IAM role."
+          type: string
+        role_arn:
+          description: role_arn is the IAM role assumed to send metrics via SigV4.
+          type: string
+        target_region:
+          description: |-
+            target_region specifies the AWS region that metrics are exported to. If
+            empty, metrics export to each deployment region.
+          type: string
+      required:
+      - role_arn
+      title: OtlpMetricExportCloudWatchInfo
+      type: object
+    OtlpMetricExportInfo:
+      example:
+        cloudwatch:
+          role_arn: arn:aws:iam::account:role/ExampleRole
+          target_region: us-east-1
+        cluster_id: cluster-id
+        status: ENABLED
+        user_message: Export enabled
+      properties:
+        cloudwatch:
+          $ref: '#/components/schemas/OtlpMetricExportCloudWatchInfo'
+        cluster_id:
+          description: cluster_id is the ID of the cluster this metric export is configured
+            for.
+          type: string
+        status:
+          $ref: '#/components/schemas/MetricExportStatus.Type'
+        user_message:
+          description: user_message is a human-readable description of the current
+            export status.
+          type: string
+      required:
+      - cluster_id
+      - status
+      - user_message
+      title: OtlpMetricExportInfo
+      type: object
     PatchGroupBody:
       example:
         Operations:
@@ -18694,7 +19270,7 @@ components:
       properties:
         disk_iops:
           description: |-
-            disk_iops is the provisioned disk I/O operations per second for nodes
+            Limited Access: disk_iops is the provisioned disk I/O operations per second for nodes
             in this region. Only meaningful for Advanced clusters on AWS; for GCP
             and Azure the cloud provider chooses based on disk size.
           format: int32
@@ -18708,7 +19284,7 @@ components:
           type: string
         machine_type:
           description: |-
-            machine_type is the machine type identifier within the cloud provider
+            Limited Access: machine_type is the machine type identifier within the cloud provider
             for nodes in this region (e.g. m5.xlarge, n2-standard-4). May differ
             across regions in a heterogeneous Advanced cluster. Only populated for
             Advanced clusters.
@@ -18721,7 +19297,7 @@ components:
           type: integer
         num_virtual_cpus:
           description: |-
-            num_virtual_cpus is the number of virtual CPUs per node in this region,
+            Limited Access: num_virtual_cpus is the number of virtual CPUs per node in this region,
             derived from machine_type. Only populated for Advanced clusters.
           format: int32
           type: integer
@@ -19794,6 +20370,20 @@ components:
         entry when the action was not initiated by a human user or service account.
       enum:
       - SYSTEM_ACTOR_NAME_SYSTEM
+      type: string
+    UnitCategory.Type:
+      description: |2-
+         - COMPUTE: COMPUTE is compute usage (e.g. provisioned vCPUs, request units).
+         - STORAGE: STORAGE is primary data storage usage.
+         - DATA_TRANSFER: DATA_TRANSFER is network data transfer usage.
+         - BACKUP_STORAGE: BACKUP_STORAGE is backup storage usage.
+         - CHANGEFEED: CHANGEFEED is changefeed (CDC) usage.
+      enum:
+      - COMPUTE
+      - STORAGE
+      - DATA_TRANSFER
+      - BACKUP_STORAGE
+      - CHANGEFEED
       type: string
     UpdateApiKeySpecification:
       example:
