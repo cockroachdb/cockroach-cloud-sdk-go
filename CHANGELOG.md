@@ -24,6 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Preserve fractional seconds in datetime query parameters, including audit-log cursors and pagination snapshots.
 - Fix a default header adding a second value when the request already set that header, rather than replacing it.
 - Fix `AddDefaultHeader` treating header keys as case-sensitive.
 
