@@ -5,6 +5,7 @@ All URIs are relative to *https://cockroachlabs.cloud*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateCluster**](ClustersApi.md#CreateCluster) | **Post** /api/v1/clusters | Create and initialize a new cluster
+[**CreateVirtualCluster**](ClustersApi.md#CreateVirtualCluster) | **Post** /api/v1/virtual-cluster-workspaces/{workspace_id}/clusters | Create a virtual cluster in a workspace
 [**DeleteCluster**](ClustersApi.md#DeleteCluster) | **Delete** /api/v1/clusters/{cluster_id} | Delete a cluster and all of its data
 [**GetCluster**](ClustersApi.md#GetCluster) | **Get** /api/v1/clusters/{cluster_id} | Get extended information about a cluster
 [**GetConnectionString**](ClustersApi.md#GetConnectionString) | **Get** /api/v1/clusters/{cluster_id}/connection-string | Get a formatted generic connection string for a cluster
@@ -13,6 +14,7 @@ Method | HTTP request | Description
 [**ListClusters**](ClustersApi.md#ListClusters) | **Get** /api/v1/clusters | List clusters in the organization
 [**ListMajorClusterVersions**](ClustersApi.md#ListMajorClusterVersions) | **Get** /api/v1/cluster-versions | List available major cluster versions
 [**UpdateCluster**](ClustersApi.md#UpdateCluster) | **Patch** /api/v1/clusters/{cluster_id} | Scale, edit or upgrade a cluster
+[**UpdateVirtualCluster**](ClustersApi.md#UpdateVirtualCluster) | **Patch** /api/v1/virtual-cluster-workspaces/{workspace_id}/clusters/{cluster_id} | Update a specific virtual cluster
 
 
 
@@ -66,6 +68,78 @@ Name | Type | Description  | Notes
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **createClusterRequest** | [**CreateClusterRequest**](CreateClusterRequest.md) |  | 
+
+### Return type
+
+[**Cluster**](Cluster.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## CreateVirtualCluster
+
+> Cluster CreateVirtualCluster(ctx, workspaceId).CreateVirtualClusterBody(createVirtualClusterBody).Execute()
+
+Create a virtual cluster in a workspace
+
+Can be used by the following roles assigned at the organization or folder scope:
+- CLUSTER_ADMIN
+- CLUSTER_CREATOR
+
+Setting a custom virtual_cpu_burst_limit for this cluster additionally requires a role with edit permission assigned on the host cluster backing the workspace.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    workspaceId := "workspaceId_example" // string | The unique identifier of the workspace to create the cluster in.
+    createVirtualClusterBody := *openapiclient.NewCreateVirtualClusterBody("Name_example") // CreateVirtualClusterBody | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.ClustersApi.CreateVirtualCluster(context.Background(), workspaceId).CreateVirtualClusterBody(createVirtualClusterBody).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ClustersApi.CreateVirtualCluster``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateVirtualCluster`: Cluster
+    fmt.Fprintf(os.Stdout, "Response from `ClustersApi.CreateVirtualCluster`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**workspaceId** | **string** | The unique identifier of the workspace to create the cluster in. | 
+
+### Other Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **createVirtualClusterBody** | [**CreateVirtualClusterBody**](CreateVirtualClusterBody.md) |  | 
 
 ### Return type
 
@@ -699,6 +773,81 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **updateClusterSpecification** | [**UpdateClusterSpecification**](UpdateClusterSpecification.md) |  | 
+
+### Return type
+
+[**Cluster**](Cluster.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## UpdateVirtualCluster
+
+> Cluster UpdateVirtualCluster(ctx, workspaceId, clusterId).UpdateVirtualClusterSpecification(updateVirtualClusterSpecification).Execute()
+
+Update a specific virtual cluster
+
+Can be used by the following roles assigned at the organization, folder or cluster scope:
+- CLUSTER_ADMIN
+- CLUSTER_OPERATOR_WRITER
+
+Setting a custom virtual_cpu_burst_limit for this cluster additionally requires a role with edit permission assigned on the host cluster backing the workspace, not on the virtual cluster.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    workspaceId := "workspaceId_example" // string | The unique identifier of the workspace the cluster belongs to.
+    clusterId := "clusterId_example" // string | The unique identifier of the cluster.
+    updateVirtualClusterSpecification := *openapiclient.NewUpdateVirtualClusterSpecification() // UpdateVirtualClusterSpecification | The changes to apply to the cluster.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.ClustersApi.UpdateVirtualCluster(context.Background(), workspaceId, clusterId).UpdateVirtualClusterSpecification(updateVirtualClusterSpecification).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ClustersApi.UpdateVirtualCluster``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `UpdateVirtualCluster`: Cluster
+    fmt.Fprintf(os.Stdout, "Response from `ClustersApi.UpdateVirtualCluster`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**workspaceId** | **string** | The unique identifier of the workspace the cluster belongs to. | 
+**clusterId** | **string** | The unique identifier of the cluster. | 
+
+### Other Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **updateVirtualClusterSpecification** | [**UpdateVirtualClusterSpecification**](UpdateVirtualClusterSpecification.md) | The changes to apply to the cluster. | 
 
 ### Return type
 

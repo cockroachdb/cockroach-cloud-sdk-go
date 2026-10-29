@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DiskIops** | Pointer to **int32** | disk_iops is the provisioned disk I/O operations per second for nodes in this region. Only meaningful for Advanced clusters on AWS; for GCP and Azure the cloud provider chooses based on disk size. | [optional] 
+**DiskIops** | Pointer to **int32** | Limited Access: disk_iops is the provisioned disk I/O operations per second for nodes in this region. Only meaningful for Advanced clusters on AWS; for GCP and Azure the cloud provider chooses based on disk size. | [optional] 
 **InternalDns** | **string** | internal_dns is the internal DNS name of the cluster within the cloud provider&#39;s network. It is used to connect to the cluster with AWS PrivateLink, Azure Private Link, and GCP VPC Peering, but not GCP Private Service Connect. | 
-**MachineType** | Pointer to **string** | machine_type is the machine type identifier within the cloud provider for nodes in this region (e.g. m5.xlarge, n2-standard-4). May differ across regions in a heterogeneous Advanced cluster. Only populated for Advanced clusters. | [optional] 
+**MachineType** | Pointer to **string** | Limited Access: machine_type is the machine type identifier within the cloud provider for nodes in this region (e.g. m5.xlarge, n2-standard-4). May differ across regions in a heterogeneous Advanced cluster. Only populated for Advanced clusters. | [optional] 
 **Name** | **string** |  | 
 **NodeCount** | **int32** | node_count will be 0 for Serverless clusters. | 
-**NumVirtualCpus** | Pointer to **int32** | num_virtual_cpus is the number of virtual CPUs per node in this region, derived from machine_type. Only populated for Advanced clusters. | [optional] 
+**NumVirtualCpus** | Pointer to **int32** | Limited Access: num_virtual_cpus is the number of virtual CPUs per node in this region, derived from machine_type. Only populated for Advanced clusters. | [optional] 
 **Primary** | Pointer to **bool** | primary is true only for the primary region in a Multi Region Serverless cluster. | [optional] 
 **PrivateEndpointDns** | **string** | private_endpoint_dns is the DNS name of the cluster which is used to connect to the cluster with GCP Private Service Connect. | 
 **S3VpcEndpointId** | Pointer to **string** | s3_vpc_endpoint_id is the ID of the AWS S3 VPC gateway endpoint associated with this cluster region. This can be used to configure S3 bucket policies that restrict access to traffic from this VPC endpoint. Only populated for Advanced clusters on AWS. | [optional] 

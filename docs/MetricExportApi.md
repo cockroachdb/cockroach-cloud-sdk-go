@@ -6,12 +6,15 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**DeleteCloudWatchMetricExport**](MetricExportApi.md#DeleteCloudWatchMetricExport) | **Delete** /api/v1/clusters/{cluster_id}/metricexport/cloudwatch | Delete the CloudWatch Metric Export configuration for a cluster
 [**DeleteDatadogMetricExport**](MetricExportApi.md#DeleteDatadogMetricExport) | **Delete** /api/v1/clusters/{cluster_id}/metricexport/datadog | Delete the Datadog Metric Export configuration for a cluster
+[**DeleteOtlpMetricExport**](MetricExportApi.md#DeleteOtlpMetricExport) | **Delete** /api/v1/clusters/{cluster_id}/metricexport/otlp | Delete the OTLP Metric Export configuration for a cluster
 [**DeletePrometheusMetricExport**](MetricExportApi.md#DeletePrometheusMetricExport) | **Delete** /api/v1/clusters/{cluster_id}/metricexport/prometheus | Disable Prometheus Metric Export for a cluster
 [**EnableCloudWatchMetricExport**](MetricExportApi.md#EnableCloudWatchMetricExport) | **Post** /api/v1/clusters/{cluster_id}/metricexport/cloudwatch | Create or update the CloudWatch Metric Export configuration for a cluster
 [**EnableDatadogMetricExport**](MetricExportApi.md#EnableDatadogMetricExport) | **Post** /api/v1/clusters/{cluster_id}/metricexport/datadog | Create or update the Datadog Metric Export configuration for a cluster
+[**EnableOtlpMetricExport**](MetricExportApi.md#EnableOtlpMetricExport) | **Post** /api/v1/clusters/{cluster_id}/metricexport/otlp | Create or update the OTLP Metric Export configuration for a cluster
 [**EnablePrometheusMetricExport**](MetricExportApi.md#EnablePrometheusMetricExport) | **Post** /api/v1/clusters/{cluster_id}/metricexport/prometheus | Enable Prometheus Metric Export for a cluster
 [**GetCloudWatchMetricExportInfo**](MetricExportApi.md#GetCloudWatchMetricExportInfo) | **Get** /api/v1/clusters/{cluster_id}/metricexport/cloudwatch | Get the CloudWatch Metric Export configuration for a cluster
 [**GetDatadogMetricExportInfo**](MetricExportApi.md#GetDatadogMetricExportInfo) | **Get** /api/v1/clusters/{cluster_id}/metricexport/datadog | Get the Datadog Metric Export configuration for a cluster
+[**GetOtlpMetricExportInfo**](MetricExportApi.md#GetOtlpMetricExportInfo) | **Get** /api/v1/clusters/{cluster_id}/metricexport/otlp | Get the OTLP Metric Export configuration for a cluster
 [**GetPrometheusMetricExportInfo**](MetricExportApi.md#GetPrometheusMetricExportInfo) | **Get** /api/v1/clusters/{cluster_id}/metricexport/prometheus | Get the Prometheus Metric Export configuration for a cluster
 
 
@@ -120,6 +123,75 @@ func main() {
     }
     // response from `DeleteDatadogMetricExport`: DeleteMetricExportResponse
     fmt.Fprintf(os.Stdout, "Response from `MetricExportApi.DeleteDatadogMetricExport`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**clusterId** | **string** |  | 
+
+### Other Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**DeleteMetricExportResponse**](DeleteMetricExportResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## DeleteOtlpMetricExport
+
+> DeleteMetricExportResponse DeleteOtlpMetricExport(ctx, clusterId).Execute()
+
+Delete the OTLP Metric Export configuration for a cluster
+
+Can be used by the following roles assigned at the organization, folder or cluster scope:
+- CLUSTER_ADMIN
+- CLUSTER_OPERATOR_WRITER
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    clusterId := "clusterId_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.MetricExportApi.DeleteOtlpMetricExport(context.Background(), clusterId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `MetricExportApi.DeleteOtlpMetricExport``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `DeleteOtlpMetricExport`: DeleteMetricExportResponse
+    fmt.Fprintf(os.Stdout, "Response from `MetricExportApi.DeleteOtlpMetricExport`: %v\n", resp)
 }
 ```
 
@@ -365,6 +437,77 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## EnableOtlpMetricExport
+
+> OtlpMetricExportInfo EnableOtlpMetricExport(ctx, clusterId).EnableOtlpMetricExportBody(enableOtlpMetricExportBody).Execute()
+
+Create or update the OTLP Metric Export configuration for a cluster
+
+Can be used by the following roles assigned at the organization, folder or cluster scope:
+- CLUSTER_ADMIN
+- CLUSTER_OPERATOR_WRITER
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    clusterId := "clusterId_example" // string | cluster_id is the ID of the cluster to enable OTLP metric export for.
+    enableOtlpMetricExportBody := *openapiclient.NewEnableOtlpMetricExportBody() // EnableOtlpMetricExportBody | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.MetricExportApi.EnableOtlpMetricExport(context.Background(), clusterId).EnableOtlpMetricExportBody(enableOtlpMetricExportBody).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `MetricExportApi.EnableOtlpMetricExport``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `EnableOtlpMetricExport`: OtlpMetricExportInfo
+    fmt.Fprintf(os.Stdout, "Response from `MetricExportApi.EnableOtlpMetricExport`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**clusterId** | **string** | cluster_id is the ID of the cluster to enable OTLP metric export for. | 
+
+### Other Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **enableOtlpMetricExportBody** | [**EnableOtlpMetricExportBody**](EnableOtlpMetricExportBody.md) |  | 
+
+### Return type
+
+[**OtlpMetricExportInfo**](OtlpMetricExportInfo.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
 ## EnablePrometheusMetricExport
 
 > PrometheusMetricExportInfo EnablePrometheusMetricExport(ctx, clusterId).Execute()
@@ -562,6 +705,77 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**DatadogMetricExportInfo**](DatadogMetricExportInfo.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## GetOtlpMetricExportInfo
+
+> OtlpMetricExportInfo GetOtlpMetricExportInfo(ctx, clusterId).Execute()
+
+Get the OTLP Metric Export configuration for a cluster
+
+Can be used by the following roles assigned at the organization, folder or cluster scope:
+- CLUSTER_ADMIN
+- CLUSTER_OPERATOR_WRITER
+- METRICS_VIEWER
+- AUDITOR
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    clusterId := "clusterId_example" // string | 
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.MetricExportApi.GetOtlpMetricExportInfo(context.Background(), clusterId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `MetricExportApi.GetOtlpMetricExportInfo``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetOtlpMetricExportInfo`: OtlpMetricExportInfo
+    fmt.Fprintf(os.Stdout, "Response from `MetricExportApi.GetOtlpMetricExportInfo`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**clusterId** | **string** |  | 
+
+### Other Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**OtlpMetricExportInfo**](OtlpMetricExportInfo.md)
 
 ### Authorization
 

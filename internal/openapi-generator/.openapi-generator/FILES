@@ -42,6 +42,7 @@ docs/CMEKKeyType.md
 docs/CMEKRegionInfo.md
 docs/CMEKRegionSpecification.md
 docs/CMEKStatus.md
+docs/ChargeCategoryType.md
 docs/ClientCACertInfo.md
 docs/ClientCACertStatus.md
 docs/ClientCACertUpdateModeType.md
@@ -86,6 +87,8 @@ docs/CurrencyAmount.md
 docs/CurrencyType.md
 docs/CustomerCloudAccount.md
 docs/CustomerManagedEncryptionKeysApi.md
+docs/DailyUsageCluster.md
+docs/DailyUsageLineItem.md
 docs/Database.md
 docs/DatabasesApi.md
 docs/DatadogMetricExportInfo.md
@@ -116,6 +119,7 @@ docs/EnableCloudWatchMetricExportBody.md
 docs/EnableClusterRuntimeScanningBody.md
 docs/EnableDatadogMetricExportBody.md
 docs/EnableLogExportBody.md
+docs/EnableOtlpMetricExportBody.md
 docs/FolderResource.md
 docs/FolderResourceList.md
 docs/FolderResourceTypeType.md
@@ -142,6 +146,7 @@ docs/HostClusterUpdateSpecification.md
 docs/IPAllowlistsApi.md
 docs/Invoice.md
 docs/InvoiceAdjustment.md
+docs/InvoiceDailyUsageItem.md
 docs/InvoiceItem.md
 docs/InvoiceStatusType.md
 docs/JWTIssuer.md
@@ -161,6 +166,7 @@ docs/ListDatabasesResponse.md
 docs/ListEgressPrivateEndpointsResponse.md
 docs/ListEgressRulesResponse.md
 docs/ListFoldersResponse.md
+docs/ListInvoiceDailyUsageResponse.md
 docs/ListInvoicesResponse.md
 docs/ListJWTIssuersResponse.md
 docs/ListMajorClusterVersionsResponse.md
@@ -195,6 +201,9 @@ docs/OperatingSystemType.md
 docs/Organization.md
 docs/OrganizationUserRoleType.md
 docs/OrganizationsApi.md
+docs/OtlpMetricExportCloudWatch.md
+docs/OtlpMetricExportCloudWatchInfo.md
+docs/OtlpMetricExportInfo.md
 docs/PatchGroupBody.md
 docs/PatchUserBody.md
 docs/PathSegment.md
@@ -266,6 +275,7 @@ docs/SetEgressTrafficPolicyBody.md
 docs/SetRolesForUserBody.md
 docs/Status.md
 docs/SystemActorName.md
+docs/UnitCategoryType.md
 docs/UpdateApiKeySpecification.md
 docs/UpdateBackupConfigurationSpec.md
 docs/UpdateBlackoutWindowBody.md
@@ -321,6 +331,7 @@ model_backup_summary.go
 model_blackout_window.go
 model_built_in_from_groups.go
 model_built_in_role.go
+model_charge_category_type.go
 model_client_ca_cert_info.go
 model_client_ca_cert_status.go
 model_client_ca_cert_update_mode_type.go
@@ -369,6 +380,8 @@ model_create_virtual_cluster_body.go
 model_currency_amount.go
 model_currency_type.go
 model_customer_cloud_account.go
+model_daily_usage_cluster.go
+model_daily_usage_line_item.go
 model_database.go
 model_datadog_metric_export_info.go
 model_datadog_site_type.go
@@ -396,6 +409,7 @@ model_enable_cluster_runtime_scanning_body.go
 model_enable_cmek_spec_body.go
 model_enable_datadog_metric_export_body.go
 model_enable_log_export_body.go
+model_enable_otlp_metric_export_body.go
 model_folder_resource.go
 model_folder_resource_list.go
 model_folder_resource_type_type.go
@@ -420,6 +434,7 @@ model_host_cluster_create_specification.go
 model_host_cluster_update_specification.go
 model_invoice.go
 model_invoice_adjustment.go
+model_invoice_daily_usage_item.go
 model_invoice_item.go
 model_invoice_status_type.go
 model_jwt_issuer.go
@@ -438,6 +453,7 @@ model_list_databases_response.go
 model_list_egress_private_endpoints_response.go
 model_list_egress_rules_response.go
 model_list_folders_response.go
+model_list_invoice_daily_usage_response.go
 model_list_invoices_response.go
 model_list_jwt_issuers_response.go
 model_list_major_cluster_versions_response.go
@@ -467,6 +483,9 @@ model_node_status_type.go
 model_operating_system_type.go
 model_organization.go
 model_organization_user_role_type.go
+model_otlp_metric_export_cloud_watch.go
+model_otlp_metric_export_cloud_watch_info.go
+model_otlp_metric_export_info.go
 model_patch_group_body.go
 model_patch_user_body.go
 model_path_segment.go
@@ -531,6 +550,7 @@ model_set_roles_for_user_body.go
 model_sql_user.go
 model_status.go
 model_system_actor_name.go
+model_unit_category_type.go
 model_update_api_key_specification.go
 model_update_backup_configuration_spec.go
 model_update_blackout_window_body.go

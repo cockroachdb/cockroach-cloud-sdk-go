@@ -5,6 +5,7 @@ All URIs are relative to *https://cockroachlabs.cloud*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**GetInvoice**](BillingApi.md#GetInvoice) | **Get** /api/v1/invoices/{invoice_id} | Get a specific invoice for an organization
+[**ListInvoiceDailyUsage**](BillingApi.md#ListInvoiceDailyUsage) | **Get** /api/v1/invoices/{invoice_id}/daily-usage | List an invoice&#39;s daily usage breakdown
 [**ListInvoices**](BillingApi.md#ListInvoices) | **Get** /api/v1/invoices | List invoices for a given organization
 
 
@@ -64,6 +65,87 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Invoice**](Invoice.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to README]](../README.md)
+
+
+## ListInvoiceDailyUsage
+
+> ListInvoiceDailyUsageResponse ListInvoiceDailyUsage(ctx, invoiceId).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).Execute()
+
+List an invoice's daily usage breakdown
+
+Returns daily usage line items for an invoice. Each row is a distinct charge for a cluster on a given day, so a cluster may have several rows per day. Invoice-level adjustment rows are also included. Obtain invoice IDs from ListInvoices.
+
+Can be used by the following roles assigned at the organization scope:
+- BILLING_COORDINATOR
+- CLUSTER_ADMIN
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    "time"
+    openapiclient "./openapi"
+)
+
+func main() {
+    invoiceId := "invoiceId_example" // string | invoice_id is the unique ID of the invoice (billing period) whose daily usage is returned.
+    paginationPage := "paginationPage_example" // string |  (optional)
+    paginationLimit := int32(56) // int32 |  (optional)
+    paginationAsOfTime := time.Now() // time.Time |  (optional)
+    paginationSortOrder := "paginationSortOrder_example" // string |  - ASC: Sort in ascending order. This is the default unless otherwise specified.  - DESC: Sort in descending order. (optional)
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewClient(configuration)
+    resp, r, err := api_client.BillingApi.ListInvoiceDailyUsage(context.Background(), invoiceId).PaginationPage(paginationPage).PaginationLimit(paginationLimit).PaginationAsOfTime(paginationAsOfTime).PaginationSortOrder(paginationSortOrder).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `BillingApi.ListInvoiceDailyUsage``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `ListInvoiceDailyUsage`: ListInvoiceDailyUsageResponse
+    fmt.Fprintf(os.Stdout, "Response from `BillingApi.ListInvoiceDailyUsage`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**invoiceId** | **string** | invoice_id is the unique ID of the invoice (billing period) whose daily usage is returned. | 
+
+### Other Parameters
+
+Optional parameters can be passed through a pointer to the ListInvoiceDailyUsageOptions struct.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **paginationPage** | **string** |  | 
+ **paginationLimit** | **int32** |  | 
+ **paginationAsOfTime** | **time.Time** |  | 
+ **paginationSortOrder** | **string** |  - ASC: Sort in ascending order. This is the default unless otherwise specified.  - DESC: Sort in descending order. | 
+
+### Return type
+
+[**ListInvoiceDailyUsageResponse**](ListInvoiceDailyUsageResponse.md)
 
 ### Authorization
 
