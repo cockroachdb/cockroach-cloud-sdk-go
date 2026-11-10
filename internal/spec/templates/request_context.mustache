@@ -1,0 +1,35 @@
+{{>partial_header}}
+package {{packageName}}
+
+import (
+	"context"
+	"net/http"
+)
+
+type requestHeaderKey struct{}
+
+// ContextWithHeader returns a copy of ctx carrying an HTTP header sent only
+// with the requests made using that context. It takes precedence over the
+// client-wide headers set by AddDefaultHeader.
+//
+// A per-call header holds one value per key, so a later call replaces an
+// earlier one. Keys are case-insensitive.
+func ContextWithHeader(ctx context.Context, key string, value string) context.Context {
+	header := requestHeaderFromContext(ctx).Clone()
+	if header == nil {
+		header = http.Header{}
+	}
+	header.Set(key, value)
+
+	return context.WithValue(ctx, requestHeaderKey{}, header)
+}
+
+// requestHeaderFromContext returns the headers added by ContextWithHeader, or
+// nil if ctx carries none.
+func requestHeaderFromContext(ctx context.Context) http.Header {
+	if ctx == nil {
+		return nil
+	}
+	header, _ := ctx.Value(requestHeaderKey{}).(http.Header)
+	return header
+}

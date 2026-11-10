@@ -5,6 +5,9 @@ files:
     service.mustache:
       templateType: SupportingFiles
       destinationFilename: service.go
+    request_context.mustache:
+      templateType: SupportingFiles
+      destinationFilename: request_context.go
     api.mustache:
       templateType: API
       destinationFilename: _ignore.txt
