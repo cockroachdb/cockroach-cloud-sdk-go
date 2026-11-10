@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Add `ContextWithHeader` for sending a request header on individual calls rather than on every request from a client.
+
 ## [10.1.0] - 2026-10-27
 
 ### Added

@@ -82,6 +82,20 @@ clientConfig.AddDefaultHeader("X-Example", "value")
 A default header holds one value per key, so the last write wins and the header
 replaces any value the request set for itself. Keys are case-insensitive.
 
+### Per-call headers
+
+To send a header with some requests and not others, put it on the context:
+
+```golang
+ctx := {{packageName}}.ContextWithHeader(context.Background(), "X-Example", "value")
+
+// Sends X-Example; a call made with the original context does not.
+cluster, httpResponse, err := service.GetCluster(ctx, clusterID)
+```
+
+A per-call header holds one value per key and takes precedence over the
+client-wide default for that key.
+
 ## Documentation for API Endpoints
 
 All URIs are relative to *{{basePath}}*

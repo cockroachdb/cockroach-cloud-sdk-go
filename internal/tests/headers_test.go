@@ -25,7 +25,7 @@ import (
 
 // listClusters calls an endpoint against a test server and returns the headers
 // the server received.
-func listClusters(t *testing.T, opts ...client.ConfigurationOption) http.Header {
+func listClusters(t *testing.T, ctx context.Context, opts ...client.ConfigurationOption) http.Header {
 	t.Helper()
 
 	var got http.Header
@@ -40,7 +40,7 @@ func listClusters(t *testing.T, opts ...client.ConfigurationOption) http.Header 
 	cfg.ServerURL = server.URL
 
 	service := client.NewService(client.NewClient(cfg))
-	_, _, err := service.ListClusters(context.Background(), &client.ListClustersOptions{})
+	_, _, err := service.ListClusters(ctx, &client.ListClustersOptions{})
 	if err != nil {
 		t.Fatalf("ListClusters: %v", err)
 	}
@@ -82,7 +82,7 @@ func TestCcClientHeader(t *testing.T) {
 		},
 	} {
 		t.Run(tc.name, func(t *testing.T) {
-			values := listClusters(t, tc.opts...).Values(client.CcClientHeader)
+			values := listClusters(t, context.Background(), tc.opts...).Values(client.CcClientHeader)
 			if len(values) != 1 || values[0] != tc.want {
 				t.Errorf("got %q, want [%q]", values, tc.want)
 			}
@@ -92,7 +92,7 @@ func TestCcClientHeader(t *testing.T) {
 
 // The Cc-Client default leaves the other configured headers alone.
 func TestHeadersCoexist(t *testing.T) {
-	header := listClusters(t,
+	header := listClusters(t, context.Background(),
 		setCcClient(client.CcClientHeader, "terraform"),
 		client.WithVanityName("my-org"),
 		client.WithUsername("someone"),
@@ -114,7 +114,7 @@ func TestHeadersCoexist(t *testing.T) {
 // A default header replaces the value the request set for itself rather than
 // appending a second one.
 func TestDefaultHeaderReplaces(t *testing.T) {
-	header := listClusters(t, func(cfg *client.Configuration) {
+	header := listClusters(t, context.Background(), func(cfg *client.Configuration) {
 		cfg.AddDefaultHeader("Accept", "application/custom")
 		cfg.AddDefaultHeader("User-Agent", "wrapping-client/1.0.0")
 	})
